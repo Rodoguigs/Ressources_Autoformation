@@ -1423,6 +1423,7 @@ footer strong{color:rgba(255,255,255,.8);}
 #spb-evaluer    .step-progress-fill { background: #2d9cdb; }
 #spb-meformer   .step-progress-fill { background: var(--gold); }
 #spb-ressources .step-progress-fill { background: #7c3aed; }
+#spb-bibliotheque .step-progress-fill { background: #f5a623; }
 
 @media(max-width:600px){
   .jbar-inner { padding: 0 8px; }
@@ -2082,12 +2083,24 @@ footer strong{color:rgba(255,255,255,.8);}
 
     <button class="js todo" id="js-ressources" data-key="ressources"
             onclick="goStep('ressources')" aria-label="Étape 4 : Approfondir">
-      <div class="js-dot"><span class="js-icon">📚</span></div>
+      <div class="js-dot"><span class="js-icon">🎓</span></div>
       <div>
         <span class="js-step-label">ÉTAPE 4</span>
         <div class="js-title">Approfondir</div>
       </div>
       <span class="js-mini" id="jmini-ressources">à faire</span>
+    </button>
+
+    <div class="js-sep"><div class="js-sep-line" id="jsep-4"></div></div>
+
+    <button class="js todo" id="js-bibliotheque" data-key="bibliotheque"
+            onclick="goStep('bibliotheque')" aria-label="Étape 5 : Bibliothèque">
+      <div class="js-dot"><span class="js-icon">📚</span></div>
+      <div>
+        <span class="js-step-label">ÉTAPE 5</span>
+        <div class="js-title">Bibliothèque</div>
+      </div>
+      <span class="js-mini" id="jmini-bibliotheque">à faire</span>
     </button>
 
     <button id="mode-badge-nav" onclick="showModeSelector()" title="Changer de mode">🧭 Perso</button>
@@ -2099,6 +2112,7 @@ footer strong{color:rgba(255,255,255,.8);}
   <div class="step-progress-bar" id="spb-evaluer"    style="display:none"><div class="step-progress-fill" id="spbf-evaluer"    style="width:0%"></div></div>
   <div class="step-progress-bar" id="spb-meformer"   style="display:none"><div class="step-progress-fill" id="spbf-meformer"   style="width:0%"></div></div>
   <div class="step-progress-bar" id="spb-ressources" style="display:none"><div class="step-progress-fill" id="spbf-ressources" style="width:0%"></div></div>
+  <div class="step-progress-bar" id="spb-bibliotheque" style="display:none"><div class="step-progress-fill" id="spbf-bibliotheque" style="width:0%"></div></div>
 </nav>
 
 <!-- SMART STRIP — recommandation contextuelle unique -->
@@ -2134,6 +2148,7 @@ footer strong{color:rgba(255,255,255,.8);}
       <div class="db-pill locked" id="dpill-evaluer" onclick="goStep('evaluer')"><span class="dp-dot"></span>2 · M'&eacute;valuer</div>
       <div class="db-pill locked" id="dpill-meformer" onclick="goStep('meformer')"><span class="dp-dot"></span>3 · Me former</div>
       <div class="db-pill locked" id="dpill-ressources" onclick="goStep('ressources')"><span class="dp-dot"></span>4 · Approfondir</div>
+      <div class="db-pill locked" id="dpill-bibliotheque" onclick="goStep('bibliotheque')"><span class="dp-dot"></span>5 · Bibliothèque</div>
     </div>
   </div>
   <div class="db-focus">
@@ -2159,7 +2174,8 @@ footer strong{color:rgba(255,255,255,.8);}
     <div class="db-quick-card" id="dqc-comprendre" onclick="goStep('comprendre')"><div class="dqc-icon">&#129517;</div><div><div class="dqc-name">La démarche</div><div class="dqc-sub">6 étapes · Fiches action</div></div></div>
     <div class="db-quick-card" id="dqc-evaluer" onclick="goStep('evaluer')"><div class="dqc-icon">&#128202;</div><div><div class="dqc-name">S'évaluer</div><div class="dqc-sub">Questionnaires · Radars</div></div></div>
     <div class="db-quick-card" id="dqc-meformer" onclick="goStep('meformer')"><div class="dqc-icon">&#127891;</div><div><div class="dqc-name">Me former</div><div class="dqc-sub">9 modules · Fiches</div></div></div>
-    <div class="db-quick-card" id="dqc-ressources" onclick="goStep('ressources')"><div class="dqc-icon">&#128218;</div><div><div class="dqc-name">Approfondir</div><div class="dqc-sub">Outils · Références · Fondements</div></div></div>
+    <div class="db-quick-card" id="dqc-ressources" onclick="goStep('ressources')"><div class="dqc-icon">&#127891;</div><div><div class="dqc-name">Approfondir</div><div class="dqc-sub">Fondements · Biblio · Glossaire · FAQ</div></div></div>
+    <div class="db-quick-card" id="dqc-bibliotheque" onclick="goStep('bibliotheque')"><div class="dqc-icon">&#128218;</div><div><div class="dqc-name">Bibliothèque</div><div class="dqc-sub">Documents · Kits · Ressources à télécharger</div></div></div>
   </div>
   <div class="db-explore"><a href="#" onclick="goStep('evaluer');return false;">Explorer librement le parcours complet →</a></div>
 </div>
@@ -6691,10 +6707,298 @@ function downloadApprofondirPDF() {
 </section>
 
 
+
+<div class="section-break"><div class="sb-num">06</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">📖</span> Glossaire</div><div class="sb-line"></div></div>
+
+<!-- GLOSSAIRE -->
+<section id="glossaire" style="max-width:980px;margin:0 auto;padding:60px 32px;">
+  <div class="section-label">Lexique</div>
+  <h2>Glossaire des termes neuroéducatifs</h2>
+  <div class="divider"></div>
+  <p style="font-size:.88rem;color:#555;margin-bottom:24px;">Définitions accessibles des concepts utilisés dans cette démarche. Utilisez la recherche pour trouver rapidement un terme.</p>
+  <input class="glossaire-search" type="text" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" oninput="filterGlossaire(this.value)">
+  <div class="glossaire-grid" id="glossaire-grid">
+
+    <div class="glossaire-entry" data-tags="burnout épuisement MBI maslach professionnel">
+      <span class="g-tag">Psychologie du travail</span>
+      <h4>Burnout (épuisement professionnel)</h4>
+      <p>Syndrome de déséquilibre chronique entre les demandes et les ressources, caractérisé par trois dimensions (Maslach) : épuisement émotionnel, dépersonnalisation (cynisme, détachement), et réduction du sentiment d'accomplissement. Mesuré par le MBI-ES (Maslach Burnout Inventory – Educators Survey). Distinct de la fatigue ponctuelle ou du stress aigu.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="élagage synaptique connexions neurones adolescence cerveau">
+      <span class="g-tag">Neurosciences · Développement</span>
+      <h4>Élagage synaptique (synaptic pruning)</h4>
+      <p>Processus de sélection et suppression de connexions neuronales peu utilisées, particulièrement intense à l'adolescence. Le cerveau "taille" ses circuits pour les rendre plus efficaces — comme un jardinier qui taille un arbre. Ce processus explique pourquoi certaines compétences se renforcent et d'autres s'étiolent selon les expériences vécues.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="épigénétique gène environnement expression">
+      <span class="g-tag">Neuroéducation · Biologie</span>
+      <h4>Épigénétique</h4>
+      <p>Mécanismes par lesquels l'environnement (stress, relations, expériences) modifie l'expression des gènes <em>sans altérer leur séquence</em>. En éducation : les expériences relationnelles vécues en classe influencent littéralement la biologie des élèves et de l'enseignant. Une relation sécurisante peut "activer" des gènes protecteurs.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="fonctions exécutives cortex préfrontal contrôle inhibiteur mémoire travail flexibilité Diamond">
+      <span class="g-tag">Neurosciences · Développement</span>
+      <h4>Fonctions exécutives</h4>
+      <p>Ensemble de processus cognitifs de haut niveau coordonnés par le cortex préfrontal : <em>contrôle inhibiteur</em> (résister aux impulsions), <em>mémoire de travail</em> (maintenir et manipuler l'information) et <em>flexibilité cognitive</em> (adapter sa pensée à des situations changeantes). Selon Diamond (2013), ces fonctions sont encore en maturation jusqu'à 25 ans chez l'adolescent, ce qui explique certains comportements observés en classe. Elles sont également sollicitées chez l'enseignant — notamment dans la gestion de classe et la régulation émotionnelle — et constituent une cible implicite du modèle PRÉSENCE.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="locus contrôle interne externe pouvoir agir Rotter">
+      <span class="g-tag">Psychologie sociale</span>
+      <h4>Locus de contrôle interne</h4>
+      <p>Croyance qu'on exerce une influence réelle sur ce qui nous arrive (vs. locus externe : sentiment d'être soumis au hasard ou aux autres). En autoformation : développer un locus interne signifie identifier ce sur quoi on peut <em>réellement agir</em> — même dans un contexte difficile — pour retrouver un sentiment d'efficacité.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="neuroplasticité plasticité cérébrale apprentissage changement">
+      <span class="g-tag">Neurosciences · Fondamental</span>
+      <h4>Neuroplasticité</h4>
+      <p>Capacité du cerveau à se modifier structurellement et fonctionnellement en réponse à l'expérience, l'apprentissage ou l'environnement. Principe fondateur de la neuroéducation : il n'est jamais trop tard pour apprendre ni pour changer ses habitudes professionnelles. Le cerveau adulte reste plastique tout au long de la vie.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="réévaluation cognitive reappraisal émotion régulation ERQ">
+      <span class="g-tag">Psychologie des émotions</span>
+      <h4>Réévaluation cognitive (reappraisal)</h4>
+      <p>Stratégie de régulation émotionnelle consistant à modifier son interprétation d'une situation pour en changer l'impact émotionnel. Ex. : face à un élève perturbateur, passer de "il me manque de respect" à "il exprime une détresse qu'il ne sait pas gérer autrement". Mesurée par l'ERQ (Gross & John, 2003). Stratégie la plus efficace à long terme selon la recherche.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="résilience CD-RISC adaptation adversité rebondir">
+      <span class="g-tag">Psychologie positive</span>
+      <h4>Résilience professionnelle</h4>
+      <p>Capacité à maintenir ou restaurer un fonctionnement professionnel satisfaisant face à l'adversité (Beltman et al., 2011). Mesurée notamment par la CD-RISC-10 (Campbell-Sills &amp; Stein, 2007), version abrégée à 10 items de l'échelle originale à 25 items de Connor &amp; Davidson (2003). La résilience n'est <em>pas</em> une caractéristique fixe — c'est un processus dynamique qui peut se développer par la réflexivité, le soutien social et le renforcement des ressources.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="SEP sentiment efficacité personnelle bandura compétence">
+      <span class="g-tag">Psychologie · Bandura</span>
+      <h4>SEP — Sentiment d'efficacité personnelle</h4>
+      <p>Conviction d'un individu en sa capacité à accomplir une tâche donnée (Bandura, 1997). En enseignement : croyance de l'enseignant en sa capacité à influencer positivement l'apprentissage des élèves. Le SEP est l'un des plus puissants prédicteurs de la qualité de l'enseignement et de la résilience professionnelle.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="synchronisation neuronale lien émotionnel relation sécurité">
+      <span class="g-tag">Neurosciences sociales</span>
+      <h4>Synchronisation neuronale</h4>
+      <p>Alignement des activités cérébrales entre deux personnes en interaction. Quand l'enseignant et l'élève "se synchronisent" émotionnellement (contact visuel, écoute, empathie), leurs cerveaux co-régulent l'état d'activation — ce qui facilite l'apprentissage. Fondement neurobiologique de la relation pédagogique.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="TDAH attention hyperactivité fonctions exécutives déficit">
+      <span class="g-tag">Neurodéveloppement · Clinique</span>
+      <h4>TDAH (Trouble déficit de l'attention avec/sans hyperactivité)</h4>
+      <p>Trouble neurodéveloppemental caractérisé par des difficultés persistantes d'attention, d'impulsivité et/ou d'hyperactivité, résultant d'une maturation différente des fonctions exécutives (contrôle inhibiteur, mémoire de travail, flexibilité cognitive). Prévalence scolaire estimée à 5-7%. L'enseignant joue un rôle déterminant dans la mise en place d'adaptations environnementales efficaces.</p>
+    </div>
+
+    <div class="glossaire-entry" data-tags="autodétermination TAD Deci Ryan motivation intrinsèque autonomie">
+      <span class="g-tag">Psychologie motivationnelle</span>
+      <h4>Théorie de l'autodétermination (TAD)</h4>
+      <p>Modèle de Deci & Ryan identifiant trois besoins psychologiques fondamentaux : <em>autonomie</em> (agir par choix), <em>compétence</em> (se sentir efficace), <em>appartenance</em> (se sentir connecté). Satisfaire ces besoins favorise la motivation intrinsèque — tant chez les élèves que chez les enseignants. Ces principes sont intégrés dans cette démarche.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-break"><div class="sb-num">07</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">❓</span> FAQ</div><div class="sb-line"></div></div>
+
+<!-- FAQ -->
+<section id="faq" style="max-width:980px;margin:0 auto;padding:60px 32px;">
+  <div class="section-label">Questions fréquentes</div>
+  <h2>FAQ — Questions fréquentes</h2>
+  <div class="divider"></div>
+  <p style="font-size:.88rem;color:#555;margin-bottom:32px;">Des réponses aux questions les plus courantes sur la démarche — notamment pour les profils les plus vulnérables.</p>
+
+  <div class="faq-item open">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ Par où commencer si je me sens dépassé(e) ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#ffebee;color:#c62828;">Profil vulnérable · Épuisement</span><br>
+      Si vous vous sentez dépassé(e), commencez par <strong>l'Étape 2 uniquement</strong> — évaluer votre bien-être et identifier les signaux d'alerte. Pas l'Étape 1 (trop théorique pour un état d'épuisement) ni l'Étape 3 (trop exigeante). Complétez la Fiche Action de l'Étape 2 en 15 minutes. Revenez au reste quand vous vous sentirez un peu plus disponible.<br><br>
+      <strong>Si l'épuisement est sévère :</strong> avant toute autoformation, consultez un médecin ou un professionnel de santé. Cette démarche est un outil de développement professionnel, pas un dispositif thérapeutique. Elle complète — sans remplacer — le suivi médical ou psychologique.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ Comment utiliser ce document en formation continue ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#e8f0fe;color:var(--accent2);">Usage collectif · Formateurs</span><br>
+      Ce document a été conçu pour un usage autonome <em>et</em> guidé. En formation continue, plusieurs approches sont possibles : (1) <strong>module de formation</strong> : utiliser une section par séance (6 séances de 90 min) ; (2) <strong>accompagnement individuel</strong> : le conseiller pédagogique utilise les fiches action comme supports de conversation.<br><br>
+      Les fiches action intégrées permettent à chaque participant de garder une trace personnelle tout au long de la formation.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ Combien de temps dure la démarche complète ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#e8f5e9;color:#2e7d32;">Organisation pratique</span><br>
+      Le parcours de base est conçu pour <strong>6 semaines</strong> à raison d'environ 45-60 minutes par semaine. Mais la démarche est volontairement flexible : vous pouvez aller plus lentement (6 mois) si la charge professionnelle est élevée, ou plus rapidement si vous êtes en formation intensive. L'important est de compléter les fiches action de chaque étape avant de passer à la suivante — elles créent la continuité du parcours.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ Et si mes scores ne s'améliorent pas entre T1 et T2 ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#fff8e1;color:#e65100;">Suivi longitudinal</span><br>
+      L'absence d'amélioration entre T1 et T2 est une <em>information précieuse</em>, pas un échec. Cela peut signifier : (1) que vous avez ciblé une dimension trop difficile à changer seul (→ chercher un soutien, un mentor, ou un ajustement de charge) ; (2) que le contexte institutionnel génère des demandes trop élevées (→ impliquer la direction) ; (3) que 6 semaines ne sont pas suffisantes pour cette dimension (→ réinitialiser le calendrier sur 12 semaines). Le progrès n'est jamais linéaire. Certaines dimensions régressent avant de s'améliorer.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ Je suis débutant(e) — par quelle étape commencer ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#e0f7fa;color:#00695c;">Enseignant débutant</span><br>
+      Consultez le <strong>Cas pratique "Léa, enseignante débutante"</strong> dans la section Cas pratiques pour un exemple concret. En tant que débutant(e), votre priorité devrait être : <strong>Étape 1</strong> (comprendre le modèle PRÉSENCE pour donner du sens à vos expériences) → <strong>Étape 2</strong> (surveiller vos signaux d'alerte précoces — le début de carrière est une période à risque de burnout) → <strong>Étape 3</strong> (identifier vos forces, pas seulement vos lacunes). Évitez de vouloir tout améliorer à la fois — une priorité de développement à la fois produit les effets les plus durables.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ La démarche est-elle confidentielle ? Dois-je partager mes scores ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#f3e5f5;color:#4527a0;">Confidentialité & éthique</span><br>
+      <strong>Absolument pas obligatoire.</strong> La démarche est d'abord un outil d'autoformation individuelle. Vos scores, fiches et profils radar sont strictement personnels — ils sont enregistrés localement dans votre navigateur et ne sont pas transmis. Dans un contexte de formation collective ou de mentorat, vous choisissez ce que vous souhaitez partager. Aucune direction ou formateur ne doit avoir accès à vos scores sans votre consentement explicite.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
+      <span>❓ Quelle est la différence entre la démarche et un bilan de compétences ?</span><span class="faq-icon">+</span>
+    </div>
+    <div class="faq-a">
+      <span class="faq-profil-badge" style="background:#f0f4ff;color:var(--accent2);">Positionnement</span><br>
+      Le bilan de compétences est un dispositif RH formel, mené par un professionnel externe, orienté vers la mobilité professionnelle. La démarche est différente sur trois points : (1) <strong>autodirigée</strong> — vous êtes le seul évaluateur de votre propre parcours ; (2) <strong>centrée sur le développement en contexte</strong> — l'objectif est de mieux fonctionner dans votre poste actuel, pas d'en changer ; (3) <strong>ancrée dans la neuroéducation</strong> — les dimensions évaluées sont spécifiques aux défis propres à l'enseignement. Les deux démarches sont complémentaires.
+    </div>
+  </div>
+</section>
+
+<div class="section-break"><div class="sb-num">08</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">🔬</span> Bibliographie</div><div class="sb-line"></div></div>
+
+<!-- BIBLIOGRAPHIE -->
+<section id="bibliographie" style="max-width:980px;margin:0 auto;padding:60px 32px;">
+  <div class="section-label">Références scientifiques</div>
+  <h2>Bibliographie</h2>
+  <div class="divider"></div>
+  <p style="font-size:.85rem;color:var(--muted);margin-bottom:36px;">Ensemble des références mobilisées dans la démarche d'autoformation (révision 2025).</p>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">📗 Ouvrages et chapitres</div>
+    <div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
+    <div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
+    <div class="biblio-entry">Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. <a href="https://periscope-r.quebec/" target="_blank">periscope-r.quebec</a></div>
+    <div class="biblio-entry">Évéquoz, G. (1998). <em>Le contexte scolaire et ses otages : une approche systémique des difficultés scolaires.</em> Genève : Éditions des Médecins suisses.</div>
+    <div class="biblio-entry">Fahim, C. (2025). <em>Résilience et gestion de classe : surfer sur la vague des difficultés.</em> Montréal : Endoxa Neuroscience.</div>
+    <div class="biblio-entry">Gaudreau, N. (2024). <em>Gérer efficacement sa classe.</em> Québec : Presses de l'Université du Québec.</div>
+    <div class="biblio-entry">Goyette, N. et Martineau, S. (dir.). (2021). <em>Le bien-être des enseignants.</em> Presses de l'Université du Québec.</div>
+    <div class="biblio-entry">Goyette, N. (2023). <em>Le sentiment d'efficacité personnelle des enseignants : cercle vertueux et développement professionnel.</em> Presses de l'Université du Québec.</div>
+    
+    <div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience: Conditions count. <em>British Educational Research Journal, 39</em>(1), 22–44.</div>
+    <div class="biblio-entry">Hattie, J. (2009). <em>Visible learning: A synthesis of over 800 meta-analyses relating to achievement.</em> London : Routledge.</div>
+    <div class="biblio-entry">Massé, L., Desbiens, N. et Lanaris, C. (Dir.). (2020). <em>Les troubles du comportement à l'école</em> (3e éd.). Montréal : Chenelière Éducation.</div>
+    <div class="biblio-entry">Maslach, C., Jackson, S. E., &amp; Leiter, M. P. (1996). <em>Maslach Burnout Inventory Manual (3e éd.).</em> Consulting Psychologists Press.</div>
+    <div class="biblio-entry">Pianta, R. C. (2008). <em>Student-Teacher Relationship Scale (STRS).</em> Psychological Assessment Resources.</div>
+    <div class="biblio-entry">Porges, S. W. (2011). <em>The polyvagal theory: Neurophysiological foundations of emotions, attachment, communication, and self-regulation.</em> New York, NY : W. W. Norton.</div>
+    <div class="biblio-entry">Schön, D. A. (1983). <em>The Reflective Practitioner.</em> Basic Books.</div>
+    <div class="biblio-entry">Seligman, M. E. P. (2011). <em>Flourish: A visionary new understanding of happiness and well-being.</em> New York : Free Press.</div>
+    <div class="biblio-entry">Shirnin, D. (2022, 23 mars). <em>Le bien-être des enseignant.e.s : les facteurs fondamentaux, effets et les stratégies.</em> Gouvernement du Grand-Duché du Luxembourg. <a href="https://www.developpement-scolaire.lu/dds-resources/le-bien-etre-des-enseignant-e-s-les-facteurs-fondamentaux-effets-et-strategies/" target="_blank">developpement-scolaire.lu</a></div>
+    <div class="biblio-entry">Théorêt, M. et Leroux, M. (2014). <em>Comment améliorer le bien-être et la santé des enseignants ?</em> De Boeck Supérieur.</div>
+    <div class="biblio-entry">Vianin, P. (2024). <em>L'approche systémique en pédagogie spécialisée.</em> Bruxelles : De Boeck Supérieur.</div>
+    <div class="biblio-entry">Cooper, J. O., Heron, T. E., &amp; Heward, W. L. (2007). <em>Applied Behavior Analysis</em> (2e éd.). Upper Saddle River, NJ : Pearson. [Référence fondatrice de l'analyse appliquée du comportement, mobilisée dans le dossier « Analyse fonctionnelle »]</div>
+  </div>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">📄 Articles et revues scientifiques</div>
+    <div class="biblio-entry">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands–resources theory. <em>Journal of Occupational Health Psychology, 22(3)</em>, 273–285.</div>
+    <div class="biblio-entry">Beaumont, C., Langri, S., Wilkie, T., Marquis, D. et Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval / HEP-VS. [Adaptation du modèle CS3 ajoutant la compétence <em>conscience de l'interdépendance</em>]</div>
+    <div class="biblio-entry">Beltman, S., Mansfield, C. F. et Price, A. (2011). Thriving not just surviving. <em>Educational Research Review, 6(3)</em>, 185–207.</div>
+    <div class="biblio-entry">Ben Alaya, I., Frenette, É. et Gaudreau, N. (2024). Processus d'élaboration et de validation d'un questionnaire francophone sur les compétences socioémotionnelles des enseignants. <em>Canadian Journal of Education / Revue canadienne de l'éducation, 47</em>(2), 375–410. <a href="https://doi.org/10.53967/cje-rce.5947" target="_blank">doi:10.53967/cje-rce.5947</a></div>
+    <div class="biblio-entry">Casey, B. J., Jones, R. M., &amp; Hare, T. A. (2008). The adolescent brain. <em>Annals of the New York Academy of Sciences, 1124</em>, 111–126. <a href="https://doi.org/10.1196/annals.1440.010" target="_blank">doi:10.1196/annals.1440.010</a></div>
+    
+    <div class="biblio-entry">Campbell-Sills, L., &amp; Stein, M. B. (2007). Psychometric analysis and refinement of the Connor-Davidson Resilience Scale (CD-RISC): Validation of the 10-item measure of resilience. <em>Journal of Traumatic Stress, 20(6)</em>, 1019–1028.</div>
+    <div class="biblio-entry">Connor, K. M., &amp; Davidson, J. R. T. (2003). Development of a new resilience scale. <em>Depression and Anxiety, 18(2)</em>, 76–82.</div>
+    <div class="biblio-entry">Daniilidou, A., &amp; Platsidou, M. (2024). Teachers' Personal Factors Resilience Scale. <em>Educational Psychology, 44(1).</em></div>
+    <div class="biblio-entry">Davidson, R. J. et McEwen, B. S. (2012). Social influences on neuroplasticity. <em>Nature Neuroscience, 15(5)</em>, 689-695. <a href="https://doi.org/10.1038/nn.3093" target="_blank">doi:10.1038/nn.3093</a></div>
+    <div class="biblio-entry">Deklerck, J. (2012). <em>La pyramide de la prévention, un cadre de prévention intégrale dans l'enseignement.</em> Université catholique de Louvain. [Adaptée au contexte scolaire québécois par Beaumont, 2014]</div>
+    <div class="biblio-entry">De Stercke, J., Temperman, G., De Lièvre, B. et Lacocque, J. (2014). Échelle de sentiment d'efficacité personnelle des enseignants (ESEPE) : traduction francophone de la <em>Teachers' Sense of Efficacy Scale.</em> Service de Pédagogie Générale et des Médias Éducatifs, Université de Mons. <a href="https://hal.science/hal-01145411/" target="_blank">hal.science/hal-01145411</a></div>
+    <div class="biblio-entry">Deci, E. L., &amp; Ryan, R. M. (2000). The "what" and "why" of goal pursuits: Human needs and the self-determination of behavior. <em>Psychological Inquiry, 11(4)</em>, 227–268.</div>
+    <div class="biblio-entry">Diamond, A. (2013). Executive functions. <em>Annual Review of Psychology, 64</em>, 135–168. <a href="https://doi.org/10.1146/annurev-psych-113011-143750" target="_blank">doi:10.1146/annurev-psych-113011-143750</a></div>
+    
+    <div class="biblio-entry">Fang, Z. (1996). A review of research on teacher beliefs and practices. <em>Educational Research, 38(1)</em>, 47–65.</div>
+    <div class="biblio-entry">Gratz, K. L., &amp; Roemer, L. (2004). Multidimensional assessment of emotion regulation. <em>Journal of Psychopathology and Behavioral Assessment, 26(1)</em>, 41–54.</div>
+    <div class="biblio-entry">Gross, J. J. (2015). Emotion regulation: Current status. <em>Psychological Inquiry, 26(1)</em>, 1–26.</div>
+    <div class="biblio-entry">Gross, J. J., &amp; John, O. P. (2003). Individual differences in two emotion regulation processes. <em>JPSP, 85(2)</em>, 348–362.</div>
+    <div class="biblio-entry">Iwata, B. A., Dorsey, M. F., Slifer, K. J., Bauman, K. E., &amp; Richman, G. S. (1982/1994). Toward a functional analysis of self-injury. <em>Journal of Applied Behavior Analysis, 27</em>(2), 197–209. [Article fondateur de la méthode d'analyse fonctionnelle du comportement]</div>
+    <div class="biblio-entry">Simonsen, B., Fairbanks, S., Briesch, A., Myers, D., &amp; Sugai, G. (2008). Evidence-based practices in classroom management. <em>Education and Treatment of Children, 31</em>(3), 351–380. [Cadre PBIS, ratio 4:1 d'interactions positives, mobilisé dans le contrat comportemental]</div>
+    <div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience. <em>British Educational Research Journal, 39(1)</em>, 22–44.</div>
+    <div class="biblio-entry">Ochsner, K. N., &amp; Gross, J. J. (2005). The cognitive control of emotion. <em>Trends in Cognitive Sciences, 9(5)</em>, 242–249. <a href="https://doi.org/10.1016/j.tics.2005.03.010" target="_blank">doi:10.1016/j.tics.2005.03.010</a></div>
+
+    <div class="biblio-entry"><div class="biblio-entry">Pajares, M. F. (1992). Teachers&#x2019; beliefs and educational research: Cleaning up a messy construct. <em>Review of Educational Research, 62</em>(3), 307–332.</div>
+    Tims, M., Bakker, A. B., &amp; Derks, D. (2012). Development of the job crafting scale. <em>Journal of Vocational Behavior, 80(1)</em>, 173–186.</div>
+    <div class="biblio-entry">Théorêt, M., et Leroux, M. (2014). La résilience éducationnelle. <em>Revue canadienne de l'éducation, 37(2)</em>, 1–18.</div>
+    <div class="biblio-entry">Tschannen-Moran, M., Woolfolk Hoy, A. et Hoy, W. K. (1998). Teacher efficacy: Its meaning and measure. <em>Review of Educational Research, 68(2)</em>, 202–248.</div>
+    <div class="biblio-entry">Tschannen-Moran, M., &amp; Hoy, A. W. (2001). Teacher efficacy: Capturing an elusive construct. <em>Teaching and Teacher Education, 17(7)</em>, 783–805.</div>
+    <div class="biblio-entry">Woodcock, S., &amp; Tournaki, N. (2025). Scale of Educational Teaching Self-efficacy (SETS). <em>Teaching and Teacher Education, 145.</em></div>
+  </div>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">🌐 Ressources en ligne &amp; rapports</div>
+    <div class="biblio-entry">Beaumont, C. (2023). <em>Promouvoir à la fois la santé mentale, un climat scolaire positif et la prévention de la violence : Guide de planification pour soutenir de manière continue le bien-être à l'école.</em> Chaire de recherche Bienêtre à l'école et prévention de la violence, Université Laval. <a href="https://www.violence-ecole.ulaval.ca/" target="_blank">violence-ecole.ulaval.ca</a> [Guide source de la section 6.3 — Pyramide de prévention à 4 niveaux]</div>
+    <div class="biblio-entry">État du Valais &amp; FMEP. (2024). <em>Enquête de satisfaction du personnel enseignant du canton du Valais.</em> Service de l'enseignement du Valais. (Reporté par RTS Info, 4 février 2025 : <a href="https://www.rts.ch/info/regions/valais/2025/article/stress-et-charge-de-travail-en-hausse-chez-les-enseignants-valaisans-28779013.html" target="_blank">rts.ch</a>)</div>
+    <div class="biblio-entry">Kunz Heim, D., Böhm, A. et al. (2014). <em>Gesundheitliche Belastungen, Ressourcen und Arbeitsbewältigung von Lehrpersonen.</em> Haute École Pédagogique de la Suisse du Nord-Ouest (FHNW). [Burnout estimé entre 23 % et 34 % des enseignants en Suisse alémanique]</div>
+    <div class="biblio-entry">Studer, R., &amp; Quarroz, S. (2017). <em>Santé des enseignants romands.</em> Institut de santé au travail (IST), Lausanne. Enquête mandatée par le Syndicat des Enseignants Romands (SER). [22.5 % présentaient un score élevé d'épuisement ; enquête sur ~5 500 enseignants]</div>
+    <div class="biblio-entry">Trachsler, E., et al. (2003, 2006, 2008). Études sur le burnout des enseignants en Suisse. <em>Pädagogische Hochschule Thurgau.</em></div>
+
+    <div class="biblio-entry">Lane K., Weatherby K. et Bain, M. (2024). <em>Le bien-être du personnel est essentiel à la réussite des élèves.</em> Le réseau Edcan. <a href="https://www.edcan.ca/articles/le-bien-etre-du-personnel-est-essentiel-a-la-reussite-des-eleves/?lang=fr" target="_blank">edcan.ca</a></div>
+    <div class="biblio-entry">Turmel, N. (2015). <em>Cadre de référence et guide à l'intention du milieu scolaire.</em> Ministère de l'Education du Québec. <a href="https://www.meesr.gouv.qc.ca" target="_blank">meesr.gouv.qc.ca</a></div>
+    <div class="biblio-entry">Viac, C., &amp; Fraser, P. (2020). Teachers' well-being: A framework for data collection and analysis. <em>OECD Education Working Papers, No. 213.</em> OECD Publishing. <a href="https://doi.org/10.1787/c36fc9d3-en" target="_blank">doi:10.1787/c36fc9d3-en</a></div>
+    
+  </div>
+</section>
+
+
+
+<!-- ATTESTATION — Bloc validation Étape 4 -->
+<div class="attest-jalus-block" id="ajb-ressources" style="max-width:calc(100% - 24px);margin:32px auto 40px;padding-top:32px;">
+  <div class="ajb-title">📚 Valider l'étape 4 — Approfondir</div>
+  <div class="ajb-sub">Parcourez les fondements scientifiques et les ressources pour compléter votre parcours.</div>
+  <div class="ajb-criteria" id="ajb-crit-ressources">
+    <div class="ajb-crit" id="ajbc-scroll-ressources">
+      <span class="ajb-check">✓</span>Fondements théoriques parcourus
+    </div>
+    <div class="ajb-crit" id="ajbc-reflex-ressources">
+      <span class="ajb-check">✓</span>Section ressources et bibliographie visitées
+    </div>
+    <div class="ajb-crit" id="ajbc-question-ressources">
+      <span class="ajb-check">✓</span>Question de synthèse répondue
+    </div>
+    <div class="ajb-crit" id="ajbc-time-ressources">
+      <span class="ajb-check">✓</span>Temps minimum passé sur l'étape (5 min)
+    </div>
+  </div>
+  <div class="ajb-question">
+    <label>💬 Quel apport de ce parcours allez-vous partager avec vos collègues ou mettre en œuvre dans votre contexte ?</label>
+    <textarea id="ajbq-ressources" placeholder="Ex : Je souhaite partager avec mes collègues l'approche du modèle PRÉSENCE comme cadre commun pour…" oninput="attestSaveQuestion('ressources', this.value); attestCheckCriteria('ressources');"></textarea>
+  </div>
+  <div class="ajb-timer" id="ajb-timer-ressources">
+    <span id="ajb-timer-text-ressources">0:00 / 30:00</span>
+    <div class="ajb-timer-fill"><div class="ajb-timer-bar" id="ajb-timerbar-ressources" style="width:0%"></div></div>
+  </div>
+  <button class="ajb-jalus-btn" id="ajb-btn-ressources" onclick="attestMarkJaLu('ressources')" style="margin-top:16px;">
+    ✓ J'ai approfondi et je valide cette étape
+  </button>
+</div>
+</div><!-- /tab-ressources -->
+
+<div id="tab-bibliotheque" class="main-tab-panel" role="tabpanel">
+
 <div class="section-break"><div class="sb-num">06</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">📚</span> Bibliothèque</div><div class="sb-line"></div></div>
 
 <!-- POUR ALLER PLUS LOIN -->
-<section class="resources-section" id="ressources">
+<section class="resources-section" id="bibliotheque">
   <div class="resources-inner">
     <div class="section-label">Documents &amp; prolongements</div>
     <h2>Bibliothèque de ressources</h2>
@@ -6714,6 +7018,21 @@ function downloadApprofondirPDF() {
           style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:7px 18px;font-size:.75rem;font-weight:600;cursor:pointer;">
           📁 Tout fermer
         </button>
+      </div>
+
+      <!-- Jauge de progression téléchargements -->
+      <div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);border-radius:12px;padding:14px 18px;margin-bottom:28px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+          <span style="font-size:1.2rem;">📥</span>
+          <div style="flex:1;min-width:200px;">
+            <div style="font-size:.85rem;font-weight:700;color:white;">Exploration de la bibliothèque</div>
+            <div id="biblio-dl-msg" style="font-size:.72rem;color:rgba(255,255,255,.7);margin-top:2px;">Encore 3 téléchargements pour valider cette étape</div>
+          </div>
+          <div style="font-size:.9rem;color:rgba(255,255,255,.85);font-weight:600;"><span id="biblio-dl-count">0</span> / 3</div>
+        </div>
+        <div style="height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;">
+          <div id="biblio-dl-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#f5a623,#e94560);transition:width .4s ease;"></div>
+        </div>
       </div>
 
       <div id="res-pratique" style="display:none;"></div>
@@ -6872,38 +7191,38 @@ function downloadApprofondirPDF() {
 
           <div style="margin-top:14px;padding:10px 12px;background:#f5a62315;border-left:3px solid #f5a623;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#f5a623;font-weight:700;">🧭 01 · Se connaître comme apprenant·e</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 1 — autoformation individuelle · document pivot + questionnaire + fiche d'objectif</div></div>
           <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
-            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_cahier" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Cahier des pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· ⭐ document pivot · à lire en premier</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_quest_adulte" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Questionnaire adulte 2025</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· test + compilation + roue (8 p.)</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fiche51" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Fiche 5.1 — Nommer, cibler, planifier</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_elliot" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Exemple interprété Elliot</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· cas travaillé modèle</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:rgba(255,255,255,.4);flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_quest_eleve" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Questionnaire élève 10-18 ans</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· usage en classe (optionnel)</span></div>
+            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_cahier" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Cahier des pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· ⭐ document pivot · à lire en premier</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_quest_adulte" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Questionnaire adulte 2025</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· test + compilation + roue (8 p.)</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fiche51" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Fiche 5.1 — Nommer, cibler, planifier</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_elliot" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Exemple interprété Elliot</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· cas travaillé modèle</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:rgba(255,255,255,.4);flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_quest_eleve" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Questionnaire élève 10-18 ans</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· usage en classe (optionnel)</span></div>
           </div>
 
           <div style="margin-top:14px;padding:10px 12px;background:#2d9cdb15;border-left:3px solid #2d9cdb;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#2d9cdb;font-weight:700;">🔍 02 · Observer ses élèves</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 2 — pratique professionnelle · grilles d'observation + 6 schémas fonctions/dysfonctions</div></div>
           <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
-            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_grille_meta" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Grille d'observation en méta</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· axe arrière/avant</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_tableau41" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Tableau 4.1 — Énoncé, pondération, actions</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· cadre d'objectif élève</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_cog_f" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Axe cognitif — Fonctions (13.7)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles gauche / droit</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_cog_d" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Axe cognitif — Dysfonctions (14.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance gauche / droit</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_meta_f" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Axe métacognitif — Fonctions (22.3)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles arrière / avant</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_meta_d" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Axe métacognitif — Dysfonctions (23.5)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance arrière / avant</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_aff_f" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Axe affectif — Fonctions (18.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles haut / bas</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_aff_d" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Axe affectif — Dysfonctions (19.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance haut / bas</span></div>
+            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_grille_meta" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Grille d'observation en méta</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· axe arrière/avant</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_tableau41" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Tableau 4.1 — Énoncé, pondération, actions</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· cadre d'objectif élève</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_cog_f" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Axe cognitif — Fonctions (13.7)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles gauche / droit</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_cog_d" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Axe cognitif — Dysfonctions (14.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance gauche / droit</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_meta_f" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Axe métacognitif — Fonctions (22.3)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles arrière / avant</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_meta_d" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Axe métacognitif — Dysfonctions (23.5)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance arrière / avant</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_aff_f" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Axe affectif — Fonctions (18.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles haut / bas</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_aff_d" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Axe affectif — Dysfonctions (19.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance haut / bas</span></div>
           </div>
 
           <div style="margin-top:14px;padding:10px 12px;background:#9b59b615;border-left:3px solid #9b59b6;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#9b59b6;font-weight:700;">💬 03 · Accompagner un·e élève</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 3 — entretien socratique · questions et actions pour activer le bon pôle</div></div>
           <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
-            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fig67" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Figure 6.7 — Questions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· ⭐ outil pivot de l'entretien</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fig69" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Figure 6.9 — Actions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· roue des savoir-faire</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fig72" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Figure 7.2 — Synthèse fonctions + questions</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· aide-mémoire de référence</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_echelles" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Échelles socratiques</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable · co-construction d'objectifs</span></div>
+            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fig67" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Figure 6.7 — Questions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· ⭐ outil pivot de l'entretien</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fig69" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Figure 6.9 — Actions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· roue des savoir-faire</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_fig72" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Figure 7.2 — Synthèse fonctions + questions</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· aide-mémoire de référence</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_echelles" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Échelles socratiques</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable · co-construction d'objectifs</span></div>
           </div>
 
           <div style="margin-top:14px;padding:10px 12px;background:#27ae6015;border-left:3px solid #27ae60;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#27ae60;font-weight:700;">👥 04 · Former ses collègues</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 4 — diffusion collective · supports clés en main pour séance d'équipe (45 min à 2 h)</div></div>
           <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
-            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_test_gd" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Test axe gauche / droit</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· 15 min lecture + 10 min test · clé en main</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_interview" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Interview des aires préfrontales</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· entrée narrative · vulgarisation</span></div>
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_analyse" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);flex-shrink:0;"><strong>Figure 23.5 — Analyse de pratiques</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable · groupe d'analyse</span></div>
+            <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_test_gd" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Test axe gauche / droit</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· 15 min lecture + 10 min test · clé en main</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_interview" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Interview des aires préfrontales</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· entrée narrative · vulgarisation</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a href="#" data-lien="bourassa_analyse" target="_blank" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);"><strong>Figure 23.5 — Analyse de pratiques</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable · groupe d'analyse</span></div>
           </div>
         </div>
 
@@ -7275,290 +7594,8 @@ function downloadApprofondirPDF() {
   </div>
 </section>
 
-<div class="section-break"><div class="sb-num">07</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">📖</span> Glossaire</div><div class="sb-line"></div></div>
+</div><!-- /tab-bibliotheque -->
 
-<!-- GLOSSAIRE -->
-<section id="glossaire" style="max-width:980px;margin:0 auto;padding:60px 32px;">
-  <div class="section-label">Lexique</div>
-  <h2>Glossaire des termes neuroéducatifs</h2>
-  <div class="divider"></div>
-  <p style="font-size:.88rem;color:#555;margin-bottom:24px;">Définitions accessibles des concepts utilisés dans cette démarche. Utilisez la recherche pour trouver rapidement un terme.</p>
-  <input class="glossaire-search" type="text" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" oninput="filterGlossaire(this.value)">
-  <div class="glossaire-grid" id="glossaire-grid">
-
-    <div class="glossaire-entry" data-tags="burnout épuisement MBI maslach professionnel">
-      <span class="g-tag">Psychologie du travail</span>
-      <h4>Burnout (épuisement professionnel)</h4>
-      <p>Syndrome de déséquilibre chronique entre les demandes et les ressources, caractérisé par trois dimensions (Maslach) : épuisement émotionnel, dépersonnalisation (cynisme, détachement), et réduction du sentiment d'accomplissement. Mesuré par le MBI-ES (Maslach Burnout Inventory – Educators Survey). Distinct de la fatigue ponctuelle ou du stress aigu.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="élagage synaptique connexions neurones adolescence cerveau">
-      <span class="g-tag">Neurosciences · Développement</span>
-      <h4>Élagage synaptique (synaptic pruning)</h4>
-      <p>Processus de sélection et suppression de connexions neuronales peu utilisées, particulièrement intense à l'adolescence. Le cerveau "taille" ses circuits pour les rendre plus efficaces — comme un jardinier qui taille un arbre. Ce processus explique pourquoi certaines compétences se renforcent et d'autres s'étiolent selon les expériences vécues.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="épigénétique gène environnement expression">
-      <span class="g-tag">Neuroéducation · Biologie</span>
-      <h4>Épigénétique</h4>
-      <p>Mécanismes par lesquels l'environnement (stress, relations, expériences) modifie l'expression des gènes <em>sans altérer leur séquence</em>. En éducation : les expériences relationnelles vécues en classe influencent littéralement la biologie des élèves et de l'enseignant. Une relation sécurisante peut "activer" des gènes protecteurs.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="fonctions exécutives cortex préfrontal contrôle inhibiteur mémoire travail flexibilité Diamond">
-      <span class="g-tag">Neurosciences · Développement</span>
-      <h4>Fonctions exécutives</h4>
-      <p>Ensemble de processus cognitifs de haut niveau coordonnés par le cortex préfrontal : <em>contrôle inhibiteur</em> (résister aux impulsions), <em>mémoire de travail</em> (maintenir et manipuler l'information) et <em>flexibilité cognitive</em> (adapter sa pensée à des situations changeantes). Selon Diamond (2013), ces fonctions sont encore en maturation jusqu'à 25 ans chez l'adolescent, ce qui explique certains comportements observés en classe. Elles sont également sollicitées chez l'enseignant — notamment dans la gestion de classe et la régulation émotionnelle — et constituent une cible implicite du modèle PRÉSENCE.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="locus contrôle interne externe pouvoir agir Rotter">
-      <span class="g-tag">Psychologie sociale</span>
-      <h4>Locus de contrôle interne</h4>
-      <p>Croyance qu'on exerce une influence réelle sur ce qui nous arrive (vs. locus externe : sentiment d'être soumis au hasard ou aux autres). En autoformation : développer un locus interne signifie identifier ce sur quoi on peut <em>réellement agir</em> — même dans un contexte difficile — pour retrouver un sentiment d'efficacité.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="neuroplasticité plasticité cérébrale apprentissage changement">
-      <span class="g-tag">Neurosciences · Fondamental</span>
-      <h4>Neuroplasticité</h4>
-      <p>Capacité du cerveau à se modifier structurellement et fonctionnellement en réponse à l'expérience, l'apprentissage ou l'environnement. Principe fondateur de la neuroéducation : il n'est jamais trop tard pour apprendre ni pour changer ses habitudes professionnelles. Le cerveau adulte reste plastique tout au long de la vie.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="réévaluation cognitive reappraisal émotion régulation ERQ">
-      <span class="g-tag">Psychologie des émotions</span>
-      <h4>Réévaluation cognitive (reappraisal)</h4>
-      <p>Stratégie de régulation émotionnelle consistant à modifier son interprétation d'une situation pour en changer l'impact émotionnel. Ex. : face à un élève perturbateur, passer de "il me manque de respect" à "il exprime une détresse qu'il ne sait pas gérer autrement". Mesurée par l'ERQ (Gross & John, 2003). Stratégie la plus efficace à long terme selon la recherche.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="résilience CD-RISC adaptation adversité rebondir">
-      <span class="g-tag">Psychologie positive</span>
-      <h4>Résilience professionnelle</h4>
-      <p>Capacité à maintenir ou restaurer un fonctionnement professionnel satisfaisant face à l'adversité (Beltman et al., 2011). Mesurée notamment par la CD-RISC-10 (Campbell-Sills &amp; Stein, 2007), version abrégée à 10 items de l'échelle originale à 25 items de Connor &amp; Davidson (2003). La résilience n'est <em>pas</em> une caractéristique fixe — c'est un processus dynamique qui peut se développer par la réflexivité, le soutien social et le renforcement des ressources.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="SEP sentiment efficacité personnelle bandura compétence">
-      <span class="g-tag">Psychologie · Bandura</span>
-      <h4>SEP — Sentiment d'efficacité personnelle</h4>
-      <p>Conviction d'un individu en sa capacité à accomplir une tâche donnée (Bandura, 1997). En enseignement : croyance de l'enseignant en sa capacité à influencer positivement l'apprentissage des élèves. Le SEP est l'un des plus puissants prédicteurs de la qualité de l'enseignement et de la résilience professionnelle.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="synchronisation neuronale lien émotionnel relation sécurité">
-      <span class="g-tag">Neurosciences sociales</span>
-      <h4>Synchronisation neuronale</h4>
-      <p>Alignement des activités cérébrales entre deux personnes en interaction. Quand l'enseignant et l'élève "se synchronisent" émotionnellement (contact visuel, écoute, empathie), leurs cerveaux co-régulent l'état d'activation — ce qui facilite l'apprentissage. Fondement neurobiologique de la relation pédagogique.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="TDAH attention hyperactivité fonctions exécutives déficit">
-      <span class="g-tag">Neurodéveloppement · Clinique</span>
-      <h4>TDAH (Trouble déficit de l'attention avec/sans hyperactivité)</h4>
-      <p>Trouble neurodéveloppemental caractérisé par des difficultés persistantes d'attention, d'impulsivité et/ou d'hyperactivité, résultant d'une maturation différente des fonctions exécutives (contrôle inhibiteur, mémoire de travail, flexibilité cognitive). Prévalence scolaire estimée à 5-7%. L'enseignant joue un rôle déterminant dans la mise en place d'adaptations environnementales efficaces.</p>
-    </div>
-
-    <div class="glossaire-entry" data-tags="autodétermination TAD Deci Ryan motivation intrinsèque autonomie">
-      <span class="g-tag">Psychologie motivationnelle</span>
-      <h4>Théorie de l'autodétermination (TAD)</h4>
-      <p>Modèle de Deci & Ryan identifiant trois besoins psychologiques fondamentaux : <em>autonomie</em> (agir par choix), <em>compétence</em> (se sentir efficace), <em>appartenance</em> (se sentir connecté). Satisfaire ces besoins favorise la motivation intrinsèque — tant chez les élèves que chez les enseignants. Ces principes sont intégrés dans cette démarche.</p>
-    </div>
-
-  </div>
-</section>
-
-<div class="section-break"><div class="sb-num">08</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">❓</span> FAQ</div><div class="sb-line"></div></div>
-
-<!-- FAQ -->
-<section id="faq" style="max-width:980px;margin:0 auto;padding:60px 32px;">
-  <div class="section-label">Questions fréquentes</div>
-  <h2>FAQ — Questions fréquentes</h2>
-  <div class="divider"></div>
-  <p style="font-size:.88rem;color:#555;margin-bottom:32px;">Des réponses aux questions les plus courantes sur la démarche — notamment pour les profils les plus vulnérables.</p>
-
-  <div class="faq-item open">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ Par où commencer si je me sens dépassé(e) ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#ffebee;color:#c62828;">Profil vulnérable · Épuisement</span><br>
-      Si vous vous sentez dépassé(e), commencez par <strong>l'Étape 2 uniquement</strong> — évaluer votre bien-être et identifier les signaux d'alerte. Pas l'Étape 1 (trop théorique pour un état d'épuisement) ni l'Étape 3 (trop exigeante). Complétez la Fiche Action de l'Étape 2 en 15 minutes. Revenez au reste quand vous vous sentirez un peu plus disponible.<br><br>
-      <strong>Si l'épuisement est sévère :</strong> avant toute autoformation, consultez un médecin ou un professionnel de santé. Cette démarche est un outil de développement professionnel, pas un dispositif thérapeutique. Elle complète — sans remplacer — le suivi médical ou psychologique.
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ Comment utiliser ce document en formation continue ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#e8f0fe;color:var(--accent2);">Usage collectif · Formateurs</span><br>
-      Ce document a été conçu pour un usage autonome <em>et</em> guidé. En formation continue, plusieurs approches sont possibles : (1) <strong>module de formation</strong> : utiliser une section par séance (6 séances de 90 min) ; (2) <strong>accompagnement individuel</strong> : le conseiller pédagogique utilise les fiches action comme supports de conversation.<br><br>
-      Les fiches action intégrées permettent à chaque participant de garder une trace personnelle tout au long de la formation.
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ Combien de temps dure la démarche complète ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#e8f5e9;color:#2e7d32;">Organisation pratique</span><br>
-      Le parcours de base est conçu pour <strong>6 semaines</strong> à raison d'environ 45-60 minutes par semaine. Mais la démarche est volontairement flexible : vous pouvez aller plus lentement (6 mois) si la charge professionnelle est élevée, ou plus rapidement si vous êtes en formation intensive. L'important est de compléter les fiches action de chaque étape avant de passer à la suivante — elles créent la continuité du parcours.
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ Et si mes scores ne s'améliorent pas entre T1 et T2 ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#fff8e1;color:#e65100;">Suivi longitudinal</span><br>
-      L'absence d'amélioration entre T1 et T2 est une <em>information précieuse</em>, pas un échec. Cela peut signifier : (1) que vous avez ciblé une dimension trop difficile à changer seul (→ chercher un soutien, un mentor, ou un ajustement de charge) ; (2) que le contexte institutionnel génère des demandes trop élevées (→ impliquer la direction) ; (3) que 6 semaines ne sont pas suffisantes pour cette dimension (→ réinitialiser le calendrier sur 12 semaines). Le progrès n'est jamais linéaire. Certaines dimensions régressent avant de s'améliorer.
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ Je suis débutant(e) — par quelle étape commencer ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#e0f7fa;color:#00695c;">Enseignant débutant</span><br>
-      Consultez le <strong>Cas pratique "Léa, enseignante débutante"</strong> dans la section Cas pratiques pour un exemple concret. En tant que débutant(e), votre priorité devrait être : <strong>Étape 1</strong> (comprendre le modèle PRÉSENCE pour donner du sens à vos expériences) → <strong>Étape 2</strong> (surveiller vos signaux d'alerte précoces — le début de carrière est une période à risque de burnout) → <strong>Étape 3</strong> (identifier vos forces, pas seulement vos lacunes). Évitez de vouloir tout améliorer à la fois — une priorité de développement à la fois produit les effets les plus durables.
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ La démarche est-elle confidentielle ? Dois-je partager mes scores ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#f3e5f5;color:#4527a0;">Confidentialité & éthique</span><br>
-      <strong>Absolument pas obligatoire.</strong> La démarche est d'abord un outil d'autoformation individuelle. Vos scores, fiches et profils radar sont strictement personnels — ils sont enregistrés localement dans votre navigateur et ne sont pas transmis. Dans un contexte de formation collective ou de mentorat, vous choisissez ce que vous souhaitez partager. Aucune direction ou formateur ne doit avoir accès à vos scores sans votre consentement explicite.
-    </div>
-  </div>
-
-  <div class="faq-item">
-    <div class="faq-q" role="button" tabindex="0" aria-expanded="false" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}">
-      <span>❓ Quelle est la différence entre la démarche et un bilan de compétences ?</span><span class="faq-icon">+</span>
-    </div>
-    <div class="faq-a">
-      <span class="faq-profil-badge" style="background:#f0f4ff;color:var(--accent2);">Positionnement</span><br>
-      Le bilan de compétences est un dispositif RH formel, mené par un professionnel externe, orienté vers la mobilité professionnelle. La démarche est différente sur trois points : (1) <strong>autodirigée</strong> — vous êtes le seul évaluateur de votre propre parcours ; (2) <strong>centrée sur le développement en contexte</strong> — l'objectif est de mieux fonctionner dans votre poste actuel, pas d'en changer ; (3) <strong>ancrée dans la neuroéducation</strong> — les dimensions évaluées sont spécifiques aux défis propres à l'enseignement. Les deux démarches sont complémentaires.
-    </div>
-  </div>
-</section>
-
-<div class="section-break"><div class="sb-num">09</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">🔬</span> Bibliographie</div><div class="sb-line"></div></div>
-
-<!-- BIBLIOGRAPHIE -->
-<section id="bibliographie" style="max-width:980px;margin:0 auto;padding:60px 32px;">
-  <div class="section-label">Références scientifiques</div>
-  <h2>Bibliographie</h2>
-  <div class="divider"></div>
-  <p style="font-size:.85rem;color:var(--muted);margin-bottom:36px;">Ensemble des références mobilisées dans la démarche d'autoformation (révision 2025).</p>
-
-  <div class="biblio-group">
-    <div class="biblio-group-title">📗 Ouvrages et chapitres</div>
-    <div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
-    <div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
-    <div class="biblio-entry">Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. <a href="https://periscope-r.quebec/" target="_blank">periscope-r.quebec</a></div>
-    <div class="biblio-entry">Évéquoz, G. (1998). <em>Le contexte scolaire et ses otages : une approche systémique des difficultés scolaires.</em> Genève : Éditions des Médecins suisses.</div>
-    <div class="biblio-entry">Fahim, C. (2025). <em>Résilience et gestion de classe : surfer sur la vague des difficultés.</em> Montréal : Endoxa Neuroscience.</div>
-    <div class="biblio-entry">Gaudreau, N. (2024). <em>Gérer efficacement sa classe.</em> Québec : Presses de l'Université du Québec.</div>
-    <div class="biblio-entry">Goyette, N. et Martineau, S. (dir.). (2021). <em>Le bien-être des enseignants.</em> Presses de l'Université du Québec.</div>
-    <div class="biblio-entry">Goyette, N. (2023). <em>Le sentiment d'efficacité personnelle des enseignants : cercle vertueux et développement professionnel.</em> Presses de l'Université du Québec.</div>
-    
-    <div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience: Conditions count. <em>British Educational Research Journal, 39</em>(1), 22–44.</div>
-    <div class="biblio-entry">Hattie, J. (2009). <em>Visible learning: A synthesis of over 800 meta-analyses relating to achievement.</em> London : Routledge.</div>
-    <div class="biblio-entry">Massé, L., Desbiens, N. et Lanaris, C. (Dir.). (2020). <em>Les troubles du comportement à l'école</em> (3e éd.). Montréal : Chenelière Éducation.</div>
-    <div class="biblio-entry">Maslach, C., Jackson, S. E., &amp; Leiter, M. P. (1996). <em>Maslach Burnout Inventory Manual (3e éd.).</em> Consulting Psychologists Press.</div>
-    <div class="biblio-entry">Pianta, R. C. (2008). <em>Student-Teacher Relationship Scale (STRS).</em> Psychological Assessment Resources.</div>
-    <div class="biblio-entry">Porges, S. W. (2011). <em>The polyvagal theory: Neurophysiological foundations of emotions, attachment, communication, and self-regulation.</em> New York, NY : W. W. Norton.</div>
-    <div class="biblio-entry">Schön, D. A. (1983). <em>The Reflective Practitioner.</em> Basic Books.</div>
-    <div class="biblio-entry">Seligman, M. E. P. (2011). <em>Flourish: A visionary new understanding of happiness and well-being.</em> New York : Free Press.</div>
-    <div class="biblio-entry">Shirnin, D. (2022, 23 mars). <em>Le bien-être des enseignant.e.s : les facteurs fondamentaux, effets et les stratégies.</em> Gouvernement du Grand-Duché du Luxembourg. <a href="https://www.developpement-scolaire.lu/dds-resources/le-bien-etre-des-enseignant-e-s-les-facteurs-fondamentaux-effets-et-strategies/" target="_blank">developpement-scolaire.lu</a></div>
-    <div class="biblio-entry">Théorêt, M. et Leroux, M. (2014). <em>Comment améliorer le bien-être et la santé des enseignants ?</em> De Boeck Supérieur.</div>
-    <div class="biblio-entry">Vianin, P. (2024). <em>L'approche systémique en pédagogie spécialisée.</em> Bruxelles : De Boeck Supérieur.</div>
-    <div class="biblio-entry">Cooper, J. O., Heron, T. E., &amp; Heward, W. L. (2007). <em>Applied Behavior Analysis</em> (2e éd.). Upper Saddle River, NJ : Pearson. [Référence fondatrice de l'analyse appliquée du comportement, mobilisée dans le dossier « Analyse fonctionnelle »]</div>
-  </div>
-
-  <div class="biblio-group">
-    <div class="biblio-group-title">📄 Articles et revues scientifiques</div>
-    <div class="biblio-entry">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands–resources theory. <em>Journal of Occupational Health Psychology, 22(3)</em>, 273–285.</div>
-    <div class="biblio-entry">Beaumont, C., Langri, S., Wilkie, T., Marquis, D. et Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval / HEP-VS. [Adaptation du modèle CS3 ajoutant la compétence <em>conscience de l'interdépendance</em>]</div>
-    <div class="biblio-entry">Beltman, S., Mansfield, C. F. et Price, A. (2011). Thriving not just surviving. <em>Educational Research Review, 6(3)</em>, 185–207.</div>
-    <div class="biblio-entry">Ben Alaya, I., Frenette, É. et Gaudreau, N. (2024). Processus d'élaboration et de validation d'un questionnaire francophone sur les compétences socioémotionnelles des enseignants. <em>Canadian Journal of Education / Revue canadienne de l'éducation, 47</em>(2), 375–410. <a href="https://doi.org/10.53967/cje-rce.5947" target="_blank">doi:10.53967/cje-rce.5947</a></div>
-    <div class="biblio-entry">Casey, B. J., Jones, R. M., &amp; Hare, T. A. (2008). The adolescent brain. <em>Annals of the New York Academy of Sciences, 1124</em>, 111–126. <a href="https://doi.org/10.1196/annals.1440.010" target="_blank">doi:10.1196/annals.1440.010</a></div>
-    
-    <div class="biblio-entry">Campbell-Sills, L., &amp; Stein, M. B. (2007). Psychometric analysis and refinement of the Connor-Davidson Resilience Scale (CD-RISC): Validation of the 10-item measure of resilience. <em>Journal of Traumatic Stress, 20(6)</em>, 1019–1028.</div>
-    <div class="biblio-entry">Connor, K. M., &amp; Davidson, J. R. T. (2003). Development of a new resilience scale. <em>Depression and Anxiety, 18(2)</em>, 76–82.</div>
-    <div class="biblio-entry">Daniilidou, A., &amp; Platsidou, M. (2024). Teachers' Personal Factors Resilience Scale. <em>Educational Psychology, 44(1).</em></div>
-    <div class="biblio-entry">Davidson, R. J. et McEwen, B. S. (2012). Social influences on neuroplasticity. <em>Nature Neuroscience, 15(5)</em>, 689-695. <a href="https://doi.org/10.1038/nn.3093" target="_blank">doi:10.1038/nn.3093</a></div>
-    <div class="biblio-entry">Deklerck, J. (2012). <em>La pyramide de la prévention, un cadre de prévention intégrale dans l'enseignement.</em> Université catholique de Louvain. [Adaptée au contexte scolaire québécois par Beaumont, 2014]</div>
-    <div class="biblio-entry">De Stercke, J., Temperman, G., De Lièvre, B. et Lacocque, J. (2014). Échelle de sentiment d'efficacité personnelle des enseignants (ESEPE) : traduction francophone de la <em>Teachers' Sense of Efficacy Scale.</em> Service de Pédagogie Générale et des Médias Éducatifs, Université de Mons. <a href="https://hal.science/hal-01145411/" target="_blank">hal.science/hal-01145411</a></div>
-    <div class="biblio-entry">Deci, E. L., &amp; Ryan, R. M. (2000). The "what" and "why" of goal pursuits: Human needs and the self-determination of behavior. <em>Psychological Inquiry, 11(4)</em>, 227–268.</div>
-    <div class="biblio-entry">Diamond, A. (2013). Executive functions. <em>Annual Review of Psychology, 64</em>, 135–168. <a href="https://doi.org/10.1146/annurev-psych-113011-143750" target="_blank">doi:10.1146/annurev-psych-113011-143750</a></div>
-    
-    <div class="biblio-entry">Fang, Z. (1996). A review of research on teacher beliefs and practices. <em>Educational Research, 38(1)</em>, 47–65.</div>
-    <div class="biblio-entry">Gratz, K. L., &amp; Roemer, L. (2004). Multidimensional assessment of emotion regulation. <em>Journal of Psychopathology and Behavioral Assessment, 26(1)</em>, 41–54.</div>
-    <div class="biblio-entry">Gross, J. J. (2015). Emotion regulation: Current status. <em>Psychological Inquiry, 26(1)</em>, 1–26.</div>
-    <div class="biblio-entry">Gross, J. J., &amp; John, O. P. (2003). Individual differences in two emotion regulation processes. <em>JPSP, 85(2)</em>, 348–362.</div>
-    <div class="biblio-entry">Iwata, B. A., Dorsey, M. F., Slifer, K. J., Bauman, K. E., &amp; Richman, G. S. (1982/1994). Toward a functional analysis of self-injury. <em>Journal of Applied Behavior Analysis, 27</em>(2), 197–209. [Article fondateur de la méthode d'analyse fonctionnelle du comportement]</div>
-    <div class="biblio-entry">Simonsen, B., Fairbanks, S., Briesch, A., Myers, D., &amp; Sugai, G. (2008). Evidence-based practices in classroom management. <em>Education and Treatment of Children, 31</em>(3), 351–380. [Cadre PBIS, ratio 4:1 d'interactions positives, mobilisé dans le contrat comportemental]</div>
-    <div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience. <em>British Educational Research Journal, 39(1)</em>, 22–44.</div>
-    <div class="biblio-entry">Ochsner, K. N., &amp; Gross, J. J. (2005). The cognitive control of emotion. <em>Trends in Cognitive Sciences, 9(5)</em>, 242–249. <a href="https://doi.org/10.1016/j.tics.2005.03.010" target="_blank">doi:10.1016/j.tics.2005.03.010</a></div>
-
-    <div class="biblio-entry"><div class="biblio-entry">Pajares, M. F. (1992). Teachers&#x2019; beliefs and educational research: Cleaning up a messy construct. <em>Review of Educational Research, 62</em>(3), 307–332.</div>
-    Tims, M., Bakker, A. B., &amp; Derks, D. (2012). Development of the job crafting scale. <em>Journal of Vocational Behavior, 80(1)</em>, 173–186.</div>
-    <div class="biblio-entry">Théorêt, M., et Leroux, M. (2014). La résilience éducationnelle. <em>Revue canadienne de l'éducation, 37(2)</em>, 1–18.</div>
-    <div class="biblio-entry">Tschannen-Moran, M., Woolfolk Hoy, A. et Hoy, W. K. (1998). Teacher efficacy: Its meaning and measure. <em>Review of Educational Research, 68(2)</em>, 202–248.</div>
-    <div class="biblio-entry">Tschannen-Moran, M., &amp; Hoy, A. W. (2001). Teacher efficacy: Capturing an elusive construct. <em>Teaching and Teacher Education, 17(7)</em>, 783–805.</div>
-    <div class="biblio-entry">Woodcock, S., &amp; Tournaki, N. (2025). Scale of Educational Teaching Self-efficacy (SETS). <em>Teaching and Teacher Education, 145.</em></div>
-  </div>
-
-  <div class="biblio-group">
-    <div class="biblio-group-title">🌐 Ressources en ligne &amp; rapports</div>
-    <div class="biblio-entry">Beaumont, C. (2023). <em>Promouvoir à la fois la santé mentale, un climat scolaire positif et la prévention de la violence : Guide de planification pour soutenir de manière continue le bien-être à l'école.</em> Chaire de recherche Bienêtre à l'école et prévention de la violence, Université Laval. <a href="https://www.violence-ecole.ulaval.ca/" target="_blank">violence-ecole.ulaval.ca</a> [Guide source de la section 6.3 — Pyramide de prévention à 4 niveaux]</div>
-    <div class="biblio-entry">État du Valais &amp; FMEP. (2024). <em>Enquête de satisfaction du personnel enseignant du canton du Valais.</em> Service de l'enseignement du Valais. (Reporté par RTS Info, 4 février 2025 : <a href="https://www.rts.ch/info/regions/valais/2025/article/stress-et-charge-de-travail-en-hausse-chez-les-enseignants-valaisans-28779013.html" target="_blank">rts.ch</a>)</div>
-    <div class="biblio-entry">Kunz Heim, D., Böhm, A. et al. (2014). <em>Gesundheitliche Belastungen, Ressourcen und Arbeitsbewältigung von Lehrpersonen.</em> Haute École Pédagogique de la Suisse du Nord-Ouest (FHNW). [Burnout estimé entre 23 % et 34 % des enseignants en Suisse alémanique]</div>
-    <div class="biblio-entry">Studer, R., &amp; Quarroz, S. (2017). <em>Santé des enseignants romands.</em> Institut de santé au travail (IST), Lausanne. Enquête mandatée par le Syndicat des Enseignants Romands (SER). [22.5 % présentaient un score élevé d'épuisement ; enquête sur ~5 500 enseignants]</div>
-    <div class="biblio-entry">Trachsler, E., et al. (2003, 2006, 2008). Études sur le burnout des enseignants en Suisse. <em>Pädagogische Hochschule Thurgau.</em></div>
-
-    <div class="biblio-entry">Lane K., Weatherby K. et Bain, M. (2024). <em>Le bien-être du personnel est essentiel à la réussite des élèves.</em> Le réseau Edcan. <a href="https://www.edcan.ca/articles/le-bien-etre-du-personnel-est-essentiel-a-la-reussite-des-eleves/?lang=fr" target="_blank">edcan.ca</a></div>
-    <div class="biblio-entry">Turmel, N. (2015). <em>Cadre de référence et guide à l'intention du milieu scolaire.</em> Ministère de l'Education du Québec. <a href="https://www.meesr.gouv.qc.ca" target="_blank">meesr.gouv.qc.ca</a></div>
-    <div class="biblio-entry">Viac, C., &amp; Fraser, P. (2020). Teachers' well-being: A framework for data collection and analysis. <em>OECD Education Working Papers, No. 213.</em> OECD Publishing. <a href="https://doi.org/10.1787/c36fc9d3-en" target="_blank">doi:10.1787/c36fc9d3-en</a></div>
-    
-  </div>
-</section>
-
-
-
-<!-- ATTESTATION — Bloc validation Étape 4 -->
-<div class="attest-jalus-block" id="ajb-ressources" style="max-width:calc(100% - 24px);margin:32px auto 40px;padding-top:32px;">
-  <div class="ajb-title">📚 Valider l'étape 4 — Approfondir</div>
-  <div class="ajb-sub">Parcourez les fondements scientifiques et les ressources pour compléter votre parcours.</div>
-  <div class="ajb-criteria" id="ajb-crit-ressources">
-    <div class="ajb-crit" id="ajbc-scroll-ressources">
-      <span class="ajb-check">✓</span>Fondements théoriques parcourus
-    </div>
-    <div class="ajb-crit" id="ajbc-reflex-ressources">
-      <span class="ajb-check">✓</span>Section ressources et bibliographie visitées
-    </div>
-    <div class="ajb-crit" id="ajbc-question-ressources">
-      <span class="ajb-check">✓</span>Question de synthèse répondue
-    </div>
-    <div class="ajb-crit" id="ajbc-time-ressources">
-      <span class="ajb-check">✓</span>Temps minimum passé sur l'étape (5 min)
-    </div>
-  </div>
-  <div class="ajb-question">
-    <label>💬 Quel apport de ce parcours allez-vous partager avec vos collègues ou mettre en œuvre dans votre contexte ?</label>
-    <textarea id="ajbq-ressources" placeholder="Ex : Je souhaite partager avec mes collègues l'approche du modèle PRÉSENCE comme cadre commun pour…" oninput="attestSaveQuestion('ressources', this.value); attestCheckCriteria('ressources');"></textarea>
-  </div>
-  <div class="ajb-timer" id="ajb-timer-ressources">
-    <span id="ajb-timer-text-ressources">0:00 / 30:00</span>
-    <div class="ajb-timer-fill"><div class="ajb-timer-bar" id="ajb-timerbar-ressources" style="width:0%"></div></div>
-  </div>
-  <button class="ajb-jalus-btn" id="ajb-btn-ressources" onclick="attestMarkJaLu('ressources')" style="margin-top:16px;">
-    ✓ J'ai approfondi et je valide cette étape
-  </button>
-</div>
-</div><!-- /tab-ressources -->
 
 <footer>
   <strong>Démarche d'autoformation · Développer ma résilience professionnelle</strong><br>
@@ -7658,19 +7695,21 @@ function downloadApprofondirPDF() {
 'use strict';
 
 // ── Configuration ─────────────────────────────────────────
-var STEPS = ['comprendre','evaluer','meformer','ressources'];
+var STEPS = ['comprendre','evaluer','meformer','ressources','bibliotheque'];
 var STEP_LABELS = {
   comprendre: '1. Comprendre',
   evaluer:    "2. M'évaluer",
   meformer:   '3. Me former',
-  ressources: '4. Ressources professionnelles'
+  ressources: '4. Approfondir',
+  bibliotheque: '5. Bibliothèque de ressources'
 };
-var MIN_TIMES = { comprendre: 1200, evaluer: 900, meformer: 1800, ressources: 1800 }; // secondes (20, 15, 30, 30 min)
+var MIN_TIMES = { comprendre: 1200, evaluer: 900, meformer: 1800, ressources: 1200, bibliotheque: 600 }; // secondes
 var SCROLL_SECTIONS = {
   comprendre: ['pourquoi', 'demarche'],
   evaluer:    ['profil', 'cas-pratiques'],
   meformer:   ['contenus'],
-  ressources: ['fondements', 'ressources']
+  ressources: ['fondements', 'bibliographie'],
+  bibliotheque: ['bibliotheque']
 };
 
 // ── État global ────────────────────────────────────────────
@@ -7726,6 +7765,7 @@ function readReflexCriteria() {
     state.reflex.meformer   = fichesFormer;
     state.reflex.ressources = visited.indexOf('ressources') !== -1 &&
                                (fichesComprendre || hasScores);
+    state.reflex.bibliotheque = visited.indexOf('bibliotheque') !== -1;
   } catch(e) {}
 }
 
@@ -8710,7 +8750,9 @@ const LIENS = {
 // → QR codes : URL de prévisualisation (sans ?download=1)
 function lienTelechargement(url) {
   if (!url || url.startsWith('#')) return url;
-  // Remplace tout paramètre ?e=... ou ?download=... par ?download=1
+  // Pour GitHub Pages, pas besoin de ?download=1 (le navigateur gère les PDF/DOCX nativement)
+  if (url.indexOf('github.io') !== -1) return url;
+  // Pour SharePoint/OneDrive, remplace tout paramètre ?e=... ou ?download=... par ?download=1
   return url.replace(/\?(e|download)=[^&]*(&.*)?$/, '') + '?download=1';
 }
 
@@ -8722,6 +8764,56 @@ document.querySelectorAll('[data-lien]').forEach(el => {
     el.target = '_blank';
   }
 });
+
+// ── Tracking des téléchargements depuis la Bibliothèque ────────────
+// Compte chaque ressource téléchargée (identifiée par son data-lien).
+// Seuil de validation : 3 téléchargements distincts.
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.res-dl[data-lien]');
+  if (!btn) return;
+  // Vérifier qu'on est bien dans le tab-bibliotheque (pas ailleurs)
+  const inBiblio = btn.closest('#tab-bibliotheque');
+  if (!inBiblio) return;
+  const key = btn.dataset.lien;
+  if (!key) return;
+  try {
+    let dls = JSON.parse(localStorage.getItem('aut_biblio_downloads') || '[]');
+    if (dls.indexOf(key) === -1) {
+      dls.push(key);
+      localStorage.setItem('aut_biblio_downloads', JSON.stringify(dls));
+      // Mettre à jour l'UI de progression
+      if (typeof window.refreshJourney === 'function') window.refreshJourney();
+      updateBiblioProgress();
+    }
+  } catch(err) {}
+});
+
+// Mettre à jour la jauge visuelle dans l'onglet bibliothèque
+function updateBiblioProgress() {
+  try {
+    const dls = JSON.parse(localStorage.getItem('aut_biblio_downloads') || '[]');
+    const count = dls.length;
+    const SEUIL = 3;
+    const pct = Math.min(100, count / SEUIL * 100);
+    const countEl = document.getElementById('biblio-dl-count');
+    const barEl = document.getElementById('biblio-dl-bar');
+    const msgEl = document.getElementById('biblio-dl-msg');
+    if (countEl) countEl.textContent = count;
+    if (barEl) barEl.style.width = pct + '%';
+    if (msgEl) {
+      if (count >= SEUIL) {
+        msgEl.textContent = '✓ Étape validée — vous pouvez continuer d\'explorer';
+        msgEl.style.color = '#4a7c59';
+      } else {
+        msgEl.textContent = 'Encore ' + (SEUIL - count) + ' téléchargement' + ((SEUIL - count) > 1 ? 's' : '') + ' pour valider cette étape';
+        msgEl.style.color = 'rgba(255,255,255,.7)';
+      }
+    }
+  } catch(err) {}
+}
+// Initialiser l'affichage au chargement
+document.addEventListener('DOMContentLoaded', updateBiblioProgress);
+
 
 makeQR('qr-autodetermination', LIENS.autodetermination,  '#533483', 68);
 makeQR('qr-tdah',             LIENS.tdah_excel,         '#4a7c59', 68);
@@ -9962,7 +10054,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'comprendre': ['tab-comprendre', 'tab-comprendre-part2'],
     'evaluer':    ['tab-evaluer'],
     'meformer':   ['tab-planaction', 'tab-meformer'],
-    'ressources': ['tab-ressources']
+    'ressources': ['tab-ressources'],
+    'bibliotheque': ['tab-bibliotheque']
   };
 
   function showTab(name) {
@@ -10643,6 +10736,11 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
       p.visitedEvaluer    = visited.indexOf('evaluer')    !== -1;
       p.visitedMeformer   = visited.indexOf('meformer')   !== -1;
       p.visitedRessources = visited.indexOf('ressources') !== -1;
+      // Bibliothèque : validation basée sur le nombre de fichiers téléchargés (seuil 3)
+      var biblioDls = [];
+      try { biblioDls = JSON.parse(localStorage.getItem('aut_biblio_downloads') || '[]'); } catch(e) {}
+      p.biblioDlCount = biblioDls.length;
+      p.visitedBibliotheque = p.biblioDlCount >= 3;
       // Total fiches for comprendre step
       p.fichesComprendre = [p.fiche1,p.fiche3,p.fiche4,p.fiche5,p.fiche6].filter(Boolean).length;
       p.fichesFormer     = [p.ficheMod3,p.fiche2].filter(Boolean).length;
@@ -10715,7 +10813,8 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
       comprendre:{ main:'Continuez à explorer les <em>cadres théoriques</em>', sub:'Complétez la fiche réflexive pour ancrer votre compréhension.', label:'Continuer Comprendre' },
       evaluer:   { main:'Complétez votre <em>profil de ressources</em>', sub:'Plus les questionnaires sont complets, plus les recommandations seront précises.', label:'Continuer M\'évaluer' },
       meformer:  { main:'Explorez les <em>8 modules de formation</em>', sub:'Commencez par le module lié à votre dimension la plus fragile.', label:'Continuer Me former' },
-      ressources:{ main:'Consultez la <em>bibliographie complète</em> et le glossaire', sub:'Des références académiques sélectionnées pour aller plus loin.', label:'Continuer Ressources professionnelles' }
+      ressources:{ main:'Approfondissez les <em>fondements théoriques</em>', sub:'Modèle PRÉSENCE, bibliographie, glossaire et FAQ pour ancrer votre réflexion.', label:'Continuer Approfondir' },
+      bibliotheque:{ main:'Parcourez la <em>bibliothèque de ressources</em>', sub:'Documents, kits pédagogiques et outils téléchargeables classés par thème.', label:'Explorer la bibliothèque' }
     };
     var m = stepMeta[currentStep] || stepMeta['comprendre'];
     return {
@@ -10729,7 +10828,7 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
 
   // ── Update journey bar UI ─────────────────────────────────
   function updateJourneyUI(currentStep, p) {
-    var steps = ['comprendre','evaluer','meformer','ressources'];
+    var steps = ['comprendre','evaluer','meformer','ressources','bibliotheque'];
     var currentIdx = steps.indexOf(currentStep);
 
     // Real completion per step
@@ -10737,14 +10836,16 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
       comprendre: p.fiche1 || p.fichesComprendre > 0,
       evaluer:    p.hasScores,
       meformer:   p.fiche2 || p.fichesFormer > 0,
-      ressources: p.visitedRessources && (p.fiche1 || p.fichesComprendre > 0) && p.hasScores && (p.fiche2 || p.fichesFormer > 0)
+      ressources: p.visitedRessources && (p.fiche1 || p.fichesComprendre > 0) && p.hasScores && (p.fiche2 || p.fichesFormer > 0),
+      bibliotheque: p.visitedBibliotheque || false
     };
     var prev3Done = (p.fiche1 || p.fichesComprendre > 0) && p.hasScores && (p.fiche2 || p.fichesFormer > 0);
     var stepMini = {
       comprendre: p.fichesComprendre > 0 ? p.fichesComprendre + ' fiche' + (p.fichesComprendre>1?'s':'') + ' ✓' : (p.visitedComprendre ? 'lu' : 'à faire'),
       evaluer:    p.hasScores ? 'scores ✓' : (p.visitedEvaluer ? 'en cours' : 'à faire'),
       meformer:   p.fichesFormer > 0 ? p.fichesFormer + ' fiche' + (p.fichesFormer>1?'s':'') + ' ✓' : (p.visitedMeformer ? 'en cours' : 'à faire'),
-      ressources: (p.visitedRessources && prev3Done) ? 'visité ✓' : (p.visitedRessources && !prev3Done ? 'en cours' : 'à faire')
+      ressources: (p.visitedRessources && prev3Done) ? 'visité ✓' : (p.visitedRessources && !prev3Done ? 'en cours' : 'à faire'),
+      bibliotheque: p.visitedBibliotheque ? (p.biblioDlCount + ' téléch. ✓') : (p.biblioDlCount > 0 ? (p.biblioDlCount + '/3 téléch.') : 'à faire')
     };
 
     // Gérer le bouton Accueil / Tableau de bord
@@ -10793,9 +10894,10 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
       comprendre: Math.min(100, p.fichesComprendre / 5 * 100),
       evaluer:    p.hasPerso && p.hasPro ? 100 : p.hasPerso || p.hasPro ? 50 : 0,
       meformer:   Math.min(100, p.fichesFormer / 4 * 100),
-      ressources: (p.visitedRessources && prev3Done) ? 100 : 0
+      ressources: (p.visitedRessources && prev3Done) ? 100 : 0,
+      bibliotheque: Math.min(100, (p.biblioDlCount || 0) / 3 * 100)
     };
-    ['comprendre','evaluer','meformer','ressources'].forEach(function(s) {
+    ['comprendre','evaluer','meformer','ressources','bibliotheque'].forEach(function(s) {
       var bar = document.getElementById('spb-' + s);
       var fill = document.getElementById('spbf-' + s);
       if (bar) bar.style.display = s === currentStep ? 'block' : 'none';
@@ -10892,7 +10994,8 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
       comprendre:['tab-comprendre','tab-comprendre-part2'],
       evaluer:['tab-evaluer'],
       meformer:['tab-planaction','tab-meformer'],
-      ressources:['tab-ressources']
+      ressources:['tab-ressources'],
+      bibliotheque:['tab-bibliotheque']
     };
     (tabs[name]||[]).forEach(function(id){
       var el=document.getElementById(id);
@@ -10907,6 +11010,10 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
     var p = readProgress();
     updateJourneyUI(name, p);
     updateSmartStrip(p, name);
+    // Si on entre dans la bibliothèque, rafraîchir la jauge
+    if (name === 'bibliotheque' && typeof updateBiblioProgress === 'function') {
+      updateBiblioProgress();
+    }
   };
 
   // ── Full refresh (called after fiche save or score update) ─
@@ -10945,7 +11052,7 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
     // Init
     var initStep = '';
     try { initStep = sessionStorage.getItem('activeTab') || ''; } catch(e){}
-    if (!initStep || !['comprendre','evaluer','meformer','ressources'].includes(initStep)) {
+    if (!initStep || !['comprendre','evaluer','meformer','ressources','bibliotheque'].includes(initStep)) {
       initStep = 'evaluer';
     }
     var p = readProgress();
