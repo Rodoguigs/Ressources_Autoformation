@@ -120,6 +120,13 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-
 .db-quick-card.dqc-done{background:#f0faf4;border-color:#a8d5bf;}
 .db-quick-card.dqc-done .dqc-name{color:#2d6a4f;}
 .db-attest-card{background:linear-gradient(135deg,#f5f0ff,#e8f4ff);border:1.5px solid #c4a8f8;border-radius:16px;padding:14px 20px;display:flex;align-items:center;gap:14px;margin-bottom:22px;cursor:pointer;transition:all .2s;}
+.db-export-card{background:linear-gradient(135deg,#fff5e8,#fef0f0);border:1.5px solid #f5a62344;border-radius:16px;padding:14px 20px;display:flex;align-items:center;gap:14px;margin-bottom:22px;cursor:pointer;transition:all .2s;}
+.db-export-card:hover{border-color:#f5a623;box-shadow:0 4px 18px rgba(245,166,35,.15);}
+.db-export-icon{font-size:1.8rem;flex-shrink:0;}
+.db-export-text{flex:1;min-width:0;}
+.db-export-title{font-size:.95rem;font-weight:700;color:#8b5a00;margin-bottom:3px;}
+.db-export-sub{font-size:.72rem;color:#6b5338;line-height:1.45;}
+.db-export-btn{background:#f5a623;color:white;font-size:.72rem;font-weight:700;padding:7px 14px;border-radius:10px;white-space:nowrap;flex-shrink:0;}
 .db-attest-card:hover{box-shadow:0 4px 20px rgba(124,58,237,.15);}
 .db-attest-icon{font-size:1.75rem;flex-shrink:0;}
 .db-attest-text{flex:1;}
@@ -1667,6 +1674,150 @@ footer strong{color:rgba(255,255,255,.8);}
 }
 #mode-badge-nav:hover { opacity: .85; }
 
+/* Badge de version dans le nav */
+#version-badge-nav {
+  display: none;
+  margin-left: 6px;
+  margin-right: 8px;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.65);
+  font-size: .58rem; font-weight: 700;
+  padding: 3px 9px; border-radius: 4px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+  letter-spacing: .04em;
+  border: 1px solid rgba(255,255,255,.15);
+}
+#version-badge-nav:hover {
+  background: rgba(255,255,255,.15);
+  color: white;
+  border-color: rgba(255,255,255,.3);
+}
+@media (min-width: 900px) {
+  #version-badge-nav { display: inline-block; }
+}
+
+/* Panneau changelog */
+#changelog-panel {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 440px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+  background: linear-gradient(145deg, #1a1a2e 0%, #0f3460 100%);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  z-index: 9999;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px) scale(.96);
+  pointer-events: none;
+  transition: all .25s ease;
+  display: flex;
+  flex-direction: column;
+}
+#changelog-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+#changelog-panel .cl-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  flex-shrink: 0;
+}
+#changelog-panel .cl-header h3 {
+  margin: 0;
+  font-size: .95rem;
+  color: white;
+  font-weight: 700;
+}
+#changelog-panel .cl-close {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.8);
+  font-size: .85rem;
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+#changelog-panel .cl-close:hover {
+  background: rgba(255,255,255,.15);
+  color: white;
+}
+#changelog-panel .cl-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+#changelog-panel .cl-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+#changelog-panel .cl-entry:last-child { border-bottom: none; }
+#changelog-panel .cl-entry.cl-latest .cl-version::before {
+  content: "● ";
+  color: #f5a623;
+  font-size: 1.2em;
+}
+#changelog-panel .cl-version {
+  font-size: .88rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#changelog-panel .cl-date {
+  font-size: .7rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .02em;
+}
+#changelog-panel .cl-tag {
+  font-size: .6rem;
+  background: #f5a62322;
+  color: #f5a623;
+  border: 1px solid #f5a62344;
+  padding: 2px 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 600;
+}
+#changelog-panel .cl-entry ul {
+  margin: 0;
+  padding-left: 18px;
+}
+#changelog-panel .cl-entry li {
+  font-size: .78rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+#changelog-panel .cl-entry li strong {
+  color: white;
+}
+
+/* Mobile : panneau plein écran */
+@media (max-width: 600px) {
+  #changelog-panel {
+    top: 60px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+}
+
 /* Widget flottant attestation */
 #attest-widget {
   position: fixed;
@@ -2105,6 +2256,57 @@ footer strong{color:rgba(255,255,255,.8);}
 
     <button id="mode-badge-nav" onclick="showModeSelector()" title="Changer de mode">🧭 Perso</button>
 
+    <button id="version-badge-nav" onclick="toggleChangelog()" title="Voir les nouveautés" aria-label="Informations de version">
+      <span id="version-badge-text">v2.4 · Avril 2026</span>
+    </button>
+
+  </div>
+
+  <!-- Panneau changelog (masqué par défaut) -->
+  <div id="changelog-panel" role="dialog" aria-labelledby="changelog-title" aria-hidden="true">
+    <div class="cl-header">
+      <h3 id="changelog-title">📌 Nouveautés & historique</h3>
+      <button class="cl-close" onclick="toggleChangelog()" aria-label="Fermer">✕</button>
+    </div>
+    <div class="cl-body">
+      <div class="cl-entry cl-latest">
+        <div class="cl-version">v2.4 <span class="cl-date">Avril 2026</span> <span class="cl-tag">Dernière mise à jour</span></div>
+        <ul>
+          <li><strong>Nouvel onglet Bibliothèque (05)</strong> — séparation des ressources téléchargeables (onglet 05) et de l'approfondissement théorique (onglet 04)</li>
+          <li><strong>Dossier « Gestion des comportements difficiles »</strong> — 7 nouvelles ressources : notice d'analyse fonctionnelle, fiche-pistes de remplacement, grille de documentation d'essai, trame d'entretien, contrat comportemental, kit de supports visuels</li>
+          <li><strong>Seuil minimum d'exploration</strong> — validation de l'étape Bibliothèque après 3 téléchargements distincts</li>
+          <li><strong>Liens croisés enrichis</strong> — 10 nouveaux liens entre ressources (dossier comportement ↔ ressources existantes)</li>
+          <li>Export de données personnel et badge de version ajoutés</li>
+        </ul>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-version">v2.3 <span class="cl-date">Mars 2026</span></div>
+        <ul>
+          <li>Intégration complète de la <strong>banque d'outils Bourassa</strong> (20 documents)</li>
+          <li>Module 8 — Gestion des comportements difficiles</li>
+          <li>Système d'attestation PDF nominatif</li>
+          <li>Mode HEP protégé par mot de passe</li>
+        </ul>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-version">v2.2 <span class="cl-date">Février 2026</span></div>
+        <ul>
+          <li>Refonte en <strong>parcours tabbé</strong> (Comprendre / M'évaluer / Me former / Approfondir)</li>
+          <li>Questionnaires IRPPE/ISEDRPE avec graphiques radar T1/T2</li>
+          <li>Fiches de réflexion sauvegardées localement</li>
+        </ul>
+      </div>
+      <div class="cl-entry">
+        <div class="cl-version">v2.0 <span class="cl-date">Janvier 2026</span></div>
+        <ul>
+          <li>Première version SPA complète avec navigation par étapes</li>
+          <li>Modèle PRÉSENCE de Fahim (Cortica) en fil conducteur</li>
+        </ul>
+      </div>
+      <div class="cl-footer">
+        <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin-top:16px;font-style:italic;">Plateforme développée par Guillaume Roduit dans le cadre du CAS en Neurosciences Éducatives (HEP-VS / Université de Fribourg, sous la supervision du Prof. Cherine Fahim).</p>
+      </div>
+    </div>
   </div>
 
   <!-- Per-step thin progress bars (real completion) -->
@@ -2168,6 +2370,14 @@ footer strong{color:rgba(255,255,255,.8);}
       <div class="db-attest-sub" id="db-attest-sub">Avancement calculé...</div>
     </div>
     <div class="db-attest-pct" id="db-attest-pct">&mdash;</div>
+  </div>
+  <div class="db-export-card" onclick="exportUserData();">
+    <div class="db-export-icon">&#128196;</div>
+    <div class="db-export-text">
+      <div class="db-export-title">Exporter mes données personnelles</div>
+      <div class="db-export-sub">Bilan PDF complet : scores, fiches de réflexion, parcours, téléchargements. Pour conservation personnelle ou remise en formation HEP.</div>
+    </div>
+    <div class="db-export-btn">Télécharger le PDF</div>
   </div>
   <div class="db-quick-label">Accès rapide</div>
   <div class="db-quick-grid">
@@ -11436,6 +11646,346 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
     document.addEventListener('DOMContentLoaded', initMode);
   } else {
     initMode();
+  }
+
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Changelog & Export de données — v2.4
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  'use strict';
+
+  // ───────── 1. Toggle du panneau changelog ─────────
+  window.toggleChangelog = function() {
+    var panel = document.getElementById('changelog-panel');
+    if (!panel) return;
+    var isOpen = panel.classList.contains('open');
+    if (isOpen) {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+    } else {
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      // Marquer comme "vu" dans localStorage
+      try { localStorage.setItem('aut_changelog_seen', 'v2.4'); } catch(e) {}
+      updateChangelogBadge();
+    }
+  };
+
+  // Indicateur visuel "nouveautés non vues"
+  function updateChangelogBadge() {
+    var btn = document.getElementById('version-badge-nav');
+    if (!btn) return;
+    var seen = null;
+    try { seen = localStorage.getItem('aut_changelog_seen'); } catch(e) {}
+    if (seen !== 'v2.4') {
+      // Ajouter un petit point orange
+      if (!btn.querySelector('.cl-dot')) {
+        var dot = document.createElement('span');
+        dot.className = 'cl-dot';
+        dot.style.cssText = 'display:inline-block;width:6px;height:6px;background:#f5a623;border-radius:50%;margin-left:5px;vertical-align:middle;animation:cl-pulse 2s ease-in-out infinite;';
+        btn.appendChild(dot);
+        // Injecter l'animation CSS
+        if (!document.getElementById('cl-pulse-style')) {
+          var style = document.createElement('style');
+          style.id = 'cl-pulse-style';
+          style.textContent = '@keyframes cl-pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }';
+          document.head.appendChild(style);
+        }
+      }
+    } else {
+      var dot = btn.querySelector('.cl-dot');
+      if (dot) dot.remove();
+    }
+  }
+
+  // Fermer le panneau si clic en dehors
+  document.addEventListener('click', function(e) {
+    var panel = document.getElementById('changelog-panel');
+    var btn = document.getElementById('version-badge-nav');
+    if (!panel || !panel.classList.contains('open')) return;
+    if (panel.contains(e.target) || (btn && btn.contains(e.target))) return;
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden', 'true');
+  });
+
+  // Fermer avec Échap
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var panel = document.getElementById('changelog-panel');
+      if (panel && panel.classList.contains('open')) {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+    }
+  });
+
+  // Initialisation au chargement
+  document.addEventListener('DOMContentLoaded', updateChangelogBadge);
+
+  // ───────── 2. Export des données personnelles en PDF ─────────
+  window.exportUserData = function() {
+    try {
+      if (!window.jspdf || !window.jspdf.jsPDF) {
+        alert('La génération PDF n\'est pas disponible. Veuillez recharger la page.');
+        return;
+      }
+
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+      var W = doc.internal.pageSize.getWidth();
+      var H = doc.internal.pageSize.getHeight();
+      var M = 18; // marge
+      var y = M;
+
+      // ─── Récupération des données ───
+      var data = collectUserData();
+
+      // ─── Page 1 — En-tête ───
+      // Bandeau
+      doc.setFillColor(15, 52, 96);
+      doc.rect(0, 0, W, 45, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(18);
+      doc.text('Mon parcours d\'autoformation', W/2, 22, { align: 'center' });
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('Bilan personnel · Plateforme Ressources professionnelles enseignantes', W/2, 32, { align: 'center' });
+      doc.setFontSize(8);
+      doc.text('Export généré le ' + data.exportDate, W/2, 40, { align: 'center' });
+
+      y = 58;
+      doc.setTextColor(30, 30, 30);
+
+      // Identité
+      if (data.nom) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(13);
+        doc.text('Utilisateur·trice', M, y);
+        y += 7;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(11);
+        doc.text(data.nom, M, y);
+        y += 10;
+      }
+
+      // ─── Progression du parcours ───
+      y = section(doc, 'Progression du parcours', M, y);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      var stepIcons = {
+        comprendre: '1.', evaluer: '2.', meformer: '3.', ressources: '4.', bibliotheque: '5.'
+      };
+      var stepNames = {
+        comprendre: 'Comprendre',
+        evaluer: 'M\'évaluer',
+        meformer: 'Me former',
+        ressources: 'Approfondir',
+        bibliotheque: 'Bibliothèque'
+      };
+      data.steps.forEach(function(step) {
+        var status = data.visited.indexOf(step) !== -1 ? '✓' : '○';
+        var color = data.visited.indexOf(step) !== -1 ? [74, 124, 89] : [150, 150, 150];
+        doc.setTextColor(color[0], color[1], color[2]);
+        doc.text(status + '  ' + stepIcons[step] + ' ' + stepNames[step], M + 4, y);
+        y += 6;
+      });
+      doc.setTextColor(30, 30, 30);
+      y += 4;
+
+      // ─── Scores T1 / T2 ───
+      if (data.hasScores) {
+        y = section(doc, 'Profil de ressources (scores IRPPE)', M, y);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        var dims = [
+          { k: 'personne', l: 'La personne enseignante' },
+          { k: 'ressources', l: 'La gestion des ressources' },
+          { k: 'attentes', l: 'L\'établissement d\'attentes claires' },
+          { k: 'relations', l: 'Le développement de relations positives' },
+          { k: 'engagement', l: 'L\'attention et l\'engagement des élèves' },
+          { k: 'ecarts', l: 'La gestion des comportements difficiles' }
+        ];
+        // Entête
+        doc.setFont('helvetica', 'bold');
+        doc.text('Dimension', M + 4, y);
+        doc.text('T1', W - M - 30, y, { align: 'right' });
+        doc.text('T2', W - M - 10, y, { align: 'right' });
+        y += 5;
+        doc.setDrawColor(200, 200, 200);
+        doc.line(M, y-2, W-M, y-2);
+        doc.setFont('helvetica', 'normal');
+        dims.forEach(function(d) {
+          if (y > H - 30) { doc.addPage(); y = M; }
+          doc.text(d.l, M + 4, y);
+          var t1v = data.scores[d.k + '_t1'];
+          var t2v = data.scores[d.k + '_t2'];
+          doc.text(t1v != null ? String(t1v) : '—', W - M - 30, y, { align: 'right' });
+          doc.text(t2v != null ? String(t2v) : '—', W - M - 10, y, { align: 'right' });
+          y += 5;
+        });
+        y += 8;
+      }
+
+      // ─── Fiches de réflexion ───
+      if (Object.keys(data.fiches).length > 0) {
+        y = section(doc, 'Fiches de réflexion', M, y);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        Object.keys(data.fiches).forEach(function(key) {
+          if (y > H - 40) { doc.addPage(); y = M; }
+          var fiche = data.fiches[key];
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(10);
+          doc.text('◆ ' + (fiche.title || key), M + 2, y);
+          y += 5;
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          if (fiche.content && fiche.content.length > 0) {
+            var split = doc.splitTextToSize(fiche.content, W - 2*M - 4);
+            split.forEach(function(line) {
+              if (y > H - 20) { doc.addPage(); y = M; }
+              doc.text(line, M + 6, y);
+              y += 4.5;
+            });
+          } else {
+            doc.setTextColor(150, 150, 150);
+            doc.text('(aucun texte saisi)', M + 6, y);
+            doc.setTextColor(30, 30, 30);
+            y += 4.5;
+          }
+          y += 4;
+        });
+      }
+
+      // ─── Bibliothèque ───
+      if (data.biblioDownloads.length > 0) {
+        if (y > H - 50) { doc.addPage(); y = M; }
+        y = section(doc, 'Bibliothèque — Ressources téléchargées', M, y);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.text(data.biblioDownloads.length + ' ressource(s) téléchargée(s) depuis la bibliothèque', M + 4, y);
+        y += 5;
+        doc.setFontSize(9);
+        doc.setTextColor(100, 100, 100);
+        data.biblioDownloads.forEach(function(dl) {
+          if (y > H - 20) { doc.addPage(); y = M; }
+          doc.text('• ' + dl, M + 6, y);
+          y += 4.5;
+        });
+        doc.setTextColor(30, 30, 30);
+      }
+
+      // ─── Pied de page sur la dernière page ───
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(7.5);
+      doc.setTextColor(130, 130, 130);
+      var footY = H - 12;
+      doc.text('Plateforme Autoformation · ' + data.version + ' · Export personnel à usage privé', W/2, footY, { align: 'center' });
+      doc.text('Les données sont sauvegardées localement dans votre navigateur — aucune transmission extérieure.', W/2, footY + 4, { align: 'center' });
+
+      // ─── Télécharger ───
+      var filename = 'Mon_parcours_autoformation_' + new Date().toISOString().slice(0, 10) + '.pdf';
+      doc.save(filename);
+
+    } catch (err) {
+      console.error('Erreur export PDF :', err);
+      alert('Une erreur est survenue lors de la génération du PDF. Détail : ' + err.message);
+    }
+  };
+
+  // Helper : titre de section
+  function section(doc, title, M, y) {
+    if (y > doc.internal.pageSize.getHeight() - 30) {
+      doc.addPage();
+      y = M;
+    }
+    doc.setFillColor(245, 166, 35);
+    doc.rect(M, y - 3, 3, 8, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(12);
+    doc.setTextColor(30, 30, 30);
+    doc.text(title, M + 6, y + 3);
+    y += 12;
+    return y;
+  }
+
+  // ─── Collecte des données depuis localStorage ───
+  function collectUserData() {
+    var data = {
+      exportDate: new Date().toLocaleDateString('fr-CH', { day: '2-digit', month: 'long', year: 'numeric' }),
+      version: 'v2.4',
+      nom: '',
+      steps: ['comprendre', 'evaluer', 'meformer', 'ressources', 'bibliotheque'],
+      visited: [],
+      hasScores: false,
+      scores: {},
+      fiches: {},
+      biblioDownloads: []
+    };
+
+    try {
+      // Nom (si attestation générée)
+      data.nom = localStorage.getItem('aut_attest_name') || '';
+
+      // Étapes visitées
+      data.visited = JSON.parse(localStorage.getItem('aut_visited') || '[]');
+
+      // Scores (clés génériques communes)
+      var scoreKeys = ['personne', 'ressources', 'attentes', 'relations', 'engagement', 'ecarts'];
+      scoreKeys.forEach(function(k) {
+        var t1 = localStorage.getItem('aut_score_' + k + '_t1');
+        var t2 = localStorage.getItem('aut_score_' + k + '_t2');
+        if (t1 != null) { data.scores[k + '_t1'] = t1; data.hasScores = true; }
+        if (t2 != null) { data.scores[k + '_t2'] = t2; data.hasScores = true; }
+      });
+
+      // Fiches de réflexion — on parcourt toutes les clés localStorage qui commencent par "aut_fiche_"
+      for (var i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        if (!key) continue;
+        if (key.indexOf('aut_fiche_') === 0 || key.indexOf('fiche_') === 0) {
+          var val = localStorage.getItem(key);
+          if (val && val.length > 0 && val !== 'false') {
+            var cleanKey = key.replace('aut_fiche_', '').replace('fiche_', '').replace(/_/g, ' ');
+            data.fiches[cleanKey] = {
+              title: cleanKey.charAt(0).toUpperCase() + cleanKey.slice(1),
+              content: val
+            };
+          }
+        }
+      }
+
+      // Téléchargements bibliothèque
+      var dls = JSON.parse(localStorage.getItem('aut_biblio_downloads') || '[]');
+      data.biblioDownloads = dls.map(function(id) {
+        // Essayer de trouver un libellé lisible
+        var card = document.getElementById('res-' + id.replace(/^af_/, 'af-').replace(/_/g, '-'));
+        if (!card) {
+          // Fallback : chercher avec une autre convention
+          var all = document.querySelectorAll('[data-lien="' + id + '"]');
+          if (all.length > 0) {
+            var ancestor = all[0].closest('.res-card');
+            if (ancestor) {
+              var h4 = ancestor.querySelector('h4');
+              if (h4) return h4.textContent.trim();
+            }
+          }
+          return id;
+        }
+        var h4 = card.querySelector('h4');
+        return h4 ? h4.textContent.trim() : id;
+      });
+
+    } catch (e) {
+      console.warn('Erreur collecte données :', e);
+    }
+
+    return data;
   }
 
 })();
