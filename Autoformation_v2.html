@@ -358,7 +358,7 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-
 
 /* RESOURCES */
 .resources-section{background:var(--deep);color:white;padding:60px 32px;}
-.resources-inner{max-width:980px;margin:0 auto;overflow-x:hidden;}
+.resources-inner{max-width:1400px;margin:0 auto;overflow-x:hidden;}
 .resources-section .section-label{color:var(--gold);}
 .resources-section h2{color:white;}
 .res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:24px;margin-top:32px;}
@@ -388,7 +388,9 @@ h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-
 /* BIBLIO */
 .biblio-group{margin-bottom:36px;}
 .biblio-group-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--accent1);}
-.biblio-entry{background:white;border-radius:10px;padding:14px 18px;margin-bottom:8px;font-size:.84rem;color:#444;line-height:1.65;box-shadow:0 1px 8px rgba(0,0,0,.04);border-left:3px solid var(--border);transition:border-color .2s;}
+.biblio-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:8px;}
+@media(max-width:780px){.biblio-list{grid-template-columns:1fr;}}
+.biblio-entry{background:white;border-radius:10px;padding:14px 18px;margin-bottom:0;font-size:.84rem;color:#444;line-height:1.65;box-shadow:0 1px 8px rgba(0,0,0,.04);border-left:3px solid var(--border);transition:border-color .2s;}
 .section-break{display:flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,#0a2548 0%,#16498a 45%,#0f3460 100%);padding:26px 40px;gap:20px;box-shadow:0 4px 24px rgba(15,52,96,.4);position:relative;margin-bottom:24px;}
 .section-break::after{content:'';position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:28px solid transparent;border-right:28px solid transparent;border-top:18px solid #0f3460;filter:drop-shadow(0 4px 4px rgba(15,52,96,.3));z-index:10;}
 #resilience-pro-break::after{border-top-color:#3b2470;filter:drop-shadow(0 4px 4px rgba(83,52,131,.3));}
@@ -570,7 +572,7 @@ footer strong{color:rgba(255,255,255,.8);}
 /* ===== GLOSSAIRE ===== */
 .glossaire-search{width:100%;padding:12px 18px;border:2px solid var(--border);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:.9rem;margin-bottom:24px;outline:none;transition:border-color .2s;}
 .glossaire-search:focus{border-color:var(--accent2);}
-.glossaire-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.glossaire-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
 .glossaire-entry{background:white;border-radius:12px;padding:18px;box-shadow:0 1px 12px rgba(0,0,0,.05);border-left:4px solid var(--accent2);}
 .glossaire-entry h4{font-weight:700;font-size:.88rem;color:var(--deep);margin-bottom:6px;}
 .glossaire-entry .g-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px;display:block;}
@@ -1674,149 +1676,6 @@ footer strong{color:rgba(255,255,255,.8);}
 }
 #mode-badge-nav:hover { opacity: .85; }
 
-/* Badge de version dans le nav */
-#version-badge-nav {
-  display: none;
-  margin-left: 6px;
-  margin-right: 8px;
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.65);
-  font-size: .58rem; font-weight: 700;
-  padding: 3px 9px; border-radius: 4px;
-  cursor: pointer;
-  transition: all .2s;
-  white-space: nowrap;
-  letter-spacing: .04em;
-  border: 1px solid rgba(255,255,255,.15);
-}
-#version-badge-nav:hover {
-  background: rgba(255,255,255,.15);
-  color: white;
-  border-color: rgba(255,255,255,.3);
-}
-@media (min-width: 900px) {
-  #version-badge-nav { display: inline-block; }
-}
-
-/* Panneau changelog */
-#changelog-panel {
-  position: fixed;
-  top: 70px;
-  right: 20px;
-  width: 440px;
-  max-width: calc(100vw - 40px);
-  max-height: calc(100vh - 120px);
-  background: linear-gradient(145deg, #1a1a2e 0%, #0f3460 100%);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 14px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.6);
-  z-index: 9999;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(-10px) scale(.96);
-  pointer-events: none;
-  transition: all .25s ease;
-  display: flex;
-  flex-direction: column;
-}
-#changelog-panel.open {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-#changelog-panel .cl-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px 12px;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  flex-shrink: 0;
-}
-#changelog-panel .cl-header h3 {
-  margin: 0;
-  font-size: .95rem;
-  color: white;
-  font-weight: 700;
-}
-#changelog-panel .cl-close {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.18);
-  color: rgba(255,255,255,.8);
-  font-size: .85rem;
-  width: 28px; height: 28px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all .2s;
-}
-#changelog-panel .cl-close:hover {
-  background: rgba(255,255,255,.15);
-  color: white;
-}
-#changelog-panel .cl-body {
-  padding: 16px 20px;
-  overflow-y: auto;
-  flex: 1;
-}
-#changelog-panel .cl-entry {
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-#changelog-panel .cl-entry:last-child { border-bottom: none; }
-#changelog-panel .cl-entry.cl-latest .cl-version::before {
-  content: "● ";
-  color: #f5a623;
-  font-size: 1.2em;
-}
-#changelog-panel .cl-version {
-  font-size: .88rem;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-#changelog-panel .cl-date {
-  font-size: .7rem;
-  font-weight: 500;
-  color: rgba(255,255,255,.5);
-  letter-spacing: .02em;
-}
-#changelog-panel .cl-tag {
-  font-size: .6rem;
-  background: #f5a62322;
-  color: #f5a623;
-  border: 1px solid #f5a62344;
-  padding: 2px 8px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  font-weight: 600;
-}
-#changelog-panel .cl-entry ul {
-  margin: 0;
-  padding-left: 18px;
-}
-#changelog-panel .cl-entry li {
-  font-size: .78rem;
-  color: rgba(255,255,255,.75);
-  line-height: 1.6;
-  margin-bottom: 4px;
-}
-#changelog-panel .cl-entry li strong {
-  color: white;
-}
-
-/* Mobile : panneau plein écran */
-@media (max-width: 600px) {
-  #changelog-panel {
-    top: 60px;
-    right: 10px;
-    left: 10px;
-    width: auto;
-  }
-}
 
 /* Widget flottant attestation */
 #attest-widget {
@@ -2256,57 +2115,6 @@ footer strong{color:rgba(255,255,255,.8);}
 
     <button id="mode-badge-nav" onclick="showModeSelector()" title="Changer de mode">🧭 Perso</button>
 
-    <button id="version-badge-nav" onclick="toggleChangelog()" title="Voir les nouveautés" aria-label="Informations de version">
-      <span id="version-badge-text">v2.4 · Avril 2026</span>
-    </button>
-
-  </div>
-
-  <!-- Panneau changelog (masqué par défaut) -->
-  <div id="changelog-panel" role="dialog" aria-labelledby="changelog-title" aria-hidden="true">
-    <div class="cl-header">
-      <h3 id="changelog-title">📌 Nouveautés & historique</h3>
-      <button class="cl-close" onclick="toggleChangelog()" aria-label="Fermer">✕</button>
-    </div>
-    <div class="cl-body">
-      <div class="cl-entry cl-latest">
-        <div class="cl-version">v2.4 <span class="cl-date">Avril 2026</span> <span class="cl-tag">Dernière mise à jour</span></div>
-        <ul>
-          <li><strong>Nouvel onglet Bibliothèque (05)</strong> — séparation des ressources téléchargeables (onglet 05) et de l'approfondissement théorique (onglet 04)</li>
-          <li><strong>Dossier « Gestion des comportements difficiles »</strong> — 7 nouvelles ressources : notice d'analyse fonctionnelle, fiche-pistes de remplacement, grille de documentation d'essai, trame d'entretien, contrat comportemental, kit de supports visuels</li>
-          <li><strong>Seuil minimum d'exploration</strong> — validation de l'étape Bibliothèque après 3 téléchargements distincts</li>
-          <li><strong>Liens croisés enrichis</strong> — 10 nouveaux liens entre ressources (dossier comportement ↔ ressources existantes)</li>
-          <li>Export de données personnel et badge de version ajoutés</li>
-        </ul>
-      </div>
-      <div class="cl-entry">
-        <div class="cl-version">v2.3 <span class="cl-date">Mars 2026</span></div>
-        <ul>
-          <li>Intégration complète de la <strong>banque d'outils Bourassa</strong> (20 documents)</li>
-          <li>Module 8 — Gestion des comportements difficiles</li>
-          <li>Système d'attestation PDF nominatif</li>
-          <li>Mode HEP protégé par mot de passe</li>
-        </ul>
-      </div>
-      <div class="cl-entry">
-        <div class="cl-version">v2.2 <span class="cl-date">Février 2026</span></div>
-        <ul>
-          <li>Refonte en <strong>parcours tabbé</strong> (Comprendre / M'évaluer / Me former / Approfondir)</li>
-          <li>Questionnaires IRPPE/ISEDRPE avec graphiques radar T1/T2</li>
-          <li>Fiches de réflexion sauvegardées localement</li>
-        </ul>
-      </div>
-      <div class="cl-entry">
-        <div class="cl-version">v2.0 <span class="cl-date">Janvier 2026</span></div>
-        <ul>
-          <li>Première version SPA complète avec navigation par étapes</li>
-          <li>Modèle PRÉSENCE de Fahim (Cortica) en fil conducteur</li>
-        </ul>
-      </div>
-      <div class="cl-footer">
-        <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin-top:16px;font-style:italic;">Plateforme développée par Guillaume Roduit dans le cadre du CAS en Neurosciences Éducatives (HEP-VS / Université de Fribourg, sous la supervision du Prof. Cherine Fahim).</p>
-      </div>
-    </div>
   </div>
 
   <!-- Per-step thin progress bars (real completion) -->
@@ -5541,7 +5349,7 @@ function toggleMod(id) {
 <!-- ══ FIN ZONE-PONT ══ -->
 
 <section id="contenus" style="padding:32px 32px 60px;">
-  <div style="max-width:980px;margin:0 auto;">
+  <div style="max-width:1400px;margin:0 auto;">
 
     <!-- ══ VOLET 1 — RECOMMANDATIONS DYNAMIQUES ══════════════════════════════ -->
     <div style="background:white;border:2px solid #fde8b0;border-radius:18px;padding:24px 28px;margin-bottom:40px;box-shadow:0 2px 16px rgba(245,166,35,.08);">
@@ -6921,12 +6729,14 @@ function downloadApprofondirPDF() {
 <div class="section-break"><div class="sb-num">06</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">📖</span> Glossaire</div><div class="sb-line"></div></div>
 
 <!-- GLOSSAIRE -->
-<section id="glossaire" style="max-width:980px;margin:0 auto;padding:60px 32px;">
-  <div class="section-label">Lexique</div>
-  <h2>Glossaire des termes neuroéducatifs</h2>
-  <div class="divider"></div>
-  <p style="font-size:.88rem;color:#555;margin-bottom:24px;">Définitions accessibles des concepts utilisés dans cette démarche. Utilisez la recherche pour trouver rapidement un terme.</p>
-  <input class="glossaire-search" type="text" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" oninput="filterGlossaire(this.value)">
+<section id="glossaire" style="max-width:1400px;margin:0 auto;padding:60px 32px;">
+  <div style="max-width:980px;margin:0 auto;">
+    <div class="section-label">Lexique</div>
+    <h2>Glossaire des termes neuroéducatifs</h2>
+    <div class="divider"></div>
+    <p style="font-size:.88rem;color:#555;margin-bottom:24px;">Définitions accessibles des concepts utilisés dans cette démarche. Utilisez la recherche pour trouver rapidement un terme.</p>
+    <input class="glossaire-search" type="text" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" oninput="filterGlossaire(this.value)">
+  </div>
   <div class="glossaire-grid" id="glossaire-grid">
 
     <div class="glossaire-entry" data-tags="burnout épuisement MBI maslach professionnel">
@@ -7089,14 +6899,17 @@ function downloadApprofondirPDF() {
 <div class="section-break"><div class="sb-num">08</div><div class="sb-line"></div><div class="sb-badge"><span class="sb-icon">🔬</span> Bibliographie</div><div class="sb-line"></div></div>
 
 <!-- BIBLIOGRAPHIE -->
-<section id="bibliographie" style="max-width:980px;margin:0 auto;padding:60px 32px;">
-  <div class="section-label">Références scientifiques</div>
-  <h2>Bibliographie</h2>
-  <div class="divider"></div>
-  <p style="font-size:.85rem;color:var(--muted);margin-bottom:36px;">Ensemble des références mobilisées dans la démarche d'autoformation (révision 2025).</p>
+<section id="bibliographie" style="max-width:1400px;margin:0 auto;padding:60px 32px;">
+  <div style="max-width:980px;margin:0 auto;">
+    <div class="section-label">Références scientifiques</div>
+    <h2>Bibliographie</h2>
+    <div class="divider"></div>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:36px;">Ensemble des références mobilisées dans la démarche d'autoformation (révision 2025).</p>
+  </div>
 
   <div class="biblio-group">
     <div class="biblio-group-title">📗 Ouvrages et chapitres</div>
+    <div class="biblio-list">
     <div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
     <div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
     <div class="biblio-entry">Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. <a href="https://periscope-r.quebec/" target="_blank">periscope-r.quebec</a></div>
@@ -7119,9 +6932,11 @@ function downloadApprofondirPDF() {
     <div class="biblio-entry">Vianin, P. (2024). <em>L'approche systémique en pédagogie spécialisée.</em> Bruxelles : De Boeck Supérieur.</div>
     <div class="biblio-entry">Cooper, J. O., Heron, T. E., &amp; Heward, W. L. (2007). <em>Applied Behavior Analysis</em> (2e éd.). Upper Saddle River, NJ : Pearson. [Référence fondatrice de l'analyse appliquée du comportement, mobilisée dans le dossier « Analyse fonctionnelle »]</div>
   </div>
+  </div>
 
   <div class="biblio-group">
     <div class="biblio-group-title">📄 Articles et revues scientifiques</div>
+    <div class="biblio-list">
     <div class="biblio-entry">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands–resources theory. <em>Journal of Occupational Health Psychology, 22(3)</em>, 273–285.</div>
     <div class="biblio-entry">Beaumont, C., Langri, S., Wilkie, T., Marquis, D. et Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval / HEP-VS. [Adaptation du modèle CS3 ajoutant la compétence <em>conscience de l'interdépendance</em>]</div>
     <div class="biblio-entry">Beltman, S., Mansfield, C. F. et Price, A. (2011). Thriving not just surviving. <em>Educational Research Review, 6(3)</em>, 185–207.</div>
@@ -7153,9 +6968,11 @@ function downloadApprofondirPDF() {
     <div class="biblio-entry">Tschannen-Moran, M., &amp; Hoy, A. W. (2001). Teacher efficacy: Capturing an elusive construct. <em>Teaching and Teacher Education, 17(7)</em>, 783–805.</div>
     <div class="biblio-entry">Woodcock, S., &amp; Tournaki, N. (2025). Scale of Educational Teaching Self-efficacy (SETS). <em>Teaching and Teacher Education, 145.</em></div>
   </div>
+  </div>
 
   <div class="biblio-group">
     <div class="biblio-group-title">🌐 Ressources en ligne &amp; rapports</div>
+    <div class="biblio-list">
     <div class="biblio-entry">Beaumont, C. (2023). <em>Promouvoir à la fois la santé mentale, un climat scolaire positif et la prévention de la violence : Guide de planification pour soutenir de manière continue le bien-être à l'école.</em> Chaire de recherche Bienêtre à l'école et prévention de la violence, Université Laval. <a href="https://www.violence-ecole.ulaval.ca/" target="_blank">violence-ecole.ulaval.ca</a> [Guide source de la section 6.3 — Pyramide de prévention à 4 niveaux]</div>
     <div class="biblio-entry">État du Valais &amp; FMEP. (2024). <em>Enquête de satisfaction du personnel enseignant du canton du Valais.</em> Service de l'enseignement du Valais. (Reporté par RTS Info, 4 février 2025 : <a href="https://www.rts.ch/info/regions/valais/2025/article/stress-et-charge-de-travail-en-hausse-chez-les-enseignants-valaisans-28779013.html" target="_blank">rts.ch</a>)</div>
     <div class="biblio-entry">Kunz Heim, D., Böhm, A. et al. (2014). <em>Gesundheitliche Belastungen, Ressourcen und Arbeitsbewältigung von Lehrpersonen.</em> Haute École Pédagogique de la Suisse du Nord-Ouest (FHNW). [Burnout estimé entre 23 % et 34 % des enseignants en Suisse alémanique]</div>
@@ -7166,6 +6983,7 @@ function downloadApprofondirPDF() {
     <div class="biblio-entry">Turmel, N. (2015). <em>Cadre de référence et guide à l'intention du milieu scolaire.</em> Ministère de l'Education du Québec. <a href="https://www.meesr.gouv.qc.ca" target="_blank">meesr.gouv.qc.ca</a></div>
     <div class="biblio-entry">Viac, C., &amp; Fraser, P. (2020). Teachers' well-being: A framework for data collection and analysis. <em>OECD Education Working Papers, No. 213.</em> OECD Publishing. <a href="https://doi.org/10.1787/c36fc9d3-en" target="_blank">doi:10.1787/c36fc9d3-en</a></div>
     
+  </div>
   </div>
 </section>
 
@@ -11658,75 +11476,7 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
 (function() {
   'use strict';
 
-  // ───────── 1. Toggle du panneau changelog ─────────
-  window.toggleChangelog = function() {
-    var panel = document.getElementById('changelog-panel');
-    if (!panel) return;
-    var isOpen = panel.classList.contains('open');
-    if (isOpen) {
-      panel.classList.remove('open');
-      panel.setAttribute('aria-hidden', 'true');
-    } else {
-      panel.classList.add('open');
-      panel.setAttribute('aria-hidden', 'false');
-      // Marquer comme "vu" dans localStorage
-      try { localStorage.setItem('aut_changelog_seen', 'v2.4'); } catch(e) {}
-      updateChangelogBadge();
-    }
-  };
-
-  // Indicateur visuel "nouveautés non vues"
-  function updateChangelogBadge() {
-    var btn = document.getElementById('version-badge-nav');
-    if (!btn) return;
-    var seen = null;
-    try { seen = localStorage.getItem('aut_changelog_seen'); } catch(e) {}
-    if (seen !== 'v2.4') {
-      // Ajouter un petit point orange
-      if (!btn.querySelector('.cl-dot')) {
-        var dot = document.createElement('span');
-        dot.className = 'cl-dot';
-        dot.style.cssText = 'display:inline-block;width:6px;height:6px;background:#f5a623;border-radius:50%;margin-left:5px;vertical-align:middle;animation:cl-pulse 2s ease-in-out infinite;';
-        btn.appendChild(dot);
-        // Injecter l'animation CSS
-        if (!document.getElementById('cl-pulse-style')) {
-          var style = document.createElement('style');
-          style.id = 'cl-pulse-style';
-          style.textContent = '@keyframes cl-pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }';
-          document.head.appendChild(style);
-        }
-      }
-    } else {
-      var dot = btn.querySelector('.cl-dot');
-      if (dot) dot.remove();
-    }
-  }
-
-  // Fermer le panneau si clic en dehors
-  document.addEventListener('click', function(e) {
-    var panel = document.getElementById('changelog-panel');
-    var btn = document.getElementById('version-badge-nav');
-    if (!panel || !panel.classList.contains('open')) return;
-    if (panel.contains(e.target) || (btn && btn.contains(e.target))) return;
-    panel.classList.remove('open');
-    panel.setAttribute('aria-hidden', 'true');
-  });
-
-  // Fermer avec Échap
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      var panel = document.getElementById('changelog-panel');
-      if (panel && panel.classList.contains('open')) {
-        panel.classList.remove('open');
-        panel.setAttribute('aria-hidden', 'true');
-      }
-    }
-  });
-
-  // Initialisation au chargement
-  document.addEventListener('DOMContentLoaded', updateChangelogBadge);
-
-  // ───────── 2. Export des données personnelles en PDF ─────────
+  // ───────── Export des données personnelles en PDF ─────────
   window.exportUserData = function() {
     try {
       if (!window.jspdf || !window.jspdf.jsPDF) {
@@ -11988,6 +11738,38 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
     return data;
   }
 
+})();
+</script>
+
+<!-- Mention de date — visible en bas de page sur tous les onglets -->
+<div id="last-update-footer" style="text-align:center;padding:24px 12px 32px;font-size:.9rem;color:#7a7a9d;font-family:system-ui,-apple-system,sans-serif;letter-spacing:.02em;background:transparent;font-weight:500;">
+  Dernière mise à jour : avril 2026
+</div>
+
+<script>
+// Cloner le footer dans le dernier panel de chaque onglet logique
+// pour qu'il soit visible une seule fois en fin de chaque onglet
+(function() {
+  var footer = document.getElementById('last-update-footer');
+  if (!footer) return;
+  // Liste des panels qui doivent recevoir le footer (un par onglet logique)
+  var lastPanelOfEachTab = [
+    'tab-accueil',
+    'tab-comprendre-part2',  // dernier panel de l'onglet Comprendre
+    'tab-evaluer',
+    'tab-meformer',          // dernier panel de l'onglet Me former (tab-planaction le précède)
+    'tab-ressources',
+    'tab-bibliotheque'
+  ];
+  lastPanelOfEachTab.forEach(function(id) {
+    var panel = document.getElementById(id);
+    if (!panel) return;
+    var clone = footer.cloneNode(true);
+    clone.removeAttribute('id');
+    panel.appendChild(clone);
+  });
+  // Masquer l'original (puisque les clones sont en place)
+  footer.style.display = 'none';
 })();
 </script>
 
