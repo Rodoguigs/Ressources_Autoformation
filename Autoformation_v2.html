@@ -7425,7 +7425,7 @@ function downloadApprofondirPDF() {
             <div class="rf-title">Gestion des comportements difficiles &amp; analyse fonctionnelle</div>
             <div style="font-size:.73rem;color:rgba(255,255,255,.45);margin-top:3px;">Analyse fonctionnelle · Accompagnement individuel · Outils d'intervention · Kit visuel TSA</div>
           </div>
-          <span class="rf-count">7 ressources</span>
+          <span class="rf-count">9 ressources</span>
           <span class="rf-arrow">▾</span>
         </div>
         <div class="res-folder-body">
@@ -7542,6 +7542,20 @@ function downloadApprofondirPDF() {
               <div class="res-qr-text">Scannez pour accéder au contrat en ligne</div>
             </div>
             <a class="res-dl" href="#" data-lien="af_contrat" target="_blank">📥 Télécharger le contrat (Word)</a>
+          </div>
+
+          <div class="res-card" id="res-af-memo-hepvs">
+            <div class="res-icon">📋</div>
+            <div class="res-type">Mémo PDF · HEP-VS · Ressource terrain</div>
+            <h4>Des difficultés aux troubles du comportement — Mémo HEP-VS</h4>
+            <p>Mémo pratique pour enseignants produit par la HEP Valais (Borel, Clavien, Barras, Fux, Cignetti, 2020). Présente un tableau de lecture comportements / ressentis de l'enseignant / croyances cachées de l'élève / actions possibles pour quatre profils (recherche d'attention, agressivité, défi de l'autorité, retrait). Distingue punir et sanctionner (règle des 4 R). Donne des pistes concrètes en début et en cours d'année. Inclut les ressources locales valaisannes (CDTEA, discipline positive suisse romande, enseignant-e d'appui).<br><br>
+            <em>Borel et al. (2020) · HEP-VS · Ressource institutionnelle valaisanne · Complémentaire de la notice AFC.</em></p>
+            <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;" data-scrollto="res-af-notice">Notice AFC</a> <a href="#res-af-fiche-equipe" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;" data-scrollto="res-af-fiche-equipe">Fiche équipe</a> <a href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;" data-scrollto="res-af-pistes">Fiche-pistes</a></div>
+            <div class="res-qr-zone">
+              <div id="qr-af-memo-hepvs" style="flex-shrink:0;"></div>
+              <div class="res-qr-text">Scannez pour accéder au mémo en ligne</div>
+            </div>
+            <a class="res-dl" href="#" data-lien="af_memo_hepvs" target="_blank">📥 Télécharger le mémo (PDF)</a>
           </div>
 
           </div>
@@ -8781,6 +8795,7 @@ const LIENS = {
   af_contrat:        'https://rodoguigs.github.io/Ressources_Autoformation/comportement/contrat_comportemental.docx',
   af_kit_visuels:    'https://rodoguigs.github.io/Ressources_Autoformation/comportement/kit_modeles.docx',
   af_notice_utilisation: 'https://rodoguigs.github.io/Ressources_Autoformation/comportement/notice_utilisation_dispositif.pdf',
+  af_memo_hepvs:         'https://rodoguigs.github.io/Ressources_Autoformation/comportement/memo_hepvs_comportements.pdf',
 
   // ── Liens externes ────────────────────────────────────────────
   gaudreau:          'pdf/fiche-livre-Gaudreau.pdf',
@@ -8889,6 +8904,7 @@ makeQR('qr-af-entretien',      LIENS.af_entretien,            '#e0a800', 68);
 makeQR('qr-af-contrat',        LIENS.af_contrat,              '#e0a800', 68);
 makeQR('qr-af-kit',            LIENS.af_kit_visuels,          '#e0a800', 68);
 makeQR('qr-af-notice-utilisation', LIENS.af_notice_utilisation, '#e0a800', 68);
+makeQR('qr-af-memo-hepvs',        LIENS.af_memo_hepvs,         '#e0a800', 68);
 
 // ===== CAS PRATIQUES =====
 window.showCas=showCas;
