@@ -1417,6 +1417,220 @@ footer strong{color:rgba(255,255,255,.8);}
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ══════════════════════════════════════════════════════════
+   UX IMPROVEMENTS — Navigation fluide v2.5
+   ══════════════════════════════════════════════════════════ */
+
+/* ── HERO : masqué pour les utilisateurs de retour ── */
+.hero-returning { display: none !important; }
+
+/* ── INDICATEUR INTRA-ÉTAPE ── */
+.intra-step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f0f4ff;
+  border-bottom: 1px solid rgba(15,52,96,.1);
+  padding: 10px 28px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--deep);
+  position: sticky;
+  top: 60px;
+  z-index: 150;
+  gap: 12px;
+}
+.intra-step-nav .isn-pos {
+  flex: 1;
+  text-align: center;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.intra-step-nav .isn-back,
+.intra-step-nav .isn-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1.5px solid rgba(15,52,96,.2);
+  background: white;
+  color: var(--accent2);
+  font-size: .76rem;
+  font-weight: 700;
+  transition: all .2s;
+  white-space: nowrap;
+}
+.intra-step-nav .isn-back:hover,
+.intra-step-nav .isn-next:hover {
+  background: var(--accent2);
+  color: white;
+  border-color: var(--accent2);
+}
+.intra-step-nav .isn-next {
+  background: var(--accent2);
+  color: white;
+  border-color: var(--accent2);
+}
+.intra-step-nav .isn-next:hover {
+  background: #0a2a4a;
+}
+@media(max-width:600px){
+  .intra-step-nav { padding: 8px 12px; }
+  .intra-step-nav .isn-pos { display: none; }
+}
+
+/* ── BADGE ÉTAT FICHE (🔲 / ✅) ── */
+.fiche-state-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .69rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+  transition: all .3s;
+}
+.fiche-state-badge.todo {
+  background: #f0f4ff;
+  color: #7a7a9d;
+  border: 1px solid #d0d9ee;
+}
+.fiche-state-badge.saved {
+  background: #e8f5e9;
+  color: #2d6a4f;
+  border: 1px solid #a8d5bf;
+}
+
+/* ── CTA PRINCIPAL TABLEAU DE BORD — hiérarchie renforcée ── */
+.db-cta-wrapper {
+  background: linear-gradient(135deg, var(--accent2), var(--accent1));
+  border-radius: 18px;
+  padding: 20px 24px;
+  margin-bottom: 18px;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+.db-cta-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(15,52,96,.25);
+}
+.db-cta-wrapper .db-cta-eyebrow {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 8px;
+  display: block;
+}
+.db-cta-wrapper .db-cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.db-cta-wrapper .db-cta-desc {
+  font-size: .8rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.db-cta-wrapper .db-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--accent2);
+  font-size: .85rem;
+  font-weight: 800;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all .15s;
+}
+.db-cta-wrapper .db-cta-btn:hover {
+  background: #eef2ff;
+}
+.db-quick-sep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin: 6px 0 14px;
+}
+.db-quick-sep::before, .db-quick-sep::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── DURÉE ESTIMÉE dans la jbar ── */
+.js-time {
+  font-size: .56rem;
+  color: rgba(255,255,255,.28);
+  font-weight: 500;
+  display: none;
+  white-space: nowrap;
+}
+.js.active .js-time { color: rgba(255,255,255,.55); display: block; }
+.js.todo .js-time { display: block; }
+.js.done .js-time { color: rgba(127,222,154,.5); display: block; }
+
+/* ── TOAST DE CONFIRMATION ── */
+#ux-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #1a2744;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: .83rem;
+  font-weight: 600;
+  z-index: 99999;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  border: 1.5px solid rgba(255,255,255,.12);
+}
+#ux-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+#ux-toast .toast-icon { margin-right: 6px; }
+
+/* ── WIDGET ATTESTATION : caché jusqu'à étape 2 visitée ── */
+#attest-widget.widget-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.85) translateY(10px);
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+}
+#attest-widget.widget-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+}
+
 /* ── WITHIN-STEP PROGRESS INDICATOR ─────────────────────── */
 .step-progress-bar {
   height: 3px;
@@ -2063,6 +2277,7 @@ footer strong{color:rgba(255,255,255,.8);}
         <div class="js-title">Comprendre</div>
       </div>
       <span class="js-mini" id="jmini-comprendre">à faire</span>
+      <span class="js-time">~30 min</span>
     </button>
 
     <div class="js-sep"><div class="js-sep-line" id="jsep-1"></div></div>
@@ -2075,6 +2290,7 @@ footer strong{color:rgba(255,255,255,.8);}
         <div class="js-title">M'évaluer</div>
       </div>
       <span class="js-mini" id="jmini-evaluer">à faire</span>
+      <span class="js-time">~45 min</span>
     </button>
 
     <div class="js-sep"><div class="js-sep-line" id="jsep-2"></div></div>
@@ -2087,6 +2303,7 @@ footer strong{color:rgba(255,255,255,.8);}
         <div class="js-title">Me former</div>
       </div>
       <span class="js-mini" id="jmini-meformer">à faire</span>
+      <span class="js-time">~60 min</span>
     </button>
 
     <div class="js-sep"><div class="js-sep-line" id="jsep-3"></div></div>
@@ -2099,6 +2316,7 @@ footer strong{color:rgba(255,255,255,.8);}
         <div class="js-title">Approfondir</div>
       </div>
       <span class="js-mini" id="jmini-ressources">à faire</span>
+      <span class="js-time">à la carte</span>
     </button>
 
     <div class="js-sep"><div class="js-sep-line" id="jsep-4"></div></div>
@@ -11914,6 +12132,283 @@ document.addEventListener('DOMContentLoaded', function() { setEvalMode('court');
   });
   // Masquer l'original (puisque les clones sont en place)
   footer.style.display = 'none';
+})();
+</script>
+
+<!-- ═══ UX TOAST ═══ -->
+<div id="ux-toast" role="status" aria-live="polite">
+  <span class="toast-icon"></span>
+  <span id="ux-toast-text">Enregistré</span>
+</div>
+
+<!-- ═══ UX IMPROVEMENTS v2.5 — Navigation fluide & balisage ═══ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── 1. TOAST SYSTEM ─────────────────────────────────── */
+  var _toastTimer = null;
+  window.showToast = function(msg, duration) {
+    var toast = document.getElementById('ux-toast');
+    var text  = document.getElementById('ux-toast-text');
+    if (!toast || !text) return;
+    text.textContent = msg;
+    toast.classList.add('visible');
+    clearTimeout(_toastTimer);
+    _toastTimer = setTimeout(function() {
+      toast.classList.remove('visible');
+    }, duration || 3000);
+  };
+
+  /* ── 2. HOOK FERMETURE MODAL LIKERT → toast ─────────── */
+  function hookLkClose() {
+    if (typeof window.lkClose !== 'function') {
+      setTimeout(hookLkClose, 400);
+      return;
+    }
+    var orig = window.lkClose;
+    window.lkClose = function() {
+      orig.apply(this, arguments);
+      setTimeout(function() {
+        var scores = [];
+        document.querySelectorAll('.lk-open-score').forEach(function(el) {
+          var v = el.textContent.trim();
+          if (v && v !== '') scores.push(v);
+        });
+        var msg = scores.length
+          ? '✓ Questionnaire enregistré · Score : ' + scores[0]
+          : '✓ Questionnaire enregistré';
+        window.showToast(msg, 3500);
+      }, 150);
+    };
+  }
+  hookLkClose();
+
+  /* ── 3. HOOK SAVE FICHE → toast + badge ─────────────── */
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-savefiche]');
+    if (btn) {
+      setTimeout(function() {
+        window.showToast('✓ Fiche enregistrée dans votre navigateur', 2800);
+        refreshFicheBadges();
+      }, 200);
+    }
+    var sa = e.target.closest('[data-action="savescores"]');
+    if (sa) {
+      setTimeout(function() {
+        window.showToast('✓ Scores sauvegardés · Radars mis à jour', 2800);
+      }, 200);
+    }
+    // mod-fus save buttons
+    var mfsave = e.target.closest('.mod-fus-save');
+    if (mfsave) {
+      setTimeout(function() {
+        window.showToast('✓ Fiche module enregistrée', 2500);
+      }, 200);
+    }
+  });
+
+  /* ── 4. BADGES D'ÉTAT SUR LES FICHES ─────────────────── */
+  var FICHE_MAP = [
+    { lsKey: 'aut_fiche1',     toggleId: 'fiche1' },
+    { lsKey: 'aut_fiche2',     toggleId: 'fiche2' },
+    { lsKey: 'aut_fiche3',     toggleId: 'fiche3' },
+    { lsKey: 'aut_fiche4',     toggleId: 'fiche4' },
+    { lsKey: 'aut_fiche5',     toggleId: 'fiche5' },
+    { lsKey: 'aut_fiche6',     toggleId: 'fiche6' },
+    { lsKey: 'aut_fiche-mod3', toggleId: 'fiche-mod3' }
+  ];
+
+  function isFicheSaved(lsKey) {
+    try {
+      var v = localStorage.getItem(lsKey);
+      if (!v) return false;
+      if (v === '{}' || v === 'false') return false;
+      // Vérifier que l'objet a au moins une valeur non vide
+      var obj = JSON.parse(v);
+      return Object.values(obj).some(function(x) { return x && String(x).trim().length > 0; });
+    } catch(e) { return false; }
+  }
+
+  function injectFicheBadge(toggleId, lsKey) {
+    var btn = document.querySelector('[data-togglefiche="' + toggleId + '"]');
+    if (!btn) return;
+    if (btn.querySelector('.fiche-state-badge')) return;
+    var badge = document.createElement('span');
+    badge.className = 'fiche-state-badge';
+    badge.setAttribute('data-fiche-badge', lsKey);
+    btn.appendChild(badge);
+    updateFicheBadge(badge, lsKey);
+  }
+
+  function updateFicheBadge(badge, lsKey) {
+    if (isFicheSaved(lsKey)) {
+      badge.className = 'fiche-state-badge saved';
+      badge.textContent = '✅ Enregistrée';
+    } else {
+      badge.className = 'fiche-state-badge todo';
+      badge.textContent = '🔲 À compléter';
+    }
+  }
+
+  function refreshFicheBadges() {
+    document.querySelectorAll('[data-fiche-badge]').forEach(function(badge) {
+      updateFicheBadge(badge, badge.getAttribute('data-fiche-badge'));
+    });
+  }
+
+  function initFicheBadges() {
+    FICHE_MAP.forEach(function(f) { injectFicheBadge(f.toggleId, f.lsKey); });
+  }
+
+  /* ── 5. MASQUER LE HERO POUR UTILISATEURS DE RETOUR ──── */
+  function maybeHideHero() {
+    try {
+      var visited = JSON.parse(localStorage.getItem('aut_visited') || '[]');
+      var hasData = localStorage.getItem('aut_fiche1') ||
+                    localStorage.getItem('aut_scores_perso') ||
+                    localStorage.getItem('aut_scores_pro');
+      if (visited.length > 0 || hasData) {
+        var hero = document.querySelector('.hero');
+        if (hero) hero.classList.add('hero-returning');
+      }
+    } catch(e) {}
+  }
+
+  /* ── 6. WIDGET ATTESTATION : masqué jusqu'à étape 2 ──── */
+  function initAttestWidget() {
+    var widget = document.getElementById('attest-widget');
+    if (!widget) return;
+    try {
+      var visited = JSON.parse(localStorage.getItem('aut_visited') || '[]');
+      var unlocked = visited.indexOf('evaluer') !== -1 ||
+                     visited.indexOf('meformer') !== -1 ||
+                     visited.indexOf('ressources') !== -1;
+      if (unlocked) {
+        widget.classList.remove('widget-hidden');
+        widget.classList.add('widget-visible');
+      } else {
+        widget.classList.add('widget-hidden');
+        widget.classList.remove('widget-visible');
+      }
+    } catch(e) {
+      widget.classList.add('widget-hidden');
+    }
+  }
+
+  function revealAttestOnStep(name) {
+    var unlockSteps = ['evaluer','meformer','ressources','bibliotheque'];
+    if (unlockSteps.indexOf(name) !== -1) {
+      var widget = document.getElementById('attest-widget');
+      if (widget && widget.classList.contains('widget-hidden')) {
+        widget.classList.remove('widget-hidden');
+        widget.classList.add('widget-visible');
+      }
+    }
+  }
+
+  /* ── 7. INDICATEURS INTRA-ÉTAPE ────────────────────────
+     Comprendre : tab-comprendre (P1) + tab-comprendre-part2 (P2)
+     Me former  : tab-planaction (P1) + tab-meformer (P2)           */
+  var MULTI_PANELS = {
+    comprendre: {
+      panels: ['tab-comprendre', 'tab-comprendre-part2'],
+      labels: ['Cadres & démarche', 'Plan d\'action']
+    },
+    meformer: {
+      panels: ['tab-planaction', 'tab-meformer'],
+      labels: ['Plan d\'action', 'Contenus ciblés']
+    }
+  };
+
+  function injectIntraNavs() {
+    Object.keys(MULTI_PANELS).forEach(function(step) {
+      var cfg = MULTI_PANELS[step];
+      var total = cfg.panels.length;
+      cfg.panels.forEach(function(panelId, idx) {
+        var panel = document.getElementById(panelId);
+        if (!panel) return;
+        if (panel.querySelector('.intra-step-nav')) return;
+
+        var nav = document.createElement('nav');
+        nav.className = 'intra-step-nav';
+        nav.setAttribute('aria-label', 'Navigation intra-étape');
+
+        // Bouton gauche
+        var backBtn = document.createElement('button');
+        backBtn.className = 'isn-back';
+        if (idx === 0) {
+          backBtn.textContent = '← Tableau de bord';
+          backBtn.onclick = function() { if (window.goStep) goStep('accueil'); };
+        } else {
+          backBtn.innerHTML = '&#8592; ' + cfg.labels[idx - 1];
+          backBtn.onclick = function() {
+            // Scroll haut proprement
+            window.scrollTo({top: 0, behavior: 'smooth'});
+          };
+        }
+
+        // Indicateur de position
+        var posEl = document.createElement('span');
+        posEl.className = 'isn-pos';
+        var stepLabel = step === 'comprendre' ? 'Étape 1' : 'Étape 3';
+        posEl.textContent = stepLabel + ' · ' + (idx + 1) + ' / ' + total + ' — ' + cfg.labels[idx];
+
+        // Bouton droit
+        var nextBtn = document.createElement('button');
+        nextBtn.className = 'isn-next';
+        if (idx < total - 1) {
+          nextBtn.innerHTML = cfg.labels[idx + 1] + ' &#8594;';
+          nextBtn.onclick = function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+          };
+        } else {
+          var nextStepMap  = { comprendre: 'evaluer', meformer: 'ressources' };
+          var nextLabelMap = { evaluer: 'M\'évaluer →', ressources: 'Approfondir →' };
+          var ns = nextStepMap[step] || 'accueil';
+          nextBtn.textContent = nextLabelMap[ns] || 'Suivant →';
+          (function(nextS) {
+            nextBtn.onclick = function() { if (window.goStep) goStep(nextS); };
+          })(ns);
+        }
+
+        nav.appendChild(backBtn);
+        nav.appendChild(posEl);
+        nav.appendChild(nextBtn);
+        panel.insertBefore(nav, panel.firstChild);
+      });
+    });
+  }
+
+  /* ── 8. HOOK goStep POUR DÉCLENCHER EFFETS UX ──────────── */
+  function hookGoStep() {
+    if (typeof window.goStep !== 'function') {
+      setTimeout(hookGoStep, 500);
+      return;
+    }
+    var orig = window.goStep;
+    window.goStep = function(name) {
+      orig.apply(this, arguments);
+      revealAttestOnStep(name);
+      setTimeout(refreshFicheBadges, 300);
+    };
+  }
+
+  /* ── 9. INIT ────────────────────────────────────────────── */
+  function init() {
+    maybeHideHero();
+    initAttestWidget();
+    initFicheBadges();
+    injectIntraNavs();
+    hookGoStep();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 200);
+  }
+
 })();
 </script>
 
