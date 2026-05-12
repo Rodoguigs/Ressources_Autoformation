@@ -338,12 +338,260 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   margin-bottom:10px;
 }
 .biblio-ref strong{color:var(--text-strong)}
+
+
+/* ─── Système de modes (personnel / HEP) ─── */
+/* ═══════════════════════════════════════════════════════════════
+   CSS du système de modes (personnel / HEP)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Badge mode dans le header (remplace le hep-badge fixe) */
+.mode-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:all .15s;
+  font-family:inherit;
+}
+.mode-badge:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.mode-badge.mode-hep{
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;
+}
+.mode-badge.mode-personal{
+  background:var(--surface-alt);
+  color:var(--text-muted);
+  border-color:var(--border-soft);
+}
+[data-theme="dark"] .mode-badge.mode-personal{
+  background:rgba(255,255,255,.05);
+  color:var(--text-body);
+}
+
+/* Overlay de la modale */
+.mode-modal{
+  display:none;
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;transition:opacity .2s;
+}
+.mode-modal.open{opacity:1}
+
+.mode-modal-card{
+  background:var(--surface);
+  border-radius:18px;
+  max-width:640px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:32px 36px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  transform:translateY(20px);
+  transition:transform .25s;
+}
+.mode-modal.open .mode-modal-card{transform:translateY(0)}
+
+.mode-modal-close{
+  position:absolute;top:14px;right:18px;
+  background:none;border:none;
+  font-size:1.8rem;line-height:1;
+  color:var(--text-muted);cursor:pointer;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.mode-modal-close:hover{background:var(--surface-alt)}
+
+.mode-modal-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  margin:0 0 8px;color:var(--text-strong);
+}
+.mode-modal-sub{
+  font-size:.92rem;color:var(--text-muted);
+  margin:0 0 24px;line-height:1.55;
+}
+
+/* Les deux options de mode côte à côte */
+.mode-options{
+  display:flex;flex-direction:column;gap:14px;
+}
+
+.mode-option{
+  background:var(--surface-alt);
+  border:2px solid var(--border-soft);
+  border-radius:14px;
+  padding:18px 20px;
+  transition:all .15s;
+}
+.mode-option.active{
+  background:var(--surface);
+  border-color:var(--accent3);
+  box-shadow:0 4px 12px rgba(83,52,131,.1);
+}
+[data-theme="dark"] .mode-option.active{
+  box-shadow:0 4px 12px rgba(123,84,160,.15);
+}
+
+.mode-option-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;
+}
+.mode-option-head > svg{
+  width:32px;height:32px;
+  color:var(--accent3);
+  flex-shrink:0;
+}
+.mode-option-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:1.02rem;
+}
+.mode-option-sub{
+  font-size:.82rem;color:var(--text-muted);
+  margin-top:2px;line-height:1.4;
+}
+.mode-option-badge{
+  margin-left:auto;
+  background:var(--sage);color:white;
+  font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:4px 10px;border-radius:12px;
+}
+
+.mode-option-features{
+  margin:0 0 14px;padding:0 0 0 18px;
+  font-size:.86rem;color:var(--text-body);
+  line-height:1.7;
+}
+.mode-option-features li{margin-bottom:2px}
+
+.mode-option-action{
+  background:transparent;
+  border:1px solid var(--border-soft);
+  color:var(--text-body);
+  padding:8px 16px;border-radius:10px;
+  font-family:inherit;font-size:.85rem;font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+}
+.mode-option-action:hover{
+  background:var(--surface-alt);
+  border-color:var(--accent3);
+  color:var(--accent3);
+}
+.mode-option-action.mode-action-primary{
+  background:var(--accent3);
+  color:white;
+  border-color:var(--accent3);
+}
+.mode-option-action.mode-action-primary:hover{
+  background:var(--accent2);
+  border-color:var(--accent2);
+  color:white;
+}
+
+/* Formulaires dans la modale (auth HEP, saisie nom) */
+.mode-form-field{
+  margin-bottom:18px;
+}
+.mode-form-field label{
+  display:block;font-size:.82rem;font-weight:600;
+  color:var(--text-strong);margin-bottom:8px;
+}
+.mode-form-field input{
+  width:100%;padding:11px 14px;
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  font-family:inherit;font-size:.95rem;
+  background:var(--surface);color:var(--text-body);
+  transition:border-color .15s;
+}
+.mode-form-field input:focus{
+  outline:none;
+  border-color:var(--accent3);
+  box-shadow:0 0 0 3px rgba(83,52,131,.1);
+}
+.mode-form-hint{
+  margin-top:6px;
+  font-size:.78rem;color:var(--text-subtle);
+  font-style:italic;
+}
+.mode-form-error{
+  display:none;
+  margin-top:8px;
+  padding:8px 12px;
+  background:rgba(233,69,96,.1);
+  border-left:3px solid var(--accent1);
+  border-radius:6px;
+  font-size:.82rem;color:var(--accent1);
+}
+.mode-form-error[style*="block"]{display:block}
+
+.mode-form-actions{
+  display:flex;gap:10px;justify-content:flex-end;
+  margin-top:24px;
+}
+.mode-btn{
+  padding:10px 22px;border-radius:10px;
+  font-family:inherit;font-size:.9rem;font-weight:600;
+  cursor:pointer;border:1px solid transparent;
+  transition:all .15s;
+}
+.mode-btn-secondary{
+  background:transparent;
+  color:var(--text-body);
+  border-color:var(--border-soft);
+}
+.mode-btn-secondary:hover{
+  background:var(--surface-alt);
+}
+.mode-btn-primary{
+  background:var(--accent3);
+  color:white;
+}
+.mode-btn-primary:hover{
+  background:var(--accent2);
+}
+.mode-btn-primary:disabled{
+  opacity:.6;cursor:not-allowed;
+}
+
+@media (max-width:600px){
+  .mode-modal-card{padding:24px 22px}
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+
+/* ─── Glossaire/FAQ/Biblio : CSS du source ─── */
+.section-label {font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent1);margin-bottom:8px;}
+.divider {width:48px;height:4px;background:var(--accent1);border-radius:2px;margin-bottom:28px;}
+.resources-section .section-label {color:var(--gold);}
+.biblio-list {display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:8px;}
+.glossaire-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+/* ===== FAQ ===== */
+.faq-item {background:white;border-radius:12px;margin-bottom:10px;box-shadow:0 1px 10px rgba(0,0,0,.05);overflow:hidden;}
+.faq-item.open .faq-q {background:#f8f9ff;}
+.faq-item.open .faq-icon {transform:rotate(45deg);}
+.faq-item.open .faq-a {display:block;animation:fadeUp .3s ease;}
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
@@ -360,7 +608,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
     <a href="modules.html" class="nav-link">Catalogue modules</a>
   </nav>
-  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
 </header>
 
@@ -375,11 +623,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 
 <main>
-  <div class="info-block">
-    <strong>Cette page est un squelette.</strong> Le contenu complet (extrait des sections <code>#glossaire</code>, <code>#faq</code> et <code>#bibliographie</code> du fichier source) sera intégré dans une prochaine étape. Quelques termes et entrées sont déjà présents pour donner un aperçu de la structure finale.
-  </div>
-
-  <div class="tabs" role="tablist">
+  <div class="info-block"><strong>Cette page réunit le lexique, la FAQ et la bibliographie complète du parcours.</strong> Naviguez entre les 3 onglets pour explorer.</div>
+<div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="gloss" role="tab">📖 Glossaire</button>
     <button class="tab-btn" data-tab="faq" role="tab">❓ FAQ</button>
     <button class="tab-btn" data-tab="biblio" role="tab">📚 Bibliographie</button>
@@ -387,121 +632,260 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
   <!-- ─── GLOSSAIRE ─── -->
   <div class="tab-content active" id="tab-gloss">
-    <input type="text" class="gloss-search" id="gloss-search" placeholder="Rechercher un terme..." aria-label="Rechercher dans le glossaire">
 
-    <div class="gloss-item">
-      <div class="gloss-term">Burnout (épuisement professionnel) <span class="gloss-tag">Module 2</span></div>
-      <div class="gloss-def">Syndrome professionnel résultant d'un stress chronique non géré, caractérisé selon Maslach par trois dimensions : épuisement émotionnel, dépersonnalisation et réduction du sentiment d'accomplissement personnel.</div>
-    </div>
+<div style="max-width:980px;margin:0 auto;">
+<div class="section-label">Lexique</div>
+<h2>Glossaire des termes neuroéducatifs</h2>
+<div class="divider"></div>
+<p style="font-size:.88rem;color:#555;margin-bottom:24px;">Définitions accessibles des concepts utilisés dans cette démarche. Utilisez la recherche pour trouver rapidement un terme.</p>
+<input class="glossaire-search" oninput="filterGlossaire(this.value)" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" type="text"/>
+</div>
+ ── CARTE DES SIGLES — repère rapide ── 
+<div id="sigles-quickref" style="max-width:980px;margin:32px auto 36px;background:#fafbff;border:1px solid #e0e6f5;border-radius:14px;padding:22px 26px;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+<span style="font-size:1.2rem;">🔤</span>
+<h3 style="margin:0;font-family:'Playfair Display',serif;font-size:1.1rem;color:#16213e;font-weight:700;">Sigles et acronymes utilisés dans la démarche</h3>
+</div>
+<p style="font-size:.78rem;color:#666;margin:0 0 16px;line-height:1.55;">Repère synthétique des abréviations rencontrées dans le parcours. Pour les définitions conceptuelles approfondies, voir le glossaire ci-dessous.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px 22px;font-size:.8rem;line-height:1.55;">
+<div><strong style="color:#533483;">PRÉSENCE</strong> — Modèle intégratif de Fahim (2022) : <em>Plasticité · Régulation · Émotion · Sens · Engagement · Neurosciences · Conscience · Éducation</em>. Cadre de référence du parcours.</div>
+<div><strong style="color:#533483;">CUA</strong> / <strong style="color:#533483;">UDL</strong> — Conception universelle de l'apprentissage / <em>Universal Design for Learning</em>. Cadre de différenciation pédagogique pensé en amont (vs. adaptation a posteriori).</div>
+<div><strong style="color:#533483;">SEP</strong> — Sentiment d'efficacité personnelle (Bandura). Croyance en sa capacité à réussir une tâche, prédicteur fort de l'engagement et de la persévérance.</div>
+<div><strong style="color:#533483;">SEÉ</strong> / <strong style="color:#533483;">CSÉ</strong> — Compétences socio-émotionnelles / Compétences sociales et émotionnelles. Aptitudes de régulation émotionnelle, relationnelles et de conscience de soi.</div>
+<div><strong style="color:#533483;">MBI-ES</strong> — <em>Maslach Burnout Inventory – Educators Survey</em>. Échelle de référence pour mesurer les 3 dimensions du burnout enseignant.</div>
+<div><strong style="color:#533483;">TDAH</strong> — Trouble du déficit de l'attention avec ou sans hyperactivité. Trouble neurodéveloppemental affectant attention, inhibition et fonctions exécutives.</div>
+<div><strong style="color:#533483;">TSA</strong> — Trouble du spectre de l'autisme. Trouble neurodéveloppemental caractérisé par des particularités de communication sociale et des intérêts restreints.</div>
+<div><strong style="color:#533483;">DYS</strong> — Famille de troubles spécifiques des apprentissages (dyslexie, dysorthographie, dyscalculie, dyspraxie, dysphasie).</div>
+<div><strong style="color:#533483;">TAD</strong> — Théorie de l'autodétermination (Deci &amp; Ryan). Trois besoins psychologiques fondamentaux : autonomie, compétence, appartenance.</div>
+<div><strong style="color:#533483;">EBSME</strong> — Échelle de Bien-être et Stratégies de Mobilisation des Émotions. Outil d'autoévaluation enseignant utilisé dans le parcours.</div>
+<div><strong style="color:#533483;">IRPPE</strong> / <strong style="color:#533483;">ISEDRPE</strong> — Indices d'autoévaluation professionnelle développés dans le cadre du parcours (résilience, posture, dimensions PRÉSENCE).</div>
+<div><strong style="color:#533483;">HEP-VS</strong> — Haute École Pédagogique du Valais. Institution de formation des enseignant·e·s du canton.</div>
+<div><strong style="color:#533483;">RE21</strong> — Réseau d'écoles 21 (santé et durabilité). Réseau suisse romand d'établissements engagés dans une démarche globale de promotion de la santé.</div>
+<div><strong style="color:#533483;">PER</strong> — Plan d'études romand. Référentiel commun aux cantons romands pour la scolarité obligatoire.</div>
+<div><strong style="color:#533483;">CO</strong> — Cycle d'orientation. Niveau secondaire I valaisan (élèves de ~12 à 15 ans).</div>
+</div>
+</div>
+<div class="glossaire-grid" id="glossaire-grid">
+<div class="glossaire-entry" data-tags="burnout épuisement MBI maslach professionnel">
+<span class="g-tag">Psychologie du travail</span>
+<h4>Burnout (épuisement professionnel)</h4>
+<p>Syndrome de déséquilibre chronique entre les demandes et les ressources, caractérisé par trois dimensions (Maslach) : épuisement émotionnel, dépersonnalisation (cynisme, détachement), et réduction du sentiment d'accomplissement. Mesuré par le MBI-ES (Maslach Burnout Inventory – Educators Survey). Distinct de la fatigue ponctuelle ou du stress aigu.</p>
+</div>
+<div class="glossaire-entry" data-tags="élagage synaptique connexions neurones adolescence cerveau">
+<span class="g-tag">Neurosciences · Développement</span>
+<h4>Élagage synaptique (synaptic pruning)</h4>
+<p>Processus de sélection et suppression de connexions neuronales peu utilisées, particulièrement intense à l'adolescence. Le cerveau "taille" ses circuits pour les rendre plus efficaces — comme un jardinier qui taille un arbre. Ce processus explique pourquoi certaines compétences se renforcent et d'autres s'étiolent selon les expériences vécues.</p>
+</div>
+<div class="glossaire-entry" data-tags="épigénétique gène environnement expression">
+<span class="g-tag">Neuroéducation · Biologie</span>
+<h4>Épigénétique</h4>
+<p>Mécanismes par lesquels l'environnement (stress, relations, expériences) modifie l'expression des gènes <em>sans altérer leur séquence</em>. En éducation : les expériences relationnelles vécues en classe influencent littéralement la biologie des élèves et de l'enseignant. Une relation sécurisante peut "activer" des gènes protecteurs.</p>
+</div>
+<div class="glossaire-entry" data-tags="fonctions exécutives cortex préfrontal contrôle inhibiteur mémoire travail flexibilité Diamond">
+<span class="g-tag">Neurosciences · Développement</span>
+<h4>Fonctions exécutives</h4>
+<p>Ensemble de processus cognitifs de haut niveau coordonnés par le cortex préfrontal : <em>contrôle inhibiteur</em> (résister aux impulsions), <em>mémoire de travail</em> (maintenir et manipuler l'information) et <em>flexibilité cognitive</em> (adapter sa pensée à des situations changeantes). Selon Diamond (2013), ces fonctions sont encore en maturation jusqu'à 25 ans chez l'adolescent, ce qui explique certains comportements observés en classe. Elles sont également sollicitées chez l'enseignant — notamment dans la gestion de classe et la régulation émotionnelle — et constituent une cible implicite du modèle PRÉSENCE.</p>
+</div>
+<div class="glossaire-entry" data-tags="locus contrôle interne externe pouvoir agir Rotter">
+<span class="g-tag">Psychologie sociale</span>
+<h4>Locus de contrôle interne</h4>
+<p>Croyance qu'on exerce une influence réelle sur ce qui nous arrive (vs. locus externe : sentiment d'être soumis au hasard ou aux autres). En autoformation : développer un locus interne signifie identifier ce sur quoi on peut <em>réellement agir</em> — même dans un contexte difficile — pour retrouver un sentiment d'efficacité.</p>
+</div>
+<div class="glossaire-entry" data-tags="neuroplasticité plasticité cérébrale apprentissage changement">
+<span class="g-tag">Neurosciences · Fondamental</span>
+<h4>Neuroplasticité</h4>
+<p>Capacité du cerveau à se modifier structurellement et fonctionnellement en réponse à l'expérience, l'apprentissage ou l'environnement. Principe fondateur de la neuroéducation : il n'est jamais trop tard pour apprendre ni pour changer ses habitudes professionnelles. Le cerveau adulte reste plastique tout au long de la vie.</p>
+</div>
+<div class="glossaire-entry" data-tags="réévaluation cognitive reappraisal émotion régulation ERQ">
+<span class="g-tag">Psychologie des émotions</span>
+<h4>Réévaluation cognitive (reappraisal)</h4>
+<p>Stratégie de régulation émotionnelle consistant à modifier son interprétation d'une situation pour en changer l'impact émotionnel. Ex. : face à un élève perturbateur, passer de "il me manque de respect" à "il exprime une détresse qu'il ne sait pas gérer autrement". Mesurée par l'ERQ (Gross &amp; John, 2003). Stratégie la plus efficace à long terme selon la recherche.</p>
+</div>
+<div class="glossaire-entry" data-tags="résilience CD-RISC adaptation adversité rebondir">
+<span class="g-tag">Psychologie positive</span>
+<h4>Résilience professionnelle</h4>
+<p>Capacité à maintenir ou restaurer un fonctionnement professionnel satisfaisant face à l'adversité (Beltman et al., 2011). Mesurée notamment par la CD-RISC-10 (Campbell-Sills &amp; Stein, 2007), version abrégée à 10 items de l'échelle originale à 25 items de Connor &amp; Davidson (2003). La résilience n'est <em>pas</em> une caractéristique fixe — c'est un processus dynamique qui peut se développer par la réflexivité, le soutien social et le renforcement des ressources.</p>
+</div>
+<div class="glossaire-entry" data-tags="SEP sentiment efficacité personnelle bandura compétence">
+<span class="g-tag">Psychologie · Bandura</span>
+<h4>SEP — Sentiment d'efficacité personnelle</h4>
+<p>Conviction d'un individu en sa capacité à accomplir une tâche donnée (Bandura, 1997). En enseignement : croyance de l'enseignant en sa capacité à influencer positivement l'apprentissage des élèves. Le SEP est l'un des plus puissants prédicteurs de la qualité de l'enseignement et de la résilience professionnelle.</p>
+</div>
+<div class="glossaire-entry" data-tags="synchronisation neuronale lien émotionnel relation sécurité">
+<span class="g-tag">Neurosciences sociales</span>
+<h4>Synchronisation neuronale</h4>
+<p>Alignement des activités cérébrales entre deux personnes en interaction. Quand l'enseignant et l'élève "se synchronisent" émotionnellement (contact visuel, écoute, empathie), leurs cerveaux co-régulent l'état d'activation — ce qui facilite l'apprentissage. Fondement neurobiologique de la relation pédagogique.</p>
+</div>
+<div class="glossaire-entry" data-tags="TDAH attention hyperactivité fonctions exécutives déficit">
+<span class="g-tag">Neurodéveloppement · Clinique</span>
+<h4>TDAH (Trouble déficit de l'attention avec/sans hyperactivité)</h4>
+<p>Trouble neurodéveloppemental caractérisé par des difficultés persistantes d'attention, d'impulsivité et/ou d'hyperactivité, résultant d'une maturation différente des fonctions exécutives (contrôle inhibiteur, mémoire de travail, flexibilité cognitive). Prévalence scolaire estimée à 5-7%. L'enseignant joue un rôle déterminant dans la mise en place d'adaptations environnementales efficaces.</p>
+</div>
+<div class="glossaire-entry" data-tags="autodétermination TAD Deci Ryan motivation intrinsèque autonomie">
+<span class="g-tag">Psychologie motivationnelle</span>
+<h4>Théorie de l'autodétermination (TAD)</h4>
+<p>Modèle de Deci &amp; Ryan identifiant trois besoins psychologiques fondamentaux : <em>autonomie</em> (agir par choix), <em>compétence</em> (se sentir efficace), <em>appartenance</em> (se sentir connecté). Satisfaire ces besoins favorise la motivation intrinsèque — tant chez les élèves que chez les enseignants. Ces principes sont intégrés dans cette démarche.</p>
+</div>
+</div>
 
-    <div class="gloss-item">
-      <div class="gloss-term">CSÉ — Compétences socio-émotionnelles <span class="gloss-tag">Diagnostic</span></div>
-      <div class="gloss-def">Ensemble des compétences permettant de comprendre et gérer ses émotions, de développer des relations positives, et de prendre des décisions responsables. Cinq domaines : conscience de soi, gestion de soi, conscience sociale, gestion des relations, prise de décision responsable.</div>
-    </div>
-
-    <div class="gloss-item">
-      <div class="gloss-term">CUA — Conception Universelle de l'Apprentissage <span class="gloss-tag">Module 8</span></div>
-      <div class="gloss-def">Approche pédagogique qui consiste à concevoir des situations d'apprentissage flexibles dès le départ, accessibles à la diversité des élèves, plutôt que d'adapter après-coup. Triple flexibilité : représentation, expression, engagement.</div>
-    </div>
-
-    <div class="gloss-item">
-      <div class="gloss-term">Fatigue de compassion <span class="gloss-tag">Module 9</span></div>
-      <div class="gloss-def">Forme spécifique d'épuisement liée à l'exposition prolongée à la détresse émotionnelle d'autrui (Figley, 1995). Distincte du burnout : elle découle du « coût de l'empathie » et touche particulièrement les enseignants qui accompagnent des élèves en situation de vulnérabilité.</div>
-    </div>
-
-    <div class="gloss-item">
-      <div class="gloss-term">MBI-ES — Maslach Burnout Inventory <span class="gloss-tag">Module 2</span></div>
-      <div class="gloss-def">Questionnaire psychométrique de référence pour l'évaluation du burnout enseignant. Mesure les 3 dimensions identifiées par Maslach (épuisement émotionnel, dépersonnalisation, sentiment d'accomplissement personnel).</div>
-    </div>
-
-    <div class="gloss-item">
-      <div class="gloss-term">PRÉSENCE <span class="gloss-tag">Modèle théorique</span></div>
-      <div class="gloss-def">Cadre intégrateur en 8 composantes pour la pratique éducative, proposé par Cherine Fahim (2022). Acronyme : Prédisposition, Réseaux, Élagage, Synchronisation, Élagage ado, Neuroplasticité, Conscience, libre arbitrE.</div>
-    </div>
-
-    <div class="gloss-item">
-      <div class="gloss-term">SEP — Sentiment d'Efficacité Personnelle <span class="gloss-tag">Diagnostic</span></div>
-      <div class="gloss-def">Concept de Bandura. Croyance qu'a un individu en sa capacité à organiser et exécuter les actions requises pour atteindre un objectif donné. Pour un enseignant, le SEP est un prédicteur majeur de la persévérance, de la résilience et de l'engagement professionnel.</div>
-    </div>
-
-    <p style="text-align:center;color:var(--text-muted);margin-top:24px;font-style:italic">D'autres termes seront ajoutés progressivement (axe HPA, coping, locus de contrôle, métacognition, neuroplasticité, plasticité synaptique, etc.).</p>
-  </div>
+</div>
 
   <!-- ─── FAQ ─── -->
   <div class="tab-content" id="tab-faq">
-    <details class="faq-item">
-      <summary class="faq-question">À qui s'adresse cette plateforme ?</summary>
-      <div class="faq-answer">La plateforme est conçue pour les enseignant·e·s du secondaire 1 (cycle d'orientation en Valais, 12-15 ans), mais une grande partie du contenu est transposable à tous les niveaux d'enseignement. Elle vise un usage en autoformation, individuelle ou en collectif d'établissement.</div>
-    </details>
 
-    <details class="faq-item">
-      <summary class="faq-question">Combien de temps faut-il pour parcourir l'ensemble ?</summary>
-      <div class="faq-answer">Un parcours complet (les 8 modules + le diagnostic) demande environ 4 à 6 heures de travail réparties sur plusieurs semaines. Chaque module dure 25-30 minutes. La démarche en 7 étapes s'étale typiquement sur 3-4 mois si on la prend dans l'ordre.</div>
-    </details>
+<div class="section-label">Questions fréquentes</div>
+<h2>FAQ — Questions fréquentes</h2>
+<div class="divider"></div>
+<p style="font-size:.88rem;color:#555;margin-bottom:32px;">Des réponses aux questions les plus courantes sur la démarche — notamment pour les profils les plus vulnérables.</p>
+<div class="faq-item open">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ Par où commencer si je me sens dépassé(e) ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#ffebee;color:#c62828;">Profil vulnérable · Épuisement</span><br/>
+      Si vous vous sentez dépassé(e), commencez par <strong>l'Étape 2 uniquement</strong> — évaluer votre bien-être et identifier les signaux d'alerte. Pas l'Étape 1 (trop théorique pour un état d'épuisement) ni l'Étape 3 (trop exigeante). Complétez la Fiche Action de l'Étape 2 en 15 minutes. Revenez au reste quand vous vous sentirez un peu plus disponible.<br/><br/>
+<strong>Si l'épuisement est sévère :</strong> avant toute autoformation, consultez un médecin ou un professionnel de santé. Cette démarche est un outil de développement professionnel, pas un dispositif thérapeutique. Elle complète — sans remplacer — le suivi médical ou psychologique.
+    </div>
+</div>
+<div class="faq-item">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ Comment utiliser ce document en formation continue ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#e8f0fe;color:var(--accent2);">Usage collectif · Formateurs</span><br/>
+      Ce document a été conçu pour un usage autonome <em>et</em> guidé. En formation continue, plusieurs approches sont possibles : (1) <strong>module de formation</strong> : utiliser une section par séance (6 séances de 90 min) ; (2) <strong>accompagnement individuel</strong> : le conseiller pédagogique utilise les fiches action comme supports de conversation.<br/><br/>
+      Les fiches action intégrées permettent à chaque participant de garder une trace personnelle tout au long de la formation.
+    </div>
+</div>
+<div class="faq-item">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ Combien de temps dure la démarche complète ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#e8f5e9;color:#2e7d32;">Organisation pratique</span><br/>
+      Le parcours de base est conçu pour <strong>6 semaines</strong> à raison d'environ 45-60 minutes par semaine. Mais la démarche est volontairement flexible : vous pouvez aller plus lentement (6 mois) si la charge professionnelle est élevée, ou plus rapidement si vous êtes en formation intensive. L'important est de compléter les fiches action de chaque étape avant de passer à la suivante — elles créent la continuité du parcours.
+    </div>
+</div>
+<div class="faq-item">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ Et si mes scores ne s'améliorent pas entre T1 et T2 ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#fff8e1;color:#e65100;">Suivi longitudinal</span><br/>
+      L'absence d'amélioration entre T1 et T2 est une <em>information précieuse</em>, pas un échec. Cela peut signifier : (1) que vous avez ciblé une dimension trop difficile à changer seul (→ chercher un soutien, un mentor, ou un ajustement de charge) ; (2) que le contexte institutionnel génère des demandes trop élevées (→ impliquer la direction) ; (3) que 6 semaines ne sont pas suffisantes pour cette dimension (→ réinitialiser le calendrier sur 12 semaines). Le progrès n'est jamais linéaire. Certaines dimensions régressent avant de s'améliorer.
+    </div>
+</div>
+<div class="faq-item">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ Je suis débutant(e) — par quelle étape commencer ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#e0f7fa;color:#00695c;">Enseignant débutant</span><br/>
+      Consultez le <strong>Cas pratique "Léa, enseignante débutante"</strong> dans la section Cas pratiques pour un exemple concret. En tant que débutant(e), votre priorité devrait être : <strong>Étape 1</strong> (comprendre le modèle PRÉSENCE pour donner du sens à vos expériences) → <strong>Étape 2</strong> (surveiller vos signaux d'alerte précoces — le début de carrière est une période à risque de burnout) → <strong>Étape 3</strong> (identifier vos forces, pas seulement vos lacunes). Évitez de vouloir tout améliorer à la fois — une priorité de développement à la fois produit les effets les plus durables.
+    </div>
+</div>
+<div class="faq-item">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ La démarche est-elle confidentielle ? Dois-je partager mes scores ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#f3e5f5;color:#4527a0;">Confidentialité &amp; éthique</span><br/>
+<strong>Absolument pas obligatoire.</strong> La démarche est d'abord un outil d'autoformation individuelle. Vos scores, fiches et profils radar sont strictement personnels — ils sont enregistrés localement dans votre navigateur et ne sont pas transmis. Dans un contexte de formation collective ou de mentorat, vous choisissez ce que vous souhaitez partager. Aucune direction ou formateur ne doit avoir accès à vos scores sans votre consentement explicite.
+    </div>
+</div>
+<div class="faq-item">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<span>❓ Quelle est la différence entre la démarche et un bilan de compétences ?</span><span class="faq-icon">+</span>
+</div>
+<div class="faq-a">
+<span class="faq-profil-badge" style="background:#f0f4ff;color:var(--accent2);">Positionnement</span><br/>
+      Le bilan de compétences est un dispositif RH formel, mené par un professionnel externe, orienté vers la mobilité professionnelle. La démarche est différente sur trois points : (1) <strong>autodirigée</strong> — vous êtes le seul évaluateur de votre propre parcours ; (2) <strong>centrée sur le développement en contexte</strong> — l'objectif est de mieux fonctionner dans votre poste actuel, pas d'en changer ; (3) <strong>ancrée dans la neuroéducation</strong> — les dimensions évaluées sont spécifiques aux défis propres à l'enseignement. Les deux démarches sont complémentaires.
+    </div>
+</div>
 
-    <details class="faq-item">
-      <summary class="faq-question">Mes réponses sont-elles enregistrées et partagées ?</summary>
-      <div class="faq-answer">Toutes vos données sont stockées <strong>localement dans votre navigateur</strong> (localStorage). Aucune transmission externe, aucun serveur, aucun compte. La contrepartie : si vous changez de navigateur ou videz votre cache, les données sont perdues. Pensez à exporter votre progression régulièrement via le bouton « Exporter mon travail » de chaque module.</div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">Dois-je commencer par le diagnostic ou par un module ?</summary>
-      <div class="faq-answer">Si vous ne savez pas par où commencer : le diagnostic. Il prend 5 minutes et oriente vers vos 2-3 modules prioritaires. Si vous avez déjà une idée précise de votre besoin (ex. « je veux travailler la gestion de classe »), accédez directement au module concerné via le catalogue.</div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">Que signifie le mode HEP-VS dans le coin supérieur droit ?</summary>
-      <div class="faq-answer">Le mode HEP-VS active le suivi institutionnel pour les enseignant·e·s en formation à la HEP du Valais. Il permet de générer une attestation nominative au format PDF reconnaissant le travail accompli dans le cadre d'un CAS ou d'une formation continue.</div>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-question">Qui est l'auteur de cette plateforme ?</summary>
-      <div class="faq-answer">La plateforme a été développée par <strong>Guillaume Roduit</strong>, enseignant au Cycle d'orientation de Val de Bagnes (Valais, Suisse) et coordinateur du Pool bien-être de l'établissement, dans le cadre d'un CAS en Neurosciences éducatives à la HEP-VS / Université de Fribourg, sous la supervision de la Prof. Cherine Fahim.</div>
-    </details>
-
-    <p style="text-align:center;color:var(--text-muted);margin-top:24px;font-style:italic">D'autres questions seront ajoutées au fil des retours d'usage.</p>
-  </div>
+</div>
 
   <!-- ─── BIBLIOGRAPHIE ─── -->
   <div class="tab-content" id="tab-biblio">
-    <div class="biblio-section">
-      <h2>Modèles théoriques fondateurs</h2>
-      <div class="biblio-ref"><strong>Fahim, C.</strong> (2022). PRÉSENCE — un cadre intégrateur pour la pratique éducative. <em>Cortica, 1</em>(2), 464–492.</div>
-      <div class="biblio-ref"><strong>Maslach, C., &amp; Leiter, M. P.</strong> (1997). <em>The Truth About Burnout: How Organizations Cause Personal Stress and What to Do About It.</em> Jossey-Bass.</div>
-      <div class="biblio-ref"><strong>Bandura, A.</strong> (2003). <em>Auto-efficacité : Le sentiment d'efficacité personnelle.</em> De Boeck.</div>
-      <div class="biblio-ref"><strong>Deci, E. L., &amp; Ryan, R. M.</strong> (2017). <em>Self-Determination Theory: Basic Psychological Needs in Motivation, Development, and Wellness.</em> Guilford Press.</div>
-    </div>
 
-    <div class="biblio-section">
-      <h2>Neurosciences éducatives</h2>
-      <div class="biblio-ref"><strong>Bourassa, M., Menot-Martin, M., &amp; Philion, R.</strong> <em>Neurosciences et éducation.</em> De Boeck.</div>
-      <div class="biblio-ref"><strong>Damasio, A.</strong> (1995). <em>L'Erreur de Descartes : la raison des émotions.</em> Odile Jacob.</div>
-      <div class="biblio-ref"><strong>Masson, S.</strong> <em>Activer ses neurones pour mieux apprendre et enseigner.</em> Odile Jacob.</div>
-    </div>
+<div style="max-width:980px;margin:0 auto;">
+<div class="section-label">Références scientifiques</div>
+<h2>Bibliographie</h2>
+<div class="divider"></div>
+<p style="font-size:.85rem;color:var(--muted);margin-bottom:36px;">Ensemble des références mobilisées dans la démarche d'autoformation (révision 2025).</p>
+</div>
+<div class="biblio-group">
+<div class="biblio-group-title">📗 Ouvrages et chapitres</div>
+<div class="biblio-list">
+<div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
+<div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
+<div class="biblio-entry">Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. <a href="https://periscope-r.quebec/" rel="noopener noreferrer" target="_blank">periscope-r.quebec</a></div>
+<div class="biblio-entry">Évéquoz, G. (1998). <em>Le contexte scolaire et ses otages : une approche systémique des difficultés scolaires.</em> Genève : Éditions des Médecins suisses.</div>
+<div class="biblio-entry">Fahim, C. (2025). <em>Résilience et gestion de classe : surfer sur la vague des difficultés.</em> Montréal : Endoxa Neuroscience.</div>
+<div class="biblio-entry">Gaudreau, N. (2024). <em>Gérer efficacement sa classe.</em> Québec : Presses de l'Université du Québec.</div>
+<div class="biblio-entry">Goyette, N. et Martineau, S. (dir.). (2021). <em>Le bien-être des enseignants.</em> Presses de l'Université du Québec.</div>
+<div class="biblio-entry">Goyette, N. (2023). <em>Le sentiment d'efficacité personnelle des enseignants : cercle vertueux et développement professionnel.</em> Presses de l'Université du Québec.</div>
+<div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience: Conditions count. <em>British Educational Research Journal, 39</em>(1), 22–44.</div>
+<div class="biblio-entry">Hattie, J. (2009). <em>Visible learning: A synthesis of over 800 meta-analyses relating to achievement.</em> London : Routledge.</div>
+<div class="biblio-entry">Massé, L., Desbiens, N. et Lanaris, C. (Dir.). (2020). <em>Les troubles du comportement à l'école</em> (3e éd.). Montréal : Chenelière Éducation.</div>
+<div class="biblio-entry">Maslach, C., Jackson, S. E., &amp; Leiter, M. P. (1996). <em>Maslach Burnout Inventory Manual (3e éd.).</em> Consulting Psychologists Press.</div>
+<div class="biblio-entry">Pianta, R. C. (2008). <em>Student-Teacher Relationship Scale (STRS).</em> Psychological Assessment Resources.</div>
+<div class="biblio-entry">Porges, S. W. (2011). <em>The polyvagal theory: Neurophysiological foundations of emotions, attachment, communication, and self-regulation.</em> New York, NY : W. W. Norton.</div>
+<div class="biblio-entry">Schön, D. A. (1983). <em>The Reflective Practitioner.</em> Basic Books.</div>
+<div class="biblio-entry">Seligman, M. E. P. (2011). <em>Flourish: A visionary new understanding of happiness and well-being.</em> New York : Free Press.</div>
+<div class="biblio-entry">Shirnin, D. (2022, 23 mars). <em>Le bien-être des enseignant.e.s : les facteurs fondamentaux, effets et les stratégies.</em> Gouvernement du Grand-Duché du Luxembourg. <a href="https://www.developpement-scolaire.lu/dds-resources/le-bien-etre-des-enseignant-e-s-les-facteurs-fondamentaux-effets-et-strategies/" rel="noopener noreferrer" target="_blank">developpement-scolaire.lu</a></div>
+<div class="biblio-entry">Théorêt, M. et Leroux, M. (2014). <em>Comment améliorer le bien-être et la santé des enseignants ?</em> De Boeck Supérieur.</div>
+<div class="biblio-entry">Vianin, P. (2024). <em>L'approche systémique en pédagogie spécialisée.</em> Bruxelles : De Boeck Supérieur.</div>
+<div class="biblio-entry">Cooper, J. O., Heron, T. E., &amp; Heward, W. L. (2007). <em>Applied Behavior Analysis</em> (2e éd.). Upper Saddle River, NJ : Pearson. [Référence fondatrice de l'analyse appliquée du comportement, mobilisée dans le dossier « Analyse fonctionnelle »]</div>
+</div>
+</div>
+<div class="biblio-group">
+<div class="biblio-group-title">📄 Articles et revues scientifiques</div>
+<div class="biblio-list">
+<div class="biblio-entry">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands–resources theory. <em>Journal of Occupational Health Psychology, 22(3)</em>, 273–285.</div>
+<div class="biblio-entry">Beaumont, C., Langri, S., Wilkie, T., Marquis, D. et Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval / HEP-VS. [Adaptation du modèle CS3 ajoutant la compétence <em>conscience de l'interdépendance</em>]</div>
+<div class="biblio-entry">Beltman, S., Mansfield, C. F. et Price, A. (2011). Thriving not just surviving. <em>Educational Research Review, 6(3)</em>, 185–207.</div>
+<div class="biblio-entry">Ben Alaya, I., Frenette, É. et Gaudreau, N. (2024). Processus d'élaboration et de validation d'un questionnaire francophone sur les compétences socioémotionnelles des enseignants. <em>Canadian Journal of Education / Revue canadienne de l'éducation, 47</em>(2), 375–410. <a href="https://doi.org/10.53967/cje-rce.5947" rel="noopener noreferrer" target="_blank">doi:10.53967/cje-rce.5947</a></div>
+<div class="biblio-entry">Casey, B. J., Jones, R. M., &amp; Hare, T. A. (2008). The adolescent brain. <em>Annals of the New York Academy of Sciences, 1124</em>, 111–126. <a href="https://doi.org/10.1196/annals.1440.010" rel="noopener noreferrer" target="_blank">doi:10.1196/annals.1440.010</a></div>
+<div class="biblio-entry">Campbell-Sills, L., &amp; Stein, M. B. (2007). Psychometric analysis and refinement of the Connor-Davidson Resilience Scale (CD-RISC): Validation of the 10-item measure of resilience. <em>Journal of Traumatic Stress, 20(6)</em>, 1019–1028.</div>
+<div class="biblio-entry">Connor, K. M., &amp; Davidson, J. R. T. (2003). Development of a new resilience scale. <em>Depression and Anxiety, 18(2)</em>, 76–82.</div>
+<div class="biblio-entry">Daniilidou, A., &amp; Platsidou, M. (2024). Teachers' Personal Factors Resilience Scale. <em>Educational Psychology, 44(1).</em></div>
+<div class="biblio-entry">Davidson, R. J. et McEwen, B. S. (2012). Social influences on neuroplasticity. <em>Nature Neuroscience, 15(5)</em>, 689-695. <a href="https://doi.org/10.1038/nn.3093" rel="noopener noreferrer" target="_blank">doi:10.1038/nn.3093</a></div>
+<div class="biblio-entry">Deklerck, J. (2012). <em>La pyramide de la prévention, un cadre de prévention intégrale dans l'enseignement.</em> Université catholique de Louvain. [Adaptée au contexte scolaire québécois par Beaumont, 2014]</div>
+<div class="biblio-entry">De Stercke, J., Temperman, G., De Lièvre, B. et Lacocque, J. (2014). Échelle de sentiment d'efficacité personnelle des enseignants (ESEPE) : traduction francophone de la <em>Teachers' Sense of Efficacy Scale.</em> Service de Pédagogie Générale et des Médias Éducatifs, Université de Mons. <a href="https://hal.science/hal-01145411/" rel="noopener noreferrer" target="_blank">hal.science/hal-01145411</a></div>
+<div class="biblio-entry">Deci, E. L., &amp; Ryan, R. M. (2000). The "what" and "why" of goal pursuits: Human needs and the self-determination of behavior. <em>Psychological Inquiry, 11(4)</em>, 227–268.</div>
+<div class="biblio-entry">Diamond, A. (2013). Executive functions. <em>Annual Review of Psychology, 64</em>, 135–168. <a href="https://doi.org/10.1146/annurev-psych-113011-143750" rel="noopener noreferrer" target="_blank">doi:10.1146/annurev-psych-113011-143750</a></div>
+<div class="biblio-entry">Fang, Z. (1996). A review of research on teacher beliefs and practices. <em>Educational Research, 38(1)</em>, 47–65.</div>
+<div class="biblio-entry">Gratz, K. L., &amp; Roemer, L. (2004). Multidimensional assessment of emotion regulation. <em>Journal of Psychopathology and Behavioral Assessment, 26(1)</em>, 41–54.</div>
+<div class="biblio-entry">Gross, J. J. (2015). Emotion regulation: Current status. <em>Psychological Inquiry, 26(1)</em>, 1–26.</div>
+<div class="biblio-entry">Gross, J. J., &amp; John, O. P. (2003). Individual differences in two emotion regulation processes. <em>JPSP, 85(2)</em>, 348–362.</div>
+<div class="biblio-entry">Iwata, B. A., Dorsey, M. F., Slifer, K. J., Bauman, K. E., &amp; Richman, G. S. (1982/1994). Toward a functional analysis of self-injury. <em>Journal of Applied Behavior Analysis, 27</em>(2), 197–209. [Article fondateur de la méthode d'analyse fonctionnelle du comportement]</div>
+<div class="biblio-entry">Simonsen, B., Fairbanks, S., Briesch, A., Myers, D., &amp; Sugai, G. (2008). Evidence-based practices in classroom management. <em>Education and Treatment of Children, 31</em>(3), 351–380. [Cadre PBIS, ratio 4:1 d'interactions positives, mobilisé dans le contrat comportemental]</div>
+<div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience. <em>British Educational Research Journal, 39(1)</em>, 22–44.</div>
+<div class="biblio-entry">Ochsner, K. N., &amp; Gross, J. J. (2005). The cognitive control of emotion. <em>Trends in Cognitive Sciences, 9(5)</em>, 242–249. <a href="https://doi.org/10.1016/j.tics.2005.03.010" rel="noopener noreferrer" target="_blank">doi:10.1016/j.tics.2005.03.010</a></div>
+<div class="biblio-entry"><div class="biblio-entry">Pajares, M. F. (1992). Teachers’ beliefs and educational research: Cleaning up a messy construct. <em>Review of Educational Research, 62</em>(3), 307–332.</div>
+    Tims, M., Bakker, A. B., &amp; Derks, D. (2012). Development of the job crafting scale. <em>Journal of Vocational Behavior, 80(1)</em>, 173–186.</div>
+<div class="biblio-entry">Théorêt, M., et Leroux, M. (2014). La résilience éducationnelle. <em>Revue canadienne de l'éducation, 37(2)</em>, 1–18.</div>
+<div class="biblio-entry">Tschannen-Moran, M., Woolfolk Hoy, A. et Hoy, W. K. (1998). Teacher efficacy: Its meaning and measure. <em>Review of Educational Research, 68(2)</em>, 202–248.</div>
+<div class="biblio-entry">Tschannen-Moran, M., &amp; Hoy, A. W. (2001). Teacher efficacy: Capturing an elusive construct. <em>Teaching and Teacher Education, 17(7)</em>, 783–805.</div>
+<div class="biblio-entry">Woodcock, S., &amp; Tournaki, N. (2025). Scale of Educational Teaching Self-efficacy (SETS). <em>Teaching and Teacher Education, 145.</em></div>
+</div>
+</div>
+<div class="biblio-group">
+<div class="biblio-group-title">🌐 Ressources en ligne &amp; rapports</div>
+<div class="biblio-list">
+<div class="biblio-entry">Beaumont, C. (2023). <em>Promouvoir à la fois la santé mentale, un climat scolaire positif et la prévention de la violence : Guide de planification pour soutenir de manière continue le bien-être à l'école.</em> Chaire de recherche Bienêtre à l'école et prévention de la violence, Université Laval. <a href="https://www.violence-ecole.ulaval.ca/" rel="noopener noreferrer" target="_blank">violence-ecole.ulaval.ca</a> [Guide source de la section 6.3 — Pyramide de prévention à 4 niveaux]</div>
+<div class="biblio-entry">État du Valais &amp; FMEP. (2024). <em>Enquête de satisfaction du personnel enseignant du canton du Valais.</em> Service de l'enseignement du Valais. (Reporté par RTS Info, 4 février 2025 : <a href="https://www.rts.ch/info/regions/valais/2025/article/stress-et-charge-de-travail-en-hausse-chez-les-enseignants-valaisans-28779013.html" rel="noopener noreferrer" target="_blank">rts.ch</a>)</div>
+<div class="biblio-entry">Kunz Heim, D., Böhm, A. et al. (2014). <em>Gesundheitliche Belastungen, Ressourcen und Arbeitsbewältigung von Lehrpersonen.</em> Haute École Pédagogique de la Suisse du Nord-Ouest (FHNW). [Burnout estimé entre 23 % et 34 % des enseignants en Suisse alémanique]</div>
+<div class="biblio-entry">Studer, R., &amp; Quarroz, S. (2017). <em>Santé des enseignants romands.</em> Institut de santé au travail (IST), Lausanne. Enquête mandatée par le Syndicat des Enseignants Romands (SER). [22.5 % présentaient un score élevé d'épuisement ; enquête sur ~5 500 enseignants]</div>
+<div class="biblio-entry">Trachsler, E., et al. (2003, 2006, 2008). Études sur le burnout des enseignants en Suisse. <em>Pädagogische Hochschule Thurgau.</em></div>
+<div class="biblio-entry">Lane K., Weatherby K. et Bain, M. (2024). <em>Le bien-être du personnel est essentiel à la réussite des élèves.</em> Le réseau Edcan. <a href="https://www.edcan.ca/articles/le-bien-etre-du-personnel-est-essentiel-a-la-reussite-des-eleves/?lang=fr" rel="noopener noreferrer" target="_blank">edcan.ca</a></div>
+<div class="biblio-entry">Turmel, N. (2015). <em>Cadre de référence et guide à l'intention du milieu scolaire.</em> Ministère de l'Education du Québec. <a href="https://www.meesr.gouv.qc.ca" rel="noopener noreferrer" target="_blank">meesr.gouv.qc.ca</a></div>
+<div class="biblio-entry">Viac, C., &amp; Fraser, P. (2020). Teachers' well-being: A framework for data collection and analysis. <em>OECD Education Working Papers, No. 213.</em> OECD Publishing. <a href="https://doi.org/10.1787/c36fc9d3-en" rel="noopener noreferrer" target="_blank">doi:10.1787/c36fc9d3-en</a></div>
+</div>
+</div>
 
-    <div class="biblio-section">
-      <h2>Bien-être et résilience enseignante</h2>
-      <div class="biblio-ref"><strong>Théorêt, M., &amp; Leroux, M.</strong> (2014). <em>Comment améliorer le bien-être et la santé des enseignants.</em> De Boeck.</div>
-      <div class="biblio-ref"><strong>Viac, C., &amp; Fraser, P.</strong> (2020). Teachers' well-being: A framework for data collection and analysis. <em>OECD Education Working Papers, 213</em>.</div>
-      <div class="biblio-ref"><strong>Gaudreau, N.</strong> (2024). <em>Gestion de classe efficace — 6 ingrédients pour aider les enseignants.</em></div>
-      <div class="biblio-ref"><strong>Goyette, N.</strong> (2023). Modèle de résilience enseignante en 4 composantes.</div>
-    </div>
-
-    <div class="biblio-section">
-      <h2>Fatigue de compassion</h2>
-      <div class="biblio-ref"><strong>Figley, C. R.</strong> (1995). <em>Compassion Fatigue: Coping with Secondary Traumatic Stress Disorder.</em> Brunner/Mazel.</div>
-      <div class="biblio-ref"><strong>Skovholt, T. M., &amp; Trotter-Mathison, M.</strong> (2016). <em>The Resilient Practitioner.</em> Routledge.</div>
-      <div class="biblio-ref"><strong>Pennebaker, J. W.</strong> (1997). Writing about emotional experiences as a therapeutic process. <em>Psychological Science, 8</em>(3), 162–166.</div>
-    </div>
-
-    <div class="biblio-section">
-      <h2>Préservation des ressources</h2>
-      <div class="biblio-ref"><strong>Hobfoll, S. E.</strong> Conservation of Resources Theory (COR).</div>
-      <div class="biblio-ref"><strong>Gross, J. J.</strong> (2015). Emotion Regulation: Current Status and Future Prospects. <em>Psychological Inquiry, 26</em>(1), 1–26.</div>
-    </div>
-
-    <p style="text-align:center;color:var(--text-muted);margin-top:24px;font-style:italic">La bibliographie complète intégrant les références secondaires sera fusionnée depuis la section dédiée du fichier source.</p>
-  </div>
+</div>
 </main>
 
 <footer>
@@ -532,6 +916,348 @@ document.getElementById('gloss-search').addEventListener('input', function(){
     item.style.display = txt.indexOf(q) !== -1 ? '' : 'none';
   });
 });
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Module de gestion des modes personnel / HEP
+   À embarquer dans chaque page de la plateforme
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────
+  var HEP_CONFIG_URL = 'hep-config.json'; // relatif au fichier HTML
+  var _hepConfig = null;
+  var _hepPassword = null;
+
+  // ── État utilisateur (persisté en localStorage) ────────────────
+  function getUserMode(){
+    try {
+      var data = localStorage.getItem('aut_user_mode');
+      if (!data) return { mode: 'personal', name: '' };
+      return JSON.parse(data);
+    } catch(e) {
+      return { mode: 'personal', name: '' };
+    }
+  }
+
+  function setUserMode(data){
+    try {
+      localStorage.setItem('aut_user_mode', JSON.stringify(data));
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // ── Chargement du fichier de config HEP ───────────────────────
+  function loadHepConfig(callback) {
+    if (_hepConfig !== null) {
+      callback(true);
+      return;
+    }
+    fetch(HEP_CONFIG_URL + '?_=' + Date.now())
+      .then(function(r){
+        if (!r.ok) throw new Error('Config introuvable');
+        return r.json();
+      })
+      .then(function(data){
+        _hepConfig = data || {};
+        _hepPassword = (data && data.password) ? String(data.password) : '';
+        callback(true);
+      })
+      .catch(function(){
+        _hepConfig = {};
+        _hepPassword = '__UNAVAILABLE__';
+        callback(false);
+      });
+  }
+
+  // ── Mise à jour du badge dans le header ───────────────────────
+  function updateModeBadge(){
+    var badge = document.getElementById('mode-badge');
+    if (!badge) return;
+    var user = getUserMode();
+    var icon, label, title;
+
+    if (user.mode === 'hep') {
+      icon = '<svg class="icon icon-sm"><use href="#i-grad"/></svg>';
+      label = 'HEP-VS' + (user.name ? ' · ' + user.name : '');
+      title = 'Mode institutionnel HEP-VS · Cliquer pour gérer';
+      badge.className = 'mode-badge mode-hep';
+    } else {
+      icon = '<svg class="icon icon-sm"><use href="#i-user"/></svg>';
+      label = user.name ? user.name : 'Mode personnel';
+      title = 'Mode personnel · Cliquer pour personnaliser';
+      badge.className = 'mode-badge mode-personal';
+    }
+    badge.innerHTML = icon + ' <span>' + label + '</span>';
+    badge.setAttribute('title', title);
+  }
+
+  // ── Modale de gestion du mode ─────────────────────────────────
+  function openModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) {
+      buildModeModal();
+      modal = document.getElementById('mode-modal');
+    }
+    var user = getUserMode();
+    renderModeModal(user);
+    modal.style.display = 'flex';
+    setTimeout(function(){
+      modal.classList.add('open');
+    }, 10);
+  }
+
+  function closeModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    setTimeout(function(){
+      modal.style.display = 'none';
+    }, 200);
+  }
+
+  function buildModeModal(){
+    var overlay = document.createElement('div');
+    overlay.id = 'mode-modal';
+    overlay.className = 'mode-modal';
+    overlay.innerHTML = '<div class="mode-modal-card">' +
+      '<button class="mode-modal-close" onclick="window.closeModeModal()" aria-label="Fermer">×</button>' +
+      '<div id="mode-modal-content"></div>' +
+    '</div>';
+    overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModeModal();
+    });
+    document.body.appendChild(overlay);
+  }
+
+  function renderModeModal(user){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var isHep = user.mode === 'hep';
+
+    var html = '<h2 class="mode-modal-title">Mode de parcours</h2>' +
+      '<p class="mode-modal-sub">Choisissez le mode qui correspond à votre situation. Vous pouvez en changer à tout moment.</p>' +
+      '<div class="mode-options">' +
+
+      // Option personnelle
+      '<div class="mode-option' + (!isHep ? ' active' : '') + '" data-mode="personal">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-user"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Parcours personnel</div>' +
+            '<div class="mode-option-sub">Usage libre · Établissement scolaire ou découverte individuelle</div>' +
+          '</div>' +
+          (isHep ? '' : '<span class="mode-option-badge">Actif</span>') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Progression sauvegardée dans votre navigateur</li>' +
+          '<li>Certificat de complétion personnel disponible en fin de parcours</li>' +
+          '<li>Aucun mot de passe requis</li>' +
+        '</ul>' +
+        (!isHep ? '<button class="mode-option-action" onclick="window.editPersonalName()">Personnaliser mon nom</button>' :
+                  '<button class="mode-option-action" onclick="window.switchToPersonal()">Basculer en mode personnel</button>') +
+      '</div>' +
+
+      // Option HEP
+      '<div class="mode-option' + (isHep ? ' active' : '') + '" data-mode="hep">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-grad"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Mode institutionnel HEP-VS</div>' +
+            '<div class="mode-option-sub">Pour les étudiant·e·s en formation continue HEP / CAS / DAS</div>' +
+          '</div>' +
+          (isHep ? '<span class="mode-option-badge">Actif</span>' : '') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Suivi nominatif officiel</li>' +
+          '<li>Attestation HEP-VS reconnue en fin de parcours</li>' +
+          '<li>Accès par code de session délivré par votre formateur</li>' +
+        '</ul>' +
+        (isHep ? '<button class="mode-option-action" onclick="window.editHepName()">Modifier mes informations</button>' :
+                  '<button class="mode-option-action mode-action-primary" onclick="window.openHepAuth()">Activer le mode HEP</button>') +
+      '</div>' +
+
+      '</div>';
+
+    content.innerHTML = html;
+  }
+
+  // ── Saisie du nom personnel ───────────────────────────────────
+  window.editPersonalName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Votre prénom et nom (optionnel, pour personnaliser votre certificat) :', current);
+    if (name === null) return; // annulé
+    user.name = name.trim();
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal(); // refresh
+  };
+
+  // ── Authentification HEP ──────────────────────────────────────
+  window.openHepAuth = function(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    content.innerHTML = '<h2 class="mode-modal-title">Activer le mode HEP-VS</h2>' +
+      '<p class="mode-modal-sub">Saisissez le code de session communiqué par votre formateur.</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-pw-input">Code de session</label>' +
+        '<input type="password" id="hep-pw-input" placeholder="Code délivré par votre formation" autocomplete="off">' +
+        '<div id="hep-pw-error" class="mode-form-error"></div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" id="hep-pw-validate" onclick="window.validateHepPassword()">Valider →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-pw-input');
+      if (inp) {
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.validateHepPassword();
+        });
+      }
+    }, 50);
+  };
+
+  window.validateHepPassword = function(){
+    var inp = document.getElementById('hep-pw-input');
+    var err = document.getElementById('hep-pw-error');
+    var btn = document.getElementById('hep-pw-validate');
+    if (!inp) return;
+
+    var entered = inp.value.trim();
+    if (!entered) {
+      err.textContent = 'Veuillez saisir le code de session.';
+      err.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Vérification…';
+    btn.disabled = true;
+
+    loadHepConfig(function(ok){
+      btn.textContent = 'Valider →';
+      btn.disabled = false;
+
+      if (!ok) {
+        err.textContent = 'Impossible de charger la configuration. Vérifiez votre connexion.';
+        err.style.display = 'block';
+        return;
+      }
+
+      if (entered !== _hepPassword) {
+        err.textContent = 'Code incorrect. Vérifiez auprès de votre formateur·rice.';
+        err.style.display = 'block';
+        inp.value = '';
+        inp.focus();
+        return;
+      }
+
+      // Succès — passer à la saisie du nom
+      openHepNameForm();
+    });
+  };
+
+  function openHepNameForm(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var sessionLabel = (_hepConfig && _hepConfig.session) ? _hepConfig.session : 'Formation HEP-VS';
+    var formateur = (_hepConfig && _hepConfig.formateur) ? _hepConfig.formateur : '';
+
+    content.innerHTML = '<h2 class="mode-modal-title">Mode HEP-VS activé ✓</h2>' +
+      '<p class="mode-modal-sub">Session : <strong>' + sessionLabel + '</strong>' +
+        (formateur ? '<br>Formateur·rice : <strong>' + formateur + '</strong>' : '') +
+      '</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-name-input">Votre prénom et nom complet</label>' +
+        '<input type="text" id="hep-name-input" placeholder="Ex : Marie Dupont" maxlength="80">' +
+        '<div class="mode-form-hint">Ce nom apparaîtra sur votre attestation HEP-VS officielle.</div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" onclick="window.confirmHepActivation()">Activer →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-name-input');
+      if (inp) {
+        var current = getUserMode();
+        if (current.name) inp.value = current.name;
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.confirmHepActivation();
+        });
+      }
+    }, 50);
+  }
+
+  window.confirmHepActivation = function(){
+    var inp = document.getElementById('hep-name-input');
+    if (!inp) return;
+    var name = inp.value.trim();
+    if (!name || name.length < 3) {
+      alert('Veuillez saisir votre prénom et nom complet.');
+      inp.focus();
+      return;
+    }
+    setUserMode({
+      mode: 'hep',
+      name: name,
+      session: (_hepConfig && _hepConfig.session) || '',
+      formateur: (_hepConfig && _hepConfig.formateur) || '',
+      date_formation: (_hepConfig && _hepConfig.date_formation) || '',
+      activatedAt: new Date().toISOString()
+    });
+    updateModeBadge();
+    closeModeModal();
+  };
+
+  window.editHepName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Modifier votre prénom et nom :', current);
+    if (name === null) return;
+    name = name.trim();
+    if (!name) return;
+    user.name = name;
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal();
+  };
+
+  window.switchToPersonal = function(){
+    if (!confirm('Basculer en mode personnel ? Votre progression est conservée, mais vous perdrez l\'accès aux fonctionnalités HEP-VS (attestation officielle).')) return;
+    var user = getUserMode();
+    setUserMode({
+      mode: 'personal',
+      name: user.name || ''
+    });
+    updateModeBadge();
+    openModeModal();
+  };
+
+  // ── Initialisation au chargement de chaque page ───────────────
+  window.openModeModal = openModeModal;
+  window.closeModeModal = closeModeModal;
+  window.updateModeBadge = updateModeBadge;
+  window.getUserMode = getUserMode;
+
+  window.addEventListener('DOMContentLoaded', function(){
+    updateModeBadge();
+  });
+
+})();
+
 </script>
 </body>
 </html>
