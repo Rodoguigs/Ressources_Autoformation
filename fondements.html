@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fondements PRÉSENCE · Autoformation HEP-VS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function() {
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+</script>
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Charte commune — Plateforme Autoformation HEP-VS
+   Importée par toutes les pages de la coquille (sauf les modules).
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --light:#f8f5f0; --muted:#7a7a9d;
+  --surface:#ffffff; --surface-alt:#fafbff;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --border-soft:rgba(0,0,0,.08);
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.08);
+}
+
+[data-theme="dark"]{
+  --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115;
+  --surface:#1a1d24; --surface-alt:#13161c;
+  --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
+  --border-soft:rgba(255,255,255,.1);
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--light); color:var(--text-body);
+  line-height:1.65; font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+[data-theme="dark"] a{color:var(--sky)}
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:.85em;height:.85em}
+.icon-lg{width:1.25em;height:1.25em}
+
+/* ─── Header ─── */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:14px 28px;
+  display:flex;align-items:center;gap:20px;
+  backdrop-filter:blur(8px);flex-wrap:wrap;
+}
+.app-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:900;font-size:1.1rem;
+  color:var(--accent2);text-decoration:none;
+  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.app-logo:hover{text-decoration:none}
+[data-theme="dark"] .app-logo{color:var(--text-strong)}
+.nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
+.nav-link{
+  color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
+  transition:all .15s;
+}
+.nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-link.active{background:var(--accent2);color:white;font-weight:600}
+.theme-toggle{
+  background:none;border:1px solid var(--border-soft);
+  border-radius:8px;padding:6px 10px;cursor:pointer;
+  color:var(--text-body);
+}
+.theme-toggle:hover{background:var(--surface-alt)}
+.hep-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;padding:5px 11px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+}
+
+/* ─── Page header / breadcrumb ─── */
+.page-head{
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:24px 28px 28px;
+}
+.breadcrumb{
+  display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.breadcrumb a{color:var(--text-subtle)}
+.breadcrumb span.sep{opacity:.5}
+.breadcrumb .current{color:var(--text-strong);font-weight:600}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 8px;letter-spacing:-.01em;
+}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:760px;line-height:1.55;
+}
+
+/* ─── Container principal ─── */
+main{
+  flex:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 28px;
+  width:100%;
+}
+
+/* ─── Cards & blocs ─── */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow-soft);
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text-strong);
+  margin:32px 0 16px;
+}
+
+.info-block{
+  background:var(--surface-alt);
+  border-left:4px solid var(--accent3);
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  margin:18px 0;
+}
+
+/* ─── Footer ─── */
+footer{
+  margin-top:auto;
+  background:var(--surface);
+  border-top:1px solid var(--border-soft);
+  padding:32px 28px;
+  text-align:center;
+  font-size:.82rem;color:var(--text-subtle);
+}
+footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+
+/* ─── Responsive ─── */
+@media (max-width:900px){
+  .page-head{padding:18px 20px 22px}
+  .page-title{font-size:1.5rem}
+  main{padding:20px}
+}
+
+
+/* CSS spécifique à la vue Fondements PRÉSENCE — extrait du fichier source */
+
+/* Encadrés colorés (highlight, fiche, etc.) */
+[data-theme="dark"] .highlight-box,
+[data-theme="dark"] .fiche-fondements {
+  background:var(--surface) !important;
+  border-color:var(--border-soft) !important;
+}
+
+/* Fiches de fondements */
+[data-theme="dark"] .fondements-part-body {
+  background:var(--surface) !important;
+}
+
+.section-label {font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent1);margin-bottom:8px;}
+
+.divider {width:48px;height:4px;background:var(--accent1);border-radius:2px;margin-bottom:28px;}
+
+.highlight-box {background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:12px;padding:20px 24px;margin:20px 0;border-left:4px solid var(--sky);font-size:.9rem;color:var(--deep);}
+
+/* ===== NOTE D'ENCADREMENT ===== */
+.encadrement-note {background:linear-gradient(135deg,#fffbf0,#fff8e6);border:1px solid rgba(245,166,35,.35);border-left:4px solid var(--gold);border-radius:12px;padding:14px 18px;margin-bottom:18px;font-size:.82rem;color:#4a3700;line-height:1.7;}
+
+.encadrement-note .enc-header {display:flex;align-items:center;gap:8px;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);margin-bottom:8px;}
+
+.encadrement-note .enc-manuel {display:inline-block;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.4);border-radius:6px;padding:3px 10px;font-size:.75rem;font-weight:600;color:#7a5200;margin-right:6px;margin-top:4px;}
+
+.encadrement-note .enc-links {margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;}
+
+.encadrement-note .enc-link {display:inline-flex;align-items:center;gap:5px;font-size:.76rem;color:var(--sky);text-decoration:none;font-weight:500;}
+
+.encadrement-note .enc-link:hover {text-decoration:underline;color:var(--accent2);}
+
+.highlight-box strong {color:var(--accent2);}
+
+.presence-intro {background:white;border-radius:16px;padding:36px;margin-bottom:36px;box-shadow:0 2px 20px rgba(0,0,0,.06);border-left:5px solid var(--accent3);}
+
+.gaudreau-items {display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.gaudreau-item {border-radius:12px;padding:18px 20px;font-size:.85rem;color:var(--ink);border-left:4px solid;}
+
+.gaudreau-item:nth-child(1) {background:#eef2ff;border-left-color:#4f6bd9;}
+
+.gaudreau-item:nth-child(2) {background:#fdf4ff;border-left-color:#9333ea;}
+
+.gaudreau-item:nth-child(3) {background:#fffbeb;border-left-color:#d97706;}
+
+.gaudreau-item:nth-child(4) {background:#f0fdf4;border-left-color:#16a34a;}
+
+.gaudreau-item:nth-child(5) {background:#fff1f2;border-left-color:#e11d48;}
+
+.gaudreau-item:nth-child(6) {background:#f0f9ff;border-left-color:#0284c7;}
+
+.gaudreau-item strong {display:block;font-size:.87rem;font-weight:700;color:var(--deep);margin-bottom:6px;}
+
+.fondements-part-header.part5 {background:linear-gradient(135deg,#0f4c5c,#3a7a8a);border-left:6px solid #7bc5d4;color:white;}
+
+.fondements-part-num.n5 {background:rgba(255,255,255,.2);}
+
+/* PARTIE — Neurodéveloppement de l'élève (rose / magenta) */
+.fondements-part-header.part-neuro {background:linear-gradient(135deg,#831843,#be185d);border-left:6px solid #f9a8d4;color:white;}
+
+.fondements-part-num.n-neuro {background:rgba(255,255,255,.2);}
+
+.neuro-windows-box {background:linear-gradient(135deg,#fdf2f8,#fce7f3);border-radius:16px;border:2px solid #be185d;padding:32px;margin-bottom:24px;}
+
+.neuro-windows-box h3 {font-family:'Playfair Display',serif;font-size:1.3rem;color:#831843;margin:0 0 12px;line-height:1.3;}
+
+.neuro-window-card {background:white;border-radius:12px;padding:22px 24px;border-left:5px solid #be185d;margin-bottom:18px;}
+
+.neuro-window-card .nw-num {display:inline-block;background:#be185d;color:white;width:32px;height:32px;border-radius:50%;text-align:center;line-height:32px;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;margin-right:10px;vertical-align:middle;}
+
+.neuro-window-card .nw-title {display:inline-block;font-weight:700;font-size:1rem;color:#831843;vertical-align:middle;}
+
+.neuro-window-card p {font-size:.88rem;color:#4a1d3a;line-height:1.7;margin:14px 0 0;}
+
+.neuro-window-card em {color:#86195a;}
+
+.neuro-implications {background:linear-gradient(135deg,#fff5f8,#fde4ed);border-radius:14px;padding:24px 26px;border-left:5px solid #be185d;margin:20px 0 8px;}
+
+.cefer-items {display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+.cefer-item {border-radius:12px;padding:18px 20px;font-size:.85rem;color:var(--ink);border-left:4px solid;background:white;position:relative;}
+
+.cefer-item:nth-child(1) {background:#eef4fc;border-left-color:#1e5fc4;}
+
+.cefer-item:nth-child(2) {background:#fdefe9;border-left-color:#c94a2a;}
+
+.cefer-item:nth-child(3) {background:#ecf7ef;border-left-color:#2e7d44;}
+
+.cefer-item:nth-child(4) {background:#fdf5e3;border-left-color:#c08415;}
+
+.cefer-item:nth-child(5) {background:#efebf7;border-left-color:#6b3fa0;}
+
+.cefer-letter {font-family:'Playfair Display',serif;font-weight:900;font-size:2.4rem;line-height:1;float:left;margin-right:10px;margin-top:-2px;}
+
+.cefer-item:nth-child(1) .cefer-letter {color:#1e5fc4;}
+
+.cefer-item:nth-child(2) .cefer-letter {color:#c94a2a;}
+
+.cefer-item:nth-child(3) .cefer-letter {color:#2e7d44;}
+
+.cefer-item:nth-child(4) .cefer-letter {color:#c08415;}
+
+.cefer-item:nth-child(5) .cefer-letter {color:#6b3fa0;}
+
+.cefer-item strong {display:block;font-size:.92rem;font-weight:700;color:var(--deep);margin-bottom:6px;}
+
+/* PARTIE 7 - PERMA + CSE */
+.fondements-part-header.part6 {background:linear-gradient(135deg,#5b3a8e,#8a5cb8);border-left:6px solid #c8a8e0;color:white;}
+
+.fondements-part-num.n6 {background:rgba(255,255,255,.2);}
+
+.perma-box {background:linear-gradient(135deg,#f7f3fc,#ede4f5);border-radius:16px;border:2px solid #8a5cb8;padding:36px;margin-bottom:24px;}
+
+.perma-box h3 {font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);margin-bottom:8px;}
+
+.perma-items {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+
+.perma-item {border-radius:12px;padding:18px 20px;font-size:.85rem;color:var(--ink);border-left:4px solid;background:white;}
+
+.perma-item:nth-child(1) {background:#eef4fc;border-left-color:#1e5fc4;}
+
+.perma-item:nth-child(2) {background:#fdefe9;border-left-color:#c94a2a;}
+
+.perma-item:nth-child(3) {background:#ecf7ef;border-left-color:#2e7d44;}
+
+.perma-item:nth-child(4) {background:#fdf5e3;border-left-color:#c08415;}
+
+.perma-item:nth-child(5) {background:#efebf7;border-left-color:#6b3fa0;}
+
+.perma-letter {font-family:'Playfair Display',serif;font-weight:900;font-size:2.4rem;line-height:1;float:left;margin-right:12px;margin-top:-2px;}
+
+.perma-item:nth-child(1) .perma-letter {color:#1e5fc4;}
+
+.perma-item:nth-child(2) .perma-letter {color:#c94a2a;}
+
+.perma-item:nth-child(3) .perma-letter {color:#2e7d44;}
+
+.perma-item:nth-child(4) .perma-letter {color:#c08415;}
+
+.perma-item:nth-child(5) .perma-letter {color:#6b3fa0;}
+
+.perma-item strong {display:block;font-size:.9rem;font-weight:700;color:var(--deep);margin-bottom:4px;}
+
+.cse-box {background:linear-gradient(135deg,#fef5f0,#fdebe0);border-radius:16px;border:2px solid #d97706;padding:36px;margin-bottom:24px;}
+
+.cse-box h3 {font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);margin-bottom:8px;}
+
+.cse-spheres {display:grid;grid-template-columns:1fr;gap:14px;margin-top:20px;}
+
+.cse-sphere {display:grid;grid-template-columns:140px 1fr;gap:0;border-radius:12px;overflow:hidden;background:white;box-shadow:0 1px 6px rgba(0,0,0,.05);}
+
+.cse-sphere-label {display:flex;flex-direction:column;justify-content:center;align-items:center;padding:18px 12px;color:white;text-align:center;}
+
+.cse-sphere:nth-child(1) .cse-sphere-label {background:#d97706;}
+
+.cse-sphere:nth-child(2) .cse-sphere-label {background:#2563eb;}
+
+.cse-sphere:nth-child(3) .cse-sphere-label {background:#dc2626;}
+
+.cse-sphere-name {font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;line-height:1;margin-bottom:4px;letter-spacing:.02em;}
+
+.cse-sphere-sub {font-style:italic;font-size:.72rem;opacity:.92;}
+
+.cse-sphere-content {padding:18px 22px;font-size:.85rem;color:var(--ink);line-height:1.6;}
+
+.cse-sphere-content p {margin:0 0 8px 0;}
+
+.cse-sphere-content p:last-child {margin-bottom:0;}
+
+.cse-sphere-content strong {color:var(--deep);font-weight:700;}
+
+/* Pyramide de prévention - sous-section 6.3 */
+.pyramide-box {background:linear-gradient(135deg,#fffbf0,#fef3d6);border-radius:16px;border:2px solid #d97706;padding:32px;margin-bottom:20px;}
+
+.pyramide-box h3 {font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--deep);margin-bottom:8px;}
+
+.pyramide-niveaux {display:flex;flex-direction:column;gap:8px;margin-top:18px;}
+
+.pyramide-niveau {display:grid;grid-template-columns:130px 1fr;gap:0;border-radius:10px;overflow:hidden;background:white;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+
+.pyramide-num {display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px 10px;color:white;text-align:center;}
+
+.pyramide-niveau:nth-child(1) .pyramide-num {background:#dc2626;}
+
+.pyramide-niveau:nth-child(2) .pyramide-num {background:#ea580c;}
+
+.pyramide-niveau:nth-child(3) .pyramide-num {background:#0ea5e9;}
+
+.pyramide-niveau:nth-child(4) .pyramide-num {background:#16a34a;}
+
+.pyramide-num-big {font-family:'Playfair Display',serif;font-weight:900;font-size:1.8rem;line-height:1;margin-bottom:3px;}
+
+.pyramide-num-label {font-size:.65rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;line-height:1.2;}
+
+.pyramide-content {padding:14px 18px;font-size:.84rem;color:var(--ink);line-height:1.55;}
+
+.pyramide-nature {font-weight:700;font-size:.85rem;margin-bottom:5px;}
+
+.pyramide-niveau:nth-child(1) .pyramide-nature {color:#dc2626;}
+
+.pyramide-niveau:nth-child(2) .pyramide-nature {color:#ea580c;}
+
+.pyramide-niveau:nth-child(3) .pyramide-nature {color:#0ea5e9;}
+
+.pyramide-niveau:nth-child(4) .pyramide-nature {color:#16a34a;}
+
+.pyramide-desc {margin-bottom:5px;}
+
+.pyramide-ex {font-style:italic;font-size:.78rem;color:#666;}
+
+/* EVALUATION */
+.eval-intro {background:white;border-radius:16px;padding:32px;box-shadow:0 2px 20px rgba(0,0,0,.06);border-left:5px solid var(--accent2);margin-bottom:36px;font-size:.95rem;color:#2a2a3d;line-height:1.8;font-weight:450;}
+
+.resources-section .section-label {color:var(--gold);}
+
+.presence-acronym {display:flex;gap:6px;flex-wrap:wrap;margin:24px 0;align-items:center;}
+
+.p-letter-box {width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:white;flex-shrink:0;}
+
+/* ===== PANNEAU DÉPLIABLE BASES NEUROLOGIQUES ===== */
+.neuro-toggle-btn {display:flex;align-items:center;gap:10px;background:transparent;border:2px solid var(--accent2);color:var(--accent2);border-radius:12px;padding:10px 20px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;width:100%;}
+
+.neuro-toggle-btn:hover {background:var(--accent2);color:white;}
+
+.neuro-toggle-btn .ntb-icon {font-size:1rem;transition:transform .3s;}
+
+.neuro-toggle-btn.open .ntb-icon {transform:rotate(180deg);}
+
+.neuro-toggle-btn .ntb-label {flex:1;text-align:left;}
+
+.neuro-toggle-btn .ntb-hint {font-size:.72rem;font-weight:400;opacity:.7;}
+
+.neuro-panel {display:none;margin-top:16px;animation:fadeUp .4s ease;}
+
+.neuro-panel.open {display:block;}
+
+/* FONDEMENTS */
+.concept-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:36px;}
+
+.concept-card {background:white;border-radius:14px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,.06);border-left:4px solid;}
+
+.concept-card h4 {font-weight:700;font-size:.95rem;color:var(--deep);margin-bottom:8px;}
+
+.concept-card p {font-size:.82rem;color:#555;line-height:1.65;}
+
+.concept-card .c-num {font-family:'DM Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;display:block;}
+
+.animate {animation:fadeUp .6s ease both;}
+
+.delay-1 {animation-delay:.1s;}
+
+.delay-2 {animation-delay:.2s;}
+
+.delay-3 {animation-delay:.3s;}
+
+.delay-4 {animation-delay:.4s;}
+
+/* ===== FONDEMENTS RESTRUCTURÉS ===== */
+.fondements-part {margin-bottom:48px;}
+
+.fondements-part-header {display:flex;align-items:flex-start;gap:20px;padding:24px 28px;border-radius:16px;margin-bottom:28px;position:relative;}
+
+.fondements-part-header.part1 {background:linear-gradient(135deg,#1a3a8a,#2d5be3);border-left:6px solid #7aa3ff;color:white;}
+
+.fondements-part-header.part2 {background:linear-gradient(135deg,#3b1a6e,#6d28d9);border-left:6px solid #c084fc;color:white;}
+
+.fondements-part-header.part3 {background:linear-gradient(135deg,#92400e,#d97706);border-left:6px solid #fcd34d;color:white;}
+
+.fondements-part-num {width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:700;font-size:1.2rem;color:white;flex-shrink:0;border:2px solid rgba(255,255,255,.35);}
+
+.fondements-part-num.n1 {background:rgba(255,255,255,.2);}
+
+.fondements-part-num.n2 {background:rgba(255,255,255,.2);}
+
+.fondements-part-num.n3 {background:rgba(255,255,255,.2);}
+
+.fondements-part-num.n4 {background:rgba(255,255,255,.2);}
+
+.fondements-part-header.part4 {background:linear-gradient(135deg,#14532d,#16a34a);border-left:6px solid #86efac;color:white;}
+
+.fondements-part-title {font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:white;line-height:1.2;margin:4px 0 6px;}
+
+.fondements-part-sub {font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);}
+
+.fondements-part-header p {color:rgba(255,255,255,.85) !important;}
+
+/* ===== PRÉSENCE ACCORDION ===== */
+.presence-accordion-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:28px;}
+
+.presence-acc-card {background:white;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:4px solid;overflow:hidden;}
+
+.presence-acc-header {display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;transition:background .2s;user-select:none;}
+
+.presence-acc-header:hover {background:#f8f9ff;}
+
+.presence-acc-letter {font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;flex-shrink:0;}
+
+.presence-acc-title-wrap {flex:1;}
+
+.presence-acc-title {font-weight:600;font-size:.82rem;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;}
+
+.presence-acc-icon {font-size:.9rem;color:var(--muted);transition:transform .3s;flex-shrink:0;}
+
+.presence-acc-header.open .presence-acc-icon {transform:rotate(180deg);}
+
+.presence-acc-body {display:none;padding:0 18px 18px;border-top:1px solid rgba(0,0,0,.06);}
+
+.presence-acc-body.open {display:block;animation:fadeUp .3s ease;}
+
+.manuel-section {margin-bottom:18px;}
+
+.manuel-section:last-child {margin-bottom:0;}
+
+.manuel-section h5 {font-size:.76rem;font-weight:700;color:#2d6a4f;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid #d4edda;}
+
+.manuel-section p, .manuel-section ul {font-size:.8rem;color:#3a3a4a;line-height:1.7;margin:0;}
+
+.manuel-section ul {padding-left:16px;}
+
+.manuel-section ul li {margin-bottom:3px;}
+
+.manuel-cols {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px;}
+
+.manuel-badge {display:inline-block;font-size:.68rem;font-weight:700;background:#e8f5e9;color:#2d6a4f;border-radius:6px;padding:2px 8px;margin-bottom:6px;}
+/* ─── Layout 2 colonnes ─── */
+.fond-layout{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:32px;
+  max-width:1280px;
+  margin:0 auto;
+  padding:32px 28px;
+}
+
+/* ─── TOC latéral sticky ─── */
+.fond-toc{
+  position:sticky;
+  top:80px;
+  align-self:start;
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:14px 8px;
+  max-height:calc(100vh - 100px);
+  overflow-y:auto;
+}
+.fond-toc-label{
+  font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--text-subtle);
+  padding:6px 14px;margin-bottom:6px;
+}
+.toc-link{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 12px;border-radius:8px;
+  text-decoration:none;color:inherit;
+  transition:all .15s;
+  border-left:3px solid transparent;
+}
+.toc-link:hover{
+  background:var(--surface-alt);
+  text-decoration:none;
+}
+.toc-link.active{
+  background:var(--surface-alt);
+  border-left-color:var(--accent3);
+}
+.toc-num{
+  background:var(--accent3);color:white;
+  width:24px;height:24px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:.85rem;
+  flex-shrink:0;
+}
+.toc-link.active .toc-num{background:var(--accent1)}
+.toc-text{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.toc-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:.82rem;
+}
+.toc-sub{
+  font-size:.7rem;color:var(--text-muted);margin-top:2px;
+}
+
+/* ─── Contenu principal ─── */
+.fond-content{min-width:0}
+.part-section{
+  margin-bottom:60px;
+  scroll-margin-top:90px;
+}
+.part-section:last-child{margin-bottom:20px}
+
+/* Garde-fous : largeurs */
+.part-section img,
+.part-section svg{max-width:100%;height:auto}
+.part-section table{max-width:100%}
+
+/* Boutons FAB en bas (mobile : back to top, ouvrir TOC) */
+.fond-toc-toggle{
+  display:none;
+  position:fixed;bottom:20px;right:20px;z-index:200;
+  background:var(--accent3);color:white;
+  border:none;width:48px;height:48px;border-radius:50%;
+  font-size:1.3rem;cursor:pointer;
+  box-shadow:var(--shadow-floating);
+}
+
+@media (max-width:900px){
+  .fond-layout{
+    grid-template-columns:1fr;
+    padding:18px;
+  }
+  .fond-toc{
+    position:fixed;top:60px;left:0;right:0;bottom:0;
+    background:var(--surface);
+    z-index:150;
+    border-radius:0;
+    max-height:none;
+    padding:20px;
+    transform:translateX(-100%);
+    transition:transform .25s;
+  }
+  .fond-toc.open{transform:translateX(0)}
+  .fond-toc-toggle{display:flex;align-items:center;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-pillar" viewBox="0 0 24 24"><path d="M3 21h18M3 7h18M5 7v14M19 7v14M9 7v14M15 7v14M3 7l9-4 9 4"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+  </defs>
+</svg>
+
+<header class="app-header">
+  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Accueil</a>
+    <a href="diagnostic.html" class="nav-link">Diagnostic</a>
+    <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
+    <a href="modules.html" class="nav-link">Catalogue modules</a>
+  </nav>
+  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="page-head">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current">Fondements PRÉSENCE</span>
+  </div>
+  <h1 class="page-title">Fondements PRÉSENCE — Cadres théoriques et modèles de référence</h1>
+  <p class="page-sub">Résilience professionnelle · Modèle PRÉSENCE · Composantes pédagogiques · Bienveillance · Bien-être. Les sept parties de cette page reprennent intégralement les fondements scientifiques du parcours d'autoformation.</p>
+</div>
+
+<div class="fond-layout">
+
+  <!-- ─── Navigation latérale ─── -->
+  <aside class="fond-toc" id="fond-toc" aria-label="Table des matières">
+    <div class="fond-toc-label">Les 7 parties</div>
+    <a href="#part-1" class="toc-link" data-part="1">
+      <span class="toc-num">1</span>
+      <span class="toc-text">
+        <span class="toc-title">La résilience professionnelle : définition</span>
+        <span class="toc-sub">Un ancrage conceptuel</span>
+      </span>
+    </a>
+    <a href="#part-2" class="toc-link" data-part="2">
+      <span class="toc-num">2</span>
+      <span class="toc-text">
+        <span class="toc-title">Une conception systémique des ressources des enseignants</span>
+        <span class="toc-sub">Une approche</span>
+      </span>
+    </a>
+    <a href="#part-3" class="toc-link" data-part="3">
+      <span class="toc-num">3</span>
+      <span class="toc-text">
+        <span class="toc-title">Le modèle PRÉSENCE</span>
+        <span class="toc-sub">Un modèle neuroscientifique</span>
+      </span>
+    </a>
+    <a href="#part-4" class="toc-link" data-part="4">
+      <span class="toc-num">4</span>
+      <span class="toc-text">
+        <span class="toc-title">Le neurodéveloppement de l'élève : deux fenêtres exceptionnelles</span>
+        <span class="toc-sub">Un regard neuroéducatif</span>
+      </span>
+    </a>
+    <a href="#part-5" class="toc-link" data-part="5">
+      <span class="toc-num">5</span>
+      <span class="toc-text">
+        <span class="toc-title">Les 6 composantes de la gestion efficace de classe (Gaudreau)</span>
+        <span class="toc-sub">Un modèle pédagogique</span>
+      </span>
+    </a>
+    <a href="#part-6" class="toc-link" data-part="6">
+      <span class="toc-num">6</span>
+      <span class="toc-text">
+        <span class="toc-title">Les 5 composantes de la bienveillance — Modèle C.E.F.E.R. (Beaumont)</span>
+        <span class="toc-sub">Une posture professionnelle</span>
+      </span>
+    </a>
+    <a href="#part-7" class="toc-link" data-part="7">
+      <span class="toc-num">7</span>
+      <span class="toc-text">
+        <span class="toc-title">Bien-être et compétences socio-émotionnelles</span>
+        <span class="toc-sub"></span>
+      </span>
+    </a>
+  </aside>
+
+  <!-- ─── Contenu principal ─── -->
+  <main class="fond-content">
+<section id="part-1" class="part-section" data-part="1">
+<div class="fondements-part-header part1">
+<div class="fondements-part-num n1">1</div>
+<div>
+<div class="fondements-part-sub">Un ancrage conceptuel</div>
+<div class="fondements-part-title">La résilience professionnelle : définition</div>
+<p style="font-size:.85rem;color:#555;margin-top:6px;line-height:1.65;">La résilience ne se réduit pas à résister aux difficultés. Elle résulte de ressources développables — personnelles, professionnelles et contextuelles — qui interagissent dans une logique systémique et circulaire.</p>
+</div>
+</div>
+<div class="eval-intro" style="border-left-color:var(--accent3);margin-bottom:32px;">
+    Cette première partie ancre la démarche dans ses fondements scientifiques. Comprendre la nature de la résilience professionnelle — ce qu'elle est, comment elle se développe et pourquoi elle est mesurable — est le préalable indispensable pour interpréter vos résultats et orienter votre plan d'action avec cohérence.
+  </div>
+<div style="background:linear-gradient(135deg,#f8f0ff,#ede7f6);border-radius:16px;padding:28px;border-left:5px solid var(--accent3);margin-top:28px;">
+<h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:14px;">🌿 Résilience professionnelle — au-delà de la résistance</h3>
+<p style="font-size:.87rem;color:#444;margin-bottom:16px;line-height:1.7;">La résilience professionnelle ne consiste pas à "encaisser" indéfiniment. Elle résulte de ressources développables et peut être appréhendée selon trois définitions complémentaires :</p>
+<!-- Trois définitions -->
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:20px;">
+<div style="background:white;border-radius:10px;padding:14px 16px;border-left:4px solid var(--accent3);">
+<div style="font-size:.72rem;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Auto-adaptation</div>
+<div style="font-size:.82rem;color:#444;line-height:1.6;font-style:italic;">« La capacité d'auto-adaptation dans diverses situations stressantes »</div>
+<div style="font-size:.74rem;color:var(--muted);margin-top:6px;">Shirnin, 2022</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px 16px;border-left:4px solid var(--sky);">
+<div style="font-size:.72rem;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Équilibre mental</div>
+<div style="font-size:.82rem;color:#444;line-height:1.6;font-style:italic;">« La capacité à garder un état mental équilibré malgré les difficultés »</div>
+<div style="font-size:.74rem;color:var(--muted);margin-top:6px;">Shirnin, 2022</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px 16px;border-left:4px solid var(--sage);">
+<div style="font-size:.72rem;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Rebond &amp; surf</div>
+<div style="font-size:.82rem;color:#444;line-height:1.6;font-style:italic;">« La capacité de rebondir face à l'adversité et de surfer sur la vague des difficultés »</div>
+<div style="font-size:.74rem;color:var(--muted);margin-top:6px;">Fahim, 2025</div>
+</div>
+</div>
+<!-- Trois piliers -->
+<div style="font-weight:700;font-size:.88rem;color:var(--deep);margin-bottom:12px;">Trois piliers interdépendants :</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;">
+<div style="background:#fff0f3;border-radius:10px;padding:14px;border-top:3px solid var(--accent1);text-align:center;">
+<div style="font-size:1.3rem;margin-bottom:6px;">🧘</div>
+<div style="font-weight:700;font-size:.8rem;color:var(--accent1);margin-bottom:6px;">Ressources personnelles</div>
+<div style="font-size:.75rem;color:#555;line-height:1.6;">Bien-être enseignant · Compétences socio-émotionnelles · Identité professionnelle positive · Sentiment d'efficacité</div>
+</div>
+<div style="background:#f0f4ff;border-radius:10px;padding:14px;border-top:3px solid var(--accent2);text-align:center;">
+<div style="font-size:1.3rem;margin-bottom:6px;">💼</div>
+<div style="font-weight:700;font-size:.8rem;color:var(--accent2);margin-bottom:6px;">Ressources professionnelles</div>
+<div style="font-size:.75rem;color:#555;line-height:1.6;">Nouvelles pratiques saines · Bien-être au travail · Satisfaction professionnelle</div>
+</div>
+<div style="background:#eef6ff;border-radius:10px;padding:14px;border-top:3px solid var(--sky);text-align:center;">
+<div style="font-size:1.3rem;margin-bottom:6px;">🏫</div>
+<div style="font-weight:700;font-size:.8rem;color:var(--sky);margin-bottom:6px;">Soutien de l'environnement</div>
+<div style="font-size:.75rem;color:#555;line-height:1.6;">Climat sain · Collaboration · Réseaux de soutien · Appartenance</div>
+</div>
+</div>
+<!-- Détail des ressources personnelles -->
+<div style="background:white;border-radius:14px;padding:20px 24px;margin-bottom:20px;border-left:4px solid var(--gold);">
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent1);margin-bottom:12px;">Ressources personnelles — quatre composantes</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;">
+<!-- 1. Bien-être enseignant -->
+<div style="background:#fff9f0;border-radius:10px;padding:14px;border-top:3px solid var(--gold);">
+<div style="font-weight:700;font-size:.82rem;color:#b8860b;margin-bottom:8px;">① Bien-être enseignant</div>
+<div style="font-size:.77rem;color:#555;line-height:1.65;">Comment l'enseignant se sent et fonctionne professionnellement, tenant compte de ses émotions, attitudes et perception de son travail. Corrélé positivement à la qualité des relations élèves, la motivation et les performances scolaires.
+          <span style="display:block;margin-top:5px;color:var(--muted);font-style:italic;">(Théorêt &amp; Leroux, 2014)</span></div>
+</div>
+<!-- 2. Compétences socio-émotionnelles -->
+<div style="background:#f3e5f5;border-radius:10px;padding:14px;border-top:3px solid var(--accent3);">
+<div style="font-weight:700;font-size:.82rem;color:var(--accent3);margin-bottom:8px;">② Compétences socio-émotionnelles</div>
+<div style="font-size:.77rem;color:#555;line-height:1.65;">Conscience de soi · maîtrise de soi · conscience sociale · compétences relationnelles · prise de décision responsable.
+          <span style="display:block;margin-top:5px;color:var(--muted);font-style:italic;">(Ben Alaya et al., 2024 ; Goyette &amp; Martineau, 2021)</span></div>
+<!-- Chaîne positive -->
+<div style="margin-top:10px;background:white;border-radius:7px;padding:8px 10px;font-size:.71rem;color:#555;">
+<div style="font-weight:700;color:var(--accent3);margin-bottom:5px;">Chaîne vertueuse (Gaudreau, 2024)</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:3px;line-height:1.6;">
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;font-weight:600;">Compétence émotionnelle</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;">émotions positives</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;">lien de qualité élèves</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;">image pro renforcée</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;">↓ stress / burnout</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;">stabilité émotionnelle</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:#f3e5f5;color:var(--accent3);padding:2px 6px;border-radius:5px;">bien-être élèves</span>
+<span style="color:var(--accent3);">→</span>
+<span style="background:var(--accent3);color:white;padding:2px 6px;border-radius:5px;font-weight:600;">climat positif</span>
+</div>
+</div>
+<div style="font-size:.73rem;color:#555;margin-top:8px;line-height:1.5;">Favorise le sentiment d'efficacité personnelle et l'identité professionnelle.</div>
+</div>
+<!-- 3. Identité professionnelle positive -->
+<div style="background:#e8f5e9;border-radius:10px;padding:14px;border-top:3px solid var(--sage);">
+<div style="font-weight:700;font-size:.82rem;color:var(--sage);margin-bottom:8px;">③ Identité professionnelle positive</div>
+<div style="font-size:.77rem;color:#555;line-height:1.65;">Perception valorisante de son rôle d'enseignant : reconnaissance de ses compétences, cohérence avec ses valeurs, sentiment d'accomplissement personnel.</div>
+<div style="font-size:.75rem;color:#555;margin-top:8px;line-height:1.6;background:white;border-radius:7px;padding:8px 10px;">
+<div style="font-weight:700;color:var(--sage);margin-bottom:5px;">Nourrie par :</div>
+            Expériences réussies · sentiment d'utilité sociale · capacité de gestion des défis
+          </div>
+</div>
+<!-- 4. Sentiment d'efficacité personnelle (SEP) -->
+<div style="background:#e3f2fd;border-radius:10px;padding:14px;border-top:3px solid #0288d1;">
+<div style="font-weight:700;font-size:.82rem;color:#0277bd;margin-bottom:8px;">④ Sentiment d'efficacité personnelle (SEP)</div>
+<div style="font-size:.77rem;color:#555;line-height:1.65;margin-bottom:10px;">Croyance de l'enseignant·e en sa capacité à faire progresser ses élèves malgré les contraintes — déterminant majeur de la qualité de l'enseignement et de la réussite scolaire.
+          <span style="display:block;margin-top:5px;color:var(--muted);font-style:italic;">(Bandura, 1997)</span></div>
+<!-- Effets du SEP élevé -->
+<div style="background:white;border-radius:7px;padding:8px 10px;font-size:.73rem;color:#555;line-height:1.7;">
+<div style="font-weight:700;color:#0277bd;margin-bottom:5px;">Un SEP élevé favorise :</div>
+<div>📘 Un enseignement plus <strong>humaniste, optimiste et efficace</strong></div>
+<div>🧩 Moins de recours aux spécialistes pour les élèves à besoins particuliers</div>
+<div>🔬 Plus grande ouverture à l'<strong>innovation pédagogique</strong>, aux stratégies adaptées et à l'inclusion</div>
+<div>🏆 Une meilleure <strong>gestion de classe</strong> et des <strong>pratiques pédagogiques</strong> à fort impact</div>
+</div>
+</div>
+</div>
+<!-- Cercle vertueux des 4 composantes -->
+<div style="margin-top:16px;background:#f0f7ff;border-radius:10px;padding:14px 16px;border-left:4px solid #0288d1;">
+<div style="font-weight:700;font-size:.78rem;color:#0277bd;margin-bottom:8px;">🔄 Cercle vertueux des quatre composantes <span style="font-weight:400;font-style:italic;color:#555;">(Goyette, 2023)</span></div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:.72rem;">
+<span style="background:#dce8f8;color:#0277bd;padding:3px 8px;border-radius:5px;font-weight:600;">Conscience de ses forces</span>
+<span style="color:#0288d1;">→</span>
+<span style="background:#dce8f8;color:#0277bd;padding:3px 8px;border-radius:5px;">SEP renforcé</span>
+<span style="color:#0288d1;">→</span>
+<span style="background:#dce8f8;color:#0277bd;padding:3px 8px;border-radius:5px;">identité positive</span>
+<span style="color:#0288d1;">→</span>
+<span style="background:#dce8f8;color:#0277bd;padding:3px 8px;border-radius:5px;">satisfaction au travail</span>
+<span style="color:#0288d1;">→</span>
+<span style="background:#dce8f8;color:#0277bd;padding:3px 8px;border-radius:5px;">relations de qualité</span>
+<span style="color:#0288d1;">→</span>
+<span style="background:#dce8f8;color:#0277bd;padding:3px 8px;border-radius:5px;">bien-être enseignant &amp; élèves</span>
+<span style="color:#0288d1;">→</span>
+<span style="background:#0288d1;color:white;padding:3px 8px;border-radius:5px;font-weight:600;">↑ qualité ens. &amp; performances</span>
+</div>
+<div style="font-size:.85rem;color:#2d3a52;margin-top:6px;font-style:italic;font-weight:500;">Les quatre composantes (bien-être, compétences socio-émotionnelles, identité professionnelle, SEP) s'influencent mutuellement pour former ce cercle vertueux.</div>
+</div>
+<div style="background:white;border-radius:14px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 12px rgba(83,52,131,.1);">
+<div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:4px;">Modèle d'interactions · Théorêt &amp; Leroux (2014, p. 9)</div>
+<div style="font-weight:700;font-size:.9rem;color:var(--deep);margin-bottom:16px;text-align:center;">L'effet enseignant — système circulaire</div>
+<!-- Schéma en grille 2x2 avec flèches circulaires -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;max-width:580px;margin:0 auto;">
+<!-- Cellule haut-gauche : Nouvelles pratiques saines -->
+<div style="background:#fce4ec;border-radius:12px 0 0 0;padding:16px;border:2px solid #f48fb1;">
+<div style="font-weight:700;font-size:.8rem;color:#c2185b;margin-bottom:8px;text-align:center;">Nouvelles pratiques saines</div>
+<div style="font-size:.73rem;color:#555;line-height:1.65;">• bien-être au travail<br/>• bien-être personnel<br/>• satisfaction professionnelle</div>
+</div>
+<!-- Cellule haut-droite : Développement de la résilience -->
+<div style="background:#fff9c4;border-radius:0 12px 0 0;padding:16px;border:2px solid #f9a825;">
+<div style="font-weight:700;font-size:.8rem;color:#f57f17;margin-bottom:8px;text-align:center;">Développement de la résilience</div>
+<div style="font-size:.73rem;color:#555;line-height:1.65;">• régulation des émotions, des pensées, des comportements<br/>• réflexion sur la pratique<br/>• sentiment d'efficacité</div>
+</div>
+<!-- Cellule bas-gauche : Santé de l'école -->
+<div style="background:#e3f2fd;border-radius:0 0 0 12px;padding:16px;border:2px solid #64b5f6;">
+<div style="font-weight:700;font-size:.8rem;color:#1565c0;margin-bottom:8px;text-align:center;">Santé de l'école</div>
+<div style="font-size:.73rem;color:#555;line-height:1.65;">• climat sain de l'école<br/>• appartenance à l'école<br/>• collaboration professionnelle<br/>• réseaux de soutien</div>
+</div>
+<!-- Cellule bas-droite : Réussite des élèves -->
+<div style="background:#e8f5e9;border-radius:0 0 12px 0;padding:16px;border:2px solid #81c784;">
+<div style="font-weight:700;font-size:.8rem;color:#2e7d32;margin-bottom:8px;text-align:center;">Réussite des élèves</div>
+<div style="font-size:.73rem;color:#555;line-height:1.65;">• climat favorable de la classe<br/>• engagement dans la tâche<br/>• relation pédagogique et sociale positive</div>
+</div>
+</div>
+<div style="text-align:center;margin-top:12px;font-size:.72rem;color:var(--muted);font-style:italic;">Adaptation du modèle d'interactions entre le bien-être enseignant, la résilience éducationnelle, la réussite des élèves et santé de l'école — Théorêt &amp; Leroux, 2014, p. 9.</div>
+</div>
+<!-- Facteurs internes/externes -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:.8rem;margin-bottom:14px;">
+<div>
+<div style="font-weight:700;color:var(--accent3);margin-bottom:8px;">Facteurs internes</div>
+<div style="color:#555;line-height:1.7;">Auto-efficacité · Régulation émotionnelle · Flexibilité cognitive · Optimisme réaliste</div>
+</div>
+<div>
+<div style="font-weight:700;color:var(--accent3);margin-bottom:8px;">Facteurs externes</div>
+<div style="color:#555;line-height:1.7;">Soutien des collègues · Climat institutionnel · Le développement de relations positives avec les élèves · Sens du travail</div>
+</div>
+</div>
+<div style="margin-top:14px;font-size:.8rem;color:#555;font-style:italic;border-top:1px solid rgba(83,52,131,.15);padding-top:12px;">Bien que la résilience implique des compétences personnelles, elle ne doit pas être utilisée pour justifier des conditions de travail inadéquates. La responsabilité est partagée entre l'individu et l'institution. (Théorêt &amp; Leroux, 2014)</div>
+</div>
+<!-- Influence sur la résilience de l'enseignant -->
+<div style="background:white;border-radius:14px;padding:28px 32px;margin-top:28px;box-shadow:0 2px 16px rgba(83,52,131,.09);border-left:5px solid var(--accent3);">
+<div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent3);margin-bottom:6px;">L'enseignant comme acteur central</div>
+<div style="font-weight:700;font-size:1rem;color:var(--deep);margin-bottom:16px;">Influence sur la résilience de l'enseignant</div>
+<p style="font-size:.88rem;color:#444;line-height:1.75;margin-bottom:16px;">
+      Par son <strong>sentiment d'efficacité personnelle</strong> <span style="color:var(--muted);font-style:italic;">(Bandura, 1997)</span>, sa <strong>posture réflexive</strong> <span style="color:var(--muted);font-style:italic;">(Gaudreau, 2024 ; Fahim, 2022)</span>, ses <strong>croyances et représentations professionnelles</strong> <span style="color:var(--muted);font-style:italic;">(Pajares, 1992 ; Tschannen-Moran, Woolfolk Hoy &amp; Hoy, 1998)</span>, ainsi que la qualité de ses interactions, l'enseignant·e :
+    </p>
+<!-- Facteur de protection / risque -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+<div style="background:#e8f5e9;border-radius:10px;padding:16px 18px;border-top:3px solid #43a047;">
+<div style="font-weight:700;font-size:.8rem;color:#2e7d32;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+<span style="background:#43a047;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;">+</span>
+          Facteur de protection
+        </div>
+<div style="font-size:.82rem;color:#555;line-height:1.65;">
+<strong style="color:#2e7d32;">Alimente</strong> les ressources internes &amp; externes → renforce la résilience professionnelle
+        </div>
+</div>
+<div style="background:#ffebee;border-radius:10px;padding:16px 18px;border-top:3px solid #e53935;">
+<div style="font-weight:700;font-size:.8rem;color:#c62828;margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+<span style="background:#e53935;color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;">−</span>
+          Facteur de risque
+        </div>
+<div style="font-size:.82rem;color:#555;line-height:1.65;">
+<strong style="color:#c62828;">Fragilise</strong> les ressources internes &amp; externes → érode la résilience professionnelle
+        </div>
+</div>
+</div>
+<!-- Ressources internes / externes -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+<div style="background:#f3e5f5;border-radius:10px;padding:14px 18px;">
+<div style="font-weight:700;font-size:.78rem;color:#6a1b9a;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Ressources internes</div>
+<div style="font-size:.82rem;color:#555;line-height:1.65;">Motivation · Régulation émotionnelle · Sentiment d'efficacité · Flexibilité cognitive</div>
+</div>
+<div style="background:#e8eaf6;border-radius:10px;padding:14px 18px;">
+<div style="font-weight:700;font-size:.78rem;color:#283593;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">Ressources externes</div>
+<div style="font-size:.82rem;color:#555;line-height:1.65;">Soutien · Collaboration · Reconnaissance institutionnelle <span style="font-style:italic;color:var(--muted);">(Massé et al., 2020)</span></div>
+</div>
+</div>
+<!-- Flèche circulaire conclusion -->
+<div style="background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:14px;border-left:4px solid var(--accent2);">
+<span style="font-size:1.4rem;color:var(--accent2);flex-shrink:0;">↻</span>
+<div style="font-size:.85rem;color:var(--deep);line-height:1.6;">
+        Ces ressources interagissent pour former le <strong>capital professionnel et personnel de résilience</strong>, dans une logique <strong>circulaire</strong> où l'effet enseignant renforce la résilience — et inversement.
+      </div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="part-2" class="part-section" data-part="2">
+<div class="fondements-part">
+<div class="fondements-part-header part2">
+<div class="fondements-part-num n2">2</div>
+<div>
+<div class="fondements-part-sub">Une approche</div>
+<div class="fondements-part-title">Une conception systémique des ressources des enseignants</div>
+<p style="font-size:.85rem;color:#555;margin-top:6px;line-height:1.65;">Les ressources sont envisagées dans une lecture systémique du fonctionnement professionnel : les dimensions sont interconnectées. Six concepts clés structurent cette vision, accompagnés des principes fondateurs de l'approche.</p>
+</div>
+</div>
+<!-- 6 concepts clés -->
+<div class="concept-grid">
+<div class="concept-card" style="border-left-color:#e94560;">
+<span class="c-num" style="color:#e94560;">1 — Effet enseignant</span>
+<h4>🎯 Le levier le plus déterminant</h4>
+<!-- Citation Hattie -->
+<div style="background:#fff0f3;border-left:4px solid #e94560;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:14px;font-size:.81rem;color:#555;line-height:1.65;font-style:italic;">
+        « Ce que font les enseignants, ce qu'ils pensent et ce qu'ils sont, a un impact majeur sur l'apprentissage des élèves. »
+        <span style="display:block;margin-top:4px;font-style:normal;font-weight:700;color:#c0143c;font-size:.77rem;">Hattie, 2009, p. 238</span>
+</div>
+<p style="font-size:.83rem;color:#444;line-height:1.7;margin-bottom:10px;">L'effet enseignant désigne l'influence exercée par l'enseignant·e sur la gestion de la discipline, le bien-être des élèves et leurs performances — <strong>indépendamment des facteurs externes</strong> (Hattie, 2009). C'est l'idée que ce sont les <strong>croyances, attitudes et pratiques</strong> de l'enseignant·e, plus que les dispositifs ou les moyens matériels, qui déterminent les progrès des élèves.</p>
+<!-- Deux mécanismes -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+<div style="background:#f8f9ff;border-radius:8px;padding:10px 12px;font-size:.77rem;color:#555;line-height:1.6;border-top:3px solid #3a86ff;">
+<div style="font-weight:700;color:#3a86ff;margin-bottom:5px;">🧭 Orientation des pratiques</div>
+          Oriente la <strong>perception des situations éducatives</strong>, les choix pédagogiques et la qualité des rétroactions
+          <span style="display:block;margin-top:4px;font-style:italic;color:#888;font-size:.72rem;">(Gu &amp; Day, 2013 ; Beltman et al., 2011)</span>
+</div>
+<div style="background:#f0fdf4;border-radius:8px;padding:10px 12px;font-size:.77rem;color:#555;line-height:1.6;border-top:3px solid #4a7c59;">
+<div style="font-weight:700;color:#4a7c59;margin-bottom:5px;">🎓 Impact sur les élèves</div>
+          Influence la motivation, les performances, le comportement et le <strong>bien-être des élèves</strong>
+<span style="display:block;margin-top:4px;font-style:italic;color:#888;font-size:.72rem;">(Hattie, 2009)</span>
+</div>
+</div>
+</div>
+<div class="concept-card" style="border-left-color:#2d9cdb;">
+<span class="c-num" style="color:#2d9cdb;">2 — Bien-être enseignant &amp; apprentissages</span>
+<h4>🧠 Le bien-être comme stratégie pédagogique</h4>
+<p>Le bien-être enseignant désigne <strong>comment l'enseignant se sent et fonctionne professionnellement</strong>, tenant compte de ses émotions, attitudes et perception de son travail (Théorêt &amp; Leroux, 2014). Il constitue un socle essentiel pour une gestion efficace des comportements inadaptés.</p>
+<p style="font-size:.8rem;color:#555;margin-top:10px;line-height:1.65;">La recherche met en évidence une <strong>corrélation positive</strong> entre l'état émotionnel et mental des enseignants et : les relations enseignants-élèves, la qualité de l'enseignement (plus créatif, moins stressant), ainsi que les expériences, la motivation, l'engagement et les performances des élèves.</p>
+<p style="font-size:.8rem;color:#555;margin-top:8px;line-height:1.65;"><strong>Lien relationnel invisible :</strong> l'expression des émotions de l'enseignant stimule l'intérêt et nourrit la motivation des élèves (Shirnin, 2022).</p>
+<!-- Chaîne causale cortisol -->
+<div style="background:#fff0f3;border-radius:8px;padding:10px 12px;margin-top:12px;font-size:.75rem;color:#555;line-height:1.6;">
+<div style="font-weight:700;color:var(--accent1);margin-bottom:6px;">⚠️ Chaîne de dégradation — stress enseignant</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;">
+<span style="background:#fce4ec;color:#c62828;padding:3px 8px;border-radius:6px;font-weight:600;">Stress / mal-être enseignant</span>
+<span style="color:var(--accent1);">→</span>
+<span style="background:#fce4ec;color:#c62828;padding:3px 8px;border-radius:6px;">↑ cortisol élèves</span>
+<span style="color:var(--accent1);">→</span>
+<span style="background:#fce4ec;color:#c62828;padding:3px 8px;border-radius:6px;">mode survie</span>
+<span style="color:var(--accent1);">→</span>
+<span style="background:#fce4ec;color:#c62828;padding:3px 8px;border-radius:6px;">émotions &gt; traitement info</span>
+<span style="color:var(--accent1);">→</span>
+<span style="background:#fce4ec;color:#c62828;padding:3px 8px;border-radius:6px;">baisse performances</span>
+<span style="color:var(--accent1);">→</span>
+<span style="background:#fce4ec;color:#c62828;padding:3px 8px;border-radius:6px;">démotivation</span>
+<span style="color:var(--accent1);">→</span>
+<span style="background:#c62828;color:white;padding:3px 8px;border-radius:6px;font-weight:600;">désengagement</span>
+</div>
+</div>
+<p style="font-size:.78rem;color:#555;margin-top:10px;line-height:1.65;">Sur le plan neurobiologique, cette dynamique s'explique par l'interaction entre cinq structures clés : l'<strong>amygdale</strong>, le <strong>cortex préfrontal</strong>, le <strong>cortex cingulaire antérieur</strong>, l'<strong>hippocampe</strong> et le <strong>striatum</strong> — qui interagissent pour moduler le stress et favoriser des réponses adaptées <span style="font-style:italic;">(Ochsner &amp; Gross, 2005 ; Davidson &amp; McEwen, 2012)</span>.</p>
+</div>
+<div class="concept-card" style="border-left-color:#4a7c59;">
+<span class="c-num" style="color:#4a7c59;">3 — Relation enseignant-élève</span>
+<h4>🤝 Facteur protecteur majeur</h4>
+<p>La qualité de la relation est un facteur protecteur particulièrement important pour les élèves en difficulté : elle favorise la motivation intrinsèque, l'engagement, la persévérance et le sentiment d'appartenance. Dans les situations de comportements difficiles, c'est souvent le principal levier d'apaisement.</p>
+</div>
+<div class="concept-card" style="border-left-color:#f5a623;">
+<span class="c-num" style="color:#e65100;">4 — Approche systémique</span>
+<h4>🔗 Un réseau d'interactions</h4>
+<p>Un système est un ensemble d'éléments en interaction constante (Vianin, 2024) : les phénomènes s'expliquent par leurs relations, non par les éléments isolés. Les difficultés scolaires ne peuvent être attribuées à un seul acteur — elles émergent du réseau entre l'élève, l'enseignant, le groupe-classe, le contexte institutionnel, la famille.</p>
+<p style="font-size:.8rem;color:#555;margin-top:8px;line-height:1.65;">Une modification dans un élément peut entraîner des changements en cascade : ajuster une pratique peut réduire les comportements et améliorer le climat de classe tout entier.</p>
+</div>
+<div class="concept-card" style="border-left-color:#533483;">
+<span class="c-num" style="color:#533483;">5 — Locus de contrôle interne</span>
+<h4>💡 Retrouver le pouvoir d'agir</h4>
+<p>Un locus externe conduit à attribuer les difficultés à des facteurs hors de contrôle. Un locus interne consiste à identifier les marges de manœuvre réelles. Cette posture — sans nier les contraintes — est associée à un meilleur sentiment d'efficacité personnelle et à une plus grande persévérance professionnelle.</p>
+</div>
+<div class="concept-card" style="border-left-color:#0f3460;">
+<span class="c-num" style="color:#0f3460;">6 — Boucles de rétroaction</span>
+<h4>🔄 Spirales positives et négatives</h4>
+<p>Toute action produit un effet qui à son tour devient une cause (Bateson, 1977/1972). Ces boucles rétroactives peuvent <strong>renforcer</strong> un phénomène initial (feedback positif) ou l'<strong>atténuer</strong> pour parvenir à l'équilibre du système (feedback négatif).</p>
+<p style="font-size:.8rem;color:#555;margin-top:8px;line-height:1.65;">En classe : une dynamique négative peut s'installer progressivement (agitation → tension → opposition). À l'inverse, des interactions positives répétées transforment le climat. Comprendre ces mécanismes permet d'agir sur les points d'inflexion du système.</p>
+</div>
+</div>
+<!-- Logique des ressources -->
+<div style="background:white;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:28px;">
+<h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--deep);margin-bottom:14px;">Conception systémique des ressources enseignantes</h3>
+<p style="font-size:.88rem;color:#555;margin-bottom:16px;">Les ressources sont envisagées dans une approche systémique : les dimensions du fonctionnement professionnel sont interconnectées. Une fragilisation dans un domaine peut affecter les autres, tandis qu'un renforcement ciblé produit des effets en cascade. Ses <strong>trois principes fondateurs</strong> :</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;">
+<div style="background:#f8f9ff;border-radius:10px;padding:14px;border-top:3px solid var(--accent2);font-size:.8rem;color:#555;line-height:1.6;">
+<div style="font-weight:700;color:var(--accent2);margin-bottom:6px;">① Interdépendance</div>
+        Un système est un ensemble d'éléments en <strong>interaction constante</strong> — les phénomènes s'expliquent par leurs relations, non par les éléments isolés. <span style="font-style:italic;color:var(--muted);">(Vianin, 2024)</span>
+</div>
+<div style="background:#f8f9ff;border-radius:10px;padding:14px;border-top:3px solid var(--accent3);font-size:.8rem;color:#555;line-height:1.6;">
+<div style="font-weight:700;color:var(--accent3);margin-bottom:6px;">② Causalité circulaire</div>
+        Toute action produit un effet qui à son tour devient une cause — la causalité est circulaire, non linéaire. <span style="font-style:italic;color:var(--muted);">(Bateson, 1977/1972)</span>
+</div>
+<div style="background:#f8f9ff;border-radius:10px;padding:14px;border-top:3px solid var(--sage);font-size:.8rem;color:#555;line-height:1.6;">
+<div style="font-weight:700;color:var(--sage);margin-bottom:6px;">③ Boucles de feedback</div>
+        Le feedback <strong>positif</strong> renforce le phénomène initial ; le feedback <strong>négatif</strong> l'atténue pour rétablir l'équilibre. <span style="font-style:italic;color:var(--muted);">(Bateson, 1977/1972)</span>
+</div>
+</div>
+<blockquote style="border-left:4px solid var(--accent3);margin:0 0 16px 0;padding:12px 18px;background:linear-gradient(135deg,#f8f0ff,#ede7f6);border-radius:0 10px 10px 0;font-size:.87rem;color:var(--deep);font-style:italic;line-height:1.7;">
+      « Il n'est plus possible de dissocier un problème du cadre dans lequel il apparaît »
+      <cite style="display:block;margin-top:6px;font-style:normal;font-size:.78rem;color:var(--muted);font-weight:600;">— Évéquoz, G. (1998, p. 97)</cite>
+</blockquote>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+<div style="background:#fff0f3;border-radius:12px;padding:18px;">
+<div style="font-weight:700;font-size:.85rem;color:var(--accent1);margin-bottom:10px;">🧘 Ressources personnelles</div>
+<div style="font-size:.8rem;color:#555;line-height:1.75;">Bien-être enseignant · Régulation émotionnelle · Sentiment d'efficacité personnelle · Motivation · Capacité d'adaptation · Énergie physique et mentale · Soutien social</div>
+</div>
+<div style="background:#f0f4ff;border-radius:12px;padding:18px;">
+<div style="font-weight:700;font-size:.85rem;color:var(--accent2);margin-bottom:10px;">💼 Ressources professionnelles</div>
+<div style="font-size:.8rem;color:#555;line-height:1.75;">Gestion de classe · Organisation pédagogique · Relation éducative · Engagement des élèves · Ajustement aux besoins · Clarté des attentes · Cohérence des interventions</div>
+</div>
+</div>
+<div class="highlight-box" style="margin-top:16px;font-size:.84rem;"><strong>Interaction :</strong> Une pratique pédagogique efficace peut devenir difficile à maintenir si l'enseignant est épuisé. Inversement, un bon niveau d'énergie peut compenser temporairement certaines lacunes techniques. Ces deux dimensions se nourrissent mutuellement.</div>
+</div>
+<!-- Application contexte scolaire -->
+<div style="background:white;border-radius:16px;padding:28px;box-shadow:0 2px 16px rgba(0,0,0,.06);margin-bottom:28px;border-top:5px solid var(--gold);">
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Approche systémique · Application</div>
+<h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep);margin-bottom:16px;">🏫 Application en contexte scolaire</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+<div style="background:#fff8e1;border-radius:12px;padding:18px;border-left:4px solid var(--gold);">
+<div style="font-weight:700;font-size:.85rem;color:#b8860b;margin-bottom:10px;">Avant — Lecture linéaire</div>
+<div style="font-size:.8rem;color:#555;line-height:1.7;">Causalité linéaire et locus externe : les difficultés d'un élève sont attribuées à l'élève lui-même. L'enseignant cherche <em>la faute</em> dans le comportement ou les capacités de l'élève.</div>
+</div>
+<div style="background:#e8f5e9;border-radius:12px;padding:18px;border-left:4px solid var(--sage);">
+<div style="font-weight:700;font-size:.85rem;color:var(--sage);margin-bottom:10px;">Après — Lecture systémique</div>
+<div style="font-size:.8rem;color:#555;line-height:1.7;">Causalité circulaire et locus interne : l'enseignant·e analyse les interactions et reconnaît son rôle dans les dynamiques relationnelles et la régulation des comportements.</div>
+</div>
+</div>
+<div style="font-weight:600;font-size:.87rem;color:var(--deep);margin-bottom:12px;">Ce changement de paradigme implique :</div>
+<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+<div style="background:#fafbff;border-radius:10px;padding:12px 16px;font-size:.82rem;color:#444;line-height:1.6;display:flex;gap:10px;">
+<span style="color:var(--accent2);font-weight:700;flex-shrink:0;">①</span>
+<span>Un <strong>changement de posture éducative</strong> : les difficultés d'un élève sont lues comme le résultat d'interactions dysfonctionnelles au sein d'un système — pas comme un déficit individuel.</span>
+</div>
+<div style="background:#fafbff;border-radius:10px;padding:12px 16px;font-size:.82rem;color:#444;line-height:1.6;display:flex;gap:10px;">
+<span style="color:var(--accent2);font-weight:700;flex-shrink:0;">②</span>
+<span>Des <strong>interventions au niveau des interactions</strong> : comprendre la fonction d'un comportement problématique plutôt qu'agir sur l'individu — pour rétablir l'équilibre du système.</span>
+</div>
+</div>
+<div style="background:linear-gradient(135deg,var(--deep),var(--accent2));border-radius:12px;padding:16px 20px;font-size:.84rem;color:white;line-height:1.65;">
+<span style="color:var(--gold);font-weight:700;">→ </span>Cette lecture favorise une <strong style="color:var(--gold);">meilleure prévention du stress, de l'épuisement et des échecs répétitifs</strong> pour transformer durablement les situations éducatives.
+    </div>
+</div>
+</div>
+</section>
+
+<section id="part-3" class="part-section" data-part="3">
+<div class="fondements-part">
+<div class="fondements-part-header part3">
+<div class="fondements-part-num n3">3</div>
+<div>
+<div class="fondements-part-sub">Un modèle neuroscientifique</div>
+<div class="fondements-part-title">Le modèle PRÉSENCE</div>
+<p style="font-size:.85rem;color:#555;margin-top:6px;line-height:1.65;">Cadre neuroéducatif développé par Fahim (2022), il articule huit concepts fondamentaux des neurosciences de l'éducation. Cliquer sur chaque lettre pour découvrir le mécanisme et ses implications pédagogiques.</p>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════════
+       MODÈLE PRÉSENCE — intégré dans Fondements
+  ════════════════════════════════════════════════════════ -->
+<div id="presence" style="margin-top:48px;">
+<div class="section-label" style="margin-bottom:8px;">Cadre neuroéducatif · Fahim (2022)</div>
+<h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);margin-bottom:10px;">Le modèle PRÉSENCE — fil conducteur de la démarche</h3>
+<div class="presence-intro" style="margin-bottom:28px;">
+<p style="font-size:.92rem;color:#444;line-height:1.75;">Le modèle <strong>PRÉSENCE</strong> (Fahim, 2022) articule huit concepts fondamentaux des neurosciences de l'éducation. Il offre à l'enseignant·e une grille de lecture du fonctionnement cérébral de ses élèves — et de lui-même — pour ajuster ses pratiques en connaissance de cause. Chaque lettre éclaire un mécanisme neurobiologique réel, traduit ici en gestes pédagogiques concrets.</p>
+<div class="presence-acronym">
+<div class="p-letter-box" style="background:#e94560;">P</div>
+<div class="p-letter-box" style="background:#2d9cdb;">R</div>
+<div class="p-letter-box" style="background:#4a7c59;">É</div>
+<div class="p-letter-box" style="background:#f5a623;">S</div>
+<div class="p-letter-box" style="background:#533483;">E</div>
+<div class="p-letter-box" style="background:#eb5757;">N</div>
+<div class="p-letter-box" style="background:#27ae60;">C</div>
+<div class="p-letter-box" style="background:#0f3460;">E</div>
+</div>
+<p style="font-size:.8rem;color:var(--muted);margin-top:10px;">Fahim, C. (2022). PRESENCE d'une Prédisposition : Premier épisode d'une série de huit épisodes sur le cerveau. <em>Cortica, 1</em>(2), 464–492. <a href="https://doi.org/10.26034/cortica.2022.3344" rel="noopener noreferrer" style="color:var(--sky);" target="_blank">https://doi.org/10.26034/cortica.2022.3344</a></p>
+</div>
+<div class="presence-accordion-grid">
+<!-- ─── TOGGLE : Bases neurologiques (dépliable) ─── -->
+<div style="grid-column:1/-1;margin-bottom:8px;">
+<button class="neuro-toggle-btn" data-action="toggleneuro" id="neuro-btn">
+<span class="ntb-icon">▼</span>
+<span class="ntb-label">🧠 Bases neurologiques — Structures cérébrales &amp; implications pédagogiques</span>
+<span class="ntb-hint">Cliquer pour déplier</span>
+</button>
+<div class="neuro-panel" id="neuro-panel">
+<!-- ─── Réseau intégré : bases neurologiques ─── -->
+<div style="grid-column:1/-1;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border-radius:14px;padding:24px 28px;border-left:5px solid var(--accent2);margin-bottom:8px;">
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;">Réseau intégré · Bases neurologiques</div>
+<div style="font-weight:700;font-size:.97rem;color:var(--deep);margin-bottom:12px;">Émotion — Cognition — Adaptation</div>
+<p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:16px;">Le modèle PRÉSENCE© repose sur un réseau de structures cérébrales interdépendantes qui régulent ensemble les émotions, l'attention et l'apprentissage. Ces cinq structures interagissent pour moduler le stress et favoriser des réponses adaptées.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-bottom:14px;">
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid #e94560;">
+<div style="font-weight:700;font-size:.82rem;color:#e94560;margin-bottom:5px;">🔴 Amygdale</div>
+<div style="font-size:.78rem;color:#555;line-height:1.6;">Régule la peur et les émotions négatives. Activée en contexte de stress ou de menace perçue, elle peut court-circuiter l'accès au cortex préfrontal.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid var(--accent2);">
+<div style="font-weight:700;font-size:.82rem;color:var(--accent2);margin-bottom:5px;">🔵 Cortex préfrontal</div>
+<div style="font-size:.78rem;color:#555;line-height:1.6;">Siège des fonctions exécutives : contrôle, planification, raisonnement, prise de décision <span style="font-style:italic;">(Diamond, 2013)</span>. Encore en maturation jusqu'à 25 ans chez l'adolescent <span style="font-style:italic;">(Casey et al., 2008)</span>.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid var(--sage);">
+<div style="font-weight:700;font-size:.82rem;color:var(--sage);margin-bottom:5px;">🟢 Cortex cingulaire antérieur</div>
+<div style="font-size:.78rem;color:#555;line-height:1.6;">Régule l'attention, les émotions et l'apprentissage par l'erreur. Médiateur entre le système émotionnel et les fonctions cognitives supérieures.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid var(--sky);">
+<div style="font-weight:700;font-size:.82rem;color:var(--sky);margin-bottom:5px;">🩵 Hippocampe</div>
+<div style="font-size:.78rem;color:#555;line-height:1.6;">Mémoire et apprentissages. Sa plasticité synaptique se renforce lors d'activités réductrices de stress — soutien clé à la récupération et à la reconstruction après des épreuves <span style="font-style:italic;">(Davidson &amp; McEwen, 2012)</span>.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid var(--gold);">
+<div style="font-weight:700;font-size:.82rem;color:var(--gold);margin-bottom:5px;">🟡 Striatum</div>
+<div style="font-size:.78rem;color:#555;line-height:1.6;">Rôle central dans l'anticipation de la récompense, la persévérance et les apprentissages. Intègre les informations cognitives, sensorielles et émotionnelles.</div>
+</div>
+</div>
+<div style="background:white;border-radius:10px;padding:12px 16px;font-size:.78rem;color:var(--deep);border-left:3px solid var(--accent3);line-height:1.65;">
+<strong>→ Ces structures interagissent</strong> pour moduler le stress et favoriser des réponses adaptées. Un environnement de classe sécurisant — porté par la posture de l'enseignant·e — réduit l'activité de l'amygdale et libère le cortex préfrontal pour l'apprentissage.
+          <span style="display:block;margin-top:6px;font-size:.73rem;color:var(--muted);font-style:italic;">Ochsner, K.N. &amp; Gross, J.J. (2005). <em>The cognitive control of emotion.</em> Trends in Cognitive Sciences, 9(5). · Davidson, R.J. &amp; McEwen, B.S. (2012). <em>Social influences on neuroplasticity.</em> Nature Neuroscience, 15(5). · Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> Freeman.</span>
+</div>
+</div>
+<!-- ─── Implications pédagogiques : effet du stress de l'enseignant ─── -->
+<div style="grid-column:1/-1;background:linear-gradient(135deg,#fff5f5,#ffe8e8);border-radius:14px;padding:24px 28px;border-left:5px solid var(--accent1);margin-bottom:8px;">
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent1);margin-bottom:8px;">Implications pédagogiques · Contagion émotionnelle</div>
+<div style="font-weight:700;font-size:.97rem;color:var(--deep);margin-bottom:12px;">⚠️ Effet du stress de l'enseignant sur le cerveau de l'élève</div>
+<p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:18px;">Le stress de l'enseignant est perçu par l'élève par <strong>contagion émotionnelle</strong>, via des mécanismes de résonnance affective impliquant notamment les systèmes neuronaux de l'imitation et du partage émotionnel. Cela entraîne une activation de l'amygdale chez l'élève, qui interprète la situation comme potentiellement menaçante et déclenche un <strong>mode de survie</strong>.</p>
+<div style="font-weight:600;font-size:.85rem;color:var(--deep);margin-bottom:12px;">Dans cet état, quatre mécanismes se dégradent simultanément :</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px;">
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--accent2);">
+<div style="font-weight:700;font-size:.8rem;color:var(--accent2);margin-bottom:5px;">🔵 Cortex préfrontal — inhibé</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">L'attention, le raisonnement, le contrôle inhibiteur et la planification sont court-circuités. L'élève ne peut plus accéder à ses ressources cognitives supérieures.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--sky);">
+<div style="font-weight:700;font-size:.8rem;color:var(--sky);margin-bottom:5px;">🩵 Hippocampe — activité réduite</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">L'encodage et la consolidation des informations sont limités. Ce qui est présenté en classe ne se grave pas en mémoire à long terme.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--gold);">
+<div style="font-weight:700;font-size:.8rem;color:#b8860b;margin-bottom:5px;">🟡 Striatum — désactivé</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">La motivation et le plaisir d'apprendre s'effondrent. L'engagement diminue, non par mauvaise volonté, mais par réponse neurobiologique au stress perçu.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--sage);">
+<div style="font-weight:700;font-size:.8rem;color:var(--sage);margin-bottom:5px;">🟢 Cortex cingulaire — moins efficace</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">La régulation attentionnelle et la flexibilité cognitive se dégradent. S'adapter aux consignes et se recentrer devient difficile pour l'élève.</div>
+</div>
+</div>
+<div style="background:#1a1a2e;border-radius:10px;padding:14px 18px;font-size:.82rem;color:white;line-height:1.65;">
+<strong style="color:var(--gold);">Conséquence :</strong> L'ensemble conduit à une <strong>indisponibilité cognitive globale</strong> — l'élève peut être présent physiquement, mais non disponible neurocognitivement pour apprendre. <span style="color:rgba(255,255,255,.65);">La régulation émotionnelle de l'enseignant·e n'est donc pas un luxe, c'est une condition préalable à l'apprentissage.</span>
+</div>
+</div>
+<!-- ─── Architecture cérébrale au service de l'adaptation ─── -->
+<div style="grid-column:1/-1;background:linear-gradient(135deg,#f0faf4,#e6f4ea);border-radius:14px;padding:24px 28px;border-left:5px solid var(--sage);margin-bottom:8px;">
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">Implications pédagogiques · Climat sécurisant</div>
+<div style="font-weight:700;font-size:.97rem;color:var(--deep);margin-bottom:12px;">✅ Une architecture cérébrale au service de l'adaptation</div>
+<p style="font-size:.85rem;color:#555;line-height:1.7;margin-bottom:18px;">Lorsque le climat d'apprentissage est <strong>sécurisant et régulé</strong>, ces mêmes structures fonctionnent de manière coordonnée, soutenant quatre processus fondamentaux :</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:18px;">
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid #e94560;">
+<div style="font-weight:700;font-size:.8rem;color:#e94560;margin-bottom:5px;">🔴 Régulation émotionnelle</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">L'amygdale s'apaise. L'élève sort du mode de survie et peut mobiliser ses ressources cognitives supérieures.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--accent2);">
+<div style="font-weight:700;font-size:.8rem;color:var(--accent2);margin-bottom:5px;">🔵 Flexibilité cognitive</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">Le cortex préfrontal et le cortex cingulaire antérieur se mobilisent pleinement — attention, raisonnement et adaptation aux consignes deviennent possibles.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--gold);">
+<div style="font-weight:700;font-size:.8rem;color:#b8860b;margin-bottom:5px;">🟡 Motivation &amp; persévérance</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">Le striatum s'active. Le plaisir d'apprendre, l'anticipation de la récompense et l'engagement soutenu reviennent naturellement.</div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-left:4px solid var(--sky);">
+<div style="font-weight:700;font-size:.8rem;color:var(--sky);margin-bottom:5px;">🩵 Encodage mémoriel</div>
+<div style="font-size:.77rem;color:#555;line-height:1.6;">L'hippocampe fonctionne de manière optimale — les informations s'encodent et se consolident efficacement en mémoire à long terme.</div>
+</div>
+</div>
+<div style="font-weight:600;font-size:.85rem;color:var(--deep);margin-bottom:10px;">Cette architecture permet à l'enseignant·e de :</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+<div style="background:white;border-radius:8px;padding:10px 14px;font-size:.78rem;color:#444;line-height:1.6;display:flex;gap:8px;align-items:flex-start;">
+<span style="color:var(--sage);font-weight:700;flex-shrink:0;">→</span>
+<span>Créer un environnement <strong>contenant, sécurisant et prévisible</strong>, avec du sens et de la souplesse relationnelle.</span>
+</div>
+<div style="background:white;border-radius:8px;padding:10px 14px;font-size:.78rem;color:#444;line-height:1.6;display:flex;gap:8px;align-items:flex-start;">
+<span style="color:var(--sage);font-weight:700;flex-shrink:0;">→</span>
+<span>Favoriser la <strong>motivation, l'initiative et l'engagement soutenu</strong> des élèves.</span>
+</div>
+<div style="background:white;border-radius:8px;padding:10px 14px;font-size:.78rem;color:#444;line-height:1.6;display:flex;gap:8px;align-items:flex-start;">
+<span style="color:var(--sage);font-weight:700;flex-shrink:0;">→</span>
+<span>Renforcer le <strong>sentiment d'efficacité personnelle</strong> des élèves par des expériences répétées de réussite possible.</span>
+</div>
+<div style="background:white;border-radius:8px;padding:10px 14px;font-size:.78rem;color:#444;line-height:1.6;display:flex;gap:8px;align-items:flex-start;">
+<span style="color:var(--sage);font-weight:700;flex-shrink:0;">→</span>
+<span>Améliorer la <strong>gestion du stress</strong>, tant chez l'enseignant·e que chez l'élève, en stabilisant l'état interne partagé.</span>
+</div>
+</div>
+<div style="background:white;border-radius:10px;padding:10px 16px;font-size:.76rem;color:var(--muted);font-style:italic;border-top:2px solid #d4edda;text-align:right;">
+          Modèle PRÉSENCE© — Fahim, C. (2022). PRESENCE d'une Prédisposition : Premier épisode d'une série de huit épisodes sur le cerveau. <em>Cortica, 1</em>(2), 464–492. https://doi.org/10.26034/cortica.2022.3344
+        </div>
+</div>
+</div><!-- /neuro-panel -->
+</div><!-- /neuro-toggle wrapper -->
+<div class="presence-acc-card animate" style="border-top-color:#e94560;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#e94560;">P</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Prédisposition génétique &amp; épigénétique</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#e94560;margin-bottom:4px;">🧬 Ce que dit la science</strong>
+          Chaque élève arrive en classe avec un profil biologique unique. Mais les gènes ne sont pas un destin fixe : l'environnement classe — la qualité des interactions, le niveau de stress, la richesse des expériences — influence directement l'expression génétique via des mécanismes épigénétiques.
+          <strong style="display:block;font-size:.78rem;color:#e94560;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Proposer plusieurs entrées dans la tâche (visuelle, orale, manipulation). Observer les réponses différentielles plutôt que de les homogénéiser. Adopter une posture de curiosité face à la variabilité — elle n'est pas un obstacle, elle est le reflet de la biologie.
+          </div>
+</div>
+</div>
+<div class="presence-acc-card animate delay-1" style="border-top-color:#2d9cdb;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#2d9cdb;">R</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Réseaux de neurones</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#2d9cdb;margin-bottom:4px;">🧠 Ce que dit la science</strong>
+          Apprendre, c'est créer et consolider des connexions entre neurones. Ces réseaux se renforcent par la répétition active, la pratique variée et le retour d'information immédiat. Un contenu vu une seule fois ne laisse qu'une trace fragile.
+          <strong style="display:block;font-size:.78rem;color:#2d9cdb;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Réactiver les acquis en début de séance (rappel, quiz rapide, carte mentale). Alterner les formats — résoudre, expliquer, créer, évaluer. Valoriser l'erreur comme signal visible d'un réseau en cours de câblage, pas comme un échec.
+          </div>
+<div class="encadrement-note" style="margin-top:10px;margin-bottom:2px;">
+<div class="enc-header">📘 Pour aller plus loin — Masson (2020)</div>
+            Les <strong>chapitres 1 à 3</strong> d'<em>Activer ses neurones</em> détaillent les mécanismes d'activation des bons neurones, de répétition et de récupération en mémoire — avec des stratégies concrètes directement transférables en classe. Les <strong>chapitres 4 et 5</strong> approfondissent l'élaboration d'explications et l'espacement des activations.
+            <div class="enc-links">
+<a class="enc-link" href="#res-activer-neurones" onclick="showTab('ressources');setTimeout(()=&gt;{var el=document.getElementById('res-activer-neurones');if(el)el.scrollIntoView({behavior:'smooth'})},300);return false;">📄 Extraits mis en forme · bibliothèque de ressources</a>
+</div>
+</div>
+</div>
+</div>
+<div class="presence-acc-card animate delay-1" style="border-top-color:#4a7c59;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#4a7c59;">É</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Élagage synaptique (enfance)</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#4a7c59;margin-bottom:4px;">🌱 Ce que dit la science</strong>
+          Après une explosion synaptique dans les premières années de vie, le cerveau procède à un <strong>premier élagage intense</strong> entre environ 2 et 6 ans : les connexions peu stimulées disparaissent, les réseaux actifs se renforcent. Ce processus — documenté dès les années 1980 <em>(Huttenlocher, 1979)</em> et précisé depuis <em>(Huttenlocher &amp; Dabholkar, 1997)</em> — détermine en grande partie l'architecture cérébrale de l'enfant. Les premières années scolaires sont donc une <strong>fenêtre de plasticité maximale</strong> pour le langage, les émotions et les fondations cognitives.
+          <strong style="display:block;font-size:.78rem;color:#4a7c59;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Multiplier les expériences riches, sensorielles et cognitives. Créer un environnement sécurisant — le stress chronique perturbe l'élagage et fragilise les réseaux préfrontaux en développement. Proposer des rituels signifiants et des activités variées, car le cerveau consolide ce qui est activé répétitivement.
+          <div style="margin-top:10px;padding:8px 12px;background:#f0f7f4;border-radius:8px;font-size:.73rem;color:#555;line-height:1.6;">
+            Huttenlocher, P.R. (1979). Synaptic density in human frontal cortex. <em>Brain Research, 163</em>(2), 195–205. ·
+            Huttenlocher, P.R. &amp; Dabholkar, A.S. (1997). Regional differences in synaptogenesis in human cerebral cortex. <em>Journal of Comparative Neurology, 387</em>(2), 167–178.
+          </div>
+</div>
+</div>
+</div>
+<div class="presence-acc-card animate delay-2" style="border-top-color:#f5a623;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#f5a623;">S</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Synchronisation cérébrale</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#f5a623;margin-bottom:4px;">🔄 Ce que dit la science</strong>
+          En interaction, les cerveaux se synchronisent : le calme de l'enseignant·e se propage neurobiologiquement dans la classe. Le contact visuel, la voix posée et l'écoute active favorisent cet alignement émotionnel — fondement neurobiologique de la relation pédagogique.
+          <strong style="display:block;font-size:.78rem;color:#f5a623;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Instaurer des rituels d'entrée en classe qui favorisent la concentration collective (respiration, silence guidé, intention de séance). Réguler sa propre voix et son rythme en cas de tension — le groupe suit biologiquement ce que l'enseignant incarne.
+          </div>
+</div>
+</div>
+<div class="presence-acc-card animate delay-2" style="border-top-color:#533483;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#533483;">E</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Élagage synaptique (adolescence)</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#533483;margin-bottom:4px;">⚡ Ce que dit la science</strong>
+          L'adolescence est une <strong>deuxième vague d'élagage synaptique</strong>, particulièrement intense dans le cortex préfrontal <em>(Giedd et al., 1999)</em>. Ce raffinement se poursuit jusqu'au milieu de la vingtaine <em>(Petanjek et al., 2011)</em>, créant un décalage caractéristique : les systèmes émotionnels et de récompense (amygdale, circuits dopaminergiques) sont pleinement actifs, tandis que le « frein » préfrontal est encore en construction <em>(Casey et al., 2008 ; Blakemore &amp; Choudhury, 2006)</em>. L'impulsivité, l'instabilité émotionnelle et la prise de risque ne sont pas de la mauvaise volonté — elles reflètent une architecture cérébrale en pleine refonte.
+          <strong style="display:block;font-size:.78rem;color:#533483;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Proposer des défis mobilisant la pensée critique et les projets collaboratifs. Adapter ses attentes comportementales au stade neurologique réel. Éviter les confrontations publiques — elles activent l'amygdale et court-circuitent l'accès aux ressources cognitives. Maintenir des routines prévisibles qui offrent un cadre structurant.
+          <div style="margin-top:10px;padding:8px 12px;background:#f3f0f8;border-radius:8px;font-size:.73rem;color:#555;line-height:1.6;">
+            Giedd, J.N. et al. (1999). Brain development during childhood and adolescence. <em>Nature Neuroscience, 2</em>(10), 861–863. ·
+            Casey, B.J. et al. (2008). The adolescent brain. <em>Developmental Review, 28</em>(1), 62–77. ·
+            Blakemore, S.-J. &amp; Choudhury, S. (2006). Development of the adolescent brain. <em>Journal of Child Psychology and Psychiatry, 47</em>(3–4), 296–312. ·
+            Petanjek, Z. et al. (2011). Extraordinary neoteny of synaptic spines in the human prefrontal cortex. <em>PNAS, 108</em>(32), 13281–13286.
+          </div>
+</div>
+</div>
+</div>
+<div class="presence-acc-card animate delay-3" style="border-top-color:#eb5757;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#eb5757;">N</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Neuroplasticité</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#eb5757;margin-bottom:4px;">🔀 Ce que dit la science</strong>
+          Le cerveau se remodèle tout au long de la vie : c'est la neuroplasticité. Sous l'effet de l'apprentissage, de l'effort et des expériences vécues, les connexions entre neurones se renforcent, s'affinent et se réorganisent — y compris à l'âge adulte. Aucun élève n'est « figé » dans ses capacités.
+          <strong style="display:block;font-size:.78rem;color:#eb5757;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Nommer explicitement la neuroplasticité aux élèves ("ton cerveau change quand tu t'entraînes"). Valoriser l'effort bien plus que le résultat. Présenter les obstacles comme des occasions de recâblage neuronal — et le croire soi-même pour le transmettre.
+          </div>
+<div class="encadrement-note" style="margin-top:10px;margin-bottom:2px;">
+<div class="enc-header">📘 Pour aller plus loin — Masson (2020)</div>
+            Le <strong>chapitre 7</strong> d'<em>Activer ses neurones</em> traite spécifiquement de l'<strong>état d'esprit dynamique</strong> (<em>growth mindset</em>) et de son ancrage neurobiologique : rôle de la dopamine et du striatum dans la motivation, effect du renforcement sur l'apprentissage, et — point crucial — comment formuler des rétroactions et des encouragements <em>compatibles</em> avec un état d'esprit dynamique. Des exemples de formulations à utiliser (et à éviter) y sont proposés.
+            <div class="enc-links">
+<a class="enc-link" href="#res-activer-neurones" onclick="showTab('ressources');setTimeout(()=&gt;{var el=document.getElementById('res-activer-neurones');if(el)el.scrollIntoView({behavior:'smooth'})},300);return false;">📄 Extraits mis en forme · bibliothèque de ressources</a>
+</div>
+</div>
+</div>
+</div>
+<div class="presence-acc-card animate delay-3" style="border-top-color:#27ae60;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#27ae60;">C</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Conscience</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#27ae60;margin-bottom:4px;">🪞 Ce que dit la science</strong>
+          La conscience de soi — de ses émotions, de ses automatismes, de son état interne — améliore la régulation et la prise de décision. Un élève (ou un enseignant) conscient de son fonctionnement dispose d'un levier de transformation puissant.
+          <strong style="display:block;font-size:.78rem;color:#27ae60;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Introduire des temps de réflexivité (journaux d'apprentissage, bilans émotionnels de fin de séance). Modéliser sa propre régulation devant les élèves : "Je sens que je dois m'arrêter pour réfléchir." Enseigner des mots pour nommer les émotions — nommer régule.
+          </div>
+</div>
+</div>
+<script>
+function downloadApprofondirPDF() {
+  var url = 'https://rodoguigs.github.io/Ressources_Autoformation/pdf/fondements_scientifiques.pdf';
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'Autoformation_Fondements_scientifiques.pdf';
+  a.target = '_blank';
+  a.rel = 'noopener';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
+<div class="presence-acc-card animate delay-4" style="border-top-color:#0f3460;">
+<div aria-expanded="false" class="presence-acc-header" data-action="togglepresencecard" onkeydown="if(event.key==='Enter'||event.key===' '){togglePresenceCard(this);event.preventDefault();}" role="button" tabindex="0">
+<div class="presence-acc-letter" style="color:#0f3460;">E</div>
+<div class="presence-acc-title-wrap">
+<div class="presence-acc-title">Et le libre arbitre</div>
+</div>
+<span class="presence-acc-icon">▼</span>
+</div>
+<div class="presence-acc-body">
+<div style="padding-top:14px;font-size:.83rem;color:#555;line-height:1.6;">
+<strong style="display:block;font-size:.78rem;color:#0f3460;margin-bottom:4px;">🗝️ Ce que dit la science</strong>
+          Percevoir qu'on a du pouvoir sur ses choix active les circuits de récompense et renforce la motivation intrinsèque. L'autonomie perçue est un puissant levier d'engagement — le cerveau investit davantage ce qu'il a choisi.
+          <strong style="display:block;font-size:.78rem;color:#0f3460;margin-top:8px;margin-bottom:4px;">📌 En classe, concrètement</strong>
+          Offrir des choix réels : format de rendu, ordre des activités, rythme de travail, angle d'un sujet. Impliquer les élèves dans la co-construction des règles de classe. Plus l'élève perçoit son pouvoir d'agir, plus son engagement est durable et authentique.
+          </div>
+</div>
+</div>
+</div>
+<!-- ── JONCTION N × E ──────────────────────────────────── -->
+<div style="margin-top:24px;background:linear-gradient(135deg,#fff8e1,#fce4ec);border-radius:16px;padding:24px 28px;border-left:5px solid #f5a623;box-shadow:0 2px 16px rgba(0,0,0,.06);">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+<div style="display:flex;gap:6px;flex-shrink:0;">
+<span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#eb5757;color:white;font-weight:900;font-size:.95rem;">N</span>
+<span style="display:inline-flex;align-items:center;justify-content:center;font-size:1rem;color:#aaa;">×</span>
+<span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#0f3460;color:white;font-weight:900;font-size:.95rem;">E</span>
+</div>
+<div style="font-weight:700;font-size:.95rem;color:#2a2a3d;">Jonction clé — Neuroplasticité &amp; Libre arbitre : le levier de l'autodétermination</div>
+</div>
+<p style="font-size:.86rem;color:#444;line-height:1.75;margin-bottom:14px;">Ces deux dimensions du modèle PRÉSENCE convergent vers un même message pédagogique puissant : <strong>le cerveau change, et c'est l'élève qui pilote ce changement.</strong> Ce n'est pas une métaphore motivationnelle — c'est une réalité neurobiologique et psychologique validée empiriquement.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid #eb5757;">
+<div style="font-size:.72rem;font-weight:700;color:#eb5757;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">N — Neuroplasticité</div>
+<div style="font-size:.82rem;color:#444;line-height:1.6;"><em>« Mon cerveau se recâble selon mes expériences et mes efforts. »</em><br/><span style="font-size:.75rem;color:#888;">Hebb, 1949 ; Draganski et al., 2004</span></div>
+</div>
+<div style="background:white;border-radius:10px;padding:14px;border-top:3px solid #0f3460;">
+<div style="font-size:.72rem;font-weight:700;color:#0f3460;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;">E — Libre arbitre / Agentivité</div>
+<div style="font-size:.82rem;color:#444;line-height:1.6;"><em>« C'est moi qui choisis de m'entraîner, de persister, de m'adapter. »</em><br/><span style="font-size:.75rem;color:#888;">Deci &amp; Ryan, 1985 ; Vohs &amp; Schooler, 2008</span></div>
+</div>
+</div>
+<div style="background:rgba(245,166,35,.12);border-radius:10px;padding:14px 16px;font-size:.84rem;color:#2a2a3d;line-height:1.7;margin-bottom:14px;">
+<strong style="display:block;margin-bottom:6px;color:#b85c00;">🔗 Pourquoi cette jonction est décisive pour l'engagement des élèves</strong>
+        Croire que le cerveau est plastique sans se percevoir comme agent de ce changement produit une connaissance passive. Percevoir qu'on peut choisir sans comprendre que ce choix laisse une trace neurobiologique reste une conviction fragile. <strong>C'est la combinaison des deux</strong> qui génère un engagement durable : l'élève qui comprend que <em>ses efforts modifient concrètement son architecture cérébrale</em> dispose d'une raison neurobiologique — pas seulement motivationnelle — de persister.
+      </div>
+<div style="font-size:.82rem;color:#444;line-height:1.75;margin-bottom:10px;">
+<strong>Validation empirique :</strong> Vohs &amp; Schooler (2008) montrent qu'induire une croyance déterministe (<em>« tes choix sont illusoires »</em>) dégrade l'autorégulation et augmente les comportements contre-productifs — indépendamment de toute variable motivationnelle. À l'inverse, renforcer la croyance en l'agentivité améliore la persistance et la coopération <em>(Baumeister, Masicampo &amp; DeWall, 2009)</em>. Les interventions combinant <em>growth mindset</em> (plasticité) et sens du but (agentivité) produisent des gains académiques significatifs, y compris chez des élèves à risque de décrochage <em>(Paunesku et al., 2015, PNAS, N &gt; 1500)</em>.
+      </div>
+<div style="background:white;border-radius:10px;padding:12px 16px;font-size:.81rem;color:#444;line-height:1.65;">
+<strong style="color:#4a7c59;">📌 En classe — ce que cela change concrètement</strong><br/>
+        Expliquer explicitement aux élèves que <strong>(a)</strong> leur cerveau se modifie par la pratique et <strong>(b)</strong> c'est <em>eux</em> qui pilotent cette modification par leurs choix quotidiens — organisation, efforts, stratégies — transforme les objectifs comportementaux en actes d'ingénierie neuronale personnelle. La gestion des devoirs, l'organisation ou la régulation des comportements ne sont plus des contraintes imposées de l'extérieur : ce sont des <em>entraînements</em> dont l'élève comprend l'effet sur son propre cerveau. Ce cadrage est cohérent avec la théorie de l'autodétermination (Deci &amp; Ryan) : l'élève perçoit l'activité comme <em>choisie</em> plutôt que subie — ce qui préserve la motivation intrinsèque même pour des tâches exigeantes.
+      </div>
+<div style="margin-top:10px;font-size:.74rem;color:#888;line-height:1.5;">
+        Vohs, K.D. &amp; Schooler, J.W. (2008). The value of believing in free will. <em>Psychological Science, 19</em>(1), 49–54. ·
+        Baumeister, R.F. et al. (2009). Free will in consumer behavior. <em>Journal of Consumer Psychology, 19</em>(1), 14–21. ·
+        Paunesku, D. et al. (2015). Mind-set interventions are a scalable treatment for academic underachievement. <em>Psychological Science, 26</em>(6), 784–793. ·
+        Deci, E.L. &amp; Ryan, R.M. (1985). <em>Intrinsic motivation and self-determination in human behavior.</em> Plenum.
+      </div>
+</div>
+<!-- ── FIN JONCTION N × E ──────────────────────────────── -->
+<div class="highlight-box" style="margin-top:16px;">
+<strong>Du cerveau à la classe — le fil conducteur :</strong> Ces huit dimensions forment un système. Comprendre la biologie de l'élagage change le regard sur les comportements adolescents. Comprendre la synchronisation cérébrale transforme la façon de gérer sa voix et sa posture. Comprendre la neuroplasticité modifie les retours donnés aux élèves. <em>La neuroéducation n'est pas une théorie de plus — c'est une grille de lecture qui rend chaque décision pédagogique plus éclairée.</em>
+</div>
+</div>
+</div>
+</section>
+
+<section id="part-4" class="part-section" data-part="4">
+<div class="fondements-part">
+<div class="fondements-part-header part-neuro">
+<div class="fondements-part-num n-neuro">4</div>
+<div>
+<div class="fondements-part-sub">Un regard neuroéducatif</div>
+<div class="fondements-part-title">Le neurodéveloppement de l'élève : deux fenêtres exceptionnelles</div>
+<p style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px;line-height:1.65;">
+          Comprendre comment se structure le cerveau de l'enfant et de l'adolescent transforme la lecture des comportements en classe — et précise la manière dont la posture de l'enseignant·e laisse une empreinte durable.
+        </p>
+</div>
+</div>
+<div class="fondements-part-body">
+<p style="font-size:.92rem;color:var(--ink);line-height:1.75;margin-bottom:24px;font-style:italic;">
+        Si la Partie 3 explorait le cerveau de l'enseignant·e (modèle PRÉSENCE), cette partie déplace le regard vers le cerveau de l'élève. Deux périodes du développement cérébral — l'enfance et l'adolescence — sont marquées par une plasticité exceptionnelle qui rend l'environnement éducatif particulièrement déterminant.
+      </p>
+<div class="neuro-windows-box">
+<h3>🧠 Deux grandes phases d'élagage synaptique</h3>
+<p style="font-size:.9rem;color:#4a1d3a;line-height:1.7;margin:0 0 22px;">
+          Le cerveau humain ne se développe pas de manière linéaire : il traverse <strong>deux grandes phases d'élagage synaptique</strong> — un processus par lequel les connexions peu utilisées sont éliminées pour renforcer les réseaux les plus actifs, rendant le cerveau progressivement plus efficace et spécialisé.
+        </p>
+<div class="neuro-window-card">
+<span class="nw-num">①</span>
+<span class="nw-title">L'enfance (0–6 ans environ)</span>
+<p>
+            Après une explosion synaptique dans les premières années de vie, un premier élagage intense sélectionne les connexions les plus stimulées par l'expérience. C'est une période de <strong>plasticité maximale</strong> pour le langage, les fonctions sensorimotrices et les fondations émotionnelles <em>(Huttenlocher &amp; Dabholkar, 1997 ; Bhatt et al., 2021)</em>. Les expériences de sécurité, d'attachement et de stimulation cognitive laissent des empreintes durables dans l'architecture cérébrale.
+          </p>
+</div>
+<div class="neuro-window-card">
+<span class="nw-num">②</span>
+<span class="nw-title">L'adolescence (≈ 10–25 ans)</span>
+<p>
+            Un second élagage affine et spécialise le cerveau — particulièrement dans le <strong>cortex préfrontal</strong>, siège des fonctions exécutives. Cette maturation est incomplète jusqu'au milieu de la vingtaine <em>(Giedd et al., 1999 ; Petanjek et al., 2011)</em>. Les comportements impulsifs et l'instabilité émotionnelle reflètent le décalage entre des systèmes émotionnels (amygdale, circuits dopaminergiques) pleinement actifs et un cortex préfrontal encore en chantier.
+          </p>
+<p>
+            Ce décalage <strong>n'est pas un dysfonctionnement</strong> — c'est une étape normale et transitoire du développement <em>(Casey et al., 2008 ; Blakemore &amp; Choudhury, 2006)</em>.
+          </p>
+</div>
+<div style="background:white;border-radius:10px;padding:16px 20px;font-size:.86rem;color:#4a1d3a;border-left:4px solid #be185d;line-height:1.7;font-style:italic;margin-top:18px;">
+          Comprendre ces deux fenêtres transforme le regard de l'enseignant·e : qu'il·elle travaille avec de jeunes enfants ou des adolescent·es, les comportements observés ne sont pas des signes de mauvaise volonté, mais les manifestations d'un cerveau en train de se structurer — et précisément pour cette raison, encore profondément influençable par la qualité des expériences proposées.
+        </div>
+</div>
+<!-- Implications pédagogiques -->
+<div class="neuro-implications">
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#be185d;margin-bottom:8px;">Implications pédagogiques · Ce que cela change en classe</div>
+<div style="font-weight:700;font-size:.97rem;color:#831843;margin-bottom:14px;">🌱 Trois leviers concrets pour l'enseignant·e</div>
+<ul style="margin:0;padding-left:0;list-style:none;">
+<li style="position:relative;padding:10px 0 10px 32px;font-size:.88rem;color:#4a1d3a;line-height:1.7;border-bottom:1px solid rgba(190,24,93,.15);">
+<span style="position:absolute;left:0;top:10px;color:#be185d;font-weight:700;">→</span>
+<strong>Lire les comportements à travers le développement, pas le jugement.</strong> L'impulsivité d'un·e adolescent·e ou la dérégulation émotionnelle d'un·e jeune enfant ne sont pas des défauts de caractère mais des signatures neurodéveloppementales. Cette lecture désamorce la tentation de personnaliser les conflits.
+          </li>
+<li style="position:relative;padding:10px 0 10px 32px;font-size:.88rem;color:#4a1d3a;line-height:1.7;border-bottom:1px solid rgba(190,24,93,.15);">
+<span style="position:absolute;left:0;top:10px;color:#be185d;font-weight:700;">→</span>
+<strong>Soigner la qualité des expériences proposées.</strong> Puisque ces deux fenêtres ouvrent une plasticité maximale, chaque interaction — une consigne claire, un encouragement, un climat sécurisé — laisse une empreinte. C'est un puissant argument pour la cohérence et la bienveillance professionnelle.
+          </li>
+<li style="position:relative;padding:10px 0 10px 32px;font-size:.88rem;color:#4a1d3a;line-height:1.7;">
+<span style="position:absolute;left:0;top:10px;color:#be185d;font-weight:700;">→</span>
+<strong>Construire l'autorégulation par étayage explicite.</strong> Le cortex préfrontal de l'élève étant en chantier, la fonction exécutive doit lui être <em>prêtée</em> par l'adulte : rappeler les routines, anticiper les transitions, verbaliser les émotions. Avec le temps et la répétition, l'élève intériorise ces structures.
+          </li>
+</ul>
+</div>
+<p style="font-size:.74rem;color:var(--muted);line-height:1.6;margin:20px 0 0;border-top:1px dashed rgba(0,0,0,.1);padding-top:14px;">
+<strong>Références :</strong> Huttenlocher, P.R. &amp; Dabholkar, A.S. (1997). Regional differences in synaptogenesis in human cerebral cortex. <em>Journal of Comparative Neurology, 387</em>(2), 167–178. · Giedd, J.N. et al. (1999). Brain development during childhood and adolescence. <em>Nature Neuroscience, 2</em>(10), 861–863. · Casey, B.J. et al. (2008). The adolescent brain. <em>Developmental Review, 28</em>(1), 62–77. · Blakemore, S.-J. &amp; Choudhury, S. (2006). Development of the adolescent brain. <em>Journal of Child Psychology and Psychiatry, 47</em>(3–4), 296–312. · Petanjek, Z. et al. (2011). Extraordinary neoteny of synaptic spines in the human prefrontal cortex. <em>PNAS, 108</em>(32), 13281–13286. · Bhatt et al. (2021). Synaptic pruning across development.
+      </p>
+</div>
+</div>
+</section>
+
+<section id="part-5" class="part-section" data-part="5">
+<div class="fondements-part">
+<div class="fondements-part-header part4">
+<div class="fondements-part-num n4">5</div>
+<div>
+<div class="fondements-part-sub">Un modèle pédagogique</div>
+<div class="fondements-part-title">Les 6 composantes de la gestion efficace de classe (Gaudreau)</div>
+<p style="font-size:.85rem;color:#555;margin-top:6px;line-height:1.65;">Nancy Gaudreau (2024) identifie six ingrédients interdépendants qui structurent une gestion de classe efficace et bienveillante, mis en lien avec les dimensions PRÉSENCE.</p>
+</div>
+</div>
+<!-- ═══════════════════════════════════════════════════════
+       GAUDREAU — 6 ingrédients de la gestion de classe
+  ════════════════════════════════════════════════════════ -->
+<div style="margin-top:48px;">
+<div class="section-label" style="margin-bottom:8px;">Référence pédagogique · Gaudreau (2024)</div>
+<h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);margin-bottom:10px;">Les 6 composantes de la gestion de classe — Correspondance avec les dimensions</h3>
+<p style="font-size:.87rem;color:#555;margin-bottom:20px;line-height:1.7;">Nancy Gaudreau (2024) identifie six composantes interdépendantes qui structurent une gestion de classe efficace et bienveillante : la personne enseignante, la gestion des ressources, l'établissement d'attentes claires, le développement de relations positives, l'attention et l'engagement des élèves, et la gestion des comportements difficiles. Ces composantes forment un système : renforcer l'une produit des effets positifs sur les autres.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+<div class="gaudreau-item">
+<strong>① La personne enseignante</strong>
+        Les croyances, valeurs, attitudes et compétences personnelles de l'enseignant·e influencent directement ses pratiques de gestion de classe. La prise de conscience de ces caractéristiques personnelles — y compris la régulation émotionnelle et le sentiment d'efficacité — est un préalable à toute amélioration durable. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : P (Prédisposition), C (Conscience), S (Synchronisation)</em>
+</div>
+<div class="gaudreau-item">
+<strong>② La gestion des ressources</strong>
+        Organiser efficacement les ressources spatio-temporelles (espace, temps, transitions) et les ressources matérielles, technologiques et humaines (collègues, spécialistes, parents). Un environnement prévisible et bien structuré réduit les comportements-tests et soutient l'engagement. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : S (Synchronisation), P (Prédisposition), R (Réseaux)</em>
+</div>
+<div class="gaudreau-item">
+<strong>③ L'établissement d'attentes claires</strong>
+        Formuler, enseigner et maintenir des règles, des routines et des procédures explicites. Des attentes claires et cohérentes dans le temps réduisent l'ambiguïté, préviennent les comportements d'indiscipline et favorisent l'autorégulation des élèves — particulièrement à l'adolescence où le cortex préfrontal est encore en maturation. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : C (Conscience), N (Neuroplasticité), É (Élagage adolescence)</em>
+</div>
+<div class="gaudreau-item">
+<strong>④ Le développement de relations positives</strong>
+        Construire des liens de confiance et de respect avec chaque élève, y compris les plus difficiles. Un climat relationnel positif est souvent le premier levier d'apaisement des comportements difficiles et de renforcement de la motivation scolaire. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : S (Synchronisation cérébrale), R (Réseaux de neurones)</em>
+</div>
+<div class="gaudreau-item">
+<strong>⑤ L'attention et l'engagement des élèves</strong>
+        Planifier des activités variées, stimulantes et adaptées pour maintenir l'attention et favoriser un engagement actif. Inclut le soutien à l'autodétermination : offrir des choix, valoriser l'autonomie et développer la capacité des élèves à se fixer des objectifs et à s'autoréguler. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : É (Élagage enfance), R (Réseaux), E (Libre arbitre &amp; autodétermination)</em>
+</div>
+<div class="gaudreau-item">
+<strong>⑥ La gestion des comportements difficiles</strong>
+        Intervenir de façon proactive (prévention) et réactive (écarts de conduite) en préservant la dignité de l'élève. Distinguer les comportements liés à des difficultés de régulation de l'opposition intentionnelle. Accompagner les élèves présentant des difficultés comportementales par des plans individualisés. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : S (Synchronisation), É (Élagage adolescence), N (Neuroplasticité)</em>
+</div>
+</div>
+<p style="font-size:.74rem;color:var(--muted);">Source : Gaudreau, N. (2024). <em>Gérer efficacement sa classe, 2e éd.</em> Presses de l'Université du Québec.</p>
+</div>
+</div>
+</section>
+
+<section id="part-6" class="part-section" data-part="6">
+<div class="fondements-part">
+<div class="fondements-part-header part5">
+<div class="fondements-part-num n5">6</div>
+<div>
+<div class="fondements-part-sub">Une posture professionnelle</div>
+<div class="fondements-part-title">Les 5 composantes de la bienveillance — Modèle C.E.F.E.R. (Beaumont)</div>
+<p style="font-size:.85rem;color:rgba(255,255,255,.85);margin-top:6px;line-height:1.65;">Claire Beaumont, chercheuse à l'Université Laval, opérationnalise la bienveillance en 5 caractéristiques concrètes que l'adulte modélise auprès des élèves. Ce modèle prolonge directement la composante ① de Gaudreau (« La personne enseignante ») en en précisant les marqueurs observables.</p>
+</div>
+</div>
+<div style="margin-top:40px;">
+<div class="section-label" style="margin-bottom:8px;">Référence pédagogique · Beaumont (2019)</div>
+<h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep);margin-bottom:10px;">Connaître les composantes de la bienveillance pour bien les modeler auprès des élèves</h3>
+<p style="font-size:.87rem;color:#555;margin-bottom:20px;line-height:1.7;">La bienveillance n'est ni du laxisme ni du laisser-faire : c'est une <strong>posture professionnelle</strong>, un savoir-être qui se développe et qui permet aux élèves de comprendre qu'à travers les exigences de l'adulte, celui-ci veut leur bien et les soutient dans leurs apprentissages. Le modèle C.E.F.E.R. décompose cette posture en cinq caractéristiques complémentaires et interdépendantes, que chaque lettre de l'acronyme représente.</p>
+<div class="cefer-items">
+<div class="cefer-item">
+<span class="cefer-letter">C</span>
+<strong>Calme</strong>
+          Maîtrise de soi, de ses émotions et de son ton. L'adulte montre ainsi aux jeunes comment faire face aux situations en demeurant posé en actes et en paroles. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : P (Prédisposition à l'apaisement), C (Conscience émotionnelle), S (Synchronisation cérébrale)</em>
+</div>
+<div class="cefer-item">
+<span class="cefer-letter">E</span>
+<strong>Exigeant</strong>
+          Maintien des exigences selon le niveau de maturité de l'élève et le contexte. Le soutien de l'adulte est accru pour favoriser le sentiment de réussite de l'élève. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : N (Neuroplasticité), É (Élagage adolescence), E (Libre arbitre &amp; autodétermination)</em>
+</div>
+<div class="cefer-item">
+<span class="cefer-letter">F</span>
+<strong>Ferme</strong>
+          Assurance et rigueur dans l'expression et l'exécution des actions. Les attentes sont clairement et calmement exprimées tout en offrant son soutien (autorité sécurisante). <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : C (Conscience des attentes), S (Synchronisation), P (Prédisposition)</em>
+</div>
+<div class="cefer-item">
+<span class="cefer-letter">E</span>
+<strong>Encourageant, soutenant et sécurisant</strong>
+          Volonté d'aider l'élève. Ce dernier doit sentir que l'adulte est déterminé à le soutenir et qu'il peut compter sur lui pour l'aider à atteindre les exigences. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : R (Réseaux de soutien), S (Synchronisation relationnelle), E (Autodétermination)</em>
+</div>
+<div class="cefer-item">
+<span class="cefer-letter">R</span>
+<strong>Respect de la dignité de chacun</strong>
+          Attitude respectueuse lors des interventions éducatives. L'adulte comprend l'importance de préserver la dignité morale et physique de <em>tous</em> les élèves, même lors de mesures disciplinaires. <em style="color:var(--sage);display:block;margin-top:6px;">PRÉSENCE : C (Conscience éthique), R (Réseaux relationnels), N (Neuroplasticité positive)</em>
+</div>
+</div>
+<div style="margin-top:20px;padding:14px 18px;background:#f0f9fb;border-left:4px solid #3a7a8a;border-radius:10px;">
+<p style="font-size:.82rem;color:#2a2a3d;line-height:1.65;margin:0;"><strong style="color:var(--deep);">Synthèse :</strong> Le modèle C.E.F.E.R. complète le modèle de Gaudreau en précisant la posture relationnelle de l'adulte. Là où Gaudreau identifie <em>quoi</em> mettre en place dans la gestion de classe, C.E.F.E.R. décrit <em>comment</em> l'adulte incarne une autorité sécurisante — fondement d'un climat scolaire bienveillant qui favorise l'engagement, la persévérance et la réussite des élèves.</p>
+</div>
+<p style="font-size:.74rem;color:var(--muted);margin-top:16px;">Source : Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. Modèle initialement développé dans Beaumont (2018).</p>
+</div>
+</div>
+</section>
+
+<section id="part-7" class="part-section" data-part="7">
+<div class="fondements-part" id="part6">
+<div class="fondements-part-header part6">
+<div class="fondements-part-num n6">7</div>
+<div class="fondements-part-header-text">
+<div class="fondements-part-label">Psychologie positive &amp; apprentissage socio-émotionnel</div>
+<div class="fondements-part-title">Bien-être et compétences socio-émotionnelles</div>
+</div>
+</div>
+<div class="fondements-part-body">
+<p style="font-size:.92rem;color:var(--ink);line-height:1.75;margin-bottom:24px;font-style:italic;">
+        La résilience professionnelle (partie 1) et la posture C.E.F.E.R. (partie 5) reposent sur un socle commun : le bien-être. Deux modèles complémentaires en précisent les déterminants et les compétences mobilisables au quotidien par l'élève comme par l'enseignant.
+      </p>
+<!-- 6.1 — PERMA -->
+<h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--deep);margin:28px 0 8px 0;">6.1 — Les cinq déterminants du bien-être : le modèle PERMA</h3>
+<p style="font-size:.87rem;color:#555;margin-bottom:16px;line-height:1.7;">
+        Martin Seligman, fondateur de la psychologie positive, identifie cinq déterminants dont la présence conjointe caractérise un fonctionnement humain optimal (<em>flourishing</em>). L'acronyme PERMA les regroupe.
+      </p>
+<div class="perma-box">
+<h3>P · E · R · M · A</h3>
+<p style="font-size:.82rem;color:#555;margin-bottom:8px;">Les cinq déterminants du bien-être durable</p>
+<div class="perma-items">
+<div class="perma-item">
+<span class="perma-letter">P</span>
+<strong>Positive Emotions — Émotions positives</strong>
+            Ressentir plus souvent des émotions agréables que désagréables (joie, gratitude, sérénité, espoir, fierté). Ces émotions élargissent le répertoire pensée-action et renforcent les ressources personnelles.
+          </div>
+<div class="perma-item">
+<span class="perma-letter">E</span>
+<strong>Engagement</strong>
+            État de <em>flow</em> (Csikszentmihalyi) où l'attention est entièrement absorbée par une activité stimulante. Exige d'identifier ses forces de caractère et d'organiser sa vie pour les mobiliser régulièrement.
+          </div>
+<div class="perma-item">
+<span class="perma-letter">R</span>
+<strong>Relationships — Relations positives</strong>
+            Liens de qualité avec autrui — se sentir écouté, soutenu, aimé. La qualité relationnelle est le meilleur prédicteur de bien-être durable (étude longitudinale de Harvard, Waldinger, 2015).
+          </div>
+<div class="perma-item">
+<span class="perma-letter">M</span>
+<strong>Meaning — Sens</strong>
+            Appartenir et servir quelque chose qui nous dépasse — sa mission professionnelle, une cause, ses proches. Le sens transforme l'effort en engagement et protège contre l'épuisement.
+          </div>
+<div class="perma-item">
+<span class="perma-letter">A</span>
+<strong>Accomplishment — Accomplissement</strong>
+            Fixer des buts, les poursuivre, atteindre des réussites pour elles-mêmes. Renforce le sentiment d'efficacité personnelle (Bandura) et nourrit l'estime de soi.
+          </div>
+</div>
+</div>
+<div style="background:#f0f4ff;border-left:4px solid #1e5fc4;border-radius:8px;padding:18px 22px;margin:20px 0 28px 0;font-size:.86rem;color:#2a2a3d;line-height:1.65;">
+<strong style="color:var(--deep);">Application en classe — </strong>PERMA offre une grille d'analyse concrète du climat de classe : les élèves ont-ils l'occasion de vivre des émotions positives, d'être en état de <em>flow</em> dans les tâches, de tisser des liens positifs avec leurs pairs et leurs enseignants, de percevoir du sens dans ce qu'ils apprennent, et d'accumuler des réussites ? Le modèle s'applique identiquement au bien-être du personnel : un enseignant qui vit les cinq dimensions est mieux armé pour soutenir la résilience de ses élèves.
+      </div>
+<p style="font-size:.74rem;color:var(--muted);margin-top:8px;">Source : Seligman, M. (2011). <em>Flourish: A visionary new understanding of happiness and well-being.</em> Free Press.</p>
+<!-- 6.2 — CSE -->
+<h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--deep);margin:36px 0 8px 0;">6.2 — Le modèle écosystémique des compétences socio-émotionnelles</h3>
+<p style="font-size:.87rem;color:#555;margin-bottom:16px;line-height:1.7;">
+        Dérivé du cadre de référence <strong>CASEL</strong> (Collaborative for Academic, Social, and Emotional Learning) et contextualisé à l'école québécoise, ce modèle organise <strong>six compétences socio-émotionnelles</strong> autour de trois sphères relationnelles. Il ajoute au modèle CASEL la <em>conscience de l'interdépendance</em>, pont explicite avec l'approche systémique (partie 2).
+      </p>
+<div class="cse-box">
+<h3>Moi · Toi · Nous</h3>
+<p style="font-size:.82rem;color:#555;margin-bottom:8px;">Trois sphères, six compétences pour le bien-vivre ensemble à l'école</p>
+<div class="cse-spheres">
+<div class="cse-sphere">
+<div class="cse-sphere-label">
+<div class="cse-sphere-name">MOI</div>
+<div class="cse-sphere-sub">Se comprendre</div>
+</div>
+<div class="cse-sphere-content">
+<p>• <strong>Conscience de soi</strong> — identifier ses émotions, ses forces, ses valeurs, ses limites.</p>
+<p>• <strong>Autorégulation émotionnelle</strong> — gérer ses émotions, son stress, son attention et son comportement.</p>
+</div>
+</div>
+<div class="cse-sphere">
+<div class="cse-sphere-label">
+<div class="cse-sphere-name">TOI</div>
+<div class="cse-sphere-sub">Comprendre l'autre</div>
+</div>
+<div class="cse-sphere-content">
+<p>• <strong>Conscience sociale</strong> — comprendre les émotions et perspectives d'autrui, reconnaître la diversité.</p>
+<p>• <strong>Habiletés relationnelles</strong> — communiquer, écouter, coopérer, gérer les conflits de façon constructive.</p>
+</div>
+</div>
+<div class="cse-sphere">
+<div class="cse-sphere-label">
+<div class="cse-sphere-name">NOUS</div>
+<div class="cse-sphere-sub">Bien vivre ensemble</div>
+</div>
+<div class="cse-sphere-content">
+<p>• <strong>Conscience de l'interdépendance</strong> — percevoir l'influence du milieu sur soi et de soi sur le milieu.</p>
+<p>• <strong>Prise de décisions responsables</strong> — choisir en tenant compte des conséquences pour soi, autrui, la communauté.</p>
+</div>
+</div>
+</div>
+</div>
+<p style="font-size:.74rem;color:var(--muted);margin-top:16px;">Source : Beaumont, C., Langri, S., Wilkie, T., Marquis, D. &amp; Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval.</p>
+<!-- 6.3 — PYRAMIDE DE PRÉVENTION -->
+<h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--deep);margin:36px 0 8px 0;">6.3 — La pyramide de prévention à quatre niveaux</h3>
+<p style="font-size:.87rem;color:#555;margin-bottom:16px;line-height:1.7;">
+        Adaptée par <strong>Beaumont (2014)</strong> au contexte scolaire québécois à partir des travaux de <strong>Deklerck (2012)</strong> en prévention de la criminalité juvénile, cette pyramide propose un continuum d'interventions allant de la <strong>promotion universelle du bien-être</strong> (base) jusqu'aux <strong>mesures curatives</strong> (sommet). Elle permet à chaque enseignant de situer ses propres interventions dans une architecture cohérente : <em>plus la base est solide, moins les niveaux supérieurs sont sollicités</em>.
+      </p>
+<div class="pyramide-box">
+<h3>Quatre niveaux d'intervention</h3>
+<p style="font-size:.82rem;color:#555;margin-bottom:8px;">Du curatif (sommet) à la prévention fondamentale (base)</p>
+<div class="pyramide-niveaux">
+<div class="pyramide-niveau">
+<div class="pyramide-num">
+<div class="pyramide-num-big">4</div>
+<div class="pyramide-num-label">Curatif</div>
+</div>
+<div class="pyramide-content">
+<div class="pyramide-nature">Plus de nature préventive, mais curative.</div>
+<div class="pyramide-desc">Disparition d'un problème grave ou persistant malgré les actions des niveaux précédents.</div>
+<div class="pyramide-ex">Exemples : plan de gestion de crise, plan d'intervention individualisé, suivi par professionnels (psychologue, psychoéducation), orientation vers services externes.</div>
+</div>
+</div>
+<div class="pyramide-niveau">
+<div class="pyramide-num">
+<div class="pyramide-num-big">3</div>
+<div class="pyramide-num-label">Prévention<br/>spécifique</div>
+</div>
+<div class="pyramide-content">
+<div class="pyramide-nature">Directement préventive, axée sur un problème ciblé.</div>
+<div class="pyramide-desc">Interventions sélectives envers certains élèves déjà impliqués ou à risque.</div>
+<div class="pyramide-ex">Exemples : ateliers de groupes pour élèves cibles ou auteurs de violence, programmes spécialisés (compétences sociales), suivis personnalisés.</div>
+</div>
+</div>
+<div class="pyramide-niveau">
+<div class="pyramide-num">
+<div class="pyramide-num-big">2</div>
+<div class="pyramide-num-label">Prévention<br/>générale</div>
+</div>
+<div class="pyramide-content">
+<div class="pyramide-nature">Directement préventive, universelle, axée sur un problème ciblé.</div>
+<div class="pyramide-desc">Interventions universelles adressées à l'ensemble des élèves, contenu directement axé sur le problème (ex. violence/intimidation).</div>
+<div class="pyramide-ex">Exemples : semaine de sensibilisation, plan de lutte contre l'intimidation présenté à tous, formation du personnel sur l'approche réparatrice, surveillance accrue.</div>
+</div>
+</div>
+<div class="pyramide-niveau">
+<div class="pyramide-num">
+<div class="pyramide-num-big">1</div>
+<div class="pyramide-num-label">Prévention<br/>fondamentale</div>
+</div>
+<div class="pyramide-content">
+<div class="pyramide-nature">Indirectement préventive, axée sur la promotion du bien-être général.</div>
+<div class="pyramide-desc">Cible d'abord le bien-être et fait la promotion des attitudes et actions qui contribuent au développement optimal de chacun. Agit en prévention d'une multitude de problèmes (violence, décrochage, démotivation).</div>
+<div class="pyramide-ex">Exemples : enseignement explicite des CSE pour tous, activités générant des émotions positives, climat de classe positif, célébration des réussites, posture C.E.F.E.R. au quotidien.</div>
+</div>
+</div>
+</div>
+</div>
+<div style="background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;padding:18px 22px;margin:20px 0;font-size:.86rem;color:#2a2a3d;line-height:1.65;">
+<strong style="color:var(--deep);">Implication pour ma pratique — </strong>Si la majorité de mon énergie va aux niveaux 3-4 (gestion de crise, suivis individuels lourds), c'est souvent le signe que le niveau 1 (prévention fondamentale) n'est pas assez investi. Renforcer la promotion du bien-être et la posture C.E.F.E.R. au quotidien réduit progressivement les besoins en intervention spécifique. C'est un changement de paradigme : passer de la <em>lutte contre la violence</em> à la <em>promotion du bien-vivre ensemble</em>.
+      </div>
+<p style="font-size:.74rem;color:var(--muted);margin-top:16px;">Source : Beaumont, C. (2014, 2020). Adapté de Deklerck, J. (2012). <em>La pyramide de la prévention.</em> Université de Louvain.</p>
+<!-- Synthèse / articulation entre tous les modèles -->
+<div style="background:linear-gradient(135deg,#fef9e7,#fdf2c4);border-left:5px solid #c08415;border-radius:12px;padding:22px 26px;margin-top:28px;font-size:.88rem;color:#2a2a3d;line-height:1.7;">
+<strong style="color:var(--deep);font-size:.95rem;">Articulation avec les modèles précédents — </strong>
+        Les compétences socio-émotionnelles sont d'abord <strong>modélisées</strong> par les adultes (C.E.F.E.R.), <strong>soutenues</strong> par les pratiques de gestion de classe (Gaudreau), <strong>enracinées</strong> dans la biologie de l'élève (PRÉSENCE), et <strong>déployées</strong> au quotidien dans une lecture systémique des interactions. Elles convergent toutes vers un même objectif : le <strong>bien-être PERMA</strong>, pour les élèves comme pour les enseignants.
+      </div>
+<!-- TÉLÉCHARGEMENT PDF APPROFONDIR — après parties 1-6 -->
+<div style="margin-top:32px;padding:20px 24px;background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:16px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;">
+<div style="flex:1;min-width:200px;">
+<div style="font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px;">Document complet · PDF</div>
+<div style="font-weight:800;color:white;font-size:1.05rem;letter-spacing:-.01em;margin-bottom:4px;">Fondements scientifiques</div>
+<div style="font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.5;">Résilience · PRÉSENCE · Systémique · Gaudreau · C.E.F.E.R. · PERMA · CSE · Pyramide · Bibliographie</div>
+</div>
+<button onclick="alert('Téléchargement à venir.'); return false;" onmouseout="this.style.opacity='1'" onmouseover="this.style.opacity='.85'" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent3);color:white;border:none;border-radius:12px;padding:12px 20px;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:700;cursor:pointer;transition:opacity .2s;white-space:nowrap;">
+          📥 Télécharger le PDF complet
+        </button>
+</div>
+</div>
+</div>
+</section>
+  </main>
+
+</div>
+
+<button class="fond-toc-toggle" onclick="toggleToc()" aria-label="Ouvrir/fermer le sommaire">
+  <svg class="icon icon-lg"><use href="#i-list"/></svg>
+</button>
+
+<footer>
+  <div class="footer-links">
+    <a href="modules.html">Catalogue modules</a>
+    <a href="diagnostic.html">Diagnostic PRÉSENCE</a>
+    <a href="bibliotheque.html">Bibliothèque</a>
+    <a href="glossaire.html">Glossaire</a>
+  </div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Logique commune — Plateforme Autoformation HEP-VS
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  // Initialisation du thème (avant render pour éviter flash)
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('aut_theme', next); }catch(e){}
+  updateThemeIcon();
+}
+
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon');
+  if(!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
+/* Récupérer l'état d'un module */
+function getModuleState(num){
+  try{
+    var raw = localStorage.getItem('autoformation_mod'+num+'_v5');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
+function scanAllModules(){
+  var nums = [1,2,3,4,6,7,8,9];
+  var completed = [];
+  var inProgress = null;
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    if(!s) return;
+    if(s.completed){ completed.push(n); return; }
+    if(s.lastSection && s.lastSection !== 's1' && !inProgress){
+      inProgress = {num:n, section:s.lastSection};
+    }
+  });
+  return {completed: completed, inProgress: inProgress, total: nums.length};
+}
+
+/* Récupérer le diagnostic enregistré */
+function getDiagnostic(){
+  try{
+    var raw = localStorage.getItem('aut_diagnostic_v1');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function saveDiagnostic(data){
+  try{
+    data.savedAt = new Date().toISOString();
+    localStorage.setItem('aut_diagnostic_v1', JSON.stringify(data));
+    return true;
+  }catch(e){ return false; }
+}
+
+window.addEventListener('DOMContentLoaded', updateThemeIcon);
+
+
+// Sommaire mobile
+function toggleToc(){
+  document.getElementById('fond-toc').classList.toggle('open');
+}
+
+// Mise en surbrillance dynamique du lien actif
+function updateActiveToc(){
+  var sections = document.querySelectorAll('.part-section');
+  var scrollPos = window.scrollY + 120;
+  var active = null;
+  sections.forEach(function(sec){
+    if(sec.offsetTop <= scrollPos) active = sec;
+  });
+  document.querySelectorAll('.toc-link').forEach(function(l){
+    var part = l.dataset.part;
+    l.classList.toggle('active', active && active.dataset.part === part);
+  });
+}
+
+window.addEventListener('scroll', updateActiveToc, {passive:true});
+window.addEventListener('DOMContentLoaded', function(){
+  updateActiveToc();
+  // Fermer le TOC mobile au clic sur un lien
+  document.querySelectorAll('.toc-link').forEach(function(l){
+    l.addEventListener('click', function(){
+      if(window.innerWidth < 900){
+        document.getElementById('fond-toc').classList.remove('open');
+      }
+    });
+  });
+});
+
+/* ─── Dispatcher data-action (repris du fichier source) ─── */
+function toggleNeuro(btn){
+  var panel = document.getElementById('neuro-panel');
+  if(!panel) return;
+  var isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+  var hint = btn.querySelector('.ntb-hint');
+  if(hint) hint.textContent = isOpen ? 'Cliquer pour déplier' : 'Cliquer pour replier';
+  // Tourner le chevron
+  var icon = btn.querySelector('.ntb-icon');
+  if(icon) icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+function togglePresenceCard(header){
+  var body = header.nextElementSibling;
+  if(!body) return;
+  var isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  body.style.display = isOpen ? 'none' : 'block';
+  header.classList.toggle('open');
+  header.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+}
+
+document.addEventListener('click', function(e){
+  var target = e.target.closest('[data-action]');
+  if(!target) return;
+  var action = target.getAttribute('data-action');
+  if(action === 'toggleneuro')        toggleNeuro(target);
+  else if(action === 'togglepresencecard') togglePresenceCard(target);
+});
+</script>
+</body>
+</html>

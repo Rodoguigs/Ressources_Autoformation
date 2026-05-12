@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnostic PRÉSENCE · Autoformation HEP-VS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Charte commune — Plateforme Autoformation HEP-VS
+   Importée par toutes les pages de la coquille (sauf les modules).
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --light:#f8f5f0; --muted:#7a7a9d;
+  --surface:#ffffff; --surface-alt:#fafbff;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --border-soft:rgba(0,0,0,.08);
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.08);
+}
+
+[data-theme="dark"]{
+  --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115;
+  --surface:#1a1d24; --surface-alt:#13161c;
+  --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
+  --border-soft:rgba(255,255,255,.1);
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--light); color:var(--text-body);
+  line-height:1.65; font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+[data-theme="dark"] a{color:var(--sky)}
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:.85em;height:.85em}
+.icon-lg{width:1.25em;height:1.25em}
+
+/* ─── Header ─── */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:14px 28px;
+  display:flex;align-items:center;gap:20px;
+  backdrop-filter:blur(8px);flex-wrap:wrap;
+}
+.app-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:900;font-size:1.1rem;
+  color:var(--accent2);text-decoration:none;
+  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.app-logo:hover{text-decoration:none}
+[data-theme="dark"] .app-logo{color:var(--text-strong)}
+.nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
+.nav-link{
+  color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
+  transition:all .15s;
+}
+.nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-link.active{background:var(--accent2);color:white;font-weight:600}
+.theme-toggle{
+  background:none;border:1px solid var(--border-soft);
+  border-radius:8px;padding:6px 10px;cursor:pointer;
+  color:var(--text-body);
+}
+.theme-toggle:hover{background:var(--surface-alt)}
+.hep-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;padding:5px 11px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+}
+
+/* ─── Page header / breadcrumb ─── */
+.page-head{
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:24px 28px 28px;
+}
+.breadcrumb{
+  display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.breadcrumb a{color:var(--text-subtle)}
+.breadcrumb span.sep{opacity:.5}
+.breadcrumb .current{color:var(--text-strong);font-weight:600}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 8px;letter-spacing:-.01em;
+}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:760px;line-height:1.55;
+}
+
+/* ─── Container principal ─── */
+main{
+  flex:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 28px;
+  width:100%;
+}
+
+/* ─── Cards & blocs ─── */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow-soft);
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text-strong);
+  margin:32px 0 16px;
+}
+
+.info-block{
+  background:var(--surface-alt);
+  border-left:4px solid var(--accent3);
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  margin:18px 0;
+}
+
+/* ─── Footer ─── */
+footer{
+  margin-top:auto;
+  background:var(--surface);
+  border-top:1px solid var(--border-soft);
+  padding:32px 28px;
+  text-align:center;
+  font-size:.82rem;color:var(--text-subtle);
+}
+footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+
+/* ─── Responsive ─── */
+@media (max-width:900px){
+  .page-head{padding:18px 20px 22px}
+  .page-title{font-size:1.5rem}
+  main{padding:20px}
+}
+
+</style>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Logique commune — Plateforme Autoformation HEP-VS
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  // Initialisation du thème (avant render pour éviter flash)
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('aut_theme', next); }catch(e){}
+  updateThemeIcon();
+}
+
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon');
+  if(!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
+/* Récupérer l'état d'un module */
+function getModuleState(num){
+  try{
+    var raw = localStorage.getItem('autoformation_mod'+num+'_v5');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
+function scanAllModules(){
+  var nums = [1,2,3,4,6,7,8,9];
+  var completed = [];
+  var inProgress = null;
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    if(!s) return;
+    if(s.completed){ completed.push(n); return; }
+    if(s.lastSection && s.lastSection !== 's1' && !inProgress){
+      inProgress = {num:n, section:s.lastSection};
+    }
+  });
+  return {completed: completed, inProgress: inProgress, total: nums.length};
+}
+
+/* Récupérer le diagnostic enregistré */
+function getDiagnostic(){
+  try{
+    var raw = localStorage.getItem('aut_diagnostic_v1');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function saveDiagnostic(data){
+  try{
+    data.savedAt = new Date().toISOString();
+    localStorage.setItem('aut_diagnostic_v1', JSON.stringify(data));
+    return true;
+  }catch(e){ return false; }
+}
+
+window.addEventListener('DOMContentLoaded', updateThemeIcon);
+
+</script>
+<style>
+.diag-intro{
+  background:linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border:1px solid rgba(45,156,219,.25);
+  border-left:5px solid var(--sky);
+  border-radius:14px;
+  padding:20px 24px;
+  margin-bottom:28px;
+}
+[data-theme="dark"] .diag-intro{
+  background:linear-gradient(135deg, rgba(45,156,219,.1), rgba(45,156,219,.04));
+  border-color:rgba(45,156,219,.3);
+}
+.diag-intro h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 8px;
+}
+.diag-intro p{margin:0 0 8px;font-size:.92rem;line-height:1.6}
+.diag-intro p:last-child{margin-bottom:0}
+
+.diag-composante{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-left:4px solid var(--comp-color);
+  border-radius:12px;
+  padding:18px 22px;
+  margin-bottom:14px;
+}
+.diag-composante-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:10px;
+}
+.diag-composante-lettre{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--comp-color);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:900;flex-shrink:0;
+}
+.diag-composante-titre{
+  font-weight:700;color:var(--text-strong);
+  font-size:1rem;line-height:1.25;
+}
+.diag-composante-sous{
+  font-size:.82rem;color:var(--text-muted);
+  margin-top:2px;
+}
+.diag-question{
+  font-size:.92rem;color:var(--text-body);
+  margin:8px 0 12px;line-height:1.55;
+}
+.diag-scale{
+  display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;
+}
+.diag-scale-btn{
+  flex:1;min-width:44px;
+  background:var(--surface);
+  border:2px solid var(--border-soft);
+  padding:10px 0;border-radius:8px;
+  cursor:pointer;font-family:inherit;
+  color:var(--text-body);
+  transition:all .15s;font-weight:700;
+  font-size:.95rem;
+}
+.diag-scale-btn:hover{
+  border-color:var(--comp-color);
+  background:var(--surface-alt);
+}
+.diag-scale-btn.selected{
+  background:var(--comp-color);
+  border-color:var(--comp-color);
+  color:white;
+  transform:translateY(-1px);
+}
+.diag-scale-labels{
+  display:flex;justify-content:space-between;
+  margin-top:6px;font-size:.72rem;
+  color:var(--text-subtle);
+}
+
+/* Couleurs des composantes PRÉSENCE */
+.comp-P{--comp-color:#e94560}
+.comp-R{--comp-color:#2d9cdb}
+.comp-E1{--comp-color:#27ae60}
+.comp-S{--comp-color:#f39c12}
+.comp-E2{--comp-color:#8e44ad}
+.comp-N{--comp-color:#16a085}
+.comp-C{--comp-color:#2980b9}
+.comp-E3{--comp-color:#0f3460}
+
+/* ─── Résultat ─── */
+.diag-result-block{
+  background:linear-gradient(135deg,#fef3c7,#fde68a);
+  border:1px solid rgba(184,134,11,.3);
+  border-left:5px solid var(--gold);
+  border-radius:16px;
+  padding:26px 28px;
+  margin-top:30px;
+}
+[data-theme="dark"] .diag-result-block{
+  background:linear-gradient(135deg, rgba(245,166,35,.12), rgba(245,166,35,.04));
+  border-color:rgba(245,166,35,.3);
+}
+.diag-result-block.hidden{display:none}
+.diag-result-block h2{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;
+  margin:0 0 8px;color:var(--text-strong);
+}
+.diag-result-summary{
+  font-size:.95rem;color:var(--text-body);
+  line-height:1.6;margin-bottom:18px;
+}
+.diag-result-radar{
+  display:flex;align-items:center;gap:24px;
+  flex-wrap:wrap;
+}
+.diag-radar-svg{
+  width:240px;height:240px;flex-shrink:0;
+  background:white;border-radius:50%;
+  border:1px solid rgba(184,134,11,.2);
+}
+[data-theme="dark"] .diag-radar-svg{
+  background:rgba(0,0,0,.2);
+  border-color:rgba(184,134,11,.25);
+}
+.diag-result-recommendations{flex:1;min-width:280px}
+.diag-result-recommendations h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;color:var(--text-strong);margin:0 0 12px;
+}
+.diag-reco-card{
+  background:white;
+  border:1px solid var(--border-soft);
+  border-left:3px solid var(--reco-color, var(--accent2));
+  border-radius:10px;
+  padding:12px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;color:inherit;
+  transition:all .15s;
+}
+[data-theme="dark"] .diag-reco-card{background:rgba(0,0,0,.2)}
+.diag-reco-card:hover{
+  transform:translateX(2px);
+  box-shadow:var(--shadow-soft);
+  text-decoration:none;
+}
+.diag-reco-num{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--reco-color);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:900;flex-shrink:0;
+}
+.diag-reco-title{font-weight:700;font-size:.88rem}
+.diag-reco-sub{font-size:.78rem;color:var(--text-muted)}
+
+.diag-actions{
+  margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;
+}
+.diag-btn{
+  background:var(--accent2);color:white;border:none;
+  padding:10px 20px;border-radius:10px;cursor:pointer;
+  font-family:inherit;font-size:.92rem;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.diag-btn:hover{opacity:.9}
+.diag-btn-secondary{
+  background:transparent;color:var(--accent2);
+  border:1px solid var(--accent2);
+}
+
+.diag-progress-bar{
+  position:sticky;top:65px;
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:12px;
+  padding:12px 18px;
+  margin-bottom:24px;
+  display:flex;align-items:center;gap:14px;z-index:50;
+  box-shadow:var(--shadow-soft);
+}
+.diag-progress-track{
+  flex:1;height:8px;background:var(--surface-alt);
+  border-radius:4px;overflow:hidden;
+  border:1px solid var(--border-soft);
+}
+.diag-progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--accent3),var(--gold));
+  width:0%;transition:width .3s;
+}
+.diag-progress-text{
+  font-size:.82rem;font-weight:700;color:var(--text-strong);
+  white-space:nowrap;
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  </defs>
+</svg>
+
+<header class="app-header">
+  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Accueil</a>
+    <a href="diagnostic.html" class="nav-link active">Diagnostic</a>
+    <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
+    <a href="modules.html" class="nav-link">Catalogue modules</a>
+  </nav>
+  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="page-head">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current">Diagnostic PRÉSENCE</span>
+  </div>
+  <h1 class="page-title">Diagnostic PRÉSENCE — Mon profil de départ</h1>
+  <p class="page-sub">Auto-évaluation rapide en 8 questions, structurée selon les 8 composantes du modèle PRÉSENCE (Fahim, 2022). Le résultat oriente vers les modules prioritaires à travailler en premier.</p>
+</div>
+
+<main>
+  <div class="diag-intro">
+    <h3>Comment fonctionne ce diagnostic ?</h3>
+    <p>Pour chacune des 8 composantes PRÉSENCE, répondez en cochant la valeur qui décrit le mieux votre situation actuelle (de 1 = très fragile à 5 = très solide). Aucune bonne réponse n'existe : il s'agit d'une lecture honnête de votre point de départ.</p>
+    <p style="font-size:.85rem;color:var(--text-muted)"><strong>~5 minutes · Sauvegarde automatique · Vous pouvez recommencer à tout moment.</strong></p>
+  </div>
+
+  <div class="diag-progress-bar">
+    <span class="diag-progress-text"><span id="diag-count">0</span> / 8</span>
+    <div class="diag-progress-track"><div class="diag-progress-fill" id="diag-progress-fill"></div></div>
+    <button class="diag-btn diag-btn-secondary" id="diag-show-result" onclick="showResult()" disabled style="opacity:.5">Voir mon résultat</button>
+  </div>
+
+  <div class="diag-composante comp-P" data-comp="P">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">P</div>
+      <div>
+        <div class="diag-composante-titre">Prédisposition</div>
+        <div class="diag-composante-sous">Croyances, valeurs, histoire de vie professionnelle</div>
+      </div>
+    </div>
+    <p class="diag-question">À quel point estimez-vous que vos croyances et valeurs professionnelles sont stables et alignées avec votre pratique actuelle ?</p>
+    <div class="diag-scale" role="radiogroup" aria-label="Échelle de 1 à 5"></div>
+    <div class="diag-scale-labels"><span>Très fragile</span><span>Très solide</span></div>
+  </div>
+
+  <div class="diag-composante comp-R" data-comp="R">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">R</div>
+      <div>
+        <div class="diag-composante-titre">Réseaux</div>
+        <div class="diag-composante-sous">Liens socio-émotionnels, accordage relationnel</div>
+      </div>
+    </div>
+    <p class="diag-question">Avez-vous un réseau professionnel de soutien (collègues de confiance, mentorat, échanges réguliers) sur lequel vous pouvez vraiment vous appuyer ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>Très isolé·e</span><span>Très soutenu·e</span></div>
+  </div>
+
+  <div class="diag-composante comp-E1" data-comp="E1">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">É</div>
+      <div>
+        <div class="diag-composante-titre">Élagage</div>
+        <div class="diag-composante-sous">Développement des compétences clés du métier</div>
+      </div>
+    </div>
+    <p class="diag-question">Vous sentez-vous compétent·e dans les six ingrédients de la gestion de classe (Gaudreau) — climat, attentes, comportements, engagement, apprentissage, soutien individualisé ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>En grande difficulté</span><span>Très à l'aise</span></div>
+  </div>
+
+  <div class="diag-composante comp-S" data-comp="S">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">S</div>
+      <div>
+        <div class="diag-composante-titre">Synchronisation</div>
+        <div class="diag-composante-sous">Co-régulation émotionnelle, sécurité affective</div>
+      </div>
+    </div>
+    <p class="diag-question">Parvenez-vous à rester calme et stable émotionnellement face aux situations difficiles en classe, et à co-réguler les émotions de vos élèves ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>Très réactif·ve</span><span>Très régulé·e</span></div>
+  </div>
+
+  <div class="diag-composante comp-E2" data-comp="E2">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">E</div>
+      <div>
+        <div class="diag-composante-titre">Élagage ado</div>
+        <div class="diag-composante-sous">Maturation cortex préfrontal, autodétermination</div>
+      </div>
+    </div>
+    <p class="diag-question">À quel point vous sentez-vous outillé·e pour accompagner les comportements typiques des adolescents (impulsivité, recherche de sens, besoin d'autonomie) ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>Démuni·e</span><span>Bien outillé·e</span></div>
+  </div>
+
+  <div class="diag-composante comp-N" data-comp="N">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">N</div>
+      <div>
+        <div class="diag-composante-titre">Neuroplasticité</div>
+        <div class="diag-composante-sous">Capacité de changement, apprentissage continu</div>
+      </div>
+    </div>
+    <p class="diag-question">Êtes-vous engagé·e dans une démarche d'apprentissage continu (lectures, formations, expérimentations) qui nourrit votre pratique ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>Très peu</span><span>Très investi·e</span></div>
+  </div>
+
+  <div class="diag-composante comp-C" data-comp="C">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">C</div>
+      <div>
+        <div class="diag-composante-titre">Conscience</div>
+        <div class="diag-composante-sous">Métacognition, réflexivité, conscience de soi</div>
+      </div>
+    </div>
+    <p class="diag-question">Prenez-vous régulièrement du recul sur votre pratique (journal réflexif, supervision, analyse de situations) ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>Jamais</span><span>Très régulièrement</span></div>
+  </div>
+
+  <div class="diag-composante comp-E3" data-comp="E3">
+    <div class="diag-composante-head">
+      <div class="diag-composante-lettre">E</div>
+      <div>
+        <div class="diag-composante-titre">Libre arbitre</div>
+        <div class="diag-composante-sous">Autodétermination, sentiment d'agentivité</div>
+      </div>
+    </div>
+    <p class="diag-question">Vous sentez-vous acteur/actrice de votre vie professionnelle, capable d'influer sur les conditions de votre exercice ?</p>
+    <div class="diag-scale" role="radiogroup"></div>
+    <div class="diag-scale-labels"><span>Subi·e</span><span>Acteur·rice</span></div>
+  </div>
+
+  <div class="diag-result-block hidden" id="diag-result-block">
+    <h2>Votre profil PRÉSENCE</h2>
+    <p class="diag-result-summary" id="diag-result-summary"></p>
+
+    <div class="diag-result-radar">
+      <svg class="diag-radar-svg" id="diag-radar" viewBox="0 0 240 240" aria-label="Radar de mon profil PRÉSENCE">
+        <!-- Cercles concentriques -->
+        <circle cx="120" cy="120" r="24" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="48" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="72" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="96" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
+        <!-- Axes pour 8 composantes (à 45° d'écart) -->
+        <g id="diag-radar-axes" stroke="rgba(0,0,0,.08)" stroke-width="1"></g>
+        <!-- Polygone du score -->
+        <polygon id="diag-radar-shape" fill="rgba(184,134,11,.18)" stroke="#b8860b" stroke-width="2" stroke-linejoin="round" points="120,120 120,120 120,120 120,120 120,120 120,120 120,120 120,120"/>
+        <!-- Points par axe + labels -->
+        <g id="diag-radar-points"></g>
+        <g id="diag-radar-labels" font-family="DM Sans" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle"></g>
+      </svg>
+
+      <div class="diag-result-recommendations">
+        <h3>Modules recommandés pour vous</h3>
+        <div id="diag-recos"></div>
+      </div>
+    </div>
+
+    <div class="diag-actions">
+      <button class="diag-btn" onclick="saveResultAndContinue()">
+        <svg class="icon icon-sm"><use href="#i-save"/></svg>
+        Enregistrer mon profil
+      </button>
+      <button class="diag-btn diag-btn-secondary" onclick="resetDiag()">Recommencer le diagnostic</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="modules.html">Catalogue modules</a>
+    <a href="fondements.html">Fondements PRÉSENCE</a>
+  </div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+</footer>
+
+<script>
+// ─── Configuration des 8 composantes ───
+var COMPOSANTES = [
+  {key:'P', label:'Prédisposition', color:'#e94560', mods:[1]},
+  {key:'R', label:'Réseaux', color:'#2d9cdb', mods:[7]},
+  {key:'E1', label:'Élagage', color:'#27ae60', mods:[3]},
+  {key:'S', label:'Synchronisation', color:'#f39c12', mods:[1,9]},
+  {key:'E2', label:'Élagage ado', color:'#8e44ad', mods:[8]},
+  {key:'N', label:'Neuroplasticité', color:'#16a085', mods:[3,6]},
+  {key:'C', label:'Conscience', color:'#2980b9', mods:[6]},
+  {key:'E3', label:'Libre arbitre', color:'#0f3460', mods:[6]}
+];
+
+var MODULES_META = {
+  1: {titre:'Bien-être professionnel', color:'#e94560', fichier:'prototype_module1_v5.html'},
+  2: {titre:'Prévention du burnout', color:'#c0392b', fichier:'prototype_module2.html'},
+  3: {titre:'Besoins de formation', color:'#0f3460', fichier:'prototype_module3.html'},
+  4: {titre:'Vulnérabilité au stress', color:'#b8860b', fichier:'prototype_module4.html'},
+  6: {titre:'Cartographie des ressources', color:'#4a7c59', fichier:'prototype_module6.html'},
+  7: {titre:'Mentorat entre pairs', color:'#2980b9', fichier:'prototype_module7.html'},
+  8: {titre:'Stratégies pédagogiques', color:'#8e44ad', fichier:'prototype_module8.html'},
+  9: {titre:'Fatigue de compassion', color:'#4a7c59', fichier:'prototype_module9.html'}
+};
+
+var responses = {};
+
+// Construire les échelles 1-5 pour chaque composante
+function buildScales(){
+  document.querySelectorAll('.diag-composante').forEach(function(card){
+    var scale = card.querySelector('.diag-scale');
+    var comp = card.dataset.comp;
+    for(var i = 1; i <= 5; i++){
+      var btn = document.createElement('button');
+      btn.className = 'diag-scale-btn';
+      btn.textContent = i;
+      btn.dataset.val = i;
+      btn.setAttribute('role','radio');
+      btn.setAttribute('aria-label', i+' sur 5');
+      (function(comp, val, btn){
+        btn.addEventListener('click', function(){
+          // Désélectionner les autres
+          scale.querySelectorAll('.diag-scale-btn').forEach(function(b){
+            b.classList.remove('selected');
+            b.setAttribute('aria-checked','false');
+          });
+          btn.classList.add('selected');
+          btn.setAttribute('aria-checked','true');
+          responses[comp] = val;
+          updateProgress();
+        });
+      })(comp, i, btn);
+      scale.appendChild(btn);
+    }
+  });
+}
+
+function updateProgress(){
+  var count = Object.keys(responses).length;
+  document.getElementById('diag-count').textContent = count;
+  document.getElementById('diag-progress-fill').style.width = (count/8*100) + '%';
+  var btn = document.getElementById('diag-show-result');
+  if(count === 8){
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  } else {
+    btn.disabled = true;
+    btn.style.opacity = '.5';
+  }
+}
+
+function drawRadar(){
+  // 8 axes à 45° (commence à top, sens horaire)
+  var cx = 120, cy = 120, rMax = 96;
+  var axesGroup = document.getElementById('diag-radar-axes');
+  var pointsGroup = document.getElementById('diag-radar-points');
+  var labelsGroup = document.getElementById('diag-radar-labels');
+  axesGroup.innerHTML = '';
+  pointsGroup.innerHTML = '';
+  labelsGroup.innerHTML = '';
+
+  var polygonPoints = [];
+
+  COMPOSANTES.forEach(function(c, i){
+    var angle = (i * 45 - 90) * Math.PI / 180;
+    var ex = cx + Math.cos(angle) * rMax;
+    var ey = cy + Math.sin(angle) * rMax;
+
+    // Axe
+    axesGroup.innerHTML += '<line x1="'+cx+'" y1="'+cy+'" x2="'+ex+'" y2="'+ey+'"/>';
+
+    // Position du point selon le score
+    var val = responses[c.key] || 0;
+    var dist = (val / 5) * rMax;
+    var px = cx + Math.cos(angle) * dist;
+    var py = cy + Math.sin(angle) * dist;
+    polygonPoints.push(px + ',' + py);
+
+    if(val > 0){
+      pointsGroup.innerHTML += '<circle cx="'+px+'" cy="'+py+'" r="4" fill="'+c.color+'"/>';
+    }
+
+    // Label (juste au-delà de rMax)
+    var lx = cx + Math.cos(angle) * (rMax + 18);
+    var ly = cy + Math.sin(angle) * (rMax + 18);
+    labelsGroup.innerHTML += '<circle cx="'+lx+'" cy="'+ly+'" r="11" fill="'+c.color+'"/>'
+      + '<text x="'+lx+'" y="'+(ly+4)+'" fill="white" font-size="11" font-weight="900">'+c.key.replace('1','').replace('2','').replace('3','')+'</text>';
+  });
+
+  document.getElementById('diag-radar-shape').setAttribute('points', polygonPoints.join(' '));
+}
+
+function showResult(){
+  // Identifier les 2-3 composantes les plus faibles (priorité)
+  var ranked = COMPOSANTES.slice().sort(function(a,b){
+    return (responses[a.key] || 0) - (responses[b.key] || 0);
+  });
+  var weakest = ranked.slice(0, 3);
+
+  // Collecter les modules recommandés (uniques, ordonnés par fréquence)
+  var modCount = {};
+  weakest.forEach(function(c){
+    c.mods.forEach(function(m){ modCount[m] = (modCount[m] || 0) + 1; });
+  });
+  var sortedMods = Object.keys(modCount).sort(function(a,b){return modCount[b]-modCount[a]});
+
+  // Construire le résumé
+  var total = 0;
+  Object.keys(responses).forEach(function(k){ total += responses[k]; });
+  var pct = Math.round(total/40*100);
+
+  var summary = 'Votre profil global ressort à <strong>' + pct + '%</strong> de solidité ressentie. ';
+  summary += 'Les composantes qui ressortent comme prioritaires à travailler en premier sont : ';
+  summary += weakest.map(function(c){ return '<strong>' + c.label + '</strong> (' + (responses[c.key]||0) + '/5)'; }).join(', ') + '.';
+
+  document.getElementById('diag-result-summary').innerHTML = summary;
+
+  // Recommandations
+  var recosHtml = sortedMods.slice(0, 3).map(function(m){
+    var mod = MODULES_META[m];
+    return '<a href="' + mod.fichier + '" class="diag-reco-card" style="--reco-color:' + mod.color + '">'
+      + '<div class="diag-reco-num">' + m + '</div>'
+      + '<div style="flex:1"><div class="diag-reco-title">Module ' + m + ' — ' + mod.titre + '</div>'
+      + '<div class="diag-reco-sub">Recommandé en priorité</div></div>'
+      + '<svg class="icon icon-sm" style="color:' + mod.color + '"><use href="#i-arrow-right"/></svg>'
+      + '</a>';
+  }).join('');
+
+  document.getElementById('diag-recos').innerHTML = recosHtml;
+  document.getElementById('diag-result-block').classList.remove('hidden');
+  drawRadar();
+
+  // Scroll vers le résultat
+  document.getElementById('diag-result-block').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function saveResultAndContinue(){
+  // Identifier le module recommandé en n°1
+  var ranked = COMPOSANTES.slice().sort(function(a,b){
+    return (responses[a.key] || 0) - (responses[b.key] || 0);
+  });
+  var weakest = ranked.slice(0, 3);
+  var modCount = {};
+  weakest.forEach(function(c){
+    c.mods.forEach(function(m){ modCount[m] = (modCount[m] || 0) + 1; });
+  });
+  var sortedMods = Object.keys(modCount).sort(function(a,b){return modCount[b]-modCount[a]});
+
+  var data = {
+    responses: responses,
+    weakest: weakest.map(function(c){return c.key}),
+    recommendedModules: sortedMods.slice(0, 3),
+    completedAt: new Date().toISOString()
+  };
+  saveDiagnostic(data);
+  alert('Profil enregistré. Vous pouvez maintenant ouvrir un des modules recommandés.');
+}
+
+function resetDiag(){
+  if(!confirm('Recommencer le diagnostic ? Vos réponses actuelles seront effacées.')) return;
+  responses = {};
+  document.querySelectorAll('.diag-scale-btn.selected').forEach(function(b){
+    b.classList.remove('selected');
+    b.setAttribute('aria-checked','false');
+  });
+  document.getElementById('diag-result-block').classList.add('hidden');
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Charger un diagnostic précédent si existant
+function loadPrevious(){
+  var prev = getDiagnostic();
+  if(prev && prev.responses){
+    responses = prev.responses;
+    Object.keys(responses).forEach(function(comp){
+      var card = document.querySelector('[data-comp="' + comp + '"]');
+      if(!card) return;
+      var btn = card.querySelector('.diag-scale-btn[data-val="' + responses[comp] + '"]');
+      if(btn){ btn.classList.add('selected'); btn.setAttribute('aria-checked','true'); }
+    });
+    updateProgress();
+    if(Object.keys(responses).length === 8){
+      showResult();
+    }
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+  buildScales();
+  loadPrevious();
+});
+</script>
+</body>
+</html>

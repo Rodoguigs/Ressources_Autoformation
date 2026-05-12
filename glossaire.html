@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossaire · FAQ · Bibliographie · Autoformation HEP-VS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Charte commune — Plateforme Autoformation HEP-VS
+   Importée par toutes les pages de la coquille (sauf les modules).
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --light:#f8f5f0; --muted:#7a7a9d;
+  --surface:#ffffff; --surface-alt:#fafbff;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --border-soft:rgba(0,0,0,.08);
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.08);
+}
+
+[data-theme="dark"]{
+  --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115;
+  --surface:#1a1d24; --surface-alt:#13161c;
+  --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
+  --border-soft:rgba(255,255,255,.1);
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--light); color:var(--text-body);
+  line-height:1.65; font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+[data-theme="dark"] a{color:var(--sky)}
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:.85em;height:.85em}
+.icon-lg{width:1.25em;height:1.25em}
+
+/* ─── Header ─── */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:14px 28px;
+  display:flex;align-items:center;gap:20px;
+  backdrop-filter:blur(8px);flex-wrap:wrap;
+}
+.app-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:900;font-size:1.1rem;
+  color:var(--accent2);text-decoration:none;
+  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.app-logo:hover{text-decoration:none}
+[data-theme="dark"] .app-logo{color:var(--text-strong)}
+.nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
+.nav-link{
+  color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
+  transition:all .15s;
+}
+.nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-link.active{background:var(--accent2);color:white;font-weight:600}
+.theme-toggle{
+  background:none;border:1px solid var(--border-soft);
+  border-radius:8px;padding:6px 10px;cursor:pointer;
+  color:var(--text-body);
+}
+.theme-toggle:hover{background:var(--surface-alt)}
+.hep-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;padding:5px 11px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+}
+
+/* ─── Page header / breadcrumb ─── */
+.page-head{
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:24px 28px 28px;
+}
+.breadcrumb{
+  display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.breadcrumb a{color:var(--text-subtle)}
+.breadcrumb span.sep{opacity:.5}
+.breadcrumb .current{color:var(--text-strong);font-weight:600}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 8px;letter-spacing:-.01em;
+}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:760px;line-height:1.55;
+}
+
+/* ─── Container principal ─── */
+main{
+  flex:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 28px;
+  width:100%;
+}
+
+/* ─── Cards & blocs ─── */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow-soft);
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text-strong);
+  margin:32px 0 16px;
+}
+
+.info-block{
+  background:var(--surface-alt);
+  border-left:4px solid var(--accent3);
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  margin:18px 0;
+}
+
+/* ─── Footer ─── */
+footer{
+  margin-top:auto;
+  background:var(--surface);
+  border-top:1px solid var(--border-soft);
+  padding:32px 28px;
+  text-align:center;
+  font-size:.82rem;color:var(--text-subtle);
+}
+footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+
+/* ─── Responsive ─── */
+@media (max-width:900px){
+  .page-head{padding:18px 20px 22px}
+  .page-title{font-size:1.5rem}
+  main{padding:20px}
+}
+
+</style>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Logique commune — Plateforme Autoformation HEP-VS
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  // Initialisation du thème (avant render pour éviter flash)
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('aut_theme', next); }catch(e){}
+  updateThemeIcon();
+}
+
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon');
+  if(!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
+/* Récupérer l'état d'un module */
+function getModuleState(num){
+  try{
+    var raw = localStorage.getItem('autoformation_mod'+num+'_v5');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
+function scanAllModules(){
+  var nums = [1,2,3,4,6,7,8,9];
+  var completed = [];
+  var inProgress = null;
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    if(!s) return;
+    if(s.completed){ completed.push(n); return; }
+    if(s.lastSection && s.lastSection !== 's1' && !inProgress){
+      inProgress = {num:n, section:s.lastSection};
+    }
+  });
+  return {completed: completed, inProgress: inProgress, total: nums.length};
+}
+
+/* Récupérer le diagnostic enregistré */
+function getDiagnostic(){
+  try{
+    var raw = localStorage.getItem('aut_diagnostic_v1');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function saveDiagnostic(data){
+  try{
+    data.savedAt = new Date().toISOString();
+    localStorage.setItem('aut_diagnostic_v1', JSON.stringify(data));
+    return true;
+  }catch(e){ return false; }
+}
+
+window.addEventListener('DOMContentLoaded', updateThemeIcon);
+
+</script>
+<style>
+.tabs{
+  display:flex;gap:4px;
+  border-bottom:1px solid var(--border-soft);
+  margin-bottom:24px;
+}
+.tab-btn{
+  padding:10px 18px;background:transparent;border:none;
+  font-family:inherit;font-size:.92rem;font-weight:600;
+  color:var(--text-muted);cursor:pointer;
+  border-bottom:3px solid transparent;
+  transition:all .15s;
+}
+.tab-btn:hover{color:var(--text-strong)}
+.tab-btn.active{
+  color:var(--accent2);
+  border-bottom-color:var(--accent2);
+}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Glossaire */
+.gloss-search{
+  width:100%;
+  padding:10px 14px;
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  font-family:inherit;font-size:.92rem;
+  margin-bottom:16px;color:var(--text-body);
+}
+.gloss-item{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  padding:14px 18px;margin-bottom:10px;
+}
+.gloss-term{
+  font-weight:700;color:var(--accent3);
+  font-size:.95rem;margin-bottom:4px;
+  display:flex;align-items:center;gap:8px;
+}
+.gloss-tag{
+  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:2px 7px;border-radius:10px;
+  background:var(--surface-alt);color:var(--text-muted);
+  border:1px solid var(--border-soft);
+}
+.gloss-def{font-size:.88rem;line-height:1.6;color:var(--text-body)}
+
+/* FAQ */
+.faq-item{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  margin-bottom:8px;
+  overflow:hidden;
+}
+.faq-question{
+  padding:14px 18px;
+  font-weight:700;color:var(--text-strong);
+  cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  list-style:none;
+  font-size:.95rem;
+}
+.faq-question::-webkit-details-marker{display:none}
+.faq-item summary{user-select:none}
+.faq-question::after{
+  content:'+';
+  font-size:1.4rem;font-weight:300;
+  color:var(--text-muted);
+  transition:transform .2s;
+}
+.faq-item[open] .faq-question::after{transform:rotate(45deg)}
+.faq-answer{
+  padding:0 18px 16px;
+  font-size:.9rem;line-height:1.65;color:var(--text-body);
+  border-top:1px solid var(--border-soft);padding-top:14px;
+}
+
+/* Bibliographie */
+.biblio-section{margin-bottom:30px}
+.biblio-section h2{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;color:var(--text-strong);
+  margin:0 0 14px;
+}
+.biblio-ref{
+  font-size:.88rem;line-height:1.65;
+  padding:10px 14px;
+  border-left:3px solid var(--accent3);
+  background:var(--surface);
+  border-radius:0 8px 8px 0;
+  margin-bottom:10px;
+}
+.biblio-ref strong{color:var(--text-strong)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  </defs>
+</svg>
+
+<header class="app-header">
+  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Accueil</a>
+    <a href="diagnostic.html" class="nav-link">Diagnostic</a>
+    <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
+    <a href="modules.html" class="nav-link">Catalogue modules</a>
+  </nav>
+  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="page-head">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current">Glossaire · FAQ · Bibliographie</span>
+  </div>
+  <h1 class="page-title">Glossaire · FAQ · Bibliographie</h1>
+  <p class="page-sub">Trois ressources pour approfondir : un lexique des termes clés employés sur la plateforme, une foire aux questions, et la bibliographie complète des références citées.</p>
+</div>
+
+<main>
+  <div class="info-block">
+    <strong>Cette page est un squelette.</strong> Le contenu complet (extrait des sections <code>#glossaire</code>, <code>#faq</code> et <code>#bibliographie</code> du fichier source) sera intégré dans une prochaine étape. Quelques termes et entrées sont déjà présents pour donner un aperçu de la structure finale.
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="gloss" role="tab">📖 Glossaire</button>
+    <button class="tab-btn" data-tab="faq" role="tab">❓ FAQ</button>
+    <button class="tab-btn" data-tab="biblio" role="tab">📚 Bibliographie</button>
+  </div>
+
+  <!-- ─── GLOSSAIRE ─── -->
+  <div class="tab-content active" id="tab-gloss">
+    <input type="text" class="gloss-search" id="gloss-search" placeholder="Rechercher un terme..." aria-label="Rechercher dans le glossaire">
+
+    <div class="gloss-item">
+      <div class="gloss-term">Burnout (épuisement professionnel) <span class="gloss-tag">Module 2</span></div>
+      <div class="gloss-def">Syndrome professionnel résultant d'un stress chronique non géré, caractérisé selon Maslach par trois dimensions : épuisement émotionnel, dépersonnalisation et réduction du sentiment d'accomplissement personnel.</div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">CSÉ — Compétences socio-émotionnelles <span class="gloss-tag">Diagnostic</span></div>
+      <div class="gloss-def">Ensemble des compétences permettant de comprendre et gérer ses émotions, de développer des relations positives, et de prendre des décisions responsables. Cinq domaines : conscience de soi, gestion de soi, conscience sociale, gestion des relations, prise de décision responsable.</div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">CUA — Conception Universelle de l'Apprentissage <span class="gloss-tag">Module 8</span></div>
+      <div class="gloss-def">Approche pédagogique qui consiste à concevoir des situations d'apprentissage flexibles dès le départ, accessibles à la diversité des élèves, plutôt que d'adapter après-coup. Triple flexibilité : représentation, expression, engagement.</div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">Fatigue de compassion <span class="gloss-tag">Module 9</span></div>
+      <div class="gloss-def">Forme spécifique d'épuisement liée à l'exposition prolongée à la détresse émotionnelle d'autrui (Figley, 1995). Distincte du burnout : elle découle du « coût de l'empathie » et touche particulièrement les enseignants qui accompagnent des élèves en situation de vulnérabilité.</div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">MBI-ES — Maslach Burnout Inventory <span class="gloss-tag">Module 2</span></div>
+      <div class="gloss-def">Questionnaire psychométrique de référence pour l'évaluation du burnout enseignant. Mesure les 3 dimensions identifiées par Maslach (épuisement émotionnel, dépersonnalisation, sentiment d'accomplissement personnel).</div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">PRÉSENCE <span class="gloss-tag">Modèle théorique</span></div>
+      <div class="gloss-def">Cadre intégrateur en 8 composantes pour la pratique éducative, proposé par Cherine Fahim (2022). Acronyme : Prédisposition, Réseaux, Élagage, Synchronisation, Élagage ado, Neuroplasticité, Conscience, libre arbitrE.</div>
+    </div>
+
+    <div class="gloss-item">
+      <div class="gloss-term">SEP — Sentiment d'Efficacité Personnelle <span class="gloss-tag">Diagnostic</span></div>
+      <div class="gloss-def">Concept de Bandura. Croyance qu'a un individu en sa capacité à organiser et exécuter les actions requises pour atteindre un objectif donné. Pour un enseignant, le SEP est un prédicteur majeur de la persévérance, de la résilience et de l'engagement professionnel.</div>
+    </div>
+
+    <p style="text-align:center;color:var(--text-muted);margin-top:24px;font-style:italic">D'autres termes seront ajoutés progressivement (axe HPA, coping, locus de contrôle, métacognition, neuroplasticité, plasticité synaptique, etc.).</p>
+  </div>
+
+  <!-- ─── FAQ ─── -->
+  <div class="tab-content" id="tab-faq">
+    <details class="faq-item">
+      <summary class="faq-question">À qui s'adresse cette plateforme ?</summary>
+      <div class="faq-answer">La plateforme est conçue pour les enseignant·e·s du secondaire 1 (cycle d'orientation en Valais, 12-15 ans), mais une grande partie du contenu est transposable à tous les niveaux d'enseignement. Elle vise un usage en autoformation, individuelle ou en collectif d'établissement.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">Combien de temps faut-il pour parcourir l'ensemble ?</summary>
+      <div class="faq-answer">Un parcours complet (les 8 modules + le diagnostic) demande environ 4 à 6 heures de travail réparties sur plusieurs semaines. Chaque module dure 25-30 minutes. La démarche en 7 étapes s'étale typiquement sur 3-4 mois si on la prend dans l'ordre.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">Mes réponses sont-elles enregistrées et partagées ?</summary>
+      <div class="faq-answer">Toutes vos données sont stockées <strong>localement dans votre navigateur</strong> (localStorage). Aucune transmission externe, aucun serveur, aucun compte. La contrepartie : si vous changez de navigateur ou videz votre cache, les données sont perdues. Pensez à exporter votre progression régulièrement via le bouton « Exporter mon travail » de chaque module.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">Dois-je commencer par le diagnostic ou par un module ?</summary>
+      <div class="faq-answer">Si vous ne savez pas par où commencer : le diagnostic. Il prend 5 minutes et oriente vers vos 2-3 modules prioritaires. Si vous avez déjà une idée précise de votre besoin (ex. « je veux travailler la gestion de classe »), accédez directement au module concerné via le catalogue.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">Que signifie le mode HEP-VS dans le coin supérieur droit ?</summary>
+      <div class="faq-answer">Le mode HEP-VS active le suivi institutionnel pour les enseignant·e·s en formation à la HEP du Valais. Il permet de générer une attestation nominative au format PDF reconnaissant le travail accompli dans le cadre d'un CAS ou d'une formation continue.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-question">Qui est l'auteur de cette plateforme ?</summary>
+      <div class="faq-answer">La plateforme a été développée par <strong>Guillaume Roduit</strong>, enseignant au Cycle d'orientation de Val de Bagnes (Valais, Suisse) et coordinateur du Pool bien-être de l'établissement, dans le cadre d'un CAS en Neurosciences éducatives à la HEP-VS / Université de Fribourg, sous la supervision de la Prof. Cherine Fahim.</div>
+    </details>
+
+    <p style="text-align:center;color:var(--text-muted);margin-top:24px;font-style:italic">D'autres questions seront ajoutées au fil des retours d'usage.</p>
+  </div>
+
+  <!-- ─── BIBLIOGRAPHIE ─── -->
+  <div class="tab-content" id="tab-biblio">
+    <div class="biblio-section">
+      <h2>Modèles théoriques fondateurs</h2>
+      <div class="biblio-ref"><strong>Fahim, C.</strong> (2022). PRÉSENCE — un cadre intégrateur pour la pratique éducative. <em>Cortica, 1</em>(2), 464–492.</div>
+      <div class="biblio-ref"><strong>Maslach, C., &amp; Leiter, M. P.</strong> (1997). <em>The Truth About Burnout: How Organizations Cause Personal Stress and What to Do About It.</em> Jossey-Bass.</div>
+      <div class="biblio-ref"><strong>Bandura, A.</strong> (2003). <em>Auto-efficacité : Le sentiment d'efficacité personnelle.</em> De Boeck.</div>
+      <div class="biblio-ref"><strong>Deci, E. L., &amp; Ryan, R. M.</strong> (2017). <em>Self-Determination Theory: Basic Psychological Needs in Motivation, Development, and Wellness.</em> Guilford Press.</div>
+    </div>
+
+    <div class="biblio-section">
+      <h2>Neurosciences éducatives</h2>
+      <div class="biblio-ref"><strong>Bourassa, M., Menot-Martin, M., &amp; Philion, R.</strong> <em>Neurosciences et éducation.</em> De Boeck.</div>
+      <div class="biblio-ref"><strong>Damasio, A.</strong> (1995). <em>L'Erreur de Descartes : la raison des émotions.</em> Odile Jacob.</div>
+      <div class="biblio-ref"><strong>Masson, S.</strong> <em>Activer ses neurones pour mieux apprendre et enseigner.</em> Odile Jacob.</div>
+    </div>
+
+    <div class="biblio-section">
+      <h2>Bien-être et résilience enseignante</h2>
+      <div class="biblio-ref"><strong>Théorêt, M., &amp; Leroux, M.</strong> (2014). <em>Comment améliorer le bien-être et la santé des enseignants.</em> De Boeck.</div>
+      <div class="biblio-ref"><strong>Viac, C., &amp; Fraser, P.</strong> (2020). Teachers' well-being: A framework for data collection and analysis. <em>OECD Education Working Papers, 213</em>.</div>
+      <div class="biblio-ref"><strong>Gaudreau, N.</strong> (2024). <em>Gestion de classe efficace — 6 ingrédients pour aider les enseignants.</em></div>
+      <div class="biblio-ref"><strong>Goyette, N.</strong> (2023). Modèle de résilience enseignante en 4 composantes.</div>
+    </div>
+
+    <div class="biblio-section">
+      <h2>Fatigue de compassion</h2>
+      <div class="biblio-ref"><strong>Figley, C. R.</strong> (1995). <em>Compassion Fatigue: Coping with Secondary Traumatic Stress Disorder.</em> Brunner/Mazel.</div>
+      <div class="biblio-ref"><strong>Skovholt, T. M., &amp; Trotter-Mathison, M.</strong> (2016). <em>The Resilient Practitioner.</em> Routledge.</div>
+      <div class="biblio-ref"><strong>Pennebaker, J. W.</strong> (1997). Writing about emotional experiences as a therapeutic process. <em>Psychological Science, 8</em>(3), 162–166.</div>
+    </div>
+
+    <div class="biblio-section">
+      <h2>Préservation des ressources</h2>
+      <div class="biblio-ref"><strong>Hobfoll, S. E.</strong> Conservation of Resources Theory (COR).</div>
+      <div class="biblio-ref"><strong>Gross, J. J.</strong> (2015). Emotion Regulation: Current Status and Future Prospects. <em>Psychological Inquiry, 26</em>(1), 1–26.</div>
+    </div>
+
+    <p style="text-align:center;color:var(--text-muted);margin-top:24px;font-style:italic">La bibliographie complète intégrant les références secondaires sera fusionnée depuis la section dédiée du fichier source.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="bibliotheque.html">Bibliothèque (ressources)</a>
+    <a href="modules.html">Catalogue modules</a>
+  </div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+</footer>
+
+<script>
+// Onglets
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var tab = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.toggle('active', b === btn)});
+    document.querySelectorAll('.tab-content').forEach(function(c){
+      c.classList.toggle('active', c.id === 'tab-' + tab);
+    });
+  });
+});
+
+// Recherche glossaire
+document.getElementById('gloss-search').addEventListener('input', function(){
+  var q = this.value.toLowerCase();
+  document.querySelectorAll('.gloss-item').forEach(function(item){
+    var txt = item.textContent.toLowerCase();
+    item.style.display = txt.indexOf(q) !== -1 ? '' : 'none';
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon suivi · Autoformation HEP-VS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Charte commune — Plateforme Autoformation HEP-VS
+   Importée par toutes les pages de la coquille (sauf les modules).
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --light:#f8f5f0; --muted:#7a7a9d;
+  --surface:#ffffff; --surface-alt:#fafbff;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --border-soft:rgba(0,0,0,.08);
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.08);
+}
+
+[data-theme="dark"]{
+  --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115;
+  --surface:#1a1d24; --surface-alt:#13161c;
+  --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
+  --border-soft:rgba(255,255,255,.1);
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--light); color:var(--text-body);
+  line-height:1.65; font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+[data-theme="dark"] a{color:var(--sky)}
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:.85em;height:.85em}
+.icon-lg{width:1.25em;height:1.25em}
+
+/* ─── Header ─── */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:14px 28px;
+  display:flex;align-items:center;gap:20px;
+  backdrop-filter:blur(8px);flex-wrap:wrap;
+}
+.app-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:900;font-size:1.1rem;
+  color:var(--accent2);text-decoration:none;
+  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.app-logo:hover{text-decoration:none}
+[data-theme="dark"] .app-logo{color:var(--text-strong)}
+.nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
+.nav-link{
+  color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
+  transition:all .15s;
+}
+.nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-link.active{background:var(--accent2);color:white;font-weight:600}
+.theme-toggle{
+  background:none;border:1px solid var(--border-soft);
+  border-radius:8px;padding:6px 10px;cursor:pointer;
+  color:var(--text-body);
+}
+.theme-toggle:hover{background:var(--surface-alt)}
+.hep-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;padding:5px 11px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+}
+
+/* ─── Page header / breadcrumb ─── */
+.page-head{
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:24px 28px 28px;
+}
+.breadcrumb{
+  display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.breadcrumb a{color:var(--text-subtle)}
+.breadcrumb span.sep{opacity:.5}
+.breadcrumb .current{color:var(--text-strong);font-weight:600}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 8px;letter-spacing:-.01em;
+}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:760px;line-height:1.55;
+}
+
+/* ─── Container principal ─── */
+main{
+  flex:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 28px;
+  width:100%;
+}
+
+/* ─── Cards & blocs ─── */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow-soft);
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text-strong);
+  margin:32px 0 16px;
+}
+
+.info-block{
+  background:var(--surface-alt);
+  border-left:4px solid var(--accent3);
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  margin:18px 0;
+}
+
+/* ─── Footer ─── */
+footer{
+  margin-top:auto;
+  background:var(--surface);
+  border-top:1px solid var(--border-soft);
+  padding:32px 28px;
+  text-align:center;
+  font-size:.82rem;color:var(--text-subtle);
+}
+footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+
+/* ─── Responsive ─── */
+@media (max-width:900px){
+  .page-head{padding:18px 20px 22px}
+  .page-title{font-size:1.5rem}
+  main{padding:20px}
+}
+
+</style>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Logique commune — Plateforme Autoformation HEP-VS
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  // Initialisation du thème (avant render pour éviter flash)
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('aut_theme', next); }catch(e){}
+  updateThemeIcon();
+}
+
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon');
+  if(!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
+/* Récupérer l'état d'un module */
+function getModuleState(num){
+  try{
+    var raw = localStorage.getItem('autoformation_mod'+num+'_v5');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
+function scanAllModules(){
+  var nums = [1,2,3,4,6,7,8,9];
+  var completed = [];
+  var inProgress = null;
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    if(!s) return;
+    if(s.completed){ completed.push(n); return; }
+    if(s.lastSection && s.lastSection !== 's1' && !inProgress){
+      inProgress = {num:n, section:s.lastSection};
+    }
+  });
+  return {completed: completed, inProgress: inProgress, total: nums.length};
+}
+
+/* Récupérer le diagnostic enregistré */
+function getDiagnostic(){
+  try{
+    var raw = localStorage.getItem('aut_diagnostic_v1');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function saveDiagnostic(data){
+  try{
+    data.savedAt = new Date().toISOString();
+    localStorage.setItem('aut_diagnostic_v1', JSON.stringify(data));
+    return true;
+  }catch(e){ return false; }
+}
+
+window.addEventListener('DOMContentLoaded', updateThemeIcon);
+
+</script>
+<style>
+.suivi-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin:24px 0;
+}
+@media (max-width:800px){.suivi-grid{grid-template-columns:1fr}}
+.suivi-card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;padding:22px;
+  display:flex;flex-direction:column;
+}
+.suivi-stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;font-weight:900;
+  color:var(--accent3);line-height:1;margin-bottom:6px;
+}
+.suivi-stat-label{font-size:.86rem;color:var(--text-muted)}
+
+.mod-progress-list{margin-top:18px}
+.mod-prog-row{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--border-soft);
+}
+.mod-prog-row:last-child{border-bottom:none}
+.mod-prog-num{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--mp-color);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;flex-shrink:0;
+}
+.mod-prog-info{flex:1;min-width:0}
+.mod-prog-title{font-weight:700;color:var(--text-strong);font-size:.92rem}
+.mod-prog-bar{
+  height:6px;background:var(--surface-alt);border-radius:3px;
+  overflow:hidden;margin-top:6px;
+  border:1px solid var(--border-soft);
+}
+.mod-prog-fill{height:100%;background:var(--mp-color);border-radius:3px;transition:width .4s}
+.mod-prog-state{
+  font-size:.74rem;color:var(--text-subtle);
+  white-space:nowrap;
+}
+.mp-1{--mp-color:#e94560}.mp-2{--mp-color:#c0392b}.mp-3{--mp-color:#0f3460}
+.mp-4{--mp-color:#b8860b}.mp-6{--mp-color:#4a7c59}.mp-7{--mp-color:#2980b9}
+.mp-8{--mp-color:#8e44ad}.mp-9{--mp-color:#4a7c59}
+
+.empty-state{
+  text-align:center;padding:40px 20px;
+  color:var(--text-muted);
+}
+.empty-state svg{width:48px;height:48px;color:var(--text-subtle);margin-bottom:14px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  </defs>
+</svg>
+
+<header class="app-header">
+  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Accueil</a>
+    <a href="diagnostic.html" class="nav-link">Diagnostic</a>
+    <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
+    <a href="modules.html" class="nav-link">Catalogue modules</a>
+  </nav>
+  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="page-head">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current">Mon suivi</span>
+  </div>
+  <h1 class="page-title">Mon suivi</h1>
+  <p class="page-sub">Vue d'ensemble de votre progression : modules complétés, temps passé, diagnostic enregistré. Toutes les données sont stockées localement dans votre navigateur (aucune transmission externe).</p>
+</div>
+
+<main>
+  <div class="suivi-grid">
+    <div class="suivi-card">
+      <div class="suivi-stat-num" id="stat-completed">0</div>
+      <div class="suivi-stat-label">Module(s) complété(s) sur 8</div>
+    </div>
+    <div class="suivi-card">
+      <div class="suivi-stat-num" id="stat-time">0 min</div>
+      <div class="suivi-stat-label">Temps total cumulé sur la plateforme</div>
+    </div>
+    <div class="suivi-card">
+      <div class="suivi-stat-num" id="stat-diag">—</div>
+      <div class="suivi-stat-label">Dernier diagnostic PRÉSENCE</div>
+    </div>
+    <div class="suivi-card">
+      <div class="suivi-stat-num" id="stat-engagement">0</div>
+      <div class="suivi-stat-label">Engagement(s) personnel(s) enregistré(s)</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Progression par module</h2>
+  <div class="suivi-card">
+    <div class="mod-progress-list" id="mod-progress-list">
+      <!-- Rempli par JS -->
+    </div>
+  </div>
+
+  <h2 class="section-title">Historique des diagnostics</h2>
+  <div class="suivi-card" id="diag-history">
+    <div class="empty-state" id="diag-empty">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5"><use href="#i-target"/></svg>
+      <p>Vous n'avez pas encore effectué de diagnostic PRÉSENCE.</p>
+      <p><a href="diagnostic.html" style="color:var(--accent3);font-weight:700">Faire mon premier diagnostic →</a></p>
+    </div>
+  </div>
+
+  <div class="info-block" style="margin-top:30px">
+    <strong>Évolutions à venir :</strong> historique longitudinal des diagnostics (comparer ses radars sur 3 mois, 6 mois), bilan post-parcours avec auto-évaluation finale, export PDF de l'ensemble du suivi, cas pratiques sauvegardés.
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="modules.html">Catalogue modules</a>
+    <a href="diagnostic.html">Diagnostic PRÉSENCE</a>
+  </div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+</footer>
+
+<script>
+function formatTime(seconds){
+  if(!seconds || seconds < 60) return '< 1 min';
+  var m = Math.floor(seconds/60);
+  if(m < 60) return m + ' min';
+  var h = Math.floor(m/60);
+  var r = m % 60;
+  return h + 'h' + (r < 10 ? '0' : '') + r;
+}
+
+function formatDate(iso){
+  if(!iso) return '—';
+  try{
+    var d = new Date(iso);
+    return d.toLocaleDateString('fr-CH', {day:'2-digit',month:'short',year:'numeric'});
+  }catch(e){ return '—'; }
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+  var nums = [1,2,3,4,6,7,8,9];
+  var titles = {
+    1:"Bien-être professionnel", 2:"Prévention du burnout",
+    3:"Besoins de formation", 4:"Vulnérabilité au stress",
+    6:"Cartographie des ressources", 7:"Mentorat entre pairs",
+    8:"Stratégies pédagogiques", 9:"Fatigue de compassion"
+  };
+
+  var totalTime = 0;
+  var completed = 0;
+  var engagements = 0;
+  var listHtml = '';
+
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    var time = (s && s.timeSpent) || 0;
+    totalTime += time;
+    if(s && s.completed) completed++;
+    if(s && s.fields){
+      Object.keys(s.fields).forEach(function(k){
+        if(s.fields[k] && s.fields[k].trim().length > 0) engagements++;
+      });
+    }
+
+    var pct = 0, state = 'Non commencé';
+    if(s){
+      var lastSec = parseInt((s.lastSection || 's1').replace('s',''));
+      pct = (lastSec / 6) * 100;
+      if(s.completed){ pct = 100; state = 'Complété'; }
+      else if(lastSec > 1) state = 'Section ' + lastSec + '/6';
+    }
+
+    listHtml += '<div class="mod-prog-row mp-' + n + '">'
+      + '<div class="mod-prog-num">' + n + '</div>'
+      + '<div class="mod-prog-info">'
+      + '<div class="mod-prog-title">Module ' + n + ' — ' + titles[n] + '</div>'
+      + '<div class="mod-prog-bar"><div class="mod-prog-fill" style="width:' + pct + '%"></div></div>'
+      + '</div>'
+      + '<div class="mod-prog-state">' + state + (time ? ' · ' + formatTime(time) : '') + '</div>'
+      + '</div>';
+  });
+
+  document.getElementById('mod-progress-list').innerHTML = listHtml;
+  document.getElementById('stat-completed').textContent = completed;
+  document.getElementById('stat-time').textContent = formatTime(totalTime);
+  document.getElementById('stat-engagement').textContent = engagements;
+
+  // Diagnostic
+  var diag = getDiagnostic();
+  if(diag){
+    document.getElementById('stat-diag').textContent = formatDate(diag.completedAt || diag.savedAt);
+    document.getElementById('diag-empty').style.display = 'none';
+    var recos = (diag.recommendedModules || []).slice(0,3).map(function(m){ return 'Module ' + m; }).join(', ');
+    document.getElementById('diag-history').innerHTML +=
+      '<div style="padding:12px 0;line-height:1.7">'
+      + '<strong>Dernier diagnostic :</strong> ' + formatDate(diag.completedAt) + '<br>'
+      + '<strong>Modules recommandés :</strong> ' + recos + '<br>'
+      + '<a href="diagnostic.html" style="display:inline-block;margin-top:8px;color:var(--accent3);font-weight:700">Voir le détail / refaire mon diagnostic →</a>'
+      + '</div>';
+  }
+});
+</script>
+</body>
+</html>

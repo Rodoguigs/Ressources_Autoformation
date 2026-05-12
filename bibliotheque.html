@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bibliothèque · Autoformation HEP-VS</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   Charte commune — Plateforme Autoformation HEP-VS
+   Importée par toutes les pages de la coquille (sauf les modules).
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --light:#f8f5f0; --muted:#7a7a9d;
+  --surface:#ffffff; --surface-alt:#fafbff;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --border-soft:rgba(0,0,0,.08);
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.08);
+}
+
+[data-theme="dark"]{
+  --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115;
+  --surface:#1a1d24; --surface-alt:#13161c;
+  --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
+  --border-soft:rgba(255,255,255,.1);
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
+  --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--light); color:var(--text-body);
+  line-height:1.65; font-size:15px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+[data-theme="dark"] a{color:var(--sky)}
+
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:.85em;height:.85em}
+.icon-lg{width:1.25em;height:1.25em}
+
+/* ─── Header ─── */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:14px 28px;
+  display:flex;align-items:center;gap:20px;
+  backdrop-filter:blur(8px);flex-wrap:wrap;
+}
+.app-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:900;font-size:1.1rem;
+  color:var(--accent2);text-decoration:none;
+  letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.app-logo:hover{text-decoration:none}
+[data-theme="dark"] .app-logo{color:var(--text-strong)}
+.nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
+.nav-link{
+  color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
+  transition:all .15s;
+}
+.nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-link.active{background:var(--accent2);color:white;font-weight:600}
+.theme-toggle{
+  background:none;border:1px solid var(--border-soft);
+  border-radius:8px;padding:6px 10px;cursor:pointer;
+  color:var(--text-body);
+}
+.theme-toggle:hover{background:var(--surface-alt)}
+.hep-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;padding:5px 11px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+}
+
+/* ─── Page header / breadcrumb ─── */
+.page-head{
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:24px 28px 28px;
+}
+.breadcrumb{
+  display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.breadcrumb a{color:var(--text-subtle)}
+.breadcrumb span.sep{opacity:.5}
+.breadcrumb .current{color:var(--text-strong);font-weight:600}
+.page-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 8px;letter-spacing:-.01em;
+}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:760px;line-height:1.55;
+}
+
+/* ─── Container principal ─── */
+main{
+  flex:1;
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 28px;
+  width:100%;
+}
+
+/* ─── Cards & blocs ─── */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:var(--shadow-soft);
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text-strong);
+  margin:32px 0 16px;
+}
+
+.info-block{
+  background:var(--surface-alt);
+  border-left:4px solid var(--accent3);
+  border-radius:0 12px 12px 0;
+  padding:16px 20px;
+  margin:18px 0;
+}
+
+/* ─── Footer ─── */
+footer{
+  margin-top:auto;
+  background:var(--surface);
+  border-top:1px solid var(--border-soft);
+  padding:32px 28px;
+  text-align:center;
+  font-size:.82rem;color:var(--text-subtle);
+}
+footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+
+/* ─── Responsive ─── */
+@media (max-width:900px){
+  .page-head{padding:18px 20px 22px}
+  .page-title{font-size:1.5rem}
+  main{padding:20px}
+}
+
+</style>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Logique commune — Plateforme Autoformation HEP-VS
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  // Initialisation du thème (avant render pour éviter flash)
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('aut_theme', next); }catch(e){}
+  updateThemeIcon();
+}
+
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon');
+  if(!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
+/* Récupérer l'état d'un module */
+function getModuleState(num){
+  try{
+    var raw = localStorage.getItem('autoformation_mod'+num+'_v5');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
+function scanAllModules(){
+  var nums = [1,2,3,4,6,7,8,9];
+  var completed = [];
+  var inProgress = null;
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    if(!s) return;
+    if(s.completed){ completed.push(n); return; }
+    if(s.lastSection && s.lastSection !== 's1' && !inProgress){
+      inProgress = {num:n, section:s.lastSection};
+    }
+  });
+  return {completed: completed, inProgress: inProgress, total: nums.length};
+}
+
+/* Récupérer le diagnostic enregistré */
+function getDiagnostic(){
+  try{
+    var raw = localStorage.getItem('aut_diagnostic_v1');
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){ return null; }
+}
+
+function saveDiagnostic(data){
+  try{
+    data.savedAt = new Date().toISOString();
+    localStorage.setItem('aut_diagnostic_v1', JSON.stringify(data));
+    return true;
+  }catch(e){ return false; }
+}
+
+window.addEventListener('DOMContentLoaded', updateThemeIcon);
+
+</script>
+<style>
+.biblio-filters{
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding-bottom:18px;margin-bottom:24px;
+  border-bottom:1px solid var(--border-soft);
+}
+.biblio-filter{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  padding:6px 14px;border-radius:18px;
+  font-family:inherit;font-size:.82rem;cursor:pointer;
+  color:var(--text-body);transition:all .15s;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.biblio-filter:hover{background:var(--surface-alt)}
+.biblio-filter.active{background:var(--accent2);color:white;border-color:var(--accent2);font-weight:600}
+
+.biblio-card{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-left:4px solid var(--r-color);
+  border-radius:12px;
+  padding:16px 20px;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:14px;
+  text-decoration:none;color:inherit;
+  transition:all .15s;
+}
+.biblio-card:hover{transform:translateY(-1px);box-shadow:var(--shadow-soft);text-decoration:none}
+.biblio-card-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--r-soft);color:var(--r-color);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.biblio-card-content{flex:1;min-width:0}
+.biblio-card-title{
+  font-weight:700;color:var(--text-strong);font-size:.92rem;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.biblio-card-sub{font-size:.82rem;color:var(--text-muted);margin-top:2px}
+.biblio-card-badge{
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:2px 8px;border-radius:10px;
+  background:var(--r-soft);color:var(--r-color);
+  border:1px solid var(--r-color);
+}
+.biblio-card-module{
+  font-size:.7rem;font-weight:700;
+  color:var(--text-subtle);
+  white-space:nowrap;
+}
+
+.r-pdf{--r-color:#c0392b;--r-soft:#fee2e2}
+[data-theme="dark"] .r-pdf{--r-color:#f87171;--r-soft:rgba(192,57,43,.18)}
+.r-book{--r-color:#92400e;--r-soft:#fef3c7}
+[data-theme="dark"] .r-book{--r-color:#fbbf24;--r-soft:rgba(146,64,14,.2)}
+.r-report{--r-color:#1e40af;--r-soft:#dbeafe}
+[data-theme="dark"] .r-report{--r-color:#60a5fa;--r-soft:rgba(30,64,175,.18)}
+.r-web{--r-color:#5b21b6;--r-soft:#ede9fe}
+[data-theme="dark"] .r-web{--r-color:#a78bfa;--r-soft:rgba(91,33,182,.18)}
+.r-note{--r-color:#15803d;--r-soft:#dcfce7}
+[data-theme="dark"] .r-note{--r-color:#4ade80;--r-soft:rgba(21,128,61,.18)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/></symbol>
+    <symbol id="i-pillar" viewBox="0 0 24 24"><path d="M3 21h18M3 7h18M5 7v14M19 7v14M9 7v14M15 7v14M3 7l9-4 9 4"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  </defs>
+</svg>
+
+<header class="app-header">
+  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Accueil</a>
+    <a href="diagnostic.html" class="nav-link">Diagnostic</a>
+    <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
+    <a href="modules.html" class="nav-link">Catalogue modules</a>
+  </nav>
+  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</header>
+
+<div class="page-head">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current">Bibliothèque</span>
+  </div>
+  <h1 class="page-title">Bibliothèque de ressources</h1>
+  <p class="page-sub">Toutes les ressources pédagogiques de la plateforme, classées par type. PDF du Guide de formation, livres de référence, rapports institutionnels, fiches de lecture, liens externes.</p>
+</div>
+
+<main>
+  <div class="info-block">
+    <strong>Cette page est un squelette.</strong> Le contenu complet de la bibliothèque (qui figure dans la section <code>#bibliotheque</code> du fichier source) sera intégré progressivement. Pour l'instant, voici les ressources principales identifiées.
+  </div>
+
+  <div class="biblio-filters" role="group">
+    <button class="biblio-filter active" data-type="all">Toutes les ressources</button>
+    <button class="biblio-filter" data-type="pdf">📄 PDF interne</button>
+    <button class="biblio-filter" data-type="book">📕 Livres</button>
+    <button class="biblio-filter" data-type="report">📊 Rapports</button>
+    <button class="biblio-filter" data-type="web">🔗 Web externe</button>
+    <button class="biblio-filter" data-type="note">📝 Fiches de lecture</button>
+  </div>
+
+  <div id="biblio-list">
+
+    <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" target="_blank" rel="noopener" class="biblio-card r-pdf" data-type="pdf">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pdf"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Guide de formation complet <span class="biblio-card-badge">PDF interne</span></div>
+        <div class="biblio-card-sub">Document de référence couvrant les 8 modules · ~80 pages</div>
+      </div>
+      <div class="biblio-card-module">Tous modules</div>
+    </a>
+
+    <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=4" target="_blank" rel="noopener" class="biblio-card r-pdf" data-type="pdf">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pdf"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Module 1 — Bien-être professionnel <span class="biblio-card-badge">PDF interne</span></div>
+        <div class="biblio-card-sub">Fiche pédagogique p. 4-5</div>
+      </div>
+      <div class="biblio-card-module">Module 1</div>
+    </a>
+
+    <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=6" target="_blank" rel="noopener" class="biblio-card r-pdf" data-type="pdf">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pdf"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Module 2 — Prévention de l'épuisement <span class="biblio-card-badge">PDF interne</span></div>
+        <div class="biblio-card-sub">Fiche pédagogique p. 6-7</div>
+      </div>
+      <div class="biblio-card-module">Module 2</div>
+    </a>
+
+    <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=15" target="_blank" rel="noopener" class="biblio-card r-pdf" data-type="pdf">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pdf"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Module 6 — Cartographie des ressources <span class="biblio-card-badge">PDF interne</span></div>
+        <div class="biblio-card-sub">Fiche pédagogique p. 15</div>
+      </div>
+      <div class="biblio-card-module">Module 6</div>
+    </a>
+
+    <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=17" target="_blank" rel="noopener" class="biblio-card r-pdf" data-type="pdf">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pdf"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Module 7 — Mentorat entre pairs <span class="biblio-card-badge">PDF interne</span></div>
+        <div class="biblio-card-sub">Fiche pédagogique p. 17</div>
+      </div>
+      <div class="biblio-card-module">Module 7</div>
+    </a>
+
+    <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" class="biblio-card r-pdf" data-type="pdf">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pdf"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Module 8 — Stratégies pédagogiques <span class="biblio-card-badge">PDF interne</span></div>
+        <div class="biblio-card-sub">Fiche pédagogique p. 19</div>
+      </div>
+      <div class="biblio-card-module">Module 8</div>
+    </a>
+
+    <a href="#" class="biblio-card r-book" data-type="book">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-book"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Théorêt &amp; Leroux (2014) <span class="biblio-card-badge">Livre</span></div>
+        <div class="biblio-card-sub">Comment améliorer le bien-être et la santé des enseignants — De Boeck</div>
+      </div>
+      <div class="biblio-card-module">M1, M6</div>
+    </a>
+
+    <a href="#" class="biblio-card r-book" data-type="book">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-book"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Bourassa, Menot-Martin &amp; Philion <span class="biblio-card-badge">Livre</span></div>
+        <div class="biblio-card-sub">Neurosciences et éducation — De Boeck</div>
+      </div>
+      <div class="biblio-card-module">Tous modules</div>
+    </a>
+
+    <a href="#" class="biblio-card r-book" data-type="book">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-book"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Gaudreau (2024) <span class="biblio-card-badge">Livre</span></div>
+        <div class="biblio-card-sub">Gestion de classe efficace — 6 ingrédients pour aider</div>
+      </div>
+      <div class="biblio-card-module">M3, M8</div>
+    </a>
+
+    <a href="#" class="biblio-card r-book" data-type="book">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-book"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Damasio · L'Erreur de Descartes <span class="biblio-card-badge">Livre</span></div>
+        <div class="biblio-card-sub">Émotions, raison et cerveau humain</div>
+      </div>
+      <div class="biblio-card-module">M1, M4</div>
+    </a>
+
+    <a href="#" class="biblio-card r-report" data-type="report">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-pillar"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Viac &amp; Fraser (2020) — OCDE <span class="biblio-card-badge">Rapport</span></div>
+        <div class="biblio-card-sub">Teachers' well-being: A framework for data collection and analysis</div>
+      </div>
+      <div class="biblio-card-module">M1</div>
+    </a>
+
+    <a href="https://doi.org/10.1146/annurev.psych.52.1.397" target="_blank" rel="noopener" class="biblio-card r-web" data-type="web">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-arrow-up-right"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Maslach &amp; Leiter (1997) <span class="biblio-card-badge">Web externe</span></div>
+        <div class="biblio-card-sub">Article fondateur sur le burnout enseignant — Annual Review of Psychology</div>
+      </div>
+      <div class="biblio-card-module">M2</div>
+    </a>
+
+    <a href="https://www.inrs.fr/risques/epuisement-burnout/ce-qu-il-faut-retenir.html" target="_blank" rel="noopener" class="biblio-card r-web" data-type="web">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-arrow-up-right"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">INRS — Épuisement professionnel <span class="biblio-card-badge">Web externe</span></div>
+        <div class="biblio-card-sub">Dossier officiel français · synthèse accessible</div>
+      </div>
+      <div class="biblio-card-module">M2</div>
+    </a>
+
+    <a href="https://www.cortica.ch" target="_blank" rel="noopener" class="biblio-card r-web" data-type="web">
+      <div class="biblio-card-icon"><svg class="icon icon-lg"><use href="#i-arrow-up-right"/></svg></div>
+      <div class="biblio-card-content">
+        <div class="biblio-card-title">Cortica — Revue de neuroéducation <span class="biblio-card-badge">Web externe</span></div>
+        <div class="biblio-card-sub">Fahim (2022) PRÉSENCE et autres articles fondateurs</div>
+      </div>
+      <div class="biblio-card-module">Fondements PRÉSENCE</div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="modules.html">Catalogue modules</a>
+    <a href="glossaire.html">Glossaire · FAQ · Biblio</a>
+  </div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+</footer>
+
+<script>
+document.querySelectorAll('.biblio-filter').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.biblio-filter').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var type = btn.dataset.type;
+    document.querySelectorAll('.biblio-card').forEach(function(card){
+      card.style.display = (type === 'all' || card.dataset.type === type) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
