@@ -851,6 +851,13 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
     linear-gradient(180deg, #1a1925 0%, #1d1828 60%, var(--surface) 100%);
   border-bottom:1px solid rgba(123,84,160,.2);
 }
+
+/* ─── Fix alignement page-head ↔ main ─── */
+.page-head > *{
+  max-width:1200px;
+  margin-left:auto;
+  margin-right:auto;
+}
 </style>
 </head>
 <body>
@@ -894,7 +901,7 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
 
   <!-- ─── Navigation latérale ─── -->
   <aside class="fond-toc" id="fond-toc" aria-label="Table des matières">
-    <div class="fond-toc-label">Les 7 parties</div>
+    <div class="fond-toc-label">Les 8 parties</div>
     <a href="#part-1" class="toc-link" data-part="1">
       <span class="toc-num">1</span>
       <span class="toc-text">
@@ -942,6 +949,13 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
       <span class="toc-text">
         <span class="toc-title">Bien-être et compétences socio-émotionnelles</span>
         <span class="toc-sub"></span>
+      </span>
+    </a>
+    <a href="#part-8" class="toc-link" data-part="8">
+      <span class="toc-num">8</span>
+      <span class="toc-text">
+        <span class="toc-title">Bourassa &amp; le Profil Apprenant</span>
+        <span class="toc-sub">Un modèle opérationnel</span>
       </span>
     </a>
   </aside>
@@ -1170,6 +1184,30 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
       </div>
 </div>
 </div>
+</div>
+
+<!-- ─── Ajout : Définitions de la résilience ─── -->
+<div style="background:linear-gradient(135deg,#f5e6d3,#fde68a);border-radius:14px;padding:24px 28px;margin:24px 0;border-left:5px solid var(--gold);">
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text-strong);margin:0 0 14px;">Trois définitions complémentaires de la résilience professionnelle</h3>
+
+  <div style="display:grid;gap:12px;">
+    <div style="background:white;border-radius:10px;padding:14px 18px;">
+      <p style="margin:0;font-size:.92rem;color:var(--text-body);line-height:1.6;">«&nbsp;La capacité d'auto-adaptation dans diverses situations stressantes.&nbsp;»</p>
+      <div style="font-size:.78rem;color:var(--text-muted);margin-top:8px;font-style:italic;">— Définition générique de la résilience professionnelle</div>
+    </div>
+
+    <div style="background:white;border-radius:10px;padding:14px 18px;">
+      <p style="margin:0;font-size:.92rem;color:var(--text-body);line-height:1.6;">«&nbsp;La capacité à garder un état mental équilibré malgré les difficultés.&nbsp;»</p>
+      <div style="font-size:.78rem;color:var(--text-muted);margin-top:8px;font-style:italic;">— Perspective psychologique classique</div>
+    </div>
+
+    <div style="background:white;border-radius:10px;padding:14px 18px;border-left:3px solid var(--accent3);">
+      <p style="margin:0;font-size:.92rem;color:var(--text-body);line-height:1.6;">«&nbsp;La capacité de rebondir face à l'adversité et de surfer sur la vague des difficultés.&nbsp;»</p>
+      <div style="font-size:.78rem;color:var(--text-muted);margin-top:8px;font-style:italic;">— Goyette (2023). Approche dynamique et systémique. <em>Cette définition est celle retenue dans la démarche</em>.</div>
+    </div>
+  </div>
+
+  <p style="font-size:.85rem;color:var(--text-body);margin:14px 0 0;line-height:1.6;font-style:italic;">Ces trois définitions ne s'opposent pas : elles ouvrent un continuum, de l'adaptation passive (subir et tenir) à la résilience active (rebondir et grandir). C'est cette dernière acception, dynamique et systémique, que cette plateforme propose de développer.</p>
 </div>
 </section>
 
@@ -1690,6 +1728,92 @@ function downloadApprofondirPDF() {
 </div>
 </div>
 </div>
+
+<!-- ─── Ajout : Applications pédagogiques des 8 composantes PRÉSENCE ─── -->
+<section class="presence-applications" style="background:linear-gradient(135deg,#f0f4f8,#e8eff5);border-radius:14px;padding:30px 32px;margin:30px 0;border-left:5px solid var(--accent3);">
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text-strong);margin:0 0 12px;">Le modèle PRÉSENCE en pratique — applications pédagogiques</h3>
+  <p style="font-size:.95rem;color:var(--text-body);margin:0 0 22px;line-height:1.65;">Chaque composante du modèle PRÉSENCE se traduit par des principes concrets applicables en classe. Voici la synthèse des huit composantes avec leurs implications pédagogiques directes.</p>
+
+  <div class="presence-app-grid" style="display:grid;gap:14px;">
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #e94560;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#e94560;line-height:1;">P</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Prédisposition génétique &amp; épigénétique</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">Les facteurs génétiques et épigénétiques influencent les styles d'apprentissage individuels. Chaque élève a un profil unique façonné par l'interaction entre l'inné et l'acquis — les expériences de vie peuvent modifier l'expression des gènes via des mécanismes épigénétiques.</p>
+      <div style="background:rgba(233,69,96,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#e94560;font-style:normal;">Application :</strong> personnaliser l'enseignement pour tenir compte de ces différences ; observer la variabilité plutôt que la réduire ; proposer plusieurs entrées dans une tâche (visuelle, orale, manipulation).</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #2d9cdb;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#2d9cdb;line-height:1;">R</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Réseaux de neurones</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">Les neurones s'interconnectent et communiquent pour faciliter l'apprentissage et la mémorisation. Ces réseaux se renforcent par la répétition et la pratique. Apprendre, c'est créer et consolider des connexions.</p>
+      <div style="background:rgba(45,156,219,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#2d9cdb;font-style:normal;">Application :</strong> utiliser des techniques favorisant la formation de connexions neuronales solides — apprentissage actif, répétition espacée, enseignement par analogies, récupération en mémoire (retrieval practice).</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #27ae60;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#27ae60;line-height:1;">É</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Élagage synaptique (enfance)</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">Après l'explosion synaptique des premières années, le cerveau procède à un premier élagage intense entre 2 et 6 ans, éliminant les connexions peu stimulées pour renforcer les réseaux actifs. C'est une période de plasticité maximale pour le langage, les fondations émotionnelles et les apprentissages sensoriels <em style="color:var(--text-muted);">(Huttenlocher &amp; Dabholkar, 1997)</em>.</p>
+      <div style="background:rgba(39,174,96,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#27ae60;font-style:normal;">Application :</strong> proposer des activités diversifiées, éviter les environnements appauvris en stimulations, soutenir un lien d'attachement sécure qui favorise le développement du cortex préfrontal.</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #f39c12;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#f39c12;line-height:1;">S</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Synchronisation cérébrale</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">L'alignement temporel des activités neuronales est essentiel pour l'attention, la mémoire et la perception. La synchronisation améliore la concentration et la coopération dans les interactions sociales. Entre l'enseignant·e et l'élève, elle conditionne l'accordage relationnel.</p>
+      <div style="background:rgba(243,156,18,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#f39c12;font-style:normal;">Application :</strong> encourager la méditation, les pauses ciblées, les activités favorisant la pleine conscience ; cultiver sa propre régulation pour pouvoir co-réguler le groupe.</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #8e44ad;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#8e44ad;line-height:1;">E</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Élagage synaptique (adolescence)</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">Un second élagage affine et spécialise le cerveau à l'adolescence, particulièrement dans le cortex préfrontal — siège des fonctions exécutives (planification, contrôle inhibiteur, prise de décision). Cette maturation reste incomplète jusqu'au milieu de la vingtaine <em style="color:var(--text-muted);">(Giedd et al., 1999 ; Petanjek et al., 2011)</em>, créant un décalage avec des systèmes émotionnels déjà pleinement actifs <em style="color:var(--text-muted);">(Casey et al., 2008 ; Blakemore &amp; Choudhury, 2006)</em>. Les comportements impulsifs et l'instabilité émotionnelle ne sont pas des signes de mauvaise volonté — ils reflètent une étape normale du développement.</p>
+      <div style="background:rgba(142,68,173,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#8e44ad;font-style:normal;">Application :</strong> proposer des défis adaptés à l'âge, structurer les tâches complexes, encourager la réflexion critique, éviter les réactions punitives face aux débordements émotionnels.</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #16a085;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#16a085;line-height:1;">N</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Neuroplasticité</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">Le cerveau se modifie et s'adapte en réponse à de nouvelles expériences tout au long de la vie. Des environnements stimulants favorisent la consolidation des réseaux neuronaux. Cette capacité est la base biologique de tout apprentissage durable, y compris chez l'enseignant·e.</p>
+      <div style="background:rgba(22,160,133,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#16a085;font-style:normal;">Application :</strong> souligner la capacité du cerveau à apprendre à tout âge — encourager la mentalité de croissance (<em>growth mindset</em>) chez les élèves et chez soi-même comme professionnel·le.</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #2980b9;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#2980b9;line-height:1;">C</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Conscience</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">La conscience de soi et la conscience environnementale influencent le processus d'apprentissage. Développer la métacognition aide les élèves à comprendre leur propre fonctionnement et leurs interactions avec le monde. Pour l'enseignant·e, c'est le socle de la pratique réflexive.</p>
+      <div style="background:rgba(41,128,185,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#2980b9;font-style:normal;">Application :</strong> intégrer des activités favorisant la conscience de soi, la compréhension des émotions et la régulation ; tenir un journal de pratique réflexive.</div>
+    </div>
+
+    <div class="presence-app-card" style="background:white;border-radius:12px;padding:18px 20px;border-left:4px solid #0f3460;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+        <span style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#0f3460;line-height:1;">E</span>
+        <strong style="font-size:1rem;color:var(--text-strong);">Et le libre arbitre</strong>
+      </div>
+      <p style="font-size:.88rem;color:var(--text-body);margin:0 0 8px;line-height:1.6;">La capacité de faire des choix autonomes est essentielle à l'apprentissage et au développement personnel. Donner aux élèves des opportunités de choix renforce leur motivation intrinsèque et leur responsabilisation. Pour l'enseignant·e, c'est l'agentivité professionnelle qui soutient la résilience.</p>
+      <div style="background:rgba(15,52,96,.08);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--text-body);font-style:italic;"><strong style="color:#0f3460;font-style:normal;">Application :</strong> projets basés sur les intérêts, choix dans les méthodes d'apprentissage, occasions de réflexion personnelle ; cultiver son propre sentiment d'agir comme acteur de sa vie professionnelle.</div>
+    </div>
+
+  </div>
+
+  <div style="background:white;border-radius:10px;padding:14px 18px;margin-top:18px;font-size:.82rem;color:var(--text-muted);font-style:italic;border-top:3px solid var(--accent3);">
+    <strong style="color:var(--accent3);font-style:normal;">Référence :</strong> Fahim, C. (2022). PRESENCE d'une Prédisposition : Premier épisode d'une série de huit épisodes sur le cerveau. <em>Cortica, 1</em>(2), 464–492. <a href="https://doi.org/10.26034/cortica.2022.3344" target="_blank" rel="noopener" style="color:var(--accent3);">https://doi.org/10.26034/cortica.2022.3344</a>
+  </div>
+</section>
 </section>
 
 <section id="part-4" class="part-section" data-part="4">
@@ -1806,6 +1930,36 @@ function downloadApprofondirPDF() {
 <p style="font-size:.74rem;color:var(--muted);">Source : Gaudreau, N. (2024). <em>Gérer efficacement sa classe, 2e éd.</em> Presses de l'Université du Québec.</p>
 </div>
 </div>
+
+<!-- ─── Ajout : Lecture croisée PRÉSENCE × Gaudreau ─── -->
+<section style="background:white;border:2px solid var(--border-soft);border-radius:14px;padding:26px 30px;margin:30px 0;">
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text-strong);margin:0 0 14px;">Lire le diagnostic à travers les mécanismes cérébraux</h3>
+  <p style="font-size:.92rem;color:var(--text-body);margin:0 0 18px;line-height:1.65;">Le modèle PRÉSENCE (Fahim, 2022) éclaire <strong>pourquoi</strong> certaines situations sont difficiles sur le plan neurobiologique. La grille des 6 composantes de Gaudreau (2024) guide <strong>comment agir</strong> sur les dimensions fragilisées. Les deux sont complémentaires mais distincts.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
+    <div style="background:rgba(83,52,131,.06);border-radius:12px;padding:18px 20px;border-left:4px solid var(--accent3);">
+      <div style="font-weight:700;color:var(--accent3);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">📘 Modèle PRÉSENCE — Fahim (2022)</div>
+      <strong style="display:block;color:var(--text-strong);font-size:1rem;margin-bottom:6px;">Comprendre <em>pourquoi</em></strong>
+      <p style="font-size:.86rem;color:var(--text-body);margin:0;line-height:1.55;">Chaque score radar renvoie à un mécanisme neurobiologique identifiable.<br><br>
+      Ex. score faible en gestion de classe → enjeux de <strong>S — Synchronisation</strong> (attention) ou <strong>N — Neuroplasticité</strong> (modification d'habitudes).<br><br>
+      Ex. faible soutien social → dimension <strong>P — Prédisposition</strong> (épigénétique du stress).</p>
+    </div>
+
+    <div style="background:rgba(74,124,89,.06);border-radius:12px;padding:18px 20px;border-left:4px solid var(--sage);">
+      <div style="font-weight:700;color:var(--sage);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">🛠️ Grille de posture professionnelle</div>
+      <strong style="display:block;color:var(--text-strong);font-size:1rem;margin-bottom:6px;">Observer <em>comment agir</em></strong>
+      <p style="font-size:.86rem;color:var(--text-body);margin:0;line-height:1.55;">Quatre axes d'observation pour identifier où porter l'effort :<br><br>
+      • Posture corporelle &amp; physiologique (tension, sommeil, fatigue)<br>
+      • Régulation émotionnelle (réactivité, retour au calme)<br>
+      • État d'esprit professionnel (perception des élèves, croyances)<br>
+      • Sécurité relationnelle (lien enseignant-élève)</p>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#fef9e7,#fcf3cf);border-radius:10px;padding:14px 18px;font-size:.86rem;color:var(--text-body);line-height:1.65;border-left:4px solid var(--gold);">
+    <strong style="color:#b8860b;">→ En pratique :</strong> la lecture neurobiologique éclaire le contexte mais ne suffit pas à construire un plan d'action. C'est la combinaison PRÉSENCE (le pourquoi) <strong>+ posture professionnelle</strong> (le comment) qui permet d'aller du diagnostic à l'action concrète, dimension par dimension.
+  </div>
+</section>
 </section>
 
 <section id="part-6" class="part-section" data-part="6">
@@ -2030,7 +2184,70 @@ function downloadApprofondirPDF() {
 </div>
 </div>
 </section>
-  </main>
+  
+<!-- ─── Partie ajoutée : Bourassa & Profil Apprenant ─── -->
+<section class="fondements-part" id="part-8" data-part="8">
+  <div class="fondements-part-header part5">
+    <div class="fondements-part-label">PARTIE COMPLÉMENTAIRE</div>
+    <div class="fondements-part-header-text">
+      <h2 class="composante-title">Bourassa, Menot-Martin &amp; Philion — Le Profil Apprenant</h2>
+      <div class="composante-sub">Un modèle des 3 pôles pour observer et accompagner les élèves</div>
+    </div>
+  </div>
+
+  <div class="part-section">
+    <p class="composante-desc">Le modèle de Michelle <strong>Bourassa</strong>, Martine <strong>Menot-Martin</strong> et Ruth <strong>Philion</strong> (<em>Neurosciences et éducation : pour apprendre et accompagner</em>, 2017) propose un cadre opérationnel pour comprendre le fonctionnement de l'apprenant. Il complète le modèle PRÉSENCE en offrant des outils concrets d'observation, d'évaluation et d'accompagnement, mobilisables aussi bien pour la pratique réflexive de l'enseignant que pour l'analyse fine des besoins des élèves.</p>
+
+    <h3 style="font-family:'Playfair Display',serif;margin-top:24px;color:var(--text-strong);font-size:1.15rem;">Les trois pôles du Profil Apprenant</h3>
+
+    <div class="gaudreau-items">
+      <div class="gaudreau-item">
+        <strong>① Le pôle cognitif</strong>
+        Concerne le traitement de l'information : attention, mémoire de travail, vitesse de traitement, capacités d'inhibition. Ce pôle est sollicité chaque fois que l'élève (ou l'enseignant) doit acquérir, manipuler, restituer une information.
+        <em style="display:block;margin-top:6px;color:var(--text-muted);font-size:.78rem;">PRÉSENCE : É (Élagage adolescent), N (Neuroplasticité)</em>
+      </div>
+
+      <div class="gaudreau-item">
+        <strong>② Le pôle métacognitif</strong>
+        Capacité à observer sa propre pensée, à planifier son action, à évaluer ses stratégies. C'est le « pilote » qui supervise les processus cognitifs. Le développement métacognitif est un levier puissant pour l'autonomie et la résilience scolaire.
+        <em style="display:block;margin-top:6px;color:var(--text-muted);font-size:.78rem;">PRÉSENCE : C (Conscience), E (Libre arbitre)</em>
+      </div>
+
+      <div class="gaudreau-item">
+        <strong>③ Le pôle affectif</strong>
+        Émotions, motivation, sentiment d'efficacité, anxiété face à l'apprentissage. Bourassa rappelle qu'aucun apprentissage durable n'est possible sans un climat émotionnel sécurisant — d'où l'importance capitale de la relation pédagogique.
+        <em style="display:block;margin-top:6px;color:var(--text-muted);font-size:.78rem;">PRÉSENCE : R (Réseaux neuronaux), S (Synchronisation)</em>
+      </div>
+
+      <div class="gaudreau-item">
+        <strong>④ Axe gauche-droit</strong>
+        Au-delà des trois pôles, Bourassa propose un axe transversal qui distingue les modes de traitement : <strong>analytique-séquentiel</strong> (hémisphère gauche dominant) et <strong>global-simultané</strong> (hémisphère droit). Comprendre cet axe aide à différencier les approches pédagogiques.
+        <em style="display:block;margin-top:6px;color:var(--text-muted);font-size:.78rem;">PRÉSENCE : É (Élagage), N (Neuroplasticité)</em>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;margin-top:30px;color:var(--text-strong);font-size:1.15rem;">Une banque d'outils opérationnels</h3>
+
+    <p class="composante-desc">Le modèle Bourassa se distingue par sa <strong>traduction opérationnelle</strong> en outils concrets, intégrés dans la trousse pédagogique de cette plateforme :</p>
+
+    <ul style="font-size:.92rem;line-height:1.75;padding-left:22px;color:var(--text-body);">
+      <li><strong>Questionnaires d'autoévaluation</strong> (adulte / élève 10-18 ans) pour identifier son profil sur les 3 pôles</li>
+      <li><strong>Cahier des pôles</strong> : description détaillée des fonctions et dysfonctions de chaque axe</li>
+      <li><strong>Grilles d'observation métacognitive</strong> et tableaux d'analyse de pratiques</li>
+      <li><strong>Schémas Fonctions / Dysfonctions</strong> par axe (cognitif, métacognitif, affectif) pour repérer les leviers</li>
+      <li><strong>Fiches d'accompagnement individuel</strong> : questions à poser, actions à mener, échelles socratiques</li>
+      <li><strong>Outils de formation d'équipe</strong> : test gauche-droit, interview des aires préfrontales, analyse de pratiques</li>
+    </ul>
+
+    <div style="background:rgba(83,52,131,.06);border-left:4px solid var(--accent3);border-radius:0 12px 12px 0;padding:16px 22px;margin-top:22px;">
+      <p style="margin:0;font-size:.88rem;line-height:1.65;color:var(--text-body);">
+        <strong style="color:var(--accent3);">Pourquoi ce modèle dans notre démarche ?</strong> Là où PRÉSENCE offre un cadre conceptuel et neurodéveloppemental, Bourassa apporte la <strong>granularité opérationnelle</strong>. Les deux modèles se complètent : on diagnostique avec PRÉSENCE, on outille avec Bourassa. Toutes les ressources Bourassa sont accessibles depuis <a href="bibliotheque.html#res-bourassa-banque" style="color:var(--accent3);font-weight:600;">la bibliothèque</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
 
 </div>
 

@@ -516,7 +516,7 @@ body{
 }
 
 /* Limiter la longueur de ligne pour le confort de lecture */
-.mod-section p, .mod-section ul{max-width:68ch}
+.mod-section p, .mod-section ul{max-width:80ch}
 .mod-section p{margin:0 0 14px;color:var(--text-body)}
 .mod-section ul{margin:8px 0 14px;padding-left:24px}
 .mod-section ul li{margin-bottom:6px}
@@ -1195,7 +1195,7 @@ body{
   margin-top:16px;padding:14px 16px;
   border-radius:10px;
   font-size:.88rem;color:var(--text-body);line-height:1.65;
-  max-width:68ch;
+  max-width:80ch;
   background:linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3));
   border:1px solid rgba(217,70,97,.12);
 }
@@ -1778,6 +1778,240 @@ body{
 .proto-note strong{color:#92400e}
 [data-theme="dark"] .proto-note strong{color:var(--gold)}
 @media print{.proto-note{display:none}}
+
+
+/* ─── Système de modes (personnel / HEP) ─── */
+/* ═══════════════════════════════════════════════════════════════
+   CSS du système de modes (personnel / HEP)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Badge mode dans le header (remplace le hep-badge fixe) */
+.mode-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:all .15s;
+  font-family:inherit;
+}
+.mode-badge:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.mode-badge.mode-hep{
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;
+}
+.mode-badge.mode-personal{
+  background:var(--surface-alt);
+  color:var(--text-muted);
+  border-color:var(--border-soft);
+}
+[data-theme="dark"] .mode-badge.mode-personal{
+  background:rgba(255,255,255,.05);
+  color:var(--text-body);
+}
+
+/* Overlay de la modale */
+.mode-modal{
+  display:none;
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;transition:opacity .2s;
+}
+.mode-modal.open{opacity:1}
+
+.mode-modal-card{
+  background:var(--surface);
+  border-radius:18px;
+  max-width:640px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:32px 36px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  transform:translateY(20px);
+  transition:transform .25s;
+}
+.mode-modal.open .mode-modal-card{transform:translateY(0)}
+
+.mode-modal-close{
+  position:absolute;top:14px;right:18px;
+  background:none;border:none;
+  font-size:1.8rem;line-height:1;
+  color:var(--text-muted);cursor:pointer;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.mode-modal-close:hover{background:var(--surface-alt)}
+
+.mode-modal-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  margin:0 0 8px;color:var(--text-strong);
+}
+.mode-modal-sub{
+  font-size:.92rem;color:var(--text-muted);
+  margin:0 0 24px;line-height:1.55;
+}
+
+/* Les deux options de mode côte à côte */
+.mode-options{
+  display:flex;flex-direction:column;gap:14px;
+}
+
+.mode-option{
+  background:var(--surface-alt);
+  border:2px solid var(--border-soft);
+  border-radius:14px;
+  padding:18px 20px;
+  transition:all .15s;
+}
+.mode-option.active{
+  background:var(--surface);
+  border-color:var(--accent3);
+  box-shadow:0 4px 12px rgba(83,52,131,.1);
+}
+[data-theme="dark"] .mode-option.active{
+  box-shadow:0 4px 12px rgba(123,84,160,.15);
+}
+
+.mode-option-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;
+}
+.mode-option-head > svg{
+  width:32px;height:32px;
+  color:var(--accent3);
+  flex-shrink:0;
+}
+.mode-option-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:1.02rem;
+}
+.mode-option-sub{
+  font-size:.82rem;color:var(--text-muted);
+  margin-top:2px;line-height:1.4;
+}
+.mode-option-badge{
+  margin-left:auto;
+  background:var(--sage);color:white;
+  font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:4px 10px;border-radius:12px;
+}
+
+.mode-option-features{
+  margin:0 0 14px;padding:0 0 0 18px;
+  font-size:.86rem;color:var(--text-body);
+  line-height:1.7;
+}
+.mode-option-features li{margin-bottom:2px}
+
+.mode-option-action{
+  background:transparent;
+  border:1px solid var(--border-soft);
+  color:var(--text-body);
+  padding:8px 16px;border-radius:10px;
+  font-family:inherit;font-size:.85rem;font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+}
+.mode-option-action:hover{
+  background:var(--surface-alt);
+  border-color:var(--accent3);
+  color:var(--accent3);
+}
+.mode-option-action.mode-action-primary{
+  background:var(--accent3);
+  color:white;
+  border-color:var(--accent3);
+}
+.mode-option-action.mode-action-primary:hover{
+  background:var(--accent2);
+  border-color:var(--accent2);
+  color:white;
+}
+
+/* Formulaires dans la modale (auth HEP, saisie nom) */
+.mode-form-field{
+  margin-bottom:18px;
+}
+.mode-form-field label{
+  display:block;font-size:.82rem;font-weight:600;
+  color:var(--text-strong);margin-bottom:8px;
+}
+.mode-form-field input{
+  width:100%;padding:11px 14px;
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  font-family:inherit;font-size:.95rem;
+  background:var(--surface);color:var(--text-body);
+  transition:border-color .15s;
+}
+.mode-form-field input:focus{
+  outline:none;
+  border-color:var(--accent3);
+  box-shadow:0 0 0 3px rgba(83,52,131,.1);
+}
+.mode-form-hint{
+  margin-top:6px;
+  font-size:.78rem;color:var(--text-subtle);
+  font-style:italic;
+}
+.mode-form-error{
+  display:none;
+  margin-top:8px;
+  padding:8px 12px;
+  background:rgba(233,69,96,.1);
+  border-left:3px solid var(--accent1);
+  border-radius:6px;
+  font-size:.82rem;color:var(--accent1);
+}
+.mode-form-error[style*="block"]{display:block}
+
+.mode-form-actions{
+  display:flex;gap:10px;justify-content:flex-end;
+  margin-top:24px;
+}
+.mode-btn{
+  padding:10px 22px;border-radius:10px;
+  font-family:inherit;font-size:.9rem;font-weight:600;
+  cursor:pointer;border:1px solid transparent;
+  transition:all .15s;
+}
+.mode-btn-secondary{
+  background:transparent;
+  color:var(--text-body);
+  border-color:var(--border-soft);
+}
+.mode-btn-secondary:hover{
+  background:var(--surface-alt);
+}
+.mode-btn-primary{
+  background:var(--accent3);
+  color:white;
+}
+.mode-btn-primary:hover{
+  background:var(--accent2);
+}
+.mode-btn-primary:disabled{
+  opacity:.6;cursor:not-allowed;
+}
+
+@media (max-width:600px){
+  .mode-modal-card{padding:24px 22px}
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+
+  .mode-modal-title{font-size:1.3rem}
+}
+
 </style>
 </head>
 <body>
@@ -1792,6 +2026,7 @@ body{
 <!-- ═══ Icônes SVG réutilisables ═══ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5H6.5A2.5 2.5 0 0 0 4 19.5z"/></symbol>
@@ -1837,10 +2072,7 @@ body{
     <span class="sep">›</span>
     <span class="current" aria-current="page">Module 2 · Prévention de l'épuisement professionnel</span>
   </nav>
-  <span class="hep-badge" title="Mode institutionnel HEP-VS actif — progression nominative">
-    <svg class="icon icon-sm"><use href="#i-grad"/></svg>
-    HEP-VS · Guillaume R.
-  </span>
+  <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="theme-toggle" onclick="toggleTheme()" title="Basculer le thème" aria-label="Basculer le thème clair/sombre">
     <svg class="icon" id="theme-icon"><use href="#i-moon"/></svg>
   </button>
@@ -1884,7 +2116,7 @@ body{
 <!-- Note prototype -->
 <div class="proto-note">
   <svg class="icon icon-lg" style="color:#92400e;flex-shrink:0;margin-top:2px"><use href="#i-target"/></svg>
-  <div><strong>Module 2 · industrialisation depuis la page-type v5</strong> — Contenu théorique détaillé à enrichir (cf. marqueurs « À compléter »). Le contenu du source actuel (bullets, ressources, titres) est intégralement préservé.</div>
+  <div><strong>Module 2 — Prévention du burnout</strong> : ancré dans le modèle PRÉSENCE (Fahim, 2022) et les apports de Maslach, Leiter (1997), Studer & Quarroz (2017). Ce module combine théorie, auto-évaluation et engagement concret pour développer une dimension précise de la résilience professionnelle.</div>
 </div>
 
 <!-- ═══ BANNIÈRE MODULE ═══ -->
@@ -2026,10 +2258,10 @@ body{
         </div>
       </div>
 
-      <p><strong>À compléter — Guillaume :</strong> 1 à 2 paragraphes expliquant l'ancrage pédagogique du module, ce qu'il apporte, en quoi il complète les autres modules.</p>
+      <p><strong>Ce module s'adresse à vous si</strong> vous reconnaissez l'enjeu du identifier les signaux précoces du burnout enseignant et activer les leviers de protection avant l'installation du syndrome. Il s'inscrit dans le parcours global de cette plateforme comme une étape clé, en lien direct avec les autres modules (notamment M1 et M6) qui en élargissent les implications. La démarche proposée combine apports théoriques solides, outils d'auto-évaluation, et engagements concrets transposables dans votre pratique quotidienne d'enseignant·e du secondaire.</p>
 
       <div class="block-info block-info--quote">
-        À compléter — une citation forte qui ancre le module (auteur de référence sur le thème).
+        «Le burnout n'est pas une faiblesse individuelle, c'est une conséquence prévisible d'un déséquilibre prolongé entre demandes et ressources.» — Maslach & Leiter (1997)
         <cite>Auteur · Référence</cite>
       </div>
 
@@ -2111,9 +2343,9 @@ body{
       <div class="block-aux">
         <div class="block-aux-title">Vocabulaire de ce module</div>
         <div class="vocab-list">
-          <a href="#" title="À compléter">Terme 1</a>
-          <a href="#" title="À compléter">Terme 2</a>
-          <a href="#" title="À compléter">Terme 3</a>
+          <a href="glossaire.html" title="Voir au glossaire">Épuisement émotionnel</a>
+          <a href="glossaire.html" title="Voir au glossaire">Dépersonnalisation</a>
+          <a href="glossaire.html" title="Voir au glossaire">Accomplissement personnel</a>
         </div>
       </div>
 
@@ -2225,14 +2457,9 @@ body{
           </div>
         </div>
         <div class="block-action-help">
-          <strong>À adapter — Guillaume :</strong> définir les 3 à 5 dimensions d'auto-évaluation spécifiques à ce module (échelle 1 à 5 ou autre format adapté).
+          <strong>Évaluez chaque dimension sur une échelle de 1 (très faible) à 5 (très élevé) :</strong><ul style="margin-top:8px;"><li>Épuisement émotionnel</li><li>Dépersonnalisation</li><li>Accomplissement personnel</li><li>Signaux corporels</li></ul>
         </div>
-        <p style="background:rgba(255,255,255,.4);border-radius:8px;padding:14px;font-size:.86rem;color:var(--text-muted);font-style:italic">
-          Variantes possibles selon le module :
-          <br>• Module 2 : 4 axes de risque burnout (épuisement, dépersonnalisation, accomplissement, signaux corporels)
-          <br>• Module 4 : 4 axes de vulnérabilité au stress (déclencheurs, intensité, durée, récupération)
-          <br>• Module 9 : 4 axes de fatigue de compassion (absorption émotionnelle, hypervigilance, intrusions, cynisme)
-        </p>
+        <p style="background:rgba(255,255,255,.4);border-radius:8px;padding:14px;font-size:.86rem;color:var(--text-body);line-height:1.7"><strong>Dimensions à évaluer pour ce module :</strong><br>• <strong>Épuisement émotionnel</strong><br>• <strong>Dépersonnalisation</strong><br>• <strong>Accomplissement personnel</strong><br>• <strong>Signaux corporels</strong></p>
       </div>
 
       <!-- Fiche action -->
@@ -2371,7 +2598,7 @@ body{
         <div class="qcm-block" data-correct="opt-q1-a">
           <div class="qcm-question">
             <span class="qcm-question-num">1</span>
-            <span><strong>À compléter — Guillaume :</strong> question QCM 1 sur un concept-clé du §3</span>
+            <span>Selon le modèle de Maslach, quelles sont les trois dimensions du burnout ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
             <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
@@ -2385,7 +2612,7 @@ body{
         <div class="qcm-block" data-correct="opt-q2-a">
           <div class="qcm-question">
             <span class="qcm-question-num">2</span>
-            <span><strong>À compléter — Guillaume :</strong> question QCM 2 sur un auteur/référence du §3</span>
+            <span>Quel signal précoce mérite la plus grande vigilance dans la prévention du burnout ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
             <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
@@ -2402,11 +2629,11 @@ body{
 
         <div class="check-item">
           <input type="checkbox" id="ck1">
-          <label for="ck1">À compléter — case d'engagement 1 (action concrète à viser)</label>
+          <label for="ck1">Je m'engage à noter chaque dimanche soir, pendant 1 mois, mon niveau de fatigue émotionnelle sur 10 et un signal somatique observé.</label>
         </div>
         <div class="check-item">
           <input type="checkbox" id="ck2">
-          <label for="ck2">À compléter — case d'engagement 2 (action concrète à viser)</label>
+          <label for="ck2">Je m'engage à identifier une ressource concrète de récupération que j'utiliserai chaque semaine (marche, échange entre pairs, activité physique).</label>
         </div>
       </div>
 
@@ -2916,8 +3143,15 @@ function checkQcm(input){
 
 function getQcmExplanation(qName, isCorrect){
   // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 2
-  if(isCorrect) return 'Bonne réponse. Explication à compléter.';
-  return 'Pas tout à fait. La bonne réponse et son explication sont à compléter par Guillaume.';
+  if(isCorrect){
+    if(qIdx === 0) return "Exactement. Ces trois dimensions, identifi\u00e9es par Maslach et Jackson, structurent l'\u00e9valuation du burnout enseignant par le MBI (Maslach Burnout Inventory).";
+    if(qIdx === 1) return "Les troubles du sommeil persistants sont un marqueur somatique pr\u00e9coce, souvent ant\u00e9rieur \u00e0 la prise de conscience subjective de l'\u00e9puisement.";
+    return 'Bonne réponse.';
+  } else {
+    if(qIdx === 0) return "Le mod\u00e8le de r\u00e9f\u00e9rence est celui de Maslach : \u00e9puisement \u00e9motionnel, d\u00e9personnalisation (cynisme face aux \u00e9l\u00e8ves), r\u00e9duction du sentiment d'accomplissement personnel.";
+    if(qIdx === 1) return "Les signaux corporels durables (sommeil, tensions musculaires chroniques) pr\u00e9c\u00e8dent souvent la conscience du burnout. Ce sont eux qui m\u00e9ritent vigilance.";
+    return 'Réessayez en relisant la section théorique.';
+  }
 }
 
 /* ═══ Marquer complété ═══ */
@@ -3121,6 +3355,360 @@ window.addEventListener('DOMContentLoaded', function(){
 
   setTimeout(showResumeOrCompleted, 400);
 });
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Module de gestion des modes personnel / HEP
+   À embarquer dans chaque page de la plateforme
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────
+  var HEP_CONFIG_URL = 'hep-config.json'; // relatif au fichier HTML
+  var _hepConfig = null;
+  var _hepPassword = null;
+
+  // ── État utilisateur (persisté en localStorage) ────────────────
+  function getUserMode(){
+    try {
+      var data = localStorage.getItem('aut_user_mode');
+      if (!data) return { mode: 'personal', name: '' };
+      return JSON.parse(data);
+    } catch(e) {
+      return { mode: 'personal', name: '' };
+    }
+  }
+
+  function setUserMode(data){
+    try {
+      localStorage.setItem('aut_user_mode', JSON.stringify(data));
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // ── Chargement du fichier de config HEP ───────────────────────
+  function loadHepConfig(callback) {
+    if (_hepConfig !== null) {
+      callback(true);
+      return;
+    }
+    fetch(HEP_CONFIG_URL + '?_=' + Date.now())
+      .then(function(r){
+        if (!r.ok) throw new Error('Config introuvable');
+        return r.json();
+      })
+      .then(function(data){
+        _hepConfig = data || {};
+        _hepPassword = (data && data.password) ? String(data.password) : '';
+        callback(true);
+      })
+      .catch(function(){
+        _hepConfig = {};
+        _hepPassword = '__UNAVAILABLE__';
+        callback(false);
+      });
+  }
+
+  // ── Mise à jour du badge dans le header ───────────────────────
+  function updateModeBadge(){
+    var badge = document.getElementById('mode-badge');
+    if (!badge) return;
+    var user = getUserMode();
+    var icon, label, title;
+
+    if (user.mode === 'hep') {
+      icon = '<svg class="icon icon-sm"><use href="#i-grad"/></svg>';
+      label = 'HEP-VS' + (user.name ? ' · ' + user.name : '');
+      title = 'Mode institutionnel HEP-VS · Cliquer pour gérer';
+      badge.className = 'mode-badge mode-hep';
+    } else {
+      icon = '<svg class="icon icon-sm"><use href="#i-user"/></svg>';
+      label = user.name ? user.name : 'Mode personnel';
+      title = 'Mode personnel · Cliquer pour personnaliser';
+      badge.className = 'mode-badge mode-personal';
+    }
+    badge.innerHTML = icon + ' <span>' + label + '</span>';
+    badge.setAttribute('title', title);
+  }
+
+  // ── Modale de gestion du mode ─────────────────────────────────
+  function openModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) {
+      buildModeModal();
+      modal = document.getElementById('mode-modal');
+    }
+    var user = getUserMode();
+    renderModeModal(user);
+    modal.style.display = 'flex';
+    setTimeout(function(){
+      modal.classList.add('open');
+    }, 10);
+  }
+
+  function closeModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    setTimeout(function(){
+      modal.style.display = 'none';
+    }, 200);
+  }
+
+  function buildModeModal(){
+    var overlay = document.createElement('div');
+    overlay.id = 'mode-modal';
+    overlay.className = 'mode-modal';
+    overlay.innerHTML = '<div class="mode-modal-card">' +
+      '<button class="mode-modal-close" onclick="window.closeModeModal()" aria-label="Fermer">×</button>' +
+      '<div id="mode-modal-content"></div>' +
+    '</div>';
+    overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModeModal();
+    });
+    document.body.appendChild(overlay);
+  }
+
+  function renderModeModal(user){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var isHep = user.mode === 'hep';
+
+    var html = '<h2 class="mode-modal-title">Mode de parcours</h2>' +
+      '<p class="mode-modal-sub">Choisissez le mode qui correspond à votre situation. Vous pouvez en changer à tout moment.</p>' +
+      '<div class="mode-options">' +
+
+      // Option personnelle
+      '<div class="mode-option' + (!isHep ? ' active' : '') + '" data-mode="personal">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-user"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Parcours personnel</div>' +
+            '<div class="mode-option-sub">Usage libre · Établissement scolaire ou découverte individuelle</div>' +
+          '</div>' +
+          (isHep ? '' : '<span class="mode-option-badge">Actif</span>') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Progression sauvegardée dans votre navigateur</li>' +
+          '<li>Certificat de complétion personnel disponible en fin de parcours</li>' +
+          '<li>Aucun mot de passe requis</li>' +
+        '</ul>' +
+        (!isHep ? '<button class="mode-option-action" onclick="window.editPersonalName()">Personnaliser mon nom</button>' :
+                  '<button class="mode-option-action" onclick="window.switchToPersonal()">Basculer en mode personnel</button>') +
+      '</div>' +
+
+      // Option HEP
+      '<div class="mode-option' + (isHep ? ' active' : '') + '" data-mode="hep">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-grad"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Mode institutionnel HEP-VS</div>' +
+            '<div class="mode-option-sub">Pour les étudiant·e·s en formation continue HEP / CAS / DAS</div>' +
+          '</div>' +
+          (isHep ? '<span class="mode-option-badge">Actif</span>' : '') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Suivi nominatif officiel</li>' +
+          '<li>Attestation HEP-VS reconnue en fin de parcours</li>' +
+          '<li>Accès par code de session délivré par votre formateur</li>' +
+        '</ul>' +
+        (isHep ? '<button class="mode-option-action" onclick="window.editHepName()">Modifier mes informations</button>' :
+                  '<button class="mode-option-action mode-action-primary" onclick="window.openHepAuth()">Activer le mode HEP</button>') +
+      '</div>' +
+
+      '</div>';
+
+    content.innerHTML = html;
+  }
+
+  // ── Saisie du nom personnel ───────────────────────────────────
+  window.editPersonalName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Votre prénom et nom (optionnel, pour personnaliser votre certificat) :', current);
+    if (name === null) return; // annulé
+    user.name = name.trim();
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal(); // refresh
+  };
+
+  // ── Authentification HEP ──────────────────────────────────────
+  window.openHepAuth = function(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    content.innerHTML = '<h2 class="mode-modal-title">Activer le mode HEP-VS</h2>' +
+      '<p class="mode-modal-sub">Saisissez le code de session communiqué par votre formateur.</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-pw-input">Code de session</label>' +
+        '<input type="password" id="hep-pw-input" placeholder="Code délivré par votre formation" autocomplete="off">' +
+        '<div id="hep-pw-error" class="mode-form-error"></div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" id="hep-pw-validate" onclick="window.validateHepPassword()">Valider →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-pw-input');
+      if (inp) {
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.validateHepPassword();
+        });
+      }
+    }, 50);
+  };
+
+  window.validateHepPassword = function(){
+    var inp = document.getElementById('hep-pw-input');
+    var err = document.getElementById('hep-pw-error');
+    var btn = document.getElementById('hep-pw-validate');
+    if (!inp) return;
+
+    var entered = inp.value.trim();
+    if (!entered) {
+      err.textContent = 'Veuillez saisir le code de session.';
+      err.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Vérification…';
+    btn.disabled = true;
+
+    loadHepConfig(function(ok){
+      btn.textContent = 'Valider →';
+      btn.disabled = false;
+
+      if (!ok) {
+        err.textContent = 'Impossible de charger la configuration. Vérifiez votre connexion.';
+        err.style.display = 'block';
+        return;
+      }
+
+      if (entered !== _hepPassword) {
+        err.textContent = 'Code incorrect. Vérifiez auprès de votre formateur·rice.';
+        err.style.display = 'block';
+        inp.value = '';
+        inp.focus();
+        return;
+      }
+
+      // Succès — passer à la saisie du nom
+      openHepNameForm();
+    });
+  };
+
+  function openHepNameForm(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var sessionLabel = (_hepConfig && _hepConfig.session) ? _hepConfig.session : 'Formation HEP-VS';
+    var formateur = (_hepConfig && _hepConfig.formateur) ? _hepConfig.formateur : '';
+
+    content.innerHTML = '<h2 class="mode-modal-title">Mode HEP-VS activé ✓</h2>' +
+      '<p class="mode-modal-sub">Session : <strong>' + sessionLabel + '</strong>' +
+        (formateur ? '<br>Formateur·rice : <strong>' + formateur + '</strong>' : '') +
+      '</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-name-input">Votre prénom et nom complet</label>' +
+        '<input type="text" id="hep-name-input" placeholder="Ex : Marie Dupont" maxlength="80">' +
+        '<div class="mode-form-hint">Ce nom apparaîtra sur votre attestation HEP-VS officielle.</div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" onclick="window.confirmHepActivation()">Activer →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-name-input');
+      if (inp) {
+        var current = getUserMode();
+        if (current.name) inp.value = current.name;
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.confirmHepActivation();
+        });
+      }
+    }, 50);
+  }
+
+  window.confirmHepActivation = function(){
+    var inp = document.getElementById('hep-name-input');
+    if (!inp) return;
+    var name = inp.value.trim();
+    if (!name || name.length < 3) {
+      alert('Veuillez saisir votre prénom et nom complet.');
+      inp.focus();
+      return;
+    }
+    setUserMode({
+      mode: 'hep',
+      name: name,
+      session: (_hepConfig && _hepConfig.session) || '',
+      formateur: (_hepConfig && _hepConfig.formateur) || '',
+      date_formation: (_hepConfig && _hepConfig.date_formation) || '',
+      activatedAt: new Date().toISOString()
+    });
+    updateModeBadge();
+    closeModeModal();
+  };
+
+  window.editHepName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Modifier votre prénom et nom :', current);
+    if (name === null) return;
+    name = name.trim();
+    if (!name) return;
+    user.name = name;
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal();
+  };
+
+  window.switchToPersonal = function(){
+    if (!confirm('Basculer en mode personnel ? Votre progression est conservée, mais vous perdrez l\'accès aux fonctionnalités HEP-VS (attestation officielle).')) return;
+    var user = getUserMode();
+    setUserMode({
+      mode: 'personal',
+      name: user.name || ''
+    });
+    updateModeBadge();
+    openModeModal();
+  };
+
+  // ── Initialisation au chargement de chaque page ───────────────
+  window.openModeModal = openModeModal;
+  window.closeModeModal = closeModeModal;
+  window.updateModeBadge = updateModeBadge;
+  window.getUserMode = getUserMode;
+
+  window.addEventListener('DOMContentLoaded', function(){
+    updateModeBadge();
+  });
+
+  // Patch : forcer rafraîchissement à plusieurs événements pour éviter le bug d'incohérence inter-page
+  window.addEventListener('pageshow', function(){
+    updateModeBadge();
+  });
+  window.addEventListener('focus', function(){
+    updateModeBadge();
+  });
+  // Au cas où le DOM est déjà chargé quand le script s'exécute (ordre asynchrone)
+  if (document.readyState !== 'loading') {
+    updateModeBadge();
+  }
+
+})();
+
 </script>
 </body>
 </html>
