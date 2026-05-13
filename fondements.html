@@ -100,11 +100,7 @@ a:hover{text-decoration:underline}
 }
 
 /* ─── Page header / breadcrumb ─── */
-.page-head{
-  background:var(--surface);
-  border-bottom:1px solid var(--border-soft);
-  padding:24px 28px 28px;
-}
+
 .breadcrumb{
   display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
   margin-bottom:14px;flex-wrap:wrap;
@@ -604,12 +600,264 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
   .fond-toc.open{transform:translateX(0)}
   .fond-toc-toggle{display:flex;align-items:center;justify-content:center}
 }
+
+
+/* ─── Système de modes (personnel / HEP) ─── */
+/* ═══════════════════════════════════════════════════════════════
+   CSS du système de modes (personnel / HEP)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Badge mode dans le header (remplace le hep-badge fixe) */
+.mode-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:all .15s;
+  font-family:inherit;
+}
+.mode-badge:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.mode-badge.mode-hep{
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;
+}
+.mode-badge.mode-personal{
+  background:var(--surface-alt);
+  color:var(--text-muted);
+  border-color:var(--border-soft);
+}
+[data-theme="dark"] .mode-badge.mode-personal{
+  background:rgba(255,255,255,.05);
+  color:var(--text-body);
+}
+
+/* Overlay de la modale */
+.mode-modal{
+  display:none;
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;transition:opacity .2s;
+}
+.mode-modal.open{opacity:1}
+
+.mode-modal-card{
+  background:var(--surface);
+  border-radius:18px;
+  max-width:640px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:32px 36px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  transform:translateY(20px);
+  transition:transform .25s;
+}
+.mode-modal.open .mode-modal-card{transform:translateY(0)}
+
+.mode-modal-close{
+  position:absolute;top:14px;right:18px;
+  background:none;border:none;
+  font-size:1.8rem;line-height:1;
+  color:var(--text-muted);cursor:pointer;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.mode-modal-close:hover{background:var(--surface-alt)}
+
+.mode-modal-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  margin:0 0 8px;color:var(--text-strong);
+}
+.mode-modal-sub{
+  font-size:.92rem;color:var(--text-muted);
+  margin:0 0 24px;line-height:1.55;
+}
+
+/* Les deux options de mode côte à côte */
+.mode-options{
+  display:flex;flex-direction:column;gap:14px;
+}
+
+.mode-option{
+  background:var(--surface-alt);
+  border:2px solid var(--border-soft);
+  border-radius:14px;
+  padding:18px 20px;
+  transition:all .15s;
+}
+.mode-option.active{
+  background:var(--surface);
+  border-color:var(--accent3);
+  box-shadow:0 4px 12px rgba(83,52,131,.1);
+}
+[data-theme="dark"] .mode-option.active{
+  box-shadow:0 4px 12px rgba(123,84,160,.15);
+}
+
+.mode-option-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;
+}
+.mode-option-head > svg{
+  width:32px;height:32px;
+  color:var(--accent3);
+  flex-shrink:0;
+}
+.mode-option-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:1.02rem;
+}
+.mode-option-sub{
+  font-size:.82rem;color:var(--text-muted);
+  margin-top:2px;line-height:1.4;
+}
+.mode-option-badge{
+  margin-left:auto;
+  background:var(--sage);color:white;
+  font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:4px 10px;border-radius:12px;
+}
+
+.mode-option-features{
+  margin:0 0 14px;padding:0 0 0 18px;
+  font-size:.86rem;color:var(--text-body);
+  line-height:1.7;
+}
+.mode-option-features li{margin-bottom:2px}
+
+.mode-option-action{
+  background:transparent;
+  border:1px solid var(--border-soft);
+  color:var(--text-body);
+  padding:8px 16px;border-radius:10px;
+  font-family:inherit;font-size:.85rem;font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+}
+.mode-option-action:hover{
+  background:var(--surface-alt);
+  border-color:var(--accent3);
+  color:var(--accent3);
+}
+.mode-option-action.mode-action-primary{
+  background:var(--accent3);
+  color:white;
+  border-color:var(--accent3);
+}
+.mode-option-action.mode-action-primary:hover{
+  background:var(--accent2);
+  border-color:var(--accent2);
+  color:white;
+}
+
+/* Formulaires dans la modale (auth HEP, saisie nom) */
+.mode-form-field{
+  margin-bottom:18px;
+}
+.mode-form-field label{
+  display:block;font-size:.82rem;font-weight:600;
+  color:var(--text-strong);margin-bottom:8px;
+}
+.mode-form-field input{
+  width:100%;padding:11px 14px;
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  font-family:inherit;font-size:.95rem;
+  background:var(--surface);color:var(--text-body);
+  transition:border-color .15s;
+}
+.mode-form-field input:focus{
+  outline:none;
+  border-color:var(--accent3);
+  box-shadow:0 0 0 3px rgba(83,52,131,.1);
+}
+.mode-form-hint{
+  margin-top:6px;
+  font-size:.78rem;color:var(--text-subtle);
+  font-style:italic;
+}
+.mode-form-error{
+  display:none;
+  margin-top:8px;
+  padding:8px 12px;
+  background:rgba(233,69,96,.1);
+  border-left:3px solid var(--accent1);
+  border-radius:6px;
+  font-size:.82rem;color:var(--accent1);
+}
+.mode-form-error[style*="block"]{display:block}
+
+.mode-form-actions{
+  display:flex;gap:10px;justify-content:flex-end;
+  margin-top:24px;
+}
+.mode-btn{
+  padding:10px 22px;border-radius:10px;
+  font-family:inherit;font-size:.9rem;font-weight:600;
+  cursor:pointer;border:1px solid transparent;
+  transition:all .15s;
+}
+.mode-btn-secondary{
+  background:transparent;
+  color:var(--text-body);
+  border-color:var(--border-soft);
+}
+.mode-btn-secondary:hover{
+  background:var(--surface-alt);
+}
+.mode-btn-primary{
+  background:var(--accent3);
+  color:white;
+}
+.mode-btn-primary:hover{
+  background:var(--accent2);
+}
+.mode-btn-primary:disabled{
+  opacity:.6;cursor:not-allowed;
+}
+
+@media (max-width:600px){
+  .mode-modal-card{padding:24px 22px}
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+/* ─── Page header (zone titre) — fond chaleureux ─── */
+.page-head{
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(83,52,131,.10) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 90% 70%, rgba(233,69,96,.08) 0%, transparent 70%),
+    linear-gradient(180deg, #faf6f1 0%, #f7eef2 60%, var(--surface) 100%);
+  border-bottom:1px solid rgba(83,52,131,.1);
+  padding:32px 28px 36px;
+}
+[data-theme="dark"] .page-head{
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(123,84,160,.18) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 90% 70%, rgba(255,94,122,.10) 0%, transparent 70%),
+    linear-gradient(180deg, #1a1925 0%, #1d1828 60%, var(--surface) 100%);
+  border-bottom:1px solid rgba(123,84,160,.2);
+}
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
     <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
@@ -628,7 +876,7 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
     <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
     <a href="modules.html" class="nav-link">Catalogue modules</a>
   </nav>
-  <span class="hep-badge"><svg class="icon icon-sm"><use href="#i-grad"/></svg> HEP-VS · Guillaume R.</span>
+  <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
 </header>
 
@@ -1797,7 +2045,7 @@ function downloadApprofondirPDF() {
     <a href="bibliotheque.html">Bibliothèque</a>
     <a href="glossaire.html">Glossaire</a>
   </div>
-  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS</div>
 </footer>
 
 <script>
@@ -1936,6 +2184,360 @@ document.addEventListener('click', function(e){
   if(action === 'toggleneuro')        toggleNeuro(target);
   else if(action === 'togglepresencecard') togglePresenceCard(target);
 });
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Module de gestion des modes personnel / HEP
+   À embarquer dans chaque page de la plateforme
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────
+  var HEP_CONFIG_URL = 'hep-config.json'; // relatif au fichier HTML
+  var _hepConfig = null;
+  var _hepPassword = null;
+
+  // ── État utilisateur (persisté en localStorage) ────────────────
+  function getUserMode(){
+    try {
+      var data = localStorage.getItem('aut_user_mode');
+      if (!data) return { mode: 'personal', name: '' };
+      return JSON.parse(data);
+    } catch(e) {
+      return { mode: 'personal', name: '' };
+    }
+  }
+
+  function setUserMode(data){
+    try {
+      localStorage.setItem('aut_user_mode', JSON.stringify(data));
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // ── Chargement du fichier de config HEP ───────────────────────
+  function loadHepConfig(callback) {
+    if (_hepConfig !== null) {
+      callback(true);
+      return;
+    }
+    fetch(HEP_CONFIG_URL + '?_=' + Date.now())
+      .then(function(r){
+        if (!r.ok) throw new Error('Config introuvable');
+        return r.json();
+      })
+      .then(function(data){
+        _hepConfig = data || {};
+        _hepPassword = (data && data.password) ? String(data.password) : '';
+        callback(true);
+      })
+      .catch(function(){
+        _hepConfig = {};
+        _hepPassword = '__UNAVAILABLE__';
+        callback(false);
+      });
+  }
+
+  // ── Mise à jour du badge dans le header ───────────────────────
+  function updateModeBadge(){
+    var badge = document.getElementById('mode-badge');
+    if (!badge) return;
+    var user = getUserMode();
+    var icon, label, title;
+
+    if (user.mode === 'hep') {
+      icon = '<svg class="icon icon-sm"><use href="#i-grad"/></svg>';
+      label = 'HEP-VS' + (user.name ? ' · ' + user.name : '');
+      title = 'Mode institutionnel HEP-VS · Cliquer pour gérer';
+      badge.className = 'mode-badge mode-hep';
+    } else {
+      icon = '<svg class="icon icon-sm"><use href="#i-user"/></svg>';
+      label = user.name ? user.name : 'Mode personnel';
+      title = 'Mode personnel · Cliquer pour personnaliser';
+      badge.className = 'mode-badge mode-personal';
+    }
+    badge.innerHTML = icon + ' <span>' + label + '</span>';
+    badge.setAttribute('title', title);
+  }
+
+  // ── Modale de gestion du mode ─────────────────────────────────
+  function openModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) {
+      buildModeModal();
+      modal = document.getElementById('mode-modal');
+    }
+    var user = getUserMode();
+    renderModeModal(user);
+    modal.style.display = 'flex';
+    setTimeout(function(){
+      modal.classList.add('open');
+    }, 10);
+  }
+
+  function closeModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    setTimeout(function(){
+      modal.style.display = 'none';
+    }, 200);
+  }
+
+  function buildModeModal(){
+    var overlay = document.createElement('div');
+    overlay.id = 'mode-modal';
+    overlay.className = 'mode-modal';
+    overlay.innerHTML = '<div class="mode-modal-card">' +
+      '<button class="mode-modal-close" onclick="window.closeModeModal()" aria-label="Fermer">×</button>' +
+      '<div id="mode-modal-content"></div>' +
+    '</div>';
+    overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModeModal();
+    });
+    document.body.appendChild(overlay);
+  }
+
+  function renderModeModal(user){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var isHep = user.mode === 'hep';
+
+    var html = '<h2 class="mode-modal-title">Mode de parcours</h2>' +
+      '<p class="mode-modal-sub">Choisissez le mode qui correspond à votre situation. Vous pouvez en changer à tout moment.</p>' +
+      '<div class="mode-options">' +
+
+      // Option personnelle
+      '<div class="mode-option' + (!isHep ? ' active' : '') + '" data-mode="personal">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-user"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Parcours personnel</div>' +
+            '<div class="mode-option-sub">Usage libre · Établissement scolaire ou découverte individuelle</div>' +
+          '</div>' +
+          (isHep ? '' : '<span class="mode-option-badge">Actif</span>') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Progression sauvegardée dans votre navigateur</li>' +
+          '<li>Certificat de complétion personnel disponible en fin de parcours</li>' +
+          '<li>Aucun mot de passe requis</li>' +
+        '</ul>' +
+        (!isHep ? '<button class="mode-option-action" onclick="window.editPersonalName()">Personnaliser mon nom</button>' :
+                  '<button class="mode-option-action" onclick="window.switchToPersonal()">Basculer en mode personnel</button>') +
+      '</div>' +
+
+      // Option HEP
+      '<div class="mode-option' + (isHep ? ' active' : '') + '" data-mode="hep">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-grad"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Mode institutionnel HEP-VS</div>' +
+            '<div class="mode-option-sub">Pour les étudiant·e·s en formation continue HEP / CAS / DAS</div>' +
+          '</div>' +
+          (isHep ? '<span class="mode-option-badge">Actif</span>' : '') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Suivi nominatif officiel</li>' +
+          '<li>Attestation HEP-VS reconnue en fin de parcours</li>' +
+          '<li>Accès par code de session délivré par votre formateur</li>' +
+        '</ul>' +
+        (isHep ? '<button class="mode-option-action" onclick="window.editHepName()">Modifier mes informations</button>' :
+                  '<button class="mode-option-action mode-action-primary" onclick="window.openHepAuth()">Activer le mode HEP</button>') +
+      '</div>' +
+
+      '</div>';
+
+    content.innerHTML = html;
+  }
+
+  // ── Saisie du nom personnel ───────────────────────────────────
+  window.editPersonalName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Votre prénom et nom (optionnel, pour personnaliser votre certificat) :', current);
+    if (name === null) return; // annulé
+    user.name = name.trim();
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal(); // refresh
+  };
+
+  // ── Authentification HEP ──────────────────────────────────────
+  window.openHepAuth = function(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    content.innerHTML = '<h2 class="mode-modal-title">Activer le mode HEP-VS</h2>' +
+      '<p class="mode-modal-sub">Saisissez le code de session communiqué par votre formateur.</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-pw-input">Code de session</label>' +
+        '<input type="password" id="hep-pw-input" placeholder="Code délivré par votre formation" autocomplete="off">' +
+        '<div id="hep-pw-error" class="mode-form-error"></div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" id="hep-pw-validate" onclick="window.validateHepPassword()">Valider →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-pw-input');
+      if (inp) {
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.validateHepPassword();
+        });
+      }
+    }, 50);
+  };
+
+  window.validateHepPassword = function(){
+    var inp = document.getElementById('hep-pw-input');
+    var err = document.getElementById('hep-pw-error');
+    var btn = document.getElementById('hep-pw-validate');
+    if (!inp) return;
+
+    var entered = inp.value.trim();
+    if (!entered) {
+      err.textContent = 'Veuillez saisir le code de session.';
+      err.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Vérification…';
+    btn.disabled = true;
+
+    loadHepConfig(function(ok){
+      btn.textContent = 'Valider →';
+      btn.disabled = false;
+
+      if (!ok) {
+        err.textContent = 'Impossible de charger la configuration. Vérifiez votre connexion.';
+        err.style.display = 'block';
+        return;
+      }
+
+      if (entered !== _hepPassword) {
+        err.textContent = 'Code incorrect. Vérifiez auprès de votre formateur·rice.';
+        err.style.display = 'block';
+        inp.value = '';
+        inp.focus();
+        return;
+      }
+
+      // Succès — passer à la saisie du nom
+      openHepNameForm();
+    });
+  };
+
+  function openHepNameForm(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var sessionLabel = (_hepConfig && _hepConfig.session) ? _hepConfig.session : 'Formation HEP-VS';
+    var formateur = (_hepConfig && _hepConfig.formateur) ? _hepConfig.formateur : '';
+
+    content.innerHTML = '<h2 class="mode-modal-title">Mode HEP-VS activé ✓</h2>' +
+      '<p class="mode-modal-sub">Session : <strong>' + sessionLabel + '</strong>' +
+        (formateur ? '<br>Formateur·rice : <strong>' + formateur + '</strong>' : '') +
+      '</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-name-input">Votre prénom et nom complet</label>' +
+        '<input type="text" id="hep-name-input" placeholder="Ex : Marie Dupont" maxlength="80">' +
+        '<div class="mode-form-hint">Ce nom apparaîtra sur votre attestation HEP-VS officielle.</div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" onclick="window.confirmHepActivation()">Activer →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-name-input');
+      if (inp) {
+        var current = getUserMode();
+        if (current.name) inp.value = current.name;
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.confirmHepActivation();
+        });
+      }
+    }, 50);
+  }
+
+  window.confirmHepActivation = function(){
+    var inp = document.getElementById('hep-name-input');
+    if (!inp) return;
+    var name = inp.value.trim();
+    if (!name || name.length < 3) {
+      alert('Veuillez saisir votre prénom et nom complet.');
+      inp.focus();
+      return;
+    }
+    setUserMode({
+      mode: 'hep',
+      name: name,
+      session: (_hepConfig && _hepConfig.session) || '',
+      formateur: (_hepConfig && _hepConfig.formateur) || '',
+      date_formation: (_hepConfig && _hepConfig.date_formation) || '',
+      activatedAt: new Date().toISOString()
+    });
+    updateModeBadge();
+    closeModeModal();
+  };
+
+  window.editHepName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Modifier votre prénom et nom :', current);
+    if (name === null) return;
+    name = name.trim();
+    if (!name) return;
+    user.name = name;
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal();
+  };
+
+  window.switchToPersonal = function(){
+    if (!confirm('Basculer en mode personnel ? Votre progression est conservée, mais vous perdrez l\'accès aux fonctionnalités HEP-VS (attestation officielle).')) return;
+    var user = getUserMode();
+    setUserMode({
+      mode: 'personal',
+      name: user.name || ''
+    });
+    updateModeBadge();
+    openModeModal();
+  };
+
+  // ── Initialisation au chargement de chaque page ───────────────
+  window.openModeModal = openModeModal;
+  window.closeModeModal = closeModeModal;
+  window.updateModeBadge = updateModeBadge;
+  window.getUserMode = getUserMode;
+
+  window.addEventListener('DOMContentLoaded', function(){
+    updateModeBadge();
+  });
+
+  // Patch : forcer rafraîchissement à plusieurs événements pour éviter le bug d'incohérence inter-page
+  window.addEventListener('pageshow', function(){
+    updateModeBadge();
+  });
+  window.addEventListener('focus', function(){
+    updateModeBadge();
+  });
+  // Au cas où le DOM est déjà chargé quand le script s'exécute (ordre asynchrone)
+  if (document.readyState !== 'loading') {
+    updateModeBadge();
+  }
+
+})();
+
 </script>
 </body>
 </html>

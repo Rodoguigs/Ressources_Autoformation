@@ -5,12 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diagnostic PRÉSENCE · Autoformation HEP-VS</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function() {
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+</script>
 <style>
-/* ═══════════════════════════════════════════════════════════════
-   Charte commune — Plateforme Autoformation HEP-VS
-   Importée par toutes les pages de la coquille (sauf les modules).
-   ═══════════════════════════════════════════════════════════════ */
-
 :root{
   --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
   --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
@@ -21,7 +26,6 @@
   --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
   --shadow-floating: 0 8px 24px rgba(0,0,0,.08);
 }
-
 [data-theme="dark"]{
   --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115;
   --surface:#1a1d24; --surface-alt:#13161c;
@@ -31,7 +35,6 @@
   --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
   --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
 }
-
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
@@ -42,7 +45,6 @@ body{
   min-height:100vh;
   display:flex;flex-direction:column;
 }
-
 a{color:var(--accent2);text-decoration:none}
 a:hover{text-decoration:underline}
 [data-theme="dark"] a{color:var(--sky)}
@@ -51,7 +53,6 @@ a:hover{text-decoration:underline}
 .icon-sm{width:.85em;height:.85em}
 .icon-lg{width:1.25em;height:1.25em}
 
-/* ─── Header ─── */
 .app-header{
   position:sticky;top:0;z-index:100;
   background:var(--surface);
@@ -70,260 +71,130 @@ a:hover{text-decoration:underline}
 .app-logo:hover{text-decoration:none}
 [data-theme="dark"] .app-logo{color:var(--text-strong)}
 .nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
-.nav-link{
-  color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
-  transition:all .15s;
-}
+.nav-link{color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;transition:all .15s;}
 .nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
 .nav-link.active{background:var(--accent2);color:white;font-weight:600}
-.theme-toggle{
-  background:none;border:1px solid var(--border-soft);
-  border-radius:8px;padding:6px 10px;cursor:pointer;
-  color:var(--text-body);
-}
+.theme-toggle{background:none;border:1px solid var(--border-soft);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--text-body);}
 .theme-toggle:hover{background:var(--surface-alt)}
-.hep-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:linear-gradient(135deg,var(--accent2),var(--accent3));
-  color:white;padding:5px 11px;border-radius:14px;
-  font-size:.74rem;font-weight:600;
-}
 
-/* ─── Page header / breadcrumb ─── */
+.mode-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:14px;
+  font-size:.74rem;font-weight:600;cursor:pointer;
+  border:1px solid transparent;transition:all .15s;font-family:inherit;
+}
+.mode-badge:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.08);}
+.mode-badge.mode-hep{background:linear-gradient(135deg,var(--accent2),var(--accent3));color:white;}
+.mode-badge.mode-personal{background:var(--surface-alt);color:var(--text-muted);border-color:var(--border-soft);}
+
 .page-head{
-  background:var(--surface);
-  border-bottom:1px solid var(--border-soft);
-  padding:24px 28px 28px;
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(83,52,131,.10) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 90% 70%, rgba(233,69,96,.08) 0%, transparent 70%),
+    linear-gradient(180deg, #faf6f1 0%, #f7eef2 60%, var(--surface) 100%);
+  border-bottom:1px solid rgba(83,52,131,.1);
+  padding:32px 28px 36px;
 }
-.breadcrumb{
-  display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);
-  margin-bottom:14px;flex-wrap:wrap;
+[data-theme="dark"] .page-head{
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(123,84,160,.18) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 90% 70%, rgba(255,94,122,.10) 0%, transparent 70%),
+    linear-gradient(180deg, #1a1925 0%, #1d1828 60%, var(--surface) 100%);
+  border-bottom:1px solid rgba(123,84,160,.2);
 }
+.breadcrumb{display:flex;gap:6px;font-size:.78rem;color:var(--text-subtle);margin-bottom:14px;flex-wrap:wrap;}
 .breadcrumb a{color:var(--text-subtle)}
 .breadcrumb span.sep{opacity:.5}
 .breadcrumb .current{color:var(--text-strong);font-weight:600}
-.page-title{
-  font-family:'Playfair Display',serif;
-  font-size:2rem;font-weight:700;
-  color:var(--text-strong);
-  margin:0 0 8px;letter-spacing:-.01em;
-}
-.page-sub{
-  font-size:1.02rem;color:var(--text-muted);
-  margin:0;max-width:760px;line-height:1.55;
-}
+.page-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--text-strong);margin:0 0 8px;letter-spacing:-.01em;}
+.page-sub{font-size:1.02rem;color:var(--text-muted);margin:0;max-width:760px;line-height:1.55;}
 
-/* ─── Container principal ─── */
-main{
-  flex:1;
-  max-width:1200px;
-  margin:0 auto;
-  padding:32px 28px;
-  width:100%;
-}
+main{flex:1;max-width:1100px;margin:0 auto;padding:32px 28px;width:100%;}
 
-/* ─── Cards & blocs ─── */
-.card{
+.mode-selector{
+  display:flex;gap:0;
   background:var(--surface);
-  border:1px solid var(--border-soft);
-  border-radius:14px;
-  padding:24px;
-  margin-bottom:18px;
-  box-shadow:var(--shadow-soft);
+  border:2px solid var(--border-soft);
+  border-radius:14px;padding:6px;
+  margin-bottom:24px;max-width:520px;
 }
-
-.section-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.4rem;font-weight:700;
-  color:var(--text-strong);
-  margin:32px 0 16px;
+.mode-selector-btn{
+  flex:1;padding:14px 18px;background:transparent;border:none;border-radius:10px;
+  font-family:inherit;font-size:.92rem;font-weight:700;color:var(--text-muted);
+  cursor:pointer;transition:all .2s;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
 }
+.mode-selector-btn:hover{color:var(--text-strong);background:var(--surface-alt);}
+.mode-selector-btn.active{background:var(--accent3);color:white;}
+.mode-selector-btn .ms-sub{font-size:.74rem;font-weight:500;opacity:.8;}
 
-.info-block{
-  background:var(--surface-alt);
-  border-left:4px solid var(--accent3);
-  border-radius:0 12px 12px 0;
-  padding:16px 20px;
-  margin:18px 0;
-}
-
-/* ─── Footer ─── */
-footer{
-  margin-top:auto;
-  background:var(--surface);
-  border-top:1px solid var(--border-soft);
-  padding:32px 28px;
-  text-align:center;
-  font-size:.82rem;color:var(--text-subtle);
-}
-footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
-footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
-footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
-
-/* ─── Responsive ─── */
-@media (max-width:900px){
-  .page-head{padding:18px 20px 22px}
-  .page-title{font-size:1.5rem}
-  main{padding:20px}
-}
-
-</style>
-<script>
-/* ═══════════════════════════════════════════════════════════════
-   Logique commune — Plateforme Autoformation HEP-VS
-   ═══════════════════════════════════════════════════════════════ */
-
-(function(){
-  // Initialisation du thème (avant render pour éviter flash)
-  try {
-    var saved = localStorage.getItem('aut_theme');
-    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      document.documentElement.setAttribute('data-theme', 'dark');
-  } catch(e) {}
-})();
-
-function toggleTheme(){
-  var cur = document.documentElement.getAttribute('data-theme');
-  var next = cur === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  try{ localStorage.setItem('aut_theme', next); }catch(e){}
-  updateThemeIcon();
-}
-
-function updateThemeIcon(){
-  var icon = document.getElementById('theme-icon');
-  if(!icon) return;
-  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
-}
-
-/* Récupérer l'état d'un module */
-function getModuleState(num){
-  try{
-    var raw = localStorage.getItem('autoformation_mod'+num+'_v5');
-    return raw ? JSON.parse(raw) : null;
-  }catch(e){ return null; }
-}
-
-/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
-function scanAllModules(){
-  var nums = [1,2,3,4,6,7,8,9];
-  var completed = [];
-  var inProgress = null;
-  nums.forEach(function(n){
-    var s = getModuleState(n);
-    if(!s) return;
-    if(s.completed){ completed.push(n); return; }
-    if(s.lastSection && s.lastSection !== 's1' && !inProgress){
-      inProgress = {num:n, section:s.lastSection};
-    }
-  });
-  return {completed: completed, inProgress: inProgress, total: nums.length};
-}
-
-/* Récupérer le diagnostic enregistré */
-function getDiagnostic(){
-  try{
-    var raw = localStorage.getItem('aut_diagnostic_v1');
-    return raw ? JSON.parse(raw) : null;
-  }catch(e){ return null; }
-}
-
-function saveDiagnostic(data){
-  try{
-    data.savedAt = new Date().toISOString();
-    localStorage.setItem('aut_diagnostic_v1', JSON.stringify(data));
-    return true;
-  }catch(e){ return false; }
-}
-
-window.addEventListener('DOMContentLoaded', updateThemeIcon);
-
-</script>
-<style>
 .diag-intro{
   background:linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
   border:1px solid rgba(45,156,219,.25);
   border-left:5px solid var(--sky);
-  border-radius:14px;
-  padding:20px 24px;
-  margin-bottom:28px;
+  border-radius:14px;padding:20px 24px;margin-bottom:24px;
 }
 [data-theme="dark"] .diag-intro{
   background:linear-gradient(135deg, rgba(45,156,219,.1), rgba(45,156,219,.04));
   border-color:rgba(45,156,219,.3);
 }
-.diag-intro h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.15rem;font-weight:700;
-  color:var(--text-strong);
-  margin:0 0 8px;
-}
+.diag-intro h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text-strong);margin:0 0 8px;}
 .diag-intro p{margin:0 0 8px;font-size:.92rem;line-height:1.6}
 .diag-intro p:last-child{margin-bottom:0}
+
+.temps-block{
+  background:var(--surface);
+  border:2px solid var(--border-soft);
+  border-radius:14px;padding:24px 26px;margin-bottom:28px;position:relative;
+}
+.temps-block.temps-1{border-left:6px solid var(--accent3);}
+.temps-block.temps-2{border-left:6px solid var(--gold);}
+.temps-block-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
+.temps-block-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:24px;
+  font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+}
+.temps-1 .temps-block-badge{background:rgba(83,52,131,.15);color:var(--accent3);}
+.temps-2 .temps-block-badge{background:rgba(245,166,35,.15);color:#b8860b;}
+[data-theme="dark"] .temps-2 .temps-block-badge{color:var(--gold);}
+.temps-block-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--text-strong);margin:0;flex:1;min-width:200px;}
+.temps-block-date{font-size:.85rem;color:var(--text-muted);white-space:nowrap;}
 
 .diag-composante{
   background:var(--surface);
   border:1px solid var(--border-soft);
   border-left:4px solid var(--comp-color);
-  border-radius:12px;
-  padding:18px 22px;
-  margin-bottom:14px;
+  border-radius:12px;padding:20px 24px;margin-bottom:16px;
 }
-.diag-composante-head{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:10px;
-}
+.diag-composante-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
 .diag-composante-lettre{
-  width:42px;height:42px;border-radius:10px;
+  width:46px;height:46px;border-radius:11px;
   background:var(--comp-color);color:white;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;
-  font-size:1.4rem;font-weight:900;flex-shrink:0;
+  font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;flex-shrink:0;
 }
-.diag-composante-titre{
-  font-weight:700;color:var(--text-strong);
-  font-size:1rem;line-height:1.25;
-}
-.diag-composante-sous{
-  font-size:.82rem;color:var(--text-muted);
-  margin-top:2px;
-}
-.diag-question{
-  font-size:.92rem;color:var(--text-body);
-  margin:8px 0 12px;line-height:1.55;
-}
-.diag-scale{
-  display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;
-}
+.diag-composante-meta{flex:1;min-width:0}
+.diag-composante-titre{font-weight:700;color:var(--text-strong);font-size:1.05rem;line-height:1.25;}
+.diag-composante-sous{font-size:.82rem;color:var(--text-muted);margin-top:2px;}
+.diag-composante-score{font-size:.85rem;font-weight:700;color:var(--comp-color);white-space:nowrap;}
+
+.diag-question-block{margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-soft);}
+.diag-question-block:first-child{border-top:none;padding-top:0;margin-top:0}
+.diag-question{font-size:.92rem;color:var(--text-body);margin:0 0 10px;line-height:1.55;}
+.diag-scale{display:flex;gap:6px;flex-wrap:wrap;}
 .diag-scale-btn{
   flex:1;min-width:44px;
-  background:var(--surface);
+  background:var(--surface-alt);
   border:2px solid var(--border-soft);
   padding:10px 0;border-radius:8px;
-  cursor:pointer;font-family:inherit;
-  color:var(--text-body);
-  transition:all .15s;font-weight:700;
-  font-size:.95rem;
+  cursor:pointer;font-family:inherit;color:var(--text-body);
+  transition:all .15s;font-weight:700;font-size:.95rem;
 }
-.diag-scale-btn:hover{
-  border-color:var(--comp-color);
-  background:var(--surface-alt);
-}
-.diag-scale-btn.selected{
-  background:var(--comp-color);
-  border-color:var(--comp-color);
-  color:white;
-  transform:translateY(-1px);
-}
-.diag-scale-labels{
-  display:flex;justify-content:space-between;
-  margin-top:6px;font-size:.72rem;
-  color:var(--text-subtle);
-}
+.diag-scale-btn:hover{border-color:var(--comp-color);background:var(--surface);}
+.diag-scale-btn.selected{background:var(--comp-color);border-color:var(--comp-color);color:white;transform:translateY(-1px);}
+.diag-scale-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--text-subtle);}
 
-/* Couleurs des composantes PRÉSENCE */
 .comp-P{--comp-color:#e94560}
 .comp-R{--comp-color:#2d9cdb}
 .comp-E1{--comp-color:#27ae60}
@@ -333,365 +204,143 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .comp-C{--comp-color:#2980b9}
 .comp-E3{--comp-color:#0f3460}
 
-/* ─── Résultat ─── */
-.diag-result-block{
-  background:linear-gradient(135deg,#fef3c7,#fde68a);
-  border:1px solid rgba(184,134,11,.3);
-  border-left:5px solid var(--gold);
-  border-radius:16px;
-  padding:26px 28px;
-  margin-top:30px;
-}
-[data-theme="dark"] .diag-result-block{
-  background:linear-gradient(135deg, rgba(245,166,35,.12), rgba(245,166,35,.04));
-  border-color:rgba(245,166,35,.3);
-}
-.diag-result-block.hidden{display:none}
-.diag-result-block h2{
-  font-family:'Playfair Display',serif;
-  font-size:1.4rem;
-  margin:0 0 8px;color:var(--text-strong);
-}
-.diag-result-summary{
-  font-size:.95rem;color:var(--text-body);
-  line-height:1.6;margin-bottom:18px;
-}
-.diag-result-radar{
-  display:flex;align-items:center;gap:24px;
-  flex-wrap:wrap;
-}
-.diag-radar-svg{
-  width:240px;height:240px;flex-shrink:0;
-  background:white;border-radius:50%;
-  border:1px solid rgba(184,134,11,.2);
-}
-[data-theme="dark"] .diag-radar-svg{
-  background:rgba(0,0,0,.2);
-  border-color:rgba(184,134,11,.25);
-}
-.diag-result-recommendations{flex:1;min-width:280px}
-.diag-result-recommendations h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.05rem;color:var(--text-strong);margin:0 0 12px;
-}
-.diag-reco-card{
-  background:white;
-  border:1px solid var(--border-soft);
-  border-left:3px solid var(--reco-color, var(--accent2));
-  border-radius:10px;
-  padding:12px 16px;margin-bottom:10px;
-  display:flex;align-items:center;gap:12px;
-  text-decoration:none;color:inherit;
-  transition:all .15s;
-}
-[data-theme="dark"] .diag-reco-card{background:rgba(0,0,0,.2)}
-.diag-reco-card:hover{
-  transform:translateX(2px);
-  box-shadow:var(--shadow-soft);
-  text-decoration:none;
-}
-.diag-reco-num{
-  width:32px;height:32px;border-radius:8px;
-  background:var(--reco-color);color:white;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;
-  font-weight:900;flex-shrink:0;
-}
-.diag-reco-title{font-weight:700;font-size:.88rem}
-.diag-reco-sub{font-size:.78rem;color:var(--text-muted)}
-
-.diag-actions{
-  margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;
-}
-.diag-btn{
-  background:var(--accent2);color:white;border:none;
-  padding:10px 20px;border-radius:10px;cursor:pointer;
-  font-family:inherit;font-size:.92rem;font-weight:700;
-  display:inline-flex;align-items:center;gap:6px;
-}
-.diag-btn:hover{opacity:.9}
-.diag-btn-secondary{
-  background:transparent;color:var(--accent2);
-  border:1px solid var(--accent2);
-}
-
 .diag-progress-bar{
   position:sticky;top:65px;
   background:var(--surface);
   border:1px solid var(--border-soft);
-  border-radius:12px;
-  padding:12px 18px;
-  margin-bottom:24px;
+  border-radius:12px;padding:12px 18px;margin-bottom:24px;
   display:flex;align-items:center;gap:14px;z-index:50;
   box-shadow:var(--shadow-soft);
 }
-.diag-progress-track{
-  flex:1;height:8px;background:var(--surface-alt);
-  border-radius:4px;overflow:hidden;
+.diag-progress-track{flex:1;height:8px;background:var(--surface-alt);border-radius:4px;overflow:hidden;border:1px solid var(--border-soft);}
+.diag-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--gold));width:0%;transition:width .3s;}
+.diag-progress-text{font-size:.82rem;font-weight:700;color:var(--text-strong);white-space:nowrap;}
+
+.diag-result-block{
+  background:linear-gradient(135deg,#fef3c7,#fde68a);
+  border:2px solid rgba(184,134,11,.3);
+  border-left:6px solid var(--gold);
+  border-radius:16px;padding:28px 30px;margin-top:30px;
+}
+[data-theme="dark"] .diag-result-block{
+  background:linear-gradient(135deg, rgba(245,166,35,.15), rgba(245,166,35,.05));
+  border-color:rgba(245,166,35,.4);
+}
+.diag-result-block.hidden{display:none}
+.diag-result-block h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin:0 0 10px;color:var(--text-strong);}
+.diag-result-summary{font-size:.95rem;color:var(--text-body);line-height:1.65;margin-bottom:20px;}
+.diag-result-radar{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+.diag-radar-svg{width:260px;height:260px;flex-shrink:0;background:white;border-radius:50%;border:2px solid rgba(184,134,11,.2);}
+[data-theme="dark"] .diag-radar-svg{background:rgba(255,255,255,.06);border-color:rgba(184,134,11,.3);}
+.diag-result-recommendations{flex:1;min-width:280px}
+.diag-result-recommendations h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-strong);margin:0 0 14px;}
+.diag-reco-card{
+  background:white;
   border:1px solid var(--border-soft);
+  border-left:4px solid var(--reco-color, var(--accent2));
+  border-radius:10px;padding:14px 18px;margin-bottom:10px;
+  display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;transition:all .15s;
 }
-.diag-progress-fill{
-  height:100%;background:linear-gradient(90deg,var(--accent3),var(--gold));
-  width:0%;transition:width .3s;
-}
-.diag-progress-text{
-  font-size:.82rem;font-weight:700;color:var(--text-strong);
-  white-space:nowrap;
-}
-
-
-/* ─── Système de modes (personnel / HEP) ─── */
-/* ═══════════════════════════════════════════════════════════════
-   CSS du système de modes (personnel / HEP)
-   ═══════════════════════════════════════════════════════════════ */
-
-/* Badge mode dans le header (remplace le hep-badge fixe) */
-.mode-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:5px 12px;border-radius:14px;
-  font-size:.74rem;font-weight:600;
-  cursor:pointer;
-  border:1px solid transparent;
-  transition:all .15s;
-  font-family:inherit;
-}
-.mode-badge:hover{
-  transform:translateY(-1px);
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-}
-.mode-badge.mode-hep{
-  background:linear-gradient(135deg,var(--accent2),var(--accent3));
-  color:white;
-}
-.mode-badge.mode-personal{
-  background:var(--surface-alt);
-  color:var(--text-muted);
-  border-color:var(--border-soft);
-}
-[data-theme="dark"] .mode-badge.mode-personal{
-  background:rgba(255,255,255,.05);
-  color:var(--text-body);
-}
-
-/* Overlay de la modale */
-.mode-modal{
-  display:none;
-  position:fixed;inset:0;z-index:1000;
-  background:rgba(0,0,0,.5);
-  backdrop-filter:blur(4px);
-  align-items:center;justify-content:center;
-  padding:20px;
-  opacity:0;transition:opacity .2s;
-}
-.mode-modal.open{opacity:1}
-
-.mode-modal-card{
-  background:var(--surface);
-  border-radius:18px;
-  max-width:640px;width:100%;
-  max-height:90vh;overflow-y:auto;
-  padding:32px 36px;
-  position:relative;
-  box-shadow:0 20px 60px rgba(0,0,0,.2);
-  transform:translateY(20px);
-  transition:transform .25s;
-}
-.mode-modal.open .mode-modal-card{transform:translateY(0)}
-
-.mode-modal-close{
-  position:absolute;top:14px;right:18px;
-  background:none;border:none;
-  font-size:1.8rem;line-height:1;
-  color:var(--text-muted);cursor:pointer;
-  width:36px;height:36px;border-radius:50%;
+[data-theme="dark"] .diag-reco-card{background:rgba(0,0,0,.25)}
+.diag-reco-card:hover{transform:translateX(2px);box-shadow:var(--shadow-soft);text-decoration:none;}
+.diag-reco-num{
+  width:36px;height:36px;border-radius:9px;
+  background:var(--reco-color);color:white;
   display:flex;align-items:center;justify-content:center;
-  transition:background .15s;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1.05rem;flex-shrink:0;
 }
-.mode-modal-close:hover{background:var(--surface-alt)}
+.diag-reco-title{font-weight:700;font-size:.9rem;color:var(--text-strong)}
+.diag-reco-sub{font-size:.8rem;color:var(--text-muted)}
 
-.mode-modal-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:700;
-  margin:0 0 8px;color:var(--text-strong);
+.diag-actions{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;}
+.diag-btn{
+  background:var(--accent3);color:white;border:none;
+  padding:11px 22px;border-radius:10px;cursor:pointer;
+  font-family:inherit;font-size:.92rem;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;transition:all .15s;
 }
-.mode-modal-sub{
-  font-size:.92rem;color:var(--text-muted);
-  margin:0 0 24px;line-height:1.55;
-}
+.diag-btn:hover{background:var(--accent2);transform:translateY(-1px);}
+.diag-btn:disabled{opacity:.5;cursor:not-allowed;background:var(--text-subtle);transform:none;}
+.diag-btn-secondary{background:transparent;color:var(--accent3);border:1px solid var(--accent3);}
+.diag-btn-secondary:hover{background:rgba(83,52,131,.08);}
 
-/* Les deux options de mode côte à côte */
-.mode-options{
-  display:flex;flex-direction:column;gap:14px;
-}
-
-.mode-option{
-  background:var(--surface-alt);
-  border:2px solid var(--border-soft);
-  border-radius:14px;
-  padding:18px 20px;
-  transition:all .15s;
-}
-.mode-option.active{
+footer{
+  margin-top:auto;
   background:var(--surface);
-  border-color:var(--accent3);
-  box-shadow:0 4px 12px rgba(83,52,131,.1);
+  border-top:1px solid var(--border-soft);
+  padding:32px 28px;text-align:center;
+  font-size:.82rem;color:var(--text-subtle);
 }
-[data-theme="dark"] .mode-option.active{
-  box-shadow:0 4px 12px rgba(123,84,160,.15);
-}
+footer a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+footer a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
 
-.mode-option-head{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:12px;
-}
-.mode-option-head > svg{
-  width:32px;height:32px;
-  color:var(--accent3);
-  flex-shrink:0;
-}
-.mode-option-title{
-  font-weight:700;color:var(--text-strong);
-  font-size:1.02rem;
-}
-.mode-option-sub{
-  font-size:.82rem;color:var(--text-muted);
-  margin-top:2px;line-height:1.4;
-}
-.mode-option-badge{
-  margin-left:auto;
-  background:var(--sage);color:white;
-  font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:700;padding:4px 10px;border-radius:12px;
-}
+.mode-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .2s;}
+.mode-modal.open{opacity:1}
+.mode-modal-card{background:var(--surface);border-radius:18px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;padding:32px 36px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2);transform:translateY(20px);transition:transform .25s;}
+.mode-modal.open .mode-modal-card{transform:translateY(0)}
+.mode-modal-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.8rem;line-height:1;color:var(--text-muted);cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.mode-modal-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0 0 8px;color:var(--text-strong);}
+.mode-modal-sub{font-size:.92rem;color:var(--text-muted);margin:0 0 24px;line-height:1.55;}
+.mode-options{display:flex;flex-direction:column;gap:14px;}
+.mode-option{background:var(--surface-alt);border:2px solid var(--border-soft);border-radius:14px;padding:18px 20px;transition:all .15s;}
+.mode-option.active{background:var(--surface);border-color:var(--accent3);}
+.mode-option-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.mode-option-head>svg{width:32px;height:32px;color:var(--accent3);flex-shrink:0;}
+.mode-option-title{font-weight:700;color:var(--text-strong);font-size:1.02rem;}
+.mode-option-sub{font-size:.82rem;color:var(--text-muted);margin-top:2px;line-height:1.4;}
+.mode-option-badge{margin-left:auto;background:var(--sage);color:white;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 10px;border-radius:12px;}
+.mode-option-features{margin:0 0 14px;padding:0 0 0 18px;font-size:.86rem;color:var(--text-body);line-height:1.7;}
+.mode-option-action{background:transparent;border:1px solid var(--border-soft);color:var(--text-body);padding:8px 16px;border-radius:10px;font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .15s;}
+.mode-option-action:hover{background:var(--surface-alt);border-color:var(--accent3);color:var(--accent3);}
+.mode-option-action.mode-action-primary{background:var(--accent3);color:white;border-color:var(--accent3);}
+.mode-option-action.mode-action-primary:hover{background:var(--accent2);}
+.mode-form-field{margin-bottom:18px;}
+.mode-form-field label{display:block;font-size:.82rem;font-weight:600;color:var(--text-strong);margin-bottom:8px;}
+.mode-form-field input{width:100%;padding:11px 14px;border:1px solid var(--border-soft);border-radius:10px;font-family:inherit;font-size:.95rem;background:var(--surface);color:var(--text-body);}
+.mode-form-field input:focus{outline:none;border-color:var(--accent3);box-shadow:0 0 0 3px rgba(83,52,131,.1);}
+.mode-form-hint{margin-top:6px;font-size:.78rem;color:var(--text-subtle);font-style:italic;}
+.mode-form-error{display:none;margin-top:8px;padding:8px 12px;background:rgba(233,69,96,.1);border-left:3px solid var(--accent1);border-radius:6px;font-size:.82rem;color:var(--accent1);}
+.mode-form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:24px;}
+.mode-btn{padding:10px 22px;border-radius:10px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .15s;}
+.mode-btn-secondary{background:transparent;color:var(--text-body);border-color:var(--border-soft);}
+.mode-btn-secondary:hover{background:var(--surface-alt);}
+.mode-btn-primary{background:var(--accent3);color:white;}
+.mode-btn-primary:hover{background:var(--accent2);}
 
-.mode-option-features{
-  margin:0 0 14px;padding:0 0 0 18px;
-  font-size:.86rem;color:var(--text-body);
-  line-height:1.7;
+@media (max-width:700px){
+  .page-head{padding:20px 18px 22px}
+  .page-title{font-size:1.5rem}
+  main{padding:20px 16px}
+  .temps-block{padding:18px 18px}
+  .diag-composante{padding:16px 18px}
+  .diag-result-radar{justify-content:center}
 }
-.mode-option-features li{margin-bottom:2px}
-
-.mode-option-action{
-  background:transparent;
-  border:1px solid var(--border-soft);
-  color:var(--text-body);
-  padding:8px 16px;border-radius:10px;
-  font-family:inherit;font-size:.85rem;font-weight:600;
-  cursor:pointer;
-  transition:all .15s;
-}
-.mode-option-action:hover{
-  background:var(--surface-alt);
-  border-color:var(--accent3);
-  color:var(--accent3);
-}
-.mode-option-action.mode-action-primary{
-  background:var(--accent3);
-  color:white;
-  border-color:var(--accent3);
-}
-.mode-option-action.mode-action-primary:hover{
-  background:var(--accent2);
-  border-color:var(--accent2);
-  color:white;
-}
-
-/* Formulaires dans la modale (auth HEP, saisie nom) */
-.mode-form-field{
-  margin-bottom:18px;
-}
-.mode-form-field label{
-  display:block;font-size:.82rem;font-weight:600;
-  color:var(--text-strong);margin-bottom:8px;
-}
-.mode-form-field input{
-  width:100%;padding:11px 14px;
-  border:1px solid var(--border-soft);
-  border-radius:10px;
-  font-family:inherit;font-size:.95rem;
-  background:var(--surface);color:var(--text-body);
-  transition:border-color .15s;
-}
-.mode-form-field input:focus{
-  outline:none;
-  border-color:var(--accent3);
-  box-shadow:0 0 0 3px rgba(83,52,131,.1);
-}
-.mode-form-hint{
-  margin-top:6px;
-  font-size:.78rem;color:var(--text-subtle);
-  font-style:italic;
-}
-.mode-form-error{
-  display:none;
-  margin-top:8px;
-  padding:8px 12px;
-  background:rgba(233,69,96,.1);
-  border-left:3px solid var(--accent1);
-  border-radius:6px;
-  font-size:.82rem;color:var(--accent1);
-}
-.mode-form-error[style*="block"]{display:block}
-
-.mode-form-actions{
-  display:flex;gap:10px;justify-content:flex-end;
-  margin-top:24px;
-}
-.mode-btn{
-  padding:10px 22px;border-radius:10px;
-  font-family:inherit;font-size:.9rem;font-weight:600;
-  cursor:pointer;border:1px solid transparent;
-  transition:all .15s;
-}
-.mode-btn-secondary{
-  background:transparent;
-  color:var(--text-body);
-  border-color:var(--border-soft);
-}
-.mode-btn-secondary:hover{
-  background:var(--surface-alt);
-}
-.mode-btn-primary{
-  background:var(--accent3);
-  color:white;
-}
-.mode-btn-primary:hover{
-  background:var(--accent2);
-}
-.mode-btn-primary:disabled{
-  opacity:.6;cursor:not-allowed;
-}
-
-@media (max-width:600px){
-  .mode-modal-card{padding:24px 22px}
-  .mode-modal-title{font-size:1.3rem}
-}
-
-
-
-  .mode-modal-title{font-size:1.3rem}
-}
-
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
     <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
-    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
     <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
     <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
   </defs>
 </svg>
 
 <header class="app-header">
-  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <a href="index.html" class="app-logo">
+    <svg class="icon"><use href="#i-leaf"/></svg>
+    Autoformation
+  </a>
   <nav class="nav-links">
     <a href="index.html" class="nav-link">Accueil</a>
     <a href="diagnostic.html" class="nav-link active">Diagnostic</a>
@@ -699,7 +348,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <a href="modules.html" class="nav-link">Catalogue modules</a>
   </nav>
   <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
-  <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Thème"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
 </header>
 
 <div class="page-head">
@@ -708,192 +357,213 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span class="sep">›</span>
     <span class="current">Diagnostic PRÉSENCE</span>
   </div>
-  <h1 class="page-title">Diagnostic PRÉSENCE — Mon profil de départ</h1>
-  <p class="page-sub">Auto-évaluation rapide en 8 questions, structurée selon les 8 composantes du modèle PRÉSENCE (Fahim, 2022). Le résultat oriente vers les modules prioritaires à travailler en premier.</p>
+  <h1 class="page-title">Diagnostic PRÉSENCE — autoévaluation guidée</h1>
+  <p class="page-sub">Une lecture honnête de votre point de départ sur les 8 composantes du modèle PRÉSENCE (Fahim, 2022). Au choix : une version rapide pour s'orienter, ou une version approfondie pour un bilan plus fin.</p>
 </div>
 
 <main>
-  <div class="diag-intro">
-    <h3>Comment fonctionne ce diagnostic ?</h3>
-    <p>Pour chacune des 8 composantes PRÉSENCE, répondez en cochant la valeur qui décrit le mieux votre situation actuelle (de 1 = très fragile à 5 = très solide). Aucune bonne réponse n'existe : il s'agit d'une lecture honnête de votre point de départ.</p>
-    <p style="font-size:.85rem;color:var(--text-muted)"><strong>~5 minutes · Sauvegarde automatique · Vous pouvez recommencer à tout moment.</strong></p>
+
+  <div class="mode-selector">
+    <button class="mode-selector-btn active" data-mode="rapide" onclick="switchMode('rapide')">
+      <span>Version rapide</span>
+      <span class="ms-sub">8 questions · ~5 min</span>
+    </button>
+    <button class="mode-selector-btn" data-mode="approfondi" onclick="switchMode('approfondi')">
+      <span>Version approfondie</span>
+      <span class="ms-sub">~40 questions · ~15 min</span>
+    </button>
   </div>
 
-  <div style="background:linear-gradient(135deg,#fef3c7,#fde68a);border:1px solid rgba(184,134,11,.3);border-left:5px solid var(--gold);border-radius:14px;padding:16px 22px;margin-bottom:24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-    <div style="flex:1;min-width:240px">
-      <div style="font-weight:700;color:var(--text-strong);margin-bottom:4px">Vous voulez un diagnostic plus approfondi ?</div>
-      <div style="font-size:.86rem;color:var(--text-body);line-height:1.5">Le <strong>diagnostic complet 276 items</strong> offre une auto-évaluation psychométrique sur 11 dimensions (4 ressources personnelles, 7 professionnelles) avec deux radars croisés. 15 à 30 minutes, idéal pour un parcours HEP-VS ou un bilan approfondi.</div>
-    </div>
-    <a href="diagnostic-complet.html" style="background:var(--gold);color:#1a1a2e;padding:10px 20px;border-radius:10px;font-weight:700;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px">
-      Diagnostic complet →
-    </a>
+  <div class="diag-intro" id="intro-rapide">
+    <h3>Version rapide — pour s'orienter</h3>
+    <p>Pour chaque composante PRÉSENCE, répondez à une question synthétique en cochant la valeur qui décrit le mieux votre situation actuelle (1 = très fragile à 5 = très solide).</p>
+    <p style="font-size:.85rem;color:var(--text-muted)"><strong>Aucune bonne réponse n'existe</strong> — il s'agit d'une lecture honnête de votre point de départ. Sauvegarde automatique.</p>
+  </div>
+
+  <div class="diag-intro" id="intro-approfondi" style="display:none">
+    <h3>Version approfondie — pour un bilan fin</h3>
+    <p>Chaque composante PRÉSENCE est explorée par 4 à 5 questions, pour un score plus précis et plus stable psychométriquement. Idéal pour un parcours HEP-VS ou un travail de fond.</p>
+    <p style="font-size:.85rem;color:var(--text-muted)"><strong>Vos réponses sont sauvegardées automatiquement</strong> — vous pouvez interrompre et reprendre à tout moment.</p>
   </div>
 
   <div class="diag-progress-bar">
-    <span class="diag-progress-text"><span id="diag-count">0</span> / 8</span>
+    <span class="diag-progress-text"><span id="diag-count">0</span> / <span id="diag-total">8</span></span>
     <div class="diag-progress-track"><div class="diag-progress-fill" id="diag-progress-fill"></div></div>
-    <button class="diag-btn diag-btn-secondary" id="diag-show-result" onclick="showResult()" disabled style="opacity:.5">Voir mon résultat</button>
+    <button class="diag-btn diag-btn-secondary" id="diag-show-result" onclick="showResult()" disabled>Voir mon résultat</button>
   </div>
 
-  <div class="diag-composante comp-P" data-comp="P">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">P</div>
-      <div>
-        <div class="diag-composante-titre">Prédisposition</div>
-        <div class="diag-composante-sous">Croyances, valeurs, histoire de vie professionnelle</div>
-      </div>
+  <section class="temps-block temps-1" id="temps-1-block">
+    <div class="temps-block-head">
+      <span class="temps-block-badge">
+        <svg class="icon icon-sm"><use href="#i-clock"/></svg>
+        Temps 1 · Point de départ
+      </span>
+      <h2 class="temps-block-title">Mon profil actuel</h2>
+      <span class="temps-block-date" id="t1-date">À compléter</span>
     </div>
-    <p class="diag-question">À quel point estimez-vous que vos croyances et valeurs professionnelles sont stables et alignées avec votre pratique actuelle ?</p>
-    <div class="diag-scale" role="radiogroup" aria-label="Échelle de 1 à 5"></div>
-    <div class="diag-scale-labels"><span>Très fragile</span><span>Très solide</span></div>
-  </div>
+    <div id="t1-composantes"></div>
+  </section>
 
-  <div class="diag-composante comp-R" data-comp="R">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">R</div>
-      <div>
-        <div class="diag-composante-titre">Réseaux</div>
-        <div class="diag-composante-sous">Liens socio-émotionnels, accordage relationnel</div>
-      </div>
+  <section class="temps-block temps-2" id="temps-2-block" style="display:none">
+    <div class="temps-block-head">
+      <span class="temps-block-badge">
+        <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+        Temps 2 · Évolution
+      </span>
+      <h2 class="temps-block-title">Mon profil après le parcours</h2>
+      <span class="temps-block-date" id="t2-date">Non commencé</span>
     </div>
-    <p class="diag-question">Avez-vous un réseau professionnel de soutien (collègues de confiance, mentorat, échanges réguliers) sur lequel vous pouvez vraiment vous appuyer ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>Très isolé·e</span><span>Très soutenu·e</span></div>
-  </div>
-
-  <div class="diag-composante comp-E1" data-comp="E1">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">É</div>
-      <div>
-        <div class="diag-composante-titre">Élagage</div>
-        <div class="diag-composante-sous">Développement des compétences clés du métier</div>
-      </div>
+    <div style="background:rgba(245,166,35,.08);border-radius:10px;padding:14px 18px;margin-bottom:18px;font-size:.88rem;line-height:1.6;color:var(--text-body)">
+      <strong>Quand faire le Temps 2 ?</strong> Idéalement après avoir travaillé plusieurs modules (3 à 6 mois). L'idée est de mesurer concrètement votre évolution sur les mêmes composantes — pour visualiser le chemin parcouru et identifier ce qui reste à approfondir.
     </div>
-    <p class="diag-question">Vous sentez-vous compétent·e dans les six ingrédients de la gestion de classe (Gaudreau) — climat, attentes, comportements, engagement, apprentissage, soutien individualisé ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>En grande difficulté</span><span>Très à l'aise</span></div>
+    <div id="t2-composantes"></div>
+  </section>
+
+  <div id="launch-t2-wrapper" style="display:none;text-align:center;margin:24px 0">
+    <button class="diag-btn" onclick="launchTemps2()">
+      <svg class="icon icon-sm"><use href="#i-plus"/></svg>
+      Commencer mon Temps 2
+    </button>
+    <p style="margin-top:10px;font-size:.85rem;color:var(--text-muted)">À faire après avoir travaillé plusieurs modules, pour mesurer votre évolution.</p>
   </div>
 
-  <div class="diag-composante comp-S" data-comp="S">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">S</div>
-      <div>
-        <div class="diag-composante-titre">Synchronisation</div>
-        <div class="diag-composante-sous">Co-régulation émotionnelle, sécurité affective</div>
-      </div>
-    </div>
-    <p class="diag-question">Parvenez-vous à rester calme et stable émotionnellement face aux situations difficiles en classe, et à co-réguler les émotions de vos élèves ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>Très réactif·ve</span><span>Très régulé·e</span></div>
-  </div>
-
-  <div class="diag-composante comp-E2" data-comp="E2">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">E</div>
-      <div>
-        <div class="diag-composante-titre">Élagage ado</div>
-        <div class="diag-composante-sous">Maturation cortex préfrontal, autodétermination</div>
-      </div>
-    </div>
-    <p class="diag-question">À quel point vous sentez-vous outillé·e pour accompagner les comportements typiques des adolescents (impulsivité, recherche de sens, besoin d'autonomie) ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>Démuni·e</span><span>Bien outillé·e</span></div>
-  </div>
-
-  <div class="diag-composante comp-N" data-comp="N">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">N</div>
-      <div>
-        <div class="diag-composante-titre">Neuroplasticité</div>
-        <div class="diag-composante-sous">Capacité de changement, apprentissage continu</div>
-      </div>
-    </div>
-    <p class="diag-question">Êtes-vous engagé·e dans une démarche d'apprentissage continu (lectures, formations, expérimentations) qui nourrit votre pratique ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>Très peu</span><span>Très investi·e</span></div>
-  </div>
-
-  <div class="diag-composante comp-C" data-comp="C">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">C</div>
-      <div>
-        <div class="diag-composante-titre">Conscience</div>
-        <div class="diag-composante-sous">Métacognition, réflexivité, conscience de soi</div>
-      </div>
-    </div>
-    <p class="diag-question">Prenez-vous régulièrement du recul sur votre pratique (journal réflexif, supervision, analyse de situations) ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>Jamais</span><span>Très régulièrement</span></div>
-  </div>
-
-  <div class="diag-composante comp-E3" data-comp="E3">
-    <div class="diag-composante-head">
-      <div class="diag-composante-lettre">E</div>
-      <div>
-        <div class="diag-composante-titre">Libre arbitre</div>
-        <div class="diag-composante-sous">Autodétermination, sentiment d'agentivité</div>
-      </div>
-    </div>
-    <p class="diag-question">Vous sentez-vous acteur/actrice de votre vie professionnelle, capable d'influer sur les conditions de votre exercice ?</p>
-    <div class="diag-scale" role="radiogroup"></div>
-    <div class="diag-scale-labels"><span>Subi·e</span><span>Acteur·rice</span></div>
-  </div>
-
-  <div class="diag-result-block hidden" id="diag-result-block">
+  <section class="diag-result-block hidden" id="diag-result-block">
     <h2>Votre profil PRÉSENCE</h2>
     <p class="diag-result-summary" id="diag-result-summary"></p>
-
     <div class="diag-result-radar">
-      <svg class="diag-radar-svg" id="diag-radar" viewBox="0 0 240 240" aria-label="Radar de mon profil PRÉSENCE">
-        <!-- Cercles concentriques -->
-        <circle cx="120" cy="120" r="24" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="48" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="72" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="96" fill="none" stroke="rgba(184,134,11,.2)" stroke-width="1"/>
-        <!-- Axes pour 8 composantes (à 45° d'écart) -->
+      <svg class="diag-radar-svg" id="diag-radar" viewBox="0 0 260 260" aria-label="Radar de mon profil PRÉSENCE">
+        <circle cx="130" cy="130" r="25" fill="none" stroke="rgba(184,134,11,.15)" stroke-width="1"/>
+        <circle cx="130" cy="130" r="50" fill="none" stroke="rgba(184,134,11,.15)" stroke-width="1"/>
+        <circle cx="130" cy="130" r="75" fill="none" stroke="rgba(184,134,11,.15)" stroke-width="1"/>
+        <circle cx="130" cy="130" r="100" fill="none" stroke="rgba(184,134,11,.25)" stroke-width="1"/>
         <g id="diag-radar-axes" stroke="rgba(0,0,0,.08)" stroke-width="1"></g>
-        <!-- Polygone du score -->
-        <polygon id="diag-radar-shape" fill="rgba(184,134,11,.18)" stroke="#b8860b" stroke-width="2" stroke-linejoin="round" points="120,120 120,120 120,120 120,120 120,120 120,120 120,120 120,120"/>
-        <!-- Points par axe + labels -->
+        <polygon id="diag-radar-shape-t1" fill="rgba(83,52,131,.18)" stroke="#533483" stroke-width="2" stroke-linejoin="round"/>
+        <polygon id="diag-radar-shape-t2" fill="rgba(245,166,35,.22)" stroke="#f5a623" stroke-width="2" stroke-linejoin="round" style="display:none"/>
         <g id="diag-radar-points"></g>
-        <g id="diag-radar-labels" font-family="DM Sans" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle"></g>
+        <g id="diag-radar-labels" font-family="DM Sans" font-size="11" font-weight="700" text-anchor="middle"></g>
       </svg>
-
       <div class="diag-result-recommendations">
-        <h3>Modules recommandés pour vous</h3>
+        <h3>Modules recommandés en priorité</h3>
         <div id="diag-recos"></div>
       </div>
     </div>
-
+    <div id="t1t2-legend" style="margin-top:18px;display:none;gap:18px;font-size:.85rem;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;background:rgba(83,52,131,.4);border:2px solid var(--accent3);border-radius:3px"></span> Temps 1</span>
+      <span style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;background:rgba(245,166,35,.4);border:2px solid var(--gold);border-radius:3px"></span> Temps 2</span>
+    </div>
     <div class="diag-actions">
-      <button class="diag-btn" onclick="saveResultAndContinue()">
+      <button class="diag-btn" onclick="saveAndContinue()">
         <svg class="icon icon-sm"><use href="#i-save"/></svg>
         Enregistrer mon profil
       </button>
-      <button class="diag-btn diag-btn-secondary" onclick="resetDiag()">Recommencer le diagnostic</button>
+      <button class="diag-btn diag-btn-secondary" onclick="resetCurrentTemps()">
+        <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+        Recommencer
+      </button>
     </div>
-  </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="footer-links">
     <a href="modules.html">Catalogue modules</a>
     <a href="fondements.html">Fondements PRÉSENCE</a>
+    <a href="mon-suivi.html">Mon suivi</a>
   </div>
-  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · CO Val de Bagnes · HEP-VS</div>
+  <div>Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS</div>
 </footer>
 
 <script>
-// ─── Configuration des 8 composantes ───
 var COMPOSANTES = [
-  {key:'P', label:'Prédisposition', color:'#e94560', mods:[1]},
-  {key:'R', label:'Réseaux', color:'#2d9cdb', mods:[7]},
-  {key:'E1', label:'Élagage', color:'#27ae60', mods:[3]},
-  {key:'S', label:'Synchronisation', color:'#f39c12', mods:[1,9]},
-  {key:'E2', label:'Élagage ado', color:'#8e44ad', mods:[8]},
-  {key:'N', label:'Neuroplasticité', color:'#16a085', mods:[3,6]},
-  {key:'C', label:'Conscience', color:'#2980b9', mods:[6]},
-  {key:'E3', label:'Libre arbitre', color:'#0f3460', mods:[6]}
+  { key:'P', lettre:'P', label:'Prédisposition', color:'#e94560', sous:'Croyances, valeurs, posture réflexive',
+    rapide: "À quel point estimez-vous que vos croyances et valeurs professionnelles sont stables et alignées avec votre pratique actuelle ?",
+    labels_rapide: ['Très fragile','Très solide'],
+    approfondi: [
+      "Je m'interroge régulièrement sur les moteurs de mes décisions pédagogiques.",
+      "Je peux remettre en question mes croyances pédagogiques si elles ne sont plus efficaces.",
+      "Je reste fidèle à mes valeurs professionnelles même sous pression.",
+      "Je suis prêt·e à expérimenter de nouvelles approches même si cela me déstabilise.",
+      "Je fais régulièrement le point sur les valeurs qui guident ma pratique."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[1] },
+  { key:'R', lettre:'R', label:'Réseaux neuronaux', color:'#2d9cdb', sous:'Connectivité cérébrale, accordage neural',
+    rapide: "À quel point votre cerveau d'enseignant est-il accordé à celui de vos élèves (lecture des signaux non verbaux, ajustements en temps réel) ?",
+    labels_rapide: ['Peu accordé·e','Très accordé·e'],
+    approfondi: [
+      "Je perçois rapidement les changements émotionnels chez mes élèves.",
+      "J'ajuste mon enseignement en temps réel selon les signaux du groupe.",
+      "Je décode bien les comportements non verbaux des adolescents.",
+      "Je co-régule efficacement les émotions du groupe lors de situations difficiles.",
+      "Je m'appuie sur mon ressenti corporel pour orienter mes interventions."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[7,9] },
+  { key:'E1', lettre:'É', label:'Élagage', color:'#27ae60', sous:'Développement des compétences clés',
+    rapide: "Vous sentez-vous compétent·e dans les six ingrédients de la gestion de classe (climat, attentes, comportements, engagement, apprentissage, soutien) ?",
+    labels_rapide: ['En difficulté','Très à l\'aise'],
+    approfondi: [
+      "Je maîtrise les techniques d'établissement d'attentes claires.",
+      "Je gère efficacement les comportements perturbateurs en classe.",
+      "Je sais créer un climat de classe respectueux et engageant.",
+      "Mes pratiques pédagogiques favorisent l'engagement actif des élèves.",
+      "Je différencie mon enseignement pour répondre aux besoins variés."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[3,8] },
+  { key:'S', lettre:'S', label:'Synchronisation', color:'#f39c12', sous:'Régulation émotionnelle, sécurité affective',
+    rapide: "Parvenez-vous à rester calme et stable émotionnellement face aux situations difficiles en classe ?",
+    labels_rapide: ['Très réactif·ve','Très régulé·e'],
+    approfondi: [
+      "Je reste calme face aux situations difficiles en classe.",
+      "Je peux nommer précisément mes émotions en situation.",
+      "Je récupère rapidement après un incident difficile.",
+      "Je sais utiliser des techniques concrètes pour me réguler (respiration, recul, etc.).",
+      "Je préserve mon équilibre émotionnel même en période de tension."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[1,9] },
+  { key:'E2', lettre:'E', label:'Élagage adolescent', color:'#8e44ad', sous:'Maturation cortex préfrontal, autodétermination',
+    rapide: "À quel point vous sentez-vous outillé·e pour accompagner les comportements typiques des adolescents ?",
+    labels_rapide: ['Démuni·e','Bien outillé·e'],
+    approfondi: [
+      "Je comprends les mécanismes du cerveau adolescent (élagage, recherche d'autonomie).",
+      "J'accompagne efficacement les élèves avec TDAH ou troubles attentionnels.",
+      "Je sais soutenir l'autodétermination de mes élèves au quotidien.",
+      "Je différencie comportements à intentions hostiles et signaux de fragilité.",
+      "Je connais et applique les principes de la CUA (Conception Universelle de l'Apprentissage)."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[8] },
+  { key:'N', lettre:'N', label:'Neuroplasticité', color:'#16a085', sous:'Capacité de changement, apprentissage continu',
+    rapide: "Êtes-vous engagé·e dans une démarche d'apprentissage continu (lectures, formations, expérimentations) ?",
+    labels_rapide: ['Très peu','Très investi·e'],
+    approfondi: [
+      "Je consacre régulièrement du temps à ma formation continue.",
+      "Je lis ou consulte des ressources professionnelles plusieurs fois par mois.",
+      "J'expérimente régulièrement de nouvelles approches en classe.",
+      "Je documente mes essais pour en tirer des enseignements.",
+      "Je perçois mes erreurs comme des occasions d'apprendre."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[3,6] },
+  { key:'C', lettre:'C', label:'Conscience', color:'#2980b9', sous:'Métacognition, réflexivité',
+    rapide: "Prenez-vous régulièrement du recul sur votre pratique (journal, supervision, analyse de situations) ?",
+    labels_rapide: ['Jamais','Très régulièrement'],
+    approfondi: [
+      "Je tiens un journal réflexif ou des notes sur ma pratique.",
+      "Je participe à des espaces d'échange entre pairs sur ma pratique.",
+      "Je prends du recul après les situations difficiles pour en tirer du sens.",
+      "J'identifie clairement mes points forts et mes zones de développement.",
+      "Je m'observe agir en classe et peux décrire mes choix après coup."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[6] },
+  { key:'E3', lettre:'E', label:'Libre arbitre', color:'#0f3460', sous:'Autodétermination, sentiment d\'agentivité',
+    rapide: "Vous sentez-vous acteur/actrice de votre vie professionnelle, capable d'influer sur vos conditions d'exercice ?",
+    labels_rapide: ['Subi·e','Acteur·rice'],
+    approfondi: [
+      "Je me sens libre d'adapter mes pratiques à la réalité de ma classe.",
+      "Je prends des initiatives pour améliorer mes conditions de travail.",
+      "Mes décisions pédagogiques reflètent mes valeurs personnelles.",
+      "Je sais dire non aux demandes qui dépassent mes ressources.",
+      "Je perçois les défis professionnels comme des occasions de développement."
+    ],
+    labels_approfondi: ['Pas du tout','Tout à fait'], mods:[6,8] }
 ];
 
 var MODULES_META = {
@@ -907,119 +577,222 @@ var MODULES_META = {
   9: {titre:'Fatigue de compassion', color:'#4a7c59', fichier:'prototype_module9.html'}
 };
 
-var responses = {};
+var currentMode = 'rapide';
+var currentTemps = 1;
+var responses = { t1: {}, t2: {} };
 
-// Construire les échelles 1-5 pour chaque composante
-function buildScales(){
-  document.querySelectorAll('.diag-composante').forEach(function(card){
-    var scale = card.querySelector('.diag-scale');
-    var comp = card.dataset.comp;
-    for(var i = 1; i <= 5; i++){
-      var btn = document.createElement('button');
-      btn.className = 'diag-scale-btn';
-      btn.textContent = i;
-      btn.dataset.val = i;
-      btn.setAttribute('role','radio');
-      btn.setAttribute('aria-label', i+' sur 5');
-      (function(comp, val, btn){
-        btn.addEventListener('click', function(){
-          // Désélectionner les autres
-          scale.querySelectorAll('.diag-scale-btn').forEach(function(b){
-            b.classList.remove('selected');
-            b.setAttribute('aria-checked','false');
-          });
-          btn.classList.add('selected');
-          btn.setAttribute('aria-checked','true');
-          responses[comp] = val;
-          updateProgress();
-        });
-      })(comp, i, btn);
-      scale.appendChild(btn);
-    }
-  });
+function loadState(){
+  try { var data = localStorage.getItem('aut_diagnostic_v2'); if (!data) return;
+    var parsed = JSON.parse(data);
+    responses = parsed.responses || { t1: {}, t2: {} };
+    currentMode = parsed.mode || 'rapide';
+  } catch(e){}
+}
+function saveState(){
+  try { localStorage.setItem('aut_diagnostic_v2', JSON.stringify({
+    responses: responses, mode: currentMode, saved_at: new Date().toISOString()
+  })); } catch(e){}
 }
 
-function updateProgress(){
-  var count = Object.keys(responses).length;
-  document.getElementById('diag-count').textContent = count;
-  document.getElementById('diag-progress-fill').style.width = (count/8*100) + '%';
-  var btn = document.getElementById('diag-show-result');
-  if(count === 8){
-    btn.disabled = false;
-    btn.style.opacity = '1';
+function switchMode(mode){
+  var hasResponses = Object.keys(responses.t1).length > 0 || Object.keys(responses.t2).length > 0;
+  if (hasResponses && mode !== currentMode) {
+    if (!confirm("Changer de mode effacera vos réponses actuelles. Continuer ?")) return;
+    responses = { t1: {}, t2: {} };
+  }
+  currentMode = mode;
+  document.querySelectorAll('.mode-selector-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.mode === mode); });
+  document.getElementById('intro-rapide').style.display = (mode === 'rapide') ? '' : 'none';
+  document.getElementById('intro-approfondi').style.display = (mode === 'approfondi') ? '' : 'none';
+  var total = (mode === 'rapide') ? 8 : 0;
+  if (mode === 'approfondi') { COMPOSANTES.forEach(function(c){ total += c.approfondi.length; }); }
+  document.getElementById('diag-total').textContent = total;
+  document.getElementById('diag-result-block').classList.add('hidden');
+  renderComposantes(); updateProgress(); saveState();
+}
+
+function renderComposantes(){
+  renderTempsBloc('t1');
+  if (isTempsComplete('t1')) {
+    document.getElementById('temps-2-block').style.display = '';
+    if (Object.keys(responses.t2).length > 0) {
+      renderTempsBloc('t2');
+      document.getElementById('launch-t2-wrapper').style.display = 'none';
+    } else {
+      document.getElementById('launch-t2-wrapper').style.display = '';
+    }
   } else {
-    btn.disabled = true;
-    btn.style.opacity = '.5';
+    document.getElementById('temps-2-block').style.display = 'none';
+    document.getElementById('launch-t2-wrapper').style.display = 'none';
   }
 }
 
-function drawRadar(){
-  // 8 axes à 45° (commence à top, sens horaire)
-  var cx = 120, cy = 120, rMax = 96;
-  var axesGroup = document.getElementById('diag-radar-axes');
-  var pointsGroup = document.getElementById('diag-radar-points');
-  var labelsGroup = document.getElementById('diag-radar-labels');
-  axesGroup.innerHTML = '';
-  pointsGroup.innerHTML = '';
-  labelsGroup.innerHTML = '';
-
-  var polygonPoints = [];
-
-  COMPOSANTES.forEach(function(c, i){
-    var angle = (i * 45 - 90) * Math.PI / 180;
-    var ex = cx + Math.cos(angle) * rMax;
-    var ey = cy + Math.sin(angle) * rMax;
-
-    // Axe
-    axesGroup.innerHTML += '<line x1="'+cx+'" y1="'+cy+'" x2="'+ex+'" y2="'+ey+'"/>';
-
-    // Position du point selon le score
-    var val = responses[c.key] || 0;
-    var dist = (val / 5) * rMax;
-    var px = cx + Math.cos(angle) * dist;
-    var py = cy + Math.sin(angle) * dist;
-    polygonPoints.push(px + ',' + py);
-
-    if(val > 0){
-      pointsGroup.innerHTML += '<circle cx="'+px+'" cy="'+py+'" r="4" fill="'+c.color+'"/>';
+function renderTempsBloc(temps){
+  var container = document.getElementById(temps + '-composantes');
+  if (!container) return;
+  var html = '';
+  COMPOSANTES.forEach(function(c){
+    var compId = 'comp-' + temps + '-' + c.key;
+    var resp = responses[temps][c.key];
+    var scoreDisplay = computeCompScore(c, resp);
+    var scoreHtml = scoreDisplay !== null ? '<div class="diag-composante-score">' + scoreDisplay.toFixed(1) + ' / 5</div>' : '';
+    html += '<div class="diag-composante comp-' + c.key + '" id="' + compId + '">'
+      + '<div class="diag-composante-head">'
+        + '<div class="diag-composante-lettre">' + c.lettre + '</div>'
+        + '<div class="diag-composante-meta">'
+          + '<div class="diag-composante-titre">' + c.label + '</div>'
+          + '<div class="diag-composante-sous">' + c.sous + '</div>'
+        + '</div>'
+        + scoreHtml
+      + '</div>';
+    if (currentMode === 'rapide') {
+      html += renderQuestion(c, c.rapide, c.labels_rapide, temps, c.key, 0, resp);
+    } else {
+      c.approfondi.forEach(function(q, idx){
+        var val = (resp && Array.isArray(resp)) ? resp[idx] : null;
+        html += renderQuestion(c, q, c.labels_approfondi, temps, c.key, idx, val);
+      });
     }
-
-    // Label (juste au-delà de rMax)
-    var lx = cx + Math.cos(angle) * (rMax + 18);
-    var ly = cy + Math.sin(angle) * (rMax + 18);
-    labelsGroup.innerHTML += '<circle cx="'+lx+'" cy="'+ly+'" r="11" fill="'+c.color+'"/>'
-      + '<text x="'+lx+'" y="'+(ly+4)+'" fill="white" font-size="11" font-weight="900">'+c.key.replace('1','').replace('2','').replace('3','')+'</text>';
+    html += '</div>';
   });
+  container.innerHTML = html;
+  if (responses._t1_completed_at) document.getElementById('t1-date').textContent = formatDate(responses._t1_completed_at);
+  if (responses._t2_completed_at) document.getElementById('t2-date').textContent = formatDate(responses._t2_completed_at);
+}
 
-  document.getElementById('diag-radar-shape').setAttribute('points', polygonPoints.join(' '));
+function renderQuestion(comp, questionText, labels, temps, compKey, idx, currentVal){
+  var html = '<div class="diag-question-block">'
+    + '<p class="diag-question">' + questionText + '</p>'
+    + '<div class="diag-scale" role="radiogroup">';
+  for (var i = 1; i <= 5; i++) {
+    var sel = (currentVal === i) ? ' selected' : '';
+    html += '<button class="diag-scale-btn' + sel + '" data-temps="' + temps + '" data-comp="' + compKey + '" data-idx="' + idx + '" data-val="' + i + '" onclick="setResponse(this)">' + i + '</button>';
+  }
+  html += '</div><div class="diag-scale-labels"><span>' + labels[0] + '</span><span>' + labels[1] + '</span></div></div>';
+  return html;
+}
+
+function computeCompScore(comp, resp){
+  if (resp === undefined || resp === null) return null;
+  if (currentMode === 'rapide') return resp;
+  if (Array.isArray(resp) && resp.length > 0) {
+    var sum = 0, count = 0;
+    resp.forEach(function(v){ if (v !== undefined && v !== null) { sum += v; count++; } });
+    return count > 0 ? sum / count : null;
+  }
+  return null;
+}
+
+function setResponse(btn){
+  var temps = btn.dataset.temps;
+  var compKey = btn.dataset.comp;
+  var idx = parseInt(btn.dataset.idx);
+  var val = parseInt(btn.dataset.val);
+  if (currentMode === 'rapide') {
+    responses[temps][compKey] = val;
+  } else {
+    if (!Array.isArray(responses[temps][compKey])) responses[temps][compKey] = [];
+    responses[temps][compKey][idx] = val;
+  }
+  var allBtns = document.querySelectorAll('.diag-scale-btn[data-temps="' + temps + '"][data-comp="' + compKey + '"][data-idx="' + idx + '"]');
+  allBtns.forEach(function(b){ b.classList.toggle('selected', parseInt(b.dataset.val) === val); });
+  var comp = null;
+  for (var i = 0; i < COMPOSANTES.length; i++) { if (COMPOSANTES[i].key === compKey) { comp = COMPOSANTES[i]; break; } }
+  var score = computeCompScore(comp, responses[temps][compKey]);
+  var scoreEl = document.querySelector('#comp-' + temps + '-' + compKey + ' .diag-composante-score');
+  if (score !== null) {
+    if (scoreEl) { scoreEl.textContent = score.toFixed(1) + ' / 5'; }
+    else {
+      var head = document.querySelector('#comp-' + temps + '-' + compKey + ' .diag-composante-head');
+      if (head) { var newEl = document.createElement('div'); newEl.className = 'diag-composante-score'; newEl.textContent = score.toFixed(1) + ' / 5'; head.appendChild(newEl); }
+    }
+  }
+  updateProgress(); saveState();
+}
+
+function isTempsComplete(temps){
+  var r = responses[temps]; if (!r) return false;
+  for (var i = 0; i < COMPOSANTES.length; i++) {
+    var c = COMPOSANTES[i]; var val = r[c.key];
+    if (currentMode === 'rapide') { if (!val) return false; }
+    else {
+      if (!Array.isArray(val) || val.length < c.approfondi.length) return false;
+      for (var j = 0; j < c.approfondi.length; j++) { if (!val[j]) return false; }
+    }
+  }
+  return true;
+}
+
+function countTempsResponses(temps){
+  var r = responses[temps]; if (!r) return 0;
+  var count = 0;
+  COMPOSANTES.forEach(function(c){
+    var val = r[c.key];
+    if (currentMode === 'rapide') { if (val) count++; }
+    else { if (Array.isArray(val)) { val.forEach(function(v){ if (v) count++; }); } }
+  });
+  return count;
+}
+
+function totalQuestions(){
+  if (currentMode === 'rapide') return 8;
+  var t = 0; COMPOSANTES.forEach(function(c){ t += c.approfondi.length; }); return t;
+}
+
+function updateProgress(){
+  var temps = currentTemps === 1 ? 't1' : 't2';
+  var count = countTempsResponses(temps);
+  var total = totalQuestions();
+  document.getElementById('diag-count').textContent = count;
+  document.getElementById('diag-progress-fill').style.width = (count / total * 100) + '%';
+  var btn = document.getElementById('diag-show-result');
+  if (isTempsComplete(temps)) {
+    btn.disabled = false;
+    if (!responses['_' + temps + '_completed_at']) {
+      responses['_' + temps + '_completed_at'] = new Date().toISOString();
+      saveState();
+      if (temps === 't1') document.getElementById('t1-date').textContent = formatDate(responses._t1_completed_at);
+      if (temps === 't2') document.getElementById('t2-date').textContent = formatDate(responses._t2_completed_at);
+    }
+  } else { btn.disabled = true; }
+}
+
+function launchTemps2(){
+  currentTemps = 2; responses.t2 = {};
+  renderComposantes();
+  setTimeout(function(){ document.getElementById('temps-2-block').scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+  updateProgress();
 }
 
 function showResult(){
-  // Identifier les 2-3 composantes les plus faibles (priorité)
-  var ranked = COMPOSANTES.slice().sort(function(a,b){
-    return (responses[a.key] || 0) - (responses[b.key] || 0);
+  var hasT1 = isTempsComplete('t1');
+  var hasT2 = isTempsComplete('t2');
+  var showCompare = hasT1 && hasT2;
+  var scoresT1 = {}, scoresT2 = {};
+  COMPOSANTES.forEach(function(c){
+    scoresT1[c.key] = computeCompScore(c, responses.t1[c.key]);
+    if (hasT2) scoresT2[c.key] = computeCompScore(c, responses.t2[c.key]);
   });
+  var ranked = COMPOSANTES.slice().sort(function(a,b){ var sa = scoresT1[a.key] || 5; var sb = scoresT1[b.key] || 5; return sa - sb; });
   var weakest = ranked.slice(0, 3);
-
-  // Collecter les modules recommandés (uniques, ordonnés par fréquence)
   var modCount = {};
-  weakest.forEach(function(c){
-    c.mods.forEach(function(m){ modCount[m] = (modCount[m] || 0) + 1; });
-  });
+  weakest.forEach(function(c){ c.mods.forEach(function(m){ modCount[m] = (modCount[m] || 0) + 1; }); });
   var sortedMods = Object.keys(modCount).sort(function(a,b){return modCount[b]-modCount[a]});
-
-  // Construire le résumé
-  var total = 0;
-  Object.keys(responses).forEach(function(k){ total += responses[k]; });
-  var pct = Math.round(total/40*100);
-
-  var summary = 'Votre profil global ressort à <strong>' + pct + '%</strong> de solidité ressentie. ';
-  summary += 'Les composantes qui ressortent comme prioritaires à travailler en premier sont : ';
-  summary += weakest.map(function(c){ return '<strong>' + c.label + '</strong> (' + (responses[c.key]||0) + '/5)'; }).join(', ') + '.';
-
+  var totalT1 = 0, countT1 = 0;
+  COMPOSANTES.forEach(function(c){ var s = scoresT1[c.key]; if (s !== null) { totalT1 += s; countT1++; } });
+  var pctT1 = countT1 > 0 ? Math.round(totalT1 / countT1 / 5 * 100) : 0;
+  var summary = 'Votre profil au <strong>Temps 1</strong> ressort à <strong>' + pctT1 + '%</strong> de solidité ressentie.<br>'
+    + 'Composantes prioritaires à travailler : '
+    + weakest.map(function(c){ return '<strong>' + c.label + '</strong>'; }).join(', ') + '.';
+  if (showCompare) {
+    var totalT2 = 0, countT2 = 0;
+    COMPOSANTES.forEach(function(c){ var s = scoresT2[c.key]; if (s !== null) { totalT2 += s; countT2++; } });
+    var pctT2 = countT2 > 0 ? Math.round(totalT2 / countT2 / 5 * 100) : 0;
+    var delta = pctT2 - pctT1;
+    var deltaStr = (delta > 0 ? '+' : '') + delta + ' points';
+    summary += '<br>Votre profil au <strong>Temps 2</strong> ressort à <strong>' + pctT2 + '%</strong> (<span style="color:' + (delta >= 0 ? 'var(--sage)' : 'var(--accent1)') + ';font-weight:700">' + deltaStr + '</span>).';
+  }
   document.getElementById('diag-result-summary').innerHTML = summary;
-
-  // Recommandations
   var recosHtml = sortedMods.slice(0, 3).map(function(m){
     var mod = MODULES_META[m];
     return '<a href="' + mod.fichier + '" class="diag-reco-card" style="--reco-color:' + mod.color + '">'
@@ -1029,413 +802,263 @@ function showResult(){
       + '<svg class="icon icon-sm" style="color:' + mod.color + '"><use href="#i-arrow-right"/></svg>'
       + '</a>';
   }).join('');
-
   document.getElementById('diag-recos').innerHTML = recosHtml;
   document.getElementById('diag-result-block').classList.remove('hidden');
-  drawRadar();
-
-  // Scroll vers le résultat
+  drawRadar(scoresT1, hasT2 ? scoresT2 : null);
+  document.getElementById('t1t2-legend').style.display = showCompare ? 'flex' : 'none';
   document.getElementById('diag-result-block').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function saveResultAndContinue(){
-  // Identifier le module recommandé en n°1
-  var ranked = COMPOSANTES.slice().sort(function(a,b){
-    return (responses[a.key] || 0) - (responses[b.key] || 0);
-  });
-  var weakest = ranked.slice(0, 3);
-  var modCount = {};
-  weakest.forEach(function(c){
-    c.mods.forEach(function(m){ modCount[m] = (modCount[m] || 0) + 1; });
-  });
-  var sortedMods = Object.keys(modCount).sort(function(a,b){return modCount[b]-modCount[a]});
-
-  var data = {
-    responses: responses,
-    weakest: weakest.map(function(c){return c.key}),
-    recommendedModules: sortedMods.slice(0, 3),
-    completedAt: new Date().toISOString()
-  };
-  saveDiagnostic(data);
-  alert('Profil enregistré. Vous pouvez maintenant ouvrir un des modules recommandés.');
-}
-
-function resetDiag(){
-  if(!confirm('Recommencer le diagnostic ? Vos réponses actuelles seront effacées.')) return;
-  responses = {};
-  document.querySelectorAll('.diag-scale-btn.selected').forEach(function(b){
-    b.classList.remove('selected');
-    b.setAttribute('aria-checked','false');
-  });
-  document.getElementById('diag-result-block').classList.add('hidden');
-  updateProgress();
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-// Charger un diagnostic précédent si existant
-function loadPrevious(){
-  var prev = getDiagnostic();
-  if(prev && prev.responses){
-    responses = prev.responses;
-    Object.keys(responses).forEach(function(comp){
-      var card = document.querySelector('[data-comp="' + comp + '"]');
-      if(!card) return;
-      var btn = card.querySelector('.diag-scale-btn[data-val="' + responses[comp] + '"]');
-      if(btn){ btn.classList.add('selected'); btn.setAttribute('aria-checked','true'); }
-    });
-    updateProgress();
-    if(Object.keys(responses).length === 8){
-      showResult();
+function drawRadar(scoresT1, scoresT2){
+  var cx = 130, cy = 130, rMax = 100;
+  var axesGroup = document.getElementById('diag-radar-axes');
+  var pointsGroup = document.getElementById('diag-radar-points');
+  var labelsGroup = document.getElementById('diag-radar-labels');
+  axesGroup.innerHTML = ''; pointsGroup.innerHTML = ''; labelsGroup.innerHTML = '';
+  var pointsT1 = [], pointsT2 = [];
+  COMPOSANTES.forEach(function(c, i){
+    var angle = (i * 45 - 90) * Math.PI / 180;
+    var ex = cx + Math.cos(angle) * rMax;
+    var ey = cy + Math.sin(angle) * rMax;
+    axesGroup.innerHTML += '<line x1="'+cx+'" y1="'+cy+'" x2="'+ex+'" y2="'+ey+'"/>';
+    var s1 = scoresT1[c.key] || 0;
+    var d1 = (s1 / 5) * rMax;
+    var px1 = cx + Math.cos(angle) * d1;
+    var py1 = cy + Math.sin(angle) * d1;
+    pointsT1.push(px1 + ',' + py1);
+    if (s1 > 0) pointsGroup.innerHTML += '<circle cx="'+px1+'" cy="'+py1+'" r="4" fill="'+c.color+'"/>';
+    if (scoresT2) {
+      var s2 = scoresT2[c.key] || 0;
+      var d2 = (s2 / 5) * rMax;
+      var px2 = cx + Math.cos(angle) * d2;
+      var py2 = cy + Math.sin(angle) * d2;
+      pointsT2.push(px2 + ',' + py2);
+      if (s2 > 0) pointsGroup.innerHTML += '<circle cx="'+px2+'" cy="'+py2+'" r="4" fill="#f5a623" stroke="white" stroke-width="1"/>';
     }
+    var lx = cx + Math.cos(angle) * (rMax + 20);
+    var ly = cy + Math.sin(angle) * (rMax + 20);
+    var lettreSimple = c.lettre.replace(/\d/g, '');
+    labelsGroup.innerHTML += '<circle cx="'+lx+'" cy="'+ly+'" r="13" fill="'+c.color+'"/>'
+      + '<text x="'+lx+'" y="'+(ly+4)+'" fill="white" font-size="12" font-weight="900">'+ lettreSimple +'</text>';
+  });
+  document.getElementById('diag-radar-shape-t1').setAttribute('points', pointsT1.join(' '));
+  if (scoresT2) {
+    document.getElementById('diag-radar-shape-t2').setAttribute('points', pointsT2.join(' '));
+    document.getElementById('diag-radar-shape-t2').style.display = '';
+  } else {
+    document.getElementById('diag-radar-shape-t2').style.display = 'none';
   }
 }
 
+function saveAndContinue(){
+  saveState();
+  var scoresT1 = {};
+  COMPOSANTES.forEach(function(c){ scoresT1[c.key] = computeCompScore(c, responses.t1[c.key]); });
+  var ranked = COMPOSANTES.slice().sort(function(a,b){ var sa = scoresT1[a.key] || 5; var sb = scoresT1[b.key] || 5; return sa - sb; });
+  var weakest = ranked.slice(0, 3);
+  var modCount = {};
+  weakest.forEach(function(c){ c.mods.forEach(function(m){ modCount[m] = (modCount[m] || 0) + 1; }); });
+  var sortedMods = Object.keys(modCount).sort(function(a,b){return modCount[b]-modCount[a]});
+  try {
+    localStorage.setItem('aut_diagnostic_v1', JSON.stringify({
+      responses: scoresT1,
+      weakest: weakest.map(function(c){return c.key}),
+      recommendedModules: sortedMods.slice(0, 3),
+      completedAt: responses._t1_completed_at || new Date().toISOString(),
+      mode: currentMode
+    }));
+  } catch(e){}
+  alert('Profil enregistré. Vous pouvez maintenant ouvrir un des modules recommandés.');
+}
+
+function resetCurrentTemps(){
+  var temps = currentTemps === 1 ? 't1' : 't2';
+  var label = currentTemps === 1 ? 'Temps 1' : 'Temps 2';
+  if (!confirm('Recommencer le ' + label + ' ? Vos réponses actuelles seront effacées.')) return;
+  responses[temps] = {};
+  delete responses['_' + temps + '_completed_at'];
+  saveState(); renderComposantes(); updateProgress();
+  document.getElementById('diag-result-block').classList.add('hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function formatDate(iso){
+  if (!iso) return 'À compléter';
+  try { var d = new Date(iso); return d.toLocaleDateString('fr-CH', {day:'2-digit', month:'short', year:'numeric'}); }
+  catch(e){ return 'Date inconnue'; }
+}
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('aut_theme', next); } catch(e){}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon'); if (!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
 window.addEventListener('DOMContentLoaded', function(){
-  buildScales();
-  loadPrevious();
+  updateThemeIcon(); loadState();
+  document.querySelectorAll('.mode-selector-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.mode === currentMode); });
+  document.getElementById('intro-rapide').style.display = (currentMode === 'rapide') ? '' : 'none';
+  document.getElementById('intro-approfondi').style.display = (currentMode === 'approfondi') ? '' : 'none';
+  var total = (currentMode === 'rapide') ? 8 : 0;
+  if (currentMode === 'approfondi') { COMPOSANTES.forEach(function(c){ total += c.approfondi.length; }); }
+  document.getElementById('diag-total').textContent = total;
+  renderComposantes(); updateProgress();
+  if (isTempsComplete('t1') && Object.keys(responses.t2).length === 0) {
+    document.getElementById('launch-t2-wrapper').style.display = '';
+  }
 });
 </script>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   Module de gestion des modes personnel / HEP
-   À embarquer dans chaque page de la plateforme
-   ═══════════════════════════════════════════════════════════════ */
-
 (function(){
   'use strict';
+  var HEP_CONFIG_URL = 'hep-config.json';
+  var _hepConfig = null, _hepPassword = null;
 
-  // ── Configuration ──────────────────────────────────────────────
-  var HEP_CONFIG_URL = 'hep-config.json'; // relatif au fichier HTML
-  var _hepConfig = null;
-  var _hepPassword = null;
-
-  // ── État utilisateur (persisté en localStorage) ────────────────
   function getUserMode(){
-    try {
-      var data = localStorage.getItem('aut_user_mode');
-      if (!data) return { mode: 'personal', name: '' };
-      return JSON.parse(data);
-    } catch(e) {
-      return { mode: 'personal', name: '' };
-    }
+    try { var data = localStorage.getItem('aut_user_mode'); if (!data) return { mode: 'personal', name: '' }; return JSON.parse(data); }
+    catch(e) { return { mode: 'personal', name: '' }; }
   }
+  function setUserMode(data){ try { localStorage.setItem('aut_user_mode', JSON.stringify(data)); return true; } catch(e) { return false; } }
 
-  function setUserMode(data){
-    try {
-      localStorage.setItem('aut_user_mode', JSON.stringify(data));
-      return true;
-    } catch(e) {
-      return false;
-    }
-  }
-
-  // ── Chargement du fichier de config HEP ───────────────────────
   function loadHepConfig(callback) {
-    if (_hepConfig !== null) {
-      callback(true);
-      return;
-    }
+    if (_hepConfig !== null) { callback(true); return; }
     fetch(HEP_CONFIG_URL + '?_=' + Date.now())
-      .then(function(r){
-        if (!r.ok) throw new Error('Config introuvable');
-        return r.json();
-      })
-      .then(function(data){
-        _hepConfig = data || {};
-        _hepPassword = (data && data.password) ? String(data.password) : '';
-        callback(true);
-      })
-      .catch(function(){
-        _hepConfig = {};
-        _hepPassword = '__UNAVAILABLE__';
-        callback(false);
-      });
+      .then(function(r){ if (!r.ok) throw new Error('Config introuvable'); return r.json(); })
+      .then(function(data){ _hepConfig = data || {}; _hepPassword = (data && data.password) ? String(data.password) : ''; callback(true); })
+      .catch(function(){ _hepConfig = {}; _hepPassword = '__UNAVAILABLE__'; callback(false); });
   }
 
-  // ── Mise à jour du badge dans le header ───────────────────────
   function updateModeBadge(){
-    var badge = document.getElementById('mode-badge');
-    if (!badge) return;
+    var badge = document.getElementById('mode-badge'); if (!badge) return;
     var user = getUserMode();
     var icon, label, title;
-
     if (user.mode === 'hep') {
       icon = '<svg class="icon icon-sm"><use href="#i-grad"/></svg>';
       label = 'HEP-VS' + (user.name ? ' · ' + user.name : '');
-      title = 'Mode institutionnel HEP-VS · Cliquer pour gérer';
+      title = 'Mode institutionnel HEP-VS';
       badge.className = 'mode-badge mode-hep';
     } else {
       icon = '<svg class="icon icon-sm"><use href="#i-user"/></svg>';
       label = user.name ? user.name : 'Mode personnel';
-      title = 'Mode personnel · Cliquer pour personnaliser';
+      title = 'Mode personnel';
       badge.className = 'mode-badge mode-personal';
     }
     badge.innerHTML = icon + ' <span>' + label + '</span>';
     badge.setAttribute('title', title);
   }
 
-  // ── Modale de gestion du mode ─────────────────────────────────
   function openModeModal(){
     var modal = document.getElementById('mode-modal');
-    if (!modal) {
-      buildModeModal();
-      modal = document.getElementById('mode-modal');
-    }
-    var user = getUserMode();
-    renderModeModal(user);
+    if (!modal) { buildModeModal(); modal = document.getElementById('mode-modal'); }
+    renderModeModal(getUserMode());
     modal.style.display = 'flex';
-    setTimeout(function(){
-      modal.classList.add('open');
-    }, 10);
+    setTimeout(function(){ modal.classList.add('open'); }, 10);
   }
-
   function closeModeModal(){
-    var modal = document.getElementById('mode-modal');
-    if (!modal) return;
+    var modal = document.getElementById('mode-modal'); if (!modal) return;
     modal.classList.remove('open');
-    setTimeout(function(){
-      modal.style.display = 'none';
-    }, 200);
+    setTimeout(function(){ modal.style.display = 'none'; }, 200);
   }
-
   function buildModeModal(){
     var overlay = document.createElement('div');
-    overlay.id = 'mode-modal';
-    overlay.className = 'mode-modal';
-    overlay.innerHTML = '<div class="mode-modal-card">' +
-      '<button class="mode-modal-close" onclick="window.closeModeModal()" aria-label="Fermer">×</button>' +
-      '<div id="mode-modal-content"></div>' +
-    '</div>';
-    overlay.addEventListener('click', function(e){
-      if (e.target === overlay) closeModeModal();
-    });
+    overlay.id = 'mode-modal'; overlay.className = 'mode-modal';
+    overlay.innerHTML = '<div class="mode-modal-card"><button class="mode-modal-close" onclick="window.closeModeModal()" aria-label="Fermer">×</button><div id="mode-modal-content"></div></div>';
+    overlay.addEventListener('click', function(e){ if (e.target === overlay) closeModeModal(); });
     document.body.appendChild(overlay);
   }
-
   function renderModeModal(user){
-    var content = document.getElementById('mode-modal-content');
-    if (!content) return;
-
+    var content = document.getElementById('mode-modal-content'); if (!content) return;
     var isHep = user.mode === 'hep';
-
-    var html = '<h2 class="mode-modal-title">Mode de parcours</h2>' +
-      '<p class="mode-modal-sub">Choisissez le mode qui correspond à votre situation. Vous pouvez en changer à tout moment.</p>' +
-      '<div class="mode-options">' +
-
-      // Option personnelle
-      '<div class="mode-option' + (!isHep ? ' active' : '') + '" data-mode="personal">' +
-        '<div class="mode-option-head">' +
-          '<svg class="icon icon-lg"><use href="#i-user"/></svg>' +
-          '<div>' +
-            '<div class="mode-option-title">Parcours personnel</div>' +
-            '<div class="mode-option-sub">Usage libre · Établissement scolaire ou découverte individuelle</div>' +
-          '</div>' +
-          (isHep ? '' : '<span class="mode-option-badge">Actif</span>') +
-        '</div>' +
-        '<ul class="mode-option-features">' +
-          '<li>Progression sauvegardée dans votre navigateur</li>' +
-          '<li>Certificat de complétion personnel disponible en fin de parcours</li>' +
-          '<li>Aucun mot de passe requis</li>' +
-        '</ul>' +
-        (!isHep ? '<button class="mode-option-action" onclick="window.editPersonalName()">Personnaliser mon nom</button>' :
-                  '<button class="mode-option-action" onclick="window.switchToPersonal()">Basculer en mode personnel</button>') +
-      '</div>' +
-
-      // Option HEP
-      '<div class="mode-option' + (isHep ? ' active' : '') + '" data-mode="hep">' +
-        '<div class="mode-option-head">' +
-          '<svg class="icon icon-lg"><use href="#i-grad"/></svg>' +
-          '<div>' +
-            '<div class="mode-option-title">Mode institutionnel HEP-VS</div>' +
-            '<div class="mode-option-sub">Pour les étudiant·e·s en formation continue HEP / CAS / DAS</div>' +
-          '</div>' +
-          (isHep ? '<span class="mode-option-badge">Actif</span>' : '') +
-        '</div>' +
-        '<ul class="mode-option-features">' +
-          '<li>Suivi nominatif officiel</li>' +
-          '<li>Attestation HEP-VS reconnue en fin de parcours</li>' +
-          '<li>Accès par code de session délivré par votre formateur</li>' +
-        '</ul>' +
-        (isHep ? '<button class="mode-option-action" onclick="window.editHepName()">Modifier mes informations</button>' :
-                  '<button class="mode-option-action mode-action-primary" onclick="window.openHepAuth()">Activer le mode HEP</button>') +
-      '</div>' +
-
-      '</div>';
-
+    var html = '<h2 class="mode-modal-title">Mode de parcours</h2>'
+      + '<p class="mode-modal-sub">Choisissez le mode qui correspond à votre situation. Vous pouvez en changer à tout moment.</p>'
+      + '<div class="mode-options">'
+      + '<div class="mode-option' + (!isHep ? ' active' : '') + '" data-mode="personal">'
+        + '<div class="mode-option-head"><svg class="icon icon-lg"><use href="#i-user"/></svg><div><div class="mode-option-title">Parcours personnel</div><div class="mode-option-sub">Usage libre · Établissement scolaire ou découverte individuelle</div></div>' + (isHep ? '' : '<span class="mode-option-badge">Actif</span>') + '</div>'
+        + '<ul class="mode-option-features"><li>Progression sauvegardée dans votre navigateur</li><li>Certificat de complétion personnel disponible en fin de parcours</li><li>Aucun mot de passe requis</li></ul>'
+        + (!isHep ? '<button class="mode-option-action" onclick="window.editPersonalName()">Personnaliser mon nom</button>' : '<button class="mode-option-action" onclick="window.switchToPersonal()">Basculer en mode personnel</button>')
+      + '</div>'
+      + '<div class="mode-option' + (isHep ? ' active' : '') + '" data-mode="hep">'
+        + '<div class="mode-option-head"><svg class="icon icon-lg"><use href="#i-grad"/></svg><div><div class="mode-option-title">Mode institutionnel HEP-VS</div><div class="mode-option-sub">Pour les étudiant·e·s en formation continue HEP / CAS / DAS</div></div>' + (isHep ? '<span class="mode-option-badge">Actif</span>' : '') + '</div>'
+        + '<ul class="mode-option-features"><li>Suivi nominatif officiel</li><li>Attestation HEP-VS reconnue en fin de parcours</li><li>Accès par code de session délivré par votre formateur</li></ul>'
+        + (isHep ? '<button class="mode-option-action" onclick="window.editHepName()">Modifier mes informations</button>' : '<button class="mode-option-action mode-action-primary" onclick="window.openHepAuth()">Activer le mode HEP</button>')
+      + '</div></div>';
     content.innerHTML = html;
   }
 
-  // ── Saisie du nom personnel ───────────────────────────────────
   window.editPersonalName = function(){
     var user = getUserMode();
-    var current = user.name || '';
-    var name = prompt('Votre prénom et nom (optionnel, pour personnaliser votre certificat) :', current);
-    if (name === null) return; // annulé
-    user.name = name.trim();
-    setUserMode(user);
-    updateModeBadge();
-    openModeModal(); // refresh
+    var name = prompt('Votre prénom et nom (optionnel) :', user.name || '');
+    if (name === null) return;
+    user.name = name.trim(); setUserMode(user); updateModeBadge(); openModeModal();
   };
-
-  // ── Authentification HEP ──────────────────────────────────────
   window.openHepAuth = function(){
     var content = document.getElementById('mode-modal-content');
-    if (!content) return;
-
-    content.innerHTML = '<h2 class="mode-modal-title">Activer le mode HEP-VS</h2>' +
-      '<p class="mode-modal-sub">Saisissez le code de session communiqué par votre formateur.</p>' +
-      '<div class="mode-form-field">' +
-        '<label for="hep-pw-input">Code de session</label>' +
-        '<input type="password" id="hep-pw-input" placeholder="Code délivré par votre formation" autocomplete="off">' +
-        '<div id="hep-pw-error" class="mode-form-error"></div>' +
-      '</div>' +
-      '<div class="mode-form-actions">' +
-        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
-        '<button class="mode-btn mode-btn-primary" id="hep-pw-validate" onclick="window.validateHepPassword()">Valider →</button>' +
-      '</div>';
-
-    setTimeout(function(){
-      var inp = document.getElementById('hep-pw-input');
-      if (inp) {
-        inp.focus();
-        inp.addEventListener('keydown', function(e){
-          if (e.key === 'Enter') window.validateHepPassword();
-        });
-      }
-    }, 50);
+    content.innerHTML = '<h2 class="mode-modal-title">Activer le mode HEP-VS</h2>'
+      + '<p class="mode-modal-sub">Saisissez le code de session communiqué par votre formateur.</p>'
+      + '<div class="mode-form-field"><label for="hep-pw-input">Code de session</label><input type="password" id="hep-pw-input" placeholder="Code délivré par votre formation" autocomplete="off"><div id="hep-pw-error" class="mode-form-error"></div></div>'
+      + '<div class="mode-form-actions"><button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button><button class="mode-btn mode-btn-primary" id="hep-pw-validate" onclick="window.validateHepPassword()">Valider →</button></div>';
+    setTimeout(function(){ var inp = document.getElementById('hep-pw-input'); if (inp) { inp.focus(); inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') window.validateHepPassword(); }); } }, 50);
   };
-
   window.validateHepPassword = function(){
-    var inp = document.getElementById('hep-pw-input');
-    var err = document.getElementById('hep-pw-error');
-    var btn = document.getElementById('hep-pw-validate');
+    var inp = document.getElementById('hep-pw-input'); var err = document.getElementById('hep-pw-error'); var btn = document.getElementById('hep-pw-validate');
     if (!inp) return;
-
     var entered = inp.value.trim();
-    if (!entered) {
-      err.textContent = 'Veuillez saisir le code de session.';
-      err.style.display = 'block';
-      return;
-    }
-
-    btn.textContent = 'Vérification…';
-    btn.disabled = true;
-
+    if (!entered) { err.textContent = 'Veuillez saisir le code de session.'; err.style.display = 'block'; return; }
+    btn.textContent = 'Vérification…'; btn.disabled = true;
     loadHepConfig(function(ok){
-      btn.textContent = 'Valider →';
-      btn.disabled = false;
-
-      if (!ok) {
-        err.textContent = 'Impossible de charger la configuration. Vérifiez votre connexion.';
-        err.style.display = 'block';
-        return;
-      }
-
-      if (entered !== _hepPassword) {
-        err.textContent = 'Code incorrect. Vérifiez auprès de votre formateur·rice.';
-        err.style.display = 'block';
-        inp.value = '';
-        inp.focus();
-        return;
-      }
-
-      // Succès — passer à la saisie du nom
+      btn.textContent = 'Valider →'; btn.disabled = false;
+      if (!ok) { err.textContent = 'Impossible de charger la configuration.'; err.style.display = 'block'; return; }
+      if (entered !== _hepPassword) { err.textContent = 'Code incorrect.'; err.style.display = 'block'; inp.value = ''; inp.focus(); return; }
       openHepNameForm();
     });
   };
-
   function openHepNameForm(){
     var content = document.getElementById('mode-modal-content');
-    if (!content) return;
-
     var sessionLabel = (_hepConfig && _hepConfig.session) ? _hepConfig.session : 'Formation HEP-VS';
     var formateur = (_hepConfig && _hepConfig.formateur) ? _hepConfig.formateur : '';
-
-    content.innerHTML = '<h2 class="mode-modal-title">Mode HEP-VS activé ✓</h2>' +
-      '<p class="mode-modal-sub">Session : <strong>' + sessionLabel + '</strong>' +
-        (formateur ? '<br>Formateur·rice : <strong>' + formateur + '</strong>' : '') +
-      '</p>' +
-      '<div class="mode-form-field">' +
-        '<label for="hep-name-input">Votre prénom et nom complet</label>' +
-        '<input type="text" id="hep-name-input" placeholder="Ex : Marie Dupont" maxlength="80">' +
-        '<div class="mode-form-hint">Ce nom apparaîtra sur votre attestation HEP-VS officielle.</div>' +
-      '</div>' +
-      '<div class="mode-form-actions">' +
-        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
-        '<button class="mode-btn mode-btn-primary" onclick="window.confirmHepActivation()">Activer →</button>' +
-      '</div>';
-
-    setTimeout(function(){
-      var inp = document.getElementById('hep-name-input');
-      if (inp) {
-        var current = getUserMode();
-        if (current.name) inp.value = current.name;
-        inp.focus();
-        inp.addEventListener('keydown', function(e){
-          if (e.key === 'Enter') window.confirmHepActivation();
-        });
-      }
-    }, 50);
+    content.innerHTML = '<h2 class="mode-modal-title">Mode HEP-VS activé ✓</h2>'
+      + '<p class="mode-modal-sub">Session : <strong>' + sessionLabel + '</strong>' + (formateur ? '<br>Formateur·rice : <strong>' + formateur + '</strong>' : '') + '</p>'
+      + '<div class="mode-form-field"><label for="hep-name-input">Votre prénom et nom complet</label><input type="text" id="hep-name-input" placeholder="Ex : Marie Dupont" maxlength="80"><div class="mode-form-hint">Ce nom apparaîtra sur votre attestation HEP-VS officielle.</div></div>'
+      + '<div class="mode-form-actions"><button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button><button class="mode-btn mode-btn-primary" onclick="window.confirmHepActivation()">Activer →</button></div>';
+    setTimeout(function(){ var inp = document.getElementById('hep-name-input'); if (inp) { var c = getUserMode(); if (c.name) inp.value = c.name; inp.focus(); inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') window.confirmHepActivation(); }); } }, 50);
   }
-
   window.confirmHepActivation = function(){
-    var inp = document.getElementById('hep-name-input');
-    if (!inp) return;
+    var inp = document.getElementById('hep-name-input'); if (!inp) return;
     var name = inp.value.trim();
-    if (!name || name.length < 3) {
-      alert('Veuillez saisir votre prénom et nom complet.');
-      inp.focus();
-      return;
-    }
-    setUserMode({
-      mode: 'hep',
-      name: name,
-      session: (_hepConfig && _hepConfig.session) || '',
-      formateur: (_hepConfig && _hepConfig.formateur) || '',
-      date_formation: (_hepConfig && _hepConfig.date_formation) || '',
-      activatedAt: new Date().toISOString()
-    });
-    updateModeBadge();
-    closeModeModal();
+    if (!name || name.length < 3) { alert('Veuillez saisir votre prénom et nom complet.'); inp.focus(); return; }
+    setUserMode({ mode: 'hep', name: name, session: (_hepConfig && _hepConfig.session) || '', formateur: (_hepConfig && _hepConfig.formateur) || '', date_formation: (_hepConfig && _hepConfig.date_formation) || '', activatedAt: new Date().toISOString() });
+    updateModeBadge(); closeModeModal();
   };
-
   window.editHepName = function(){
-    var user = getUserMode();
-    var current = user.name || '';
-    var name = prompt('Modifier votre prénom et nom :', current);
-    if (name === null) return;
-    name = name.trim();
-    if (!name) return;
-    user.name = name;
-    setUserMode(user);
-    updateModeBadge();
-    openModeModal();
+    var user = getUserMode(); var name = prompt('Modifier votre prénom et nom :', user.name || '');
+    if (name === null) return; name = name.trim(); if (!name) return;
+    user.name = name; setUserMode(user); updateModeBadge(); openModeModal();
   };
-
   window.switchToPersonal = function(){
-    if (!confirm('Basculer en mode personnel ? Votre progression est conservée, mais vous perdrez l\'accès aux fonctionnalités HEP-VS (attestation officielle).')) return;
-    var user = getUserMode();
-    setUserMode({
-      mode: 'personal',
-      name: user.name || ''
-    });
-    updateModeBadge();
-    openModeModal();
+    if (!confirm('Basculer en mode personnel ?')) return;
+    var user = getUserMode(); setUserMode({ mode: 'personal', name: user.name || '' });
+    updateModeBadge(); openModeModal();
   };
 
-  // ── Initialisation au chargement de chaque page ───────────────
   window.openModeModal = openModeModal;
   window.closeModeModal = closeModeModal;
   window.updateModeBadge = updateModeBadge;
   window.getUserMode = getUserMode;
 
-  window.addEventListener('DOMContentLoaded', function(){
-    updateModeBadge();
-  });
-
+  window.addEventListener('DOMContentLoaded', function(){ updateModeBadge(); });
+  window.addEventListener('pageshow', function(){ updateModeBadge(); });
+  window.addEventListener('focus', function(){ updateModeBadge(); });
+  if (document.readyState !== 'loading') { updateModeBadge(); }
 })();
-
 </script>
+
 </body>
 </html>
