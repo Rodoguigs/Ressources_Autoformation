@@ -1,7 +1,8 @@
 {
-  "password": "HEPVS2026",
-  "session": "CAS Neurosciences éducatives — Formation 2025–2026",
-  "formateur": "",
-  "date_formation": "",
-  "_comment": "Modifier 'password' pour changer le code d'accès. Renseigner 'session', 'formateur' et 'date_formation' avant chaque formation. Ne pas changer les guillemets ni la structure du fichier."
+  "password": "presence2025",
+  "session": "CAS Neurosciences éducatives 2025-2026",
+  "formateur": "Prof. Cherine Fahim",
+  "date_formation": "Octobre 2025 — Juin 2026",
+  "institution": "HEP-VS / Université de Fribourg",
+  "lieu": "Site de Saint-Maurice"
 }

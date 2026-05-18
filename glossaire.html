@@ -104,15 +104,12 @@ a:hover{text-decoration:underline}
   color:var(--text-strong);
   margin:0 0 8px;letter-spacing:-.01em;
 }
-.page-sub{
-  font-size:1.02rem;color:var(--text-muted);
-  margin:0;max-width:760px;line-height:1.55;
-}
+.page-sub{font-size:1.02rem;color:var(--text-muted);margin:0;line-height:1.55;}
 
 /* ─── Container principal ─── */
 main{
   flex:1;
-  max-width:1200px;
+  max-width:1400px;
   margin:0 auto;
   padding:32px 28px;
   width:100%;
@@ -598,6 +595,220 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     linear-gradient(180deg, #1a1925 0%, #1d1828 60%, var(--surface) 100%);
   border-bottom:1px solid rgba(123,84,160,.2);
 }
+
+/* ─── Fix alignement page-head ↔ main ─── */
+.page-head > *{
+  max-width:1400px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* ─── Glossaire entries ─── */
+.glossaire-entry{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:12px;
+  padding:16px 18px;
+  transition:all .15s;
+  border-left:4px solid var(--accent3);
+}
+.glossaire-entry:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+.glossaire-entry h4{
+  margin:0 0 10px;
+  font-family:'Playfair Display',serif;
+  font-size:1.02rem;
+  font-weight:700;
+  color:var(--text-strong);
+  line-height:1.3;
+}
+.glossaire-entry p{
+  margin:0;
+  font-size:.86rem;
+  color:var(--text-body);
+  line-height:1.6;
+}
+.g-tag{
+  display:inline-block;
+  font-size:.7rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent3);
+  background:rgba(83,52,131,.08);
+  padding:3px 10px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+[data-theme="dark"] .glossaire-entry{
+  background:var(--surface-alt);
+}
+[data-theme="dark"] .g-tag{
+  background:rgba(123,84,160,.15);
+  color:#c9aedb;
+}
+
+/* ─── FAQ ─── */
+.faq-q{
+  padding:16px 22px;
+  cursor:pointer;
+  font-weight:700;
+  color:var(--text-strong);
+  font-size:.95rem;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  transition:background .15s;
+  line-height:1.4;
+}
+.faq-q:hover{background:var(--surface-alt);}
+.faq-icon{
+  margin-left:auto;
+  flex-shrink:0;
+  width:24px;height:24px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent3);color:white;
+  border-radius:50%;
+  font-size:1.1rem;font-weight:700;
+  line-height:1;
+  transition:transform .25s;
+}
+.faq-a{
+  display:none;
+  padding:0 22px 18px;
+  font-size:.9rem;
+  color:var(--text-body);
+  line-height:1.65;
+  border-top:1px solid var(--border-soft);
+  padding-top:14px;
+}
+.faq-a p{margin:0 0 10px;}
+.faq-a p:last-child{margin-bottom:0;}
+
+/* ─── Bibliographie ─── */
+.biblio-section{
+  margin-bottom:30px;
+}
+.biblio-section h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 14px;
+  padding-bottom:8px;
+  border-bottom:2px solid var(--accent3);
+}
+.biblio-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(380px,1fr));
+  gap:10px;
+}
+.biblio-ref{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  padding:12px 16px;
+  font-size:.85rem;
+  color:var(--text-body);
+  line-height:1.55;
+  transition:all .15s;
+}
+.biblio-ref:hover{
+  border-color:var(--accent3);
+  transform:translateX(2px);
+}
+.biblio-ref strong{
+  color:var(--text-strong);
+  display:block;
+  margin-bottom:2px;
+  font-size:.92rem;
+}
+.biblio-ref em{
+  color:var(--text-muted);
+  font-style:italic;
+}
+
+/* ─── Section label (utilisé partout) ─── */
+.section-label{
+  display:inline-block;
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent3);
+  background:rgba(83,52,131,.08);
+  padding:4px 12px;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+[data-theme="dark"] .section-label{
+  background:rgba(123,84,160,.15);
+  color:#c9aedb;
+}
+
+/* ─── Divider ─── */
+.divider{
+  width:50px;height:3px;
+  background:var(--accent3);
+  border-radius:2px;
+  margin:8px 0 18px;
+}
+
+/* ─── Tabs ─── */
+.tabs-nav{
+  display:flex;
+  gap:8px;
+  margin-bottom:24px;
+  border-bottom:1px solid var(--border-soft);
+  padding-bottom:0;
+}
+.tab-btn{
+  background:transparent;
+  border:none;
+  padding:12px 20px;
+  font-family:inherit;
+  font-size:.95rem;
+  font-weight:600;
+  color:var(--text-muted);
+  cursor:pointer;
+  border-bottom:3px solid transparent;
+  margin-bottom:-1px;
+  transition:all .15s;
+}
+.tab-btn:hover{color:var(--text-strong);}
+.tab-btn.active{
+  color:var(--accent3);
+  border-bottom-color:var(--accent3);
+}
+
+/* ─── Recherche glossaire ─── */
+.glossaire-search{
+  width:100%;
+  padding:12px 18px;
+  border:2px solid var(--border-soft);
+  border-radius:12px;
+  font-family:inherit;
+  font-size:.92rem;
+  background:var(--surface);
+  color:var(--text-body);
+  margin-bottom:24px;
+  transition:border-color .15s;
+}
+.glossaire-search:focus{
+  outline:none;
+  border-color:var(--accent3);
+}
+
+/* ─── Sigles quickref ─── */
+#sigles-quickref{
+  background:var(--surface-alt) !important;
+  border:1px solid var(--border-soft) !important;
+}
+[data-theme="dark"] #sigles-quickref{
+  background:var(--surface) !important;
+}
 </style>
 </head>
 <body>
@@ -833,6 +1044,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
 <div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
 <div class="biblio-entry">Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. <a href="https://periscope-r.quebec/" rel="noopener noreferrer" target="_blank">periscope-r.quebec</a></div>
+<div class="biblio-entry">Caron, J. (2012). <em>Quand revient septembre — Guide sur la gestion de classe participative</em> (2ᵉ éd.). Montréal : Chenelière Éducation. [Référence pragmatique francophone de la gestion de classe — outils-supports concrets pour responsabiliser les élèves, créer un climat motivant et différencier au quotidien.]</div>
 <div class="biblio-entry">Évéquoz, G. (1998). <em>Le contexte scolaire et ses otages : une approche systémique des difficultés scolaires.</em> Genève : Éditions des Médecins suisses.</div>
 <div class="biblio-entry">Fahim, C. (2025). <em>Résilience et gestion de classe : surfer sur la vague des difficultés.</em> Montréal : Endoxa Neuroscience.</div>
 <div class="biblio-entry">Gaudreau, N. (2024). <em>Gérer efficacement sa classe.</em> Québec : Presses de l'Université du Québec.</div>
