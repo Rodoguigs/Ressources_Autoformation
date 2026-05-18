@@ -155,7 +155,7 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
 
 /* ─── Responsive ─── */
 @media (max-width:900px){
-  .page-head{padding:18px 20px 22px}
+  .page-head{padding:30px 20px 24px}
   .page-title{font-size:1.5rem}
   main{padding:20px}
 }
@@ -609,7 +609,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     radial-gradient(ellipse 60% 60% at 90% 70%, rgba(233,69,96,.08) 0%, transparent 70%),
     linear-gradient(180deg, #faf6f1 0%, #f7eef2 60%, var(--surface) 100%);
   border-bottom:1px solid rgba(83,52,131,.1);
-  padding:32px 28px 36px;
+  padding:52px 28px 40px;
 }
 [data-theme="dark"] .page-head{
   background:
@@ -1012,7 +1012,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div id="res-pratique" style="display:none;"></div>
 <div class="res-folder" id="folder-demarche">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">📋</div>
 <div class="rf-meta">
 <div class="rf-title">Démarche &amp; outils de formation</div>
@@ -1037,7 +1037,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="res-folder" id="folder-tdah">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">🎯</div>
 <div class="rf-meta">
 <div class="rf-title">Enjeux des TND à l'école</div>
@@ -1084,7 +1084,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="res-folder" id="folder-neuro">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">🧠</div>
 <div class="rf-meta">
 <div class="rf-title">Neurosciences &amp; développement cérébral</div>
@@ -1176,7 +1176,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="res-folder" id="folder-pedagogies">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">📚</div>
 <div class="rf-meta">
 <div class="rf-title">Pédagogies efficaces &amp; inclusives</div>
@@ -1276,7 +1276,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="res-folder" id="folder-bienetre">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">🌿</div>
 <div class="rf-meta">
 <div class="rf-title">Bien-être, émotions &amp; relation pédagogique</div>
@@ -1323,7 +1323,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="res-folder" id="folder-comportement">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">🧭</div>
 <div class="rf-meta">
 <div class="rf-title">Gestion des comportements difficiles &amp; analyse fonctionnelle</div>
@@ -1479,7 +1479,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="res-folder" id="folder-lectures">
-<div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
+<div class="res-folder-header">
 <div class="rf-icon">📖</div>
 <div class="rf-meta">
 <div class="rf-title">Recommandations de lecture</div>
@@ -1963,33 +1963,6 @@ document.querySelectorAll('.biblio-filter').forEach(function(btn){
     if (!folder) return;
     folder.classList.toggle('open');
   });
-})();
-</script>
-
-<script>
-// Solution de secours : ré-attacher les handlers de toggle après chargement
-(function(){
-  function setupFolderToggle(){
-    var headers = document.querySelectorAll('.res-folder-header');
-    headers.forEach(function(header){
-      // Supprimer l'onclick inline pour éviter le double trigger
-      header.onclick = null;
-      // Ajouter un addEventListener robuste
-      header.addEventListener('click', function(e){
-        var folder = this.parentElement;
-        if (folder && folder.classList.contains('res-folder')) {
-          folder.classList.toggle('open');
-        }
-      });
-    });
-    console.log('[Bibliothèque] Toggle handlers attached:', headers.length);
-  }
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupFolderToggle);
-  } else {
-    setupFolderToggle();
-  }
 })();
 </script>
 
