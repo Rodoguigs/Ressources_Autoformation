@@ -794,23 +794,26 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .res-dl{
   display:inline-flex;
   align-items:center;
-  gap:6px;
-  padding:7px 14px;
-  background:rgba(245,166,35,.12);
-  border:1px solid rgba(245,166,35,.3);
+  gap:7px;
+  padding:10px 18px;
+  background:var(--gold);
+  border:2px solid var(--gold);
   border-radius:10px;
-  font-size:.76rem;
-  font-weight:600;
-  color:var(--gold);
+  font-size:.82rem;
+  font-weight:700;
+  color:#1a1a2e;
   text-decoration:none;
   transition:all .15s;
-  margin-top:auto;
+  margin-top:14px;
   align-self:flex-start;
+  box-shadow:0 2px 8px rgba(245,166,35,.25);
 }
 .res-dl:hover{
-  background:rgba(245,166,35,.2);
-  border-color:rgba(245,166,35,.5);
+  background:#fbb84a;
+  border-color:#fbb84a;
   text-decoration:none;
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(245,166,35,.35);
 }
 
 /* Grille de livres */
@@ -882,19 +885,24 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .res-book-link{
   display:inline-flex;
   align-items:center;
-  gap:5px;
-  padding:6px 13px;
-  background:rgba(245,166,35,.12);
-  border:1px solid rgba(245,166,35,.3);
+  gap:6px;
+  padding:8px 16px;
+  background:var(--gold);
+  border:2px solid var(--gold);
   border-radius:10px;
-  font-size:.74rem;
-  font-weight:600;
-  color:var(--gold);
+  font-size:.78rem;
+  font-weight:700;
+  color:#1a1a2e;
   text-decoration:none;
+  transition:all .15s;
+  margin-top:8px;
+  box-shadow:0 2px 6px rgba(245,166,35,.2);
 }
 .res-book-link:hover{
-  background:rgba(245,166,35,.2);
+  background:#fbb84a;
+  border-color:#fbb84a;
   text-decoration:none;
+  transform:translateY(-1px);
 }
 
 /* Responsive */
@@ -1957,5 +1965,33 @@ document.querySelectorAll('.biblio-filter').forEach(function(btn){
   });
 })();
 </script>
+
+<script>
+// Solution de secours : ré-attacher les handlers de toggle après chargement
+(function(){
+  function setupFolderToggle(){
+    var headers = document.querySelectorAll('.res-folder-header');
+    headers.forEach(function(header){
+      // Supprimer l'onclick inline pour éviter le double trigger
+      header.onclick = null;
+      // Ajouter un addEventListener robuste
+      header.addEventListener('click', function(e){
+        var folder = this.parentElement;
+        if (folder && folder.classList.contains('res-folder')) {
+          folder.classList.toggle('open');
+        }
+      });
+    });
+    console.log('[Bibliothèque] Toggle handlers attached:', headers.length);
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFolderToggle);
+  } else {
+    setupFolderToggle();
+  }
+})();
+</script>
+
 </body>
 </html>
