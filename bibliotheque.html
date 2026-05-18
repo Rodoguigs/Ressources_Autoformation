@@ -666,20 +666,12 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   height:42px;
   border-radius:10px;
   background:rgba(245,166,35,.12);
-  color:var(--gold);
   display:flex;
   align-items:center;
   justify-content:center;
   flex-shrink:0;
-}
-.rf-icon svg{
-  width:22px;
-  height:22px;
-  fill:none;
-  stroke:currentColor;
-  stroke-width:2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+  font-size:1.4rem;
+  line-height:1;
 }
 
 .rf-meta{
@@ -745,9 +737,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   background:rgba(0,0,0,.15);
 }
 
-.res-folder.open 
-.res-folder-body 
-
+.res-folder.open .res-folder-body{display:block;}
 /* ─── Trousse pédagogique : système refondu ─── */
 .res-grid{
   display:grid;
@@ -1015,7 +1005,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div id="res-pratique" style="display:none;"></div>
 <div class="res-folder" id="folder-demarche">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-book"/></svg></div>
+<div class="rf-icon">📋</div>
 <div class="rf-meta">
 <div class="rf-title">Démarche &amp; outils de formation</div>
 <div class="rf-sub">Guide de la démarche · Outils de formation</div>
@@ -1040,7 +1030,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder" id="folder-tdah">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-target"/></svg></div>
+<div class="rf-icon">🎯</div>
 <div class="rf-meta">
 <div class="rf-title">Enjeux des TND à l'école</div>
 <div class="rf-sub">TDAH · Fonctions exécutives · Mesures d'aide · Collaboration famille</div>
@@ -1087,7 +1077,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder" id="folder-neuro">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-brain"/></svg></div>
+<div class="rf-icon">🧠</div>
 <div class="rf-meta">
 <div class="rf-title">Neurosciences &amp; développement cérébral</div>
 <div class="rf-sub">Cerveau adolescent · Fonctions cognitives · Profil Apprenant (banque complète) · Plateforme interactive Laval</div>
@@ -1179,7 +1169,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder" id="folder-pedagogies">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-books"/></svg></div>
+<div class="rf-icon">📚</div>
 <div class="rf-meta">
 <div class="rf-title">Pédagogies efficaces &amp; inclusives</div>
 <div class="rf-sub">CUA / UDL · Pratiques à fort impact · Attention · Autodétermination des élèves</div>
@@ -1279,7 +1269,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder" id="folder-bienetre">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-book"/></svg></div>
+<div class="rf-icon">🌿</div>
 <div class="rf-meta">
 <div class="rf-title">Bien-être, émotions &amp; relation pédagogique</div>
 <div class="rf-sub">Émotions &amp; anxiété scolaire · Relation enseignant-élève · Neurosciences des émotions</div>
@@ -1326,7 +1316,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder" id="folder-comportement">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-book"/></svg></div>
+<div class="rf-icon">🧭</div>
 <div class="rf-meta">
 <div class="rf-title">Gestion des comportements difficiles &amp; analyse fonctionnelle</div>
 <div class="rf-sub">Analyse fonctionnelle · Discipline positive · Outil CNV élève · Accompagnement individuel · Outils élève J'ai MON Plan!</div>
@@ -1482,7 +1472,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder" id="folder-lectures">
 <div class="res-folder-header" onclick="this.parentElement.classList.toggle('open')">
-<div class="rf-icon"><svg><use href="#i-book-open"/></svg></div>
+<div class="rf-icon">📖</div>
 <div class="rf-meta">
 <div class="rf-title">Recommandations de lecture</div>
 <div class="rf-sub">Ouvrages de référence · Neuroéducation · Gestion de classe · Stratégies</div>
