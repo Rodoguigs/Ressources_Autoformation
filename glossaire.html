@@ -812,6 +812,14 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 [data-theme="dark"] #sigles-quickref{
   background:var(--surface) !important;
 }
+
+/* ─── Fix espacement header / contenu (final) ─── */
+.page-head{margin-top:30px}
+.hero{margin-top:30px}
+@media (max-width:900px){
+  .page-head{margin-top:15px}
+  .hero{margin-top:15px}
+}
 </style>
 </head>
 <body>
@@ -887,11 +895,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div><strong style="color:#533483;">DYS</strong> — Famille de troubles spécifiques des apprentissages (dyslexie, dysorthographie, dyscalculie, dyspraxie, dysphasie).</div>
 <div><strong style="color:#533483;">TAD</strong> — Théorie de l'autodétermination (Deci &amp; Ryan). Trois besoins psychologiques fondamentaux : autonomie, compétence, appartenance.</div>
 <div><strong style="color:#533483;">EBSME</strong> — Échelle de Bien-être et Stratégies de Mobilisation des Émotions. Outil d'autoévaluation enseignant utilisé dans le parcours.</div>
-<div><strong style="color:#533483;">IRPPE</strong> / <strong style="color:#533483;">ISEDRPE</strong> — Indices d'autoévaluation professionnelle développés dans le cadre du parcours (résilience, posture, dimensions PRÉSENCE).</div>
-<div><strong style="color:#533483;">HEP-VS</strong> — Haute École Pédagogique du Valais. Institution de formation des enseignant·e·s du canton.</div>
+
+
 <div><strong style="color:#533483;">RE21</strong> — Réseau d'écoles 21 (santé et durabilité). Réseau suisse romand d'établissements engagés dans une démarche globale de promotion de la santé.</div>
 <div><strong style="color:#533483;">PER</strong> — Plan d'études romand. Référentiel commun aux cantons romands pour la scolarité obligatoire.</div>
-<div><strong style="color:#533483;">CO</strong> — Cycle d'orientation. Niveau secondaire I valaisan (élèves de ~12 à 15 ans).</div>
+
 </div>
 </div>
 <div class="glossaire-grid" id="glossaire-grid">
@@ -967,7 +975,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="divider"></div>
 <p style="font-size:.88rem;color:#555;margin-bottom:32px;">Des réponses aux questions les plus courantes sur la démarche — notamment pour les profils les plus vulnérables.</p>
 <div class="faq-item open">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ Par où commencer si je me sens dépassé(e) ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -977,7 +985,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 </div>
 <div class="faq-item">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ Comment utiliser ce document en formation continue ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -987,7 +995,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 </div>
 <div class="faq-item">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ Combien de temps dure la démarche complète ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -996,7 +1004,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 </div>
 <div class="faq-item">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ Et si mes scores ne s'améliorent pas entre T1 et T2 ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -1005,7 +1013,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 </div>
 <div class="faq-item">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ Je suis débutant(e) — par quelle étape commencer ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -1014,7 +1022,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 </div>
 <div class="faq-item">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ La démarche est-elle confidentielle ? Dois-je partager mes scores ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -1023,7 +1031,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 </div>
 <div class="faq-item">
-<div aria-expanded="false" class="faq-q" data-action="togglefaq" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
+<div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
 <span>❓ Quelle est la différence entre la démarche et un bilan de compétences ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
@@ -1501,5 +1509,19 @@ document.getElementById('gloss-search').addEventListener('input', function(){
 })();
 
 </script>
+
+<script>
+function toggleFaq(qEl){
+  var item = qEl.closest('.faq-item');
+  if (!item) return;
+  var isOpen = item.classList.contains('open');
+  item.classList.toggle('open');
+  qEl.setAttribute('aria-expanded', !isOpen);
+  // Animer l'icône +/×
+  var icon = qEl.querySelector('.faq-icon');
+  if (icon) icon.textContent = isOpen ? '+' : '×';
+}
+</script>
+
 </body>
 </html>

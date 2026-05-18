@@ -2070,14 +2070,14 @@ body{
 
 <!-- ═══ HEADER ═══ -->
 <header class="app-header" role="banner">
-  <a href="#" class="app-logo">
+  <a href="index.html" class="app-logo">
     <svg class="icon"><use href="#i-leaf"/></svg>
     Autoformation
   </a>
   <nav class="app-breadcrumb" aria-label="Fil d'Ariane">
-    <a href="#">Accueil</a>
+    <a href="index.html">Accueil</a>
     <span class="sep">›</span>
-    <a href="#">Diagnostic</a>
+    <a href="diagnostic.html">Diagnostic</a>
     <span class="sep">›</span>
     <span class="current" aria-current="page">Module 1 · Bien-être</span>
   </nav>
@@ -2149,7 +2149,7 @@ body{
           <svg class="icon icon-sm"><use href="#i-save"/></svg>
           Sauvegarde auto
         </span>
-        <a href="fondements.html#part-3" class="mod-chip-link" onclick="goToPresence();return false;" title="Voir la composante PRÉSENCE associée">
+        <a href="fondements.html#part-3" class="mod-chip-link" target="_blank" rel="noopener" title="Voir la composante PRÉSENCE associée">
           <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
           Composante PRÉSENCE : Régulation
           <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
@@ -2212,7 +2212,7 @@ body{
       </div>
     </div>
 
-    <a href="#" class="mod-toc-back" onclick="alert('Retour à la page Diagnostic / mes recommandations');return false;">
+    <a href="diagnostic.html" class="mod-toc-back">
       <svg class="icon icon-sm"><use href="#i-back"/></svg>
       Mes recommandations
     </a>
@@ -2260,7 +2260,7 @@ body{
           <h3 class="diag-result-title">Module recommandé en priorité pour vous</h3>
           <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
             <span class="diag-result-dim">Dimension fragile · Régulation</span>
-            <a href="#" class="diag-result-link" onclick="alert('Retour au diagnostic complet');return false;">Voir mon profil complet →</a>
+            <a href="diagnostic.html" target="_blank" rel="noopener" class="diag-result-link">Voir mon profil complet →</a>
           </div>
         </div>
       </div>
@@ -2277,8 +2277,8 @@ body{
         <div class="block-info-title">Modules à étudier en parallèle</div>
         <p style="margin:0 0 8px;font-size:.88rem">Ces trois modules partagent la même étape de la démarche : ils se nourrissent mutuellement. Lire M1 d'abord, puis M2 et M4, augmente la cohérence de votre lecture personnelle.</p>
         <div class="complement-list">
-          <a href="#" class="complement-link">Module 2 — Prévention du burnout</a>
-          <a href="#" class="complement-link">Module 4 — Vulnérabilité au stress</a>
+          <a href="prototype_module2.html" class="complement-link">Module 2 — Prévention du burnout</a>
+          <a href="prototype_module4.html" class="complement-link">Module 4 — Vulnérabilité au stress</a>
         </div>
       </div>
 
@@ -2302,7 +2302,7 @@ body{
         <a href="#s3-3">Facteurs de protection</a>
       </div>
 
-      <a href="fondements.html#part-3" class="presence-link" onclick="goToPresence();return false;">
+      <a href="fondements.html#part-3" class="presence-link" target="_blank" rel="noopener">
         <div class="presence-link-icon"><svg class="icon icon-lg"><use href="#i-pillar"/></svg></div>
         <div class="presence-link-content">
           <div class="presence-link-eyebrow">Composante PRÉSENCE associée</div>
@@ -2406,7 +2406,7 @@ body{
           <svg class="icon"><use href="#i-pdf"/></svg>
           Guide de formation — Module 1 (p. 4-5)
         </a>
-        <a class="ref-internal" href="#" onclick="goToPresence();return false;" title="Naviguer vers la vue Fondements PRÉSENCE">
+        <a class="ref-internal" href="fondements.html#part-3" target="_blank" rel="noopener" title="Naviguer vers la vue Fondements PRÉSENCE">
           <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
           Voir Fondements PRÉSENCE
           <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
@@ -2782,7 +2782,7 @@ body{
           <svg class="icon icon-sm"><use href="#i-check"/></svg>
           Marquer ce module comme complété
         </button>
-        <a href="#" class="back-to-diag-btn" onclick="alert('Retour à la page Diagnostic / mes recommandations');return false;">
+        <a href="diagnostic.html" class="back-to-diag-btn">
           <svg class="icon icon-sm"><use href="#i-back"/></svg>
           Mes recommandations
         </a>
@@ -2794,7 +2794,7 @@ body{
           <div class="next-mod-eyebrow">Suite recommandée — module complémentaire</div>
           <div class="next-mod-titre">Module 2 — Prévention de l'épuisement professionnel</div>
         </div>
-        <a href="#" class="next-mod-btn">
+        <a href="prototype_module2.html" class="next-mod-btn">
           Continuer
           <svg class="icon icon-sm" style="margin-left:4px"><use href="#i-arrow-right"/></svg>
         </a>
@@ -3369,9 +3369,7 @@ function dismissResume(){
 function printModule(){window.print()}
 
 /* ═══ Lien PRÉSENCE ═══ */
-function goToPresence(){
-  window.location.href = 'fondements.html#part-3';
-}
+function goToPresence(){ /* deprecated, links use href directly */ }
 
 /* ═══ Réinitialiser tout le module ═══ */
 function resetModule(){
