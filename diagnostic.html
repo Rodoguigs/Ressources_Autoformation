@@ -79,7 +79,7 @@ a:hover{text-decoration:underline}
     radial-gradient(ellipse 60% 60% at 90% 70%, rgba(233,69,96,.08) 0%, transparent 70%),
     linear-gradient(180deg, #faf6f1 0%, #f7eef2 60%, var(--surface) 100%);
   border-bottom:1px solid rgba(83,52,131,.1);
-  padding:32px 28px 36px;
+  padding:52px 28px 40px;
 }
 [data-theme="dark"] .page-head{
   background:
@@ -95,7 +95,10 @@ a:hover{text-decoration:underline}
 .breadcrumb span.sep{opacity:.5}
 .breadcrumb .current{color:var(--text-strong);font-weight:600}
 .page-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--text-strong);margin:0 0 8px;letter-spacing:-.01em;}
-.page-sub{font-size:1.02rem;color:var(--text-muted);margin:0;line-height:1.55;}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:950px;line-height:1.55;
+}
 
 main{flex:1;max-width:1400px;margin:0 auto;padding:32px 28px;width:100%;}
 
@@ -276,6 +279,8 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
     <a href="diagnostic.html" class="nav-link active">Diagnostic</a>
     <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
     <a href="modules.html" class="nav-link">Catalogue modules</a>
+    <a href="fondements.html" class="nav-link">Fondements</a>
+    <a href="bibliotheque.html" class="nav-link">Bibliothèque</a>
   </nav>
   <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Thème"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>

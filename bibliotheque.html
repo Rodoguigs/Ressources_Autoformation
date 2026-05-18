@@ -104,7 +104,10 @@ a:hover{text-decoration:underline}
   color:var(--text-strong);
   margin:0 0 8px;letter-spacing:-.01em;
 }
-.page-sub{font-size:1.02rem;color:var(--text-muted);margin:0;line-height:1.55;}
+.page-sub{
+  font-size:1.02rem;color:var(--text-muted);
+  margin:0;max-width:950px;line-height:1.55;
+}
 
 /* ─── Container principal ─── */
 main{
@@ -943,6 +946,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <a href="diagnostic.html" class="nav-link">Diagnostic</a>
     <a href="demarche.html" class="nav-link">Démarche 7 étapes</a>
     <a href="modules.html" class="nav-link">Catalogue modules</a>
+    <a href="fondements.html" class="nav-link">Fondements</a>
+    <a href="bibliotheque.html" class="nav-link active">Bibliothèque</a>
   </nav>
   <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
