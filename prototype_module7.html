@@ -1768,7 +1768,7 @@ body{
 .proto-note{
   background:linear-gradient(135deg,#fffbeb,#fef3c7);
   border:1px solid #fde68a;border-radius:12px;
-  padding:14px 18px;margin:16px 28px 0;max-width:1400px;
+  padding:14px 18px;margin:16px auto 20px;max-width:1400px;
   font-size:.82rem;color:#78350f;
   display:flex;align-items:flex-start;gap:10px;
 }
@@ -2012,6 +2012,15 @@ body{
   .mode-modal-title{font-size:1.3rem}
 }
 
+
+/* ─── Fix espacement app-header / mod-banner ─── */
+.mod-banner-wrap{margin-top:0;}
+.app-header{
+  box-shadow:0 1px 3px rgba(0,0,0,.04);
+}
+.mod-banner{
+  border-top:none;
+}
 </style>
 </head>
 <body>
@@ -2140,7 +2149,7 @@ body{
           <svg class="icon icon-sm"><use href="#i-save"/></svg>
           Sauvegarde auto
         </span>
-        <a href="#" class="mod-chip-link" onclick="goToPresence();return false;" title="Voir la composante PRÉSENCE associée">
+        <a href="fondements.html#part-3" class="mod-chip-link" onclick="goToPresence();return false;" title="Voir la composante PRÉSENCE associée">
           <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
           Composante PRÉSENCE : Réseaux
           <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
@@ -2293,7 +2302,7 @@ body{
         <a href="#s3-3">Leviers à renforcer</a>
       </div>
 
-      <a href="#" class="presence-link" onclick="goToPresence();return false;">
+      <a href="fondements.html#part-3" class="presence-link" onclick="goToPresence();return false;">
         <div class="presence-link-icon"><svg class="icon icon-lg"><use href="#i-pillar"/></svg></div>
         <div class="presence-link-content">
           <div class="presence-link-eyebrow">Composante PRÉSENCE associée</div>
@@ -2386,10 +2395,7 @@ body{
         <span style="flex:1"></span>
         <span class="ref-external-group">
           <span class="ref-external-label">Réf. externe</span>
-          <a class="ref-external" href="#" target="_blank" rel="noopener" title="À compléter">
-            Auteur (année)
-            <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg>
-          </a>
+          <a class="ref-external" href="https://educationequilibre.com/" target="_blank" rel="noopener" title="Beaumont, C. (2019). Compétences socioémotionnelles et bien-être à l'école. Université Laval">Beaumont (2019) <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg></a>
         </span>
       </div>
 
@@ -3247,7 +3253,7 @@ function printModule(){window.print()}
 
 /* ═══ Lien PRÉSENCE ═══ */
 function goToPresence(){
-  alert('Navigation vers Fondements PRÉSENCE > Composante Régulation\n\n(Dans la version finale, ouvre la vue Fondements à la section Régulation)');
+  window.location.href = 'fondements.html#part-3';
 }
 
 /* ═══ Réinitialiser tout le module ═══ */
