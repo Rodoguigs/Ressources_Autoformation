@@ -906,6 +906,252 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .page-head{margin-top:15px}
   .hero{margin-top:15px}
 }
+
+/* ─── Bloc d'accueil personnalisé (Continuer ou Commencer) ─── */
+.aut-welcome-block{
+  max-width:1400px;
+  margin:0 auto 30px;
+  padding:0 60px;
+}
+.aut-welcome-card{
+  background:linear-gradient(135deg, rgba(83,52,131,.05), rgba(245,166,35,.04));
+  border:1px solid rgba(83,52,131,.15);
+  border-left:5px solid var(--accent3);
+  border-radius:14px;
+  padding:24px 28px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.aut-welcome-icon{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--accent3), var(--gold));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.6rem;
+  flex-shrink:0;
+}
+.aut-welcome-text{
+  flex:1;
+  min-width:260px;
+}
+.aut-welcome-eyebrow{
+  font-size:.74rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent3);
+  margin-bottom:6px;
+}
+.aut-welcome-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--text-strong);
+  margin-bottom:6px;
+  line-height:1.25;
+}
+.aut-welcome-desc{
+  font-size:.92rem;
+  color:var(--text-body);
+  line-height:1.55;
+}
+.aut-welcome-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--accent3);
+  color:white;
+  padding:13px 24px;
+  border-radius:11px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:.92rem;
+  white-space:nowrap;
+  transition:all .15s;
+  box-shadow:0 3px 10px rgba(83,52,131,.25);
+}
+.aut-welcome-cta:hover{
+  background:var(--accent2);
+  transform:translateY(-2px);
+  text-decoration:none;
+  box-shadow:0 6px 16px rgba(83,52,131,.3);
+}
+.aut-mini-progress{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  font-size:.82rem;
+  color:var(--text-muted);
+}
+.aut-mini-progress-track{
+  flex:1;
+  max-width:280px;
+  height:6px;
+  background:rgba(83,52,131,.1);
+  border-radius:3px;
+  overflow:hidden;
+}
+.aut-mini-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--accent3), var(--gold));
+  border-radius:3px;
+  transition:width .6s ease;
+}
+@media (max-width:700px){
+  .aut-welcome-block{padding:0 20px;}
+  .aut-welcome-card{padding:18px;}
+}
+
+/* ─── Modal de recherche globale ─── */
+.aut-search-btn{
+  background:none;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+  color:var(--text-muted);
+  border-radius:8px;
+  transition:all .15s;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:.85rem;
+}
+.aut-search-btn:hover{
+  background:var(--surface-alt);
+  color:var(--text-strong);
+}
+.aut-search-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:1000;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:80px;
+}
+.aut-search-modal.open{display:flex;}
+.aut-search-card{
+  background:white;
+  border-radius:14px;
+  width:90%;
+  max-width:600px;
+  box-shadow:0 12px 40px rgba(0,0,0,.2);
+  overflow:hidden;
+}
+.aut-search-input{
+  width:100%;
+  padding:18px 22px;
+  border:none;
+  font-size:1.1rem;
+  background:transparent;
+  font-family:inherit;
+  outline:none;
+  border-bottom:1px solid var(--border-soft);
+}
+.aut-search-results{
+  max-height:400px;
+  overflow-y:auto;
+  padding:10px 0;
+}
+.aut-search-result{
+  display:block;
+  padding:12px 22px;
+  text-decoration:none;
+  color:var(--text-body);
+  border-left:3px solid transparent;
+  transition:all .12s;
+}
+.aut-search-result:hover{
+  background:var(--surface-alt);
+  border-left-color:var(--accent3);
+  text-decoration:none;
+}
+.aut-search-result-label{
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--accent3);
+  margin-bottom:3px;
+}
+.aut-search-result-title{
+  font-weight:600;
+  color:var(--text-strong);
+  font-size:.95rem;
+}
+.aut-search-result-desc{
+  font-size:.82rem;
+  color:var(--text-muted);
+  margin-top:2px;
+}
+.aut-search-empty{
+  padding:30px 22px;
+  text-align:center;
+  color:var(--text-muted);
+  font-size:.88rem;
+}
+[data-theme="dark"] .aut-search-card{background:var(--surface);}
+
+/* ─── Barre de progression globale ─── */
+.aut-progress-bar{
+  position:sticky;
+  top:0;
+  height:3px;
+  background:var(--surface-alt);
+  z-index:99;
+  overflow:hidden;
+}
+.aut-progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, var(--accent3), var(--gold));
+  transition:width .5s ease;
+  border-radius:0 2px 2px 0;
+}
+.aut-progress-info{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  border-radius:24px;
+  padding:8px 16px;
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--text-strong);
+  z-index:98;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  transition:transform .15s;
+}
+.aut-progress-info:hover{
+  transform:translateY(-2px);
+}
+.aut-progress-info-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent3);
+}
+@media (max-width:768px){
+  .aut-progress-info{
+    bottom:12px;
+    right:12px;
+    padding:6px 12px;
+    font-size:.72rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -943,10 +1189,53 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <a href="bibliotheque.html" class="nav-link">Bibliothèque</a>
   </nav>
   <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
-  <button class="theme-toggle" onclick="toggleTheme()" title="Basculer le thème" aria-label="Basculer le thème clair/sombre">
+  <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <span style="font-size:.78rem;">Rechercher</span>
+</button> <button class="theme-toggle" onclick="toggleTheme()" title="Basculer le thème" aria-label="Basculer le thème clair/sombre">
     <svg class="icon" id="theme-icon"><use href="#i-moon"/></svg>
   </button>
 </header>
+
+<!-- Barre de progression globale -->
+<div class="aut-progress-bar" id="aut-progress-bar"><div class="aut-progress-fill" id="aut-progress-fill"></div></div>
+<a href="mon-suivi.html" class="aut-progress-info" id="aut-progress-info" title="Voir mon suivi détaillé">
+  <span class="aut-progress-info-dot"></span>
+  <span id="aut-progress-text">0%</span>
+</a>
+
+
+<!-- Modal de recherche globale -->
+<div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
+  <div class="aut-search-card">
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <div class="aut-search-results" id="aut-search-results">
+      <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Bloc d'accueil personnalisé -->
+<div class="aut-welcome-block" id="aut-welcome-block" style="display:none;">
+  <div class="aut-welcome-card">
+    <div class="aut-welcome-icon" id="aut-welcome-icon">👋</div>
+    <div class="aut-welcome-text">
+      <div class="aut-welcome-eyebrow" id="aut-welcome-eyebrow">Bienvenue</div>
+      <div class="aut-welcome-title" id="aut-welcome-title">Première fois ici ?</div>
+      <div class="aut-welcome-desc" id="aut-welcome-desc">Commencez par le diagnostic rapide (10 minutes) pour identifier vos priorités personnelles.</div>
+      <div class="aut-mini-progress" id="aut-mini-progress" style="display:none;">
+        <span><strong id="aut-mini-pct">0%</strong> du parcours</span>
+        <div class="aut-mini-progress-track"><div class="aut-mini-progress-fill" id="aut-mini-fill"></div></div>
+        <span id="aut-mini-count">0/8 modules</span>
+      </div>
+    </div>
+    <a href="#" id="aut-welcome-cta" class="aut-welcome-cta">
+      Commencer →
+    </a>
+  </div>
+</div>
+
 
 <div class="resume-banner hidden" id="resume-banner" role="status">
   <span id="resume-text">Vous aviez commencé le Module 1 — section 3 sur 6</span>
@@ -1546,6 +1835,158 @@ function dismissResume(){
 
 })();
 
+</script>
+<script src="autoformation.js"></script>
+
+<script>
+// Bloc d'accueil personnalisé : adapte selon la progression
+(function(){
+  if (!window.AutProgress) return;
+  
+  const block = document.getElementById('aut-welcome-block');
+  if (!block) return;
+  
+  const progress = AutProgress.getProgress();
+  const global = AutProgress.getGlobalProgress();
+  const resume = AutProgress.getResumeInfo();
+  
+  const icon = document.getElementById('aut-welcome-icon');
+  const eyebrow = document.getElementById('aut-welcome-eyebrow');
+  const title = document.getElementById('aut-welcome-title');
+  const desc = document.getElementById('aut-welcome-desc');
+  const cta = document.getElementById('aut-welcome-cta');
+  const miniProgress = document.getElementById('aut-mini-progress');
+  
+  // Décider quel mode afficher
+  if (resume && resume.moduleFile) {
+    // Mode "Continuer"
+    icon.textContent = '📖';
+    eyebrow.textContent = 'Bon retour';
+    title.textContent = 'Reprenez là où vous vous étiez arrêté';
+    desc.textContent = 'Vous travailliez sur le Module ' + resume.moduleNum + ' — ' + resume.moduleTitre + '.';
+    cta.href = resume.moduleFile;
+    cta.textContent = 'Reprendre →';
+    
+    // Afficher la barre mini
+    miniProgress.style.display = 'flex';
+    document.getElementById('aut-mini-pct').textContent = global.percent + '%';
+    document.getElementById('aut-mini-fill').style.width = global.percent + '%';
+    document.getElementById('aut-mini-count').textContent = global.completed + '/' + global.total + ' modules';
+    
+    block.style.display = 'block';
+  } else if (progress.diagnosticDone) {
+    // Diagnostic fait mais pas de module commencé
+    icon.textContent = '🎯';
+    eyebrow.textContent = 'Diagnostic terminé';
+    title.textContent = 'Découvrez les modules recommandés';
+    desc.textContent = 'Sur la base de votre profil, explorez le catalogue pour choisir vos premiers modules.';
+    cta.href = 'modules.html';
+    cta.textContent = 'Voir les modules →';
+    block.style.display = 'block';
+  } else {
+    // Première visite : suggérer le diagnostic
+    icon.textContent = '🎯';
+    eyebrow.textContent = 'Première étape';
+    title.textContent = 'Commencez par identifier vos priorités';
+    desc.textContent = 'Le diagnostic rapide (10 minutes) vous dira où concentrer votre énergie en premier. C\'est la meilleure porte d\'entrée pour ce parcours.';
+    cta.href = 'diagnostic.html';
+    cta.textContent = 'Faire le diagnostic →';
+    block.style.display = 'block';
+  }
+})();
+</script>
+
+
+<script>
+// Recherche globale
+let autSearchIndex = null;
+
+function openAutSearch(){
+  document.getElementById('aut-search-modal').classList.add('open');
+  setTimeout(() => document.getElementById('aut-search-input').focus(), 100);
+  if (!autSearchIndex) {
+    fetch('aut-search-index.json')
+      .then(r => r.json())
+      .then(data => { autSearchIndex = data; })
+      .catch(e => console.warn('Index recherche indisponible:', e));
+  }
+}
+function closeAutSearch(){
+  document.getElementById('aut-search-modal').classList.remove('open');
+}
+function runAutSearch(query){
+  const results = document.getElementById('aut-search-results');
+  if (!autSearchIndex) {
+    results.innerHTML = '<div class="aut-search-empty">Index en cours de chargement...</div>';
+    return;
+  }
+  if (!query || query.length < 2) {
+    results.innerHTML = '<div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>';
+    return;
+  }
+  const q = query.toLowerCase();
+  const matches = [];
+  autSearchIndex.forEach(item => {
+    let score = 0;
+    if (item.label.toLowerCase().includes(q)) score += 10;
+    if (item.desc.toLowerCase().includes(q)) score += 5;
+    item.keywords.forEach(k => {
+      if (k.toLowerCase().includes(q)) score += 1;
+    });
+    if (score > 0) matches.push({...item, score});
+  });
+  matches.sort((a,b) => b.score - a.score);
+  
+  if (!matches.length) {
+    results.innerHTML = '<div class="aut-search-empty">Aucun résultat pour "' + query + '"</div>';
+    return;
+  }
+  
+  results.innerHTML = matches.slice(0, 10).map(m => `
+    <a href="${m.page}" class="aut-search-result">
+      <div class="aut-search-result-label">${m.label}</div>
+      <div class="aut-search-result-title">${m.desc}</div>
+    </a>
+  `).join('');
+}
+
+// Setup
+document.addEventListener('DOMContentLoaded', function(){
+  const input = document.getElementById('aut-search-input');
+  if (input) {
+    input.addEventListener('input', e => runAutSearch(e.target.value));
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeAutSearch();
+    });
+  }
+  // Raccourci Ctrl+K
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openAutSearch();
+    }
+  });
+});
+</script>
+
+
+<script>
+// Mise à jour de la barre de progression
+(function(){
+  function updateProgress(){
+    if (!window.AutProgress) return;
+    const stats = window.AutProgress.getGlobalProgress();
+    const fill = document.getElementById('aut-progress-fill');
+    const text = document.getElementById('aut-progress-text');
+    if (fill) fill.style.width = stats.percentage + '%';
+    if (text) text.textContent = stats.percentage + '% · ' + stats.completed + '/' + stats.total + ' modules';
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateProgress);
+  } else {
+    updateProgress();
+  }
+})();
 </script>
 </body>
 </html>

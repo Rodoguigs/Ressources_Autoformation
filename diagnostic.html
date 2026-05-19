@@ -264,9 +264,145 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
   margin-right:auto !important;
   max-width:780px !important;
 }
+
+/* ─── Barre de progression globale ─── */
+.aut-progress-bar{
+  position:sticky;
+  top:0;
+  left:0;
+  right:0;
+  height:4px;
+  background:rgba(83,52,131,.08);
+  z-index:99;
+  pointer-events:none;
+}
+.aut-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--accent3), var(--gold));
+  width:0%;
+  transition:width .6s ease;
+}
+.aut-progress-info{
+  position:fixed;
+  bottom:14px;
+  right:14px;
+  background:white;
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  padding:8px 14px;
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--text-muted);
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  z-index:98;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.aut-progress-info strong{color:var(--accent3);}
+[data-theme="dark"] .aut-progress-info{background:var(--surface);}
+
+/* ─── Modal de recherche globale ─── */
+.aut-search-btn{
+  background:none;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+  color:var(--text-muted);
+  border-radius:8px;
+  transition:all .15s;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:.85rem;
+}
+.aut-search-btn:hover{
+  background:var(--surface-alt);
+  color:var(--text-strong);
+}
+.aut-search-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:1000;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:80px;
+}
+.aut-search-modal.open{display:flex;}
+.aut-search-card{
+  background:white;
+  border-radius:14px;
+  width:90%;
+  max-width:600px;
+  box-shadow:0 12px 40px rgba(0,0,0,.2);
+  overflow:hidden;
+}
+.aut-search-input{
+  width:100%;
+  padding:18px 22px;
+  border:none;
+  font-size:1.1rem;
+  background:transparent;
+  font-family:inherit;
+  outline:none;
+  border-bottom:1px solid var(--border-soft);
+}
+.aut-search-results{
+  max-height:400px;
+  overflow-y:auto;
+  padding:10px 0;
+}
+.aut-search-result{
+  display:block;
+  padding:12px 22px;
+  text-decoration:none;
+  color:var(--text-body);
+  border-left:3px solid transparent;
+  transition:all .12s;
+}
+.aut-search-result:hover{
+  background:var(--surface-alt);
+  border-left-color:var(--accent3);
+  text-decoration:none;
+}
+.aut-search-result-label{
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--accent3);
+  margin-bottom:3px;
+}
+.aut-search-result-title{
+  font-weight:600;
+  color:var(--text-strong);
+  font-size:.95rem;
+}
+.aut-search-result-desc{
+  font-size:.82rem;
+  color:var(--text-muted);
+  margin-top:2px;
+}
+.aut-search-empty{
+  padding:30px 22px;
+  text-align:center;
+  color:var(--text-muted);
+  font-size:.88rem;
+}
+[data-theme="dark"] .aut-search-card{background:var(--surface);}
 </style>
 </head>
 <body>
+
+<!-- Barre de progression globale -->
+<div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
+<div class="aut-progress-info" id="aut-progress-info" style="display:none;">
+  <span>📚</span>
+  <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
+</div>
+
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -298,8 +434,22 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
     <a href="bibliotheque.html" class="nav-link">Bibliothèque</a>
   </nav>
   <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
-  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Thème"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+  <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <span style="font-size:.78rem;">Rechercher</span>
+</button> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Thème"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
 </header>
+
+<!-- Modal de recherche globale -->
+<div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
+  <div class="aut-search-card">
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <div class="aut-search-results" id="aut-search-results">
+      <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
+    </div>
+  </div>
+</div>
+
 
 <div class="page-head">
   <div class="breadcrumb">
@@ -1385,6 +1535,97 @@ window.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('focus', updateModeBadge);
   if (document.readyState !== 'loading') updateModeBadge();
 })();
+</script>
+
+<script src="autoformation.js"></script>
+
+<script>
+// Mise à jour de la barre de progression
+(function(){
+  if (!window.AutProgress) return;
+  const g = AutProgress.getGlobalProgress();
+  const fill = document.getElementById('aut-global-fill');
+  const pct = document.getElementById('aut-pct');
+  const count = document.getElementById('aut-count');
+  const info = document.getElementById('aut-progress-info');
+  if (fill) fill.style.width = g.percent + '%';
+  if (pct) pct.textContent = g.percent + '%';
+  if (count) count.textContent = g.completed + '/' + g.total;
+  if (info && g.completed > 0) info.style.display = 'flex';
+})();
+</script>
+
+
+<script>
+// Recherche globale
+let autSearchIndex = null;
+
+function openAutSearch(){
+  document.getElementById('aut-search-modal').classList.add('open');
+  setTimeout(() => document.getElementById('aut-search-input').focus(), 100);
+  if (!autSearchIndex) {
+    fetch('aut-search-index.json')
+      .then(r => r.json())
+      .then(data => { autSearchIndex = data; })
+      .catch(e => console.warn('Index recherche indisponible:', e));
+  }
+}
+function closeAutSearch(){
+  document.getElementById('aut-search-modal').classList.remove('open');
+}
+function runAutSearch(query){
+  const results = document.getElementById('aut-search-results');
+  if (!autSearchIndex) {
+    results.innerHTML = '<div class="aut-search-empty">Index en cours de chargement...</div>';
+    return;
+  }
+  if (!query || query.length < 2) {
+    results.innerHTML = '<div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>';
+    return;
+  }
+  const q = query.toLowerCase();
+  const matches = [];
+  autSearchIndex.forEach(item => {
+    let score = 0;
+    if (item.label.toLowerCase().includes(q)) score += 10;
+    if (item.desc.toLowerCase().includes(q)) score += 5;
+    item.keywords.forEach(k => {
+      if (k.toLowerCase().includes(q)) score += 1;
+    });
+    if (score > 0) matches.push({...item, score});
+  });
+  matches.sort((a,b) => b.score - a.score);
+  
+  if (!matches.length) {
+    results.innerHTML = '<div class="aut-search-empty">Aucun résultat pour "' + query + '"</div>';
+    return;
+  }
+  
+  results.innerHTML = matches.slice(0, 10).map(m => `
+    <a href="${m.page}" class="aut-search-result">
+      <div class="aut-search-result-label">${m.label}</div>
+      <div class="aut-search-result-title">${m.desc}</div>
+    </a>
+  `).join('');
+}
+
+// Setup
+document.addEventListener('DOMContentLoaded', function(){
+  const input = document.getElementById('aut-search-input');
+  if (input) {
+    input.addEventListener('input', e => runAutSearch(e.target.value));
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeAutSearch();
+    });
+  }
+  // Raccourci Ctrl+K
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openAutSearch();
+    }
+  });
+});
 </script>
 
 </body>
