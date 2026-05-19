@@ -607,18 +607,12 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 /* ─── Page header (zone titre) — fond chaleureux ─── */
 .page-head{
-  background:
-    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(83,52,131,.10) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 90% 70%, rgba(233,69,96,.08) 0%, transparent 70%),
-    linear-gradient(180deg, #faf6f1 0%, #f7eef2 60%, var(--surface) 100%);
+  background:linear-gradient(180deg, #faf6f1 0%, #faf6f1 60%, var(--surface) 100%);
   border-bottom:1px solid rgba(83,52,131,.1);
-  padding:72px 28px 44px;
+  padding:72px 28px 56px;
 }
 [data-theme="dark"] .page-head{
-  background:
-    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(123,84,160,.18) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 60% at 90% 70%, rgba(255,94,122,.10) 0%, transparent 70%),
-    linear-gradient(180deg, #1a1925 0%, #1d1828 60%, var(--surface) 100%);
+  background:linear-gradient(180deg, #1a1925 0%, #1a1925 60%, var(--surface) 100%);
   border-bottom:1px solid rgba(123,84,160,.2);
 }
 
@@ -923,9 +917,17 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .hero{margin-top:15px}
 }
 
-/* ─── Fix max-width sous-titre (specificité supérieure à .page-head > *) ─── */
-.page-head .page-sub{max-width:780px !important;}
-.page-head .pourquoi-intro{max-width:780px !important;}
+/* ─── Fix max-width et alignement sous-titre ─── */
+.page-head .page-sub{
+  max-width:780px !important;
+  margin-left:0 !important;
+  margin-right:auto !important;
+}
+.page-head .pourquoi-intro{
+  max-width:780px !important;
+  margin-left:0 !important;
+  margin-right:auto !important;
+}
 </style>
 </head>
 <body>

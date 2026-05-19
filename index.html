@@ -907,9 +907,17 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .hero{margin-top:15px}
 }
 
-/* ─── Fix max-width sous-titre (specificité supérieure à .page-head > *) ─── */
-.page-head .page-sub{max-width:780px !important;}
-.page-head .pourquoi-intro{max-width:780px !important;}
+/* ─── Fix max-width et alignement sous-titre ─── */
+.page-head .page-sub{
+  max-width:780px !important;
+  margin-left:0 !important;
+  margin-right:auto !important;
+}
+.page-head .pourquoi-intro{
+  max-width:780px !important;
+  margin-left:0 !important;
+  margin-right:auto !important;
+}
 </style>
 </head>
 <body>
