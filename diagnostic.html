@@ -392,6 +392,76 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
   font-size:.88rem;
 }
 [data-theme="dark"] .aut-search-card{background:var(--surface);}
+
+/* ─── Profils types (orientation selon scores) ─── */
+.diag-profil-section{
+  margin:32px 0;
+  padding:28px;
+  background:var(--surface-alt);
+  border-radius:16px;
+  border:1px solid var(--border-soft);
+}
+.diag-profil-section h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;
+  color:var(--text-strong);
+  margin:0 0 6px;
+}
+.diag-profil-intro{
+  font-size:.92rem;
+  color:var(--text-muted);
+  margin:0 0 20px;
+  line-height:1.5;
+}
+.diag-profil-card{
+  background:var(--surface);
+  border:2px solid var(--accent3);
+  border-radius:14px;
+  padding:24px;
+  box-shadow:0 4px 16px rgba(83,52,131,.1);
+}
+.diag-profil-badge{
+  display:inline-block;
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--accent3);
+  margin-bottom:14px;
+  padding:6px 16px;
+  background:rgba(83,52,131,.08);
+  border-radius:20px;
+}
+.diag-profil-row{
+  margin:14px 0;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.diag-profil-row-label{
+  flex-shrink:0;
+  width:90px;
+  font-size:.74rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  color:var(--text-subtle);
+  padding-top:2px;
+}
+.diag-profil-row-content{
+  flex:1;
+  font-size:.94rem;
+  line-height:1.55;
+  color:var(--text);
+}
+.diag-profil-row.priorite .diag-profil-row-content{
+  font-weight:600;
+  color:var(--text-strong);
+}
+.diag-profil-row.attention{
+  background:rgba(245,166,35,.08);
+  padding:12px 14px;
+  border-radius:10px;
+  border-left:3px solid var(--gold);
+}
 </style>
 </head>
 <body>
@@ -521,7 +591,8 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
   <section class="diag-result-block hidden" id="diag-result-block">
     <h2>Votre profil</h2>
     <p class="diag-result-summary" id="diag-result-summary"></p>
-    <div id="result-radars"></div>
+    <div id="diag-profil-container"></div>
+<div id="result-radars"></div>
     <div class="diag-result-recommendations">
       <h3>Modules recommandés en priorité</h3>
       <div id="diag-recos"></div>
@@ -1195,6 +1266,79 @@ function showResultRapide(hasT1, hasT2, showCompare){
   document.getElementById('diag-recos').innerHTML = buildRecosHtml(sortedMods.slice(0, 3));
 }
 
+
+// ─── Profils types : orientation selon scores perso/pro ───
+var PROFILS_TYPES = {
+  'perso-faible-pro-forte': {
+    badge: '💼 Ressources personnelles fragiles · Ressources professionnelles solides',
+    situation: "Compétent·e dans la pratique, mais à bout. Le professionnel tient à force de volonté, parfois au détriment de la personne.",
+    priorite: "Reconstruire les ressources personnelles (bien-être, régulation émotionnelle, identité). Le risque ici est le décrochage progressif malgré la compétence professionnelle visible.",
+    etapes: "Modules 1 et 4 en priorité — construire des routines de récupération avant de toucher aux pratiques.",
+    attention: "Ne pas confondre la résistance professionnelle apparente avec un bien-être réel. C'est le profil le plus à risque de burnout tardif.",
+    modules: [1, 4]
+  },
+  'perso-forte-pro-faible': {
+    badge: '🌱 Ressources personnelles solides · Ressources professionnelles à développer',
+    situation: "Personne enseignante bien dans sa peau, mais pratiques pédagogiques à développer — typique des enseignant·es débutant·es ou en reconversion.",
+    priorite: "Cibler les compétences professionnelles spécifiques identifiées (gestion de classe, différenciation, attentes). Les ressources personnelles constituent un appui solide pour cette progression.",
+    etapes: "Modules 2, 3 et 6 — s'appuyer sur les forces personnelles comme carburant du développement professionnel.",
+    attention: "Le sentiment d'efficacité personnelle (SEP) est probablement votre meilleur levier : capitalisez dessus.",
+    modules: [2, 3, 6]
+  },
+  'perso-forte-pro-forte': {
+    badge: '💪 Ressources personnelles et professionnelles solides',
+    situation: "Profil de résilience élevée. Les deux types de ressources sont solides — c'est le socle d'un développement professionnel continu.",
+    priorite: "Maintenir l'équilibre, approfondir les dimensions les plus faibles (même à 70%), et engager la dimension collective. C'est le bon moment pour devenir une ressource pour les collègues.",
+    etapes: "Modules 7 et 8 — cycle d'amélioration permanente plutôt que réponse à une crise.",
+    attention: "Ce profil peut masquer une tendance au perfectionnisme ou une difficulté à demander de l'aide. Restez attentif·ve aux signaux faibles.",
+    modules: [7, 8]
+  },
+  'equilibre-fragile': {
+    badge: '⚖️ Ressources à consolider sur les deux plans',
+    situation: "Les ressources personnelles et professionnelles sont toutes deux à renforcer. C'est une étape normale, surtout en début de parcours ou après une période difficile.",
+    priorite: "Commencer par stabiliser le socle personnel (bien-être, régulation) avant d'élargir vers les compétences professionnelles.",
+    etapes: "Suivre le parcours dans l'ordre : Module 1, puis 4, puis 2.",
+    attention: "Avancez par petits pas. L'objectif n'est pas de tout régler d'un coup mais de retrouver progressivement des marges de manœuvre.",
+    modules: [1, 4, 2]
+  }
+};
+
+function getModuleUrlDiag(num){
+  return num === 1 ? 'prototype_module1_v5.html' : 'prototype_module' + num + '.html';
+}
+
+function determinerProfil(pctPerso, pctPro){
+  var SEUIL = 65;
+  var persoForte = pctPerso >= SEUIL;
+  var proForte = pctPro >= SEUIL;
+  if (!persoForte && proForte) return 'perso-faible-pro-forte';
+  if (persoForte && !proForte) return 'perso-forte-pro-faible';
+  if (persoForte && proForte) return 'perso-forte-pro-forte';
+  return 'equilibre-fragile';
+}
+
+function buildProfilHtml(pctPerso, pctPro){
+  var profilKey = determinerProfil(pctPerso, pctPro);
+  var p = PROFILS_TYPES[profilKey];
+  if (!p) return '';
+
+  var modLinks = p.modules.map(function(num){
+    return '<a href="' + getModuleUrlDiag(num) + '" style="display:inline-block;margin:4px 6px 0 0;padding:6px 14px;background:var(--accent3);color:white;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:600;">Module ' + num + ' →</a>';
+  }).join('');
+
+  return '<div class="diag-profil-section">'
+    + '<h3>Votre profil de résilience</h3>'
+    + '<p class="diag-profil-intro">Établi à partir de vos scores : ressources personnelles ' + pctPerso + '%, ressources professionnelles ' + pctPro + '%.</p>'
+    + '<div class="diag-profil-card">'
+    + '<div class="diag-profil-badge">' + p.badge + '</div>'
+    + '<div class="diag-profil-row"><div class="diag-profil-row-label">Situation</div><div class="diag-profil-row-content">' + p.situation + '</div></div>'
+    + '<div class="diag-profil-row priorite"><div class="diag-profil-row-label">Priorité</div><div class="diag-profil-row-content">' + p.priorite + '</div></div>'
+    + '<div class="diag-profil-row"><div class="diag-profil-row-label">Parcours</div><div class="diag-profil-row-content">' + p.etapes + '<br>' + modLinks + '</div></div>'
+    + '<div class="diag-profil-row attention"><div class="diag-profil-row-label">Vigilance</div><div class="diag-profil-row-content">' + p.attention + '</div></div>'
+    + '</div></div>';
+}
+
+
 function showResultApprofondi(hasT1, hasT2, showCompare){
   // Construire les listes de dimensions pour les 2 radars
   var dimsPerso = [];
@@ -1249,6 +1393,14 @@ function showResultApprofondi(hasT1, hasT2, showCompare){
     summary += '<br>Au <strong>Temps 2</strong> : <strong>' + pctT2 + '%</strong> (<span style="color:' + (delta >= 0 ? 'var(--sage)' : 'var(--accent1)') + ';font-weight:700">' + (delta > 0 ? '+' : '') + delta + ' points</span>).';
   }
   document.getElementById('diag-result-summary').innerHTML = summary;
+
+  // Profil type combiné
+  var pctPersoOnly = computePct(scoresT1Perso);
+  var pctProOnly = computePct(scoresT1Pro);
+  var profilContainer = document.getElementById('diag-profil-container');
+  if (profilContainer) {
+    profilContainer.innerHTML = buildProfilHtml(pctPersoOnly, pctProOnly);
+  }
 
   document.getElementById('result-radars').innerHTML = '<div class="radars-grid">'
     + '<div class="radar-card"><h3>Ressources personnelles (Ben Alya)</h3>' + buildRadarSVG('perso', dimsPerso, scoresT1Perso, hasT2 ? scoresT2Perso : null) + '</div>'
