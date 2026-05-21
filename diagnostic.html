@@ -462,6 +462,26 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
   border-radius:10px;
   border-left:3px solid var(--gold);
 }
+
+/* ─── Tooltip radar personnalisé ─── */
+.radar-tooltip{
+  position:fixed;
+  background:var(--text-strong, #1a1a2e);
+  color:white;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:.82rem;
+  line-height:1.4;
+  max-width:240px;
+  z-index:9999;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .12s;
+  box-shadow:0 6px 20px rgba(0,0,0,.25);
+}
+.radar-tooltip.visible{opacity:1;}
+.radar-tooltip strong{display:block;margin-bottom:3px;font-size:.88rem;}
+.radar-label{cursor:help;}
 </style>
 </head>
 <body>
@@ -1352,12 +1372,12 @@ function showResultApprofondi(hasT1, hasT2, showCompare){
   var dimsPerso = [];
   Object.keys(ITEMS_APPROFONDI.perso).forEach(function(k){
     var d = ITEMS_APPROFONDI.perso[k];
-    dimsPerso.push({key:'perso_'+k, lettre:d.label.charAt(0), label:d.label, color:d.color, mods:d.modules});
+    dimsPerso.push({key:'perso_'+k, lettre:d.label.charAt(0), label:d.label, sous:d.sous, color:d.color, mods:d.modules});
   });
   var dimsPro = [];
   Object.keys(ITEMS_APPROFONDI.pro).forEach(function(k){
     var d = ITEMS_APPROFONDI.pro[k];
-    dimsPro.push({key:'pro_'+k, lettre:d.label.charAt(0), label:d.label, color:d.color, mods:d.modules});
+    dimsPro.push({key:'pro_'+k, lettre:d.label.charAt(0), label:d.label, sous:d.sous, color:d.color, mods:d.modules});
   });
 
   var scoresT1Perso = {}, scoresT1Pro = {}, scoresT2Perso = {}, scoresT2Pro = {};
@@ -1454,8 +1474,12 @@ function buildRadarSVG(id, dims, scoresT1, scoresT2){
 
     var lx = cx + Math.cos(angle) * (rMax + 22);
     var ly = cy + Math.sin(angle) * (rMax + 22);
-    labels += '<circle cx="'+lx+'" cy="'+ly+'" r="11" fill="'+d.color+'"/>'
-      + '<text x="'+lx+'" y="'+(ly+4)+'" fill="white" font-size="11" font-weight="900" text-anchor="middle">'+ d.lettre.toUpperCase() +'</text>';
+    var tipTxt = (d.label || '') + (d.sous ? ' — ' + d.sous : '');
+    labels += '<g class="radar-label" style="cursor:help">'
+      + '<title>' + tipTxt + '</title>'
+      + '<circle cx="'+lx+'" cy="'+ly+'" r="11" fill="'+d.color+'"/>'
+      + '<text x="'+lx+'" y="'+(ly+4)+'" fill="white" font-size="11" font-weight="900" text-anchor="middle" style="pointer-events:none">'+ d.lettre.toUpperCase() +'</text>'
+      + '</g>';
   });
 
   var t2Polygon = scoresT2 ? '<polygon points="'+pointsT2.join(' ')+'" fill="rgba(245,166,35,.22)" stroke="#f5a623" stroke-width="2" stroke-linejoin="round"/>' : '';
