@@ -923,7 +923,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <button class="reading-mode-btn" data-mode="sequential" onclick="setReadingMode('sequential')">
       <span class="reading-mode-btn-icon">📚</span>
       <span class="reading-mode-btn-content">
-        <span class="reading-mode-btn-label">Parcours complet (~10h)</span>
+        <span class="reading-mode-btn-label">Parcours complet</span>
         <span class="reading-mode-btn-sub">Suivre les 8 modules dans l'ordre suggéré, pour un parcours intégré</span>
       </span>
     </button>
@@ -935,7 +935,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </span>
     </button>
   </div>
-  <div id="reading-mode-hint" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(83,52,131,.06);border-radius:10px;font-size:.9rem;line-height:1.5;color:var(--text-body);"></div>
+  <div id="reading-mode-hint" style="margin-top:16px;padding:14px 18px;background:rgba(83,52,131,.06);border-radius:10px;font-size:.9rem;line-height:1.5;color:var(--text-body);"><strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l'ordre : 1 → 2 → 3 → 4 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.</div>
 </div>
 
   <div class="filters" role="group" aria-label="Filtrer les modules">
@@ -1578,7 +1578,7 @@ function setAutMode(mode){
   document.getElementById('aut-mode-selective').classList.toggle('active', mode === 'selective');
   const hint = document.getElementById('aut-mode-hint');
   if (mode === 'complete') {
-    hint.innerHTML = '<strong>Parcours complet :</strong> les 8 modules dans l\'ordre, environ 10h au total. Recommandé pour une formation continue structurée.';
+    hint.innerHTML = '<strong>Parcours complet :</strong> les 8 modules dans l\'ordre. Recommandé pour une formation continue structurée.';
   } else {
     hint.innerHTML = '<strong>Parcours sélectif :</strong> piochez les modules selon les recommandations de votre diagnostic, ou selon vos besoins du moment. Vous pouvez les explorer dans n\'importe quel ordre.';
   }
@@ -1603,10 +1603,10 @@ function setReadingMode(mode){
   if (hint) {
     if (mode === 'sequential') {
       hint.innerHTML = '<strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l\'ordre : 1 → 2 → 3 → 4 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.';
-      hint.style.display = 'block';
+      /* hint toujours visible */
     } else {
       hint.innerHTML = '<strong>Mode sélectif activé.</strong> Parcourez les modules ci-dessous et ouvrez ceux qui correspondent à vos besoins actuels. Faites le diagnostic si vous hésitez sur les modules prioritaires.';
-      hint.style.display = 'block';
+      /* hint toujours visible */
     }
   }
   // Numérotation d'ordre visible en mode séquentiel
