@@ -1572,29 +1572,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <script>
 // Mode de parcours : complet ou sélectif
-function setAutMode(mode){
-  localStorage.setItem('aut_parcours_mode', mode);
-  document.getElementById('aut-mode-complete').classList.toggle('active', mode === 'complete');
-  document.getElementById('aut-mode-selective').classList.toggle('active', mode === 'selective');
-  const hint = document.getElementById('aut-mode-hint');
-  if (mode === 'complete') {
-    hint.innerHTML = '<strong>Parcours complet :</strong> les 8 modules dans l\'ordre. Recommandé pour une formation continue structurée.';
-  } else {
-    hint.innerHTML = '<strong>Parcours sélectif :</strong> piochez les modules selon les recommandations de votre diagnostic, ou selon vos besoins du moment. Vous pouvez les explorer dans n\'importe quel ordre.';
-  }
-}
+/* setAutMode supprimé (système obsolète sans HTML) */
 // Charger le mode au démarrage
-(function(){
-  const saved = localStorage.getItem('aut_parcours_mode') || 'complete';
-  setAutMode(saved);
-})();
+/* init obsolète supprimé */
 </script>
 
 
 <script>
 // Mode lecture toggle
 function setReadingMode(mode){
-  if (window.AutProgress) window.AutProgress.setReadingMode(mode);
+  try { localStorage.setItem('aut_reading_mode', mode); } catch(e){}
   document.querySelectorAll('.reading-mode-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.mode === mode);
   });
@@ -1622,8 +1609,8 @@ function setReadingMode(mode){
 // Init au chargement
 (function(){
   function init(){
-    if (!window.AutProgress) return;
-    const mode = window.AutProgress.getReadingMode();
+    var mode = 'sequential';
+    try { mode = localStorage.getItem('aut_reading_mode') || 'sequential'; } catch(e){}
     setReadingMode(mode);
   }
   if (document.readyState === 'loading') {
