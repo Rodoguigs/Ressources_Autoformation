@@ -2227,5 +2227,36 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
+
+<script>
+// Ouvrir le dossier ciblé par l'ancre URL et y défiler
+(function(){
+  function openTargetFromHash(){
+    var hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+    var target = document.getElementById(hash.substring(1));
+    if (!target) return;
+    // Remonter jusqu'au dossier parent et l'ouvrir
+    var folder = target.closest('.res-folder');
+    if (folder) folder.classList.add('open');
+    // Défiler vers la carte après un court délai (pour laisser le dossier s'ouvrir)
+    setTimeout(function(){
+      target.scrollIntoView({behavior:'smooth', block:'center'});
+      // Highlight temporaire
+      target.style.transition = 'background .3s';
+      var oldBg = target.style.background;
+      target.style.background = 'rgba(245,166,35,.15)';
+      setTimeout(function(){ target.style.background = oldBg; }, 1800);
+    }, 200);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', openTargetFromHash);
+  } else {
+    openTargetFromHash();
+  }
+  // Aussi si le hash change pendant la navigation
+  window.addEventListener('hashchange', openTargetFromHash);
+})();
+</script>
 </body>
 </html>

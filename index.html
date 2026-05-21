@@ -729,21 +729,16 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 /* ─── Section Pourquoi développer la résilience ─── */
 .pourquoi-section{
-  background:linear-gradient(180deg, var(--surface) 0%, var(--surface-alt) 100%);
-  padding:110px 28px 80px;
-  margin-top:60px;
-  border-top:1px solid rgba(83,52,131,.08);
-  border-bottom:1px solid rgba(83,52,131,.08);
-  margin-bottom:40px;
+  background:var(--surface-alt);
+  padding:60px 60px 60px;
+  max-width:1280px;
+  margin:80px auto 40px;
+  border-radius:24px;
   position:relative;
 }
 /* Petite vague décorative en bas de la section Pourquoi */
 /* déco demi-cercle supprimée */
-[data-theme="dark"] .pourquoi-section{
-  background:linear-gradient(180deg, var(--surface) 0%, var(--surface-alt) 100%);
-  border-top-color:rgba(123,84,160,.15);
-  border-bottom-color:rgba(123,84,160,.15);
-}
+[data-theme="dark"] .pourquoi-section{ background:var(--surface-alt); }
 .pourquoi-wrapper{
   max-width:1400px;margin:0 auto;
 }
@@ -881,7 +876,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .pourquoi-reponse strong{color:var(--accent3);}
 
 @media (max-width:760px){
-  .pourquoi-section{padding:40px 18px 50px;}
+  .pourquoi-section{padding:50px 24px 50px;max-width:none;margin:48px 16px;}
   .pourquoi-grid{grid-template-columns:1fr;gap:18px;}
   .pourquoi-stats,.pourquoi-risks{padding:18px 20px;}
   .pourquoi-title{font-size:1.55rem;}
