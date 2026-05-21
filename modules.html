@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catalogue des modules · Autoformation HEP-VS</title>
+<title>Catalogue des modules · Autoformation</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════
-   Charte commune — Plateforme Autoformation HEP-VS
+   Charte commune — Plateforme Autoformation
    Importée par toutes les pages de la coquille (sauf les modules).
    ═══════════════════════════════════════════════════════════════ */
 
@@ -166,7 +166,7 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
 </style>
 <script>
 /* ═══════════════════════════════════════════════════════════════
-   Logique commune — Plateforme Autoformation HEP-VS
+   Logique commune — Plateforme Autoformation
    ═══════════════════════════════════════════════════════════════ */
 
 (function(){
@@ -931,10 +931,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       <span class="reading-mode-btn-icon">🎯</span>
       <span class="reading-mode-btn-content">
         <span class="reading-mode-btn-label">Parcours sélectif</span>
-        <span class="reading-mode-btn-sub">Piocher uniquement les modules pertinents pour ma situation actuelle</span>
+        <span class="reading-mode-btn-sub">Sélectionner uniquement les modules pertinents pour ma situation actuelle</span>
       </span>
     </button>
   </div>
+  <div id="reading-mode-hint" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(83,52,131,.06);border-radius:10px;font-size:.9rem;line-height:1.5;color:var(--text-body);"></div>
 </div>
 
   <div class="filters" role="group" aria-label="Filtrer les modules">
@@ -1597,15 +1598,33 @@ function setReadingMode(mode){
   document.querySelectorAll('.reading-mode-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.mode === mode);
   });
+  // Effet visible : message d'orientation + ordre des modules
+  var hint = document.getElementById('reading-mode-hint');
+  if (hint) {
+    if (mode === 'sequential') {
+      hint.innerHTML = '<strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l\'ordre : 1 → 2 → 3 → 4 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.';
+      hint.style.display = 'block';
+    } else {
+      hint.innerHTML = '<strong>Mode sélectif activé.</strong> Parcourez les modules ci-dessous et ouvrez ceux qui correspondent à vos besoins actuels. Faites le diagnostic si vous hésitez sur les modules prioritaires.';
+      hint.style.display = 'block';
+    }
+  }
+  // Numérotation d'ordre visible en mode séquentiel
+  document.querySelectorAll('.module-card').forEach(function(card, i){
+    var orderBadge = card.querySelector('.module-order-badge');
+    if (mode === 'sequential') {
+      if (orderBadge) orderBadge.style.display = 'inline-flex';
+    } else {
+      if (orderBadge) orderBadge.style.display = 'none';
+    }
+  });
 }
 // Init au chargement
 (function(){
   function init(){
     if (!window.AutProgress) return;
     const mode = window.AutProgress.getReadingMode();
-    document.querySelectorAll('.reading-mode-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.mode === mode);
-    });
+    setReadingMode(mode);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

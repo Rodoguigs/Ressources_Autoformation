@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnostic PRÉSENCE · Autoformation HEP-VS</title>
+<title>Diagnostic PRÉSENCE · Autoformation</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
 (function() {
@@ -1261,6 +1261,13 @@ function showResultRapide(hasT1, hasT2, showCompare){
   }
   document.getElementById('diag-result-summary').innerHTML = summary;
 
+  // Profil type (version rapide basée sur le score global PRÉSENCE)
+  var profilContainerR = document.getElementById('diag-profil-container');
+  if (profilContainerR) {
+    // En mode rapide, on estime perso/pro à partir du score global
+    profilContainerR.innerHTML = buildProfilHtml(pctT1, pctT1);
+  }
+
   document.getElementById('result-radars').innerHTML = '<div class="radars-grid"><div class="radar-card"><h3>Profil PRÉSENCE</h3>' + buildRadarSVG('rapide', COMPOSANTES, scoresT1, hasT2 ? scoresT2 : null) + '</div></div>';
 
   document.getElementById('diag-recos').innerHTML = buildRecosHtml(sortedMods.slice(0, 3));
@@ -1335,6 +1342,7 @@ function buildProfilHtml(pctPerso, pctPro){
     + '<div class="diag-profil-row priorite"><div class="diag-profil-row-label">Priorité</div><div class="diag-profil-row-content">' + p.priorite + '</div></div>'
     + '<div class="diag-profil-row"><div class="diag-profil-row-label">Parcours</div><div class="diag-profil-row-content">' + p.etapes + '<br>' + modLinks + '</div></div>'
     + '<div class="diag-profil-row attention"><div class="diag-profil-row-label">Vigilance</div><div class="diag-profil-row-content">' + p.attention + '</div></div>'
+    + '<div class="diag-profil-row"><div class="diag-profil-row-label">Ressources</div><div class="diag-profil-row-content">Pour approfondir : <a href="fondements.html" style="color:var(--accent3);font-weight:600;">les fondements scientifiques</a>, <a href="bibliotheque.html" style="color:var(--accent3);font-weight:600;">la bibliothèque de ressources</a> (fiches, livres, rapports), et <a href="demarche.html" style="color:var(--accent3);font-weight:600;">la démarche en 7 étapes</a> pour structurer votre progression.</div></div>'
     + '</div></div>';
 }
 
