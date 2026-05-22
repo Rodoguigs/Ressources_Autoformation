@@ -804,11 +804,13 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 .stat-item:last-child{border-bottom:none;}
 .stat-number{
-  font-family:'Playfair Display',serif;
-  font-size:1.6rem;font-weight:900;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  font-size:1.7rem;font-weight:800;
+  letter-spacing:-0.02em;
   color:var(--accent1);
   line-height:1.1;
   margin-bottom:4px;
+  font-variant-numeric:tabular-nums;
 }
 .stat-label{
   font-size:.85rem;color:var(--text-body);
@@ -834,8 +836,13 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 .risk-item:last-of-type{border-bottom:none;margin-bottom:12px;}
 .risk-icon{
-  font-size:1.3rem;flex-shrink:0;
-  width:32px;text-align:center;
+  font-size:1.15rem;flex-shrink:0;
+  width:28px;text-align:center;
+  line-height:1.55;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:1.36rem;
 }
 .risk-text{
   font-size:.88rem;color:var(--text-body);
