@@ -891,6 +891,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 /* ─── Fix espacement header / contenu (final) ─── */
 .page-head{margin-top:30px}
 /* règle .hero parasite supprimée (écrasait padding/margin) */
+.aut-welcome-block{
+  max-width:1180px;
+  margin:40px auto 0;
+  padding:0 20px;
+}
 .aut-welcome-card{
   background:linear-gradient(135deg, rgba(83,52,131,.05), rgba(245,166,35,.04));
   border:1px solid rgba(83,52,131,.15);
@@ -983,7 +988,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   transition:width .6s ease;
 }
 @media (max-width:700px){
-  .aut-welcome-block{padding:0 20px;}
+  .aut-welcome-block{
+  max-width:100%;
+  margin:24px auto 0;
+  padding:0 16px;
+}
   .aut-welcome-card{padding:18px;}
 }
 
@@ -1338,7 +1347,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div style="max-width:1400px;margin:0 auto 36px;padding:50px 28px 30px;text-align:center;">
   <div style="display:inline-block;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent3);padding:7px 18px;background:linear-gradient(135deg,rgba(83,52,131,.12),rgba(245,166,35,.10));border:1px solid rgba(83,52,131,.15);border-radius:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(83,52,131,.08);">Comment commencer ?</div>
   <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--text-strong);margin:0 0 14px;letter-spacing:-.01em;">Trois portes d'entrée selon votre besoin</h2>
-  <p style="font-size:1.02rem;color:var(--text-muted);margin:0 auto;max-width:680px;line-height:1.6;">Choisissez celle qui correspond le mieux à votre situation actuelle. Vous pouvez ensuite naviguer librement entre les différentes ressources.</p>
+  <p style="font-size:1.02rem;color:var(--text-muted);margin:0 auto;max-width:680px;line-height:1.6;">Choisissez celle qui correspond le mieux à votre situation actuelle. Vous pouvez ensuite naviguer librement entre les différentes ressources.<br><br><strong>Comment s'articulent ces trois entrées ?</strong> Le <em>diagnostic</em> vous situe et vous oriente. La <em>démarche en 7 étapes</em> est le fil conducteur du parcours. Les <em>modules</em> sont les contenus de formation approfondis, mobilisés à chaque étape de la démarche — ce ne sont pas des parcours séparés, mais les briques d'un même cheminement.</p>
 </div>
 
 <section class="portes" aria-label="Trois façons d'aborder la plateforme">
