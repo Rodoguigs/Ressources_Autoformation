@@ -16,10 +16,10 @@
     { num: 2, file: 'prototype_module2.html', titre: 'Prévention du burnout' },
     { num: 3, file: 'prototype_module3.html', titre: 'Profil des besoins de formation' },
     { num: 4, file: 'prototype_module4.html', titre: 'Vulnérabilité au stress' },
-    { num: 6, file: 'prototype_module6.html', titre: 'Cartographie des ressources' },
-    { num: 7, file: 'prototype_module7.html', titre: 'Mentorat entre pairs' },
-    { num: 8, file: 'prototype_module8.html', titre: 'Stratégies pédagogiques' },
-    { num: 9, file: 'prototype_module9.html', titre: 'Fatigue de compassion' },
+    { num: 5, file: 'prototype_module6.html', titre: 'Cartographie des ressources' },
+    { num: 6, file: 'prototype_module7.html', titre: 'Mentorat entre pairs' },
+    { num: 7, file: 'prototype_module8.html', titre: 'Stratégies pédagogiques' },
+    { num: 8, file: 'prototype_module9.html', titre: 'Fatigue de compassion' },
   ];
   
   // Récupérer l'état actuel
