@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- VERSION CARTE-POURQUOI 2026-05-22-v3b48 : si tu vois ce commentaire dans le code source (Ctrl+U), la bonne version est chargée -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Autoformation à la résilience professionnelle enseignante</title>
@@ -265,8 +266,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 /* Hero */
 .hero{
-  padding:72px 28px 72px;
-  text-align:center;
+  padding:72px 28px 64px;margin:0 0 32px;
+  text-align:center;width:100%;box-sizing:border-box;
   position:relative;overflow:hidden;
   /* Dégradé violet → rose → crème (chaud et accueillant) */
   background:
@@ -331,7 +332,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 /* Mini-jauge */
 .mini-jauge-bloc{
-  display:inline-flex;align-items:center;gap:12px;
+  display:inline-flex;margin-top:28px;align-items:center;gap:12px;
   padding:9px 20px;background:rgba(255,255,255,.85);
   border:1px solid rgba(83,52,131,.15);
   border-radius:24px;
@@ -359,7 +360,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:24px;
-  max-width:1400px;margin:60px auto 80px;
+  max-max-width:1400px;margin:60px auto 80px;
   padding:0 28px;
 }
 .porte{
@@ -440,7 +441,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   display:grid;
   grid-template-columns:repeat(4, 1fr);
   gap:16px;
-  max-width:1100px;margin:0 auto;
+  max-max-width:1100px;margin:0 auto;
 }
 .menu-card{
   background:var(--surface);
@@ -729,18 +730,20 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 /* ─── Section Pourquoi développer la résilience ─── */
 .pourquoi-section{
-  background:var(--surface-alt);
-  padding:60px 60px 60px;
-  max-width:1280px;
-  margin:80px auto 40px;
-  border-radius:24px;
+  background:#ffffff;
+  max-width:1180px;
+  margin:0 auto;
+  padding:44px;
+  border-radius:20px;
+  border:1px solid rgba(83,52,131,.12);
+  box-shadow:0 8px 32px rgba(83,52,131,.10);
   position:relative;
 }
 /* Petite vague décorative en bas de la section Pourquoi */
 /* déco demi-cercle supprimée */
 [data-theme="dark"] .pourquoi-section{ background:var(--surface-alt); }
 .pourquoi-wrapper{
-  max-width:1400px;margin:0 auto;
+  max-width:100%;margin:0 auto;
 }
 .pourquoi-section .section-label{
   display:inline-block;
@@ -887,18 +890,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 /* ─── Fix espacement header / contenu (final) ─── */
 .page-head{margin-top:30px}
-.hero{margin-top:30px}
-@media (max-width:900px){
-  .page-head{margin-top:15px}
-  .hero{margin-top:15px}
-}
-
-/* ─── Bloc d'accueil personnalisé (Continuer ou Commencer) ─── */
-.aut-welcome-block{
-  max-width:1400px;
-  margin:48px auto 30px;
-  padding:0 60px;
-}
+/* règle .hero parasite supprimée (écrasait padding/margin) */
 .aut-welcome-card{
   background:linear-gradient(135deg, rgba(83,52,131,.05), rgba(245,166,35,.04));
   border:1px solid rgba(83,52,131,.15);
@@ -1250,7 +1242,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </section>
 
 <!-- ─── Section : Pourquoi développer la résilience ─── -->
-<section class="pourquoi-section">
+<div style="padding:16px 24px 0;"><section class="pourquoi-section">
   <div class="pourquoi-wrapper">
     <div class="section-label">Point de départ</div>
     <h2 class="pourquoi-title">Pourquoi développer sa résilience professionnelle ?</h2>
@@ -1335,7 +1327,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </div>
   </div>
-</section>
+</section></div>
 
 
 <!-- Séparateur visuel : transition Pourquoi → Comment -->
