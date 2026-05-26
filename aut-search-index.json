@@ -40,7 +40,7 @@
   {
     "page": "modules.html",
     "label": "Catalogue",
-    "desc": "Catalogue des 8 modules",
+    "desc": "Catalogue des 9 modules",
     "keywords": [
       "Mentorat et pratique réflexive entre pairs",
       "Prendre soin de soi · Fatigue de compassion",
@@ -232,6 +232,32 @@
     ]
   },
   {
+    "page": "prototype_module5.html",
+    "label": "Module 5",
+    "desc": "Posture professionnelle et modèle PRÉSENCE",
+    "keywords": [
+      "Posture professionnelle et modèle PRÉSENCE",
+      "Le modèle PRÉSENCE",
+      "Prédisposition Réseaux Élagage Synchronisation Neuroplasticité Conscience libre arbitre",
+      "Posture professionnelle en 8 dimensions",
+      "Corps et présence physiologique",
+      "Régulation émotionnelle",
+      "Neutralité et non-escalade",
+      "Compétences socio-émotionnelles CSE",
+      "Communication non violente CNV",
+      "Correspondances PRÉSENCE Gaudreau",
+      "Contagion émotionnelle",
+      "Synchronisation cérébrale neurones miroirs",
+      "Fahim 2022",
+      "Concepts-clés du module",
+      "Pourquoi ce module",
+      "Fondements scientifiques",
+      "Mise en pratique",
+      "Pour aller plus loin",
+      "Synthèse &amp; suite"
+    ]
+  },
+  {
     "page": "prototype_module6.html",
     "label": "Module 6",
     "desc": "Cartographie des ressources",
@@ -278,7 +304,7 @@
   {
     "page": "prototype_module8.html",
     "label": "Module 8",
-    "desc": "Stratégies pédagogiques efficaces",
+    "desc": "TDAH, classes difficiles et autodétermination",
     "keywords": [
       "Module recommandé pour vous",
       "Stratégies pédagogiques efficaces & autodétermination des élèves",
@@ -300,7 +326,7 @@
   {
     "page": "prototype_module9.html",
     "label": "Module 9",
-    "desc": "Fatigue de compassion",
+    "desc": "Prendre soin de soi pour prendre soin des autres",
     "keywords": [
       "Module recommandé pour vous",
       "Les 4 volets du module",
