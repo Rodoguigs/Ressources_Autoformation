@@ -2822,10 +2822,10 @@ body{
         </div>
         <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
         <div class="thermo-grid">
-          <div class="pratique-field"><label for="t-energie">① Structure & cadre (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"> <span class="thermo-help" data-tip="Votre classe offre-t-elle des repères clairs, prévisibles et visibles aux élèves ?">?</span></div>
-          <div class="pratique-field"><label for="t-emotion">② Interventions graduées (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"> <span class="thermo-help" data-tip="Intervenez-vous du moins au plus intrusif (recadrage gradué) plutôt que par la sanction ?">?</span></div>
-          <div class="pratique-field"><label for="t-cognitif">③ Posture réflexive (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"> <span class="thermo-help" data-tip="Restez-vous en mode réflexif (« je constate que… ») plutôt qu'en jugement automatique ?">?</span></div>
-          <div class="pratique-field"><label for="t-social">④ Soutien à l'autodétermination (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"> <span class="thermo-help" data-tip="Favorisez-vous l'autonomie et l'autorégulation de l'élève (CUA, choix, autoévaluation) ?">?</span></div>
+          <div class="pratique-field"><label for="t-energie">① Structure & cadre (1-5) <span class="thermo-help" data-tip="Votre classe offre-t-elle des repères clairs, prévisibles et visibles aux élèves ?">?</span></label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-emotion">② Interventions graduées (1-5) <span class="thermo-help" data-tip="Intervenez-vous du moins au plus intrusif (recadrage gradué) plutôt que par la sanction ?">?</span></label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Posture réflexive (1-5) <span class="thermo-help" data-tip="Restez-vous en mode réflexif (« je constate que… ») plutôt qu'en jugement automatique ?">?</span></label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-social">④ Soutien à l'autodétermination (1-5) <span class="thermo-help" data-tip="Favorisez-vous l'autonomie et l'autorégulation de l'élève (CUA, choix, autoévaluation) ?">?</span></label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
         </div>
         <div class="thermo-resultat" aria-live="polite">
           <div class="thermo-score">
@@ -2864,20 +2864,21 @@ body{
               </g>
             </svg>
             <div class="thermo-bars-col">
+              <div style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin-bottom:8px">Détail par dimension (couleurs du radar)</div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>① Structure & cadre</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d97706;margin-right:6px;vertical-align:middle"></span>① Structure & cadre</span><span class="thermo-dim-val" id="val-energie">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>② Interventions graduées</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:6px;vertical-align:middle"></span>② Interventions graduées</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>③ Posture réflexive</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1d4ed8;margin-right:6px;vertical-align:middle"></span>③ Posture réflexive</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>④ Soutien à l'autodétermination</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#15803d;margin-right:6px;vertical-align:middle"></span>④ Soutien à l'autodétermination</span><span class="thermo-dim-val" id="val-social">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
               </div>
             </div>

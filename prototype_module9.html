@@ -2761,10 +2761,10 @@ body{
         </div>
         <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
         <div class="thermo-grid">
-          <div class="pratique-field"><label for="t-energie">① Distance juste (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"> <span class="thermo-help" data-tip="Restez-vous dans la compassion (touché·e sans être submergé·e) plutôt que la fusion émotionnelle ?">?</span></div>
-          <div class="pratique-field"><label for="t-emotion">② Satisfaction de compassion (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"> <span class="thermo-help" data-tip="Trouvez-vous du sens et de la satisfaction dans l'aide que vous apportez ?">?</span></div>
-          <div class="pratique-field"><label for="t-cognitif">③ Outils de régulation (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"> <span class="thermo-help" data-tip="Avez-vous des outils rapides (cohérence cardiaque, ancrage, journalisation) que vous utilisez ?">?</span></div>
-          <div class="pratique-field"><label for="t-social">④ Limites bienveillantes (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"> <span class="thermo-help" data-tip="Savez-vous poser des limites claires et orienter vers les bonnes ressources ?">?</span></div>
+          <div class="pratique-field"><label for="t-energie">① Distance juste (1-5) <span class="thermo-help" data-tip="Restez-vous dans la compassion (touché·e sans être submergé·e) plutôt que la fusion émotionnelle ?">?</span></label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-emotion">② Satisfaction de compassion (1-5) <span class="thermo-help" data-tip="Trouvez-vous du sens et de la satisfaction dans l'aide que vous apportez ?">?</span></label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Outils de régulation (1-5) <span class="thermo-help" data-tip="Avez-vous des outils rapides (cohérence cardiaque, ancrage, journalisation) que vous utilisez ?">?</span></label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-social">④ Limites bienveillantes (1-5) <span class="thermo-help" data-tip="Savez-vous poser des limites claires et orienter vers les bonnes ressources ?">?</span></label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
         </div>
         <div class="thermo-resultat" aria-live="polite">
           <div class="thermo-score">
@@ -2803,20 +2803,21 @@ body{
               </g>
             </svg>
             <div class="thermo-bars-col">
+              <div style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin-bottom:8px">Détail par dimension (couleurs du radar)</div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>① Distance juste</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d97706;margin-right:6px;vertical-align:middle"></span>① Distance juste</span><span class="thermo-dim-val" id="val-energie">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>② Satisfaction de compassion</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:6px;vertical-align:middle"></span>② Satisfaction de compassion</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>③ Outils de régulation</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1d4ed8;margin-right:6px;vertical-align:middle"></span>③ Outils de régulation</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>④ Limites bienveillantes</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#15803d;margin-right:6px;vertical-align:middle"></span>④ Limites bienveillantes</span><span class="thermo-dim-val" id="val-social">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
               </div>
             </div>

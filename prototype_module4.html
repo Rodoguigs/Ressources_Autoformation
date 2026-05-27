@@ -2732,10 +2732,10 @@ body{
         </div>
         <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
         <div class="thermo-grid">
-          <div class="pratique-field"><label for="t-energie">① Régulation physiologique (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"> <span class="thermo-help" data-tip="Savez-vous faire baisser votre tension corporelle (respiration, ancrage) en situation de stress ?">?</span></div>
-          <div class="pratique-field"><label for="t-emotion">② Recadrage cognitif (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"> <span class="thermo-help" data-tip="Arrivez-vous à prendre du recul sur une pensée automatique pour en chercher une lecture plus utile ?">?</span></div>
-          <div class="pratique-field"><label for="t-cognitif">③ Locus de contrôle (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"> <span class="thermo-help" data-tip="Sentez-vous que vous pouvez agir sur votre situation (interne) plutôt que tout subir (externe) ?">?</span></div>
-          <div class="pratique-field"><label for="t-social">④ Ajustement des attentes (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"> <span class="thermo-help" data-tip="Vos attentes envers vous-même sont-elles réalistes, ou marquées par le perfectionnisme ?">?</span></div>
+          <div class="pratique-field"><label for="t-energie">① Régulation physiologique (1-5) <span class="thermo-help" data-tip="Savez-vous faire baisser votre tension corporelle (respiration, ancrage) en situation de stress ?">?</span></label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-emotion">② Recadrage cognitif (1-5) <span class="thermo-help" data-tip="Arrivez-vous à prendre du recul sur une pensée automatique pour en chercher une lecture plus utile ?">?</span></label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Locus de contrôle (1-5) <span class="thermo-help" data-tip="Sentez-vous que vous pouvez agir sur votre situation (interne) plutôt que tout subir (externe) ?">?</span></label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-social">④ Ajustement des attentes (1-5) <span class="thermo-help" data-tip="Vos attentes envers vous-même sont-elles réalistes, ou marquées par le perfectionnisme ?">?</span></label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
         </div>
         <div class="thermo-resultat" aria-live="polite">
           <div class="thermo-score">
@@ -2774,20 +2774,21 @@ body{
               </g>
             </svg>
             <div class="thermo-bars-col">
+              <div style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin-bottom:8px">Détail par dimension (couleurs du radar)</div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>① Régulation physiologique</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d97706;margin-right:6px;vertical-align:middle"></span>① Régulation physiologique</span><span class="thermo-dim-val" id="val-energie">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>② Recadrage cognitif</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:6px;vertical-align:middle"></span>② Recadrage cognitif</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>③ Locus de contrôle</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1d4ed8;margin-right:6px;vertical-align:middle"></span>③ Locus de contrôle</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
               </div>
               <div class="thermo-dim">
-                <div class="thermo-dim-head"><span>④ Ajustement des attentes</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#15803d;margin-right:6px;vertical-align:middle"></span>④ Ajustement des attentes</span><span class="thermo-dim-val" id="val-social">—</span></div>
                 <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
               </div>
             </div>
