@@ -705,6 +705,31 @@ body{
   background:white;
   border-color:rgba(245,166,35,.3);
 }
+
+/* ─── Tooltip d'aide sur les dimensions d'auto-évaluation ─── */
+.thermo-help{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;margin-left:5px;
+  border-radius:50%;border:1px solid var(--accent3);
+  color:var(--accent3);font-size:.62rem;font-weight:700;
+  cursor:help;position:relative;vertical-align:middle;
+  font-family:inherit;line-height:1;
+}
+.thermo-help::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink, #1a1a2e);color:#f5f5f8;
+  padding:9px 13px;border-radius:8px;
+  font-size:.76rem;font-weight:400;line-height:1.5;
+  width:230px;max-width:80vw;text-align:left;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .15s;
+  z-index:60;
+}
+.thermo-help:hover::after{opacity:1;}
+@media (max-width:600px){
+  .thermo-help::after{left:0;transform:none;}
+}
 [data-theme="dark"] .fiche-block .pratique-field input,
 [data-theme="dark"] .fiche-block .pratique-field textarea{
   background:rgba(255,255,255,.04);
@@ -2754,10 +2779,79 @@ body{
             Auto-évaluation — Module 5
           </div>
         </div>
-        <div class="block-action-help">
-          <strong>Évaluez chaque dimension sur une échelle de 1 (très faible) à 5 (très élevé) :</strong><ul style="margin-top:8px;"><li>Ressources internes (santé, valeurs)</li><li>Ressources relationnelles</li><li>Ressources professionnelles (formations, outils)</li><li>Ressources institutionnelles</li></ul>
+        <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour situer votre posture professionnelle actuelle. Notez votre ressenti de 1 (très faible) à 5 (très élevé).</div>
+        <div class="thermo-grid">
+          <div class="pratique-field"><label for="t-energie">① Ancrage corporel &amp; présence (1-5) <span class="thermo-help" data-tip="Votre tonus, votre respiration, votre présence physique en classe : entrez-vous ancré·e ou tendu·e ?">?</span></label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-emotion">② Régulation émotionnelle (1-5) <span class="thermo-help" data-tip="Votre capacité à gérer vos propres réactions face aux provocations ou tensions, sans vous laisser déborder.">?</span></label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Cadre &amp; cohérence (1-5) <span class="thermo-help" data-tip="La clarté et la constance de votre cadre : règles explicites, conséquences prévisibles, application régulière.">?</span></label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-social">④ Conscience de sa contagion (1-5) <span class="thermo-help" data-tip="Votre conscience que votre état émotionnel se transmet à la classe via les neurones miroirs — votre calme comme votre stress sont contagieux.">?</span></label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
         </div>
-        <p style="background:rgba(255,255,255,.4);border-radius:8px;padding:14px;font-size:.86rem;color:var(--text-body);line-height:1.7"><strong>Dimensions à évaluer pour ce module :</strong><br>• <strong>Ressources internes (santé, valeurs)</strong><br>• <strong>Ressources relationnelles</strong><br>• <strong>Ressources professionnelles (formations, outils)</strong><br>• <strong>Ressources institutionnelles</strong></p>
+        <div class="thermo-resultat" aria-live="polite">
+          <div class="thermo-score">
+            <span class="thermo-score-num">Score global posture : <span id="score-global">—</span> / 20</span>
+            <span id="score-label" style="font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:14px;background:var(--surface);color:var(--text-muted)">Saisissez vos scores</span>
+          </div>
+          <div class="thermo-bar-global"><div class="thermo-bar-fill" id="bar-global"></div></div>
+
+          <div class="thermo-radar-wrap">
+            <svg class="thermo-radar" id="thermo-radar" viewBox="0 0 200 200" aria-label="Radar de posture à 4 dimensions">
+              <circle cx="100" cy="100" r="20" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="40" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="60" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="80" class="thermo-radar-grid"/>
+              <line x1="100" y1="20" x2="100" y2="180" class="thermo-radar-axis"/>
+              <line x1="20" y1="100" x2="180" y2="100" class="thermo-radar-axis"/>
+              <polygon class="thermo-radar-shape" id="radar-shape" points="100,100 100,100 100,100 100,100"/>
+              <circle class="thermo-radar-point" id="point-energie" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-emotion" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-cognitif" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-social" cx="100" cy="100" r="3"/>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="10" r="8" fill="#d97706" opacity=".85"/>
+                <text x="100" y="13" class="thermo-radar-num" fill="white">①</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="190" cy="100" r="8" fill="#c0392b" opacity=".85"/>
+                <text x="190" y="103" class="thermo-radar-num" fill="white">②</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="190" r="8" fill="#1d4ed8" opacity=".85"/>
+                <text x="100" y="193" class="thermo-radar-num" fill="white">③</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="10" cy="100" r="8" fill="#15803d" opacity=".85"/>
+                <text x="10" y="103" class="thermo-radar-num" fill="white">④</text>
+              </g>
+            </svg>
+
+            <div class="thermo-bars-col">
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>① Ancrage corporel &amp; présence</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>② Régulation émotionnelle</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>③ Cadre &amp; cohérence</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>④ Conscience de sa contagion</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="thermo-interp" id="interp">L'interprétation s'affichera automatiquement une fois les scores saisis.</div>
+        </div>
+        <div class="pratique-actions">
+          <button class="pratique-btn pratique-btn-ghost" onclick="resetThermo()">
+            <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+            Recommencer
+          </button>
+        </div>
       </div>
 
       <!-- Fiche action -->
@@ -2835,27 +2929,27 @@ body{
       </div>
       <p>Ressources spécifiquement sélectionnées pour approfondir les thèmes du Module 5.</p>
 
-      <div class="ressource-card res-pdf" style="opacity:.75;cursor:default;">
+      <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=12" target="_blank" rel="noopener" class="ressource-card res-pdf">
         <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
         <div>
-          <div class="ressource-titre">Posture professionnelle et PRÉSENCE — Module 5 <span class="ressource-type-badge">PDF interne</span></div>
-          <div class="ressource-sous">Grille en 4 quadrants à compléter</div>
+          <div class="ressource-titre">Posture professionnelle et modèle PRÉSENCE — Guide, Module 5 <span class="ressource-type-badge">PDF</span></div>
+          <div class="ressource-sous">Le modèle PRÉSENCE, les 8 dimensions de posture et le plan d'action (p. 12-14)</div>
         </div>
-      </div>
-      <div class="ressource-card res-book" style="opacity:.75;cursor:default;">
+      </a>
+      <div class="ressource-card res-book" style="cursor:default;">
         <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
         <div>
-          <div class="ressource-titre">Théorêt & Leroux — chapitre 5 <span class="ressource-type-badge">Livre</span></div>
-          <div class="ressource-sous">Les ressources de l'enseignant·e résilient·e</div>
+          <div class="ressource-titre">Fahim, C. (2022) — Le modèle PRÉSENCE <span class="ressource-type-badge">Référence</span></div>
+          <div class="ressource-sous">Neurosciences et posture professionnelle (ouvrage de référence)</div>
         </div>
       </div>
-      <div class="ressource-card res-note" style="opacity:.75;cursor:default;">
+      <a href="fondements.html#part-3" class="ressource-card res-note">
         <div class="ressource-icon"><svg class="icon"><use href="#i-note"/></svg></div>
         <div>
-          <div class="ressource-titre">Hobfoll — COR Theory <span class="ressource-type-badge">Fiche de lecture</span></div>
-          <div class="ressource-sous">Fiche · conservation des ressources comme prévention</div>
+          <div class="ressource-titre">Le modèle PRÉSENCE — Fondements <span class="ressource-type-badge">Page interne</span></div>
+          <div class="ressource-sous">Les 8 lettres du modèle détaillées dans la page Fondements</div>
         </div>
-      </div>
+      </a>
 
       <button class="notes-toggle" onclick="toggleNotes('notes-s5')" aria-expanded="false" aria-controls="notes-s5">
         <svg class="icon"><use href="#i-note"/></svg>
