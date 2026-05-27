@@ -2868,24 +2868,24 @@ body{
             <span>Dans la grille réflexive des 10 domaines, quelle combinaison signale la priorité réelle de formation ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Compétence faible et impact élevé — priorité absolue</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Compétence élevée et impact faible</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Compétence élevée et impact élevé</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Compétence faible et impact faible</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
 
-        <div class="qcm-block" data-correct="opt-q2-a">
+        <div class="qcm-block" data-correct="opt-q2-b">
           <div class="qcm-question">
             <span class="qcm-question-num">2</span>
             <span>Quel est l'apport du concept de sentiment d'efficacité personnelle (Bandura) dans l'identification de ses besoins ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Il mesure le niveau réel de compétence d'un enseignant</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Il désigne la croyance en sa capacité à réussir une tâche, et nourrit la motivation</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Il évalue la satisfaction des élèves</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Il quantifie la charge de travail</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3409,16 +3409,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 3
-  if(isCorrect){
-    if(qIdx === 0) return "Exactement. La combinaison faible comp\u00e9tence + fort impact signale la priorit\u00e9 r\u00e9elle, ind\u00e9pendamment de la priorit\u00e9 ressentie qui peut \u00eatre biais\u00e9e par l'habitude.";
-    if(qIdx === 1) return "Le SEP r\u00e9v\u00e8le des d\u00e9calages parfois importants entre confiance subjective et comp\u00e9tence objective. Conscientiser cet \u00e9cart oriente le travail de formation.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "La priorit\u00e9 ressentie est souvent biais\u00e9e. Ce qui compte : l'\u00e9cart entre votre comp\u00e9tence actuelle et l'impact r\u00e9el de ce domaine sur votre quotidien.";
-    if(qIdx === 1) return "Le SEP est subjectif par nature. Son int\u00e9r\u00eat n'est pas de mesurer la comp\u00e9tence mais de r\u00e9v\u00e9ler les croyances qui influencent l'engagement \u00e0 se former.";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. La case <strong>comp\u00e9tence faible \u00d7 impact \u00e9lev\u00e9</strong> est la priorit\u00e9 absolue : c'est l\u00e0 qu'un d\u00e9veloppement aura le plus d'effet.";
+    return "La priorit\u00e9 absolue se situe au croisement <strong>comp\u00e9tence faible \u00d7 impact \u00e9lev\u00e9</strong> : agir l\u00e0 o\u00f9 l'on est le moins \u00e0 l'aise ET o\u00f9 l'effet potentiel est le plus grand.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. Le <strong>sentiment d'efficacit\u00e9 personnelle</strong> (Bandura) est la <em>croyance</em> en sa capacit\u00e9 \u00e0 r\u00e9ussir \u2014 un moteur de motivation et de pers\u00e9v\u00e9rance.";
+    return "Le SEP (Bandura) d\u00e9signe la <strong>croyance</strong> en sa capacit\u00e9 \u00e0 accomplir une t\u00e2che, distincte de la comp\u00e9tence objective.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

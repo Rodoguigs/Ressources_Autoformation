@@ -2852,30 +2852,30 @@ body{
 
         <p class="qcm-section-label">Compréhension factuelle</p>
 
-        <div class="qcm-block" data-correct="opt-q1-a">
+        <div class="qcm-block" data-correct="opt-q1-b">
           <div class="qcm-question">
             <span class="qcm-question-num">1</span>
             <span>Que désigne le concept de "praticien réflexif" (Schön, 1983) ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Un enseignant qui applique strictement les programmes</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Un praticien qui analyse sa propre pratique pour l'ajuster</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Un formateur qui évalue ses collègues</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Un enseignant expérimenté qui ne se remet plus en question</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
 
-        <div class="qcm-block" data-correct="opt-q2-a">
+        <div class="qcm-block" data-correct="opt-q2-c">
           <div class="qcm-question">
             <span class="qcm-question-num">2</span>
             <span>Quel est le principal bénéfice du co-développement entre enseignants ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Obtenir une évaluation de la direction</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Comparer ses résultats à ceux des collègues</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Rompre l'isolement et normaliser les difficultés par un échange entre pairs</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Recevoir des consignes officielles</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3399,16 +3399,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 7
-  if(isCorrect){
-    if(qIdx === 0) return "Le praticien r\u00e9flexif (Sch\u00f6n) est celui qui interroge sa propre pratique, identifie les th\u00e9ories implicites qui la guident, et les fait \u00e9voluer par l'analyse.";
-    if(qIdx === 1) return "Le co-d\u00e9veloppement n'apporte pas des solutions toutes faites : il \u00e9largit le r\u00e9pertoire de chacun par confrontation \u00e0 des mani\u00e8res de faire diff\u00e9rentes.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "La r\u00e9flexivit\u00e9 n'est pas la formation continue : c'est la capacit\u00e9 \u00e0 analyser sa propre pratique pour en extraire des apprentissages et des ajustements.";
-    if(qIdx === 1) return "Le principe du co-d\u00e9veloppement : 4-6 personnes, des situations professionnelles concr\u00e8tes, et une intelligence collective qui ouvre de nouvelles pistes pour chacun.";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. Le <strong>praticien r\u00e9flexif</strong> (Sch\u00f6n) prend du recul sur sa propre pratique pour la comprendre et l'ajuster \u2014 une posture d'apprentissage continu, au c\u0153ur du mentorat entre pairs.";
+    return "Pour Sch\u00f6n, le praticien r\u00e9flexif <strong>analyse sa propre pratique</strong> pour l'ajuster. C'est une posture d'auto-questionnement, pas l'application m\u00e9canique de programmes.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. Le co-d\u00e9veloppement <strong>rompt l'isolement</strong> et normalise les difficult\u00e9s : savoir que d'autres vivent des situations similaires, dans un cadre confidentiel et non hi\u00e9rarchique.";
+    return "Le b\u00e9n\u00e9fice cl\u00e9 est de <strong>rompre l'isolement</strong> et de normaliser les difficult\u00e9s entre pairs \u2014 pas une \u00e9valuation ni une comparaison de performances.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

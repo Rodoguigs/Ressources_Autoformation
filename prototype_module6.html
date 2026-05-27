@@ -2843,16 +2843,16 @@ body{
 
         <p class="qcm-section-label">Compréhension factuelle</p>
 
-        <div class="qcm-block" data-correct="opt-q1-a">
+        <div class="qcm-block" data-correct="opt-q1-c">
           <div class="qcm-question">
             <span class="qcm-question-num">1</span>
             <span>Selon la théorie de la conservation des ressources (Hobfoll), pourquoi le burnout s'installe-t-il ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Parce que l'enseignant manque de compétences pédagogiques</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Parce que les élèves sont trop nombreux</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Parce que les ressources investies ne sont pas renouvelées : une spirale de pertes s'installe</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Parce que la direction ne soutient pas assez</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
@@ -2863,10 +2863,10 @@ body{
             <span>Quelle distinction est essentielle dans la cartographie des ressources de l'enseignant·e ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Distinguer ressources personnelles, professionnelles, relationnelles, institutionnelles et externes</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Compter uniquement les heures de formation suivies</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Évaluer la performance des élèves</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Mesurer son temps de travail hebdomadaire</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3390,16 +3390,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 6
-  if(isCorrect){
-    if(qIdx === 0) return "Hobfoll montre que le burnout r\u00e9sulte d'une spirale de pertes : ressources investies non renouvel\u00e9es, glissement progressif vers l'\u00e9puisement.";
-    if(qIdx === 1) return "Cette distinction structure l'analyse : les ressources personnelles (sant\u00e9, valeurs, \u00e9quilibre) et professionnelles (formations, coll\u00e8gues, outils) se renforcent mutuellement.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "Le mod\u00e8le de Hobfoll insiste sur la dimension cumulative : ce qui \u00e9puise, ce sont les pertes r\u00e9p\u00e9t\u00e9es de ressources sans r\u00e9investissement compensatoire.";
-    if(qIdx === 1) return "L'essentiel : s\u00e9parer ce qui rel\u00e8ve de soi (sant\u00e9, valeurs personnelles, \u00e9quilibre vie-travail) et ce qui rel\u00e8ve du contexte pro (coll\u00e8gues, formations, outils, institution).";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. Pour Hobfoll, le burnout r\u00e9sulte d'une <strong>spirale de pertes</strong> : des ressources investies sans \u00eatre renouvel\u00e9es, jusqu'\u00e0 l'\u00e9puisement. D'o\u00f9 l'importance de cartographier et r\u00e9investir ses ressources.";
+    return "Le mod\u00e8le de Hobfoll insiste sur la <strong>spirale de pertes</strong> : ce qui \u00e9puise, ce sont des ressources d\u00e9pens\u00e9es sans r\u00e9investissement compensatoire \u2014 pas un simple manque de comp\u00e9tence.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. La cartographie distingue <strong>cinq cat\u00e9gories</strong> de ressources : personnelles, professionnelles, relationnelles, institutionnelles et externes \u2014 pour rep\u00e9rer forces et zones \u00e0 nourrir.";
+    return "L'essentiel est de distinguer les <strong>cinq cat\u00e9gories de ressources</strong> (personnelles, professionnelles, relationnelles, institutionnelles, externes), bien au-del\u00e0 des seules formations suivies.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

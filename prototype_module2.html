@@ -2833,30 +2833,30 @@ body{
 
         <p class="qcm-section-label">Compréhension factuelle</p>
 
-        <div class="qcm-block" data-correct="opt-q1-a">
+        <div class="qcm-block" data-correct="opt-q1-c">
           <div class="qcm-question">
             <span class="qcm-question-num">1</span>
             <span>Selon le modèle de Maslach, quelles sont les trois dimensions du burnout ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Stress, anxiété et dépression</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Fatigue, démotivation et absentéisme</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Épuisement émotionnel, dépersonnalisation et réduction de l'accomplissement</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Surcharge, isolement et conflits</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
 
-        <div class="qcm-block" data-correct="opt-q2-a">
+        <div class="qcm-block" data-correct="opt-q2-b">
           <div class="qcm-question">
             <span class="qcm-question-num">2</span>
             <span>Quel signal précoce mérite la plus grande vigilance dans la prévention du burnout ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Une fatigue passagère en fin de trimestre</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Une fatigue persistante qui ne cède pas après le week-end ou les congés</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Un simple manque de motivation ponctuel</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Une baisse de résultats des élèves</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3380,16 +3380,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 2
-  if(isCorrect){
-    if(qIdx === 0) return "Exactement. Ces trois dimensions, identifi\u00e9es par Maslach et Jackson, structurent l'\u00e9valuation du burnout enseignant par le MBI (Maslach Burnout Inventory).";
-    if(qIdx === 1) return "Les troubles du sommeil persistants sont un marqueur somatique pr\u00e9coce, souvent ant\u00e9rieur \u00e0 la prise de conscience subjective de l'\u00e9puisement.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "Le mod\u00e8le de r\u00e9f\u00e9rence est celui de Maslach : \u00e9puisement \u00e9motionnel, d\u00e9personnalisation (cynisme face aux \u00e9l\u00e8ves), r\u00e9duction du sentiment d'accomplissement personnel.";
-    if(qIdx === 1) return "Les signaux corporels durables (sommeil, tensions musculaires chroniques) pr\u00e9c\u00e8dent souvent la conscience du burnout. Ce sont eux qui m\u00e9ritent vigilance.";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. Maslach &amp; Leiter d\u00e9crivent trois dimensions : l'<strong>\u00e9puisement \u00e9motionnel</strong>, la <strong>d\u00e9personnalisation</strong> (d\u00e9tachement, cynisme) et la <strong>r\u00e9duction de l'accomplissement</strong>.";
+    return "Le mod\u00e8le distingue pr\u00e9cis\u00e9ment \u00e9puisement \u00e9motionnel, d\u00e9personnalisation et r\u00e9duction de l'accomplissement \u2014 trois dimensions distinctes, pas des sympt\u00f4mes g\u00e9n\u00e9raux.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. La <strong>fatigue qui persiste malgr\u00e9 le repos</strong> signale que la r\u00e9cup\u00e9ration normale ne suffit plus, bien avant le stade d'\u00e9puisement.";
+    return "Le signal le plus pr\u00e9occupant est la <strong>fatigue persistante qui ne c\u00e8de pas apr\u00e8s le repos</strong> : elle indique que les m\u00e9canismes de r\u00e9cup\u00e9ration sont d\u00e9pass\u00e9s.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

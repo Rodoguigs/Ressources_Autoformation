@@ -2890,16 +2890,16 @@ body{
 
         <p class="qcm-section-label">Compréhension factuelle</p>
 
-        <div class="qcm-block" data-correct="opt-q1-a">
+        <div class="qcm-block" data-correct="opt-q1-c">
           <div class="qcm-question">
             <span class="qcm-question-num">1</span>
-            <span>Selon la théorie de la conservation des ressources (Hobfoll), pourquoi le burnout s'installe-t-il ?</span>
+            <span>Dans le modèle PRÉSENCE (Fahim, 2022), que recouvre la lettre « S » ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> La stabilité du cadre et des règles de la classe</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> La sécurité physique de l'environnement scolaire</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> La synchronisation cérébrale : la contagion émotionnelle via les neurones miroirs</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> La structuration séquentielle des apprentissages</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
@@ -2910,10 +2910,10 @@ body{
             <span>Quel mécanisme neurobiologique explique que l'état émotionnel de l'enseignant·e se transmette à la classe ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Les neurones miroirs, qui font résonner l'état émotionnel d'autrui</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> La sécrétion volontaire d'endorphines par l'enseignant·e</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Un réflexe conditionné acquis en début d'année</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> La transmission consciente de consignes verbales</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3437,16 +3437,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 6
-  if(isCorrect){
-    if(qIdx === 0) return "Hobfoll montre que le burnout r\u00e9sulte d'une spirale de pertes : ressources investies non renouvel\u00e9es, glissement progressif vers l'\u00e9puisement.";
-    if(qIdx === 1) return "Cette distinction structure l'analyse : les ressources personnelles (sant\u00e9, valeurs, \u00e9quilibre) et professionnelles (formations, coll\u00e8gues, outils) se renforcent mutuellement.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "Le mod\u00e8le de Hobfoll insiste sur la dimension cumulative : ce qui \u00e9puise, ce sont les pertes r\u00e9p\u00e9t\u00e9es de ressources sans r\u00e9investissement compensatoire.";
-    if(qIdx === 1) return "L'essentiel : s\u00e9parer ce qui rel\u00e8ve de soi (sant\u00e9, valeurs personnelles, \u00e9quilibre vie-travail) et ce qui rel\u00e8ve du contexte pro (coll\u00e8gues, formations, outils, institution).";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. La lettre S d\u00e9signe la <strong>synchronisation c\u00e9r\u00e9brale</strong> : via les neurones miroirs, l'\u00e9tat \u00e9motionnel de l'enseignant\u00b7e se diffuse \u00e0 la classe. Son calme \u2014 comme son stress \u2014 est contagieux.";
+    return "Pas tout \u00e0 fait. Dans PR\u00c9SENCE, le S renvoie \u00e0 la <strong>synchronisation c\u00e9r\u00e9brale</strong> (contagion \u00e9motionnelle via les neurones miroirs), et non au cadre ou \u00e0 la s\u00e9curit\u00e9 physique. C'est ce qui fait de la r\u00e9gulation \u00e9motionnelle de l'enseignant\u00b7e un levier majeur.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. Les <strong>neurones miroirs</strong> font r\u00e9sonner en nous l'\u00e9tat \u00e9motionnel observ\u00e9 chez autrui. C'est le substrat neurobiologique de la contagion \u00e9motionnelle en classe (lettre S du mod\u00e8le PR\u00c9SENCE).";
+    return "Le m\u00e9canisme cl\u00e9 est celui des <strong>neurones miroirs</strong> : ils font r\u00e9sonner l'\u00e9tat \u00e9motionnel d'autrui, sans intention consciente. La contagion \u00e9motionnelle n'est ni un r\u00e9flexe appris ni une transmission verbale.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

@@ -2838,16 +2838,16 @@ body{
 
         <p class="qcm-section-label">Compréhension factuelle</p>
 
-        <div class="qcm-block" data-correct="opt-q1-a">
+        <div class="qcm-block" data-correct="opt-q1-b">
           <div class="qcm-question">
             <span class="qcm-question-num">1</span>
             <span>Selon Damasio, quel est le rôle des marqueurs somatiques dans la régulation du stress ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Ils ralentissent la prise de décision en situation de stress</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Ils orientent la décision via des signaux corporels associés aux expériences passées</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Ils remplacent le raisonnement logique</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Ils sont sans lien avec les émotions</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
@@ -2858,10 +2858,10 @@ body{
             <span>Qu'est-ce que la "charge allostatique" en physiologie du stress ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> L'usure de l'organisme due à une activation répétée ou chronique du stress</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Une réaction de stress unique et intense</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Un trouble du sommeil isolé</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Une forme de motivation positive</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3385,16 +3385,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 4
-  if(isCorrect){
-    if(qIdx === 0) return "Les marqueurs somatiques sont des signaux corporels (battements, tensions, sensations visc\u00e9rales) qui informent la d\u00e9cision en signalant les enjeux \u00e9motionnels pr\u00e9sents ou anticip\u00e9s.";
-    if(qIdx === 1) return "La charge allostatique correspond \u00e0 l'usure cumulative des syst\u00e8mes physiologiques sollicit\u00e9s par l'adaptation r\u00e9p\u00e9t\u00e9e au stress \u2014 quand la r\u00e9cup\u00e9ration n'est plus compl\u00e8te.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "Damasio a d\u00e9montr\u00e9 que les \u00e9motions et le corps participent activement \u00e0 la rationalit\u00e9. Les marqueurs somatiques guident la d\u00e9cision, ils ne la perturbent pas.";
-    if(qIdx === 1) return "Ce concept cl\u00e9 du stress chronique d\u00e9signe l'usure cumulative du corps, pas la quantit\u00e9 de travail. C'est ce qui rend la r\u00e9cup\u00e9ration si importante.";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. Pour Damasio, les <strong>marqueurs somatiques</strong> sont des signaux corporels li\u00e9s \u00e0 nos exp\u00e9riences pass\u00e9es qui orientent rapidement nos d\u00e9cisions, montrant que \u00e9motion et raison sont indissociables.";
+    return "Selon Damasio, les marqueurs somatiques <strong>orientent la d\u00e9cision</strong> par des signaux corporels issus de l'exp\u00e9rience : loin de nuire \u00e0 la raison, l'\u00e9motion en est un alli\u00e9 indispensable.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. La <strong>charge allostatique</strong> d\u00e9signe l'usure cumul\u00e9e de l'organisme quand le syst\u00e8me de stress est sur-sollicit\u00e9 sur la dur\u00e9e \u2014 le co\u00fbt biologique du stress chronique.";
+    return "La charge allostatique est l'<strong>usure de l'organisme</strong> li\u00e9e \u00e0 une activation r\u00e9p\u00e9t\u00e9e du stress, pas un \u00e9pisode isol\u00e9. C'est ce qui relie stress chronique et atteinte des fonctions ex\u00e9cutives.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

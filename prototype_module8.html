@@ -2949,24 +2949,24 @@ body{
             <span>Quelle est la composante la plus discriminante de la gestion de classe efficace selon Gaudreau ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> La gestion des comportements difficiles par des interventions graduées et non punitives</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> La sévérité des sanctions appliquées</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Le nombre de règles affichées en classe</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> La quantité de devoirs donnés</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
 
-        <div class="qcm-block" data-correct="opt-q2-a">
+        <div class="qcm-block" data-correct="opt-q2-b">
           <div class="qcm-question">
             <span class="qcm-question-num">2</span>
             <span>Selon Diamond (2013), quelles fonctions exécutives sont les plus sollicitées en classe ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Uniquement la mémoire à long terme</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> L'inhibition, la mémoire de travail et la flexibilité, particulièrement sollicitées chez l'élève avec TDAH</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> La motricité fine</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> La perception visuelle</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3490,16 +3490,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 8
-  if(isCorrect){
-    if(qIdx === 0) return "La clart\u00e9 des attentes et proc\u00e9dures est la composante la plus pr\u00e9dictive de l'efficacit\u00e9, davantage que la fermet\u00e9 ou l'autorit\u00e9 personnelle.";
-    if(qIdx === 1) return "Diamond identifie trois fonctions ex\u00e9cutives centrales : l'inhibition (contr\u00f4le des impulsions), la m\u00e9moire de travail (manipulation d'informations), la flexibilit\u00e9 cognitive (changement de perspective).";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "Contre-intuitivement, ce n'est pas la fermet\u00e9 ni le charisme qui pr\u00e9disent l'efficacit\u00e9, mais la clart\u00e9 des r\u00e8gles, attentes et proc\u00e9dures.";
-    if(qIdx === 1) return "Ces trois fonctions (inhibition, m\u00e9moire de travail, flexibilit\u00e9) constituent le socle des fonctions ex\u00e9cutives mobilis\u00e9es en permanence dans les apprentissages scolaires.";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. La composante la plus discriminante est la <strong>gestion des comportements par interventions gradu\u00e9es et non punitives</strong> : c'est elle qui distingue les pratiques efficaces (recadrage gradu\u00e9 plut\u00f4t que sanction).";
+    return "C'est la <strong>gestion gradu\u00e9e et non punitive des comportements</strong> qui fait la diff\u00e9rence \u2014 pas la s\u00e9v\u00e9rit\u00e9 des sanctions ni le nombre de r\u00e8gles.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. Diamond identifie l'<strong>inhibition, la m\u00e9moire de travail et la flexibilit\u00e9</strong> comme fonctions ex\u00e9cutives centrales \u2014 souvent d\u00e9ficitaires chez l'\u00e9l\u00e8ve avec TDAH, d'o\u00f9 l'importance d'\u00e9tayer plut\u00f4t que punir.";
+    return "Les fonctions ex\u00e9cutives cl\u00e9s (Diamond) sont l'<strong>inhibition, la m\u00e9moire de travail et la flexibilit\u00e9</strong> : ce sont elles qui sont d\u00e9bord\u00e9es chez l'\u00e9l\u00e8ve avec TDAH.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */

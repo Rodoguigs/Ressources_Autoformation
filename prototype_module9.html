@@ -2883,24 +2883,24 @@ Rediriger : je l'oriente vers la bonne ressource" id="m9-aar"></textarea>
             <span>Quelle distinction est essentielle entre empathie et compassion en contexte enseignant ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> L'empathie fait ressentir avec l'autre ; la compassion permet d'être touché sans être submergé</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Elles sont strictement synonymes</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> La compassion est une forme de faiblesse professionnelle</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> L'empathie n'a aucune place à l'école</label>
           </div>
           <div class="qcm-feedback" id="fb-q1"></div>
         </div>
 
-        <div class="qcm-block" data-correct="opt-q2-a">
+        <div class="qcm-block" data-correct="opt-q2-c">
           <div class="qcm-question">
             <span class="qcm-question-num">2</span>
             <span>Quel est le signe le plus précoce de fatigue de compassion ?</span>
           </div>
           <div class="qcm-options" role="radiogroup">
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Bonne réponse à définir</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Distracteur 1</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Distracteur 2</label>
-            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Distracteur 3</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Une augmentation de la motivation</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Une meilleure relation avec les collègues</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Penser encore à un·e élève en souffrance le soir ou la nuit</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Une envie de changer de métier</label>
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
@@ -3423,16 +3423,15 @@ function checkQcm(input){
 }
 
 function getQcmExplanation(qName, isCorrect){
-  // À COMPLÉTER — Guillaume : explications spécifiques selon les QCM du module 9
-  if(isCorrect){
-    if(qIdx === 0) return "Empathie = ressentir avec (peut \u00e9puiser). Compassion = \u00eatre touch\u00e9 ET orienter vers le soutien constructif. La compassion prot\u00e8ge mieux contre la fatigue.";
-    if(qIdx === 1) return "Les intrusions cognitives (penser aux \u00e9l\u00e8ves le soir, r\u00eaves) sont un marqueur pr\u00e9coce, ant\u00e9rieur \u00e0 l'\u00e9puisement physique ou au cynisme.";
-    return 'Bonne réponse.';
-  } else {
-    if(qIdx === 0) return "Le travail neuroscientifique r\u00e9cent (Singer, Klimecki) distingue : empathie = r\u00e9sonance qui peut \u00e9puiser ; compassion = orientation active vers l'aide, plus durable.";
-    if(qIdx === 1) return "Les intrusions cognitives sont le marqueur pr\u00e9coce caract\u00e9ristique : le cerveau continue \u00e0 traiter ce qu'il a absorb\u00e9 m\u00eame hors classe. C'est un signal d'alerte avant l'\u00e9puisement.";
-    return 'Réessayez en relisant la section théorique.';
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. L'<strong>empathie affective</strong> fait ressentir <em>avec</em> l'\u00e9l\u00e8ve (risque d'absorption) ; la <strong>compassion</strong> permet d'\u00eatre touch\u00e9\u00b7e <em>sans \u00eatre submerg\u00e9\u00b7e</em> (Singer &amp; Klimecki) \u2014 c'est la distance juste.";
+    return "La distinction (Singer &amp; Klimecki) : l'empathie fait <strong>ressentir avec</strong> (risque de fusion), la compassion permet de <strong>rester pr\u00e9sent\u00b7e sans \u00eatre submerg\u00e9\u00b7e</strong>. C'est ce qui prot\u00e8ge de la fatigue de compassion.";
   }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. <strong>Continuer \u00e0 penser \u00e0 un\u00b7e \u00e9l\u00e8ve en souffrance hors de l'\u00e9cole</strong> (le soir, la nuit) est un signe pr\u00e9coce de fatigue de compassion : la charge \u00e9motionnelle ne se \u00ab d\u00e9pose \u00bb plus.";
+    return "Le signe pr\u00e9coce est de <strong>ruminer la souffrance d'un\u00b7e \u00e9l\u00e8ve hors de l'\u00e9cole</strong> : c'est le signal que la charge \u00e9motionnelle d\u00e9borde le cadre professionnel.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */
