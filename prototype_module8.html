@@ -705,6 +705,31 @@ body{
   background:white;
   border-color:rgba(245,166,35,.3);
 }
+
+/* ─── Tooltip d'aide sur les dimensions d'auto-évaluation ─── */
+.thermo-help{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;margin-left:5px;
+  border-radius:50%;border:1px solid var(--accent3, #533483);
+  color:var(--accent3, #533483);font-size:.62rem;font-weight:700;
+  cursor:help;position:relative;vertical-align:middle;
+  font-family:inherit;line-height:1;
+}
+.thermo-help::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink, #1a1a2e);color:#f5f5f8;
+  padding:9px 13px;border-radius:8px;
+  font-size:.76rem;font-weight:400;line-height:1.5;
+  width:230px;max-width:80vw;text-align:left;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .15s;
+  z-index:60;
+}
+.thermo-help:hover::after{opacity:1;}
+@media (max-width:600px){
+  .thermo-help::after{left:0;transform:none;}
+}
 [data-theme="dark"] .fiche-block .pratique-field input,
 [data-theme="dark"] .fiche-block .pratique-field textarea{
   background:rgba(255,255,255,.04);
@@ -2748,7 +2773,7 @@ body{
         <span style="flex:1"></span>
         <span class="ref-external-group">
           <span class="ref-external-label">Réf. externe</span>
-          <a class="ref-external" href="https://www.cps.umontreal.ca/recherche-creation/strategies-pedagogiques/" target="_blank" rel="noopener" title="Gaudreau, N. (2024). Gérer efficacement sa classe. Presses de l'Université du Québec">Gaudreau (2024) <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg></a>
+          <span style="opacity:.85;font-weight:600;">Gaudreau (2024)</span>
         </span>
       </div>
 
@@ -2795,10 +2820,76 @@ body{
             Auto-évaluation — Module 8
           </div>
         </div>
-        <div class="block-action-help">
-          <strong>Évaluez chaque dimension sur une échelle de 1 (très faible) à 5 (très élevé) :</strong><ul style="margin-top:8px;"><li>Clarté des attentes</li><li>Engagement des élèves</li><li>Gestion du temps</li><li>Différenciation</li></ul>
+        <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
+        <div class="thermo-grid">
+          <div class="pratique-field"><label for="t-energie">① Structure & cadre (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"> <span class="thermo-help" data-tip="Votre classe offre-t-elle des repères clairs, prévisibles et visibles aux élèves ?">?</span></div>
+          <div class="pratique-field"><label for="t-emotion">② Interventions graduées (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"> <span class="thermo-help" data-tip="Intervenez-vous du moins au plus intrusif (recadrage gradué) plutôt que par la sanction ?">?</span></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Posture réflexive (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"> <span class="thermo-help" data-tip="Restez-vous en mode réflexif (« je constate que… ») plutôt qu'en jugement automatique ?">?</span></div>
+          <div class="pratique-field"><label for="t-social">④ Soutien à l'autodétermination (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"> <span class="thermo-help" data-tip="Favorisez-vous l'autonomie et l'autorégulation de l'élève (CUA, choix, autoévaluation) ?">?</span></div>
         </div>
-        <p style="background:rgba(255,255,255,.4);border-radius:8px;padding:14px;font-size:.86rem;color:var(--text-body);line-height:1.7"><strong>Dimensions à évaluer pour ce module :</strong><br>• <strong>Clarté des attentes</strong><br>• <strong>Engagement des élèves</strong><br>• <strong>Gestion du temps</strong><br>• <strong>Différenciation</strong></p>
+        <div class="thermo-resultat" aria-live="polite">
+          <div class="thermo-score">
+            <span class="thermo-score-num">Score global : <span id="score-global">—</span> / 20</span>
+            <span id="score-label" style="font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:14px;background:var(--surface);color:var(--text-muted)">Saisissez vos scores</span>
+          </div>
+          <div class="thermo-bar-global"><div class="thermo-bar-fill" id="bar-global"></div></div>
+          <div class="thermo-radar-wrap">
+            <svg class="thermo-radar" id="thermo-radar" viewBox="0 0 200 200" aria-label="Radar à 4 dimensions">
+              <circle cx="100" cy="100" r="20" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="40" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="60" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="80" class="thermo-radar-grid"/>
+              <line x1="100" y1="20" x2="100" y2="180" class="thermo-radar-axis"/>
+              <line x1="20" y1="100" x2="180" y2="100" class="thermo-radar-axis"/>
+              <polygon class="thermo-radar-shape" id="radar-shape" points="100,100 100,100 100,100 100,100"/>
+              <circle class="thermo-radar-point" id="point-energie" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-emotion" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-cognitif" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-social" cx="100" cy="100" r="3"/>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="10" r="8" fill="#d97706" opacity=".85"/>
+                <text x="100" y="13" class="thermo-radar-num" fill="white">①</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="190" cy="100" r="8" fill="#c0392b" opacity=".85"/>
+                <text x="190" y="103" class="thermo-radar-num" fill="white">②</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="190" r="8" fill="#1d4ed8" opacity=".85"/>
+                <text x="100" y="193" class="thermo-radar-num" fill="white">③</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="10" cy="100" r="8" fill="#15803d" opacity=".85"/>
+                <text x="10" y="103" class="thermo-radar-num" fill="white">④</text>
+              </g>
+            </svg>
+            <div class="thermo-bars-col">
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>① Structure & cadre</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>② Interventions graduées</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>③ Posture réflexive</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>④ Soutien à l'autodétermination</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="thermo-interp" id="interp">L'interprétation s'affichera une fois les scores saisis.</div>
+        </div>
+        <div class="pratique-actions">
+          <button class="pratique-btn pratique-btn-ghost" onclick="resetThermo()">
+            <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+            Recommencer
+          </button>
+        </div>
       </div>
 
       <!-- Fiche action -->
@@ -2874,39 +2965,46 @@ body{
       </div>
       <p>Ressources spécifiquement sélectionnées pour approfondir les thèmes du Module 8.</p>
 
-      <div class="ressource-card res-pdf" style="opacity:.75;cursor:default;">
+      <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/CUA-Apprendre-Pour-Tous.pdf" target="_blank" rel="noopener" class="ressource-card res-pdf">
         <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
         <div>
-          <div class="ressource-titre">Guide CUA pratique — Module 8 <span class="ressource-type-badge">PDF interne</span></div>
-          <div class="ressource-sous">Stratégies pédagogiques différenciées</div>
-        </div>
-      </div>
-      <div class="ressource-card res-book" style="opacity:.75;cursor:default;">
-        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
-        <div>
-          <div class="ressource-titre">Deci & Ryan (2017) <span class="ressource-type-badge">Livre</span></div>
-          <div class="ressource-sous">Self-Determination Theory — chapitres 1 à 4</div>
-        </div>
-      </div>
-      <div class="ressource-card res-book" style="opacity:.75;cursor:default;">
-        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
-        <div>
-          <div class="ressource-titre">Gaudreau (2024) <span class="ressource-type-badge">Livre</span></div>
-          <div class="ressource-sous">Gestion de classe — chapitre 7 (comportements difficiles)</div>
-        </div>
-      </div>
-      <a href="bibliotheque.html#res-caron-septembre" class="ressource-card res-book">
-        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
-        <div>
-          <div class="ressource-titre">Caron (2012) — Quand revient septembre <span class="ressource-type-badge">Livre · Complément pratique</span></div>
-          <div class="ressource-sous">Référence francophone pour les outils opérationnels de gestion de classe participative — 159 outils-supports en complément du cadre théorique de Gaudreau</div>
+          <div class="ressource-titre">Conception universelle de l'apprentissage (CUA) <span class="ressource-type-badge">PDF</span></div>
+          <div class="ressource-sous">Guide pratique de la CUA pour la classe</div>
         </div>
       </a>
-      <div class="ressource-card res-web" style="opacity:.75;cursor:default;">
-        <div class="ressource-icon"></div>
+      <a href="https://udlguidelines.cast.org/" target="_blank" rel="noopener" class="ressource-card res-book">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-web"/></svg></div>
         <div>
-          <div class="ressource-titre">CAST — Universal Design for Learning <span class="ressource-type-badge">Web externe</span></div>
-          <div class="ressource-sous">Référentiel UDL en français</div>
+          <div class="ressource-titre">CAST — Universal Design for Learning <span class="ressource-type-badge">Web</span></div>
+          <div class="ressource-sous">Les lignes directrices officielles de la CUA</div>
+        </div>
+      </a>
+      <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/autodetermination-outil-complet.pdf" target="_blank" rel="noopener" class="ressource-card res-pdf">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
+        <div>
+          <div class="ressource-titre">Autodétermination — outil complet <span class="ressource-type-badge">PDF</span></div>
+          <div class="ressource-sous">Développer l'autonomie et l'autorégulation des élèves</div>
+        </div>
+      </a>
+      <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/fiche-livre-Gaudreau.pdf" target="_blank" rel="noopener" class="ressource-card res-pdf">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
+        <div>
+          <div class="ressource-titre">Gaudreau (2024) — fiche de lecture <span class="ressource-type-badge">PDF</span></div>
+          <div class="ressource-sous">Gestion graduée des comportements difficiles</div>
+        </div>
+      </a>
+      <div class="ressource-card res-book" style="cursor:default;">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
+        <div>
+          <div class="ressource-titre">Deci &amp; Ryan (2017) <span class="ressource-type-badge">Référence</span></div>
+          <div class="ressource-sous">Self-Determination Theory — théorie de l'autodétermination</div>
+        </div>
+      </div>
+      <div class="ressource-card res-book" style="cursor:default;">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
+        <div>
+          <div class="ressource-titre">Caron (2012) — Quand revient septembre <span class="ressource-type-badge">Référence</span></div>
+          <div class="ressource-sous">Gestion de classe et stratégies d'intervention</div>
         </div>
       </div>
 

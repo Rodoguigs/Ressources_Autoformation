@@ -705,6 +705,31 @@ body{
   background:white;
   border-color:rgba(245,166,35,.3);
 }
+
+/* ─── Tooltip d'aide sur les dimensions d'auto-évaluation ─── */
+.thermo-help{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;margin-left:5px;
+  border-radius:50%;border:1px solid var(--accent3, #533483);
+  color:var(--accent3, #533483);font-size:.62rem;font-weight:700;
+  cursor:help;position:relative;vertical-align:middle;
+  font-family:inherit;line-height:1;
+}
+.thermo-help::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink, #1a1a2e);color:#f5f5f8;
+  padding:9px 13px;border-radius:8px;
+  font-size:.76rem;font-weight:400;line-height:1.5;
+  width:230px;max-width:80vw;text-align:left;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .15s;
+  z-index:60;
+}
+.thermo-help:hover::after{opacity:1;}
+@media (max-width:600px){
+  .thermo-help::after{left:0;transform:none;}
+}
 [data-theme="dark"] .fiche-block .pratique-field input,
 [data-theme="dark"] .fiche-block .pratique-field textarea{
   background:rgba(255,255,255,.04);
@@ -2694,10 +2719,76 @@ body{
             Auto-évaluation — Module 2
           </div>
         </div>
-        <div class="block-action-help">
-          <strong>Évaluez chaque dimension sur une échelle de 1 (très faible) à 5 (très élevé) :</strong><ul style="margin-top:8px;"><li>Épuisement émotionnel</li><li>Dépersonnalisation</li><li>Accomplissement personnel</li><li>Signaux corporels</li></ul>
+        <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
+        <div class="thermo-grid">
+          <div class="pratique-field"><label for="t-energie">① Énergie émotionnelle (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"> <span class="thermo-help" data-tip="Vous sentez-vous « plein·e » ou « vidé·e » à la fin de la journée ? Niveau de réserve émotionnelle disponible.">?</span></div>
+          <div class="pratique-field"><label for="t-emotion">② Lien aux élèves (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"> <span class="thermo-help" data-tip="Gardez-vous un lien chaleureux, ou ressentez-vous du détachement / cynisme (dépersonnalisation) ?">?</span></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Sentiment d'accomplissement (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"> <span class="thermo-help" data-tip="Avez-vous le sentiment d'être efficace et utile, ou un doute sur votre impact (3e dimension du burnout) ?">?</span></div>
+          <div class="pratique-field"><label for="t-social">④ Récupération (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"> <span class="thermo-help" data-tip="Récupérez-vous réellement le soir et le week-end, ou la fatigue persiste-t-elle ?">?</span></div>
         </div>
-        <p style="background:rgba(255,255,255,.4);border-radius:8px;padding:14px;font-size:.86rem;color:var(--text-body);line-height:1.7"><strong>Dimensions à évaluer pour ce module :</strong><br>• <strong>Épuisement émotionnel</strong><br>• <strong>Dépersonnalisation</strong><br>• <strong>Accomplissement personnel</strong><br>• <strong>Signaux corporels</strong></p>
+        <div class="thermo-resultat" aria-live="polite">
+          <div class="thermo-score">
+            <span class="thermo-score-num">Score global : <span id="score-global">—</span> / 20</span>
+            <span id="score-label" style="font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:14px;background:var(--surface);color:var(--text-muted)">Saisissez vos scores</span>
+          </div>
+          <div class="thermo-bar-global"><div class="thermo-bar-fill" id="bar-global"></div></div>
+          <div class="thermo-radar-wrap">
+            <svg class="thermo-radar" id="thermo-radar" viewBox="0 0 200 200" aria-label="Radar à 4 dimensions">
+              <circle cx="100" cy="100" r="20" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="40" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="60" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="80" class="thermo-radar-grid"/>
+              <line x1="100" y1="20" x2="100" y2="180" class="thermo-radar-axis"/>
+              <line x1="20" y1="100" x2="180" y2="100" class="thermo-radar-axis"/>
+              <polygon class="thermo-radar-shape" id="radar-shape" points="100,100 100,100 100,100 100,100"/>
+              <circle class="thermo-radar-point" id="point-energie" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-emotion" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-cognitif" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-social" cx="100" cy="100" r="3"/>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="10" r="8" fill="#d97706" opacity=".85"/>
+                <text x="100" y="13" class="thermo-radar-num" fill="white">①</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="190" cy="100" r="8" fill="#c0392b" opacity=".85"/>
+                <text x="190" y="103" class="thermo-radar-num" fill="white">②</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="190" r="8" fill="#1d4ed8" opacity=".85"/>
+                <text x="100" y="193" class="thermo-radar-num" fill="white">③</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="10" cy="100" r="8" fill="#15803d" opacity=".85"/>
+                <text x="10" y="103" class="thermo-radar-num" fill="white">④</text>
+              </g>
+            </svg>
+            <div class="thermo-bars-col">
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>① Énergie émotionnelle</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>② Lien aux élèves</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>③ Sentiment d'accomplissement</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>④ Récupération</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="thermo-interp" id="interp">L'interprétation s'affichera une fois les scores saisis.</div>
+        </div>
+        <div class="pratique-actions">
+          <button class="pratique-btn pratique-btn-ghost" onclick="resetThermo()">
+            <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+            Recommencer
+          </button>
+        </div>
       </div>
 
       <!-- Fiche action -->

@@ -705,6 +705,31 @@ body{
   background:white;
   border-color:rgba(245,166,35,.3);
 }
+
+/* ─── Tooltip d'aide sur les dimensions d'auto-évaluation ─── */
+.thermo-help{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;margin-left:5px;
+  border-radius:50%;border:1px solid var(--accent3, #533483);
+  color:var(--accent3, #533483);font-size:.62rem;font-weight:700;
+  cursor:help;position:relative;vertical-align:middle;
+  font-family:inherit;line-height:1;
+}
+.thermo-help::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink, #1a1a2e);color:#f5f5f8;
+  padding:9px 13px;border-radius:8px;
+  font-size:.76rem;font-weight:400;line-height:1.5;
+  width:230px;max-width:80vw;text-align:left;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .15s;
+  z-index:60;
+}
+.thermo-help:hover::after{opacity:1;}
+@media (max-width:600px){
+  .thermo-help::after{left:0;transform:none;}
+}
 [data-theme="dark"] .fiche-block .pratique-field input,
 [data-theme="dark"] .fiche-block .pratique-field textarea{
   background:rgba(255,255,255,.04);
@@ -2703,109 +2728,77 @@ body{
             Auto-évaluation — Profil des 10 domaines de formation
           </div>
         </div>
-        <div class="block-action-help">
-          <strong>L'outil de référence de ce module est la grille réflexive des 10 domaines</strong>, intégrée à l'<a href="demarche.html#etape-3" style="color:var(--accent3);font-weight:600;">Étape 3 de la démarche</a>. Pour chaque domaine, vous évaluez trois critères de 1 à 5 :
-          <ul style="margin-top:8px;">
-            <li><strong>Compétence actuelle</strong> — à quel niveau je maîtrise ce domaine aujourd'hui</li>
-            <li><strong>Impact sur ma pratique</strong> — dans quelle mesure ce domaine influence mon efficacité quotidienne</li>
-            <li><strong>Priorité de formation</strong> — à quel point je souhaite le développer</li>
-          </ul>
+        <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
+        <div class="thermo-grid">
+          <div class="pratique-field"><label for="t-energie">① Lucidité sur mes forces (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"> <span class="thermo-help" data-tip="Savez-vous nommer précisément vos domaines de force et de progression ?">?</span></div>
+          <div class="pratique-field"><label for="t-emotion">② Clarté des priorités (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"> <span class="thermo-help" data-tip="Avez-vous identifié LA priorité de développement (compétence faible × impact élevé) ?">?</span></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Accès aux ressources (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"> <span class="thermo-help" data-tip="Disposez-vous du temps, du soutien et des formations pour agir sur cette priorité ?">?</span></div>
+          <div class="pratique-field"><label for="t-social">④ Sentiment d'efficacité (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"> <span class="thermo-help" data-tip="Croyez-vous en votre capacité à progresser dans le domaine ciblé (SEP, Bandura) ?">?</span></div>
         </div>
-        <div style="background:rgba(83,52,131,.06);border-radius:8px;padding:14px 18px;margin-top:14px;font-size:.88rem;color:var(--text-body);line-height:1.65;border-left:4px solid var(--accent3);">
-          <strong style="color:var(--accent3);">Règle de lecture :</strong> la combinaison <em>faible compétence + fort impact</em> signale la priorité réelle, indépendamment de la priorité ressentie — qui peut être biaisée par l'habitude ou la résistance au changement.
-        </div>
-        <div style="background:white;border-radius:10px;padding:16px 20px;margin-top:14px;border:1px solid var(--border-soft);">
-          <strong style="color:var(--text-strong);font-size:.92rem;">Les 10 domaines à évaluer :</strong>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:.86rem;color:var(--text-body);">
-            <div>① Gestion de classe et comportements difficiles</div>
-            <div>② Différenciation pédagogique</div>
-            <div>③ Motivation et engagement des élèves</div>
-            <div>④ Climat relationnel et communication</div>
-            <div>⑤ Évaluation des apprentissages</div>
-            <div>⑥ Inclusion et besoins particuliers</div>
-            <div>⑦ Gestion du stress et charge de travail</div>
-            <div>⑧ Collaboration avec les parents et partenaires</div>
-            <div>⑨ Utilisation du numérique</div>
-            <div>⑩ Organisation personnelle</div>
+        <div class="thermo-resultat" aria-live="polite">
+          <div class="thermo-score">
+            <span class="thermo-score-num">Score global : <span id="score-global">—</span> / 20</span>
+            <span id="score-label" style="font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:14px;background:var(--surface);color:var(--text-muted)">Saisissez vos scores</span>
           </div>
-        </div>
-        <a href="bibliotheque.html#res-guide-formation" class="cta-link" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent3);color:white;padding:11px 22px;border-radius:10px;text-decoration:none;font-weight:700;font-size:.92rem;margin-top:18px;">
-          <svg class="icon"><use href="#i-doc"/></svg>
-          Télécharger la grille réflexive complète (PDF)
-        </a>
-      </div>
-
-      <!-- Fiche action -->
-      <div class="block-action fiche-block" id="s4-2">
-        <div class="block-action-head">
-          <div class="block-action-title">
-            <svg class="icon"><use href="#i-clipboard"/></svg>
-            Fiche action personnelle — Module 3
+          <div class="thermo-bar-global"><div class="thermo-bar-fill" id="bar-global"></div></div>
+          <div class="thermo-radar-wrap">
+            <svg class="thermo-radar" id="thermo-radar" viewBox="0 0 200 200" aria-label="Radar à 4 dimensions">
+              <circle cx="100" cy="100" r="20" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="40" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="60" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="80" class="thermo-radar-grid"/>
+              <line x1="100" y1="20" x2="100" y2="180" class="thermo-radar-axis"/>
+              <line x1="20" y1="100" x2="180" y2="100" class="thermo-radar-axis"/>
+              <polygon class="thermo-radar-shape" id="radar-shape" points="100,100 100,100 100,100 100,100"/>
+              <circle class="thermo-radar-point" id="point-energie" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-emotion" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-cognitif" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-social" cx="100" cy="100" r="3"/>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="10" r="8" fill="#d97706" opacity=".85"/>
+                <text x="100" y="13" class="thermo-radar-num" fill="white">①</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="190" cy="100" r="8" fill="#c0392b" opacity=".85"/>
+                <text x="190" y="103" class="thermo-radar-num" fill="white">②</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="190" r="8" fill="#1d4ed8" opacity=".85"/>
+                <text x="100" y="193" class="thermo-radar-num" fill="white">③</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="10" cy="100" r="8" fill="#15803d" opacity=".85"/>
+                <text x="10" y="103" class="thermo-radar-num" fill="white">④</text>
+              </g>
+            </svg>
+            <div class="thermo-bars-col">
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>① Lucidité sur mes forces</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>② Clarté des priorités</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>③ Accès aux ressources</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span>④ Sentiment d'efficacité</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
+              </div>
+            </div>
           </div>
-          <div class="block-action-meta" id="fiche-time">Pas encore enregistrée</div>
-        </div>
-                <div class="pratique-field">
-          <label for="m3-ingredient">Mon ingrédient professionnel le plus fragilisé (parmi les 6 de Gaudreau)</label>
-          <input type="text" placeholder="Ex. : gestion des comportements difficiles..." id="m3-ingredient">
-        </div>
-        <div class="pratique-field">
-          <label for="m3-pratiques">2 pratiques concrètes à développer</label>
-          <textarea rows="3" placeholder="1. 
-2. " id="m3-pratiques"></textarea>
-        </div>
-        <div class="pratique-field">
-          <label for="m3-ressource">Ressource identifiée pour cet ingrédient</label>
-          <input type="text" placeholder="Titre de la ressource, type (vidéo/PDF/article)..." id="m3-ressource">
-        </div>
-        <div class="pratique-field">
-          <label for="m3-engagement">Mon engagement concret cette semaine</label>
-          <textarea rows="2" placeholder="Une action précise, mesurable, réalisable d'ici 7 jours…" id="m3-engagement"></textarea>
+          <div class="thermo-interp" id="interp">L'interprétation s'affichera une fois les scores saisis.</div>
         </div>
         <div class="pratique-actions">
-          <button class="pratique-btn pratique-btn-primary" onclick="savePratique()">
-            <svg class="icon icon-sm"><use href="#i-save"/></svg>
-            Enregistrer
-          </button>
-          <button class="pratique-btn pratique-btn-secondary" onclick="printModule()">
-            <svg class="icon icon-sm"><use href="#i-print"/></svg>
-            Imprimer
-          </button>
-          <button class="pratique-btn pratique-btn-ghost" onclick="resetFiche()">
+          <button class="pratique-btn pratique-btn-ghost" onclick="resetThermo()">
             <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
             Recommencer
           </button>
-          <span class="saved-flag" id="saved-flag" aria-live="polite">
-            <svg class="icon icon-sm"><use href="#i-check"/></svg>
-            Enregistré localement
-          </span>
         </div>
       </div>
-
-      <button class="notes-toggle" onclick="toggleNotes('notes-s4')" aria-expanded="false" aria-controls="notes-s4">
-        <svg class="icon"><use href="#i-note"/></svg>
-        Mes notes sur cette section
-        <svg class="icon icon-sm chev"><use href="#i-chevron-down"/></svg>
-      </button>
-      <div class="notes-panel" id="notes-s4">
-        <textarea id="notes-s4-text" placeholder="Notes complémentaires sur ma pratique…" aria-label="Notes personnelles sur la section 4"></textarea>
-        <div class="notes-meta">
-          <span id="notes-s4-saved">Sauvegarde automatique</span>
-          <span id="notes-s4-time">—</span>
-        </div>
-      </div>
-    </section>
-
-    
-    <section class="mod-section" data-sec="5" id="s5" aria-labelledby="title-s5">
-      <div class="mod-section-head">
-        <div class="mod-section-num">5</div>
-        <div style="flex:1">
-          <div class="mod-section-eyebrow">Section 5 — Approfondir</div>
-          <h2 class="mod-section-title" id="title-s5">Pour aller plus loin</h2>
-        </div>
-        <div class="mod-section-meta">variable</div>
-      </div>
-      <p>Ressources spécifiquement sélectionnées pour approfondir les thèmes du Module 3.</p>
 
       <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/fiche-livre-Gaudreau.pdf" target="_blank" rel="noopener" class="ressource-card res-pdf">
         <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
