@@ -671,10 +671,11 @@ var MODULES_META = {
   2: {titre:'Prévention du burnout', color:'#c0392b', fichier:'prototype_module2.html'},
   3: {titre:'Besoins de formation', color:'#0f3460', fichier:'prototype_module3.html'},
   4: {titre:'Vulnérabilité au stress', color:'#b8860b', fichier:'prototype_module4.html'},
+  5: {titre:'Posture professionnelle et modèle PRÉSENCE', color:'#533483', fichier:'prototype_module5.html'},
   6: {titre:'Cartographie des ressources', color:'#4a7c59', fichier:'prototype_module6.html'},
   7: {titre:'Mentorat entre pairs', color:'#2980b9', fichier:'prototype_module7.html'},
-  8: {titre:'Stratégies pédagogiques', color:'#8e44ad', fichier:'prototype_module8.html'},
-  9: {titre:'Fatigue de compassion', color:'#4a7c59', fichier:'prototype_module9.html'}
+  8: {titre:'TDAH, classes difficiles et autodétermination', color:'#8e44ad', fichier:'prototype_module8.html'},
+  9: {titre:'Prendre soin de soi', color:'#4a7c59', fichier:'prototype_module9.html'}
 };
 
 /* ═══════════════════════════════════════════════════════════════
@@ -687,7 +688,7 @@ var ITEMS_APPROFONDI = {
       label: 'Posture enseignante',
       sous: 'Croyances, valeurs, réflexivité (Ben Alya)',
       color: '#e94560',
-      modules: [1, 6],
+      modules: [5, 1],
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
       items: [
         {q:'Je m\'interroge régulièrement sur les moteurs de mes décisions pédagogiques et j\'en évalue les effets sur les élèves.', dom:'Posture réflexive et auto-analyse', inv:false},
@@ -744,7 +745,7 @@ var ITEMS_APPROFONDI = {
       label: 'Compétences socio-émotionnelles',
       sous: 'CSÉ — Ben Alya',
       color: '#533483',
-      modules: [9, 7],
+      modules: [5, 9, 7],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
         {q:'Je suis conscient de mes capacités à enseigner à tous les élèves.', dom:'Conscience de soi', inv:false},
@@ -820,7 +821,7 @@ var ITEMS_APPROFONDI = {
       label: 'Le développement de relations positives',
       sous: 'Climat, lien enseignant-élève — Gaudreau',
       color: '#4a7c59',
-      modules: [7, 9],
+      modules: [5, 7, 9],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
         {q:'J’accorde autant d’importance au climat de la classe qu’au contenu que j’enseigne.', dom:'Général', inv:false},
