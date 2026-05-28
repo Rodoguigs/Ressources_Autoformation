@@ -204,7 +204,7 @@ function getModuleState(num){
 
 /* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
 function scanAllModules(){
-  var nums = [1,2,3,4,6,7,8,9];
+  var nums = [1,2,3,4,5,6,7,8,9];
   var completed = [];
   var inProgress = null;
   nums.forEach(function(n){
@@ -234,6 +234,52 @@ function saveDiagnostic(data){
   }catch(e){ return false; }
 }
 
+var ENGAGEMENTS_LABELS = {
+  1: {"ck1": "J'ai identifié au moins 2 signaux d'alerte qui me concernent actuellement", "ck2": "J'ai choisi un facteur de protection à renforcer cette semaine"},
+  2: {"ck1": "Je m'engage à noter chaque dimanche soir, pendant 1 mois, mon niveau de fatigue émotionnelle sur 10 et un signal somatique observé.", "ck2": "Je m'engage à identifier une ressource concrète de récupération que j'utiliserai chaque semaine (marche, échange entre pairs, activité physique)."},
+  3: {"ck1": "Je m'engage à compléter la grille réflexive des 10 domaines sur 30 minutes, dans une zone calme et sans interruption.", "ck2": "Je m'engage à choisir 2 domaines prioritaires identifiés et à formuler pour chacun un objectif SMART de formation sur 6 mois."},
+  4: {"ck1": "Je m'engage à identifier 3 déclencheurs récurrents de mon stress en classe et à noter ce que mon corps me signale dans ces moments.", "ck2": "Je m'engage à instaurer un rituel de transition de 5 minutes après mes journées difficiles, avant de rentrer dans le domaine personnel."},
+  5: {"ck1": "Je m'engage à identifier la dimension de posture (parmi les 8) que je veux développer en priorité ce mois-ci.", "ck2": "Je m'engage à tester un rituel d'ancrage (cohérence cardiaque, délai de réponse) avant mes cours pendant 2 semaines."},
+  6: {"ck1": "Je m'engage à dresser une cartographie écrite de mes 5 ressources principales personnelles et 5 professionnelles, en évaluant leur disponibilité actuelle.", "ck2": "Je m'engage à identifier une ressource sous-utilisée et à activer un usage concret dans les 2 semaines (formation, collègue ressource, outil)."},
+  7: {"ck1": "Je m'engage à identifier 2 collègues avec qui je peux instaurer un échange régulier (mensuel) sur ma pratique professionnelle.", "ck2": "Je m'engage à proposer ou rejoindre un groupe d'analyse de pratiques dans mon établissement ou inter-établissements dans les 3 prochains mois."},
+  8: {"ck1": "Je m'engage à clarifier par écrit mes 5 attentes principales pour chaque cours et à les communiquer explicitement aux élèves dès la première semaine.", "ck2": "Je m'engage à intégrer dans chaque cours une routine qui sollicite les 3 fonctions exécutives (inhibition, mémoire de travail, flexibilité)."},
+  9: {"ck1": "Je m'engage à observer pendant 2 semaines les intrusions cognitives liées à mon métier (notes à la maison, rêves) et à noter leur fréquence.", "ck2": "Je m'engage à mettre en place un rituel de \"fermeture\" professionnelle quotidienne pour décharger la journée avant la sphère personnelle."},
+};
+var MOD_TITRES = {1:"Module 1 — Bien-être",2:"Module 2 — Épuisement",3:"Module 3 — Besoins de formation",4:"Module 4 — Vulnérabilité au stress",5:"Module 5 — Posture & PRÉSENCE",6:"Module 6 — Cartographie",7:"Module 7 — Mentorat",8:"Module 8 — TDAH & classes difficiles",9:"Module 9 — Prendre soin de soi"};
+
+function renderPlanAction(){
+  var container = document.getElementById('plan-action-list');
+  if(!container) return;
+  var nums = [1,2,3,4,5,6,7,8,9];
+  var html = '';
+  var totalEngagements = 0;
+  nums.forEach(function(n){
+    var s = getModuleState(n);
+    if(!s || !s.checks) return;
+    var checked = [];
+    Object.keys(ENGAGEMENTS_LABELS[n] || {}).forEach(function(cid){
+      if(s.checks[cid]){
+        checked.push(ENGAGEMENTS_LABELS[n][cid]);
+        totalEngagements++;
+      }
+    });
+    if(checked.length){
+      html += '<div class="plan-mod-group">';
+      html += '<div class="plan-mod-titre">' + MOD_TITRES[n] + '</div>';
+      checked.forEach(function(label){
+        html += '<div class="plan-eng-item"><svg class="icon icon-sm" style="color:var(--sage,#4a7c59);flex-shrink:0"><use href="#i-check"/></svg><span>' + label + '</span></div>';
+      });
+      html += '</div>';
+    }
+  });
+  if(totalEngagements === 0){
+    container.innerHTML = '<div class="empty-state" style="padding:20px;text-align:center;color:var(--text-muted)">Vous n\'avez pas encore coché d\'engagement dans les modules. Vos engagements apparaîtront ici au fur et à mesure.</div>';
+  } else {
+    container.innerHTML = html;
+  }
+}
+
+window.addEventListener('DOMContentLoaded', renderPlanAction);
 window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 </script>
@@ -258,6 +304,10 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 .suivi-stat-label{font-size:.86rem;color:var(--text-muted)}
 
+
+.plan-mod-group{margin-bottom:18px}
+.plan-mod-titre{font-weight:700;font-size:.9rem;color:var(--text-strong);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border-soft)}
+.plan-eng-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:.88rem;color:var(--text-body);line-height:1.5}
 .mod-progress-list{margin-top:18px}
 .mod-prog-row{
   display:flex;align-items:center;gap:14px;
@@ -859,6 +909,14 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
   </div>
 
+  <h2 class="section-title">Mon plan d'action</h2>
+  <div class="suivi-card">
+    <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:6px">Tous les engagements que vous avez cochés dans les modules sont rassemblés ici — votre feuille de route personnelle.</p>
+    <div class="plan-action-list" id="plan-action-list">
+      <!-- Rempli par JS -->
+    </div>
+  </div>
+
   <h2 class="section-title">Historique des diagnostics</h2>
   <div class="suivi-card" id="diag-history">
     <div class="empty-state" id="diag-empty">
@@ -914,12 +972,13 @@ function formatDate(iso){
 }
 
 window.addEventListener('DOMContentLoaded', function(){
-  var nums = [1,2,3,4,6,7,8,9];
+  var nums = [1,2,3,4,5,6,7,8,9];
   var titles = {
     1:"Bien-être professionnel", 2:"Prévention du burnout",
     3:"Besoins de formation", 4:"Vulnérabilité au stress",
+    5:"Posture professionnelle et modèle PRÉSENCE",
     6:"Cartographie des ressources", 7:"Mentorat entre pairs",
-    8:"Stratégies pédagogiques", 9:"Fatigue de compassion"
+    8:"TDAH, classes difficiles et autodétermination", 9:"Prendre soin de soi"
   };
 
   var totalTime = 0;
