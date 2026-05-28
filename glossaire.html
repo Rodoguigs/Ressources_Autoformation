@@ -3,9 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Glossaire, FAQ et bibliographie des concepts-clés de la résilience professionnelle et des neurosciences éducatives.">
 <title>Glossaire · FAQ · Bibliographie · Autoformation</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+.skip-link{position:absolute;left:-999px;top:0;z-index:1000;background:var(--accent3,#533483);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font-weight:600;text-decoration:none;}
+.skip-link:focus{left:0;}
 /* ═══════════════════════════════════════════════════════════════
    Charte commune — Plateforme Autoformation
    Importée par toutes les pages de la coquille (sauf les modules).
@@ -958,6 +962,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Aller au contenu principal</a>
 
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
@@ -992,7 +997,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
   <span style="font-size:.78rem;">Rechercher</span>
-</button> <button class="theme-toggle" onclick="toggleTheme()"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</button> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème clair/sombre"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
 </header>
 
 <!-- Modal de recherche globale -->
@@ -1016,7 +1021,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <p class="page-sub">Trois ressources pour approfondir : un lexique des termes clés employés sur la plateforme, une foire aux questions, et la bibliographie complète des références citées.</p>
 </div>
 
-<main>
+<main id="main">
   <div class="info-block"><strong>Cette page réunit le lexique, la FAQ et la bibliographie complète du parcours.</strong> Naviguez entre les 3 onglets pour explorer.</div>
 <div class="tabs" role="tablist">
     <button class="tab-btn active" data-tab="gloss" role="tab">📖 Glossaire</button>

@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 1 · Bien-être professionnel — Prototype v5</title>
+  <meta name="description" content="Module 1 : développer son bien-être professionnel comme socle de la résilience enseignante.">
+<title>Module 1 · Bien-être professionnel</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
 (function() {
@@ -705,6 +707,11 @@ body{
   background:white;
   border-color:rgba(245,166,35,.3);
 }
+
+.thermo-help{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:5px;border-radius:50%;border:1px solid var(--accent3, #533483);color:var(--accent3, #533483);font-size:.62rem;font-weight:700;cursor:help;position:relative;vertical-align:middle;font-family:inherit;line-height:1;}
+.thermo-help::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--ink, #1a1a2e);color:#f5f5f8;padding:9px 13px;border-radius:8px;font-size:.76rem;font-weight:400;line-height:1.5;width:230px;max-width:80vw;text-align:left;box-shadow:0 4px 16px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .15s;z-index:60;}
+.thermo-help:hover::after{opacity:1;}
+@media (max-width:600px){.thermo-help::after{left:0;transform:none;}}
 [data-theme="dark"] .fiche-block .pratique-field input,
 [data-theme="dark"] .fiche-block .pratique-field textarea{
   background:rgba(255,255,255,.04);
@@ -2404,7 +2411,7 @@ body{
 <!-- Note prototype -->
 <div class="proto-note">
   <svg class="icon icon-lg" style="color:#92400e;flex-shrink:0;margin-top:2px"><use href="#i-target"/></svg>
-  <div><strong>Prototype v5</strong> — Radar thermomètre, code couleur typé pour ressources (PDF/Livre/Rapport/Web/Fiche), barre de progression scroll, encart diagnostic personnalisé (§2), boutons d'action permanents en bannière compacte, encart PRÉSENCE (§3), cas pratique enrichi avec « Et vous ? », sommaire intra-section progressif, temps passé tracké.</div>
+  <div><strong>Module 1 — Bien-être professionnel</strong> : ancré dans le modèle PRÉSENCE (Fahim, 2022) et les apports de Théorêt &amp; Leroux (2014). Ce module combine théorie, auto-évaluation et engagement concret pour faire du bien-être enseignant le socle de la résilience professionnelle.</div>
 </div>
 
 <!-- ═══ BANNIÈRE MODULE ═══ -->
@@ -2743,10 +2750,10 @@ body{
         </div>
         <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti actuel de 1 (très faible) à 5 (très élevé).</div>
         <div class="thermo-grid">
-          <div class="pratique-field"><label for="t-energie">① Énergie physique &amp; sommeil (1-5)</label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
-          <div class="pratique-field"><label for="t-emotion">② Stabilité émotionnelle (1-5)</label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
-          <div class="pratique-field"><label for="t-cognitif">③ Clarté cognitive (1-5)</label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
-          <div class="pratique-field"><label for="t-social">④ Soutien social &amp; sens (1-5)</label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-energie">① Énergie physique &amp; sommeil (1-5) <span class="thermo-help" data-tip="Votre niveau d'énergie physique et la qualité de votre sommeil : vous sentez-vous reposé·e ou épuisé·e ?">?</span></label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-emotion">② Stabilité émotionnelle (1-5) <span class="thermo-help" data-tip="Votre stabilité émotionnelle : gardez-vous votre calme, ou êtes-vous facilement débordé·e par les émotions ?">?</span></label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Clarté cognitive (1-5) <span class="thermo-help" data-tip="Votre clarté mentale : arrivez-vous à vous concentrer et à penser clairement, ou vous sentez-vous embrumé·e ?">?</span></label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-social">④ Soutien social &amp; sens (1-5) <span class="thermo-help" data-tip="Votre sentiment d'être soutenu·e et de trouver du sens : vous sentez-vous entouré·e et utile ?">?</span></label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
         </div>
         <div class="thermo-resultat" aria-live="polite">
           <div class="thermo-score">
