@@ -935,6 +935,8 @@ function saveState(){
    ═══════════════════════════════════════════════════════════════ */
 
 function switchMode(mode){
+  // En mode HEP, on bloque sur 'approfondi'
+  if (typeof isHepMode === 'function' && isHepMode()) { mode = 'approfondi'; }
   currentMode = mode;
   document.querySelectorAll('.mode-selector-btn').forEach(function(b){
     b.classList.toggle('active', b.dataset.mode === mode);
@@ -1577,11 +1579,46 @@ function updateThemeIcon(){
    Init
    ═══════════════════════════════════════════════════════════════ */
 
+/* ─── Verrouillage du mode approfondi en formation institutionnelle HEP ─── */
+function isHepMode(){
+  try {
+    var data = localStorage.getItem('aut_user_mode');
+    if (!data) return false;
+    var parsed = JSON.parse(data);
+    return parsed && parsed.mode === 'hep';
+  } catch(e){ return false; }
+}
+function applyHepLock(){
+  if (!isHepMode()) return false;
+  // Forcer le mode approfondi (78 items)
+  currentMode = 'approfondi';
+  // Masquer le sélecteur de version et l'intro version rapide
+  var sel = document.querySelector('.mode-selector');
+  if (sel) sel.style.display = 'none';
+  var introR = document.getElementById('intro-rapide');
+  if (introR) introR.style.display = 'none';
+  var introA = document.getElementById('intro-approfondi');
+  if (introA) introA.style.display = '';
+  // Adapter le sous-titre de la page au contexte institutionnel
+  var sub = document.querySelector('.page-sub');
+  if (sub) {
+    sub.innerHTML = 'Une lecture honnête de votre point de départ dans le cadre de la formation HEP-VS. '
+      + 'Vous compléterez le diagnostic <strong>approfondi</strong> sur 11 dimensions validées : '
+      + '4 sur les <strong>ressources personnelles</strong> (Ben Alya — posture, SEP, bien-être, CSÉ) '
+      + 'et 7 sur les <strong>ressources professionnelles</strong> (Gaudreau — gestion de classe efficace).';
+  }
+  return true;
+}
+
 window.addEventListener('DOMContentLoaded', function(){
   updateThemeIcon(); loadState();
+  // Verrou HEP : si mode institutionnel, forcer approfondi avant tout rendu
+  applyHepLock();
   document.querySelectorAll('.mode-selector-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.mode === currentMode); });
   document.getElementById('intro-rapide').style.display = (currentMode === 'rapide') ? '' : 'none';
   document.getElementById('intro-approfondi').style.display = (currentMode === 'approfondi') ? '' : 'none';
+  // Le verrou HEP s'applique en dernier pour neutraliser les deux lignes ci-dessus
+  applyHepLock();
   document.getElementById('diag-total').textContent = totalQuestions();
   renderContent();
   updateProgress();
