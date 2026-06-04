@@ -1045,7 +1045,7 @@ function renderApprofondi(temps){
       dim.items.forEach(function(item, idx){
         var val = arr[idx];
         html += '<div class="diag-question-block">'
-          + '<p class="diag-question"><span class="dom-tag" style="background:' + dim.color + '22;color:' + dim.color + '">' + item.dom + '</span>' + item.q + (item.inv ? ' <em style="font-size:.78em;color:var(--text-muted)">(item inversé)</em>' : '') + '</p>'
+          + '<p class="diag-question"><span class="dom-tag" style="background:' + dim.color + '22;color:' + dim.color + '">' + item.dom + '</span>' + item.q + '</p>'
           + '<div class="diag-scale" role="radiogroup">';
         for (var i = 1; i <= 5; i++) {
           var sel = (val === i) ? ' selected' : '';
