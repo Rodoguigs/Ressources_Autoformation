@@ -467,7 +467,9 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
 /* ===== PRÉSENCE ACCORDION ===== */
 .presence-accordion-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:28px;}
 
-.presence-acc-card {background:white;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:4px solid;overflow:hidden;}
+.presence-acc-card {background:white;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:4px solid;overflow:hidden;transition:box-shadow .2s;}
+
+.presence-acc-card.expanded {grid-column:1 / -1;box-shadow:0 4px 24px rgba(0,0,0,.1);}
 
 .presence-acc-header {display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;transition:background .2s;user-select:none;}
 
@@ -486,6 +488,10 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
 .presence-acc-body {display:none;padding:0 18px 18px;border-top:1px solid rgba(0,0,0,.06);}
 
 .presence-acc-body.open {display:block;animation:fadeUp .3s ease;}
+
+.presence-acc-card.expanded .presence-acc-body.open {padding:0 28px 28px;font-size:.88rem;}
+
+@media(max-width:700px){.presence-acc-card.expanded .presence-acc-body.open{padding:0 16px 20px;}}
 
 .manuel-section {margin-bottom:18px;}
 
@@ -2733,12 +2739,15 @@ function toggleNeuro(btn){
 
 function togglePresenceCard(header){
   var body = header.nextElementSibling;
+  var card = header.parentElement;
   if(!body) return;
   var isOpen = body.classList.contains('open');
   body.classList.toggle('open');
   body.style.display = isOpen ? 'none' : 'block';
   header.classList.toggle('open');
   header.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  card.classList.toggle('expanded', !isOpen);
+  if(!isOpen) setTimeout(function(){ card.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 50);
 }
 
 document.addEventListener('click', function(e){
