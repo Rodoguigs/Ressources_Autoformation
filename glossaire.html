@@ -578,7 +578,6 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .section-label {font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent1);margin-bottom:8px;}
 .divider {width:48px;height:4px;background:var(--accent1);border-radius:2px;margin-bottom:28px;}
 .resources-section .section-label {color:var(--gold);}
-.biblio-list {display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:8px;}
 .glossaire-grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
 /* ===== FAQ ===== */
 .faq-item {background:white;border-radius:12px;margin-bottom:10px;box-shadow:0 1px 10px rgba(0,0,0,.05);overflow:hidden;}
@@ -683,50 +682,77 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .faq-a p{margin:0 0 10px;}
 .faq-a p:last-child{margin-bottom:0;}
 
-/* ─── Bibliographie ─── */
-.biblio-section{
-  margin-bottom:30px;
+
+/* ─── Séparateurs de sections dans le glossaire ─── */
+.glossaire-section-sep {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 24px 0 8px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--border-soft);
 }
-.biblio-section h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.1rem;
-  font-weight:700;
-  color:var(--text-strong);
-  margin:0 0 14px;
-  padding-bottom:8px;
-  border-bottom:2px solid var(--accent3);
+.glossaire-section-sep-label {
+  font-family: 'Playfair Display', serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: .04em;
+  white-space: nowrap;
+  background: var(--light);
+  padding: 0 10px 0 0;
 }
-.biblio-list{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(380px,1fr));
-  gap:10px;
-}
-.biblio-ref{
-  background:var(--surface);
-  border:1px solid var(--border-soft);
-  border-radius:10px;
-  padding:12px 16px;
-  font-size:.85rem;
-  color:var(--text-body);
-  line-height:1.55;
-  transition:all .15s;
-}
-.biblio-ref:hover{
-  border-color:var(--accent3);
-  transform:translateX(2px);
-}
-.biblio-ref strong{
-  color:var(--text-strong);
-  display:block;
-  margin-bottom:2px;
-  font-size:.92rem;
-}
-.biblio-ref em{
-  color:var(--text-muted);
-  font-style:italic;
+[data-theme="dark"] .glossaire-section-sep-label {
+  background: var(--light);
 }
 
-/* ─── Section label (utilisé partout) ─── */
+/* ─── Bibliographie améliorée ─── */
+.biblio-group {
+  margin-bottom: 40px;
+}
+.biblio-group-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 0 0 18px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, rgba(83,52,131,.06), rgba(15,52,96,.04));
+  border-radius: 12px 12px 0 0;
+  border-left: 4px solid var(--accent3);
+  border-bottom: 1px solid var(--border-soft);
+  letter-spacing: -.01em;
+}
+.biblio-group-title.resources {
+  background: linear-gradient(135deg, rgba(245,166,35,.08), rgba(74,124,89,.04));
+  border-left-color: var(--gold);
+}
+.biblio-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 10px;
+}
+.biblio-list-single {
+  grid-template-columns: 1fr;
+}
+.biblio-entry {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: .85rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  transition: all .15s;
+}
+.biblio-entry:hover {
+  border-color: var(--accent3);
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(83,52,131,.08);
+}
+
+
 .section-label{
   display:inline-block;
   font-size:.72rem;
@@ -1040,12 +1066,12 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <input class="glossaire-search" oninput="filterGlossaire(this.value)" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" type="text"/>
 </div>
  ── CARTE DES SIGLES — repère rapide ── 
-<div id="sigles-quickref" style="max-width:980px;margin:32px auto 36px;background:#fafbff;border:1px solid #e0e6f5;border-radius:14px;padding:22px 26px;">
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
-<span style="font-size:1.2rem;">🔤</span>
-<h3 style="margin:0;font-family:'Playfair Display',serif;font-size:1.1rem;color:#16213e;font-weight:700;">Sigles et acronymes utilisés dans la démarche</h3>
+<div id="sigles-quickref" style="max-width:980px;margin:32px auto 48px;background:var(--surface-alt);border:1px solid var(--border-soft);border-radius:16px;padding:26px 30px;box-shadow:0 2px 8px rgba(83,52,131,.06);">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
+<span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:linear-gradient(135deg,var(--accent3),var(--accent2));border-radius:10px;font-size:1.15rem;flex-shrink:0;">🔤</span>
+<h3 style="margin:0;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text-strong);font-weight:700;letter-spacing:-.01em;">Sigles et acronymes utilisés dans la démarche</h3>
 </div>
-<p style="font-size:.78rem;color:#666;margin:0 0 16px;line-height:1.55;">Repère synthétique des abréviations rencontrées dans le parcours. Pour les définitions conceptuelles approfondies, voir le glossaire ci-dessous.</p>
+<p style="font-size:.8rem;color:var(--text-muted);margin:0 0 20px 50px;line-height:1.55;font-style:italic;">Repère synthétique des abréviations rencontrées dans le parcours. Pour les définitions approfondies, voir le glossaire ci-dessous.</p>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px 22px;font-size:.8rem;line-height:1.55;">
 <div><strong style="color:#533483;">PRÉSENCE</strong> — Modèle intégratif de Fahim (2022) : <em>Plasticité · Régulation · Émotion · Sens · Engagement · Neurosciences · Conscience · Éducation</em>. Cadre de référence du parcours.</div>
 <div><strong style="color:#533483;">CUA</strong> / <strong style="color:#533483;">UDL</strong> — Conception universelle de l'apprentissage / <em>Universal Design for Learning</em>. Cadre de différenciation pédagogique pensé en amont (vs. adaptation a posteriori).</div>
@@ -1056,7 +1082,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div><strong style="color:#533483;">TSA</strong> — Trouble du spectre de l'autisme. Trouble neurodéveloppemental caractérisé par des particularités de communication sociale et des intérêts restreints.</div>
 <div><strong style="color:#533483;">TND</strong> — Trouble neurodéveloppemental. Catégorie regroupant les troubles qui affectent le développement du système nerveux et se manifestent tôt dans la vie : TDAH, trouble du spectre de l'autisme (TSA), troubles spécifiques des apprentissages (dyslexie, dysorthographie, dyscalculie, dyspraxie, dysphasie), trouble développemental de la coordination, etc. Ces troubles touchent fréquemment les fonctions exécutives et nécessitent un étayage pédagogique adapté plutôt que des sanctions.</div>
 <div><strong style="color:#533483;">TAD</strong> — Théorie de l'autodétermination (Deci &amp; Ryan). Trois besoins psychologiques fondamentaux : autonomie, compétence, appartenance.</div>
-<div><strong style="color:#533483;">EBSME</strong> — Échelle de Bien-être et Stratégies de Mobilisation des Émotions. Outil d'autoévaluation enseignant utilisé dans le parcours.</div>
+
 
 
 <div><strong style="color:#533483;">RE21</strong> — Réseau d'écoles 21 (santé et durabilité). Réseau suisse romand d'établissements engagés dans une démarche globale de promotion de la santé.</div>
@@ -1065,11 +1091,25 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="glossaire-grid" id="glossaire-grid">
+
+<!-- ─── Santé mentale & psychologie du travail ─── -->
+<div class="glossaire-section-sep"><span class="glossaire-section-sep-label">🧠 Santé mentale &amp; psychologie du travail</span></div>
+
+<div class="glossaire-entry" data-tags="santé mentale OMS bien-être psychologique définition positif ressources">
+<span class="g-tag">Santé · Définition fondamentale</span>
+<h4>Santé mentale</h4>
+<p>Selon l'Organisation mondiale de la santé (OMS, 2022), la santé mentale est <em>« un état de bien-être qui permet à chacun de réaliser son potentiel, de faire face aux difficultés normales de la vie, de travailler avec succès et de manière productive, et d'être en mesure d'apporter une contribution à la communauté »</em>. Elle ne se réduit pas à l'absence de trouble psychique : c'est une ressource active, dynamique et contextuelle. En milieu scolaire, la santé mentale de l'enseignant·e constitue une condition fondamentale à la qualité de l'enseignement, à la relation pédagogique et à la prévention de l'épuisement professionnel. Elle intègre des dimensions émotionnelles (régulation, résilience), cognitives (fonctions exécutives, flexibilité) et sociales (sentiment d'appartenance, soutien). Cette plateforme d'autoformation vise précisément à renforcer ces ressources, en mobilisant les apports des neurosciences éducatives et du modèle PRÉSENCE.</p>
+</div>
+
 <div class="glossaire-entry" data-tags="burnout épuisement MBI maslach professionnel">
 <span class="g-tag">Psychologie du travail</span>
 <h4>Burnout (épuisement professionnel)</h4>
 <p>Syndrome de déséquilibre chronique entre les demandes et les ressources, caractérisé par trois dimensions (Maslach) : épuisement émotionnel, dépersonnalisation (cynisme, détachement), et réduction du sentiment d'accomplissement. Mesuré par le MBI-ES (Maslach Burnout Inventory – Educators Survey). Distinct de la fatigue ponctuelle ou du stress aigu.</p>
 </div>
+
+<!-- ─── Neurosciences fondamentales ─── -->
+<div class="glossaire-section-sep"><span class="glossaire-section-sep-label">🔬 Neurosciences fondamentales</span></div>
+
 <div class="glossaire-entry" data-tags="élagage synaptique connexions neurones adolescence cerveau">
 <span class="g-tag">Neurosciences · Développement</span>
 <h4>Élagage synaptique (synaptic pruning)</h4>
@@ -1100,6 +1140,10 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <h4>Cortisol</h4>
 <p>Principale hormone glucocorticoïde libérée par l'axe HPA en réponse au stress. À dose ponctuelle, il mobilise l'organisme ; à dose élevée et prolongée, il altère la plasticité neuronale du cortex préfrontal (Ochsner &amp; Gross, 2005) et dégrade les capacités d'autorégulation et de mémoire de travail. C'est le mécanisme par lequel un stress chronique — chez l'enseignant comme chez l'élève — réduit l'accès aux fonctions exécutives nécessaires à l'enseignement et à l'apprentissage.</p>
 </div>
+
+<!-- ─── Psychologie · Régulation · Ressources ─── -->
+<div class="glossaire-section-sep"><span class="glossaire-section-sep-label">💡 Psychologie, régulation &amp; ressources professionnelles</span></div>
+
 <div class="glossaire-entry" data-tags="locus contrôle interne externe pouvoir agir Rotter">
 <span class="g-tag">Psychologie sociale</span>
 <h4>Locus de contrôle interne</h4>
@@ -1230,6 +1274,10 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <h4>Apprentissage visible</h4>
 <p>Concept de Hattie (<em>Visible Learning</em>) issu de méta-analyses : l'apprentissage est optimal quand l'enseignant·e rend visibles les objectifs et les critères de réussite, et quand l'élève devient acteur·rice de ses propres progrès. Met en avant les pratiques à fort effet.</p>
 </div>
+
+<!-- ─── Structures cérébrales & stress ─── -->
+<div class="glossaire-section-sep"><span class="glossaire-section-sep-label">⚡ Structures cérébrales &amp; mécanismes du stress</span></div>
+
 <div class="glossaire-entry" data-tags="amygdale peur émotion stress menace cerveau limbique">
 <span class="g-tag">Neurosciences · Fondamental</span>
 <h4>Amygdale</h4>
@@ -1248,7 +1296,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="glossaire-entry" data-tags="BDNF facteur neurotrophique hippocampe stress plasticité cerveau">
 <span class="g-tag">Neurosciences · Stress</span>
 <h4>BDNF (Brain-Derived Neurotrophic Factor)</h4>
-<p>Protéine neurotrophique qui favorise la survie, la croissance et la plasticité des neurones, particulièrement dans l'hippocampe. Le stress chronique en réduit la production, altérant la mémoire et l'apprentissage. À l'inverse, l'activité physique, le sommeil réparateur et les environnements émotionnellement sécurisants stimulent la synthèse de BDNF — fournissant un substrat biologique aux pratiques de bien-être enseignant.</p>
+<p>Protéine neurotrophique qui favorise la survie, la croissance et la plasticité des neurones, particulièrement dans l'hippocampe. Le stress chronique en réduit la production, altérant la mémoire et l'apprentissage. À l'inverse, l'activité physique, le sommeil réparateur et les environnements émotionnellement sécurisants stimulent la synthèse de BDNF — fournissant un substrat biologique aux pratiques de soutien à la santé mentale enseignante.</p>
 </div>
 <div class="glossaire-entry" data-tags="intéroception perception interne corps signaux émotions régulation">
 <span class="g-tag">Neurosciences · Stress</span>
@@ -1260,9 +1308,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <h4>Go/NoGo® — Programme Fahim (2022)</h4>
 <p>Programme de formation en neurosciences du stress et de la régulation émotionnelle développé par Dr. Cherine Fahim (Endoxa Neuroscience). Integre les apports de l'insula, des marqueurs somatiques (Damasio), de la mémoire épisodique et de la relaxation neurobiologique. Comprend la <em>recette en 7 étapes</em> de gestion du stress, les modèles TéCOOL® (régulation émotionnelle) et MIO® (modèle interne opératoire). Fil conducteur du Module 4 de cette plateforme.</p>
 </div>
-</div>
+
 
 </div>
+
+  </div><!-- /tab-gloss -->
 
   <!-- ─── FAQ ─── -->
   <div class="tab-content" id="tab-faq">
@@ -1277,7 +1327,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#ffebee;color:#c62828;">Profil vulnérable · Épuisement</span><br/>
-      Si vous vous sentez dépassé(e), commencez par <strong>l'Étape 2 uniquement</strong> — évaluer votre bien-être et identifier les signaux d'alerte. Pas l'Étape 1 (trop théorique pour un état d'épuisement) ni l'Étape 3 (trop exigeante). Complétez la Fiche Action de l'Étape 2 en 15 minutes. Revenez au reste quand vous vous sentirez un peu plus disponible.<br/><br/>
+      Si vous vous sentez dépassé(e), commencez par <strong>l'Étape 2 uniquement</strong> — évaluer votre santé mentale et identifier les signaux d'alerte. Pas l'Étape 1 (trop théorique pour un état d'épuisement) ni l'Étape 3 (trop exigeante). Complétez la Fiche Action de l'Étape 2 en 15 minutes. Revenez au reste quand vous vous sentirez un peu plus disponible.<br/><br/>
 <strong>Si l'épuisement est sévère :</strong> avant toute autoformation, consultez un médecin ou un professionnel de santé. Cette démarche est un outil de développement professionnel, pas un dispositif thérapeutique. Elle complète — sans remplacer — le suivi médical ou psychologique.
     </div>
 </div>
@@ -1350,7 +1400,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="biblio-group">
 <div class="biblio-group-title">📗 Ouvrages et chapitres</div>
-<div class="biblio-list">
+<div class="biblio-list biblio-list-single">
 <div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
 <div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
 <div class="biblio-entry">Beaumont, C. (2019). <em>Cinq caractéristiques de l'adulte bienveillant à l'école : la méthode C.E.F.E.R.</em> Réseau PÉRISCOPE, Université Laval. <a href="https://periscope-r.quebec/" rel="noopener noreferrer" target="_blank">periscope-r.quebec</a></div>
@@ -1376,7 +1426,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="biblio-group">
 <div class="biblio-group-title">📄 Articles et revues scientifiques</div>
-<div class="biblio-list">
+<div class="biblio-list biblio-list-single">
 <div class="biblio-entry">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands–resources theory. <em>Journal of Occupational Health Psychology, 22(3)</em>, 273–285.</div>
 <div class="biblio-entry">Beaumont, C., Langri, S., Wilkie, T., Marquis, D. et Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval / HEP-VS. [Adaptation du modèle CS3 ajoutant la compétence <em>conscience de l'interdépendance</em>]</div>
 <div class="biblio-entry">Beltman, S., Mansfield, C. F. et Price, A. (2011). Thriving not just surviving. <em>Educational Research Review, 6(3)</em>, 185–207.</div>
@@ -1406,7 +1456,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="biblio-entry">Gu, Q., &amp; Day, C. (2013). Challenges to teacher resilience. <em>British Educational Research Journal, 39(1)</em>, 22–44.</div>
 <div class="biblio-entry">Ochsner, K. N., &amp; Gross, J. J. (2005). The cognitive control of emotion. <em>Trends in Cognitive Sciences, 9(5)</em>, 242–249. <a href="https://doi.org/10.1016/j.tics.2005.03.010" rel="noopener noreferrer" target="_blank">doi:10.1016/j.tics.2005.03.010</a></div>
 <div class="biblio-entry">Pajares, M. F. (1992). Teachers’ beliefs and educational research: Cleaning up a messy construct. <em>Review of Educational Research, 62</em>(3), 307–332.</div>
-    Tims, M., Bakker, A. B., &amp; Derks, D. (2012). Development of the job crafting scale. <em>Journal of Vocational Behavior, 80(1)</em>, 173–186.</div>
+<div class="biblio-entry">Tims, M., Bakker, A. B., &amp; Derks, D. (2012). Development of the job crafting scale. <em>Journal of Vocational Behavior, 80(1)</em>, 173–186.</div>
 <div class="biblio-entry">Théorêt, M., et Leroux, M. (2014). La résilience éducationnelle. <em>Revue canadienne de l'éducation, 37(2)</em>, 1–18.</div>
 <div class="biblio-entry">Tschannen-Moran, M., Woolfolk Hoy, A. et Hoy, W. K. (1998). Teacher efficacy: Its meaning and measure. <em>Review of Educational Research, 68(2)</em>, 202–248.</div>
 <div class="biblio-entry">Tschannen-Moran, M., &amp; Hoy, A. W. (2001). Teacher efficacy: Capturing an elusive construct. <em>Teaching and Teacher Education, 17(7)</em>, 783–805.</div>
@@ -1414,8 +1464,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 <div class="biblio-group">
-<div class="biblio-group-title">🌐 Ressources en ligne &amp; rapports</div>
-<div class="biblio-list">
+<div class="biblio-group-title resources">🌐 Ressources en ligne &amp; rapports</div>
+<div class="biblio-list biblio-list-single">
 <div class="biblio-entry">Beaumont, C. (2023). <em>Promouvoir à la fois la santé mentale, un climat scolaire positif et la prévention de la violence : Guide de planification pour soutenir de manière continue le bien-être à l'école.</em> Chaire de recherche Bienêtre à l'école et prévention de la violence, Université Laval. <a href="https://www.violence-ecole.ulaval.ca/" rel="noopener noreferrer" target="_blank">violence-ecole.ulaval.ca</a> [Guide source de la section 6.3 — Pyramide de prévention à 4 niveaux]</div>
 <div class="biblio-entry">État du Valais &amp; FMEP. (2024). <em>Enquête de satisfaction du personnel enseignant du canton du Valais.</em> Service de l'enseignement du Valais. (Reporté par RTS Info, 4 février 2025 : <a href="https://www.rts.ch/info/regions/valais/2025/article/stress-et-charge-de-travail-en-hausse-chez-les-enseignants-valaisans-28779013.html" rel="noopener noreferrer" target="_blank">rts.ch</a>)</div>
 <div class="biblio-entry">Kunz Heim, D., Böhm, A. et al. (2014). <em>Gesundheitliche Belastungen, Ressourcen und Arbeitsbewältigung von Lehrpersonen.</em> Haute École Pédagogique de la Suisse du Nord-Ouest (FHNW). [Burnout estimé entre 23 % et 34 % des enseignants en Suisse alémanique]</div>
@@ -1428,8 +1478,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="biblio-entry">Potvin, P., Fortin, L., Marcotte, D., Royer, É., &amp; Deslandes, R. (2007). <em>Guide de prévention du décrochage scolaire.</em> CTREQ, Québec. [Relation maître-élève, bienveillance et engagement scolaire — facteurs de protection contre le décrochage]</div>
 </div>
 </div>
-
-</div>
+</div><!-- /tab-biblio -->
 </main>
 
 <footer>
@@ -1453,13 +1502,18 @@ document.querySelectorAll('.tab-btn').forEach(function(btn){
 });
 
 // Recherche glossaire
-document.getElementById('gloss-search').addEventListener('input', function(){
-  var q = this.value.toLowerCase();
-  document.querySelectorAll('.gloss-item').forEach(function(item){
+function filterGlossaire(q) {
+  q = (q || '').toLowerCase();
+  document.querySelectorAll('.glossaire-entry').forEach(function(item){
     var txt = item.textContent.toLowerCase();
-    item.style.display = txt.indexOf(q) !== -1 ? '' : 'none';
+    var tags = (item.dataset.tags || '').toLowerCase();
+    item.style.display = (txt.indexOf(q) !== -1 || tags.indexOf(q) !== -1) ? '' : 'none';
   });
-});
+  // Cacher les séparateurs orphelins si toutes les entrées de la section sont cachées
+  document.querySelectorAll('.glossaire-section-sep').forEach(function(sep){
+    sep.style.display = q ? 'none' : '';
+  });
+}
 </script>
 
 <script>
