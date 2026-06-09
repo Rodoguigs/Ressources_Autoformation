@@ -167,6 +167,87 @@ footer .footer-links{margin-bottom:8px;display:flex;justify-content:center;gap:1
   main{padding:20px}
 }
 
+
+/* ─── Bloc parcours recommandé ─── */
+.parcours-recommande{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-left:5px solid var(--accent3);
+  border-radius:14px;
+  padding:24px 28px;
+  margin-bottom:28px;
+}
+[data-theme="dark"] .parcours-recommande{
+  background:var(--surface-alt);
+}
+.parcours-recommande-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;gap:12px;flex-wrap:wrap;
+}
+.parcours-recommande-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;
+  color:var(--text-strong);margin:0;
+}
+.parcours-recommande-sub{
+  font-size:.84rem;color:var(--text-muted);margin:4px 0 0;
+}
+.parcours-recommande-link{
+  font-size:.8rem;font-weight:600;color:var(--accent3);
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+}
+.parcours-recommande-link:hover{text-decoration:underline;}
+.parcours-reco-cards{
+  display:flex;gap:14px;flex-wrap:wrap;
+}
+.parcours-reco-card{
+  flex:1;min-width:180px;max-width:280px;
+  background:var(--surface-alt);
+  border:1px solid var(--border-soft);
+  border-top:4px solid var(--reco-color, var(--accent3));
+  border-radius:10px;
+  padding:14px 16px;
+  text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:4px;
+  transition:all .18s;
+}
+.parcours-reco-card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-floating);
+  text-decoration:none;
+}
+.parcours-reco-num{
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--reco-color, var(--accent3));
+}
+.parcours-reco-titre{
+  font-weight:700;font-size:.9rem;color:var(--text-strong);line-height:1.3;
+}
+.parcours-reco-cta{
+  font-size:.78rem;font-weight:600;color:var(--reco-color, var(--accent3));
+  margin-top:6px;
+}
+.parcours-no-diag{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.parcours-no-diag-text{
+  flex:1;font-size:.9rem;color:var(--text-muted);line-height:1.5;
+}
+.parcours-no-diag-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 20px;border-radius:8px;
+  background:var(--accent3);color:white;
+  font-size:.86rem;font-weight:700;
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+  transition:opacity .15s;
+}
+.parcours-no-diag-cta:hover{opacity:.88;text-decoration:none;}
+/* Emplacement ressources ciblées — à activer quand disponibles */
+.ressources-ciblees{display:none;}
+@media(max-width:600px){
+  .parcours-reco-cards{flex-direction:column;}
+  .parcours-reco-card{max-width:100%;}
+}
 </style>
 <script>
 /* ═══════════════════════════════════════════════════════════════
@@ -921,6 +1002,10 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 <main id="main">
 
+
+<!-- BLOC PARCOURS RECOMMANDÉ -->
+<div id="parcours-recommande-bloc" class="parcours-recommande" style="display:none"></div>
+
 <!-- Mode lecture toggle -->
 <div class="reading-mode-section">
   <h3 class="reading-mode-title">Mode de parcours</h3>
@@ -1638,6 +1723,76 @@ function setReadingMode(mode){
   } else {
     init();
   }
+})();
+</script>
+
+<script>
+/* ─── Bloc parcours recommandé ─── */
+(function(){
+  var MOD_META = {
+  1:{titre:'Bien-être professionnel enseignant', color:'#c0392b', url:'prototype_module1_v5.html'},
+  2:{titre:'Prévention du burnout', color:'#7d2e2e', url:'prototype_module2.html'},
+  3:{titre:'Profil des besoins de formation', color:'#0f3460', url:'prototype_module3.html'},
+  4:{titre:'Vulnérabilité au stress', color:'#b8860b', url:'prototype_module4.html'},
+  5:{titre:'Posture professionnelle et PRÉSENCE', color:'#0d6e6e', url:'prototype_module5.html'},
+  6:{titre:'Cartographie des ressources', color:'#2e6b3e', url:'prototype_module6.html'},
+  7:{titre:'Mentorat entre pairs', color:'#1a6fa8', url:'prototype_module7.html'},
+  8:{titre:'TDAH, classes difficiles et autodétermination', color:'#6a3d9a', url:'prototype_module8.html'},
+  9:{titre:'Prendre soin de soi', color:'#8e3a6e', url:'prototype_module9.html'}
+};
+
+  function getRecommended(){
+    try {
+      var v3 = localStorage.getItem('aut_diagnostic_v3');
+      if(v3){ var d=JSON.parse(v3); if(d.t1&&d.t1.recommended) return {mods:d.t1.recommended.map(Number), mode:'approfondie'}; }
+      var v1 = localStorage.getItem('aut_diagnostic_v1');
+      if(v1){ var d1=JSON.parse(v1); if(d1.recommendedModules&&d1.recommendedModules.length) return {mods:d1.recommendedModules.map(Number), mode:d1.mode==='approfondi'?'approfondie':'rapide'}; }
+    } catch(e){}
+    return null;
+  }
+
+  function render(){
+    var bloc = document.getElementById('parcours-recommande-bloc');
+    if(!bloc) return;
+    var rec = getRecommended();
+
+    if(!rec){
+      bloc.style.display = 'block';
+      bloc.innerHTML =
+        '<div class="parcours-recommande-head"><div><p class="parcours-recommande-title">Votre parcours personnalisé</p><p class="parcours-recommande-sub">Faites l'évaluation pour identifier vos modules prioritaires.</p></div></div>'+
+        '<div class="parcours-no-diag">'+
+          '<p class="parcours-no-diag-text">L'évaluation complète (11 dimensions · ~15 min) analyse vos ressources personnelles et professionnelles et oriente votre parcours. Sans elle, vous naviguez à l'aveugle.</p>'+
+          '<a href="diagnostic.html?mode=approfondi" class="parcours-no-diag-cta">Faire l'évaluation →</a>'+
+        '</div>'+
+        '<!-- RESSOURCES CIBLÉES : à intégrer ici par dimension une fois disponibles -->';
+      return;
+    }
+
+    var mods = rec.mods.slice(0,3);
+    var cardsHtml = mods.map(function(n){
+      var m = MOD_META[n];
+      if(!m) return '';
+      return '<a href="'+m.url+'" class="parcours-reco-card" style="--reco-color:'+m.color+'">'+
+        '<span class="parcours-reco-num">Module '+n+'</span>'+
+        '<span class="parcours-reco-titre">'+m.titre+'</span>'+
+        '<span class="parcours-reco-cta">Commencer →</span>'+
+      '</a>';
+    }).join('');
+
+    bloc.style.display = 'block';
+    bloc.innerHTML =
+      '<div class="parcours-recommande-head">'+
+        '<div><p class="parcours-recommande-title">Votre parcours recommandé</p>'+
+        '<p class="parcours-recommande-sub">D'après votre évaluation '+rec.mode+', ces modules correspondent à vos priorités actuelles.</p></div>'+
+        '<a href="diagnostic.html" class="parcours-recommande-link">Refaire l'évaluation</a>'+
+      '</div>'+
+      '<div class="parcours-reco-cards">'+cardsHtml+'</div>'+
+      '<!-- RESSOURCES CIBLÉES : à intégrer ici par dimension une fois disponibles -->';
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded', render);
+  } else { render(); }
 })();
 </script>
 </body>
