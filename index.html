@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Parcours d'autoformation à la résilience professionnelle enseignante, fondé sur le modèle PRÉSENCE et les neurosciences éducatives.">
 <title>Autoformation à la résilience professionnelle enseignante</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%231e4d6b%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-.skip-link{position:absolute;left:-999px;top:0;z-index:1000;background:var(--accent3,#533483);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font-weight:600;text-decoration:none;}
+.skip-link{position:absolute;left:-999px;top:0;z-index:1000;background:var(--accent3,#1e4d6b);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font-weight:600;text-decoration:none;}
 .skip-link:focus{left:0;}
 /* ═══════════════════════════════════════════════════════════════
    Charte commune — Plateforme Autoformation
@@ -18,7 +18,7 @@
 
 :root{
   --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
-  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --accent3:#1e4d6b; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
   --light:#f8f5f0; --muted:#7a7a9d;
   --surface:#ffffff; --surface-alt:#fafbff;
   --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
@@ -32,7 +32,7 @@
   --surface:#1a1d24; --surface-alt:#13161c;
   --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
   --border-soft:rgba(255,255,255,.1);
-  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#4a8db0;
   --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
   --shadow-floating: 0 8px 24px rgba(0,0,0,.4);
 }
@@ -275,11 +275,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   position:relative;overflow:hidden;
   /* Dégradé violet → rose → crème (chaud et accueillant) */
   background:
-    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(83,52,131,.18) 0%, rgba(83,52,131,.08) 30%, transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(30,77,107,.18) 0%, rgba(30,77,107,.08) 30%, transparent 70%),
     radial-gradient(ellipse 70% 50% at 80% 70%, rgba(233,69,96,.14) 0%, rgba(233,69,96,.05) 40%, transparent 75%),
     radial-gradient(ellipse 60% 80% at 20% 80%, rgba(245,166,35,.10) 0%, rgba(245,166,35,.04) 35%, transparent 70%),
     linear-gradient(180deg, #faf6f1 0%, #f5ecf5 40%, #f8e8ed 70%, var(--light) 100%);
-  border-bottom:1px solid rgba(83,52,131,.08);
+  border-bottom:1px solid rgba(30,77,107,.08);
 }
 [data-theme="dark"] .hero{
   background:
@@ -295,7 +295,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   font-weight:700;color:var(--accent3);
   margin-bottom:20px;
   padding:5px 16px;
-  background:rgba(83,52,131,.1);
+  background:rgba(30,77,107,.1);
   border-radius:14px;
 }
 [data-theme="dark"] .hero-eyebrow{
@@ -317,13 +317,13 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 .hero-pitch{
   background:rgba(255,255,255,.85);
-  border:1px solid rgba(83,52,131,.15);
+  border:1px solid rgba(30,77,107,.15);
   border-left:4px solid var(--accent3);
   border-radius:14px;
   padding:20px 26px;
   max-width:680px;margin:0 auto 36px;
   text-align:left;
-  box-shadow:0 4px 20px rgba(83,52,131,.08);
+  box-shadow:0 4px 20px rgba(30,77,107,.08);
   backdrop-filter:blur(6px);
   font-size:.95rem;color:var(--text-body);
 }
@@ -338,11 +338,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .mini-jauge-bloc{
   display:inline-flex;margin-top:28px;align-items:center;gap:12px;
   padding:9px 20px;background:rgba(255,255,255,.85);
-  border:1px solid rgba(83,52,131,.15);
+  border:1px solid rgba(30,77,107,.15);
   border-radius:24px;
   font-size:.84rem;color:var(--text-muted);
   backdrop-filter:blur(6px);
-  box-shadow:0 2px 10px rgba(83,52,131,.06);
+  box-shadow:0 2px 10px rgba(30,77,107,.06);
 }
 [data-theme="dark"] .mini-jauge-bloc{
   background:rgba(26,29,36,.85);
@@ -362,11 +362,41 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 /* 3 portes d'entrée */
 .portes{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-columns:1fr 1fr;
   gap:24px;
-  max-max-width:1400px;margin:60px auto 80px;
+  max-width:1400px;margin:60px auto 80px;
   padding:0 28px;
 }
+.porte-diag{
+  grid-column:1 / -1;
+  flex-direction:row;
+  align-items:stretch;
+  gap:0;
+}
+.porte-diag-main{
+  flex:1;
+  display:flex;flex-direction:column;
+  padding-right:28px;
+  border-right:1px solid var(--border-soft);
+}
+.porte-diag-alt{
+  width:240px;flex-shrink:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-left:28px;
+}
+.porte-diag-alt-label{
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--text-muted);margin-bottom:8px;
+}
+.porte-diag-alt-text{
+  font-size:.84rem;color:var(--text-muted);line-height:1.55;margin-bottom:12px;
+}
+.porte-diag-alt-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.84rem;font-weight:700;color:var(--porte-color);
+  text-decoration:none;
+}
+.porte-diag-alt-link:hover{text-decoration:underline;}
 .porte{
   background:var(--surface);
   border:1px solid var(--border-soft);
@@ -477,8 +507,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   font-size:.82rem;color:var(--text-muted);
   line-height:1.5;
 }
-.menu-fondements{--menu-color:#533483;--menu-soft:#ede9fe}
-[data-theme="dark"] .menu-fondements{--menu-color:#b591d3;--menu-soft:rgba(83,52,131,.2)}
+.menu-fondements{--menu-color:#1e4d6b;--menu-soft:#ede9fe}
+[data-theme="dark"] .menu-fondements{--menu-color:#b591d3;--menu-soft:rgba(30,77,107,.2)}
 .menu-suivi{--menu-color:#2d9cdb;--menu-soft:#dbeafe}
 [data-theme="dark"] .menu-suivi{--menu-color:#5ab8e8;--menu-soft:rgba(45,156,219,.2)}
 .menu-biblio{--menu-color:#b8860b;--menu-soft:#fef3c7}
@@ -491,6 +521,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .hero-title{font-size:1.9rem}
   .hero-sub{font-size:1rem}
   .portes{grid-template-columns:1fr;padding:0 20px;gap:16px;margin:40px auto 50px}
+  .porte-diag{flex-direction:column;}
+  .porte-diag-main{padding-right:0;border-right:none;border-bottom:1px solid var(--border-soft);padding-bottom:20px;margin-bottom:20px;}
+  .porte-diag-alt{width:100%;padding-left:0;}
   .menu-secondaire{grid-template-columns:1fr 1fr;padding:0 8px}
   .section-secondary{padding:40px 20px}
 }
@@ -593,7 +626,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .mode-option.active{
   background:var(--surface);
   border-color:var(--accent3);
-  box-shadow:0 4px 12px rgba(83,52,131,.1);
+  box-shadow:0 4px 12px rgba(30,77,107,.1);
 }
 [data-theme="dark"] .mode-option.active{
   box-shadow:0 4px 12px rgba(123,84,160,.15);
@@ -674,7 +707,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .mode-form-field input:focus{
   outline:none;
   border-color:var(--accent3);
-  box-shadow:0 0 0 3px rgba(83,52,131,.1);
+  box-shadow:0 0 0 3px rgba(30,77,107,.1);
 }
 .mode-form-hint{
   margin-top:6px;
@@ -739,8 +772,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   margin:0 auto;
   padding:44px;
   border-radius:20px;
-  border:1px solid rgba(83,52,131,.12);
-  box-shadow:0 8px 32px rgba(83,52,131,.10);
+  border:1px solid rgba(30,77,107,.12);
+  box-shadow:0 8px 32px rgba(30,77,107,.10);
   position:relative;
 }
 /* Petite vague décorative en bas de la section Pourquoi */
@@ -754,7 +787,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
   font-weight:700;color:var(--accent3);
   margin-bottom:14px;
-  padding:5px 14px;background:rgba(83,52,131,.1);border-radius:14px;
+  padding:5px 14px;background:rgba(30,77,107,.1);border-radius:14px;
 }
 [data-theme="dark"] .pourquoi-section .section-label{
   background:rgba(123,84,160,.2);color:#c9aedb;
@@ -821,7 +854,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   line-height:1.55;
 }
 .stat-source-block{
-  background:rgba(83,52,131,.06);
+  background:rgba(30,77,107,.06);
   border-radius:8px;
   padding:8px 12px;
   font-size:.74rem;color:var(--text-muted);
@@ -908,8 +941,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   padding:0 20px;
 }
 .aut-welcome-card{
-  background:linear-gradient(135deg, rgba(83,52,131,.05), rgba(245,166,35,.04));
-  border:1px solid rgba(83,52,131,.15);
+  background:linear-gradient(135deg, rgba(30,77,107,.05), rgba(245,166,35,.04));
+  border:1px solid rgba(30,77,107,.15);
   border-left:5px solid var(--accent3);
   border-radius:14px;
   padding:24px 28px;
@@ -968,13 +1001,13 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   font-size:.92rem;
   white-space:nowrap;
   transition:all .15s;
-  box-shadow:0 3px 10px rgba(83,52,131,.25);
+  box-shadow:0 3px 10px rgba(30,77,107,.25);
 }
 .aut-welcome-cta:hover{
   background:var(--accent2);
   transform:translateY(-2px);
   text-decoration:none;
-  box-shadow:0 6px 16px rgba(83,52,131,.3);
+  box-shadow:0 6px 16px rgba(30,77,107,.3);
 }
 .aut-mini-progress{
   display:flex;
@@ -988,7 +1021,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   flex:1;
   max-width:280px;
   height:6px;
-  background:rgba(83,52,131,.1);
+  background:rgba(30,77,107,.1);
   border-radius:3px;
   overflow:hidden;
 }
@@ -1357,24 +1390,33 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 
 <div style="max-width:1400px;margin:0 auto 36px;padding:50px 28px 30px;text-align:center;">
-  <div style="display:inline-block;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent3);padding:7px 18px;background:linear-gradient(135deg,rgba(83,52,131,.12),rgba(245,166,35,.10));border:1px solid rgba(83,52,131,.15);border-radius:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(83,52,131,.08);">Comment commencer ?</div>
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--text-strong);margin:0 0 14px;letter-spacing:-.01em;">Trois portes d'entrée selon votre besoin</h2>
-  <p style="font-size:1.02rem;color:var(--text-muted);margin:0 auto;max-width:680px;line-height:1.6;">Choisissez celle qui correspond le mieux à votre situation actuelle. Vous pouvez ensuite naviguer librement entre les différentes ressources.<br><br><strong>Comment s'articulent ces trois entrées ?</strong> Le <em>diagnostic</em> vous situe et vous oriente. La <em>démarche en 7 étapes</em> est le fil conducteur du parcours. Les <em>modules</em> sont les contenus de formation approfondis, mobilisés à chaque étape de la démarche — ce ne sont pas des parcours séparés, mais les briques d'un même cheminement.</p>
+  <div style="display:inline-block;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent3);padding:7px 18px;background:linear-gradient(135deg,rgba(30,77,107,.12),rgba(245,166,35,.10));border:1px solid rgba(30,77,107,.15);border-radius:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(30,77,107,.08);">Par où commencer ?</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--text-strong);margin:0 0 14px;letter-spacing:-.01em;">Trois entrées, une recommandation claire</h2>
+  <p style="font-size:1.02rem;color:var(--text-muted);margin:0 auto;max-width:680px;line-height:1.6;">Le diagnostic est le point de départ recommandé : il vous situe sur 11 dimensions et oriente votre parcours. La démarche et les modules restent accessibles directement si vous avez déjà une direction.</p>
 </div>
 
 <section class="portes" aria-label="Trois façons d'aborder la plateforme">
-  <a href="diagnostic.html" class="porte porte-diag">
-    <span class="porte-recommended-tag">Recommandé</span>
-    <div class="porte-icon">
-      <svg class="icon icon-lg"><use href="#i-target"/></svg>
+  <a href="diagnostic.html?mode=approfondi" class="porte porte-diag">
+    <span class="porte-recommended-tag">Point de départ recommandé</span>
+    <div class="porte-diag-main">
+      <div class="porte-icon">
+        <svg class="icon icon-lg"><use href="#i-target"/></svg>
+      </div>
+      <div class="porte-eyebrow">Évaluation · Étape 1</div>
+      <h2 class="porte-title">Évaluer mes ressources professionnelles et personnelles</h2>
+      <p class="porte-desc">L'évaluation complète analyse 11 dimensions : 4 ressources personnelles (posture, sentiment d'efficacité, bien-être, compétences socio-émotionnelles) et 7 ressources professionnelles (gestion de classe — Gaudreau, 2024). Vous obtenez un profil détaillé et vos modules prioritaires.</p>
+      <span class="porte-cta">
+        Faire l'évaluation complète (~15 min)
+        <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+      </span>
     </div>
-    <div class="porte-eyebrow">Étape 1 · Niveau 1</div>
-    <h2 class="porte-title">Je commence par le diagnostic</h2>
-    <p class="porte-desc">Auto-évaluation PRÉSENCE en 5 minutes. Vous obtenez un profil personnalisé qui pointe vos 2-3 modules prioritaires à travailler. Le chemin le plus direct quand on ne sait pas par où commencer.</p>
-    <span class="porte-cta">
-      Faire mon diagnostic
-      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
-    </span>
+    <div class="porte-diag-alt" onclick="event.preventDefault();event.stopPropagation();">
+      <div class="porte-diag-alt-label">Version courte disponible</div>
+      <p class="porte-diag-alt-text">Vous manquez de temps ? L'évaluation rapide (8 composantes PRÉSENCE · ~5 min) vous donne une orientation immédiate.</p>
+      <a href="diagnostic.html" class="porte-diag-alt-link">
+        Version rapide (5 min) →
+      </a>
+    </div>
   </a>
 
   <a href="demarche.html" class="porte porte-demarche">
@@ -1887,9 +1929,9 @@ function dismissResume(){
     icon.textContent = '🎯';
     eyebrow.textContent = 'Première étape';
     title.textContent = 'Commencez par identifier vos priorités';
-    desc.textContent = 'Le diagnostic rapide (10 minutes) vous dira où concentrer votre énergie en premier. C\'est la meilleure porte d\'entrée pour ce parcours.';
-    cta.href = 'diagnostic.html';
-    cta.textContent = 'Faire le diagnostic →';
+    desc.textContent = 'L\'évaluation complète (11 dimensions · ~15 min) vous situe précisément et oriente votre parcours. Version rapide disponible si vous préférez démarrer léger.';
+    cta.href = 'diagnostic.html?mode=approfondi';
+    cta.textContent = 'Faire l\'évaluation →';
     block.style.display = 'block';
   }
 })();
