@@ -2305,6 +2305,83 @@ body{
   font-size:.88rem;
 }
 [data-theme="dark"] .aut-search-card{background:var(--surface);}
+
+/* ─── Bandeau diagnostic ─── */
+#diag-banner{
+  margin:0 0 24px;
+  padding:14px 20px;
+  border-radius:10px;
+  font-size:.88rem;
+  line-height:1.55;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+}
+#diag-banner.diag-banner--absent{
+  background:#fff8e7;
+  border:1px solid rgba(212,168,84,.35);
+  border-left:4px solid #d4a854;
+  color:#5c4a1e;
+}
+[data-theme="dark"] #diag-banner.diag-banner--absent{
+  background:rgba(212,168,84,.08);
+  border-color:rgba(212,168,84,.2);
+  border-left-color:rgba(212,168,84,.6);
+  color:#e2c97e;
+}
+#diag-banner.diag-banner--offtrack{
+  background:#f0f6ff;
+  border:1px solid rgba(41,128,185,.22);
+  border-left:4px solid #2980b9;
+  color:#1a3a5c;
+}
+[data-theme="dark"] #diag-banner.diag-banner--offtrack{
+  background:rgba(41,128,185,.08);
+  border-color:rgba(41,128,185,.2);
+  border-left-color:rgba(41,128,185,.55);
+  color:#8ec5e8;
+}
+.diag-banner__icon{font-size:1.3rem;line-height:1;flex-shrink:0;margin-top:1px;}
+.diag-banner__body{flex:1;}
+.diag-banner__title{font-weight:700;margin:0 0 4px;font-size:.9rem;}
+.diag-banner__text{margin:0 0 8px;}
+.diag-banner__links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.diag-banner__link{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:6px;font-size:.82rem;font-weight:600;
+  text-decoration:none;transition:opacity .15s;
+}
+.diag-banner__link:hover{opacity:.82;}
+.diag-banner__link--primary{
+  background:#533483;color:#fff;
+}
+.diag-banner__link--secondary{
+  background:transparent;
+  border:1px solid currentColor;
+  opacity:.75;
+}
+.diag-banner--absent .diag-banner__link--secondary{color:#8b6914;}
+.diag-banner--offtrack .diag-banner__link--secondary{color:#2980b9;}
+[data-theme="dark"] .diag-banner__link--primary{background:#7c5cbf;}
+.diag-banner__mod-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.diag-banner__mod-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:4px 10px;border-radius:20px;
+  font-size:.8rem;font-weight:600;
+  text-decoration:none;
+  background:rgba(41,128,185,.12);color:#1a3a5c;
+  border:1px solid rgba(41,128,185,.2);
+  transition:background .15s;
+}
+.diag-banner__mod-pill:hover{background:rgba(41,128,185,.22);}
+[data-theme="dark"] .diag-banner__mod-pill{background:rgba(41,128,185,.15);color:#8ec5e8;border-color:rgba(41,128,185,.3);}
+.diag-banner__dismiss{
+  background:none;border:none;cursor:pointer;
+  font-size:1rem;opacity:.4;line-height:1;padding:2px;
+  flex-shrink:0;align-self:flex-start;
+  color:inherit;
+}
+.diag-banner__dismiss:hover{opacity:.7;}
 </style>
 </head>
 <body>
@@ -2524,13 +2601,16 @@ body{
   <!-- CONTENU -->
   <main class="mod-content" id="main-content">
 
+    <!-- BANDEAU DIAGNOSTIC -->
+    <div id="diag-banner" style="display:none" role="note" aria-label="Recommandation diagnostic"></div>
+
     <!-- §1 TL;DR -->
     <section class="mod-section" data-sec="1" id="s1" aria-labelledby="title-s1">
       <div class="mod-section-head">
         <div class="mod-section-num">1</div>
         <div style="flex:1">
-          <div class="mod-section-eyebrow">Section 1 — TL;DR</div>
-          <h2 class="mod-section-title" id="title-s1">En 30 secondes</h2>
+          <div class="mod-section-eyebrow">Section 1 — En bref</div>
+          <h2 class="mod-section-title" id="title-s1">Objectifs du module</h2>
         </div>
         <div class="mod-section-meta">~1 min</div>
       </div>
@@ -2543,6 +2623,13 @@ body{
           <li>Posture professionnelle face aux élèves en situation de vulnérabilité</li>
           <li>Cohérence cardiaque, ancrage sensoriel, décompression consciente</li>
           <li>Maintenir la satisfaction de compassion dans la durée</li>
+        </ul>
+      
+        <div class="block-info-title" style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,.07)">À l'issue de ce module, vous serez en mesure de :</div>
+        <ul>
+          <li>Distinguer fatigue de compassion et burnout</li>
+          <li>Utiliser au moins 3 outils de régulation émotionnelle entre deux cours</li>
+          <li>Maintenir votre satisfaction de compassion dans la durée</li>
         </ul>
       </div>
     </section>
@@ -4205,6 +4292,107 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
+</script>
+
+
+<script>
+/* ─── Bandeau diagnostic — Module 9 ─── */
+(function(){
+  var THIS_MODULE = 9;
+  var MODULES_LABEL = {
+    1:'Bien-être professionnel',2:'Prévention du burnout',3:'Besoins de formation',
+    4:'Vulnérabilité au stress',5:'Posture PRÉSENCE',6:'Cartographie des ressources',
+    7:'Mentorat entre pairs',8:'TDAH et autodétermination',9:'Prendre soin de soi'
+  };
+  function getModUrl(n){ return n===1?'prototype_module1_v5.html':'prototype_module'+n+'.html'; }
+
+  function getRecommended(){
+    try {
+      var v3 = localStorage.getItem('aut_diagnostic_v3');
+      if(v3){
+        var d = JSON.parse(v3);
+        // mode approfondi : lire les modules recommandés depuis t1
+        if(d.t1 && d.t1.recommended) return {mods: d.t1.recommended, mode:'approfondi'};
+      }
+      var v1 = localStorage.getItem('aut_diagnostic_v1');
+      if(v1){
+        var d1 = JSON.parse(v1);
+        if(d1.recommendedModules && d1.recommendedModules.length) return {mods: d1.recommendedModules.map(Number), mode: d1.mode||'rapide'};
+      }
+    } catch(e){}
+    return null;
+  }
+
+  function dismissKey(){ return 'aut_banner_dismissed_m'+THIS_MODULE; }
+
+  function renderBanner(){
+    var banner = document.getElementById('diag-banner');
+    if(!banner) return;
+    try { if(localStorage.getItem(dismissKey())) return; } catch(e){}
+
+    var rec = getRecommended();
+
+    if(!rec){
+      // Pas de diagnostic — inviter à faire la version approfondie
+      banner.className = 'diag-banner--absent';
+      banner.style.display = 'flex';
+      banner.innerHTML =
+        '<span class="diag-banner__icon" aria-hidden="true">📋</span>'+
+        '<div class="diag-banner__body">'+
+          '<p class="diag-banner__title">Obtenez un parcours personnalisé avant de commencer</p>'+
+          '<p class="diag-banner__text">L\'évaluation complète (11 dimensions · ~15 min) identifie précisément vos ressources professionnelles et personnelles, et vous oriente vers les modules les plus utiles pour votre situation.</p>'+
+          '<div class="diag-banner__links">'+
+            '<a href="diagnostic.html?mode=approfondi" class="diag-banner__link diag-banner__link--primary">→ Faire l\'évaluation complète</a>'+
+            '<a href="diagnostic.html" class="diag-banner__link diag-banner__link--secondary">Version rapide (5 min)</a>'+
+          '</div>'+
+        '</div>'+
+        '<button class="diag-banner__dismiss" onclick="autDismissBanner()" aria-label="Fermer ce message" title="Ne plus afficher">✕</button>';
+      return;
+    }
+
+    var mods = rec.mods.map(Number);
+    var isRecommended = mods.indexOf(THIS_MODULE) !== -1;
+
+    if(isRecommended){
+      // Module dans le top recommandé — pas de bandeau
+      return;
+    }
+
+    // Module hors priorités — afficher les modules recommandés
+    banner.className = 'diag-banner--offtrack';
+    banner.style.display = 'flex';
+
+    var pillsHtml = mods.slice(0,3).map(function(n){
+      return '<a href="'+getModUrl(n)+'" class="diag-banner__mod-pill">Module '+n+' — '+MODULES_LABEL[n]+'</a>';
+    }).join('');
+
+    var modeLabel = rec.mode === 'approfondi' ? 'évaluation complète' : 'évaluation rapide';
+
+    banner.innerHTML =
+      '<span class="diag-banner__icon" aria-hidden="true">🎯</span>'+
+      '<div class="diag-banner__body">'+
+        '<p class="diag-banner__title">Ce module n\'est pas dans vos priorités actuelles</p>'+
+        '<p class="diag-banner__text">D\'après votre '+modeLabel+', vos modules prioritaires sont :</p>'+
+        '<div class="diag-banner__mod-pills">'+pillsHtml+'</div>'+
+        '<div class="diag-banner__links" style="margin-top:10px">'+
+          '<a href="diagnostic.html" class="diag-banner__link diag-banner__link--secondary">Refaire ou affiner l\'évaluation</a>'+
+        '</div>'+
+      '</div>'+
+      '<button class="diag-banner__dismiss" onclick="autDismissBanner()" aria-label="Fermer ce message" title="Ne plus afficher">✕</button>';
+  }
+
+  window.autDismissBanner = function(){
+    try { localStorage.setItem(dismissKey(), '1'); } catch(e){}
+    var b = document.getElementById('diag-banner');
+    if(b){ b.style.opacity='0'; b.style.transition='opacity .25s'; setTimeout(function(){ b.style.display='none'; },260); }
+  };
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', renderBanner);
+  } else {
+    renderBanner();
+  }
+})();
 </script>
 
 </body>
