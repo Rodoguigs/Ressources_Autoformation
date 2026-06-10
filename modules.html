@@ -383,18 +383,18 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 .tag-completed{background:rgba(74,124,89,.15);color:var(--sage)}
 .tag-inprogress{background:rgba(245,166,35,.15);color:var(--gold)}
-.tag-notstarted{background:var(--surface-alt);color:var(--text-subtle)}
+.tag-notstarted{background:transparent;color:var(--text-subtle);font-style:italic;font-size:.78rem;letter-spacing:.02em;}
 
 /* Couleurs par module — alignées sur les fichiers prototype_moduleN.html */
-.mod-1{--mod-color:#e94560}
-.mod-2{--mod-color:#c0392b}
+.mod-1{--mod-color:#c0392b}
+.mod-2{--mod-color:#7d2e2e}
 .mod-3{--mod-color:#0f3460}
 .mod-4{--mod-color:#b8860b}
 .mod-5{--mod-color:#0891a8}
-.mod-6{--mod-color:#4a7c59}
-.mod-7{--mod-color:#2980b9}
-.mod-8{--mod-color:#8e44ad}
-.mod-9{--mod-color:#4a7c59}
+.mod-6{--mod-color:#2e6b3e}
+.mod-7{--mod-color:#1a6fa8}
+.mod-8{--mod-color:#6a3d9a}
+.mod-9{--mod-color:#8e3a6e}
 
 .filters{
   display:flex;gap:8px;flex-wrap:wrap;
@@ -1196,7 +1196,7 @@ function updateStatusTags(){
     el.className = 'mod-card-status-tag';
     if(!state){
       el.classList.add('tag-notstarted');
-      el.innerHTML = 'Non commencé';
+      el.innerHTML = 'À compléter';
     } else if(state.completed){
       el.classList.add('tag-completed');
       el.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Complété';
