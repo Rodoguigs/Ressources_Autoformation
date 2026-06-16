@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Suivez votre progression, consultez votre plan d'action et l'historique de vos diagnostics PRÉSENCE.">
-<title>Mon suivi · Autoformation</title>
+  <meta name="description" content="Déclaration de conformité pédagogique de la plateforme d'autoformation à la résilience professionnelle enseignante : objectifs, public cible, prérequis, modalités d'évaluation et de certification.">
+<title>Déclaration de conformité pédagogique · Autoformation</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -218,7 +218,7 @@ function getModuleState(num){
 
 /* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
 function scanAllModules(){
-  var nums = [1,2,3,4,5,6,7,8,9];
+  var nums = [1,2,3,4,6,7,8,9];
   var completed = [];
   var inProgress = null;
   nums.forEach(function(n){
@@ -248,113 +248,103 @@ function saveDiagnostic(data){
   }catch(e){ return false; }
 }
 
-var ENGAGEMENTS_LABELS = {
-  1: {"ck1": "J'ai identifié au moins 2 signaux d'alerte qui me concernent actuellement", "ck2": "J'ai choisi un facteur de protection à renforcer cette semaine"},
-  2: {"ck1": "Je m'engage à noter chaque dimanche soir, pendant 1 mois, mon niveau de fatigue émotionnelle sur 10 et un signal somatique observé.", "ck2": "Je m'engage à identifier une ressource concrète de récupération que j'utiliserai chaque semaine (marche, échange entre pairs, activité physique)."},
-  3: {"ck1": "Je m'engage à compléter la grille réflexive des 10 domaines sur 30 minutes, dans une zone calme et sans interruption.", "ck2": "Je m'engage à choisir 2 domaines prioritaires identifiés et à formuler pour chacun un objectif SMART de formation sur 6 mois."},
-  4: {"ck1": "Je m'engage à identifier 3 déclencheurs récurrents de mon stress en classe et à noter ce que mon corps me signale dans ces moments.", "ck2": "Je m'engage à instaurer un rituel de transition de 5 minutes après mes journées difficiles, avant de rentrer dans le domaine personnel."},
-  5: {"ck1": "Je m'engage à identifier la dimension de posture (parmi les 8) que je veux développer en priorité ce mois-ci.", "ck2": "Je m'engage à tester un rituel d'ancrage (cohérence cardiaque, délai de réponse) avant mes cours pendant 2 semaines."},
-  6: {"ck1": "Je m'engage à dresser une cartographie écrite de mes 5 ressources principales personnelles et 5 professionnelles, en évaluant leur disponibilité actuelle.", "ck2": "Je m'engage à identifier une ressource sous-utilisée et à activer un usage concret dans les 2 semaines (formation, collègue ressource, outil)."},
-  7: {"ck1": "Je m'engage à identifier 2 collègues avec qui je peux instaurer un échange régulier (mensuel) sur ma pratique professionnelle.", "ck2": "Je m'engage à proposer ou rejoindre un groupe d'analyse de pratiques dans mon établissement ou inter-établissements dans les 3 prochains mois."},
-  8: {"ck1": "Je m'engage à clarifier par écrit mes 5 attentes principales pour chaque cours et à les communiquer explicitement aux élèves dès la première semaine.", "ck2": "Je m'engage à intégrer dans chaque cours une routine qui sollicite les 3 fonctions exécutives (inhibition, mémoire de travail, flexibilité)."},
-  9: {"ck1": "Je m'engage à observer pendant 2 semaines les intrusions cognitives liées à mon métier (notes à la maison, rêves) et à noter leur fréquence.", "ck2": "Je m'engage à mettre en place un rituel de \"fermeture\" professionnelle quotidienne pour décharger la journée avant la sphère personnelle."},
-};
-var MOD_TITRES = {1:"Module 1 — Bien-être",2:"Module 2 — Épuisement",3:"Module 3 — Besoins de formation",4:"Module 4 — Vulnérabilité au stress",5:"Module 5 — Posture & PRÉSENCE",6:"Module 6 — Cartographie",7:"Module 7 — Mentorat",8:"Module 8 — TDAH & classes difficiles",9:"Module 9 — Prendre soin de soi"};
-
-function renderPlanAction(){
-  var container = document.getElementById('plan-action-list');
-  if(!container) return;
-  var nums = [1,2,3,4,5,6,7,8,9];
-  var html = '';
-  var totalEngagements = 0;
-  nums.forEach(function(n){
-    var s = getModuleState(n);
-    if(!s || !s.checks) return;
-    var checked = [];
-    Object.keys(ENGAGEMENTS_LABELS[n] || {}).forEach(function(cid){
-      if(s.checks[cid]){
-        checked.push(ENGAGEMENTS_LABELS[n][cid]);
-        totalEngagements++;
-      }
-    });
-    if(checked.length){
-      html += '<div class="plan-mod-group">';
-      html += '<div class="plan-mod-titre">' + MOD_TITRES[n] + '</div>';
-      checked.forEach(function(label){
-        html += '<div class="plan-eng-item"><svg class="icon icon-sm" style="color:var(--sage,#4a7c59);flex-shrink:0"><use href="#i-check"/></svg><span>' + label + '</span></div>';
-      });
-      html += '</div>';
-    }
-  });
-  if(totalEngagements === 0){
-    container.innerHTML = '<div class="empty-state" style="padding:20px;text-align:center;color:var(--text-muted)">Vous n\'avez pas encore coché d\'engagement dans les modules. Vos engagements apparaîtront ici au fur et à mesure.</div>';
-  } else {
-    container.innerHTML = html;
-  }
-}
-
-window.addEventListener('DOMContentLoaded', renderPlanAction);
 window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 </script>
 <style>
-.suivi-grid{
+.modules-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin:24px 0;
+  grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+  gap:20px;
+  margin-top:24px;
 }
-@media (max-width:800px){.suivi-grid{grid-template-columns:1fr}}
-.suivi-card{
+.mod-card{
   background:var(--surface);
   border:1px solid var(--border-soft);
-  border-radius:14px;padding:22px;
+  border-left:5px solid var(--mod-color, var(--accent2));
+  border-radius:14px;
+  padding:24px;
+  text-decoration:none;color:inherit;
   display:flex;flex-direction:column;
+  transition:all .2s;
+  position:relative;
+  overflow:hidden;
 }
-.suivi-stat-num{
-  font-family:'Playfair Display',serif;
-  font-size:2.4rem;font-weight:900;
-  color:var(--accent3);line-height:1;margin-bottom:6px;
+.mod-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-floating);
+  text-decoration:none;
 }
-.suivi-stat-label{font-size:.86rem;color:var(--text-muted)}
-
-
-.plan-mod-group{margin-bottom:18px}
-.plan-mod-titre{font-weight:700;font-size:.9rem;color:var(--text-strong);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--border-soft)}
-.plan-eng-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:.88rem;color:var(--text-body);line-height:1.5}
-.mod-progress-list{margin-top:18px}
-.mod-prog-row{
-  display:flex;align-items:center;gap:14px;
-  padding:12px 0;border-bottom:1px solid var(--border-soft);
+.mod-card-head{
+  display:flex;align-items:center;gap:14px;margin-bottom:14px;
 }
-.mod-prog-row:last-child{border-bottom:none}
-.mod-prog-num{
-  width:32px;height:32px;border-radius:8px;
-  background:var(--mp-color);color:white;
+.mod-card-num{
+  width:46px;height:46px;border-radius:12px;
+  background:var(--mod-color);color:white;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-weight:900;flex-shrink:0;
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:900;flex-shrink:0;
 }
-.mod-prog-info{flex:1;min-width:0}
-.mod-prog-title{font-weight:700;color:var(--text-strong);font-size:.92rem}
-.mod-prog-bar{
-  height:6px;background:var(--surface-alt);border-radius:3px;
-  overflow:hidden;margin-top:6px;
-  border:1px solid var(--border-soft);
+.mod-card-meta{flex:1;min-width:0}
+.mod-card-eyebrow{
+  font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--mod-color);
+  margin-bottom:2px;
 }
-.mod-prog-fill{height:100%;background:var(--mp-color);border-radius:3px;transition:width .4s}
-.mod-prog-state{
-  font-size:.74rem;color:var(--text-subtle);
-  white-space:nowrap;
+.mod-card-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.08rem;font-weight:700;
+  color:var(--text-strong);margin:0;line-height:1.25;
 }
-.mp-1{--mp-color:#e94560}.mp-2{--mp-color:#c0392b}.mp-3{--mp-color:#0f3460}
-.mp-4{--mp-color:#b8860b}.mp-6{--mp-color:#4a7c59}.mp-7{--mp-color:#2980b9}
-.mp-8{--mp-color:#8e44ad}.mp-9{--mp-color:#4a7c59}
+.mod-card-sub{
+  font-size:.85rem;color:var(--text-muted);
+  line-height:1.55;margin:0 0 14px;flex:1;
+}
+.mod-card-status{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border-soft);
+  font-size:.78rem;color:var(--text-muted);
+}
+.mod-card-status-tag{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:3px 9px;border-radius:12px;
+  font-weight:700;font-size:.72rem;
+}
+.tag-completed{background:rgba(74,124,89,.15);color:var(--sage)}
+.tag-inprogress{background:rgba(245,166,35,.15);color:var(--gold)}
+.tag-notstarted{background:var(--surface-alt);color:var(--text-subtle)}
 
-.empty-state{
-  text-align:center;padding:40px 20px;
-  color:var(--text-muted);
+/* Couleurs par module — alignées sur les fichiers prototype_moduleN.html */
+.mod-1{--mod-color:#e94560}
+.mod-2{--mod-color:#c0392b}
+.mod-3{--mod-color:#0f3460}
+.mod-4{--mod-color:#b8860b}
+.mod-5{--mod-color:#533483}
+.mod-6{--mod-color:#4a7c59}
+.mod-7{--mod-color:#2980b9}
+.mod-8{--mod-color:#8e44ad}
+.mod-9{--mod-color:#4a7c59}
+
+.filters{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin:8px 0 24px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--border-soft);
 }
-.empty-state svg{width:48px;height:48px;color:var(--text-subtle);margin-bottom:14px}
+.filter-btn{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  padding:6px 14px;border-radius:18px;
+  font-family:inherit;font-size:.82rem;cursor:pointer;
+  color:var(--text-body);
+  transition:all .15s;
+}
+.filter-btn:hover{background:var(--surface-alt)}
+.filter-btn.active{
+  background:var(--accent2);color:white;
+  border-color:var(--accent2);font-weight:600;
+}
+[data-theme="dark"] .filter-btn.active{background:var(--accent2)}
 
 
 /* ─── Système de modes (personnel / HEP) ─── */
@@ -757,93 +747,119 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 [data-theme="dark"] .aut-search-card{background:var(--surface);}
 
-/* ─── Bouton et zone d'export PDF ─── */
-.aut-export-section{
-  background:linear-gradient(135deg, rgba(83,52,131,.05), rgba(245,166,35,.03));
-  border:1px solid rgba(83,52,131,.15);
-  border-radius:14px;
-  padding:24px 28px;
-  margin:30px 0;
+/* ─── Toggle parcours complet / sélectif ─── */
+.aut-mode-toggle{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
+  gap:0;
+  background:var(--surface-alt);
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  padding:4px;
+  margin:8px 0 24px;
+  max-width:480px;
 }
-.aut-export-text{flex:1;min-width:260px;}
-.aut-export-eyebrow{
-  font-size:.72rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  font-weight:700;
-  color:var(--accent3);
-  margin-bottom:6px;
-}
-.aut-export-title{
-  font-family:'Playfair Display',serif;
-  font-size:1.2rem;
-  font-weight:700;
-  color:var(--text-strong);
-  margin-bottom:4px;
-}
-.aut-export-desc{
-  font-size:.88rem;
+.aut-mode-btn{
+  flex:1;
+  padding:10px 14px;
+  background:transparent;
+  border:none;
+  border-radius:7px;
+  font-size:.86rem;
+  font-weight:600;
   color:var(--text-muted);
-  line-height:1.5;
+  cursor:pointer;
+  transition:all .15s;
+  text-align:center;
 }
-.aut-export-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
+.aut-mode-btn.active{
   background:var(--accent3);
   color:white;
-  padding:12px 22px;
-  border:none;
-  border-radius:10px;
-  font-weight:700;
-  font-size:.9rem;
-  cursor:pointer;
-  text-decoration:none;
-  transition:all .15s;
+  box-shadow:0 2px 6px rgba(83,52,131,.2);
 }
-.aut-export-btn:hover{
-  background:var(--accent2);
-  transform:translateY(-1px);
-  text-decoration:none;
+.aut-mode-btn:hover:not(.active){
+  color:var(--text-strong);
+}
+.aut-mode-hint{
+  font-size:.84rem;
+  color:var(--text-muted);
+  margin-bottom:18px;
+  padding:10px 14px;
+  background:rgba(83,52,131,.04);
+  border-left:3px solid var(--accent3);
+  border-radius:0 8px 8px 0;
 }
 
-/* ─── Styles d'impression ─── */
-@media print{
-  body * {visibility:hidden;}
-  #aut-print-zone, #aut-print-zone * {visibility:visible;}
-  #aut-print-zone {
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    padding:40px;
-    background:white;
-    color:black;
-  }
-  .aut-progress-bar, .aut-progress-info, .aut-export-section, .app-header, footer {display:none !important;}
-  .aut-print-h1 {font-size:24pt; margin-bottom:10pt; color:#533483;}
-  .aut-print-h2 {font-size:14pt; margin-top:18pt; margin-bottom:6pt; color:#533483; border-bottom:1px solid #ccc; padding-bottom:4pt;}
-  .aut-print-row {margin-bottom:8pt; font-size:11pt;}
-  .aut-print-label {font-weight:bold; color:#666;}
+/* ─── Mode lecture toggle ─── */
+.reading-mode-section{
+  background:var(--surface-alt);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:20px 24px;
+  margin:24px 0;
 }
-.sat-question-block{margin-top:16px;padding-top:16px;border-top:1px dashed var(--border-soft);}
-.sat-question-block:first-child{border-top:none;padding-top:0;margin-top:0}
-.sat-question{font-size:.92rem;color:var(--text-body);margin:0 0 10px;line-height:1.55;font-weight:600;}
-.sat-scale{display:flex;gap:6px;flex-wrap:wrap;}
-.sat-scale-btn{flex:1;min-width:44px;background:var(--surface-alt);border:2px solid var(--border-soft);padding:10px 0;border-radius:8px;cursor:pointer;font-family:inherit;color:var(--text-body);transition:all .15s;font-weight:700;font-size:.95rem;}
-.sat-scale-btn:hover{border-color:var(--accent2);background:var(--surface);}
-.sat-scale-btn.selected{background:var(--accent2);border-color:var(--accent2);color:white;transform:translateY(-1px);}
-.sat-scale-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:.72rem;color:var(--text-subtle);}
-.sat-textarea{width:100%;min-height:80px;margin-top:8px;padding:10px 12px;border:1px solid var(--border-soft);border-radius:8px;background:var(--surface-alt);color:var(--text-body);font-family:inherit;font-size:.88rem;resize:vertical;}
-.sat-submit-btn{margin-top:18px;background:var(--accent2);color:white;border:none;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;}
-.sat-submit-btn:hover{opacity:.9}
-.sat-submit-btn:disabled{opacity:.5;cursor:not-allowed}
-.sat-thankyou{display:flex;align-items:center;gap:10px;padding:14px 16px;background:rgba(34,153,84,.08);border:1px solid rgba(34,153,84,.3);border-radius:10px;color:var(--text-strong);font-size:.88rem;}
+.reading-mode-title{
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--text-strong);
+  margin:0 0 6px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.reading-mode-desc{
+  font-size:.9rem;
+  color:var(--text-muted);
+  margin:0 0 14px;
+  line-height:1.5;
+}
+.reading-mode-options{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.reading-mode-btn{
+  flex:1;
+  min-width:200px;
+  padding:12px 18px;
+  background:var(--surface);
+  border:2px solid var(--border-soft);
+  border-radius:10px;
+  font-size:.92rem;
+  font-weight:600;
+  color:var(--text-strong);
+  cursor:pointer;
+  transition:all .15s;
+  text-align:left;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.reading-mode-btn:hover{
+  border-color:var(--accent3);
+  transform:translateY(-1px);
+}
+.reading-mode-btn.active{
+  border-color:var(--accent3);
+  background:rgba(83,52,131,.05);
+  box-shadow:0 2px 8px rgba(83,52,131,.1);
+}
+.reading-mode-btn-icon{
+  font-size:1.2rem;
+  margin-top:1px;
+}
+.reading-mode-btn-content{
+  flex:1;
+}
+.reading-mode-btn-label{
+  display:block;
+  font-weight:700;
+  margin-bottom:2px;
+}
+.reading-mode-btn-sub{
+  display:block;
+  font-size:.78rem;
+  font-weight:400;
+  color:var(--text-muted);
+}
 </style>
 </head>
 <body>
@@ -861,24 +877,25 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <defs>
     <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
-    <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
     <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
-    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
   </defs>
 </svg>
 
 <header class="app-header">
-  <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
+  <a href="index.html" class="app-logo">
+    <svg class="icon"><use href="#i-leaf"/></svg>
+    Autoformation
+  </a>
   <nav class="nav-links">
     <a href="index.html" class="nav-link">Accueil</a>
     <a href="diagnostic.html" class="nav-link">Diagnostic</a>
     <a href="demarche.html" class="nav-link">Démarche</a>
-    <a href="modules.html" class="nav-link">Catalogue modules</a>
+    <a href="modules.html" class="nav-link active">Catalogue modules</a>
     <a href="fondements.html" class="nav-link">Fondements</a>
     <a href="bibliotheque.html" class="nav-link">Bibliothèque</a>
   </nav>
@@ -886,7 +903,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
   <span style="font-size:.78rem;">Rechercher</span>
-</button> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Basculer le thème clair/sombre"><svg class="icon" id="theme-icon"><use href="#i-moon"/></svg></button>
+</button> <button class="theme-toggle" onclick="toggleTheme()" aria-label="Thème">
+    <svg class="icon" id="theme-icon"><use href="#i-moon"/></svg>
+  </button>
 </header>
 
 <!-- Modal de recherche globale -->
@@ -904,164 +923,89 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <div class="breadcrumb">
     <a href="index.html">Accueil</a>
     <span class="sep">›</span>
-    <span class="current">Mon suivi</span>
+    <span class="current">Déclaration de conformité pédagogique</span>
   </div>
-  <h1 class="page-title">Mon suivi</h1>
-  <p class="page-sub">Vue d'ensemble de votre progression : modules complétés, temps passé, diagnostic enregistré. Toutes les données sont stockées localement dans votre navigateur (aucune transmission externe).</p>
+  <h1 class="page-title">Déclaration de conformité pédagogique</h1>
+  <p class="page-sub">Intitulé, public cible, prérequis, objectifs pédagogiques globaux, modalités d'enseignement, d'évaluation et de certification de la plateforme — document de référence pour la reconnaissance institutionnelle de la formation.</p>
 </div>
 
 <main id="main">
-  <div class="suivi-grid">
-    <div class="suivi-card">
-      <div class="suivi-stat-num" id="stat-completed">0</div>
-      <div class="suivi-stat-label">Module(s) complété(s) sur 9</div>
-    </div>
-    <div class="suivi-card">
-      <div class="suivi-stat-num" id="stat-time">0 min</div>
-      <div class="suivi-stat-label">Temps total cumulé sur la plateforme</div>
-    </div>
-    <div class="suivi-card">
-      <div class="suivi-stat-num" id="stat-diag">—</div>
-      <div class="suivi-stat-label">Dernier diagnostic PRÉSENCE</div>
-    </div>
-    <div class="suivi-card">
-      <div class="suivi-stat-num" id="stat-engagement">0</div>
-      <div class="suivi-stat-label">Engagement(s) personnel(s) enregistré(s)</div>
-    </div>
+
+<section class="reading-mode-section" style="margin-top:0;">
+  <h2 style="margin-top:0;">Intitulé de la formation</h2>
+  <p>Autoformation à la résilience professionnelle enseignante — neurosciences et pratiques.</p>
+</section>
+
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Public cible</h2>
+  <p>Enseignant·es du primaire et du secondaire (élèves de 7 à 17 ans), équipes pédagogiques, personnel de soutien et direction d'établissement scolaire. La plateforme est conçue pour un usage individuel autonome ou dans le cadre d'une formation continue encadrée (HEP-VS ou autre institution).</p>
+</section>
+
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Prérequis</h2>
+  <p>Aucun prérequis académique spécifique. La formation est accessible à tout enseignant·e en exercice ou en formation initiale. Un accès à un navigateur web et environ 5 heures disponibles sur la durée du parcours choisie par l'apprenant·e suffisent.</p>
+</section>
+
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Objectifs pédagogiques globaux</h2>
+  <p>À l'issue du parcours complet, l'apprenant·e sera capable de :</p>
+  <ol style="line-height:1.7;font-size:.92rem;color:var(--text-body);padding-left:20px;">
+    <li>Identifier ses propres signaux de vulnérabilité professionnelle et les facteurs de protection mobilisables au quotidien ;</li>
+    <li>Expliquer les mécanismes de l'épuisement professionnel et de la fatigue de compassion afin de mieux les prévenir ;</li>
+    <li>Mobiliser le modèle PRÉSENCE (Fahim, 2022) pour adapter sa posture professionnelle face aux situations de classe exigeantes ;</li>
+    <li>Construire des priorités de développement professionnel à partir d'une évaluation structurée de ses besoins (modèle de Gaudreau) ;</li>
+    <li>Soutenir des élèves à besoins particuliers (TDAH, troubles du comportement) par la Conception Universelle des Apprentissages et le soutien à l'autodétermination ;</li>
+    <li>S'engager dans une démarche de pratique réflexive et d'échange entre pairs.</li>
+  </ol>
+  <p style="font-size:.82rem;color:var(--text-subtle);">Chacun des neuf modules décline ces objectifs globaux en compétences spécifiques, formulées en termes observables et consultables en tête de chaque module (section « Objectifs d'apprentissage »).</p>
+</section>
+
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Modalités pédagogiques</h2>
+  <p>La formation s'organise en neuf modules autonomes, précédés d'un diagnostic d'autoévaluation qui personnalise les recommandations de parcours. Chaque module combine apports théoriques (fondés sur la littérature scientifique citée), illustrations pratiques, et une section « Pour aller plus loin » optionnelle pour les apprenant·es souhaitant approfondir. Deux modes de progression sont proposés : un parcours complet séquentiel, ou un parcours sélectif limité aux modules pertinents pour la situation de l'apprenant·e. Une bibliothèque de ressources complémentaires (fiches, grilles, lectures) est accessible en tout temps.</p>
+</section>
+
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Modalités d'évaluation et de certification</h2>
+  <p>Chaque module se conclut par un quiz formatif. Un seuil de réussite de 80% est requis pour marquer le module comme complété ; en deçà, l'apprenant·e est invité·e à revoir les questions concernées avant de poursuivre. Une fois les neuf modules validés, une attestation de complétion nominative est générée automatiquement par la plateforme, mentionnant la date et le cadre de la formation. Un questionnaire de satisfaction, complété à l'issue du parcours, documente l'expérience des apprenant·es et alimente l'amélioration continue de la plateforme.</p>
+</section>
+
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Volume horaire</h2>
+  <div style="background:var(--surface-alt);border:1px solid var(--border-soft);border-radius:10px;padding:14px 18px;margin-top:10px;">
+    <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>Diagnostic (bilan complet)</span><span style="white-space:nowrap;color:var(--text-subtle);">~20 min</span></div>
+    <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>9 modules (théorie, pratique, validation)</span><span style="white-space:nowrap;color:var(--text-subtle);">~4h05</span></div>
+    <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>Synthèse et attestation</span><span style="white-space:nowrap;color:var(--text-subtle);">~10 min</span></div>
+    <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0 2px;font-size:.85rem;"><span>Questionnaire de satisfaction</span><span style="white-space:nowrap;color:var(--text-subtle);">~5 min</span></div>
+    <div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0 2px;margin-top:6px;border-top:2px solid var(--accent2);font-size:.92rem;font-weight:700;color:var(--text-strong);"><span>Total — parcours essentiel</span><span style="white-space:nowrap;">≈ 4h40</span></div>
   </div>
+  <p style="font-size:.82rem;color:var(--text-subtle);margin-top:10px;">Ce volume correspond au parcours essentiel (hors sections « Pour aller plus loin » et ressources de la bibliothèque, dont l'exploration est variable et laissée au choix de l'apprenant·e). Le détail par module est disponible sur la page <a href="modules.html">Catalogue des modules</a>.</p>
+</section>
 
-  <h2 class="section-title">Progression par module</h2>
-  <div class="suivi-card">
-    <div class="mod-progress-list" id="mod-progress-list">
-      <!-- Rempli par JS -->
-    </div>
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Échanges entre participant·es</h2>
+  <p>Un espace d'échange asynchrone entre participant·es (questions, partage de pratiques, retours d'expérience) peut compléter la plateforme dans le cadre d'une formation encadrée. <em>Espace à définir par le ou la formateur·rice responsable de la session — par exemple un canal Teams, un mur Padlet, ou un espace de cours Moodle HEP-VS.</em></p>
+  <div id="async-link-zone" style="background:var(--surface-alt);border:1px dashed var(--border-soft);border-radius:10px;padding:14px 18px;margin-top:10px;font-size:.86rem;color:var(--text-subtle);">
+    🔗 Lien vers l'espace d'échange de votre session : <em>à compléter par votre formateur·rice</em>.
   </div>
+</section>
 
-  <h2 class="section-title">Mon plan d'action</h2>
-  <div class="suivi-card">
-    <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:6px">Tous les engagements que vous avez cochés dans les modules sont rassemblés ici — votre feuille de route personnelle.</p>
-    <div class="plan-action-list" id="plan-action-list">
-      <!-- Rempli par JS -->
-    </div>
-  </div>
+<section class="reading-mode-section">
+  <h2 style="margin-top:0;">Encadrement scientifique et conception</h2>
+  <p>Plateforme conçue par Guillaume Roduit (Cycle d'orientation de Val de Bagnes), en collaboration avec Florence Griessen, sous la supervision scientifique de Dr. Cherine Fahim (CAS en neurosciences de l'éducation, Université de Fribourg / HEP-VS, et Endoxa Neuroscience). Les fondements théoriques mobilisés et leurs sources sont documentés sur la page <a href="fondements.html">Fondements scientifiques</a> de la plateforme.</p>
+</section>
 
-  <h2 class="section-title">Historique des diagnostics</h2>
-  <div class="suivi-card" id="diag-history">
-    <div class="empty-state" id="diag-empty">
-      <svg fill="none" stroke="currentColor" stroke-width="1.5"><use href="#i-target"/></svg>
-      <p>Vous n'avez pas encore effectué de diagnostic PRÉSENCE.</p>
-      <p><a href="diagnostic.html" style="color:var(--accent3);font-weight:700">Faire mon premier diagnostic →</a></p>
-    </div>
-  </div>
-
-  <div class="info-block" style="margin-top:30px">
-    <strong>Évolutions à venir :</strong> historique longitudinal des diagnostics (comparer ses radars sur 3 mois, 6 mois), bilan post-parcours avec auto-évaluation finale, export PDF de l'ensemble du suivi, cas pratiques sauvegardés.
-  </div>
-
-  <div class="suivi-card" id="satisfaction" style="margin-top:30px;">
-    <h3 style="margin:0 0 4px;font-size:1.05rem;">📋 Questionnaire de satisfaction</h3>
-    <p style="font-size:.85rem;color:var(--text-subtle);margin:0 0 4px;">Vos réponses restent locales à votre navigateur. Vous pouvez les inclure dans votre export PDF de synthèse.</p>
-
-    <div id="sat-form-zone">
-      <div class="sat-question-block">
-        <p class="sat-question">1. Le contenu de cette formation correspondait à mes besoins professionnels.</p>
-        <div class="sat-scale" role="radiogroup" data-key="q1">
-          <button class="sat-scale-btn" data-key="q1" data-val="1" onclick="setSatResponse(this)">1</button>
-          <button class="sat-scale-btn" data-key="q1" data-val="2" onclick="setSatResponse(this)">2</button>
-          <button class="sat-scale-btn" data-key="q1" data-val="3" onclick="setSatResponse(this)">3</button>
-          <button class="sat-scale-btn" data-key="q1" data-val="4" onclick="setSatResponse(this)">4</button>
-          <button class="sat-scale-btn" data-key="q1" data-val="5" onclick="setSatResponse(this)">5</button>
-        </div>
-        <div class="sat-scale-labels"><span>Pas du tout</span><span>Tout à fait</span></div>
-      </div>
-
-      <div class="sat-question-block">
-        <p class="sat-question">2. Les modalités pédagogiques (modules, quiz de validation, ressources) étaient claires et bien structurées.</p>
-        <div class="sat-scale" role="radiogroup" data-key="q2">
-          <button class="sat-scale-btn" data-key="q2" data-val="1" onclick="setSatResponse(this)">1</button>
-          <button class="sat-scale-btn" data-key="q2" data-val="2" onclick="setSatResponse(this)">2</button>
-          <button class="sat-scale-btn" data-key="q2" data-val="3" onclick="setSatResponse(this)">3</button>
-          <button class="sat-scale-btn" data-key="q2" data-val="4" onclick="setSatResponse(this)">4</button>
-          <button class="sat-scale-btn" data-key="q2" data-val="5" onclick="setSatResponse(this)">5</button>
-        </div>
-        <div class="sat-scale-labels"><span>Pas du tout</span><span>Tout à fait</span></div>
-      </div>
-
-      <div class="sat-question-block">
-        <p class="sat-question">3. Je pense pouvoir appliquer ce que j'ai appris dans ma pratique professionnelle.</p>
-        <div class="sat-scale" role="radiogroup" data-key="q3">
-          <button class="sat-scale-btn" data-key="q3" data-val="1" onclick="setSatResponse(this)">1</button>
-          <button class="sat-scale-btn" data-key="q3" data-val="2" onclick="setSatResponse(this)">2</button>
-          <button class="sat-scale-btn" data-key="q3" data-val="3" onclick="setSatResponse(this)">3</button>
-          <button class="sat-scale-btn" data-key="q3" data-val="4" onclick="setSatResponse(this)">4</button>
-          <button class="sat-scale-btn" data-key="q3" data-val="5" onclick="setSatResponse(this)">5</button>
-        </div>
-        <div class="sat-scale-labels"><span>Pas du tout</span><span>Tout à fait</span></div>
-      </div>
-
-      <div class="sat-question-block">
-        <p class="sat-question">4. La charge de travail demandée était adaptée au temps dont je disposais.</p>
-        <div class="sat-scale" role="radiogroup" data-key="q4">
-          <button class="sat-scale-btn" data-key="q4" data-val="1" onclick="setSatResponse(this)">1</button>
-          <button class="sat-scale-btn" data-key="q4" data-val="2" onclick="setSatResponse(this)">2</button>
-          <button class="sat-scale-btn" data-key="q4" data-val="3" onclick="setSatResponse(this)">3</button>
-          <button class="sat-scale-btn" data-key="q4" data-val="4" onclick="setSatResponse(this)">4</button>
-          <button class="sat-scale-btn" data-key="q4" data-val="5" onclick="setSatResponse(this)">5</button>
-        </div>
-        <div class="sat-scale-labels"><span>Pas du tout</span><span>Tout à fait</span></div>
-      </div>
-
-      <div class="sat-question-block">
-        <p class="sat-question">5. Je recommanderais cette formation à un·e collègue.</p>
-        <div class="sat-scale" role="radiogroup" data-key="q5">
-          <button class="sat-scale-btn" data-key="q5" data-val="1" onclick="setSatResponse(this)">1</button>
-          <button class="sat-scale-btn" data-key="q5" data-val="2" onclick="setSatResponse(this)">2</button>
-          <button class="sat-scale-btn" data-key="q5" data-val="3" onclick="setSatResponse(this)">3</button>
-          <button class="sat-scale-btn" data-key="q5" data-val="4" onclick="setSatResponse(this)">4</button>
-          <button class="sat-scale-btn" data-key="q5" data-val="5" onclick="setSatResponse(this)">5</button>
-        </div>
-        <div class="sat-scale-labels"><span>Pas du tout</span><span>Tout à fait</span></div>
-      </div>
-
-      <div class="sat-question-block">
-        <p class="sat-question">Qu'avez-vous trouvé le plus utile dans ce parcours ?</p>
-        <textarea class="sat-textarea" id="sat-useful" placeholder="Votre réponse (facultatif)"></textarea>
-      </div>
-
-      <div class="sat-question-block">
-        <p class="sat-question">Une suggestion d'amélioration ?</p>
-        <textarea class="sat-textarea" id="sat-suggestions" placeholder="Votre réponse (facultatif)"></textarea>
-      </div>
-
-      <button class="sat-submit-btn" id="sat-submit-btn" onclick="submitSatisfaction()" disabled>Envoyer mes réponses</button>
-      <p style="font-size:.74rem;color:var(--text-subtle);margin-top:8px;">Les 5 questions à échelle sont requises pour valider l'envoi.</p>
-    </div>
-
-    <div id="sat-done-zone" style="display:none;">
-      <div class="sat-thankyou">✓ Merci, vos réponses ont été enregistrées le <span id="sat-done-date"></span>.</div>
-      <button class="sat-submit-btn" style="background:var(--surface-alt);color:var(--text-body);border:1px solid var(--border-soft);margin-top:10px;" onclick="editSatisfaction()">Modifier mes réponses</button>
-    </div>
-  </div>
-
-<!-- Section export PDF -->
-<div class="aut-export-section">
-  <div class="aut-export-text">
-    <div class="aut-export-eyebrow">Synthese</div>
-    <div class="aut-export-title">Exporter mon parcours</div>
-    <div class="aut-export-desc">Generer un recapitulatif PDF de votre progression : diagnostic, modules completes, date de debut, temps passe. Utile pour archivage personnel ou validation de formation continue.</div>
-  </div>
-  <button class="aut-export-btn" onclick="autExportPDF()">
-    Exporter en PDF
-  </button>
+<div class="info-block" style="margin-top:10px;">
+  <strong>Usage de ce document :</strong> cette déclaration peut être transmise telle quelle à un service de formation continue (HEP-VS ou autre) pour appuyer une demande de reconnaissance d'heures de formation. Elle est maintenue à jour avec l'évolution de la plateforme.
 </div>
-<div id="aut-print-zone" style="display:none;"></div>
 
 </main>
 
 <footer>
   <div class="footer-links">
-    <a href="modules.html">Catalogue modules</a>
-    <a href="diagnostic.html">Diagnostic PRÉSENCE</a>
+    <a href="index.html">Accueil</a>
+    <a href="glossaire.html">Glossaire</a>
+    <a href="bibliotheque.html">Bibliothèque</a>
   </div>
   <div class="footer-meta">
     <div>Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS</div>
@@ -1074,163 +1018,47 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </footer>
 
 <script>
-function formatTime(seconds){
-  if(!seconds || seconds < 60) return '< 1 min';
-  var m = Math.floor(seconds/60);
-  if(m < 60) return m + ' min';
-  var h = Math.floor(m/60);
-  var r = m % 60;
-  return h + 'h' + (r < 10 ? '0' : '') + r;
-}
-
-function formatDate(iso){
-  if(!iso) return '—';
-  try{
-    var d = new Date(iso);
-    return d.toLocaleDateString('fr-CH', {day:'2-digit',month:'short',year:'numeric'});
-  }catch(e){ return '—'; }
-}
-
-// ─── Questionnaire de satisfaction ───────────────────────────────────────
-var SAT_KEY = 'aut_satisfaction_v1';
-
-function setSatResponse(btn){
-  var key = btn.getAttribute('data-key');
-  document.querySelectorAll('.sat-scale-btn[data-key="'+key+'"]').forEach(function(b){
-    b.classList.remove('selected');
-  });
-  btn.classList.add('selected');
-  checkSatComplete();
-}
-
-function checkSatComplete(){
-  var keys = ['q1','q2','q3','q4','q5'];
-  var allAnswered = keys.every(function(k){
-    return document.querySelector('.sat-scale-btn.selected[data-key="'+k+'"]') !== null;
-  });
-  var btn = document.getElementById('sat-submit-btn');
-  if(btn) btn.disabled = !allAnswered;
-}
-
-function getSatScores(){
-  var keys = ['q1','q2','q3','q4','q5'];
-  var scores = {};
-  keys.forEach(function(k){
-    var el = document.querySelector('.sat-scale-btn.selected[data-key="'+k+'"]');
-    scores[k] = el ? parseInt(el.getAttribute('data-val'),10) : null;
-  });
-  return scores;
-}
-
-function submitSatisfaction(){
-  var scores = getSatScores();
-  var data = {
-    date: new Date().toISOString(),
-    scores: scores,
-    useful: (document.getElementById('sat-useful')||{}).value || '',
-    suggestions: (document.getElementById('sat-suggestions')||{}).value || ''
-  };
-  try{ localStorage.setItem(SAT_KEY, JSON.stringify(data)); }catch(e){}
-  renderSatDone(data);
-}
-
-function editSatisfaction(){
-  document.getElementById('sat-form-zone').style.display = '';
-  document.getElementById('sat-done-zone').style.display = 'none';
-}
-
-function renderSatDone(data){
-  document.getElementById('sat-form-zone').style.display = 'none';
-  var doneZone = document.getElementById('sat-done-zone');
-  doneZone.style.display = '';
-  document.getElementById('sat-done-date').textContent = formatDate(data.date);
-}
-
-function initSatisfaction(){
-  var raw;
-  try{ raw = localStorage.getItem(SAT_KEY); }catch(e){ raw = null; }
-  if(!raw) return;
-  try{
-    var data = JSON.parse(raw);
-    Object.keys(data.scores||{}).forEach(function(k){
-      var val = data.scores[k];
-      if(val){
-        var b = document.querySelector('.sat-scale-btn[data-key="'+k+'"][data-val="'+val+'"]');
-        if(b) b.classList.add('selected');
-      }
-    });
-    if(document.getElementById('sat-useful')) document.getElementById('sat-useful').value = data.useful || '';
-    if(document.getElementById('sat-suggestions')) document.getElementById('sat-suggestions').value = data.suggestions || '';
-    checkSatComplete();
-    renderSatDone(data);
-  }catch(e){}
-}
-
-window.addEventListener('DOMContentLoaded', initSatisfaction);
-
-window.addEventListener('DOMContentLoaded', function(){
-  var nums = [1,2,3,4,5,6,7,8,9];
-  var titles = {
-    1:"Bien-être professionnel", 2:"Prévention du burnout",
-    3:"Besoins de formation", 4:"Vulnérabilité au stress",
-    5:"Posture professionnelle et modèle PRÉSENCE",
-    6:"Cartographie des ressources", 7:"Mentorat entre pairs",
-    8:"TDAH, classes difficiles et autodétermination", 9:"Prendre soin de soi"
-  };
-
-  var totalTime = 0;
-  var completed = 0;
-  var engagements = 0;
-  var listHtml = '';
-
+function updateStatusTags(){
+  var nums = [1,2,3,4,6,7,8,9];
   nums.forEach(function(n){
-    var s = getModuleState(n);
-    var time = (s && s.timeSpent) || 0;
-    totalTime += time;
-    if(s && s.completed) completed++;
-    if(s && s.fields){
-      Object.keys(s.fields).forEach(function(k){
-        if(s.fields[k] && s.fields[k].trim().length > 0) engagements++;
-      });
+    var el = document.getElementById('status-'+n);
+    if(!el) return;
+    var state = getModuleState(n);
+    el.className = 'mod-card-status-tag';
+    if(!state){
+      el.classList.add('tag-notstarted');
+      el.innerHTML = 'Non commencé';
+    } else if(state.completed){
+      el.classList.add('tag-completed');
+      el.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Complété';
+    } else {
+      el.classList.add('tag-inprogress');
+      var sec = parseInt((state.lastSection || 's1').replace('s',''));
+      el.innerHTML = '<svg class="icon icon-sm"><use href="#i-clock"/></svg> En cours (s' + sec + '/6)';
     }
-
-    var pct = 0, state = 'Non commencé';
-    if(s){
-      var lastSec = parseInt((s.lastSection || 's1').replace('s',''));
-      pct = (lastSec / 6) * 100;
-      if(s.completed){ pct = 100; state = 'Complété'; }
-      else if(lastSec > 1) state = 'Section ' + lastSec + '/6';
-    }
-
-    listHtml += '<div class="mod-prog-row mp-' + n + '">'
-      + '<div class="mod-prog-num">' + n + '</div>'
-      + '<div class="mod-prog-info">'
-      + '<div class="mod-prog-title">Module ' + n + ' — ' + titles[n] + '</div>'
-      + '<div class="mod-prog-bar"><div class="mod-prog-fill" style="width:' + pct + '%"></div></div>'
-      + '</div>'
-      + '<div class="mod-prog-state">' + state + (time ? ' · ' + formatTime(time) : '') + '</div>'
-      + '</div>';
   });
+}
 
-  document.getElementById('mod-progress-list').innerHTML = listHtml;
-  document.getElementById('stat-completed').textContent = completed;
-  document.getElementById('stat-time').textContent = formatTime(totalTime);
-  document.getElementById('stat-engagement').textContent = engagements;
+function applyFilter(filter){
+  document.querySelectorAll('.filter-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.filter === filter);
+  });
+  document.querySelectorAll('.mod-card').forEach(function(card){
+    var n = parseInt(card.dataset.mod);
+    var state = getModuleState(n);
+    var show = true;
+    if(filter === 'completed') show = state && state.completed;
+    else if(filter === 'started') show = state && !state.completed && state.lastSection && state.lastSection !== 's1';
+    else if(filter === 'notstarted') show = !state || (!state.completed && (!state.lastSection || state.lastSection === 's1'));
+    card.style.display = show ? '' : 'none';
+  });
+}
 
-  // Diagnostic
-  var diag = getDiagnostic();
-  if(diag){
-    document.getElementById('stat-diag').textContent = formatDate(diag.completedAt || diag.savedAt);
-    document.getElementById('diag-empty').style.display = 'none';
-    var recos = (diag.recommendedModules || []).slice(0,3).map(function(m){ return 'Module ' + m; }).join(', ');
-    document.getElementById('diag-history').innerHTML +=
-      '<div style="padding:12px 0;line-height:1.7">'
-      + '<strong>Dernier diagnostic :</strong> ' + formatDate(diag.completedAt) + '<br>'
-      + '<strong>Modules recommandés :</strong> ' + recos + '<br>'
-      + '<a href="diagnostic.html" style="display:inline-block;margin-top:8px;color:var(--accent3);font-weight:700">Voir le détail / refaire mon diagnostic →</a>'
-      + '</div>';
-  }
+document.querySelectorAll('.filter-btn').forEach(function(b){
+  b.addEventListener('click', function(){ applyFilter(this.dataset.filter); });
 });
+
+window.addEventListener('DOMContentLoaded', updateStatusTags);
 </script>
 
 <script>
@@ -1679,72 +1507,54 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 <script>
-// Export PDF via window.print()
-function autExportPDF(){
-  const progress = window.AutProgress ? AutProgress.getProgress() : {};
-  const global = window.AutProgress ? AutProgress.getGlobalProgress() : {percent:0,completed:0,total:8};
-  
-  // Diagnostic
-  let diagInfo = 'Non complété';
-  try {
-    const d = localStorage.getItem('aut_diagnostic_v3');
-    if (d) {
-      const data = JSON.parse(d);
-      if (data.t1) {
-        diagInfo = 'Complété' + (data.t1.date ? ' le ' + new Date(data.t1.date).toLocaleDateString('fr-CH') : '');
-      }
-    }
-  } catch(e) {}
-  
-  // Modules
-  const modules = progress.modules || {};
-  const moduleRows = AutProgress.MODULES.map(m => {
-    const state = modules[m.num];
-    const status = state ? (state.completed ? '✓ Complété' : '◐ En cours') : '○ Non commencé';
-    return `<div class="aut-print-row"><span class="aut-print-label">Module ${m.num} — ${m.titre} :</span> ${status}</div>`;
-  }).join('');
-  
-  // Date de début (premier accès)
-  let startDate = 'inconnue';
-  if (progress.lastVisit) {
-    const d = new Date(progress.lastVisit);
-    startDate = d.toLocaleDateString('fr-CH');
-  }
-  
-  const zone = document.getElementById('aut-print-zone');
-  zone.style.display = 'block';
-  zone.innerHTML = `
-    <h1 class="aut-print-h1">Mon parcours d'autoformation</h1>
-    <div class="aut-print-row" style="margin-bottom:20pt; font-style:italic; color:#666;">
-      Plateforme PRÉSENCE — Résilience professionnelle enseignante<br>
-      Document généré le ${new Date().toLocaleDateString('fr-CH')} à ${new Date().toLocaleTimeString('fr-CH').slice(0,5)}
-    </div>
-    
-    <h2 class="aut-print-h2">📊 Vue d'ensemble</h2>
-    <div class="aut-print-row"><span class="aut-print-label">Progression globale :</span> ${global.percent}% (${global.completed}/${global.total} modules complétés)</div>
-    <div class="aut-print-row"><span class="aut-print-label">Diagnostic :</span> ${diagInfo}</div>
-    <div class="aut-print-row"><span class="aut-print-label">Dernière activité :</span> ${startDate}</div>
-    
-    <h2 class="aut-print-h2">📚 État de chaque module</h2>
-    ${moduleRows}
-    
-    <h2 class="aut-print-h2">💡 Pour aller plus loin</h2>
-    <div class="aut-print-row">Continuez votre parcours en explorant les <strong>Fondements scientifiques</strong> pour approfondir les concepts théoriques.</div>
-    <div class="aut-print-row">Consultez la <strong>Bibliothèque</strong> pour accéder aux ressources PDF complémentaires.</div>
-    
-    <div style="margin-top:30pt; padding-top:15pt; border-top:1px solid #ccc; font-size:9pt; color:#888;">
-      Plateforme d'autoformation — Cycle d'orientation Val de Bagnes (Valais)<br>
-      Conçue dans le cadre du CAS Neurosciences éducatives — HEP-VS / Université de Fribourg<br>
-      Sous la supervision de Prof. Cherine Fahim
-    </div>
-  `;
-  
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => { zone.style.display = 'none'; }, 1000);
-  }, 100);
-}
+// Mode de parcours : complet ou sélectif
+/* setAutMode supprimé (système obsolète sans HTML) */
+// Charger le mode au démarrage
+/* init obsolète supprimé */
 </script>
 
+
+<script>
+// Mode lecture toggle
+function setReadingMode(mode){
+  try { localStorage.setItem('aut_reading_mode', mode); } catch(e){}
+  document.querySelectorAll('.reading-mode-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  // Effet visible : message d'orientation + ordre des modules
+  var hint = document.getElementById('reading-mode-hint');
+  if (hint) {
+    if (mode === 'sequential') {
+      hint.innerHTML = '<strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l\'ordre : 1 → 2 → 3 → 4 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.';
+      /* hint toujours visible */
+    } else {
+      hint.innerHTML = '<strong>Mode sélectif activé.</strong> Parcourez les modules ci-dessous et ouvrez ceux qui correspondent à vos besoins actuels. Faites le diagnostic si vous hésitez sur les modules prioritaires.';
+      /* hint toujours visible */
+    }
+  }
+  // Numérotation d'ordre visible en mode séquentiel
+  document.querySelectorAll('.module-card').forEach(function(card, i){
+    var orderBadge = card.querySelector('.module-order-badge');
+    if (mode === 'sequential') {
+      if (orderBadge) orderBadge.style.display = 'inline-flex';
+    } else {
+      if (orderBadge) orderBadge.style.display = 'none';
+    }
+  });
+}
+// Init au chargement
+(function(){
+  function init(){
+    var mode = 'sequential';
+    try { mode = localStorage.getItem('aut_reading_mode') || 'sequential'; } catch(e){}
+    setReadingMode(mode);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 </body>
 </html>
