@@ -574,8 +574,8 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
       <span class="ms-sub">8 questions · ~5 min</span>
     </button>
     <button class="mode-selector-btn" data-mode="approfondi" onclick="switchMode('approfondi')">
-      <span>Version approfondie</span>
-      <span class="ms-sub">78 items · ~15-20 min</span>
+      <span>Version approfondie (recommandée)</span>
+      <span class="ms-sub">95 items · ~20 min</span>
     </button>
   </div>
 
@@ -726,18 +726,16 @@ var ITEMS_APPROFONDI = {
       modules: [5, 1],
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
       items: [
-        {q:'Je m\'interroge régulièrement sur les moteurs de mes décisions pédagogiques et j\'en évalue les effets sur les élèves.', dom:'Posture réflexive et auto-analyse', inv:false},
-        {q:'Je prends le temps de réfléchir à mes réussites et mes échecs professionnels.', dom:'Posture réflexive et auto-analyse', inv:false},
-        {q:'Je reconnais mes zones d\'inconfort professionnel et j\'en tire des pistes de développement.', dom:'Posture réflexive et auto-analyse', inv:false},
+        {q:'Je m\'interroge régulièrement sur les raisons qui me poussent à agir d\'une certaine manière en classe.', dom:'Posture réflexive et auto-analyse', inv:false},
+        {q:'Je reconnais mes zones d\'inconfort ou d\'incertitude professionnelle.', dom:'Posture réflexive et auto-analyse', inv:false},
         {q:'Je respecte les règles éthiques et déontologiques de la profession même en situation difficile.', dom:'Intégrité professionnelle et déontologie', inv:false},
         {q:'Je prends mes responsabilités lorsqu’une situation tourne mal.', dom:'Intégrité professionnelle et déontologie', inv:false},
-        {q:'Je me conforme aux principes d’équité et de justice dans mes décisions.', dom:'Intégrité professionnelle et déontologie', inv:false},
         {q:'Je considère la critique constructive comme une opportunité de progresser.', dom:'Volonté de progresser et ouverture au feedback', inv:false},
-        {q:'Je cherche activement à améliorer mes pratiques pédagogiques (formation continue, échanges professionnels,…)', dom:'Volonté de progresser et ouverture au feedback', inv:false},
+        {q:'Je suis prêt(e) à expérimenter de nouvelles approches même si cela me déstabilise.', dom:'Volonté de progresser et ouverture au feedback', inv:false},
         {q:'Je pense que mes difficultés viennent surtout du comportement des élèves.', dom:'Attribution externe et résistances au changement', inv:true},
         {q:'Je suis souvent sur la défensive quand on remet mes pratiques en question.', dom:'Attribution externe et résistances au changement', inv:true},
-        {q:'Je modifie la façon dont je pense à une situation difficile pour en changer mon ressenti.', dom:'Valeurs, croyances et représentations professionnelles', inv:false},
-        {q:'Quand une situation difficile survient, je cherche à la voir d\'une façon qui m\'aide à rester calme.', dom:'Valeurs, croyances et représentations professionnelles', inv:false},
+        {q:'Je crois que tous les élèves peuvent réussir avec le bon accompagnement.', dom:'Valeurs, croyances et représentations professionnelles', inv:false},
+        {q:'Je m\'interroge sur mes propres préjugés concernant certains élèves ou groupes.', dom:'Valeurs, croyances et représentations professionnelles', inv:false},
       ]
     },
     sep: {
@@ -748,15 +746,17 @@ var ITEMS_APPROFONDI = {
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
       items: [
         {q:'Je parviens à maintenir l’attention de mes élèves même lorsqu’ils sont fatigués.', dom:'Engagement des élèves', inv:false},
-        {q:'Je crois que mes actions en classe ont une influence directe sur les résultats d\'apprentissage de mes élèves.', dom:'Engagement des élèves', inv:false},
+        {q:'Je peux inciter les élèves à persévérer malgré les difficultés.', dom:'Engagement des élèves', inv:false},
         {q:'Je crois pouvoir stimuler l’intérêt des élèves pour les contenus d’apprentissage.', dom:'Engagement des élèves', inv:false},
         {q:'Je sais comment adapter mes explications pour qu’elles soient comprises par tous.', dom:'Stratégies d’enseignement', inv:false},
         {q:'Je peux ajuster mes méthodes pédagogiques en fonction des besoins des élèves.', dom:'Stratégies d’enseignement', inv:false},
         {q:'Je parviens à varier mes stratégies pour maintenir l’intérêt des élèves.', dom:'Stratégies d’enseignement', inv:false},
         {q:'Je peux gérer calmement les comportements perturbateurs.', dom:'Gestion de la classe', inv:false},
         {q:'Je réussis à instaurer un climat de classe respectueux.', dom:'Gestion de la classe', inv:false},
+        {q:'Je peux prévenir efficacement les conflits entre élèves.', dom:'Gestion de la classe', inv:false},
         {q:'Je me sens capable de gérer les imprévus au travail.', dom:'Gestion des problèmes professionnels', inv:false},
         {q:'Je sais comment m’organiser quand j’ai trop de choses à faire en même temps.', dom:'Gestion des problèmes professionnels', inv:false},
+        {q:'Je sais comment éviter l’épuisement professionnel.', dom:'Gestion des problèmes professionnels', inv:false},
       ]
     },
     bienetre: {
@@ -766,14 +766,18 @@ var ITEMS_APPROFONDI = {
       modules: [1, 9],
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
       items: [
+        {q:'Je me sens submergé(e) par les responsabilités liées à mon métier d’enseignant(e).', dom:'Bien-être professionnel', inv:true},
         {q:'Je suis épuisé(e) mentalement à cause de mon travail.', dom:'Bien-être professionnel', inv:true},
+        {q:'Je sens que mes efforts ne sont pas reconnus par la direction ou les collègues.', dom:'Bien-être professionnel', inv:true},
+        {q:'Je ressens une perte d\'intérêt ou de motivation pour mon métier.', dom:'Bien-être professionnel', inv:true},
         {q:'Je suis capable d\'identifier mes émotions lors d\'une situation difficile auprès des élèves.', dom:'Clarté et conscience émotionnelle', inv:false},
-        {q:'Je sais exactement comment je me sens.', dom:'Clarté et conscience émotionnelle', inv:false},
-        {q:'J\'ai parfois du mal à identifier précisément ce que je ressens.', dom:'Clarté et conscience émotionnelle', inv:true},
+        {q:'J\'ai des difficultés à donner un sens à mes sentiments.', dom:'Clarté et conscience émotionnelle', inv:true},
         {q:'Quand je suis contrarié(e), je prends le temps de découvrir ce que je ressens vraiment.', dom:'Réactions émotionnelles négatives et inquiétudes', inv:false},
         {q:'Quand je suis contrarié(e), je me sens désarmé(e).', dom:'Réactions émotionnelles négatives et inquiétudes', inv:true},
+        {q:'Je suis capable de gérer le stress induit par le comportement inapproprié de mes élèves.', dom:'Réactions émotionnelles négatives et inquiétudes', inv:false},
         {q:'Quand je suis contrarié(e), je sens que je peux garder le contrôle de mes comportements.', dom:'Difficultés de régulation en situation de contrariété', inv:false},
         {q:'Quand je suis contrarié(e), le fait de ressentir une telle émotion me met en colère contre moi-même.', dom:'Difficultés de régulation en situation de contrariété', inv:true},
+        {q:'Quand je suis contrarié(e), mes émotions prennent le dessus.', dom:'Difficultés de régulation en situation de contrariété', inv:true},
       ]
     },
     cse: {
@@ -790,7 +794,9 @@ var ITEMS_APPROFONDI = {
         {q:'Je suis à l’écoute de ce que ressentent les élèves lors d’une situation difficile.', dom:'Conscience sociale', inv:false},
         {q:'Je fais preuve d’empathie envers les élèves lors des situations difficiles.', dom:'Conscience sociale', inv:false},
         {q:'Je fais de l’écoute active auprès des élèves lorsqu’il y a un problème.', dom:'Compétences relationnelles', inv:false},
+        {q:'Je travaille en équipe avec mes collègues pour résoudre les problèmes rencontrés auprès des élèves.', dom:'Compétences relationnelles', inv:false},
         {q:'Je consulte les parents afin d’identifier les problèmes des élèves pour choisir les interventions les plus appropriées.', dom:'Prise de décision responsable', inv:false},
+        {q:'J’effectue une analyse objective de la situation afin de prendre la meilleure décision pour les élèves.', dom:'Prise de décision responsable', inv:false},
       ]
     },
   },
@@ -803,10 +809,12 @@ var ITEMS_APPROFONDI = {
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
         {q:'Je prends soin d’identifier mes émotions lors d’une situation difficile de gestion de classe afin d’exercer un contrôle sur celles-ci.', dom:'Général', inv:false},
-        {q:'Je persévère en dépit des difficultés rencontrées auprès de certains élèves.', dom:'Général', inv:false},
         {q:'Je gère aisément le stress induit par les comportements inappropriés de certains élèves.', dom:'Général', inv:false},
-        {q:'J’évite que mes problèmes personnels n’influencent négativement sur la qualité de mon travail en classe.', dom:'Général', inv:false},
         {q:'Je fais preuve d’empathie envers les élèves lors de situations difficiles.', dom:'Général', inv:false},
+        {q:'J’effectue une analyse objective des situations afin de prendre les meilleures décisions possibles pour les élèves.', dom:'Général', inv:false},
+        {q:'Je suis capable de maintenir mon calme et de rester concentré dans des situations stressantes en classe.', dom:'Général', inv:false},
+        {q:'Je suis capable de détecter mes forces et mes défis en gestion de classe.', dom:'Général', inv:false},
+        {q:'Je suis capable de communiquer efficacement avec les autres membres de l’équipe éducative.', dom:'Général', inv:false},
       ]
     },
     gest_mat: {
@@ -818,9 +826,10 @@ var ITEMS_APPROFONDI = {
       items: [
         {q:'Je sélectionne les ressources matérielles et numériques qui répondent aux besoins pédagogiques des élèves.', dom:'Général', inv:false},
         {q:'Je connais les ressources disponibles dans mon école et je les utilise à bon escient.', dom:'Général', inv:false},
-        {q:'Je m’assure que les élèves utilisent adéquatement le matériel et les outils technologiques mis à leur disposition.', dom:'Général', inv:false},
-        {q:'Je partage certaines ressources avec mes collègues afin d’en maximiser l’utilisation.', dom:'Général', inv:false},
         {q:'Je tiens compte du nombre de ressources disponibles pour faire mes choix pédagogiques.', dom:'Général', inv:false},
+        {q:'Je fais appel aux ressources humaines (TES, orthopédagogue, bibliothécaire, direction, etc.) lorsque je rencontre une difficulté.', dom:'Général', inv:false},
+        {q:'Je coopère avec les différents intervenants de l’école pour soutenir les élèves.', dom:'Général', inv:false},
+        {q:'Je sollicite de l’aide ou des conseils auprès de collègues lorsque je fais face à un défi.', dom:'Général', inv:false},
       ]
     },
     gest_spat: {
@@ -830,11 +839,12 @@ var ITEMS_APPROFONDI = {
       modules: [4, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
-        {q:'Je réfléchis régulièrement à l’environnement dans lequel évoluent mes élèves afin qu’il soit le mieux adapté possible à leurs besoins.', dom:'Général', inv:false},
         {q:'J’offre aux élèves des espaces de rangement.', dom:'Général', inv:false},
-        {q:'J’enseigne de manière explicite des stratégies de gestion du temps aux élèves.', dom:'Général', inv:false},
         {q:'J’aménage les lieux d’apprentissage en tenant compte des besoins particuliers de certains élèves.', dom:'Général', inv:false},
         {q:'J’aménage ma classe de manière à pouvoir y circuler aisément.', dom:'Général', inv:false},
+        {q:'J’utilise des repères temporels pour aider les élèves à gérer leur temps (horaires, minuterie, etc.).', dom:'Général', inv:false},
+        {q:'J’offre aux élèves des outils de planification et d’organisation (aide-mémoire, marches à suivre, …)', dom:'Général', inv:false},
+        {q:'Je planifie la durée des transitions afin d’éviter les pertes de temps.', dom:'Général', inv:false},
       ]
     },
     attentes: {
@@ -844,12 +854,12 @@ var ITEMS_APPROFONDI = {
       modules: [3, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
-        {q:'Je transmets des attentes explicites à mes élèves concernant l’utilisation et l’entretien du local et du matériel de travail.', dom:'Général', inv:false},
-        {q:'J’explique aux élèves les méthodes de travail qui facilitent l’acquisition des compétences.', dom:'Général', inv:false},
         {q:'J’émets des attentes claires face aux apprentissages à réaliser.', dom:'Général', inv:false},
         {q:'Je mets en place des règles claires.', dom:'Général', inv:false},
         {q:'J’établis les règles avec les élèves, et je les enseigne et les révise régulièrement.', dom:'Général', inv:false},
-        {q:'J\'énonce clairement mes attentes face aux comportements (à l\'aide de directives alpha).', dom:'Général', inv:false},
+        {q:'Je suis constant et cohérent dans mon encadrement (ce que je demande et ce que je fais respecter).', dom:'Général', inv:false},
+        {q:'J\'ai recours à l\'enseignement explicite des comportements attendus.', dom:'Général', inv:false},
+        {q:'Je valorise régulièrement les élèves qui adoptent les comportements attendus en nommant les bons comportements observés.', dom:'Général', inv:false},
       ]
     },
     relations: {
@@ -859,12 +869,13 @@ var ITEMS_APPROFONDI = {
       modules: [5, 7, 9],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
-        {q:'J’accorde autant d’importance au climat de la classe qu’au contenu que j’enseigne.', dom:'Général', inv:false},
-        {q:'Je m’efforce d’apprendre rapidement les noms des élèves.', dom:'Général', inv:false},
         {q:'Je me préoccupe de la qualité de la relation que je développe avec TOUS les élèves.', dom:'Général', inv:false},
         {q:'Je consacre du temps à entretenir des relations interprofessionnelles positives avec mes collègues.', dom:'Général', inv:false},
-        {q:'Je maîtrise les éléments de ma communication non verbale afin d’en tirer profit lors de mes échanges avec les élèves, leurs parents et mes collègues.', dom:'Général', inv:false},
-        {q:'J’incite les élèves à s’entraider et je favorise les échanges entre eux.', dom:'Général', inv:false},
+        {q:'Je demeure empathique au vécu de chaque élève.', dom:'Général', inv:false},
+        {q:'Je veille à donner des rétroactions positives fréquentes aux élèves.', dom:'Général', inv:false},
+        {q:'Je veille à ce qu’aucun élève de ma classe ne soit rejeté ou isolé par les autres élèves.', dom:'Général', inv:false},
+        {q:'Je suis souriant et chaleureux.', dom:'Général', inv:false},
+        {q:'Au début des cours, j’accueille les élèves à la porte.', dom:'Général', inv:false},
       ]
     },
     attention: {
@@ -874,12 +885,12 @@ var ITEMS_APPROFONDI = {
       modules: [3, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
-        {q:'J’effectue une planification globale de mes activités d’enseignement-apprentissage.', dom:'Général', inv:false},
-        {q:'Je prépare mes cours en tenant compte de la provenance de tous les élèves, incluant ceux qui présentent des difficultés d’adaptation et d’apprentissage.', dom:'Général', inv:false},
-        {q:'J’utilise différents médiums d’enseignement (ex. : exposé magistral, la manipulation, le travail coopératif, les technologies).', dom:'Général', inv:false},
-        {q:'J’organise et je supervise un système de tutorat pour venir en aide aux élèves en difficulté d’apprentissage.', dom:'Général', inv:false},
         {q:'J’adapte mon enseignement en fonction des champs d’intérêt ou des capacités des élèves.', dom:'Général', inv:false},
-        {q:'J’évite les temps morts pendant le déroulement de mes cours.', dom:'Général', inv:false},
+        {q:'Je sollicite la participation active des élèves lors de mon enseignement.', dom:'Général', inv:false},
+        {q:'J’amène les élèves à objectiver leurs apprentissages.', dom:'Général', inv:false},
+        {q:'J’amène les élèves à s’autoévaluer et à se fixer des objectifs personnels d’apprentissage.', dom:'Général', inv:false},
+        {q:'Je valorise les comportements d’engagement scolaire des élèves.', dom:'Général', inv:false},
+        {q:'J’utilise des déclencheurs pour susciter l’attention des élèves à l’égard des nouveaux contenus.', dom:'Général', inv:false},
       ]
     },
     autodeter: {
@@ -889,10 +900,11 @@ var ITEMS_APPROFONDI = {
       modules: [6],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
-        {q:'Je choisis les méthodes pédagogiques que j’estime les plus efficaces pour mes élèves.', dom:'Général', inv:false},
-        {q:'Je planifie mes cours de façon autonome.', dom:'Général', inv:false},
         {q:'Je me sens libre d’adapter mes pratiques d’enseignement à la réalité de ma classe.', dom:'Général', inv:false},
-        {q:'Je prends l’initiative de collaborer avec mes collègues pour améliorer mes interventions.', dom:'Général', inv:false},
+        {q:'Je ressens de la fierté à enseigner.', dom:'Général', inv:false},
+        {q:'Je ressens du plaisir à accompagner mes élèves dans leurs apprentissages.', dom:'Général', inv:false},
+        {q:'Je me sens compétent dans la gestion de ma classe.', dom:'Général', inv:false},
+        {q:'Je perçois les défis professionnels comme des occasions de développement.', dom:'Général', inv:false},
       ]
     },
     ecarts: {
@@ -904,7 +916,12 @@ var ITEMS_APPROFONDI = {
       items: [
         {q:'Je m’efforce de prévenir les écarts de conduite en clarifiant mes attentes au début du cours.', dom:'Général', inv:false},
         {q:'J’énonce des règles et consignes positives plutôt que des interdictions.', dom:'Général', inv:false},
-        {q:'J’utilise une routine pour la gestion du matériel et des déplacements.', dom:'Général', inv:false},
+        {q:'J’utilise le regard ou la proximité physique avant d’intervenir verbalement.', dom:'Général', inv:false},
+        {q:'Je donne à l’élève une chance de se corriger avant d’intervenir.', dom:'Général', inv:false},
+        {q:'J’interviens avec calme, sans lever le ton ou humilier l’élève.', dom:'Général', inv:false},
+        {q:'Je priorise les interventions discrètes, sans interrompre l’activité du groupe.', dom:'Général', inv:false},
+        {q:'Je donne une conséquence éducative et réparatrice, plutôt qu’une punition arbitraire.', dom:'Général', inv:false},
+        {q:'Je fais un retour avec l’élève, une fois le calme revenu.', dom:'Général', inv:false},
       ]
     },
   },
@@ -1620,7 +1637,7 @@ function isHepMode(){
 }
 function applyHepLock(){
   if (!isHepMode()) return false;
-  // Forcer le mode approfondi (78 items)
+  // Forcer le mode approfondi (95 items)
   currentMode = 'approfondi';
   // Masquer le sélecteur de version et l'intro version rapide
   var sel = document.querySelector('.mode-selector');
