@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Module 4 : comprendre et réduire sa vulnérabilité individuelle au stress.">
 <title>Module 4 · Vulnérabilité individuelle au stress</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%230891a8%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script>
 (function() {
@@ -20,14 +20,14 @@
 <style>
 :root{
   --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
-  --accent3:#0891a8; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
   --light:#f8f5f0; --muted:#7a7a9d;
   --surface:#ffffff; --surface-alt:#fafbff;
   --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
   --border-soft:rgba(0,0,0,.08);
   --mod-color: #b8860b;
-  --mod-color-soft: #fef3c7;
-  --mod-color-deep: #8a6508;
+  --mod-color-soft: #fffbea;
+  --mod-color-deep: #92400e;
   --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
   --shadow-floating: 0 4px 14px rgba(0,0,0,.12);
 
@@ -75,7 +75,7 @@
   --surface:#1a1d24; --surface-alt:#13161c;
   --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
   --border-soft:rgba(255,255,255,.1);
-  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#33c4db;
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
   --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
   --mod-color: #fbbf24;
   --mod-color-soft: rgba(245,166,35,.15);
@@ -209,7 +209,7 @@ body{
 }
 .scroll-progress-fill{
   height:100%;
-  background:linear-gradient(90deg, var(--mod-color), var(--mod-color-deep));
+  background:linear-gradient(90deg, var(--mod-color), var(--accent3), var(--sage));
   width:0%;transition:width .1s linear;
   box-shadow:0 0 8px var(--mod-color);
 }
@@ -712,8 +712,8 @@ body{
 .thermo-help{
   display:inline-flex;align-items:center;justify-content:center;
   width:15px;height:15px;margin-left:5px;
-  border-radius:50%;border:1px solid var(--accent3, #0891a8);
-  color:var(--accent3, #0891a8);font-size:.62rem;font-weight:700;
+  border-radius:50%;border:1px solid var(--accent3, #533483);
+  color:var(--accent3, #533483);font-size:.62rem;font-weight:700;
   cursor:help;position:relative;vertical-align:middle;
   font-family:inherit;line-height:1;
 }
@@ -841,7 +841,7 @@ body{
 }
 [data-theme="dark"] .gloss-term{color:var(--accent3)}
 .gloss-term:hover, .gloss-term:focus, .gloss-term.active{
-  background:rgba(8,145,168,.08);border-radius:3px;
+  background:rgba(83,52,131,.08);border-radius:3px;
 }
 .gloss-term:focus-visible{outline:2px solid var(--accent3);outline-offset:2px;border-radius:3px}
 .gloss-tip{
@@ -1296,7 +1296,7 @@ body{
   background:var(--surface-alt);color:var(--text-body);
   resize:vertical;line-height:1.6;
 }
-.notes-panel textarea:focus{outline:none;border-color:var(--accent3);box-shadow:0 0 0 3px rgba(8,145,168,.12)}
+.notes-panel textarea:focus{outline:none;border-color:var(--accent3);box-shadow:0 0 0 3px rgba(83,52,131,.12)}
 .notes-meta{
   display:flex;justify-content:space-between;align-items:center;
   margin-top:8px;font-size:.74rem;color:var(--text-subtle);
@@ -1443,6 +1443,8 @@ body{
 }
 .mark-done-btn:hover{background:#3d6649}
 .mark-done-btn.done{background:var(--sage);opacity:.7}
+.mark-done-btn.locked{background:var(--muted);opacity:.55;cursor:not-allowed}
+.mark-done-btn.locked:hover{background:var(--muted)}
 .back-to-diag-btn{
   flex:1;min-width:200px;padding:14px;
   background:var(--surface);color:var(--text-body);
@@ -1612,11 +1614,11 @@ body{
 }
 .case-study-icon{
   width:36px;height:36px;border-radius:50%;
-  background:rgba(8,145,168,.12);color:var(--accent3);
+  background:rgba(83,52,131,.12);color:var(--accent3);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
 }
-[data-theme="dark"] .case-study-icon{background:rgba(42,184,204,.2)}
+[data-theme="dark"] .case-study-icon{background:rgba(123,84,160,.2)}
 .case-study-titre{
   font-weight:700;color:var(--text-strong);
   font-size:.98rem;margin:0;line-height:1.3;
@@ -1668,13 +1670,13 @@ body{
 [data-theme="dark"] .case-study-toggle{color:var(--accent3);border-color:var(--accent3)}
 .case-study-analysis{
   display:none;
-  background:linear-gradient(135deg,rgba(8,145,168,.06),var(--surface-alt));
+  background:linear-gradient(135deg,rgba(83,52,131,.06),var(--surface-alt));
   border-radius:10px;
   padding:16px 20px;margin-top:14px;
   border-left:3px solid var(--accent3);
   font-size:.92rem;line-height:1.6;
 }
-[data-theme="dark"] .case-study-analysis{background:rgba(42,184,204,.08)}
+[data-theme="dark"] .case-study-analysis{background:rgba(123,84,160,.08)}
 .case-study-analysis.open{display:block}
 .case-study-analysis h4{
   font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
@@ -1772,6 +1774,13 @@ body{
   border-left-color:#c0392b;color:var(--text-body);
 }
 .qcm-feedback strong{display:block;margin-bottom:4px}
+.qcm-retry-btn{
+  display:inline-block;margin-top:8px;padding:5px 12px;
+  background:rgba(45,156,219,.12);border:1px solid rgba(45,156,219,.35);
+  border-radius:8px;color:#2d9cdb;font-size:.78rem;font-weight:600;
+  cursor:pointer;font-family:inherit;
+}
+.qcm-retry-btn:hover{background:rgba(45,156,219,.2)}
 
 .qcm-divider{
   border:none;border-top:1px solid var(--border-soft);
@@ -1901,10 +1910,10 @@ body{
 .mode-option.active{
   background:var(--surface);
   border-color:var(--accent3);
-  box-shadow:0 4px 12px rgba(8,145,168,.1);
+  box-shadow:0 4px 12px rgba(83,52,131,.1);
 }
 [data-theme="dark"] .mode-option.active{
-  box-shadow:0 4px 12px rgba(42,184,204,.15);
+  box-shadow:0 4px 12px rgba(123,84,160,.15);
 }
 
 .mode-option-head{
@@ -1982,7 +1991,7 @@ body{
 .mode-form-field input:focus{
   outline:none;
   border-color:var(--accent3);
-  box-shadow:0 0 0 3px rgba(8,145,168,.1);
+  box-shadow:0 0 0 3px rgba(83,52,131,.1);
 }
 .mode-form-hint{
   margin-top:6px;
@@ -2056,7 +2065,7 @@ body{
   left:0;
   right:0;
   height:4px;
-  background:rgba(8,145,168,.08);
+  background:rgba(83,52,131,.08);
   z-index:99;
   pointer-events:none;
 }
@@ -2088,8 +2097,8 @@ body{
 
 /* ─── Liens inter-modules en bas de page ─── */
 .aut-related{
-  background:linear-gradient(135deg, rgba(8,145,168,.04), rgba(245,166,35,.03));
-  border:1px solid rgba(8,145,168,.12);
+  background:linear-gradient(135deg, rgba(83,52,131,.04), rgba(245,166,35,.03));
+  border:1px solid rgba(83,52,131,.12);
   border-radius:14px;
   padding:24px 28px;
   margin:40px 0 24px;
@@ -2129,7 +2138,7 @@ body{
 }
 .aut-related-card:hover{
   transform:translateY(-2px);
-  box-shadow:0 6px 16px rgba(8,145,168,.1);
+  box-shadow:0 6px 16px rgba(83,52,131,.1);
   border-left-color:var(--gold);
   text-decoration:none;
 }
@@ -2203,7 +2212,7 @@ body{
   text-decoration:none;
 }
 .aut-toc-list a.active{
-  background:rgba(8,145,168,.06);
+  background:rgba(83,52,131,.06);
   color:var(--accent3);
   font-weight:600;
   border-left-color:var(--accent3);
@@ -2305,83 +2314,6 @@ body{
   font-size:.88rem;
 }
 [data-theme="dark"] .aut-search-card{background:var(--surface);}
-
-/* ─── Bandeau diagnostic ─── */
-#diag-banner{
-  margin:0 0 24px;
-  padding:14px 20px;
-  border-radius:10px;
-  font-size:.88rem;
-  line-height:1.55;
-  display:flex;
-  align-items:flex-start;
-  gap:14px;
-}
-#diag-banner.diag-banner--absent{
-  background:#fff8e7;
-  border:1px solid rgba(212,168,84,.35);
-  border-left:4px solid #d4a854;
-  color:#5c4a1e;
-}
-[data-theme="dark"] #diag-banner.diag-banner--absent{
-  background:rgba(212,168,84,.08);
-  border-color:rgba(212,168,84,.2);
-  border-left-color:rgba(212,168,84,.6);
-  color:#e2c97e;
-}
-#diag-banner.diag-banner--offtrack{
-  background:#f0f6ff;
-  border:1px solid rgba(41,128,185,.22);
-  border-left:4px solid #2980b9;
-  color:#1a3a5c;
-}
-[data-theme="dark"] #diag-banner.diag-banner--offtrack{
-  background:rgba(41,128,185,.08);
-  border-color:rgba(41,128,185,.2);
-  border-left-color:rgba(41,128,185,.55);
-  color:#8ec5e8;
-}
-.diag-banner__icon{font-size:1.3rem;line-height:1;flex-shrink:0;margin-top:1px;}
-.diag-banner__body{flex:1;}
-.diag-banner__title{font-weight:700;margin:0 0 4px;font-size:.9rem;}
-.diag-banner__text{margin:0 0 8px;}
-.diag-banner__links{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
-.diag-banner__link{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:5px 12px;border-radius:6px;font-size:.82rem;font-weight:600;
-  text-decoration:none;transition:opacity .15s;
-}
-.diag-banner__link:hover{opacity:.82;}
-.diag-banner__link--primary{
-  background:#0891a8;color:#fff;
-}
-.diag-banner__link--secondary{
-  background:transparent;
-  border:1px solid currentColor;
-  opacity:.75;
-}
-.diag-banner--absent .diag-banner__link--secondary{color:#8b6914;}
-.diag-banner--offtrack .diag-banner__link--secondary{color:#2980b9;}
-[data-theme="dark"] .diag-banner__link--primary{background:#7c5cbf;}
-.diag-banner__mod-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
-.diag-banner__mod-pill{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:4px 10px;border-radius:20px;
-  font-size:.8rem;font-weight:600;
-  text-decoration:none;
-  background:rgba(41,128,185,.12);color:#1a3a5c;
-  border:1px solid rgba(41,128,185,.2);
-  transition:background .15s;
-}
-.diag-banner__mod-pill:hover{background:rgba(41,128,185,.22);}
-[data-theme="dark"] .diag-banner__mod-pill{background:rgba(41,128,185,.15);color:#8ec5e8;border-color:rgba(41,128,185,.3);}
-.diag-banner__dismiss{
-  background:none;border:none;cursor:pointer;
-  font-size:1rem;opacity:.4;line-height:1;padding:2px;
-  flex-shrink:0;align-self:flex-start;
-  color:inherit;
-}
-.diag-banner__dismiss:hover{opacity:.7;}
 </style>
 </head>
 <body>
@@ -2601,16 +2533,13 @@ body{
   <!-- CONTENU -->
   <main class="mod-content" id="main-content">
 
-    <!-- BANDEAU DIAGNOSTIC -->
-    <div id="diag-banner" style="display:none" role="note" aria-label="Recommandation diagnostic"></div>
-
     <!-- §1 TL;DR -->
     <section class="mod-section" data-sec="1" id="s1" aria-labelledby="title-s1">
       <div class="mod-section-head">
         <div class="mod-section-num">1</div>
         <div style="flex:1">
-          <div class="mod-section-eyebrow">Section 1 — En bref</div>
-          <h2 class="mod-section-title" id="title-s1">Objectifs du module</h2>
+          <div class="mod-section-eyebrow">Section 1 — TL;DR</div>
+          <h2 class="mod-section-title" id="title-s1">En 30 secondes</h2>
         </div>
         <div class="mod-section-meta">~1 min</div>
       </div>
@@ -2623,13 +2552,6 @@ body{
           <li>Styles de régulation émotionnelle — suppression vs réévaluation cognitive</li>
           <li>Stratégies de coping actif vs évitant</li>
           <li>Construction d'un kit personnel de régulation du stress</li>
-        </ul>
-      
-        <div class="block-info-title" style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(0,0,0,.07)">À l'issue de ce module, vous serez en mesure de :</div>
-        <ul>
-          <li>Relier votre profil de vulnérabilité aux mécanismes neurobiologiques du stress chronique</li>
-          <li>Distinguer vos stratégies de régulation efficaces de celles à réviser</li>
-          <li>Construire un kit personnel de régulation applicable en classe</li>
         </ul>
       </div>
     </section>
@@ -3014,7 +2936,7 @@ body{
       <div class="block-action block-action--check">
         <div class="block-action-head">
           <div class="block-action-title">Vérifiez votre compréhension</div>
-          <div class="block-action-meta">~2 min · 4 items</div>
+          <div class="block-action-meta">~4 min · 5 items</div>
         </div>
 
         <p class="qcm-section-label">Compréhension factuelle</p>
@@ -3046,6 +2968,50 @@ body{
           </div>
           <div class="qcm-feedback" id="fb-q2"></div>
         </div>
+
+        <div class="qcm-block" data-correct="opt-q3-b">
+          <div class="qcm-question">
+            <span class="qcm-question-num">3</span>
+            <span>Le « locus de contrôle externe », signal d'alerte présenté en Section 3, se traduit par :</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-a" onchange="checkQcm(this)"> Une réactivité émotionnelle disproportionnée</label>
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-b" onchange="checkQcm(this)"> Le sentiment que tout dépend des autres ou du hasard, une impuissance apprise</label>
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-c" onchange="checkQcm(this)"> Des troubles du sommeil persistants</label>
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-d" onchange="checkQcm(this)"> Un excès de confiance en ses propres capacités</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q3"></div>
+        </div>
+
+        <div class="qcm-block" data-correct="opt-q4-c">
+          <div class="qcm-question">
+            <span class="qcm-question-num">4</span>
+            <span>Parmi les leviers à renforcer, lequel correspond directement aux travaux de Bandura sur le sentiment d'efficacité personnelle ?</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-a" onchange="checkQcm(this)"> La cohérence cardiaque et l'ancrage corporel</label>
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-b" onchange="checkQcm(this)"> Le recadrage cognitif des pensées automatiques</label>
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-c" onchange="checkQcm(this)"> Cultiver le SEP par des expériences de maîtrise et la réinterprétation des succès partiels</label>
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-d" onchange="checkQcm(this)"> L'ajustement des attentes à ce qui est réaliste</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q4"></div>
+        </div>
+
+        <div class="qcm-block" data-correct="opt-q5-a">
+          <div class="qcm-question">
+            <span class="qcm-question-num">5</span>
+            <span>Le « perfectionnisme rigide », identifié comme signal d'alerte, repose principalement sur :</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-a" onchange="checkQcm(this)"> Un écart douloureux entre des attentes idéales et la réalité des contraintes</label>
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-b" onchange="checkQcm(this)"> Un manque d'ambition professionnelle</label>
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-c" onchange="checkQcm(this)"> Une absence totale de standards de qualité</label>
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-d" onchange="checkQcm(this)"> Une bonne tolérance à l'erreur</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q5"></div>
+        </div>
+
+        <div id="qcm-score-display"></div>
 
         <hr class="qcm-divider">
 
@@ -3470,7 +3436,7 @@ function resetThermo(){
 }
 
 /* ═══ Fiche action ═══ */
-var FIELDS = ['m1-dim','m1-signaux','m1-action','m1-strategie'];
+var FIELDS = ['m4-declencheurs','m4-regulation','m4-decompression','m4-engagement'];
 function savePratique(){
   FIELDS.forEach(function(id){
     var el = document.getElementById(id);
@@ -3555,7 +3521,8 @@ function checkQcm(input){
   } else {
     chosen.classList.add('incorrect');
     feedback.classList.add('visible','incorrect');
-    feedback.innerHTML = '<strong>Pas tout à fait.</strong> ' + getQcmExplanation(qName, false);
+    feedback.innerHTML = '<strong>Pas tout à fait.</strong> ' + getQcmExplanation(qName, false)
+      + ' <button type="button" class="qcm-retry-btn" onclick="retryQcm(this)">↻ Réessayer cette question</button>';
   }
 
   // Sauvegarder
@@ -3563,6 +3530,24 @@ function checkQcm(input){
   STATE.qcm[qName] = {value:input.value, correct: input.value === correct};
   saveState();
   refreshProgress();
+  refreshQcmScoreDisplay();
+}
+
+function retryQcm(btn){
+  var block = btn.closest('.qcm-block');
+  var qName = block.querySelector('input').name;
+  block.querySelectorAll('.qcm-option').forEach(function(opt){
+    var rad = opt.querySelector('input');
+    rad.disabled = false;
+    rad.checked = false;
+    opt.classList.remove('disabled','correct','incorrect');
+  });
+  block.querySelector('.qcm-feedback').classList.remove('visible','correct','incorrect');
+  block.querySelector('.qcm-feedback').innerHTML = '';
+  if(STATE.qcm) delete STATE.qcm[qName];
+  saveState();
+  refreshProgress();
+  refreshQcmScoreDisplay();
 }
 
 function getQcmExplanation(qName, isCorrect){
@@ -3574,17 +3559,69 @@ function getQcmExplanation(qName, isCorrect){
     if(isCorrect) return "Oui. La <strong>charge allostatique</strong> d\u00e9signe l'usure cumul\u00e9e de l'organisme quand le syst\u00e8me de stress est sur-sollicit\u00e9 sur la dur\u00e9e \u2014 le co\u00fbt biologique du stress chronique.";
     return "La charge allostatique est l'<strong>usure de l'organisme</strong> li\u00e9e \u00e0 une activation r\u00e9p\u00e9t\u00e9e du stress, pas un \u00e9pisode isol\u00e9. C'est ce qui relie stress chronique et atteinte des fonctions ex\u00e9cutives.";
   }
+  if(qName === 'q3'){
+    if(isCorrect) return "Le locus de contr\u00f4le externe nourrit l'impuissance apprise : croire que les \u00e9v\u00e9nements d\u00e9pendent du hasard ou des autres r\u00e9duit la motivation \u00e0 agir.";
+    return "La bonne r\u00e9ponse est <strong>le sentiment que tout d\u00e9pend des autres ou du hasard</strong> \u2014 c'est la d\u00e9finition du locus de contr\u00f4le externe, distinct des autres signaux corporels ou \u00e9motionnels.";
+  }
+  if(qName === 'q4'){
+    if(isCorrect) return "Bandura insiste sur les <strong>exp\u00e9riences de ma\u00eetrise</strong> et la r\u00e9interpr\u00e9tation des succ\u00e8s partiels comme moteurs du sentiment d'efficacit\u00e9 personnelle.";
+    return "La bonne r\u00e9ponse est <strong>cultiver le SEP par des exp\u00e9riences de ma\u00eetrise</strong> \u2014 c'est le levier directement issu des travaux de Bandura, distinct de la r\u00e9gulation physiologique ou du recadrage cognitif.";
+  }
+  if(qName === 'q5'){
+    if(isCorrect) return "Le perfectionnisme rigide cr\u00e9e une souffrance par l'\u00e9cart constant entre des standards id\u00e9aux et une r\u00e9alit\u00e9 toujours insuffisante.";
+    return "La bonne r\u00e9ponse est <strong>un \u00e9cart douloureux entre attentes id\u00e9ales et r\u00e9alit\u00e9</strong> \u2014 c'est ce qui distingue le perfectionnisme rigide d'une simple exigence de qualit\u00e9.";
+  }
   return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
 }
 
 /* ═══ Marquer complété ═══ */
+var QCM_PASS_THRESHOLD = 0.8; // 80% requis (4/5) — retry illimité disponible par question
+var QCM_TOTAL_QUESTIONS = 5;
+
+function getQcmScore(){
+  var answered = STATE.qcm ? Object.keys(STATE.qcm).length : 0;
+  var correct = STATE.qcm ? Object.values(STATE.qcm).filter(function(a){return a.correct;}).length : 0;
+  return {answered: answered, correct: correct, total: QCM_TOTAL_QUESTIONS, pct: answered > 0 ? correct/answered : 0};
+}
+
+function refreshQcmScoreDisplay(){
+  var s = getQcmScore();
+  var el = document.getElementById('qcm-score-display');
+  if(!el) return;
+  if(s.answered === 0){ el.innerHTML = ''; return; }
+  var passed = s.answered === s.total && (s.correct/s.total) >= QCM_PASS_THRESHOLD;
+  el.innerHTML = '<div class="qcm-score-bar" style="margin-top:14px;padding:10px 14px;border-radius:10px;font-size:.83rem;font-weight:600;background:'
+    + (s.answered < s.total ? 'rgba(45,156,219,.1);color:#2d9cdb' : passed ? 'rgba(74,124,89,.12);color:#4a7c59' : 'rgba(233,69,96,.1);color:#c0392b')
+    + '">' + s.correct + ' / ' + s.total + ' bonnes réponses ('+ s.answered +'/'+ s.total +' répondues)'
+    + (s.answered === s.total ? (passed ? ' — seuil de validation atteint ✓' : ' — seuil de 80% non atteint, vous pouvez refaire les questions ratées') : '')
+    + '</div>';
+  refreshMarkDoneState();
+}
+
+function refreshMarkDoneState(){
+  var btn = document.getElementById('mark-done');
+  if(!btn || STATE.completed) return;
+  var s = getQcmScore();
+  var ready = s.answered === s.total && (s.correct/s.total) >= QCM_PASS_THRESHOLD;
+  btn.disabled = !ready;
+  btn.classList.toggle('locked', !ready);
+  btn.title = ready ? '' : 'Répondez correctement à au moins ' + Math.ceil(QCM_TOTAL_QUESTIONS*QCM_PASS_THRESHOLD) + '/' + QCM_TOTAL_QUESTIONS + ' questions pour valider ce module';
+}
+
 function markModuleDone(){
+  var s = getQcmScore();
+  if(s.answered < s.total || (s.correct/s.total) < QCM_PASS_THRESHOLD){
+    alert('Pour valider ce module, répondez correctement à au moins ' + Math.ceil(QCM_TOTAL_QUESTIONS*QCM_PASS_THRESHOLD) + '/' + QCM_TOTAL_QUESTIONS + ' questions. Score actuel : ' + s.correct + '/' + s.total + '.');
+    return;
+  }
   STATE.completed = true;
   STATE.completedAt = new Date().toISOString();
+  STATE.qcmScore = s.correct + '/' + s.total;
   saveState();
   var btn = document.getElementById('mark-done');
   btn.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Module complété';
   btn.classList.add('done');
+  btn.disabled = false;
   showCompletedBanner();
 }
 
@@ -3764,6 +3801,8 @@ window.addEventListener('DOMContentLoaded', function(){
     var btn = document.getElementById('mark-done');
     btn.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Module complété';
     btn.classList.add('done');
+  } else {
+    refreshMarkDoneState();
   }
 
   if(STATE.savedAt) document.getElementById('fiche-time').textContent = 'Enregistrée le ' + fmtDate(STATE.savedAt);
@@ -4248,107 +4287,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 });
-</script>
-
-
-<script>
-/* ─── Bandeau diagnostic — Module 4 ─── */
-(function(){
-  var THIS_MODULE = 4;
-  var MODULES_LABEL = {
-    1:'Bien-être professionnel',2:'Prévention du burnout',3:'Besoins de formation',
-    4:'Vulnérabilité au stress',5:'Posture PRÉSENCE',6:'Cartographie des ressources',
-    7:'Mentorat entre pairs',8:'TDAH et autodétermination',9:'Prendre soin de soi'
-  };
-  function getModUrl(n){ return n===1?'prototype_module1_v5.html':'prototype_module'+n+'.html'; }
-
-  function getRecommended(){
-    try {
-      var v3 = localStorage.getItem('aut_diagnostic_v3');
-      if(v3){
-        var d = JSON.parse(v3);
-        // mode approfondi : lire les modules recommandés depuis t1
-        if(d.t1 && d.t1.recommended) return {mods: d.t1.recommended, mode:'approfondi'};
-      }
-      var v1 = localStorage.getItem('aut_diagnostic_v1');
-      if(v1){
-        var d1 = JSON.parse(v1);
-        if(d1.recommendedModules && d1.recommendedModules.length) return {mods: d1.recommendedModules.map(Number), mode: d1.mode||'rapide'};
-      }
-    } catch(e){}
-    return null;
-  }
-
-  function dismissKey(){ return 'aut_banner_dismissed_m'+THIS_MODULE; }
-
-  function renderBanner(){
-    var banner = document.getElementById('diag-banner');
-    if(!banner) return;
-    try { if(localStorage.getItem(dismissKey())) return; } catch(e){}
-
-    var rec = getRecommended();
-
-    if(!rec){
-      // Pas de diagnostic — inviter à faire la version approfondie
-      banner.className = 'diag-banner--absent';
-      banner.style.display = 'flex';
-      banner.innerHTML =
-        '<span class="diag-banner__icon" aria-hidden="true">📋</span>'+
-        '<div class="diag-banner__body">'+
-          '<p class="diag-banner__title">Obtenez un parcours personnalisé avant de commencer</p>'+
-          '<p class="diag-banner__text">L\'évaluation complète (11 dimensions · ~15 min) identifie précisément vos ressources professionnelles et personnelles, et vous oriente vers les modules les plus utiles pour votre situation.</p>'+
-          '<div class="diag-banner__links">'+
-            '<a href="diagnostic.html?mode=approfondi" class="diag-banner__link diag-banner__link--primary">→ Faire l\'évaluation complète</a>'+
-            '<a href="diagnostic.html" class="diag-banner__link diag-banner__link--secondary">Version rapide (5 min)</a>'+
-          '</div>'+
-        '</div>'+
-        '<button class="diag-banner__dismiss" onclick="autDismissBanner()" aria-label="Fermer ce message" title="Ne plus afficher">✕</button>';
-      return;
-    }
-
-    var mods = rec.mods.map(Number);
-    var isRecommended = mods.indexOf(THIS_MODULE) !== -1;
-
-    if(isRecommended){
-      // Module dans le top recommandé — pas de bandeau
-      return;
-    }
-
-    // Module hors priorités — afficher les modules recommandés
-    banner.className = 'diag-banner--offtrack';
-    banner.style.display = 'flex';
-
-    var pillsHtml = mods.slice(0,3).map(function(n){
-      return '<a href="'+getModUrl(n)+'" class="diag-banner__mod-pill">Module '+n+' — '+MODULES_LABEL[n]+'</a>';
-    }).join('');
-
-    var modeLabel = rec.mode === 'approfondi' ? 'évaluation complète' : 'évaluation rapide';
-
-    banner.innerHTML =
-      '<span class="diag-banner__icon" aria-hidden="true">🎯</span>'+
-      '<div class="diag-banner__body">'+
-        '<p class="diag-banner__title">Ce module n\'est pas dans vos priorités actuelles</p>'+
-        '<p class="diag-banner__text">D\'après votre '+modeLabel+', vos modules prioritaires sont :</p>'+
-        '<div class="diag-banner__mod-pills">'+pillsHtml+'</div>'+
-        '<div class="diag-banner__links" style="margin-top:10px">'+
-          '<a href="diagnostic.html" class="diag-banner__link diag-banner__link--secondary">Refaire ou affiner l\'évaluation</a>'+
-        '</div>'+
-      '</div>'+
-      '<button class="diag-banner__dismiss" onclick="autDismissBanner()" aria-label="Fermer ce message" title="Ne plus afficher">✕</button>';
-  }
-
-  window.autDismissBanner = function(){
-    try { localStorage.setItem(dismissKey(), '1'); } catch(e){}
-    var b = document.getElementById('diag-banner');
-    if(b){ b.style.opacity='0'; b.style.transition='opacity .25s'; setTimeout(function(){ b.style.display='none'; },260); }
-  };
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', renderBanner);
-  } else {
-    renderBanner();
-  }
-})();
 </script>
 
 </body>
