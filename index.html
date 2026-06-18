@@ -1956,9 +1956,9 @@ function dismissResume(){
       var session = (isHep && _hepConfig && _hepConfig.session) ? _hepConfig.session : 'Résilience professionnelle des enseignants : neurosciences et pratiques';
       var formateur = (isHep && _hepConfig && _hepConfig.formateur) ? _hepConfig.formateur : null;
       var lieu = (isHep && _hepConfig && _hepConfig.lieu) ? _hepConfig.lieu : null;
-      var dureeTotaleMin = 245; // 9 modules, ~4h05 — voir tableau des heures (page Catalogue des modules)
+      var dureeTotaleMin = 350; // 9 modules, ~5h50 (révisé) — voir tableau des heures (page Catalogue des modules)
       var periodes = Math.round(dureeTotaleMin / 45);
-      var dureeStr = '4h05 (≈ ' + periodes + ' périodes de 45 minutes)';
+      var dureeStr = '5h50 (≈ ' + periodes + ' périodes de 45 minutes)';
       var recognitionHtml = isHep
         ? '<div class="cert-recognition">Ce parcours d\'autoformation sur le développement de la résilience professionnelle enseignante, suivi par ' + name.replace(/</g,'') + ', est reconnu par ' + institution + ' dans le cadre de la formation continue.</div>'
         : '';
