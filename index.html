@@ -1276,6 +1276,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span><strong id="global-progress-text">0 /9 modules complétés</strong></span>
   </div>
   <div id="certificate-cta" style="display:none;margin-top:14px;">
+    <div id="bilan-cta-hep" style="display:none;margin-bottom:10px;">
+      <button class="mode-btn mode-btn-secondary" onclick="window.openBilanReflexif()" style="display:inline-flex;align-items:center;gap:8px;">
+        📝 Compléter mon bilan réflexif (HEP-VS)
+      </button>
+    </div>
     <button class="mode-btn mode-btn-primary" onclick="window.generateCertificate()" style="display:inline-flex;align-items:center;gap:8px;">
       🎓 Télécharger mon certificat de réussite
     </button>
@@ -1503,6 +1508,12 @@ window.addEventListener('DOMContentLoaded', function(){
   var certCta = document.getElementById('certificate-cta');
   if(certCta && status.completed.length === status.total){
     certCta.style.display = 'block';
+    // Bouton bilan réflexif — mode HEP uniquement
+    var bilanCta = document.getElementById('bilan-cta-hep');
+    if(bilanCta){
+      var userMode = getUserMode();
+      bilanCta.style.display = (userMode.mode === 'hep') ? 'block' : 'none';
+    }
   }
 
   // Bandeau de reprise
@@ -1930,6 +1941,115 @@ function dismissResume(){
       }
     };
     reader.readAsText(file);
+  };
+
+  // ── Bilan réflexif HEP-VS ────────────────────────────────────
+  window.openBilanReflexif = function(){
+    var user = getUserMode();
+    var name = (user.name || '').trim() || 'Participant·e';
+
+    // Créer la modale si elle n'existe pas
+    var existing = document.getElementById('bilan-modal');
+    if(existing) { existing.remove(); }
+
+    var modal = document.createElement('div');
+    modal.id = 'bilan-modal';
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;';
+
+    modal.innerHTML = '<div style="background:#fff;border-radius:12px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;box-shadow:0 8px 40px rgba(0,0,0,0.18);">' +
+      '<h2 style="margin:0 0 6px;font-size:1.25rem;color:#1a3a5c;">📝 Bilan réflexif de fin de parcours</h2>' +
+      '<p style="margin:0 0 24px;font-size:.88rem;color:#666;">Session HEP-VS · À compléter et à transmettre à votre formateur·rice avec votre attestation.</p>' +
+
+      '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">1. Quelle dimension de votre bien-être professionnel avez-vous le mieux identifiée grâce à ce parcours ? En quoi cette prise de conscience modifie-t-elle votre regard sur votre pratique ?</label>' +
+      '<textarea id="bilan-q1" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:20px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
+
+      '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">2. Citez une stratégie concrète issue du parcours que vous avez expérimentée ou envisagez d'expérimenter dans votre contexte professionnel.</label>' +
+      '<textarea id="bilan-q2" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:20px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
+
+      '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">3. Sur quels appuis (collègues, ressources, dispositifs institutionnels) pouvez-vous vous appuyer pour maintenir cette démarche dans la durée ?</label>' +
+      '<textarea id="bilan-q3" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:20px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
+
+      '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">4. Quel est votre prochain pas — une action précise, réaliste, datée ?</label>' +
+      '<textarea id="bilan-q4" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:28px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
+
+      '<div style="display:flex;gap:12px;justify-content:flex-end;">' +
+        '<button onclick="document.getElementById('bilan-modal').remove()" style="padding:10px 20px;border:1px solid #ccd;background:#f5f7fa;border-radius:6px;cursor:pointer;font-size:.92rem;">Fermer</button>' +
+        '<button onclick="window.exportBilanPDF()" style="padding:10px 22px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.92rem;font-weight:600;">⬇ Exporter en PDF</button>' +
+      '</div>' +
+    '</div>';
+
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e){ if(e.target === modal) modal.remove(); });
+  };
+
+  window.exportBilanPDF = function(){
+    var q1 = (document.getElementById('bilan-q1') || {}).value || '';
+    var q2 = (document.getElementById('bilan-q2') || {}).value || '';
+    var q3 = (document.getElementById('bilan-q3') || {}).value || '';
+    var q4 = (document.getElementById('bilan-q4') || {}).value || '';
+
+    if(!q1.trim() && !q2.trim() && !q3.trim() && !q4.trim()){
+      alert('Veuillez compléter au moins une réponse avant d'exporter.');
+      return;
+    }
+
+    var user = getUserMode();
+    var name = (user.name || '').trim() || 'Participant·e';
+    var today = new Date();
+    var dateStr = today.toLocaleDateString('fr-CH', {day:'numeric', month:'long', year:'numeric'});
+    var institution = (_hepConfig && _hepConfig.institution) ? _hepConfig.institution : 'HEP-VS';
+    var session = (_hepConfig && _hepConfig.session) ? _hepConfig.session : 'Résilience professionnelle enseignante';
+
+    function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
+
+    var html = '<!DOCTYPE html><html><head><meta charset="utf-8">' +
+      '<style>body{font-family:Georgia,serif;margin:40px;color:#1a1a2e;line-height:1.6;}' +
+      'h1{font-size:1.3rem;color:#1a3a5c;border-bottom:2px solid #1a3a5c;padding-bottom:8px;}' +
+      'h2{font-size:1rem;color:#1a3a5c;margin-top:28px;margin-bottom:6px;}' +
+      '.meta{font-size:.85rem;color:#666;margin-bottom:24px;}' +
+      '.reponse{background:#f8f9fb;border-left:3px solid #1a3a5c;padding:12px 16px;border-radius:0 6px 6px 0;font-size:.95rem;min-height:40px;}' +
+      '.footer{margin-top:40px;font-size:.8rem;color:#999;border-top:1px solid #eee;padding-top:12px;}' +
+      '</style></head><body>' +
+      '<h1>Bilan réflexif de fin de parcours</h1>' +
+      '<div class="meta"><strong>' + esc(name) + '</strong> · ' + esc(institution) + ' · ' + esc(session) + ' · ' + dateStr + '</div>' +
+
+      '<h2>1. Prise de conscience</h2>' +
+      '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Quelle dimension de votre bien-être professionnel avez-vous le mieux identifiée grâce à ce parcours ? En quoi cette prise de conscience modifie-t-elle votre regard sur votre pratique ?</p>' +
+      '<div class="reponse">' + (q1.trim() ? esc(q1) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
+
+      '<h2>2. Stratégie expérimentée ou envisagée</h2>' +
+      '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Citez une stratégie concrète issue du parcours que vous avez expérimentée ou envisagez d'expérimenter dans votre contexte professionnel.</p>' +
+      '<div class="reponse">' + (q2.trim() ? esc(q2) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
+
+      '<h2>3. Appuis identifiés</h2>' +
+      '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Sur quels appuis (collègues, ressources, dispositifs institutionnels) pouvez-vous vous appuyer pour maintenir cette démarche dans la durée ?</p>' +
+      '<div class="reponse">' + (q3.trim() ? esc(q3) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
+
+      '<h2>4. Prochain pas</h2>' +
+      '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Quel est votre prochain pas — une action précise, réaliste, datée ?</p>' +
+      '<div class="reponse">' + (q4.trim() ? esc(q4) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
+
+      '<div class="footer">Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS · rodoguigs.github.io/Ressources_Autoformation</div>' +
+      '</body></html>';
+
+    var win = window.open('', '_blank');
+    if(!win){ alert('Veuillez autoriser les fenêtres pop-up pour exporter le bilan.'); return; }
+    win.document.write(html);
+    win.document.close();
+
+    var script = win.document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+    script.onload = function(){
+      var opt = {
+        margin: 15,
+        filename: 'bilan-reflexif-' + name.replace(/[^a-zA-Z0-9]+/g,'-').toLowerCase() + '.pdf',
+        image: {type:'jpeg', quality:0.97},
+        html2canvas: {scale:2, useCORS:true},
+        jsPDF: {unit:'mm', format:'a4', orientation:'portrait'}
+      };
+      win.html2pdf().set(opt).from(win.document.body).save().then(function(){ win.close(); });
+    };
+    win.document.head.appendChild(script);
   };
 
   // ── Génération du certificat de réussite ──────────────────────
