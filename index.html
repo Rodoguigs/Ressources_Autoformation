@@ -1293,8 +1293,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <svg class="icon"><use href="#i-leaf"/></svg>
     Autoformation
   </a>
-    <nav class="nav-links" aria-label="Navigation principale">
-    <a href="index.html" class="nav-link active">Accueil</a>
+        <nav class="nav-links" aria-label="Navigation principale">
+        <a href="index.html" class="nav-link active">Accueil</a>
     <span class="nav-sep">→</span>
     <a href="diagnostic.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">1</span>Diagnostic</span></a>
     <span class="nav-sep">→</span>
@@ -1302,21 +1302,21 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span class="nav-sep">→</span>
     <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">3</span>Modules</span></a>
     <div class="nav-plus-wrap" id="nav-plus-wrap">
-      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Ressources complémentaires" type="button">
+      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" type="button">
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html" class="nav-link">📋 Démarche</a>
+        <a href="demarche.html">📋 Démarche</a>
         <a href="glossaire.html">🔤 Glossaire</a>
         <a href="mon-suivi.html">📊 Mon suivi</a>
       </div>
     </div>
   </nav>
-    <a href="bibliotheque.html" class="nav-biblio-btn" title="Bibliothèque de ressources">
+  <a href="bibliotheque.html" class="nav-biblio-btn" title="Bibliothèque">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
     Bibliothèque
   </a>
-<button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
+  <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
   <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
   <span style="font-size:.78rem;">Rechercher</span>
@@ -2148,52 +2148,8 @@ function dismissResume(){
       '<div class="reponse">' + (q4.trim() ? esc(q4) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
 
       '<div class="footer">Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS · rodoguigs.github.io/Ressources_Autoformation</div>' +
-      '<script>
-function toggleNavPlus(){
-  var w = document.getElementById('nav-plus-wrap');
-  if(w) w.classList.toggle('open');
-}
-document.addEventListener('click', function(e){
-  var w = document.getElementById('nav-plus-wrap');
-  if(w && !w.contains(e.target)) w.classList.remove('open');
-});
-</script>
-<script>
-(function(){
-  var KEY = 'aut_onboard_done_v1';
-  var path = window.location.pathname;
-  var isIndex = path.indexOf('index.html') !== -1 || path.slice(-1) === '/' || path === '';
-  if(!isIndex) return;
-  if(localStorage.getItem(KEY)) return;
-  var ov = document.createElement('div');
-  ov.className = 'onboard-overlay';
-  ov.id = 'onboard-overlay';
-  ov.innerHTML = '<div class="onboard-card">'
-    + '<div class="onboard-eyebrow">Bienvenue sur la plateforme</div>'
-    + '<h2 class="onboard-title">Par où commencer ?</h2>'
-    + '<p class="onboard-intro">Cette formation se construit en 3 temps. Suivez le parcours recommandé pour en tirer le maximum.</p>'
-    + '<div class="onboard-steps">'
-    + '<a class="onboard-step" href="diagnostic.html"><div class="onboard-step-num" style="background:var(--accent1)">1</div><div class="onboard-step-body"><div class="onboard-step-label">Diagnostic PRÉSENCE</div><div class="onboard-step-desc">Identifiez vos forces et axes de développement (10 min).</div></div></a>'
-    + '<a class="onboard-step" href="fondements.html"><div class="onboard-step-num" style="background:var(--accent3)">2</div><div class="onboard-step-body"><div class="onboard-step-label">Fondements scientifiques</div><div class="onboard-step-desc">Comprenez les bases neuroscientifiques avant d'entrer dans les modules.</div></div></a>'
-    + '<a class="onboard-step" href="modules.html"><div class="onboard-step-num" style="background:var(--sage)">3</div><div class="onboard-step-body"><div class="onboard-step-label">Modules de formation</div><div class="onboard-step-desc">Explorez les 9 modules selon vos résultats au diagnostic.</div></div></a>'
-    + '</div>'
-    + '<button class="onboard-cta" onclick="startOnboard()">Commencer par le diagnostic →</button>'
-    + '<button class="onboard-skip" onclick="closeOnboard()">Explorer librement</button>'
-    + '</div>';
-  document.body.appendChild(ov);
-  requestAnimationFrame(function(){ ov.classList.add('open'); });
-  window.closeOnboard = function(){
-    localStorage.setItem(KEY,'1');
-    ov.classList.remove('open');
-    setTimeout(function(){ ov.remove(); },300);
-  };
-  window.startOnboard = function(){
-    localStorage.setItem(KEY,'1');
-    window.location.href = 'diagnostic.html';
-  };
-  ov.addEventListener('click', function(e){ if(e.target===ov) window.closeOnboard(); });
-})();
-</script>
+      '
+
 </body></html>';
 
     var win = window.open('', '_blank');
@@ -2491,6 +2447,53 @@ document.addEventListener('DOMContentLoaded', function(){
   } else {
     updateProgress();
   }
+})();
+</script>
+<script>
+/* ── Nav Plus dropdown ── */
+function toggleNavPlus(){
+  var w=document.getElementById('nav-plus-wrap');
+  if(w) w.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  var w=document.getElementById('nav-plus-wrap');
+  if(w&&!w.contains(e.target)) w.classList.remove('open');
+});
+</script>
+<script>
+/* ── Onboarding première visite ── */
+(function(){
+  var KEY='aut_onboard_done_v1';
+  var path=window.location.pathname;
+  if(path.indexOf('index.html')===-1 && path.slice(-1)!=='/' && path!=='') return;
+  if(localStorage.getItem(KEY)) return;
+  var ov=document.createElement('div');
+  ov.className='onboard-overlay';
+  ov.id='onboard-overlay';
+  ov.innerHTML='<div class="onboard-card">'
+    +'<div class="onboard-eyebrow">Bienvenue sur la plateforme</div>'
+    +'<h2 class="onboard-title">Par où commencer ?</h2>'
+    +'<p class="onboard-intro">Cette formation se construit en 3 temps. Suivez le parcours recommandé pour en tirer le maximum.</p>'
+    +'<div class="onboard-steps">'
+    +'<a class="onboard-step" href="diagnostic.html"><div class="onboard-step-num" style="background:var(--accent1)">1</div><div class="onboard-step-body"><div class="onboard-step-label">Diagnostic PRÉSENCE</div><div class="onboard-step-desc">Identifiez vos forces et axes de développement (10 min).</div></div></a>'
+    +'<a class="onboard-step" href="fondements.html"><div class="onboard-step-num" style="background:var(--accent3)">2</div><div class="onboard-step-body"><div class="onboard-step-label">Fondements scientifiques</div><div class="onboard-step-desc">Comprenez les bases neuroscientifiques avant d'entrer dans les modules.</div></div></a>'
+    +'<a class="onboard-step" href="modules.html"><div class="onboard-step-num" style="background:var(--sage)">3</div><div class="onboard-step-body"><div class="onboard-step-label">Modules de formation</div><div class="onboard-step-desc">Explorez les 9 modules selon vos résultats au diagnostic.</div></div></a>'
+    +'</div>'
+    +'<button class="onboard-cta" onclick="window.startOnboard()">Commencer par le diagnostic →</button>'
+    +'<button class="onboard-skip" onclick="window.closeOnboard()">Explorer librement</button>'
+    +'</div>';
+  document.body.appendChild(ov);
+  requestAnimationFrame(function(){ ov.classList.add('open'); });
+  window.closeOnboard=function(){
+    localStorage.setItem(KEY,'1');
+    ov.classList.remove('open');
+    setTimeout(function(){ ov.remove(); },300);
+  };
+  window.startOnboard=function(){
+    localStorage.setItem(KEY,'1');
+    window.location.href='diagnostic.html';
+  };
+  ov.addEventListener('click',function(e){ if(e.target===ov) window.closeOnboard(); });
 })();
 </script>
 </body>
