@@ -95,6 +95,16 @@ a:hover{text-decoration:underline}
 .nav-sep{color:var(--text-subtle);font-size:.8rem;opacity:.5;user-select:none;padding:0 1px}
 /* Menu Plus */
 .nav-plus-wrap{position:relative}
+.nav-biblio-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  color:var(--text-muted);text-decoration:none;
+  padding:6px 10px;border-radius:8px;font-size:.82rem;
+  transition:all .15s;border:1px solid transparent;
+  white-space:nowrap;
+}
+.nav-biblio-btn:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-biblio-btn.active{background:var(--accent2);color:white;font-weight:600;border-color:transparent}
+
 .nav-plus-btn{
   color:var(--text-muted);padding:6px 10px;border-radius:8px;
   background:none;border:none;cursor:pointer;font-size:.85rem;
