@@ -89,9 +89,17 @@ a:hover{text-decoration:underline}
   display:inline-flex;align-items:center;justify-content:center;
   width:18px;height:18px;border-radius:50%;
   background:var(--border-soft);font-size:.68rem;font-weight:700;
-  color:var(--text-muted);flex-shrink:0;
+  color:white;flex-shrink:0;transition:transform .15s;
 }
-.nav-link.active .nav-step-num{background:rgba(255,255,255,.3);color:white}
+.nav-step-num[data-n="1"]{background:var(--accent1)}
+.nav-step-num[data-n="2"]{background:var(--accent3)}
+.nav-step-num[data-n="3"]{background:var(--sage)}
+.nav-link:hover .nav-step-num{transform:scale(1.15)}
+.nav-link.active .nav-step-num{transform:scale(1.15);box-shadow:0 0 0 2px rgba(255,255,255,.6)}
+.nav-biblio-btn{flex-shrink:0;color:var(--sage) !important}
+.nav-biblio-btn svg{stroke:var(--sage)}
+.nav-biblio-btn:hover,.nav-biblio-btn.active{background:rgba(74,124,89,.12) !important;color:var(--sage) !important}
+.nav-biblio-btn.active{font-weight:700}
 /* Séparateur → */
 .nav-sep{color:var(--text-subtle);font-size:.8rem;opacity:.5;user-select:none;padding:0 1px}
 /* Menu Plus */
@@ -1297,11 +1305,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <nav class="nav-links" aria-label="Navigation principale">
         <a href="index.html" class="nav-link active">Accueil</a>
     <span class="nav-sep">→</span>
-    <a href="diagnostic.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">1</span>Diagnostic</span></a>
+    <a href="diagnostic.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="1">1</span>Diagnostic</span></a>
     <span class="nav-sep">→</span>
-    <a href="fondements.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">2</span>Fondements</span></a>
+    <a href="fondements.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="2">2</span>Fondements</span></a>
     <span class="nav-sep">→</span>
-    <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">3</span>Modules</span></a>
+    <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="3">3</span>Modules</span></a>
     <div class="nav-plus-wrap" id="nav-plus-wrap">
       <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" type="button">
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
