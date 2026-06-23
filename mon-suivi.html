@@ -80,6 +80,99 @@ a:hover{text-decoration:underline}
 }
 .nav-link:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
 .nav-link.active{background:var(--accent2);color:white;font-weight:600}
+
+/* ─── Navbar restructurée ─── */
+.nav-links{display:flex;gap:4px;font-size:.85rem;flex:1;align-items:center}
+.nav-step{display:inline-flex;align-items:center;gap:5px}
+.nav-step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--border-soft);font-size:.68rem;font-weight:700;
+  color:var(--text-muted);flex-shrink:0;
+}
+.nav-link.active .nav-step-num{background:rgba(255,255,255,.3);color:white}
+/* Séparateur → */
+.nav-sep{color:var(--text-subtle);font-size:.8rem;opacity:.5;user-select:none;padding:0 1px}
+/* Menu Plus */
+.nav-plus-wrap{position:relative}
+.nav-plus-btn{
+  color:var(--text-muted);padding:6px 10px;border-radius:8px;
+  background:none;border:none;cursor:pointer;font-size:.85rem;
+  display:inline-flex;align-items:center;gap:4px;transition:all .15s;
+  font-family:inherit;
+}
+.nav-plus-btn:hover,.nav-plus-wrap.open .nav-plus-btn{background:var(--surface-alt);color:var(--text-strong)}
+.nav-plus-btn svg{transition:transform .15s}
+.nav-plus-wrap.open .nav-plus-btn svg{transform:rotate(180deg)}
+.nav-plus-dropdown{
+  position:absolute;right:0;top:calc(100% + 6px);
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:10px;box-shadow:var(--shadow-floating);
+  min-width:180px;padding:6px;z-index:200;
+  display:none;flex-direction:column;gap:2px;
+}
+.nav-plus-wrap.open .nav-plus-dropdown{display:flex}
+.nav-plus-dropdown a{
+  color:var(--text-body);text-decoration:none;padding:7px 12px;
+  border-radius:7px;font-size:.84rem;display:flex;align-items:center;gap:8px;
+  transition:background .12s;
+}
+.nav-plus-dropdown a:hover{background:var(--surface-alt);color:var(--text-strong)}
+.nav-plus-dropdown a.active{background:var(--accent2);color:white;font-weight:600}
+/* ─── Modale onboarding ─── */
+.onboard-overlay{
+  position:fixed;inset:0;background:rgba(26,26,46,.55);
+  z-index:9000;display:flex;align-items:center;justify-content:center;
+  padding:16px;opacity:0;transition:opacity .25s;
+}
+.onboard-overlay.open{opacity:1}
+.onboard-card{
+  background:var(--surface);border-radius:16px;max-width:520px;width:100%;
+  padding:36px 32px 28px;box-shadow:0 16px 48px rgba(0,0,0,.18);
+  transform:translateY(20px);transition:transform .25s;
+  position:relative;
+}
+.onboard-overlay.open .onboard-card{transform:translateY(0)}
+.onboard-eyebrow{
+  font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--accent3);margin-bottom:10px;
+}
+.onboard-title{
+  font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:800;
+  color:var(--text-strong);margin:0 0 10px;line-height:1.25;
+}
+.onboard-intro{font-size:.92rem;color:var(--text-muted);line-height:1.6;margin-bottom:24px;}
+.onboard-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.onboard-step{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:12px 14px;border-radius:10px;background:var(--surface-alt);
+  border:1px solid var(--border-soft);text-decoration:none;color:inherit;
+  transition:border-color .15s,box-shadow .15s;
+}
+.onboard-step:hover{border-color:var(--accent2);box-shadow:0 2px 8px rgba(15,52,96,.1);text-decoration:none}
+.onboard-step-num{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.8rem;color:white;flex-shrink:0;
+  margin-top:1px;
+}
+.onboard-step-body{flex:1}
+.onboard-step-label{font-weight:700;font-size:.88rem;color:var(--text-strong);margin-bottom:2px;}
+.onboard-step-desc{font-size:.8rem;color:var(--text-muted);line-height:1.4;}
+.onboard-cta{
+  width:100%;padding:12px;border-radius:10px;
+  background:var(--accent2);color:white;border:none;
+  font-weight:700;font-size:.95rem;cursor:pointer;
+  font-family:inherit;transition:opacity .15s;
+}
+.onboard-cta:hover{opacity:.88}
+.onboard-skip{
+  display:block;text-align:center;margin-top:12px;
+  font-size:.78rem;color:var(--text-subtle);cursor:pointer;
+  background:none;border:none;font-family:inherit;width:100%;
+}
+.onboard-skip:hover{color:var(--text-muted)}
+
 .theme-toggle{
   background:none;border:1px solid var(--border-soft);
   border-radius:8px;padding:6px 10px;cursor:pointer;
@@ -874,13 +967,25 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 <header class="app-header">
   <a href="index.html" class="app-logo"><svg class="icon"><use href="#i-leaf"/></svg> Autoformation</a>
-  <nav class="nav-links">
+  <nav class="nav-links" aria-label="Navigation principale">
     <a href="index.html" class="nav-link">Accueil</a>
-    <a href="diagnostic.html" class="nav-link">Diagnostic</a>
-    <a href="demarche.html" class="nav-link">Démarche</a>
-    <a href="modules.html" class="nav-link">Catalogue modules</a>
-    <a href="fondements.html" class="nav-link">Fondements</a>
-    <a href="bibliotheque.html" class="nav-link">Bibliothèque</a>
+    <span class="nav-sep">→</span>
+    <a href="diagnostic.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">1</span>Diagnostic</span></a>
+    <span class="nav-sep">→</span>
+    <a href="fondements.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">2</span>Fondements</span></a>
+    <span class="nav-sep">→</span>
+    <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num">3</span>Modules</span></a>
+    <div class="nav-plus-wrap" id="nav-plus-wrap">
+      <button class="nav-plus-btn active" onclick="toggleNavPlus()" aria-label="Ressources complémentaires" type="button">
+        Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="nav-plus-dropdown" id="nav-plus-dropdown">
+        <a href="demarche.html" class="nav-link">📋 Démarche</a>
+        <a href="bibliotheque.html">📚 Bibliothèque</a>
+        <a href="glossaire.html">🔤 Glossaire</a>
+        <a href="mon-suivi.html" class="active">📊 Mon suivi</a>
+      </div>
+    </div>
   </nav>
   <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
   <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
@@ -1746,5 +1851,15 @@ function autExportPDF(){
 }
 </script>
 
+<script>
+function toggleNavPlus(){
+  var w = document.getElementById('nav-plus-wrap');
+  if(w) w.classList.toggle('open');
+}
+document.addEventListener('click', function(e){
+  var w = document.getElementById('nav-plus-wrap');
+  if(w && !w.contains(e.target)) w.classList.remove('open');
+});
+</script>
 </body>
 </html>
