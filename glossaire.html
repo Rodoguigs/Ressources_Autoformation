@@ -73,7 +73,7 @@ a:hover{text-decoration:underline}
 }
 .app-logo:hover{text-decoration:none}
 [data-theme="dark"] .app-logo{color:var(--text-strong)}
-.nav-links{display:flex;gap:6px;font-size:.85rem;flex:1;flex-wrap:wrap}
+.nav-links{display:flex;gap:4px;font-size:.85rem;flex:1;align-items:center;min-width:0;overflow:visible}
 .nav-link{
   color:var(--text-muted);text-decoration:none;padding:6px 12px;border-radius:8px;
   transition:all .15s;
@@ -103,6 +103,7 @@ a:hover{text-decoration:underline}
   white-space:nowrap;
 }
 .nav-biblio-btn:hover{background:var(--surface-alt);color:var(--text-strong);text-decoration:none}
+.nav-biblio-btn{flex-shrink:0}
 .nav-biblio-btn.active{background:var(--accent2);color:white;font-weight:600;border-color:transparent}
 
 .nav-plus-btn{
@@ -2059,12 +2060,16 @@ document.addEventListener('DOMContentLoaded', function(){
 <script>
 /* ── Nav Plus dropdown ── */
 function toggleNavPlus(){
-  var w=document.getElementById('nav-plus-wrap');
-  if(w) w.classList.toggle('open');
+  var d=document.getElementById('nav-plus-dropdown');
+  if(!d) return;
+  var open = d.style.display==='flex';
+  d.style.display = open ? 'none' : 'flex';
+  d.style.flexDirection = 'column';
 }
 document.addEventListener('click',function(e){
   var w=document.getElementById('nav-plus-wrap');
-  if(w&&!w.contains(e.target)) w.classList.remove('open');
+  var d=document.getElementById('nav-plus-dropdown');
+  if(w&&d&&!w.contains(e.target)) d.style.display='none';
 });
 </script>
 </body>
