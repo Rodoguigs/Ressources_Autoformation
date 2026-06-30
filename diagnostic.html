@@ -236,6 +236,16 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:32px 48px;width:100%;}
 .diag-composante-sous{font-size:.82rem;color:var(--text-muted);margin-top:2px;}
 .diag-composante-score{font-size:.85rem;font-weight:700;color:var(--comp-color);white-space:nowrap;}
 
+/* ─── Info-bulles glossaire (termes techniques) ─── */
+.gloss-tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--border-soft);color:var(--text-muted);font-size:.68rem;font-weight:700;font-style:normal;line-height:1;margin-left:6px;cursor:help;vertical-align:middle;flex-shrink:0;}
+.gloss-tip:hover,.gloss-tip:focus{background:var(--comp-color,#533483);color:#fff;outline:none;}
+.gloss-tip .gloss-tip-box{display:none;position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);width:240px;background:var(--text-strong);color:var(--surface);font-size:.78rem;font-weight:400;line-height:1.4;padding:10px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.18);z-index:20;text-align:left;}
+.gloss-tip .gloss-tip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--text-strong);}
+.gloss-tip:hover .gloss-tip-box,.gloss-tip:focus .gloss-tip-box{display:block;}
+.gloss-tip .gloss-tip-box a{color:#9ad1ff;font-weight:600;text-decoration:underline;}
+@media (max-width:600px){.gloss-tip .gloss-tip-box{width:200px;left:0;transform:none;}.gloss-tip .gloss-tip-box::after{left:8px;transform:none;}}
+
+
 .diag-question-block{margin-top:14px;padding-top:14px;border-top:1px dashed var(--border-soft);}
 .diag-question-block:first-child{border-top:none;padding-top:0;margin-top:0}
 .diag-question{font-size:.92rem;color:var(--text-body);margin:0 0 10px;line-height:1.55;}
@@ -644,7 +654,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
     <span class="nav-sep">→</span>
     <a href="diagnostic.html" class="nav-link active"><span class="nav-step"><span class="nav-step-num" data-n="1">1</span>Diagnostic</span></a>
     <span class="nav-sep">→</span>
-    <a href="fondements.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="2">2</span>Fondements</span></a>
+    <a href="fondements.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="2">2</span>Cadres de référence</span></a>
     <span class="nav-sep">→</span>
     <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="3">3</span>Modules</span></a>
     <div class="nav-plus-wrap" id="nav-plus-wrap">
@@ -780,7 +790,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 <footer>
   <div class="footer-links">
     <a href="modules.html">Catalogue modules</a>
-    <a href="fondements.html">Fondements PRÉSENCE</a>
+    <a href="fondements.html">Cadres de référence</a>
     <a href="mon-suivi.html">Mon suivi</a>
   </div>
   <div class="footer-meta">
@@ -794,33 +804,55 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 </footer>
 
 <script>
+/* ─── Info-bulles glossaire : génère un ⓘ avec définition au survol ─── */
+function glossTip(def, anchor){
+  if (!def) return '';
+  var link = anchor ? ' <a href="fondements.html#' + anchor + '" target="_blank" rel="noopener">En savoir plus →</a>' : '';
+  var safeDef = def.replace(/"/g, '&quot;');
+  return '<span class="gloss-tip" tabindex="0" aria-label="Définition">ⓘ<span class="gloss-tip-box">' + safeDef + link + '</span></span>';
+}
+function compSubHtml(c){
+  return '<div class="diag-composante-sous">' + c.sous + glossTip(c.def, c.anchor) + '</div>';
+}
+function dimSubHtml(dim){
+  return '<div class="dim-card-sub">' + dim.sous + glossTip(dim.def) + '</div>';
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Mode RAPIDE : 8 composantes PRÉSENCE
    ═══════════════════════════════════════════════════════════════ */
 
 var COMPOSANTES = [
   { key:'P', lettre:'P', label:'Prédisposition', color:'#e94560', sous:'Croyances, valeurs, posture réflexive',
+    def:'Profil biologique et psychologique de départ (génétique, croyances, valeurs) — un point de départ, pas un destin figé.', anchor:'presence-P',
     rapide: "À quel point estimez-vous que vos croyances et valeurs professionnelles sont stables et alignées avec votre pratique actuelle ?",
     labels: ['Très fragile','Très solide'], mods:[1] },
   { key:'R', lettre:'R', label:'Réseaux neuronaux', color:'#2d9cdb', sous:'Connectivité cérébrale, accordage neural',
+    def:'Les connexions entre neurones se renforcent par la répétition et la pratique — la base biologique de tout apprentissage.', anchor:'presence-R',
     rapide: "À quel point votre cerveau d'enseignant est-il accordé à celui de vos élèves (lecture des signaux non verbaux, ajustements en temps réel) ?",
     labels: ['Peu accordé·e','Très accordé·e'], mods:[7,9] },
   { key:'E1', lettre:'É', label:'Élagage', color:'#27ae60', sous:'Développement des compétences clés',
+    def:"Élagage synaptique de l'enfance (2-6 ans) : le cerveau élimine les connexions peu stimulées et renforce les plus actives — fenêtre de plasticité maximale.", anchor:'presence-E1',
     rapide: "Vous sentez-vous compétent·e dans les six ingrédients de la gestion de classe (climat, attentes, comportements, engagement, apprentissage, soutien) ?",
     labels: ['En difficulté',"Très à l'aise"], mods:[3,8] },
   { key:'S', lettre:'S', label:'Synchronisation', color:'#f39c12', sous:'Régulation émotionnelle, sécurité affective',
+    def:"Les cerveaux se synchronisent en interaction : le calme de l'enseignant·e se propage neurobiologiquement à la classe.", anchor:'presence-S',
     rapide: "Parvenez-vous à rester calme et stable émotionnellement face aux situations difficiles en classe ?",
     labels: ['Très réactif·ve','Très régulé·e'], mods:[1,9] },
   { key:'E2', lettre:'E', label:'Élagage adolescent', color:'#8e44ad', sous:'Maturation cortex préfrontal, autodétermination',
+    def:"Second élagage synaptique à l'adolescence, surtout dans le cortex préfrontal — explique l'impulsivité et l'instabilité émotionnelle des ados.", anchor:'presence-E2',
     rapide: "À quel point vous sentez-vous outillé·e pour accompagner les comportements typiques des adolescents ?",
     labels: ['Démuni·e','Bien outillé·e'], mods:[8] },
   { key:'N', lettre:'N', label:'Neuroplasticité', color:'#16a085', sous:'Capacité de changement, apprentissage continu',
+    def:"Le cerveau se modifie et se réorganise tout au long de la vie en réponse à l'expérience — il n'est jamais trop tard pour changer.", anchor:'presence-N',
     rapide: "Êtes-vous engagé·e dans une démarche d'apprentissage continu (lectures, formations, expérimentations) ?",
     labels: ['Très peu','Très investi·e'], mods:[3,6] },
   { key:'C', lettre:'C', label:'Conscience', color:'#2980b9', sous:'Métacognition, réflexivité',
+    def:'Conscience de ses émotions, de ses automatismes et de son état interne — améliore la régulation et la prise de décision.', anchor:'presence-C',
     rapide: "Prenez-vous régulièrement du recul sur votre pratique (journal, supervision, analyse de situations) ?",
     labels: ['Jamais','Très régulièrement'], mods:[6] },
   { key:'E3', lettre:'E', label:'Libre arbitre', color:'#0f3460', sous:"Autodétermination, sentiment d'agentivité",
+    def:"Percevoir qu'on a du pouvoir sur ses choix active la motivation intrinsèque — le cerveau investit davantage ce qu'il a choisi.", anchor:'presence-EL',
     rapide: "Vous sentez-vous acteur/actrice de votre vie professionnelle, capable d'influer sur vos conditions d'exercice ?",
     labels: ['Subi·e','Acteur·rice'], mods:[6,8] }
 ];
@@ -846,6 +878,7 @@ var ITEMS_APPROFONDI = {
     posture: {
       label: 'Posture enseignante',
       sous: 'Croyances, valeurs, réflexivité (Ben Alya)',
+      def: 'Capacité à interroger ses propres croyances, valeurs et pratiques professionnelles plutôt que d\'attribuer les difficultés aux élèves.',
       color: '#e94560',
       modules: [5, 1],
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
@@ -865,6 +898,7 @@ var ITEMS_APPROFONDI = {
     sep: {
       label: 'Sentiment d\'efficacité personnelle',
       sous: 'SEP — Ben Alya',
+      def: 'Sentiment d\'efficacité personnelle (SEP) : conviction en sa capacité à faire progresser ses élèves malgré les contraintes (Bandura, 1997).',
       color: '#2d9cdb',
       modules: [3, 8],
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
@@ -886,6 +920,7 @@ var ITEMS_APPROFONDI = {
     bienetre: {
       label: 'Bien-être professionnel',
       sous: 'Régulation émotionnelle, équilibre — Ben Alya',
+      def: 'Comment l\'enseignant·e se sent et fonctionne au travail sur le plan émotionnel et mental (Théorêt & Leroux, 2014).',
       color: '#4a7c59',
       modules: [1, 9],
       ancres: ["Pas du tout d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "Tout à fait d'accord"],
@@ -907,6 +942,7 @@ var ITEMS_APPROFONDI = {
     cse: {
       label: 'Compétences socio-émotionnelles',
       sous: 'CSÉ — Ben Alya',
+      def: 'Compétences socio-émotionnelles (CSÉ) : conscience de soi, autorégulation, conscience sociale, compétences relationnelles, prise de décision responsable.',
       color: '#533483',
       modules: [5, 9, 7],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -928,6 +964,7 @@ var ITEMS_APPROFONDI = {
     personne: {
       label: 'La personne enseignante',
       sous: 'Identité, posture pro — Gaudreau',
+      def: 'Croyances, attitudes et compétences personnelles de l\'enseignant·e, qui influencent directement ses pratiques de gestion de classe.',
       color: '#0f3460',
       modules: [6],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -943,7 +980,8 @@ var ITEMS_APPROFONDI = {
     },
     gest_mat: {
       label: 'Gestion des ressources matérielles & humaines',
-      sous: 'Gaudreau',
+      sous: 'Gestion des ressources — Gaudreau',
+      def: 'Mobiliser efficacement le matériel, la technologie et les personnes-ressources (collègues, spécialistes, parents).',
       color: '#2d9cdb',
       modules: [4, 6],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -959,6 +997,7 @@ var ITEMS_APPROFONDI = {
     gest_spat: {
       label: 'Gestion spatio-temporelle',
       sous: 'Aménagement, temps, routines — Gaudreau',
+      def: 'Organiser l\'espace, le temps et les transitions pour un environnement de classe prévisible et structuré.',
       color: '#16a085',
       modules: [4, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -974,6 +1013,7 @@ var ITEMS_APPROFONDI = {
     attentes: {
       label: 'L\'établissement d\'attentes claires',
       sous: 'Règles, procédures — Gaudreau',
+      def: 'Formuler, enseigner et maintenir des règles, routines et procédures explicites et cohérentes.',
       color: '#f5a623',
       modules: [3, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -989,6 +1029,7 @@ var ITEMS_APPROFONDI = {
     relations: {
       label: 'Le développement de relations positives',
       sous: 'Climat, lien enseignant-élève — Gaudreau',
+      def: 'Construire des liens de confiance et de respect avec chaque élève, y compris les plus difficiles.',
       color: '#4a7c59',
       modules: [5, 7, 9],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -1005,6 +1046,7 @@ var ITEMS_APPROFONDI = {
     attention: {
       label: 'L\'attention et l\'engagement des élèves',
       sous: 'Stratégies pédagogiques — Gaudreau',
+      def: 'Planifier des activités variées et stimulantes pour maintenir l\'attention et favoriser l\'engagement actif des élèves.',
       color: '#533483',
       modules: [3, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -1020,6 +1062,7 @@ var ITEMS_APPROFONDI = {
     autodeter: {
       label: 'Autodétermination',
       sous: 'Motivation, plaisir d\'enseigner — Gaudreau',
+      def: 'Offrir des choix réels aux élèves et valoriser l\'autonomie pour renforcer leur motivation intrinsèque.',
       color: '#16a085',
       modules: [6],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -1034,6 +1077,7 @@ var ITEMS_APPROFONDI = {
     ecarts: {
       label: 'La gestion des comportements difficiles',
       sous: 'Interventions graduées — Gaudreau',
+      def: 'Intervenir de façon proactive (prévention) et réactive (écarts de conduite) tout en préservant la dignité de l\'élève.',
       color: '#eb5757',
       modules: [2, 8],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
@@ -1166,7 +1210,7 @@ function renderRapide(temps){
         + '<div class="diag-composante-lettre">' + c.lettre + '</div>'
         + '<div class="diag-composante-meta">'
           + '<div class="diag-composante-titre">' + c.label + '</div>'
-          + '<div class="diag-composante-sous">' + c.sous + '</div>'
+          + compSubHtml(c)
         + '</div>'
         + scoreHtml
       + '</div>'
@@ -1206,7 +1250,7 @@ function renderApprofondi(temps){
           + '<div class="dim-card-icon">' + (section === 'perso' ? '◆' : '●') + '</div>'
           + '<div class="dim-card-meta">'
             + '<div class="dim-card-title">' + dim.label + '</div>'
-            + '<div class="dim-card-sub">' + dim.sous + '</div>'
+            + dimSubHtml(dim)
           + '</div>'
           + scoreHtml
           + '<svg class="icon dim-card-arrow"><use href="#i-chevron-down"/></svg>'
@@ -1327,7 +1371,7 @@ function setApprofondiResponse(btn){
     head.innerHTML = '<div class="dim-card-icon">' + (section === 'perso' ? '◆' : '●') + '</div>'
       + '<div class="dim-card-meta">'
         + '<div class="dim-card-title">' + dim.label + '</div>'
-        + '<div class="dim-card-sub">' + dim.sous + '</div>'
+        + dimSubHtml(dim)
       + '</div>'
       + scoreHtml
       + '<svg class="icon dim-card-arrow"><use href="#i-chevron-down"/></svg>';
