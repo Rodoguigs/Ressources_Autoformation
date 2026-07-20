@@ -1079,6 +1079,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 [data-theme="dark"] .aut-search-card{background:var(--surface);}
 </style>
+
+<style>
+/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
+.nav-links{flex-wrap:wrap;row-gap:4px}
+.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
+.app-header{row-gap:8px}
+@media (max-width:1100px){
+  .nav-sep{display:none}
+  .nav-links{gap:2px;font-size:.8rem}
+  .nav-link{padding:5px 9px}
+}
+@media (max-width:640px){
+  .nav-links{font-size:.75rem}
+  .nav-link{padding:4px 7px}
+  .app-header{padding:10px 14px;gap:10px}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -1086,7 +1103,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -1117,9 +1134,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">📋 Démarche</a>
-        <a href="glossaire.html">🔤 Glossaire</a>
-        <a href="mon-suivi.html">📊 Mon suivi</a>
+        <a href="demarche.html">Démarche</a>
+        <a href="glossaire.html">Glossaire</a>
+        <a href="mon-suivi.html">Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -1137,7 +1154,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -1158,9 +1175,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <main id="main">
   <div class="info-block"><strong>Cette page réunit le lexique, la FAQ et la bibliographie complète du parcours.</strong> Naviguez entre les 3 onglets pour explorer.</div>
 <div class="tabs" role="tablist">
-    <button class="tab-btn active" data-tab="gloss" role="tab">📖 Glossaire</button>
-    <button class="tab-btn" data-tab="faq" role="tab">❓ FAQ</button>
-    <button class="tab-btn" data-tab="biblio" role="tab">📚 Bibliographie</button>
+    <button class="tab-btn active" data-tab="gloss" role="tab">Glossaire</button>
+    <button class="tab-btn" data-tab="faq" role="tab">FAQ</button>
+    <button class="tab-btn" data-tab="biblio" role="tab">Bibliographie</button>
   </div>
 
   <!-- ─── GLOSSAIRE ─── -->
@@ -1171,12 +1188,12 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <h2>Glossaire des termes neuroéducatifs</h2>
 <div class="divider"></div>
 <p style="font-size:.88rem;color:#555;margin-bottom:24px;">Définitions accessibles des concepts utilisés dans cette démarche. Utilisez la recherche pour trouver rapidement un terme.</p>
-<input class="glossaire-search" oninput="filterGlossaire(this.value)" placeholder="🔍 Rechercher un terme... (ex : épigénétique, burnout, SEP)" type="text"/>
+<input class="glossaire-search" oninput="filterGlossaire(this.value)" placeholder="Rechercher un terme... (ex : épigénétique, burnout, SEP)" type="text"/>
 </div>
  ── CARTE DES SIGLES — repère rapide ── 
 <div id="sigles-quickref" style="max-width:980px;margin:32px auto 36px;background:#fafbff;border:1px solid #e0e6f5;border-radius:14px;padding:22px 26px;">
 <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
-<span style="font-size:1.2rem;">🔤</span>
+
 <h3 style="margin:0;font-family:'Playfair Display',serif;font-size:1.1rem;color:#16213e;font-weight:700;">Sigles et acronymes utilisés dans la démarche</h3>
 </div>
 <p style="font-size:.78rem;color:#666;margin:0 0 16px;line-height:1.55;">Repère synthétique des abréviations rencontrées dans le parcours. Pour les définitions conceptuelles approfondies, voir le glossaire ci-dessous.</p>
@@ -1407,7 +1424,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <p style="font-size:.88rem;color:#555;margin-bottom:32px;">Des réponses aux questions les plus courantes sur la démarche — notamment pour les profils les plus vulnérables.</p>
 <div class="faq-item open">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ Par où commencer si je me sens dépassé(e) ?</span><span class="faq-icon">+</span>
+<span>Par où commencer si je me sens dépassé(e) ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#ffebee;color:#c62828;">Profil vulnérable · Épuisement</span><br/>
@@ -1417,7 +1434,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="faq-item">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ Comment utiliser ce document en formation continue ?</span><span class="faq-icon">+</span>
+<span>Comment utiliser ce document en formation continue ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#e8f0fe;color:var(--accent2);">Usage collectif · Formateurs</span><br/>
@@ -1427,7 +1444,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="faq-item">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ Combien de temps dure la démarche complète ?</span><span class="faq-icon">+</span>
+<span>Combien de temps dure la démarche complète ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#e8f5e9;color:#2e7d32;">Organisation pratique</span><br/>
@@ -1436,7 +1453,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="faq-item">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ Et si mes scores ne s'améliorent pas entre T1 et T2 ?</span><span class="faq-icon">+</span>
+<span>Et si mes scores ne s'améliorent pas entre T1 et T2 ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#fff8e1;color:#e65100;">Suivi longitudinal</span><br/>
@@ -1445,7 +1462,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="faq-item">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ Je suis débutant(e) — par quelle étape commencer ?</span><span class="faq-icon">+</span>
+<span>Je suis débutant(e) — par quelle étape commencer ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#e0f7fa;color:#00695c;">Enseignant débutant</span><br/>
@@ -1454,7 +1471,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="faq-item">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ La démarche est-elle confidentielle ? Dois-je partager mes scores ?</span><span class="faq-icon">+</span>
+<span>La démarche est-elle confidentielle ? Dois-je partager mes scores ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#f3e5f5;color:#4527a0;">Confidentialité &amp; éthique</span><br/>
@@ -1464,7 +1481,7 @@ Trois principes encadrent l'usage de la démarche, y compris en contexte d'étab
 </div>
 <div class="faq-item">
 <div aria-expanded="false" class="faq-q" data-action="togglefaq" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){toggleFaq(this);event.preventDefault();}" role="button" tabindex="0">
-<span>❓ Quelle est la différence entre la démarche et un bilan de compétences ?</span><span class="faq-icon">+</span>
+<span>Quelle est la différence entre la démarche et un bilan de compétences ?</span><span class="faq-icon">+</span>
 </div>
 <div class="faq-a">
 <span class="faq-profil-badge" style="background:#f0f4ff;color:var(--accent2);">Positionnement</span><br/>
@@ -1484,7 +1501,7 @@ Trois principes encadrent l'usage de la démarche, y compris en contexte d'étab
 <p style="font-size:.85rem;color:var(--muted);margin-bottom:36px;">Ensemble des références mobilisées dans la démarche d'autoformation (révision 2025).</p>
 </div>
 <div class="biblio-group">
-<div class="biblio-group-title">📗 Ouvrages et chapitres</div>
+<div class="biblio-group-title">Ouvrages et chapitres</div>
 <div class="biblio-list">
 <div class="biblio-entry">Bandura, A. (1997). <em>Self-efficacy: The exercise of control.</em> New-York, NY : W. H. Freeman.</div>
 <div class="biblio-entry">Bateson, G. (1977). <em>Vers une écologie de l'esprit</em> (trad. fr. de <em>Steps to an Ecology of Mind</em>, 1972). Paris : Éditions du Seuil.</div>
@@ -1510,7 +1527,7 @@ Trois principes encadrent l'usage de la démarche, y compris en contexte d'étab
 </div>
 </div>
 <div class="biblio-group">
-<div class="biblio-group-title">📄 Articles et revues scientifiques</div>
+<div class="biblio-group-title">Articles et revues scientifiques</div>
 <div class="biblio-list">
 <div class="biblio-entry">Bakker, A. B., &amp; Demerouti, E. (2017). Job demands–resources theory. <em>Journal of Occupational Health Psychology, 22(3)</em>, 273–285.</div>
 <div class="biblio-entry">Beaumont, C., Langri, S., Wilkie, T., Marquis, D. et Garcia, N. (2021). <em>Le modèle écosystémique de l'apprentissage socioémotionnel pour le bien-être individuel et collectif à l'école.</em> Université Laval / HEP-VS. [Adaptation du modèle CS3 ajoutant la compétence <em>conscience de l'interdépendance</em>]</div>
@@ -1549,7 +1566,7 @@ Trois principes encadrent l'usage de la démarche, y compris en contexte d'étab
 </div>
 </div>
 <div class="biblio-group">
-<div class="biblio-group-title">🌐 Ressources en ligne &amp; rapports</div>
+<div class="biblio-group-title">Ressources en ligne &amp; rapports</div>
 <div class="biblio-list">
 <div class="biblio-entry">Beaumont, C. (2023). <em>Promouvoir à la fois la santé mentale, un climat scolaire positif et la prévention de la violence : Guide de planification pour soutenir de manière continue le bien-être à l'école.</em> Chaire de recherche Bienêtre à l'école et prévention de la violence, Université Laval. <a href="https://www.violence-ecole.ulaval.ca/" rel="noopener noreferrer" target="_blank">violence-ecole.ulaval.ca</a> [Guide source de la section 6.3 — Pyramide de prévention à 4 niveaux]</div>
 <div class="biblio-entry">État du Valais &amp; FMEP. (2024). <em>Enquête de satisfaction du personnel enseignant du canton du Valais.</em> Service de l'enseignement du Valais. (Reporté par RTS Info, 4 février 2025 : <a href="https://www.rts.ch/info/regions/valais/2025/article/stress-et-charge-de-travail-en-hausse-chez-les-enseignants-valaisans-28779013.html" rel="noopener noreferrer" target="_blank">rts.ch</a>)</div>

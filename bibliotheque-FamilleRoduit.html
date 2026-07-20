@@ -1166,31 +1166,6 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 [data-theme="dark"] .aut-search-card{background:var(--surface);}
 </style>
-
-<style>
-/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
-.nav-links{flex-wrap:wrap;row-gap:4px}
-.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
-.app-header{row-gap:8px}
-@media (max-width:1100px){
-  .nav-sep{display:none}
-  .nav-links{gap:2px;font-size:.8rem}
-  .nav-link{padding:5px 9px}
-}
-@media (max-width:640px){
-  .nav-links{font-size:.75rem}
-  .nav-link{padding:4px 7px}
-  .app-header{padding:10px 14px;gap:10px}
-}
-</style>
-
-<style>
-/* ─── Bouton Télécharger en haut de la carte ; titre cliquable ─── */
-.res-card > .res-dl{order:-1;margin:0 0 14px}
-.res-card > .res-dl + .res-dl{margin-top:-6px}
-.res-card h4 a{color:inherit;text-decoration:none}
-.res-card h4 a:hover{text-decoration:underline;color:var(--gold)}
-</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -1198,7 +1173,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  
+  <span>📚</span>
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/9</span> modules</span>
 </div>
 
@@ -1238,9 +1213,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">Démarche</a>
-        <a href="glossaire.html">Glossaire</a>
-        <a href="mon-suivi.html">Mon suivi</a>
+        <a href="demarche.html">📋 Démarche</a>
+        <a href="glossaire.html">🔤 Glossaire</a>
+        <a href="mon-suivi.html">📊 Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -1258,7 +1233,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -1294,30 +1269,44 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </p>
 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
 <button onclick="document.querySelectorAll('.res-folder').forEach(f=&gt;f.classList.add('open'))" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:7px 18px;font-size:.75rem;font-weight:600;cursor:pointer;">
-          Tout ouvrir
+          📂 Tout ouvrir
         </button>
 <button onclick="document.querySelectorAll('.res-folder').forEach(f=&gt;f.classList.remove('open'))" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:7px 18px;font-size:.75rem;font-weight:600;cursor:pointer;">
-          Tout fermer
+          📁 Tout fermer
         </button>
 </div>
 <!-- Index de navigation rapide vers les 7 dossiers -->
 <div style="background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.25);border-radius:14px;padding:18px 22px;margin-bottom:28px;">
-<div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,166,35,.95);margin-bottom:10px;">Accès rapide aux dossiers</div>
+<div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,166,35,.95);margin-bottom:10px;">🧭 Accès rapide aux dossiers</div>
 <div style="display:flex;flex-wrap:wrap;gap:8px;">
-<a href="#folder-demarche" onclick="document.getElementById('folder-demarche').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-demarche').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Démarche &amp; formation</a>
-<a href="#folder-tdah" onclick="document.getElementById('folder-tdah').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-tdah').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Enjeux TND</a>
-<a href="#folder-neuro" onclick="document.getElementById('folder-neuro').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-neuro').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Neurosciences</a>
-<a href="#folder-pedagogies" onclick="document.getElementById('folder-pedagogies').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-pedagogies').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Pédagogies efficaces</a>
-<a href="#folder-bienetre" onclick="document.getElementById('folder-bienetre').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-bienetre').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Bien-être &amp; relations</a>
-<a href="#folder-comportement" onclick="document.getElementById('folder-comportement').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-comportement').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Comportements difficiles</a>
-<a href="#folder-lectures" onclick="document.getElementById('folder-lectures').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-lectures').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Lectures recommandées</a>
-<a href="#folder-formations" onclick="document.getElementById('folder-formations').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-formations').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Propositions de formation</a>
+<a href="#folder-demarche" onclick="document.getElementById('folder-demarche').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-demarche').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">📗 Démarche &amp; formation</a>
+<a href="#folder-tdah" onclick="document.getElementById('folder-tdah').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-tdah').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">🧠 Enjeux TND</a>
+<a href="#folder-neuro" onclick="document.getElementById('folder-neuro').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-neuro').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">🔬 Neurosciences</a>
+<a href="#folder-pedagogies" onclick="document.getElementById('folder-pedagogies').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-pedagogies').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">🎯 Pédagogies efficaces</a>
+<a href="#folder-bienetre" onclick="document.getElementById('folder-bienetre').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-bienetre').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">🌿 Bien-être &amp; relations</a>
+<a href="#folder-comportement" onclick="document.getElementById('folder-comportement').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-comportement').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">🛠️ Comportements difficiles</a>
+<a href="#folder-lectures" onclick="document.getElementById('folder-lectures').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-lectures').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">📚 Lectures recommandées</a>
+<a href="#folder-formations" onclick="document.getElementById('folder-formations').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-formations').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">🎓 Propositions de formation</a>
+</div>
+</div>
+<!-- Jauge de progression téléchargements -->
+<div style="background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.3);border-radius:12px;padding:14px 18px;margin-bottom:28px;">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+<span style="font-size:1.2rem;">📥</span>
+<div style="flex:1;min-width:200px;">
+<div style="font-size:.85rem;font-weight:700;color:white;">Exploration de la trousse pédagogique</div>
+
+</div>
+<div style="font-size:.9rem;color:rgba(255,255,255,.85);font-weight:600;"> / 3</div>
+</div>
+<div style="height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;">
+
 </div>
 </div>
 <div id="res-pratique" style="display:none;"></div>
 <div class="res-folder" id="folder-demarche">
 <div class="res-folder-header">
-
+<div class="rf-icon">📋</div>
 <div class="rf-meta">
 <div class="rf-title">Démarche &amp; outils de formation</div>
 <div class="rf-sub">Guide de la démarche · Outils de formation</div>
@@ -1328,21 +1317,21 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="res-folder-body">
 <div class="res-grid">
 <div class="res-card" id="res-guide">
-
+<div class="res-icon">📗</div>
 <div class="res-type">Document PDF · Guide de formation</div>
 <h4>Guide de formation</h4>
 <p>Guide complet de la démarche structuré en 9 modules : bien-être professionnel, prévention de l'épuisement, fondements du modèle PRÉSENCE, vulnérabilité au stress, cycle d'amélioration continue, stratégies à fort impact, mentorat entre pairs, adaptations pédagogiques (TDAH, autodétermination), et prendre soin de soi pour prendre soin des autres.<br/><br/>
 <em>9 modules + annexes · Document de référence pour accompagner chaque étape de la démarche</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-gaudreau" href="#res-gaudreau" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Capsules Gaudreau</a> <a data-scrollto="res-damasio-fiche" href="#res-damasio-fiche" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche Damasio</a></div>
 
-<a class="res-dl" data-lien="guide_formation" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" rel="noopener noreferrer" target="_blank">Télécharger le Guide de formation</a>
+<a class="res-dl" data-lien="guide_formation" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le Guide de formation</a>
 </div>
 </div>
 </div>
 </div>
 <div class="res-folder" id="folder-tdah">
 <div class="res-folder-header">
-
+<div class="rf-icon">🎯</div>
 <div class="rf-meta">
 <div class="rf-title">Enjeux des TND à l'école</div>
 <div class="rf-sub">TDAH · Fonctions exécutives · Mesures d'aide · Collaboration famille</div>
@@ -1353,7 +1342,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="res-folder-body">
 <div class="res-grid">
 <div class="res-card" id="res-tdah-enjeux">
-
+<div class="res-icon">🎯</div>
 <div class="res-type">Document PDF · TDAH &amp; Enseignement</div>
 <h4>Les enjeux scolaires du TDAH : comprendre le fonctionnement pour ajuster l'enseignement</h4>
 <p>Dossier complet sur les enjeux scolaires du TDAH : fondements neurodéveloppementaux, fonctions exécutives, régulation émotionnelle, impacts en classe et stratégies d'intervention. Inclut des outils pratiques pour rendre les exigences accessibles, renforcer la relation enseignant-élève et favoriser la collaboration école–famille.<br/><br/>
@@ -1361,24 +1350,24 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Lien avec l'Étape 4 · Module 7 — Adaptations TDAH · Autodétermination</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-tdah-excel" href="#res-tdah-excel" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Questionnaire TDAH</a> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a> <a data-scrollto="res-cerveau-ado" href="#res-cerveau-ado" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Cerveau adolescent</a> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Analyse fonctionnelle</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes remplacement</a></div>
 
-<a class="res-dl" data-lien="tdah_enjeux" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/enjeux-TDAH-ecole.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF TDAH</a>
+<a class="res-dl" data-lien="tdah_enjeux" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/enjeux-TDAH-ecole.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le PDF TDAH</a>
 </div>
 <div class="res-card" id="res-tdah-excel">
-
+<div class="res-icon">📊</div>
 <div class="res-type">Fichier Excel</div>
 <h4>Évaluation des besoins TDAH</h4>
 <p>Outil structuré de compilation et d'analyse des besoins liés au TDAH chez les élèves. Facilite le suivi individualisé, le dialogue interdisciplinaire et la communication avec les familles. Inclut des graphiques automatiques.<br/><br/>
 <em>Lien PRESENCE : P – Prédisposition génétique &amp; épigénétique · N – Neuroplasticité</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-tdah-enjeux" href="#res-tdah-enjeux" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Enjeux scolaires TDAH</a> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a> <a data-scrollto="res-pratique" href="#res-pratique" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Guide de formation</a></div>
 
-<a class="res-dl" data-lien="tdah_excel" href="https://rodoguigs.github.io/Ressources_Autoformation/excel/questionnaire-besoins-TDAH.xlsx" rel="noopener noreferrer" target="_blank">Télécharger l'Excel</a>
+<a class="res-dl" data-lien="tdah_excel" href="https://rodoguigs.github.io/Ressources_Autoformation/excel/questionnaire-besoins-TDAH.xlsx" rel="noopener noreferrer" target="_blank">📥 Télécharger l'Excel</a>
 </div>
 </div>
 </div>
 </div>
 <div class="res-folder" id="folder-neuro">
 <div class="res-folder-header">
-
+<div class="rf-icon">🧠</div>
 <div class="rf-meta">
 <div class="rf-title">Neurosciences &amp; développement cérébral</div>
 <div class="rf-sub">Cerveau adolescent · Fonctions cognitives · Profil Apprenant (banque complète) · Plateforme interactive Laval</div>
@@ -1389,28 +1378,28 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="res-folder-body">
 <div class="res-grid">
 <div class="res-card" id="res-posture-presence">
-
+<div class="res-icon">🧭</div>
 <div class="res-type">Document PDF · Posture &amp; PRÉSENCE</div>
 <h4>Posture professionnelle et modèle PRÉSENCE</h4>
 <p>Le cœur conceptuel de la démarche : le modèle PRÉSENCE de Cherine Fahim (2022) décliné en 8 fondements neurobiologiques, la posture professionnelle en 8 dimensions concrètes, les compétences socio-émotionnelles (CSE) et les correspondances entre PRÉSENCE et les ingrédients de Gaudreau.<br/><br/>
 <em>D'après Fahim, C. (2022). Le modèle PRÉSENCE — Cortica · Synthèse et mise en forme par Roduit, G. (2026)</em><br/><br/>
 <em>Lien PRÉSENCE : les 8 lettres · S — Synchronisation (contagion émotionnelle)</em><br/><br/>
 <em>Lien démarche : Module 5 · Étapes 3-4-5 (Agir sur la posture, Observer, Ajuster)</em></p>
-<a class="res-dl" data-doc="guide_module5" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF (Guide de formation)</a>
+<a class="res-dl" data-doc="guide_module5" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le PDF (Guide de formation)</a>
 </div>
 
 <div class="res-card" id="res-fonctions-executives">
-
+<div class="res-icon">🧩</div>
 <div class="res-type">Document PDF · Neuroéducation</div>
 <h4>Comprendre et soutenir les fonctions exécutives en classe</h4>
 <p>Synthèse complète sur le « chef d'orchestre » du cerveau. Définit les fonctions exécutives froides et chaudes, détaille les six composantes (inhibition, mémoire de travail, flexibilité, récupération, double tâche, planification) et leurs manifestations en classe. Explique la maturation longue (jusqu'à 25 ans), le cas spécifique de l'adolescence et des profils TSA, et propose des pistes d'intervention concrètes pour <strong>étayer plutôt que punir</strong>.<br/><br/>
 <em>Roduit, G. (2026) · UniFr — CAS Neurosciences de l'Éducation</em><br/><br/>
 <em>Lien PRÉSENCE : É — Élagage synaptique · S — Synchronisation · E — Étayage</em></p>
-<a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/comprendre_et_soutenir_les_fonctions_executives_en_classe.pdf" target="_blank" rel="noopener" class="res-dl">Télécharger le PDF</a>
+<a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/comprendre_et_soutenir_les_fonctions_executives_en_classe.pdf" target="_blank" rel="noopener" class="res-dl">📥 Télécharger le PDF</a>
 </div>
 
 <div class="res-card" id="res-cerveau-ado">
-
+<div class="res-icon">🧠</div>
 <div class="res-type">Document PDF</div>
 <h4>Comprendre le cerveau adolescent</h4>
 <p>Exploration des mécanismes neurobiologiques spécifiques à l'adolescence : élagage synaptique, myélinisation, maturation du cortex préfrontal et déséquilibre temporaire entre système émotionnel et contrôle cognitif. Inclut quatre versions (adultes, élèves, interactive) et des pistes concrètes pour adapter les pratiques éducatives.<br/><br/>
@@ -1418,47 +1407,47 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Lien PRESENCE : É – Élagage synaptique (enfance &amp; adolescence) · N – Neuroplasticité · R – Réseaux de neurones · C – Conscience</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-cerveau-interactif" href="#res-cerveau-interactif" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Site cerveau interactif</a> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a> <a data-scrollto="res-tdah-enjeux" href="#res-tdah-enjeux" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Enjeux scolaires TDAH</a> <a data-scrollto="res-damasio-fiche" href="#res-damasio-fiche" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche Damasio</a></div>
 
-<a class="res-dl" data-lien="cerveau_ado" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/le_cerveau_ado.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF</a>
+<a class="res-dl" data-lien="cerveau_ado" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/le_cerveau_ado.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le PDF</a>
 </div>
 <div class="res-card" id="res-cerveau-interactif">
-
+<div class="res-icon">🧠</div>
 <div class="res-type">Site interactif · Université Laval</div>
 <h4>Trousse Cerveau interactif — Section Adolescents</h4>
 <p>Plateforme interactive développée par le Laboratoire NCET (Caroline Cellard, Université Laval). Présente les grandes fonctions cognitives — attention, mémoire de travail, fonctions exécutives, cognition sociale, langage, vitesse de traitement — avec des vidéos explicatives et des documents de compensation des difficultés. Destiné aux adolescents, aux familles et aux professionnel·le·s de l'éducation.<br/><br/>
 <em>Lien PRESENCE : P – Prédisposition · É – Élagage synaptique · N – Neuroplasticité · R – Réseaux de neurones · C – Conscience</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-cerveau-ado" href="#res-cerveau-ado" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Cerveau adolescent</a> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a> <a data-scrollto="res-tdah-enjeux" href="#res-tdah-enjeux" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Enjeux scolaires TDAH</a></div>
 
-<a class="res-dl" href="https://www.cerveau.psy.ulaval.ca/adolescents" rel="noopener noreferrer" target="_blank">Accéder au site</a>
+<a class="res-dl" href="https://www.cerveau.psy.ulaval.ca/adolescents" rel="noopener noreferrer" target="_blank">🔗 Accéder au site</a>
 </div>
 
 <div class="res-card" id="res-mon-fantastique-cerveau">
-
+<div class="res-icon">🌟</div>
 <div class="res-type">Site interactif · Vulgarisation · 12–17 ans</div>
 <h4>Mon Fantastique Cerveau — Cerveau McGill</h4>
 <p>Ressource de vulgarisation neuroscientifique développée par le Cerveau à tous les niveaux (Université McGill). Présente de façon accessible le fonctionnement cérébral : mémoire, émotions, attention, sommeil, adolescence. Interface claire, contenu validé scientifiquement. Utile comme point d'entrée pour des élèves du secondaire ou pour préparer des ateliers de psychoéducation.<br/><br/>
 <em>Cerveau à tous les niveaux · McGill · Accès gratuit</em><br/><br/>
 <em>Lien PRÉSENCE : É — Élagage · R — Réseaux de neurones · N — Neuroplasticité</em></p>
-<a class="res-dl" href="https://lecerveau.mcgill.ca" rel="noopener noreferrer" target="_blank" style="background:var(--sky);border-color:var(--sky);">Visiter le site</a>
+<a class="res-dl" href="https://lecerveau.mcgill.ca" rel="noopener noreferrer" target="_blank" style="background:var(--sky);border-color:var(--sky);">🔗 Visiter le site</a>
 </div>
 
 <div class="res-card" id="res-bourassa-banque">
-
+<div class="res-icon">🧭</div>
 <div class="res-type">Banque d'outils complète · Neuroéducation pratique</div>
 <h4>Profil Apprenant — Banque d'outils (Bourassa)</h4>
 <p>Vingt outils clés en main issus de Bourassa, Menot-Martin &amp; Philion — <em>Neurosciences et éducation</em> (De Boeck Supérieur, 2<sup>e</sup> éd. 2021). Organisés en <strong>quatre niveaux d'appropriation</strong>, du plus personnel (se connaître) au plus collectif (former son équipe).<br/><br/>
 <em>Lien PRÉSENCE : R — Réseaux de neurones · E — Et le libre arbitre · N — Neuroplasticité · C — Conscience</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-bourassa" href="#res-bourassa" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche de lecture du livre</a> <a data-scrollto="res-cerveau-ado" href="#res-cerveau-ado" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Cerveau adolescent</a> <a data-scrollto="res-damasio-fiche" href="#res-damasio-fiche" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche Damasio</a> <a data-scrollto="res-af-entretien" href="#res-af-entretien" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Trame d'entretien AF</a> <a data-scrollto="res-af-kit" href="#res-af-kit" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Kit visuels</a></div>
 <div style="margin-top:12px;padding:14px;background:rgba(255,255,255,.04);border-radius:8px;border:1px solid rgba(255,255,255,.08);">
-<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:4px;">20 documents à télécharger — organisés en 4 niveaux</div>
-<div style="margin-top:14px;padding:10px 12px;background:#f5a62315;border-left:3px solid #f5a623;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#f5a623;font-weight:700;">01 · Se connaître comme apprenant·e</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 1 — autoformation individuelle · document pivot + questionnaire + fiche d'objectif</div></div>
+<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);font-weight:700;margin-bottom:4px;">📎 20 documents à télécharger — organisés en 4 niveaux</div>
+<div style="margin-top:14px;padding:10px 12px;background:#f5a62315;border-left:3px solid #f5a623;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#f5a623;font-weight:700;">🧭 01 · Se connaître comme apprenant·e</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 1 — autoformation individuelle · document pivot + questionnaire + fiche d'objectif</div></div>
 <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a data-lien="bourassa_cahier" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Cahier_des_poles.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Cahier des pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· document pivot · à lire en premier</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a data-lien="bourassa_cahier" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Cahier_des_poles.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Cahier des pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· ⭐ document pivot · à lire en premier</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a data-lien="bourassa_quest_adulte" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Questionnaire_adulte_2025.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Questionnaire adulte 2025</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· test + compilation + roue (8 p.)</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a data-lien="bourassa_fiche51" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Fiche_5-1_Nommer-Cibler-Planifier.docx" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Fiche 5.1 — Nommer, cibler, planifier</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#f5a623;flex-shrink:0;">▸</span><a data-lien="bourassa_elliot" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Exemple_interprete_Elliot.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Exemple interprété Elliot</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· cas travaillé modèle</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:rgba(255,255,255,.4);flex-shrink:0;">▸</span><a data-lien="bourassa_quest_eleve" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Questionnaire_eleve_10-18ans.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Questionnaire élève 10-18 ans</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· usage en classe (optionnel)</span></div>
 </div>
-<div style="margin-top:14px;padding:10px 12px;background:#2d9cdb15;border-left:3px solid #2d9cdb;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#2d9cdb;font-weight:700;">02 · Observer ses élèves</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 2 — pratique professionnelle · grilles d'observation + 6 schémas fonctions/dysfonctions</div></div>
+<div style="margin-top:14px;padding:10px 12px;background:#2d9cdb15;border-left:3px solid #2d9cdb;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#2d9cdb;font-weight:700;">🔍 02 · Observer ses élèves</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 2 — pratique professionnelle · grilles d'observation + 6 schémas fonctions/dysfonctions</div></div>
 <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a data-lien="bourassa_grille_meta" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/02_outils-observation/Grille_observation_meta.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Grille d'observation en méta</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· axe arrière/avant</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a data-lien="bourassa_tableau41" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/02_outils-observation/Tableau_4-1_Enonce_Ponderation_Actions.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Tableau 4.1 — Énoncé, pondération, actions</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· cadre d'objectif élève</span></div>
@@ -1469,14 +1458,14 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a data-lien="bourassa_aff_f" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/02_outils-observation/schemas_fonctions_dysfonctions/Axe_affectif_18-1_Fonctions.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Axe affectif — Fonctions (18.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· pôles haut / bas</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#2d9cdb;flex-shrink:0;">▸</span><a data-lien="bourassa_aff_d" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/02_outils-observation/schemas_fonctions_dysfonctions/Axe_affectif_19-1_Dysfonctions.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Axe affectif — Dysfonctions (19.1)</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· surdominance haut / bas</span></div>
 </div>
-<div style="margin-top:14px;padding:10px 12px;background:#9b59b615;border-left:3px solid #9b59b6;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#9b59b6;font-weight:700;">03 · Accompagner un·e élève</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 3 — entretien socratique · questions et actions pour activer le bon pôle</div></div>
+<div style="margin-top:14px;padding:10px 12px;background:#9b59b615;border-left:3px solid #9b59b6;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#9b59b6;font-weight:700;">💬 03 · Accompagner un·e élève</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 3 — entretien socratique · questions et actions pour activer le bon pôle</div></div>
 <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
-<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a data-lien="bourassa_fig67" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/03_accompagnement-individuel/Figure_6-7_Questions_sur_les_poles.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Figure 6.7 — Questions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· outil pivot de l'entretien</span></div>
+<div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a data-lien="bourassa_fig67" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/03_accompagnement-individuel/Figure_6-7_Questions_sur_les_poles.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Figure 6.7 — Questions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· ⭐ outil pivot de l'entretien</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a data-lien="bourassa_fig69" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/03_accompagnement-individuel/Figure_6-9_Actions_sur_les_poles.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Figure 6.9 — Actions sur les pôles</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· roue des savoir-faire</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a data-lien="bourassa_fig72" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/03_accompagnement-individuel/Figure_7-2_Synthese_fonctions_questions.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Figure 7.2 — Synthèse fonctions + questions</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· aide-mémoire de référence</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#9b59b6;flex-shrink:0;">▸</span><a data-lien="bourassa_echelles" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/03_accompagnement-individuel/Echelles_socratiques.docx" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Échelles socratiques</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· Word éditable · co-construction d'objectifs</span></div>
 </div>
-<div style="margin-top:14px;padding:10px 12px;background:#27ae6015;border-left:3px solid #27ae60;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#27ae60;font-weight:700;">04 · Former ses collègues</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 4 — diffusion collective · supports clés en main pour séance d'équipe (45 min à 2 h)</div></div>
+<div style="margin-top:14px;padding:10px 12px;background:#27ae6015;border-left:3px solid #27ae60;border-radius:0 6px 6px 0;"><div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#27ae60;font-weight:700;">👥 04 · Former ses collègues</div><div style="font-size:.72rem;color:rgba(255,255,255,.55);margin-top:2px;">Niveau 4 — diffusion collective · supports clés en main pour séance d'équipe (45 min à 2 h)</div></div>
 <div style="margin-top:6px;display:flex;flex-direction:column;font-size:.82rem;">
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a data-lien="bourassa_test_gd" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/04_formation-equipe/Test_axe_gauche_droit.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Test axe gauche / droit</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· 15 min lecture + 10 min test · clé en main</span></div>
 <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0;flex-wrap:wrap;"><span style="color:#27ae60;flex-shrink:0;">▸</span><a data-lien="bourassa_interview" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/04_formation-equipe/Interview_aires_prefrontales.pdf" rel="noopener noreferrer" style="color:white;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);" target="_blank"><strong>Interview des aires préfrontales</strong></a><span style="color:rgba(255,255,255,.5);font-size:.75rem;">· entrée narrative · vulgarisation</span></div>
@@ -1484,14 +1473,14 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 
-<a class="res-dl" data-lien="bourassa_cahier" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Cahier_des_poles.pdf" rel="noopener noreferrer" target="_blank">Commencer par le Cahier des pôles</a>
+<a class="res-dl" data-lien="bourassa_cahier" href="https://rodoguigs.github.io/Ressources_Autoformation/bourassa/01_profil-apprenant/Cahier_des_poles.pdf" rel="noopener noreferrer" target="_blank">📥 Commencer par le Cahier des pôles</a>
 </div>
 </div>
 </div>
 </div>
 <div class="res-folder" id="folder-pedagogies">
 <div class="res-folder-header">
-
+<div class="rf-icon">📚</div>
 <div class="rf-meta">
 <div class="rf-title">Pédagogies efficaces &amp; inclusives</div>
 <div class="rf-sub">CUA / UDL · Pratiques à fort impact · Attention · Autodétermination des élèves</div>
@@ -1502,7 +1491,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="res-folder-body">
 <div class="res-grid">
 <div class="res-card" id="res-cua">
-
+<div class="res-icon">📄</div>
 <div class="res-type">Document PDF · Synthèse scientifique</div>
 <h4>Apprendre pour tous — CUA &amp; différenciation pédagogique</h4>
 <p>Synthèse intégrée de la Conception Universelle de l'Apprentissage (CUA / UDL) et de l'enseignement inclusif. Couvre les fondements de l'école inclusive, les trois principes de la CUA (réseaux cérébraux de reconnaissance, stratégique et affectif), l'accessibilité pédagogique, la différenciation et l'évaluation formative.<br/><br/>
@@ -1510,30 +1499,30 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>D'après Ayer &amp; Morand (2024) · Ministère de l'Éducation de l'Ontario (2013) · Roduit, G. (2025–2026)</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-tdah-enjeux" href="#res-tdah-enjeux" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Enjeux scolaires TDAH</a></div>
 
-<a class="res-dl" data-lien="cua" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/CUA_Apprendre_Pour_Tous.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF</a>
+<a class="res-dl" data-lien="cua" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/CUA_Apprendre_Pour_Tous.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le PDF</a>
 </div>
 <div class="res-card" id="res-fiche-pratiques">
-
+<div class="res-icon">📋</div>
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Pratiques pédagogiques efficaces</h4>
 <p>Enseignement explicite, stratégies ALPHA/BÊTA, feedback formatif et biais cognitifs. Synthèse des pratiques à fort impact sur la réussite et le bien-être des élèves.<br/><br/>
 <em>Lien PRÉSENCE : S — Synchronisation · E — Et le libre arbitre</em><br/><br/>
 <em>Roduit, G. (2026)</em></p>
 
-<a class="res-dl" data-lien="fiche_pratiques" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/pratiques_pedagogiques_efficaces.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+<a class="res-dl" data-lien="fiche_pratiques" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/pratiques_pedagogiques_efficaces.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche</a>
 </div>
 <div class="res-card" id="res-fiche-attention">
-
+<div class="res-icon">🎯</div>
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Gestion de l'attention</h4>
 <p>Les quatre piliers de l'apprentissage (Dehaene), geste d'attention, double tâche et stratégies pédagogiques pour soutenir la concentration et l'engagement cognitif des élèves.<br/><br/>
 <em>Lien PRÉSENCE : R — Réseaux de neurones · N — Neuroplasticité</em><br/><br/>
 <em>Roduit, G. (2026)</em></p>
 
-<a class="res-dl" data-lien="fiche_attention" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/gestion_de_lattention.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+<a class="res-dl" data-lien="fiche_attention" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/gestion_de_lattention.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche</a>
 </div>
 <div class="res-card" id="res-autodetermination">
-
+<div class="res-icon">🌱</div>
 <div class="res-type">Document PDF · Élèves</div>
 <h4>L'autodétermination — Outil complet</h4>
 <p>Outil structuré présentant 20 comportements observables liés à l'autodétermination des élèves et 20 moyens autodirigés pour les développer. Conçu pour guider l'observation en classe et planifier des interventions différenciées favorisant l'autonomie et la motivation intrinsèque.<br/><br/>
@@ -1541,19 +1530,19 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Lien PRÉSENCE : E — Et le libre arbitre · Module 7 — Stratégies pédagogiques &amp; autodétermination</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a> <a data-scrollto="res-tdah-enjeux" href="#res-tdah-enjeux" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Enjeux scolaires TDAH</a> <a data-scrollto="res-guide" href="#res-guide" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Guide de formation</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes remplacement</a> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Analyse fonctionnelle</a> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Analyse fonctionnelle</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes</a></div>
 
-<a class="res-dl" data-lien="autodetermination" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Autodetermination_outil_complet.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF Autodétermination</a>
+<a class="res-dl" data-lien="autodetermination" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Autodetermination_outil_complet.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le PDF Autodétermination</a>
 </div>
 <div class="res-card" id="res-aide-strategique">
-
+<div class="res-icon">🧩</div>
 <div class="res-type">Document PDF · Neurosciences éducatives</div>
 <h4>Aide stratégique</h4>
 <p>Ressource pratique sur les stratégies d'aide et d'accompagnement pédagogique. Propose des outils concrets pour soutenir les élèves dans leurs apprentissages en s'appuyant sur les apports des neurosciences éducatives.<br/><br/>
 <em>Roduit, G. (2026) · Cycle d'orientation de Val de Bagnes</em></p>
 
-<a class="res-dl" data-lien="aide_strategique" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Aide_Strategique.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF</a>
+<a class="res-dl" data-lien="aide_strategique" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Aide_Strategique.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le PDF</a>
 </div>
 <div class="res-card" id="res-activer-neurones">
-
+<div class="res-icon">🧠</div>
 <div class="res-type">Extraits choisis · Neuroéducation</div>
 <h4>Activer ses neurones pour mieux apprendre et enseigner — Extraits</h4>
 <p>Sélection structurée des 7 principes neuroéducatifs de Steve Masson : activation des bons neurones, répétition espacée, récupération en mémoire, élaboration d'explications, espacement, rétroaction et état d'esprit dynamique. Extraits mis en forme et annotés pour un usage direct en formation et en classe.<br/><br/>
@@ -1562,10 +1551,10 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Lien démarche : Module 5 (fondements PRÉSENCE) · Module 7 (stratégies pédagogiques) · Étape 3 (S'informer)</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-masson" href="#res-masson" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Ouvrage complet · Masson</a> <a data-scrollto="res-fiche-pratiques" href="#res-fiche-pratiques" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Pratiques pédagogiques</a> <a data-scrollto="res-fiche-attention" href="#res-fiche-attention" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Gestion de l'attention</a></div>
 
-<a class="res-dl" data-lien="activer_neurones" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Activer_ses_neurones.pdf" rel="noopener noreferrer" target="_blank">Télécharger les extraits (PDF)</a>
+<a class="res-dl" data-lien="activer_neurones" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Activer_ses_neurones.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger les extraits (PDF)</a>
 </div>
 <div class="res-card" id="res-fiche-autodetermination-ctreq">
-
+<div class="res-icon">🌱</div>
 <div class="res-type">Fiche PDF · Psychologie motivationnelle · CTREQ</div>
 <h4>Soutenir le développement de l'autodétermination des élèves</h4>
 <p>Synthèse illustrée issue du Centre de transfert pour la réussite éducative du Québec (CTREQ). Présente les trois besoins psychologiques fondamentaux selon la théorie de l'autodétermination (Ryan &amp; Deci, 2017) : autonomie, compétence, appartenance. Inclut le tableau motivation autonome / contrôlée, le lien avec la participation au plan d'intervention, et des exemples pratiques pour l'enseignant (offrir des choix, fixer des objectifs SMART, interagir de manière bienveillante).<br/><br/>
@@ -1573,14 +1562,14 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Lien PRÉSENCE : E — Et le libre arbitre · S — Synchronisation cérébrale</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-autodetermination" href="#res-autodetermination" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Outil complet autodétermination</a> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a> <a data-scrollto="res-fiche-relation" href="#res-fiche-relation" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Relation enseignant-élève</a></div>
 
-<a class="res-dl" data-lien="autodetermination_eleves" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/autodetermination_eleves.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche CTREQ</a>
+<a class="res-dl" data-lien="autodetermination_eleves" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/autodetermination_eleves.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche CTREQ</a>
 </div>
 </div>
 </div>
 </div>
 <div class="res-folder" id="folder-bienetre">
 <div class="res-folder-header">
-
+<div class="rf-icon">🌿</div>
 <div class="rf-meta">
 <div class="rf-title">Bien-être, émotions &amp; relation pédagogique</div>
 <div class="rf-sub">Émotions &amp; anxiété scolaire · Relation enseignant-élève · Neurosciences des émotions · Gestion du stress (CESH) · Bien-être du personnel (CTREQ)</div>
@@ -1591,7 +1580,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div class="res-folder-body">
 <div class="res-grid">
 <div class="res-card" id="res-fiche-emotions-stress">
-
+<div class="res-icon">🎭⚡</div>
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Émotions, stress et anxiété scolaire</h4>
 <p>Rôle des émotions dans les apprentissages, régulation émotionnelle, théorie polyvagale (Porges), neurobiologie du stress et de l'anxiété scolaire, troubles neurodéveloppementaux (TND) et adaptations pédagogiques pour soutenir les élèves vulnérables.<br/><br/>
@@ -1599,10 +1588,10 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Roduit, G. (2026)</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-damasio-fiche" href="#res-damasio-fiche" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche Damasio</a> <a data-scrollto="res-af-kit" href="#res-af-kit" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Kit visuels</a> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Analyse fonctionnelle</a></div>
 
-<a class="res-dl" data-lien="emotions_anxiete_stress" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/emotions-anxiete-stress.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+<a class="res-dl" data-lien="emotions_anxiete_stress" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/emotions-anxiete-stress.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche</a>
 </div>
 <div class="res-card" id="res-fiche-relation">
-
+<div class="res-icon">🤝</div>
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Relation enseignant-élève</h4>
 <p>Approche systémique de la relation pédagogique, locus de contrôle (Rotter), posture de l'enseignant et impact des interactions sur le climat de classe et la motivation.<br/><br/>
@@ -1610,20 +1599,20 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Roduit, G. (2026)</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-posture-professionnelle" href="#res-posture-professionnelle" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Posture professionnelle</a></div>
 
-<a class="res-dl" data-lien="fiche_relation" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/relation_enseignant_eleve.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+<a class="res-dl" data-lien="fiche_relation" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/relation_enseignant_eleve.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche</a>
 </div>
 
 <div class="res-card" id="res-posture-professionnelle">
-
+<div class="res-icon">🧭</div>
 <div class="res-type">Référentiel Word · Réflexion d'équipe</div>
 <h4>Posture professionnelle enseignante</h4>
 <p>Référentiel de réflexion individuelle et collective structuré autour de trois regards sur l'élève (être en devenir, fragile, relié), décliné en 7 thèmes : sanctions, conseils de classe, appréciations, rencontres avec les familles, cohérence d'équipe, regard professionnel dans les espaces informels, et processus d'engagement collectif. Pour chaque thème : ce que l'équipe refuse, ce que cela implique, et une colonne à compléter pour formuler ses propres engagements. Inclut une annexe sur le vocabulaire factuel (décrire sans étiqueter).<br/><br/>
 <em>Adapté et sécularisé à partir de « Changer de regard », Établissements catholiques d'enseignement, Champagne-Ardenne (2006).</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-fiche-relation" href="#res-fiche-relation" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Relation enseignant-élève</a></div>
-<a class="res-dl" data-lien="posture_professionnelle" href="https://rodoguigs.github.io/Ressources_Autoformation/word/posture_professionnelle_enseignante.docx" rel="noopener noreferrer" target="_blank">Télécharger le référentiel (Word)</a>
+<a class="res-dl" data-lien="posture_professionnelle" href="https://rodoguigs.github.io/Ressources_Autoformation/word/posture_professionnelle_enseignante.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger le référentiel (Word)</a>
 </div>
 <div class="res-card" id="res-damasio-fiche">
-
+<div class="res-icon">🔬🧠</div>
 <div class="res-type">Fiche de lecture PDF · Neurosciences fondamentales</div>
 <h4>L'Erreur de Descartes — Fiche de lecture</h4>
 <p>Synthèse opérationnelle de l'ouvrage d'Antonio Damasio (1994) : thèse centrale, cas Phineas Gage, hypothèse des marqueurs somatiques et quatre implications pédagogiques concrètes. Fournit le socle neurobiologique justifiant la place des émotions dans l'apprentissage et le bien-être enseignant.<br/><br/>
@@ -1631,33 +1620,33 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <em>Roduit, G. (2026) · D'après Damasio, A. R. (1994). L'Erreur de Descartes. Odile Jacob.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-fiche-emotions-stress" href="#res-fiche-emotions-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Émotions &amp; stress</a> <a data-scrollto="res-cesh-stress" href="#res-cesh-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Surfe ton stress</a> <a data-scrollto="res-damasio" href="#res-damasio" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Ouvrage complet</a></div>
 
-<a class="res-dl" data-lien="damasio_fiche" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/damasio_erreur_descartes_fiche.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+<a class="res-dl" data-lien="damasio_fiche" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/damasio_erreur_descartes_fiche.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche</a>
 </div>
 
 
 <!-- CESH / Surfe ton stress -->
 <div class="res-card" id="res-cesh-stress">
-
+<div class="res-icon">🌊</div>
 <div class="res-type">Site externe · Bien-être · Ressource alternative</div>
 <h4>Surfe ton stress — Centre d'études sur le stress humain</h4>
 <p>Programme interactif du Centre d'études sur le stress humain (stresshumain.ca). Aborde les mécanismes biologiques du stress, ses effets sur le cerveau (axe HPA, cortisol, hippocampe) et propose des stratégies concrètes d'autorégulation validées scientifiquement. Accessible en ligne, gratuit.<br/><br/>
 <em>Centre d'études sur le stress humain · stresshumain.ca · Ressource ouverte</em><br/><br/>
 <em>Lien PRÉSENCE : P — Prédisposition · N — Neuroplasticité · Module 4 · Module 9</em></p>
-<a class="res-dl" href="https://stresshumain.ca/programmes/surfe-ton-stress/" rel="noopener noreferrer" target="_blank" style="background:var(--sage);border-color:var(--sage);color:white;">Visiter le CESH</a>
+<a class="res-dl" href="https://stresshumain.ca/programmes/surfe-ton-stress/" rel="noopener noreferrer" target="_blank" style="background:var(--sage);border-color:var(--sage);color:white;">🔗 Visiter le CESH</a>
 </div>
 
 <div class="res-card" id="res-mon-fantastique-cerveau-cesh">
-
+<div class="res-icon">🧠✨</div>
 <div class="res-type">Programme · Centre d'études sur le stress humain</div>
 <h4>Mon Fantastique Cerveau — CESH</h4>
 <p>Programme de vulgarisation neuroscientifique développé par le Centre d'études sur le stress humain. Présente le fonctionnement cérébral de façon accessible et engageante : mémoire, émotions, attention, stress, adolescence. Interface claire, contenu validé scientifiquement. Utile comme point d'entrée pour des activités de psychoéducation avec les élèves ou en formation enseignante.<br/><br/>
 <em>Centre d'études sur le stress humain · stresshumain.ca</em><br/><br/>
 <em>Lien PRÉSENCE : É — Élagage · R — Réseaux de neurones · N — Neuroplasticité</em></p>
-<a class="res-dl" href="https://stresshumain.ca/programmes/mon-fantastique-cerveau/" rel="noopener noreferrer" target="_blank" style="background:var(--sage);border-color:var(--sage);color:white;">Accéder au programme</a>
+<a class="res-dl" href="https://stresshumain.ca/programmes/mon-fantastique-cerveau/" rel="noopener noreferrer" target="_blank" style="background:var(--sage);border-color:var(--sage);color:white;">🔗 Accéder au programme</a>
 </div>
 
 <div class="res-card" id="res-bienetre-ctreq">
-
+<div class="res-icon">🌱</div>
 <div class="res-type">Infographie PDF · CTREQ / RIRE · Bien-être du personnel</div>
 <h4>Soutenir le bien-être du personnel scolaire</h4>
 <p>Infographie de synthèse en deux volets : définition multidimensionnelle du bien-être en contexte scolaire (CSE, 2020 ; Acton &amp; Glasgow, 2015), les cinq dimensions du bien-être au travail (Dagenais-Desmarais, 2010 — adéquation interpersonnelle, épanouissement, volonté d'engagement, reconnaissance perçue, sentiment de compétence), leadership authentique et six pistes d'action concrètes (partage de pratiques, formation continue, réseaux sociaux solides, modélisation, communication ouverte, reconnaissance).<br/><br/>
@@ -1666,14 +1655,14 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <em>Lien PRÉSENCE : S — Synchronisation · Module 9 · Concept Pool Bien-être</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-fiche-emotions-stress" href="#res-fiche-emotions-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Émotions &amp; stress</a> <a data-scrollto="res-cesh-stress" href="#res-cesh-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Surfe ton stress</a> <a href="prototype_module9.html" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#27ae6022;border:1px solid #27ae6055;border-radius:12px;font-size:.7rem;font-weight:600;color:#27ae60;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Module 9</a></div>
 
-<a class="res-dl" data-lien="bien_etre_personnel_ctreq" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/bien_etre_personnel_scolaire_ctreq.pdf" rel="noopener noreferrer" target="_blank">Télécharger l'infographie</a>
+<a class="res-dl" data-lien="bien_etre_personnel_ctreq" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/bien_etre_personnel_scolaire_ctreq.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger l'infographie</a>
 </div>
 </div>
 </div>
 </div>
 <div class="res-folder" id="folder-comportement">
 <div class="res-folder-header">
-
+<div class="rf-icon">🧭</div>
 <div class="rf-meta">
 <div class="rf-title">Gestion des comportements difficiles &amp; analyse fonctionnelle</div>
 <div class="rf-sub">Organisé en 6 étapes chronologiques (formation → observation → hypothèse → entretien → bilan), précédées d'une étape 0 de pratiques universelles · Analyse fonctionnelle · Discipline positive · Outils élève J'ai MON Plan!</div>
@@ -1684,7 +1673,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-folder-body">
 <div class="res-grid">
 <div style="grid-column:1/-1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:16px 20px;margin-bottom:8px;">
-<div class="rf-sub" style="color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6;"><strong style="color:white;">Comment s'y retrouver :</strong> ces 15 ressources suivent la chronologie en 6 étapes décrite dans la <a data-scrollto="res-af-notice-utilisation" href="#res-af-notice-utilisation" style="color:var(--gold);text-decoration:underline;">notice d'utilisation du dispositif</a> — précédée d'une étape 0 de pratiques universelles, en amont de tout ciblage individuel. Suivez l'ordre des sections ci-dessous, ou utilisez les pastilles « Documents liés » au bas de chaque carte pour naviguer directement entre les outils qui se complètent.</div>
+<div class="rf-sub" style="color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6;">🧭 <strong style="color:white;">Comment s'y retrouver :</strong> ces 15 ressources suivent la chronologie en 6 étapes décrite dans la <a data-scrollto="res-af-notice-utilisation" href="#res-af-notice-utilisation" style="color:var(--gold);text-decoration:underline;">notice d'utilisation du dispositif</a> — précédée d'une étape 0 de pratiques universelles, en amont de tout ciblage individuel. Suivez l'ordre des sections ci-dessous, ou utilisez les pastilles « Documents liés » au bas de chaque carte pour naviguer directement entre les outils qui se complètent.</div>
 </div>
 
 <div style="grid-column:1/-1;display:flex;align-items:flex-start;gap:14px;margin-top:0;padding-top:18px;">
@@ -1696,7 +1685,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 
 <div class="res-card" id="res-grille-interventions-universelles">
-
+<div class="res-icon">📋</div>
 <div class="res-type">Grille réflexive PDF · Enseignant · J'ai MON Plan! · Université Laval</div>
 <h4>Grille réflexive des interventions universelles (EN.1.1)</h4>
 <p>Outil d'autoévaluation pour l'enseignant avant d'établir un plan d'intervention. Couvre quatre dimensions : gestion des ressources, établissement d'attentes claires, développement de relations sociales positives, engagement sur l'objet d'apprentissage et gestion des comportements d'indiscipline. Permet d'évaluer les pratiques universelles en place et d'identifier les ajustements prioritaires — tant au niveau de la classe qu'envers l'élève ciblé.<br/><br/>
@@ -1704,7 +1693,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div style="margin-top:8px;"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#6b728022;border:1px solid #6b728055;border-radius:12px;font-size:.7rem;font-weight:600;color:#6b7280;text-decoration:none;white-space:nowrap;">© CC BY-NC-SA · Trousse J'ai MON Plan! (2021)</a></div>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-fiche-equipe" href="#res-af-fiche-equipe" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche équipe</a> <a data-scrollto="res-cua" href="#res-cua" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">CUA &amp; différenciation</a></div>
 
-<a class="res-dl" data-lien="grille_interventions_universelles" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/grille_interventions_universelles.pdf" rel="noopener noreferrer" target="_blank">Télécharger la grille (PDF)</a>
+<a class="res-dl" data-lien="grille_interventions_universelles" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/grille_interventions_universelles.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la grille (PDF)</a>
 </div>
 <div style="grid-column:1/-1;display:flex;align-items:flex-start;gap:14px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.10);">
 <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(245,166,35,.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;font-family:'DM Sans',sans-serif;">1</div>
@@ -1715,17 +1704,17 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 
 <div class="res-card" id="res-af-notice-utilisation">
-
+<div class="res-icon">🗺️</div>
 <div class="res-type">PDF · Notice d'utilisation du dispositif</div>
 <h4>Notice d'utilisation — Dispositif complet AFC &amp; accompagnement</h4>
 <p>Notice de référence qui articule les 8 documents du dispositif : tableau des rôles de chaque document, chronologie en 6 étapes avec les outils à mobiliser à chaque étape, et trois configurations de répartition des rôles (enseignant·e seul·e ; personne-ressource neutre + enseignant·e de soutien ; psychologue scolaire + enseignant·e + direction). Inclut un tableau synthétique « qui fait quoi » selon la configuration choisie.<br/><br/>
 <em>PDF · À lire avant de démarrer une première intervention · Point d'entrée recommandé dans le dispositif.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC théorique</a> <a data-scrollto="res-af-fiche-equipe" href="#res-af-fiche-equipe" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche équipe</a> <a data-scrollto="res-af-grille" href="#res-af-grille" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille de suivi</a> <a data-scrollto="res-af-entretien" href="#res-af-entretien" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Trame d'entretien</a></div>
 
-<a class="res-dl" data-lien="af_notice_utilisation" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/notice_utilisation_dispositif.pdf" rel="noopener noreferrer" target="_blank">Télécharger la notice (PDF)</a>
+<a class="res-dl" data-lien="af_notice_utilisation" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/notice_utilisation_dispositif.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la notice (PDF)</a>
 </div>
 <div class="res-card" id="res-af-notice">
-
+<div class="res-icon">🧠</div>
 <div class="res-type">Document PDF · Cadre théorique</div>
 <h4>Analyse fonctionnelle du comportement — Notice théorique</h4>
 <p>Notice de référence sur l'analyse fonctionnelle du comportement (AFC) en contexte scolaire. Fondements théoriques (Skinner, Iwata), distinction topographie / fonction, présentation des quatre fonctions possibles d'un comportement (attention, évitement, tangible, auto-stimulation), modèle d'observation ABC, principe du comportement de remplacement. Comprend une définition opérationnelle de la notion de fonction et deux tableaux d'exemples courants en primaire et secondaire.<br/><br/>
@@ -1733,17 +1722,17 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <em>Lien PRÉSENCE : C — Conscience · S — Synchronisation cérébrale</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice-utilisation" href="#res-af-notice-utilisation" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice d'utilisation</a> <a data-scrollto="res-af-fiche-equipe" href="#res-af-fiche-equipe" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche équipe</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes de remplacement</a> <a data-scrollto="res-tdah-enjeux" href="#res-tdah-enjeux" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Enjeux TDAH</a> <a data-scrollto="res-af-dreikurs" href="#res-af-dreikurs" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille Adler-Dreikurs</a></div>
 
-<a class="res-dl" data-lien="af_notice" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/analyse_fonctionnelle_comportement.pdf" rel="noopener noreferrer" target="_blank">Télécharger la notice (PDF)</a>
+<a class="res-dl" data-lien="af_notice" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/analyse_fonctionnelle_comportement.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la notice (PDF)</a>
 </div>
 <div class="res-card" id="res-af-fiche-equipe">
-
+<div class="res-icon">👥</div>
 <div class="res-type">Fiche PDF · Équipe pédagogique</div>
 <h4>Fiche pratique — Équipe pédagogique</h4>
 <p>Fiche de synthèse (2 pages) à destination des enseignants intervenant auprès d'un élève en difficulté comportementale. Présente de façon opérationnelle les quatre fonctions possibles d'un comportement, le modèle ABC et les principes d'une posture cohérente en équipe. Conçue pour être lue en 5 minutes et distribuée en réunion de réseau.<br/><br/>
 <em>À distribuer en réunion de réseau · Marche à suivre intégrée pour orienter dans les 8 documents du dispositif.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice-utilisation" href="#res-af-notice-utilisation" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice d'utilisation</a> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes</a></div>
 
-<a class="res-dl" data-lien="af_fiche_equipe" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/fiche_pratique_equipe.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche équipe (PDF)</a>
+<a class="res-dl" data-lien="af_fiche_equipe" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/fiche_pratique_equipe.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche équipe (PDF)</a>
 </div>
 <div style="grid-column:1/-1;display:flex;align-items:flex-start;gap:14px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.10);">
 <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(245,166,35,.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;font-family:'DM Sans',sans-serif;">2</div>
@@ -1754,14 +1743,14 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 
 <div class="res-card" id="res-af-grille">
-
+<div class="res-icon">📋</div>
 <div class="res-type">Grille Word · Suivi d'intervention</div>
 <h4>Grille de suivi d'intervention</h4>
 <p>Grille structurée en 10 sections pour tracer une intervention comportementale : identification, description du comportement, baseline d'observation, grille ABC sur trois épisodes, hypothèse fonctionnelle, piste d'intervention, suivi hebdomadaire sur 4 semaines, bilan avec décision graduée (poursuivre / ajuster / abandonner / relais), notes libres et signatures. Support de traçabilité professionnelle et de transmission en équipe.<br/><br/>
 <em>Une fiche = un comportement suivi · 10 pages A4 · Conservable dans le dossier de l'élève.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes</a> <a data-scrollto="res-af-entretien" href="#res-af-entretien" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Trame d'entretien</a></div>
 
-<a class="res-dl" data-lien="af_grille_essai" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/documentation_suivi_eleve.docx" rel="noopener noreferrer" target="_blank">Télécharger la grille (Word)</a>
+<a class="res-dl" data-lien="af_grille_essai" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/documentation_suivi_eleve.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger la grille (Word)</a>
 </div>
 <div style="grid-column:1/-1;display:flex;align-items:flex-start;gap:14px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.10);">
 <div style="flex-shrink:0;width:32px;height:32px;border-radius:50%;background:rgba(245,166,35,.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;font-family:'DM Sans',sans-serif;">3–4</div>
@@ -1772,44 +1761,44 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 
 <div class="res-card" id="res-af-pistes">
-
+<div class="res-icon">🔄</div>
 <div class="res-type">Fiche Word · Pistes d'intervention</div>
 <h4>Fiche-pistes — Comportements de remplacement</h4>
 <p>Document pratique recensant 19 comportements problématiques fréquemment observés en primaire et secondaire, avec pour chacun : la fonction hypothétique probable, une piste de comportement de remplacement fonctionnellement équivalent proposée à l'élève, et un ajustement côté enseignant (posture, antécédent, aménagement). Complète la notice d'analyse fonctionnelle.<br/><br/>
 <em>Format A4 paysage · 4 colonnes · Éditable pour adaptation au cas de l'élève concerné.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-grille" href="#res-af-grille" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille de suivi</a> <a data-scrollto="res-autodetermination" href="#res-autodetermination" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Autodétermination</a> <a data-scrollto="res-aide-strategique" href="#res-aide-strategique" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Aide stratégique</a></div>
 
-<a class="res-dl" data-lien="af_pistes" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/fiche_pistes_remplacement.docx" rel="noopener noreferrer" target="_blank">Télécharger la fiche-pistes (Word)</a>
+<a class="res-dl" data-lien="af_pistes" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/fiche_pistes_remplacement.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche-pistes (Word)</a>
 </div>
 <div class="res-card" id="res-af-dreikurs">
-
+<div class="res-icon">🎯</div>
 <div class="res-type">Document PDF · Cadre théorique adlérien</div>
 <h4>Grille d'identification des 4 buts — Adler &amp; Dreikurs</h4>
 <p>Grille d'analyse fondée sur la psychologie individuelle d'Alfred Adler et Rudolf Dreikurs. Là où l'analyse fonctionnelle examine les <em>fonctions</em> du comportement (béhaviorisme), cette grille explore les <em>croyances cachées</em> de l'élève selon quatre objectifs : accaparer l'attention, prendre le pouvoir, prendre une revanche, confirmer une croyance d'incapacité. Pour chaque but, la grille croise huit dimensions : comportement de l'élève, ressenti de l'adulte, réaction adulte typique, réponse de l'élève, croyance cachée, prévention efficace, réponses encourageantes, et phrase à entendre. Outil de lecture complémentaire à l'AFC pour les situations résistantes.<br/><br/>
 <em>Cadre théorique issu des travaux d'Adler et Dreikurs · Document à usage strictement pédagogique interne.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-memo-hepvs" href="#res-af-memo-hepvs" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Mémo HEP-VS</a> <a data-scrollto="res-bonhomme-osbd" href="#res-bonhomme-osbd" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Bonhomme OSBD</a></div>
 
-<a class="res-dl" data-lien="af_dreikurs" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/grille_mirage_dreikurs.pdf" rel="noopener noreferrer" target="_blank">Télécharger la grille (PDF)</a>
+<a class="res-dl" data-lien="af_dreikurs" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/grille_mirage_dreikurs.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la grille (PDF)</a>
 </div>
 <div class="res-card" id="res-af-memo-hepvs">
-
+<div class="res-icon">📋</div>
 <div class="res-type">Mémo PDF · HEP-VS · Ressource terrain</div>
 <h4>Des difficultés aux troubles du comportement — Mémo HEP-VS</h4>
 <p>Mémo pratique pour enseignants produit par la HEP Valais (Borel, Clavien, Barras, Fux, Cignetti, 2020). Présente un tableau de lecture comportements / ressentis de l'enseignant / croyances cachées de l'élève / actions possibles pour quatre profils (recherche d'attention, agressivité, défi de l'autorité, retrait). Distingue punir et sanctionner (règle des 4 R). Donne des pistes concrètes en début et en cours d'année. Inclut les ressources locales valaisannes (CDTEA, discipline positive suisse romande, enseignant-e d'appui).<br/><br/>
 <em>Borel et al. (2020) · HEP-VS · Ressource institutionnelle valaisanne · Complémentaire de la notice AFC.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-fiche-equipe" href="#res-af-fiche-equipe" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche équipe</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes</a> <a data-scrollto="res-af-dreikurs" href="#res-af-dreikurs" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille Adler-Dreikurs</a></div>
 
-<a class="res-dl" data-lien="af_memo_hepvs" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/memo_hepvs_comportements.pdf" rel="noopener noreferrer" target="_blank">Télécharger le mémo (PDF)</a>
+<a class="res-dl" data-lien="af_memo_hepvs" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/memo_hepvs_comportements.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger le mémo (PDF)</a>
 </div>
 
 <div class="res-card" id="res-besoins-fondamentaux">
-
+<div class="res-icon">🧩</div>
 <div class="res-type">Fiche Word · Grille de lecture complémentaire</div>
 <h4>Grille des besoins fondamentaux</h4>
 <p>Pour chacun de 5 besoins fondamentaux de l'élève (sécurité, identité, détermination, appartenance, sentiment de compétence), un répertoire de comportements observables associés et des réponses pédagogiques possibles. Complémentaire à l'analyse fonctionnelle (quelle fonction ?) et à la grille Adler-Dreikurs (quelle croyance cachée ?) : ici, quel besoin insatisfait ?<br/><br/>
 <em>Adapté de Établissements catholiques d'enseignement Champagne-Ardenne.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a> <a data-scrollto="res-af-dreikurs" href="#res-af-dreikurs" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille Adler-Dreikurs</a></div>
-<a class="res-dl" data-lien="grille_besoins_fondamentaux" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/grille_besoins_fondamentaux.docx" rel="noopener noreferrer" target="_blank">Télécharger la grille (Word)</a>
+<a class="res-dl" data-lien="grille_besoins_fondamentaux" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/grille_besoins_fondamentaux.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger la grille (Word)</a>
 </div>
 
 <div style="grid-column:1/-1;display:flex;align-items:flex-start;gap:14px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.10);">
@@ -1821,47 +1810,47 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 
 <div class="res-card" id="res-af-entretien">
-
+<div class="res-icon">💬</div>
 <div class="res-type">Trame Word · Accompagnement individuel</div>
 <h4>Trame d'entretien individuel (3 séances)</h4>
 <p>Dispositif d'entretien en trois séances conçu pour accompagner un élève présentant des difficultés comportementales importantes, adapté en particulier aux profils TSA avec troubles associés. Structure : séance 1 (Comprendre — reconstituer factuellement l'épisode via chronologie ABC), séance 2 (Apprendre — enseignement explicite des codes sociaux), séance 3 (Convenir — co-construction du contrat et du système de renforcement).<br/><br/>
 <em>Conçue pour être menée par un enseignant-intervenant neutre (hors du rapport de cours quotidien).</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-kit" href="#res-af-kit" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Kit visuels</a> <a data-scrollto="res-af-contrat" href="#res-af-contrat" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Contrat comportemental</a> <a data-scrollto="res-af-grille" href="#res-af-grille" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille de suivi</a> <a data-scrollto="res-bourassa-banque" href="#res-bourassa-banque" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Banque Bourassa</a> <a data-scrollto="res-bonhomme-osbd" href="#res-bonhomme-osbd" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Bonhomme OSBD</a></div>
 
-<a class="res-dl" data-lien="af_entretien" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/entretien.docx" rel="noopener noreferrer" target="_blank">Télécharger la trame (Word)</a>
+<a class="res-dl" data-lien="af_entretien" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/entretien.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger la trame (Word)</a>
 </div>
 <div class="res-card" id="res-af-kit">
-
+<div class="res-icon">🎨</div>
 <div class="res-type">Kit Word · Supports visuels pour entretien</div>
 <h4>Kit de supports visuels — Modèles &amp; vides</h4>
 <p>Kit de 8 supports visuels pensés pour accompagner la trame d'entretien individuel, particulièrement adaptés aux profils TSA : thermomètre d'état émotionnel, frise AVANT-PENDANT-APRÈS, roue des déclencheurs, silhouette des signaux corporels, matrice « ce que je crois provoquer / ce qui se passe vraiment », carte issue de secours, fiche engagements, grille quand/où/avec qui. Chaque support existe en deux versions : un modèle pré-rempli générique (à consulter) et une version vierge à compléter avec l'élève.<br/><br/>
 <em>Format A4 couleur · Impression recommandée · Complémentaire de la trame d'entretien.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-entretien" href="#res-af-entretien" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Trame d'entretien</a> <a data-scrollto="res-af-contrat" href="#res-af-contrat" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Contrat</a> <a data-scrollto="res-fiche-emotions-stress" href="#res-fiche-emotions-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Émotions &amp; stress</a></div>
 
-<a class="res-dl" data-lien="af_kit_visuels" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/kit_modeles.docx" rel="noopener noreferrer" target="_blank">Télécharger le kit complet (Word)</a>
+<a class="res-dl" data-lien="af_kit_visuels" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/kit_modeles.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger le kit complet (Word)</a>
 </div>
 <div class="res-card" id="res-af-contrat">
-
+<div class="res-icon">📜</div>
 <div class="res-type">Contrat Word · Cadre d'intervention</div>
 <h4>Contrat comportemental &amp; suivi</h4>
 <p>Modèle de contrat comportemental co-construit entre l'élève, l'enseignant référent, les parents et la direction. Inclut : 2 cibles comportementales formulées positivement, système de renforcement positif gradué (ratio 4:1), conséquences graduées en 4 niveaux (rappel / pause / réparation / réseau), grille de suivi quotidien hebdomadaire, protocole de bilan à 4 semaines. Articulé avec la trame d'entretien individuel.<br/><br/>
 <em>Fondé sur les principes PBIS (Simonsen et al., 2008) · Utilisation recommandée en binôme avec la trame d'entretien.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-entretien" href="#res-af-entretien" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Trame d'entretien</a> <a data-scrollto="res-af-kit" href="#res-af-kit" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Kit visuels</a> <a data-scrollto="res-af-grille" href="#res-af-grille" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille de suivi</a></div>
 
-<a class="res-dl" data-lien="af_contrat" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/contrat_comportemental.docx" rel="noopener noreferrer" target="_blank">Télécharger le contrat (Word)</a>
+<a class="res-dl" data-lien="af_contrat" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/contrat_comportemental.docx" rel="noopener noreferrer" target="_blank">📥 Télécharger le contrat (Word)</a>
 </div>
 <div class="res-card" id="res-bonhomme-osbd">
-
+<div class="res-icon">🧍</div>
 <div class="res-type">Document PDF · Outil élève · CNV</div>
 <h4>Bonhomme OSBD — Communication Non Violente</h4>
 <p>Document complet de 10 pages combinant notice d'utilisation pédagogique, schéma original, fiche manuscrite à remplir et version dactylographiée structurée. Outil de réflexion guidée à froid pour l'élève après un comportement problématique, structuré en cinq étapes : <strong>1.</strong> les faits — <strong>2.</strong> les pensées et interprétations — <strong>3.</strong> les émotions — <strong>4.</strong> les besoins — <strong>5.</strong> les solutions. Précise les rôles élève / enseignant / parents, les situations adaptées et à éviter, et inclut des annexes pour l'enseignant : vocabulaire émotionnel structuré en cinq familles et liste des besoins fondamentaux selon Rosenberg.<br/><br/>
 <em>Adapté du modèle OSBD (Observation, Sentiment, Besoin, Demande) de Marshall B. Rosenberg · Outil de remplissage par l'élève en entretien individuel ou à distance d'une situation.</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-af-entretien" href="#res-af-entretien" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Trame d'entretien</a> <a data-scrollto="res-af-contrat" href="#res-af-contrat" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Contrat comportemental</a> <a data-scrollto="res-af-dreikurs" href="#res-af-dreikurs" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Grille Adler-Dreikurs</a> <a data-scrollto="res-fiche-emotions-stress" href="#res-fiche-emotions-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Émotions &amp; stress</a></div>
 
-<a class="res-dl" data-lien="bonhomme_osbd" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/bonhomme_osbd.pdf" rel="noopener noreferrer" target="_blank">Télécharger l'outil (PDF)</a>
+<a class="res-dl" data-lien="bonhomme_osbd" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/bonhomme_osbd.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger l'outil (PDF)</a>
 </div>
 <div class="res-card" id="res-reflexion-comportement-eleve">
-
+<div class="res-icon">🔍</div>
 <div class="res-type">Fiche élève PDF · J'ai MON Plan! · Université Laval</div>
 <h4>Je réfléchis sur un de mes comportements (EL.2.16)</h4>
 <p>Outil de réflexion guidée pour l'élève en 7 questions : identifier le comportement à améliorer, les déclencheurs, les raisons, les conséquences, les avantages et désavantages, et les comportements de remplacement possibles. À utiliser lors d'un entretien individuel ou à distance d'une situation problématique.<br/><br/>
@@ -1869,10 +1858,10 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div style="margin-top:8px;"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#6b728022;border:1px solid #6b728055;border-radius:12px;font-size:.7rem;font-weight:600;color:#6b7280;text-decoration:none;white-space:nowrap;">© CC BY-NC-SA · Trousse J'ai MON Plan! (2021)</a></div>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-sequence-comportement-eleve" href="#res-sequence-comportement-eleve" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Séquence ABC élève</a> <a data-scrollto="res-bonhomme-osbd" href="#res-bonhomme-osbd" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Bonhomme OSBD</a> <a data-scrollto="res-af-pistes" href="#res-af-pistes" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche-pistes remplacement</a></div>
 
-<a class="res-dl" data-lien="reflexion_sur_mes_comportements" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/reflexion_sur_mes_comportements.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche élève (PDF)</a>
+<a class="res-dl" data-lien="reflexion_sur_mes_comportements" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/reflexion_sur_mes_comportements.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche élève (PDF)</a>
 </div>
 <div class="res-card" id="res-sequence-comportement-eleve">
-
+<div class="res-icon">🔄</div>
 <div class="res-type">Fiche élève PDF · J'ai MON Plan! · Université Laval</div>
 <h4>Je détermine la séquence d'un de mes comportements (EL.2.17)</h4>
 <p>Outil ABC pour l'élève : tableau structuré en trois colonnes (Avant / Pendant / Après) pour documenter les déclencheurs, les réactions et les conséquences de 3 comportements. Une version approfondie ("Pour aller plus loin") explore les pensées, émotions, réactions corporelles, conséquences pour soi et l'entourage, et comportements alternatifs. Complémentaire de EL.2.16.<br/><br/>
@@ -1880,7 +1869,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div style="margin-top:8px;"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#6b728022;border:1px solid #6b728055;border-radius:12px;font-size:.7rem;font-weight:600;color:#6b7280;text-decoration:none;white-space:nowrap;">© CC BY-NC-SA · Trousse J'ai MON Plan! (2021)</a></div>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-reflexion-comportement-eleve" href="#res-reflexion-comportement-eleve" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Réflexion comportement EL.2.16</a> <a data-scrollto="res-bonhomme-osbd" href="#res-bonhomme-osbd" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Bonhomme OSBD</a> <a data-scrollto="res-af-notice" href="#res-af-notice" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#e0a80022;border:1px solid #e0a80055;border-radius:12px;font-size:.7rem;font-weight:600;color:#e0a800;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Notice AFC</a></div>
 
-<a class="res-dl" data-lien="sequence_comportement_eleve" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/sequence_comportement_eleve.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche élève (PDF)</a>
+<a class="res-dl" data-lien="sequence_comportement_eleve" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/sequence_comportement_eleve.pdf" rel="noopener noreferrer" target="_blank">📥 Télécharger la fiche élève (PDF)</a>
 </div>
 
 <div style="grid-column:1/-1;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.10);display:flex;align-items:flex-start;gap:14px;">
@@ -1896,7 +1885,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 <div class="res-folder" id="folder-lectures">
 <div class="res-folder-header">
-
+<div class="rf-icon">📖</div>
 <div class="rf-meta">
 <div class="rf-title">Recommandations de lecture</div>
 <div class="rf-sub">Ouvrages de référence · Neuroéducation · Gestion de classe · Stratégies</div>
@@ -1909,17 +1898,17 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-gaudreau">
 <img alt="Gérer efficacement sa classe" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Gerer-efficacement-sa-clae-2e-edition.jpg"/>
 <div>
-<div class="res-book-meta">Gestion de classe · 2024</div>
+<div class="res-book-meta">📗 Gestion de classe · 2024</div>
 <div class="res-book-title">Gérer efficacement sa classe</div>
 <div class="res-book-author">Nancy Gaudreau — 2e éd., Presses de l'Université du Québec</div>
 <p class="res-book-desc">Six ingrédients interdépendants pour une gestion de classe efficace et bienveillante : gestion des ressources, attentes claires, relations positives, engagement et gestion des comportements. Fait le pont entre théorie et pratique avec exercices réflexifs et outils fondés sur la recherche.</p>
-<a class="res-book-link" data-lien="gaudreau" href="pdf/fiche-livre-Gaudreau.pdf" rel="noopener noreferrer" target="_blank">Présentation du livre</a>
+<a class="res-book-link" data-lien="gaudreau" href="pdf/fiche-livre-Gaudreau.pdf" rel="noopener noreferrer" target="_blank">📄 Présentation du livre</a>
 </div>
 </div>
 <div class="res-book-card" id="res-hattie">
 <img alt="L'apprentissage visible pour les enseignants" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Apprentiage-visible-pour-les-enseignants.jpg"/>
 <div>
-<div class="res-book-meta">Pratiques à fort impact</div>
+<div class="res-book-meta">📘 Pratiques à fort impact</div>
 <div class="res-book-title">L'apprentissage visible pour les enseignants</div>
 <div class="res-book-author">John Hattie — Presses de l'Université du Québec</div>
 <p class="res-book-desc">Méta-analyse de plus de 800 études synthétisant les facteurs les plus influents sur la réussite scolaire. Permet à l'enseignant·e de <em>connaître son impact</em> pour maximiser le rendement des élèves — référence incontournable des pratiques à fort impact.</p>
@@ -1928,17 +1917,17 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-masson">
 <img alt="Activer ses neurones pour mieux apprendre et enseigner" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Activer-ses-neurones.jpg"/>
 <div>
-<div class="res-book-meta">Neuroéducation</div>
+<div class="res-book-meta">🧠 Neuroéducation</div>
 <div class="res-book-title">Activer ses neurones pour mieux apprendre et enseigner</div>
 <div class="res-book-author">Steve Masson — Odile Jacob</div>
 <p class="res-book-desc">Les 7 principes neuroéducatifs traduits en pratiques concrètes pour la classe. S'appuie sur l'imagerie cérébrale pour montrer comment le cerveau apprend et comment l'enseignement peut s'y adapter — en résonance directe avec le modèle PRÉSENCE.</p>
-<a data-scrollto="res-activer-neurones" href="#res-activer-neurones" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin-top:8px;">Extraits mis en forme · téléchargeables</a>
+<a data-scrollto="res-activer-neurones" href="#res-activer-neurones" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin-top:8px;">📄 Extraits mis en forme · téléchargeables</a>
 </div>
 </div>
 <div class="res-book-card" id="res-vianin">
 <img alt="Comment donner à l'élève les clés de sa réussite ?" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/1540-1.jpg"/>
 <div>
-<div class="res-book-meta">Stratégies d'apprentissage</div>
+<div class="res-book-meta">🎓 Stratégies d'apprentissage</div>
 <div class="res-book-title">Comment donner à l'élève les clés de sa réussite ?</div>
 <div class="res-book-author">Pierre Vianin — De Boeck Supérieur (2e éd.)</div>
 <p class="res-book-desc">L'enseignement des stratégies d'apprentissage à l'école : cadre théorique, outils pratiques et démarches pédagogiques pour aider chaque élève à devenir un apprenant autonome et efficace — en lien direct avec l'Aide Stratégique.</p>
@@ -1947,7 +1936,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-damasio">
 <img alt="L'Erreur de Descartes — La raison des émotions" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/l-erreur-de-descartes-la-raison-des-emotions-taschenbuch-antonio-r-damasio-franzoesisch.jpeg"/>
 <div>
-<div class="res-book-meta">Neurosciences fondamentales</div>
+<div class="res-book-meta">🔬 Neurosciences fondamentales</div>
 <div class="res-book-title">L'Erreur de Descartes — La raison des émotions</div>
 <div class="res-book-author">Antonio R. Damasio — Odile Jacob</div>
 <p class="res-book-desc">Démonstration neurobiologique que la raison ne peut fonctionner sans les émotions. Ouvrage fondateur pour comprendre la place des émotions dans les décisions et les apprentissages — fondement théorique du volet <em>Émotions &amp; Stress</em> du parcours.</p>
@@ -1956,20 +1945,20 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-bourassa">
 <img alt="Neurosciences et éducation" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Neurosciences-et-education.jpg"/>
 <div>
-<div class="res-book-meta">Neuroéducation · Pratique</div>
+<div class="res-book-meta">🧠 Neuroéducation · Pratique</div>
 <div class="res-book-title">Neurosciences et éducation</div>
 <div class="res-book-author">Michelle Bourassa, Mylène Menot-Martin, Ruth Philion</div>
 <p class="res-book-desc">Un ouvrage de référence qui traduit les apports des neurosciences en pratiques éducatives concrètes. Offre aux enseignant·e·s des clés pour mieux comprendre les processus d'apprentissage et adapter leur enseignement — en résonance directe avec le modèle PRÉSENCE.</p>
 <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
-<a data-scrollto="res-bourassa-banque" href="#res-bourassa-banque" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;background:rgba(255,185,28,.1);border:1px solid rgba(255,185,28,.3);border-radius:10px;font-size:.7rem;font-weight:600;color:var(--gold);text-decoration:none;">Accéder à la banque d'outils (20 docs)</a>
-<a href="https://www.deboecksuperieur.com/site/328143" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;background:rgba(45,156,219,.1);border:1px solid rgba(45,156,219,.3);border-radius:10px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;" target="_blank" title="Ressources officielles De Boeck — accès réservé aux enseignant·e·s inscrit·e·s ou aux acheteur·euse·s de l'ouvrage">Ressources De Boeck <span style="font-size:.6rem;opacity:.65;font-weight:500;">· accès enseignant·e</span></a>
+<a data-scrollto="res-bourassa-banque" href="#res-bourassa-banque" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;background:rgba(255,185,28,.1);border:1px solid rgba(255,185,28,.3);border-radius:10px;font-size:.7rem;font-weight:600;color:var(--gold);text-decoration:none;">🧭 Accéder à la banque d'outils (20 docs)</a>
+<a href="https://www.deboecksuperieur.com/site/328143" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;background:rgba(45,156,219,.1);border:1px solid rgba(45,156,219,.3);border-radius:10px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;" target="_blank" title="Ressources officielles De Boeck — accès réservé aux enseignant·e·s inscrit·e·s ou aux acheteur·euse·s de l'ouvrage">📥 Ressources De Boeck <span style="font-size:.6rem;opacity:.65;font-weight:500;">· accès enseignant·e</span></a>
 </div>
 </div>
 </div>
 <div class="res-book-card" id="res-vianin-echec">
 <img alt="Comprendre l'échec scolaire" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Comprendre-l-echec-scolaire.jpg"/>
 <div>
-<div class="res-book-meta">Remédiation · Inclusion</div>
+<div class="res-book-meta">🎓 Remédiation · Inclusion</div>
 <div class="res-book-title">Comprendre l'échec scolaire</div>
 <div class="res-book-author">Pierre Vianin — De Boeck Supérieur</div>
 <p class="res-book-desc">Analyse des causes de l'échec scolaire et des leviers de remédiation : motivation, stratégies d'apprentissage, rapport au savoir, relation pédagogique. Un cadre théorique et pratique pour accompagner les élèves en difficulté.</p>
@@ -1978,7 +1967,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-caron-septembre">
 <img alt="Quand revient septembre" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/quand_revient_septembre.jpg"/>
 <div>
-<div class="res-book-meta">Gestion de classe · Pratique</div>
+<div class="res-book-meta">📅 Gestion de classe · Pratique</div>
 <div class="res-book-title">Quand revient septembre — Guide sur la gestion de classe participative</div>
 <div class="res-book-author">Jacqueline Caron (2ᵉ éd., 2012) — Chenelière Éducation</div>
 <p class="res-book-desc">Ouvrage de référence francophone (plus de 75 000 exemplaires vendus depuis 1994) pour mettre en œuvre une gestion de classe participative. Place l'enseignant·e au cœur d'une démarche réflexive : prises de conscience (savoir-être), matière à réflexion (savoir), pistes d'expérimentation (savoir-faire). Couvre l'organisation de classe, la responsabilisation des élèves, le climat motivant, la différenciation, et la gestion des contextes particuliers (suppléance, partenariat, titulariat). 159 outils-supports reproductibles dans l'édition 2012. Complémentaire pragmatique du modèle théorique de Gaudreau (2024).</p>
@@ -1988,7 +1977,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-masse-troubles">
 <img alt="Les troubles du comportement à l'école" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Masse.jpg"/>
 <div>
-<div class="res-book-meta">Comportement · Prévention · Intervention</div>
+<div class="res-book-meta">🧩 Comportement · Prévention · Intervention</div>
 <div class="res-book-title">Les troubles du comportement à l'école — Prévention, évaluation et intervention</div>
 <div class="res-book-author">Line Massé, Nadia Desbiens, Catherine Lanaris (dir.) — 3ᵉ éd., 2020, Chenelière Éducation</div>
 <p class="res-book-desc">Ouvrage de référence francophone réunissant une quarantaine d'expert·e·s de l'adaptation scolaire et sociale. Aborde les difficultés d'adaptation et de comportement dans une approche pluridimensionnelle — et non catégorielle liée aux diagnostics — autour de trois axes : prévention, évaluation et intervention. Cadre théorique et pratique pour enseignant·e·s, psychoéducateur·trice·s et autres intervenant·e·s scolaires. Complémentaire du dossier AFC et du modèle de Gaudreau (2024).</p>
@@ -1998,7 +1987,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <div class="res-book-card" id="res-borst-40seances">
 <img alt="Enseigner aux élèves comment apprendre — 55 séances clés en main" class="res-book-cover" loading="lazy" src="https://raw.githubusercontent.com/Rodoguigs/Ressources_Autoformation/main/images/Enseigner-aux-eleves-comment-apprendre-40-seances-cles-en-main-College.jpg"/>
 <div>
-<div class="res-book-meta">Neurosciences éducatives · Pratique collège</div>
+<div class="res-book-meta">🧠 Neurosciences éducatives · Pratique collège</div>
 <div class="res-book-title">Enseigner aux élèves comment apprendre — 55 séances clés en main</div>
 <div class="res-book-author">Grégoire Borst, Émilie Decrombecque, Jérôme Hubert — Nathan / Du labo à la classe · Collège</div>
 <p class="res-book-desc">55 séances clés en main avec vidéos à l'appui pour enseigner aux élèves comment apprendre. Aborde le contrôle inhibiteur, la plasticité cérébrale, les neurones miroirs, la régulation émotionnelle et les stéréotypes — avec des applications pédagogiques directes pour chaque séance. Complémentaire du modèle PRÉSENCE et des apports de Fahim sur la mentalisation.</p>
@@ -2013,7 +2002,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <!-- ═══ DOSSIER : PROPOSITIONS DE FORMATION ═══ -->
 <div class="res-folder" id="folder-formations">
 <div class="res-folder-header">
-
+<div class="rf-icon">🎓</div>
 <div class="rf-meta">
 <div class="rf-title">Propositions de formation continue</div>
 <div class="rf-sub">MOOC · TéCOOL &amp; MIO</div>
@@ -2026,19 +2015,19 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 
 <!-- MOOC Gaudreau -->
 <div class="res-card" id="res-mooc-gaudreau">
-
+<div class="res-icon">🌱</div>
 <div class="res-type">MOOC gratuit · Université Laval · Formation en ligne</div>
 <h4>MOOC — Le plan d'intervention autodéterminé</h4>
 <p>Formation en ligne gratuite (Nancy Gaudreau, Université Laval). Aborde l'établissement de plans d'intervention autodéterminés par les élèves présentant des difficultés socioémotionnelles et comportementales. S'approprie les outils de la trousse <em>J'ai MON plan!</em>. S'adresse aux enseignant·e·s, professionnel·le·s, directions et personnel de soutien des écoles primaires et secondaires.<br/><br/>
 <em>Gratuit · Attestation disponible · Université Laval / FSÉ · Duchaine &amp; Gaudreau (2022)</em><br/><br/>
 <em>Lien PRÉSENCE : E — Et le libre arbitre · S — Synchronisation · Module 8</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-autodetermination" href="#res-autodetermination" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Outil autodétermination</a> <a data-scrollto="res-fiche-autodetermination-ctreq" href="#res-fiche-autodetermination-ctreq" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Fiche CTREQ</a></div>
-<a class="res-dl" href="https://www.ulaval.ca/en/academics/mooc-massive-open-online-courses/the-self-determined-iep-supporting-success-for-students-with-behavioural-difficulties-and-social-maladjustments" rel="noopener noreferrer" target="_blank" style="background:var(--sky);border-color:var(--sky);">Accéder au MOOC (Université Laval)</a>
+<a class="res-dl" href="https://www.ulaval.ca/en/academics/mooc-massive-open-online-courses/the-self-determined-iep-supporting-success-for-students-with-behavioural-difficulties-and-social-maladjustments" rel="noopener noreferrer" target="_blank" style="background:var(--sky);border-color:var(--sky);">🎓 Accéder au MOOC (Université Laval)</a>
 </div>
 
 <!-- TéCOOL -->
 <div class="res-card" id="res-tecool-mio">
-
+<div class="res-icon">🌡️🗺️</div>
 <div class="res-type">Modèles &amp; Ressources · Endoxa Neuroscience · Dr. Cherine Fahim</div>
 <h4>TéCOOL®, MIO® &amp; ToM — Régulation émotionnelle, attachement et théorie de l'esprit</h4>
 <p>Famille de modèles et de ressources développés par Dr. Cherine Fahim (Endoxa Neuroscience), enseignés dans le cadre du CAS en neurosciences de l'éducation (Université de Fribourg).<br/><br/>
@@ -2049,10 +2038,10 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <em>Lien PRÉSENCE : C — Conscience · P — Prédisposition · S — Synchronisation · É — Élagage</em></p>
 
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
-<a class="res-dl" href="https://endoxaneuro.com/cours/" rel="noopener noreferrer" target="_blank" style="background:var(--accent3);border-color:var(--accent3);color:white;">Formations Endoxa (catalogue)</a>
-<a class="res-dl" href="https://endoxaneuro.com/produit/il-etait-une-fois-mio/" rel="noopener noreferrer" target="_blank" style="background:#533483;border-color:#533483;color:white;">Formation MIO — 2-9 ans</a>
-<a class="res-dl" href="https://endoxaneuro.com/produit/tom-mio-une-histoire-de-theorie-de-lesprit-entre-les-mini-monstres-de-la-foret-et-les-etoiles-dans-le-ciel/" rel="noopener noreferrer" target="_blank" style="background:#0f3460;border-color:#0f3460;color:white;">Programme ToM &amp; MIO — 12-25 ans</a>
-<a class="res-dl" href="https://endoxaneuro.com/produit/livre-tom-mio/" rel="noopener noreferrer" target="_blank" style="background:#1a6b4a;border-color:#1a6b4a;color:white;">Livre ToM &amp; MIO</a>
+<a class="res-dl" href="https://endoxaneuro.com/cours/" rel="noopener noreferrer" target="_blank" style="background:var(--accent3);border-color:var(--accent3);color:white;">🔗 Formations Endoxa (catalogue)</a>
+<a class="res-dl" href="https://endoxaneuro.com/produit/il-etait-une-fois-mio/" rel="noopener noreferrer" target="_blank" style="background:#533483;border-color:#533483;color:white;">🎬 Formation MIO — 2-9 ans</a>
+<a class="res-dl" href="https://endoxaneuro.com/produit/tom-mio-une-histoire-de-theorie-de-lesprit-entre-les-mini-monstres-de-la-foret-et-les-etoiles-dans-le-ciel/" rel="noopener noreferrer" target="_blank" style="background:#0f3460;border-color:#0f3460;color:white;">🧩 Programme ToM &amp; MIO — 12-25 ans</a>
+<a class="res-dl" href="https://endoxaneuro.com/produit/livre-tom-mio/" rel="noopener noreferrer" target="_blank" style="background:#1a6b4a;border-color:#1a6b4a;color:white;">📖 Livre ToM &amp; MIO</a>
 </div>
 
 <div style="margin-top:10px;background:#f8f4ff;border-radius:8px;padding:10px 14px;font-size:.77rem;color:#555;line-height:1.65;">
@@ -2598,23 +2587,6 @@ document.addEventListener('click',function(e){
   var w=document.getElementById('nav-plus-wrap');
   var d=document.getElementById('nav-plus-dropdown');
   if(w&&d&&!w.contains(e.target)) d.style.display='none';
-});
-</script>
-
-<script>
-/* Rendre le titre de chaque ressource cliquable (déclenche le téléchargement) */
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.res-card').forEach(function(card){
-    var dl=card.querySelector('.res-dl'),h4=card.querySelector('h4');
-    if(!dl||!h4||h4.querySelector('a'))return;
-    var a=document.createElement('a');
-    a.href=dl.href;a.target='_blank';a.rel='noopener noreferrer';
-    a.title='Télécharger : '+h4.textContent.trim();
-    if(dl.dataset.lien)a.dataset.lien=dl.dataset.lien;
-    if(dl.dataset.doc)a.dataset.doc=dl.dataset.doc;
-    while(h4.firstChild)a.appendChild(h4.firstChild);
-    h4.appendChild(a);
-  });
 });
 </script>
 </body>

@@ -2321,7 +2321,7 @@ body{
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -2417,7 +2417,7 @@ body{
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -2558,7 +2558,7 @@ body{
 
     
         <div class="block-info block-info--neutral" style="margin-top:14px;">
-      <div class="block-info-title">🎯 Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
       <ul>
           <li>Caractériser les besoins spécifiques des élèves présentant un TDAH ou des troubles du comportement</li>
           <li>Appliquer des principes de la Conception Universelle des Apprentissages à une situation de classe difficile</li>
@@ -2647,7 +2647,7 @@ body{
         <li>Prévoir des pauses actives régulières</li>
         <li>Temps supplémentaire si nécessaire</li>
       </ul>
-      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> 📄 Module 8 — Guide de formation (p. 19–23)</a></p>
+      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> Module 8 — Guide de formation (p. 19–23)</a></p>
       <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin:18px 0 8px">Module 8 — Gestion des comportements</div>
       <h4 style="font-family:'Playfair Display',serif;color:var(--text-strong);font-size:1.05rem;margin:14px 0 8px;font-weight:700">Interventions à fort impact</h4>
       <ul>
@@ -2658,7 +2658,7 @@ body{
       </ul>
       <h4 style="font-family:'Playfair Display',serif;color:var(--text-strong);font-size:1.05rem;margin:14px 0 8px;font-weight:700">Cadre, limites et sanctions</h4>
       <p>La sanction seule ne modifie pas durablement un comportement lié à une dysrégulation. Un cadre clair reste indispensable, mais il doit s'accompagner de soutien à la régulation. Maintenir l'alliance pédagogique même en cas de sanction nécessaire : l'élève doit percevoir que la personne qui intervient reste de son côté.</p>
-      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> 📄 Module 8 — Guide de formation (p. 19–23)</a></p>
+      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> Module 8 — Guide de formation (p. 19–23)</a></p>
 
       <div class="callout callout--alert">
         <div class="callout-head">
@@ -2759,9 +2759,9 @@ body{
       </div>
 
       <div class="action-group">
-        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" title="📄 Module 8 — Guide de formation (p. 19–23)">
+        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=19" target="_blank" rel="noopener" title="Module 8 — Guide de formation (p. 19–23)">
           <svg class="icon"><use href="#i-pdf"/></svg>
-          📄 Module 8 — Guide de formation (p. 19–23)
+          Module 8 — Guide de formation (p. 19–23)
         </a>
         <a class="ref-internal" href="fondements.html#presence-E2" target="_blank" rel="noopener" title="Naviguer vers la vue Fondements PRÉSENCE">
           <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
@@ -3488,7 +3488,7 @@ function updateThermo(){
     var label = document.getElementById('score-label');
     var interp = document.getElementById('interp');
     if(total <= 8){
-      label.textContent = '⚠ Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
       document.getElementById('bar-global').style.background = '#e94560';
       interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
     } else if(total <= 14){

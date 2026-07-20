@@ -2321,7 +2321,7 @@ body{
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/9</span> modules</span>
 </div>
 
@@ -2417,7 +2417,7 @@ body{
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -2558,7 +2558,7 @@ body{
 
     
         <div class="block-info block-info--neutral" style="margin-top:14px;">
-      <div class="block-info-title">🎯 Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
       <ul>
           <li>Décrire les huit dimensions de posture professionnelle du modèle PRÉSENCE</li>
           <li>Expliquer le phénomène de contagion émotionnelle dans la relation enseignant-élève</li>
@@ -2693,7 +2693,7 @@ body{
       </table>
       </div>
       <p>L'objectif n'est pas de tout avoir, mais de connaître ce qui est disponible et de l'utiliser de façon stratégique.</p>
-      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=12" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> 📄 Module 5 — Guide de formation (p. 12–14)</a></p>
+      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=12" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> Module 5 — Guide de formation (p. 12–14)</a></p>
 
       <div class="callout callout--alert">
         <div class="callout-head">
@@ -2740,9 +2740,9 @@ body{
       </div>
 
       <div class="action-group">
-        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=12" target="_blank" rel="noopener" title="📄 Module 5 — Guide de formation (p. 12–14)">
+        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=12" target="_blank" rel="noopener" title="Module 5 — Guide de formation (p. 12–14)">
           <svg class="icon"><use href="#i-pdf"/></svg>
-          📄 Module 5 — Guide de formation (p. 12–14)
+          Module 5 — Guide de formation (p. 12–14)
         </a>
         <a class="ref-internal" href="fondements.html#presence-P" target="_blank" rel="noopener" title="Naviguer vers la vue Fondements PRÉSENCE">
           <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
@@ -3455,7 +3455,7 @@ function updateThermo(){
     var label = document.getElementById('score-label');
     var interp = document.getElementById('interp');
     if(total <= 8){
-      label.textContent = '⚠ Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
       document.getElementById('bar-global').style.background = '#e94560';
       interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
     } else if(total <= 14){

@@ -970,6 +970,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   color:var(--text-muted);
 }
 </style>
+
+<style>
+/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
+.nav-links{flex-wrap:wrap;row-gap:4px}
+.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
+.app-header{row-gap:8px}
+@media (max-width:1100px){
+  .nav-sep{display:none}
+  .nav-links{gap:2px;font-size:.8rem}
+  .nav-link{padding:5px 9px}
+}
+@media (max-width:640px){
+  .nav-links{font-size:.75rem}
+  .nav-link{padding:4px 7px}
+  .app-header{padding:10px 14px;gap:10px}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -977,7 +994,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/9</span> modules</span>
 </div>
 
@@ -1013,9 +1030,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">📋 Démarche</a>
-        <a href="glossaire.html">🔤 Glossaire</a>
-        <a href="mon-suivi.html">📊 Mon suivi</a>
+        <a href="demarche.html">Démarche</a>
+        <a href="glossaire.html">Glossaire</a>
+        <a href="mon-suivi.html">Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -1035,7 +1052,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -1052,7 +1069,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <h1 class="page-title">Déclaration de conformité pédagogique</h1>
   <p class="page-sub">Intitulé, public cible, prérequis, objectifs pédagogiques globaux, modalités d'enseignement, d'évaluation et de certification de la plateforme — document de référence pour la reconnaissance institutionnelle de la formation.</p>
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;">
-    <a href="pdf/declaration_conformite_pedagogique.pdf" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:7px;padding:10px 18px;background:var(--accent2);border:2px solid var(--accent2);border-radius:10px;font-size:.82rem;font-weight:700;color:#fff;text-decoration:none;">📥 Télécharger en PDF</a>
+    <a href="pdf/declaration_conformite_pedagogique.pdf" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:7px;padding:10px 18px;background:var(--accent2);border:2px solid var(--accent2);border-radius:10px;font-size:.82rem;font-weight:700;color:#fff;text-decoration:none;">Télécharger en PDF</a>
   </div>
 </div>
 
@@ -1114,7 +1131,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <h2 style="margin-top:0;">Échanges entre participant·es</h2>
   <p>Un espace d'échange asynchrone entre participant·es (questions, partage de pratiques, retours d'expérience) peut compléter la plateforme dans le cadre d'une formation encadrée. <em>Espace à définir par le ou la formateur·rice responsable de la session — par exemple un canal Teams, un mur Padlet, ou un espace de cours Moodle HEP-VS.</em></p>
   <div id="async-link-zone" style="background:var(--surface-alt);border:1px dashed var(--border-soft);border-radius:10px;padding:14px 18px;margin-top:10px;font-size:.86rem;color:var(--text-subtle);">
-    🔗 Lien vers l'espace d'échange de votre session : <em>à compléter par votre formateur·rice</em>.
+    Lien vers l'espace d'échange de votre session : <em>à compléter par votre formateur·rice</em>.
   </div>
 </section>
 

@@ -2321,7 +2321,7 @@ body{
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -2417,7 +2417,7 @@ body{
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -2558,7 +2558,7 @@ body{
 
     
         <div class="block-info block-info--neutral" style="margin-top:14px;">
-      <div class="block-info-title">🎯 Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
       <ul>
           <li>Distinguer les principaux facteurs de risque individuels de vulnérabilité au stress</li>
           <li>Appliquer une stratégie de régulation émotionnelle adaptée à une situation de stress identifiée</li>
@@ -2903,14 +2903,14 @@ body{
         </div>
       </a>
       <a href="bibliotheque.html#res-damasio-fiche" target="_blank" rel="noopener" class="ressource-card res-note">
-        <div class="rc-icon">🧠</div>
+        
         <div class="rc-content">
           <div class="rc-title">Régulation émotionnelle — Damasio & Gross</div>
           <div class="rc-desc">La régulation émotionnelle (Gross, 2015) désigne les processus par lesquels les individus influencent quelles émotions ils ont, quand ils les ont et comment ils les vivent. Le modèle processuel de Gross distingue la réévaluation cognitive (antérieure à la réponse) de la suppression expressive (postérieure). Damasio (1994) démontre que les émotions sont indissociables de la cognition : les marqueurs somatiques orientent les décisions avant toute réflexion consciente. → Fiche Damasio disponible dans la bibliothèque.</div>
         </div>
       </a>
       <a href="https://stresshumain.ca/programmes/surfe-ton-stress/" target="_blank" rel="noopener" class="ressource-card res-web">
-        <div class="rc-icon">🌊</div>
+        
         <div class="rc-content">
           <div class="rc-title">Centre d&#39;études sur le stress humain (CESH)</div>
           <div class="rc-desc">Ressources scientifiques validées sur le stress : mécanismes biologiques, impact sur le cerveau, et outils de gestion. Inclut le programme <em>Surfe ton stress</em> et <em>Mon Fantastique Cerveau</em>. — stresshumain.ca</div>
@@ -3398,7 +3398,7 @@ function updateThermo(){
     var label = document.getElementById('score-label');
     var interp = document.getElementById('interp');
     if(total <= 8){
-      label.textContent = '⚠ Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
       document.getElementById('bar-global').style.background = '#e94560';
       interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
     } else if(total <= 14){

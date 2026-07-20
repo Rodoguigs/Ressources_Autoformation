@@ -970,6 +970,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   color:var(--text-muted);
 }
 </style>
+
+<style>
+/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
+.nav-links{flex-wrap:wrap;row-gap:4px}
+.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
+.app-header{row-gap:8px}
+@media (max-width:1100px){
+  .nav-sep{display:none}
+  .nav-links{gap:2px;font-size:.8rem}
+  .nav-link{padding:5px 9px}
+}
+@media (max-width:640px){
+  .nav-links{font-size:.75rem}
+  .nav-link{padding:4px 7px}
+  .app-header{padding:10px 14px;gap:10px}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -977,7 +994,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/9</span> modules</span>
 </div>
 
@@ -1013,9 +1030,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">📋 Démarche</a>
-        <a href="glossaire.html">🔤 Glossaire</a>
-        <a href="mon-suivi.html">📊 Mon suivi</a>
+        <a href="demarche.html">Démarche</a>
+        <a href="glossaire.html">Glossaire</a>
+        <a href="mon-suivi.html">Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -1035,7 +1052,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -1056,7 +1073,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <main id="main">
 
 <div class="reading-mode-section" id="onboarding-section" style="border-left:4px solid var(--accent2);">
-  <h3 class="reading-mode-title">🧭 Avant de commencer — comment utiliser cette plateforme</h3>
+  <h3 class="reading-mode-title">Avant de commencer — comment utiliser cette plateforme</h3>
   <p class="reading-mode-desc">Ce parcours est conçu pour être suivi en autonomie, à votre rythme. Quatre étapes recommandées :</p>
   <ol style="margin:14px 0 18px 22px;padding:0;line-height:1.7;font-size:.9rem;color:var(--text-body);">
     <li style="margin-bottom:6px;"><strong>Évaluez votre point de départ</strong> — avant de démarrer les modules, complétez le <a href="diagnostic.html">diagnostic d'autoévaluation</a> (~5 à 20 min selon le format choisi). Il identifie vos besoins prioritaires et personnalise les recommandations de modules.</li>
@@ -1066,7 +1083,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </ol>
 
   <div style="background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;padding:14px 18px;margin-top:6px;">
-    <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-subtle);margin-bottom:10px;">⏱️ Temps à prévoir — parcours essentiel</div>
+    <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-subtle);margin-bottom:10px;">⏱Temps à prévoir — parcours essentiel</div>
 
     <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>Diagnostic (bilan complet)</span><span style="white-space:nowrap;color:var(--text-subtle);">~20 min</span></div>
     <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>Module 1 — Bien-être professionnel enseignant</span><span style="white-space:nowrap;color:var(--text-subtle);">~35 min</span></div>
@@ -1087,7 +1104,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </div>
 
   <div id="async-link-zone" style="background:var(--surface);border:1px dashed var(--border-soft);border-radius:10px;padding:12px 16px;margin-top:14px;font-size:.85rem;color:var(--text-subtle);">
-    💬 <strong style="color:var(--text-strong);">Échanger avec d'autres participant·es :</strong> espace de discussion à compléter par votre formateur·rice (Teams, Padlet, ou Moodle HEP-VS selon votre session) — <em>lien à venir</em>.
+    <strong style="color:var(--text-strong);">Échanger avec d'autres participant·es :</strong> espace de discussion à compléter par votre formateur·rice (Teams, Padlet, ou Moodle HEP-VS selon votre session) — <em>lien à venir</em>.
   </div>
 
   <p style="font-size:.8rem;color:var(--text-subtle);margin-top:12px;margin-bottom:0;">Besoin d'aide ? Contactez votre formateur·rice ou la personne de référence indiquée dans votre convocation de formation. Pour une demande de reconnaissance d'heures de formation continue, consultez la <a href="declaration-conformite.html">déclaration de conformité pédagogique</a>.</p>
@@ -1099,14 +1116,14 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <p class="reading-mode-desc">Choisissez selon votre besoin. Vous pouvez changer à tout moment.</p>
   <div class="reading-mode-options">
     <button class="reading-mode-btn" data-mode="sequential" onclick="setReadingMode('sequential')">
-      <span class="reading-mode-btn-icon">📚</span>
+      
       <span class="reading-mode-btn-content">
         <span class="reading-mode-btn-label">Parcours complet (recommandé)</span>
         <span class="reading-mode-btn-sub">Suivre les 9 modules dans l'ordre suggéré, pour un parcours intégré</span>
       </span>
     </button>
     <button class="reading-mode-btn" data-mode="selective" onclick="setReadingMode('selective')">
-      <span class="reading-mode-btn-icon">🎯</span>
+      
       <span class="reading-mode-btn-content">
         <span class="reading-mode-btn-label">Parcours sélectif</span>
         <span class="reading-mode-btn-sub">Sélectionner uniquement les modules pertinents pour ma situation actuelle</span>

@@ -2319,7 +2319,7 @@ body{
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -2415,7 +2415,7 @@ body{
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -2556,7 +2556,7 @@ body{
 
     
         <div class="block-info block-info--neutral" style="margin-top:14px;">
-      <div class="block-info-title">🎯 Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
       <ul>
           <li>Situer ses propres besoins de formation selon les dix domaines du modèle de Gaudreau</li>
           <li>Utiliser la grille réflexive pour objectiver ses priorités de développement professionnel</li>
@@ -3373,7 +3373,7 @@ function updateThermo(){
     var label = document.getElementById('score-label');
     var interp = document.getElementById('interp');
     if(total <= 8){
-      label.textContent = '⚠ Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
       document.getElementById('bar-global').style.background = '#e94560';
       interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
     } else if(total <= 14){

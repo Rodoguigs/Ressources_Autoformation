@@ -1271,6 +1271,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   }
 }
 </style>
+
+<style>
+/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
+.nav-links{flex-wrap:wrap;row-gap:4px}
+.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
+.app-header{row-gap:8px}
+@media (max-width:1100px){
+  .nav-sep{display:none}
+  .nav-links{gap:2px;font-size:.8rem}
+  .nav-link{padding:5px 9px}
+}
+@media (max-width:640px){
+  .nav-links{font-size:.75rem}
+  .nav-link{padding:4px 7px}
+  .app-header{padding:10px 14px;gap:10px}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -1312,9 +1329,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">📋 Démarche</a>
-        <a href="glossaire.html">🔤 Glossaire</a>
-        <a href="mon-suivi.html">📊 Mon suivi</a>
+        <a href="demarche.html">Démarche</a>
+        <a href="glossaire.html">Glossaire</a>
+        <a href="mon-suivi.html">Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -1342,7 +1359,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -1353,7 +1370,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Bloc d'accueil personnalisé -->
 <div class="aut-welcome-block" id="aut-welcome-block" style="display:none;">
   <div class="aut-welcome-card">
-    <div class="aut-welcome-icon" id="aut-welcome-icon">👋</div>
+    
     <div class="aut-welcome-text">
       <div class="aut-welcome-eyebrow" id="aut-welcome-eyebrow">Bienvenue</div>
       <div class="aut-welcome-title" id="aut-welcome-title">Première fois ici ?</div>
@@ -1388,7 +1405,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <div class="hero-pitch">
     <strong>9 modules · 1 démarche en 7 étapes · 1 diagnostic personnalisé.</strong> Adossée au modèle PRÉSENCE (Fahim, 2022) et aux travaux de référence en neuroéducation, cette plateforme permet à chaque enseignant·e de construire son propre parcours de développement professionnel, à son rythme.
     <div style="margin-top:10px;font-size:.85rem;color:var(--text-subtle);display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-      <span style="flex-shrink:0;">⏱️</span>
+      <span style="flex-shrink:0;">⏱</span>
       <span>Durée estimée du parcours complet : <strong>~3h45</strong> (hors ressources d'approfondissement, à votre rythme)</span>
     </div>
   </div>
@@ -1402,20 +1419,20 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <div id="certificate-cta" style="display:none;margin-top:14px;">
     <div id="bilan-cta-hep" style="display:none;margin-bottom:10px;">
       <button class="mode-btn mode-btn-secondary" onclick="window.openBilanReflexif()" style="display:inline-flex;align-items:center;gap:8px;">
-        📝 Compléter mon bilan réflexif (HEP-VS)
+        Compléter mon bilan réflexif (HEP-VS)
       </button>
     </div>
     <button class="mode-btn mode-btn-primary" onclick="window.generateCertificate()" style="display:inline-flex;align-items:center;gap:8px;">
-      🎓 Télécharger mon certificat de réussite
+      Télécharger mon certificat de réussite
     </button>
   </div>
   <div style="margin-top:10px;">
     <button class="mode-btn mode-btn-secondary" onclick="window.exportProgress()" style="display:inline-flex;align-items:center;gap:8px;font-size:.82rem;padding:8px 14px;">
-      💾 Exporter ma progression (sauvegarde)
+      Exporter ma progression (sauvegarde)
     </button>
     <input type="file" id="import-progress-input" accept=".json" style="display:none;" onchange="window.importProgress(this.files[0])">
     <button class="mode-btn mode-btn-secondary" onclick="document.getElementById('import-progress-input').click()" style="display:inline-flex;align-items:center;gap:8px;font-size:.82rem;padding:8px 14px;margin-left:8px;">
-      📂 Restaurer une sauvegarde
+      Restaurer une sauvegarde
     </button>
   </div>
 </section>
@@ -1466,22 +1483,22 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h3>Facteurs de risque identifiés</h3>
 
         <div class="risk-item">
-          <div class="risk-icon">⚡</div>
+          
           <div class="risk-text">Charge cognitive et émotionnelle élevée, particulièrement avec les élèves à besoins particuliers</div>
         </div>
 
         <div class="risk-item">
-          <div class="risk-icon">🔄</div>
+          
           <div class="risk-text">Manque de soutien institutionnel et sentiment d'isolement professionnel</div>
         </div>
 
         <div class="risk-item">
-          <div class="risk-icon">🧩</div>
+          
           <div class="risk-text">Méconnaissance du fonctionnement neurobiologique des élèves, notamment lors des deux grandes périodes d'élagage synaptique — en enfance et à l'adolescence</div>
         </div>
 
         <div class="risk-item">
-          <div class="risk-icon">📉</div>
+          
           <div class="risk-text">Ressources personnelles sous-développées face aux défis systémiques</div>
         </div>
 
@@ -1500,7 +1517,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
 
     <div class="pourquoi-reponse">
-      <div class="reponse-icon">🌱</div>
+      
       <div>
         <h3>La réponse : renforcer les ressources professionnelles ET personnelles</h3>
         <p>Cette plateforme propose un parcours structuré pour identifier vos forces, diagnostiquer vos zones de développement et acquérir des ressources concrètes — en s'appuyant sur le modèle <strong>PRÉSENCE</strong> (Fahim, 2022) et les apports récents de la neuroéducation.</p>
@@ -2081,7 +2098,7 @@ function dismissResume(){
     modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;';
 
     modal.innerHTML = '<div style="background:#fff;border-radius:12px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;box-shadow:0 8px 40px rgba(0,0,0,0.18);">' +
-      '<h2 style="margin:0 0 6px;font-size:1.25rem;color:#1a3a5c;">📝 Bilan réflexif de fin de parcours</h2>' +
+      '<h2 style="margin:0 0 6px;font-size:1.25rem;color:#1a3a5c;">Bilan réflexif de fin de parcours</h2>' +
       '<p style="margin:0 0 24px;font-size:.88rem;color:#666;">Session HEP-VS · À compléter et à transmettre à votre formateur·rice avec votre attestation.</p>' +
 
       '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">1. Quelle dimension de votre bien-être professionnel avez-vous le mieux identifiée grâce à ce parcours ? En quoi cette prise de conscience modifie-t-elle votre regard sur votre pratique ?</label>' +
@@ -2098,7 +2115,7 @@ function dismissResume(){
 
       '<div style="display:flex;gap:12px;justify-content:flex-end;">' +
         '<button onclick="document.getElementById('bilan-modal').remove()" style="padding:10px 20px;border:1px solid #ccd;background:#f5f7fa;border-radius:6px;cursor:pointer;font-size:.92rem;">Fermer</button>' +
-        '<button onclick="window.exportBilanPDF()" style="padding:10px 22px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.92rem;font-weight:600;">⬇ Exporter en PDF</button>' +
+        '<button onclick="window.exportBilanPDF()" style="padding:10px 22px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.92rem;font-weight:600;">Exporter en PDF</button>' +
       '</div>' +
     '</div>';
 
@@ -2259,8 +2276,8 @@ function dismissResume(){
         '@media print{.print-btn,.dl-btn{display:none;}body{background:white;}.cert-page{box-shadow:none;margin:0;}}' +
         '</style></head><body>' +
         '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></scr' + 'ipt>' +
-        '<button class="dl-btn" onclick="downloadCertPdf()">📥 Télécharger en PDF</button>' +
-        '<button class="print-btn" onclick="window.print()">🖨️ Imprimer</button>' +
+        '<button class="dl-btn" onclick="downloadCertPdf()">Télécharger en PDF</button>' +
+        '<button class="print-btn" onclick="window.print()">Imprimer</button>' +
         '<div class="cert-page" id="cert-page-content">' +
           '<div class="cert-inner-border"></div>' +
           logoHtml +
@@ -2327,7 +2344,7 @@ function dismissResume(){
   // Décider quel mode afficher
   if (resume && resume.moduleFile) {
     // Mode "Continuer"
-    icon.textContent = '📖';
+    icon.textContent = '';
     eyebrow.textContent = 'Bon retour';
     title.textContent = 'Reprenez là où vous vous étiez arrêté';
     desc.textContent = 'Vous travailliez sur le Module ' + resume.moduleNum + ' — ' + resume.moduleTitre + '.';
@@ -2343,7 +2360,7 @@ function dismissResume(){
     block.style.display = 'block';
   } else if (progress.diagnosticDone) {
     // Diagnostic fait mais pas de module commencé
-    icon.textContent = '🎯';
+    icon.textContent = '';
     eyebrow.textContent = 'Diagnostic terminé';
     title.textContent = 'Découvrez les modules recommandés';
     desc.textContent = 'Sur la base de votre profil, explorez le catalogue pour choisir vos premiers modules.';
@@ -2352,7 +2369,7 @@ function dismissResume(){
     block.style.display = 'block';
   } else {
     // Première visite : suggérer le diagnostic
-    icon.textContent = '🎯';
+    icon.textContent = '';
     eyebrow.textContent = 'Première étape';
     title.textContent = 'Commencez par identifier vos priorités';
     desc.textContent = 'Le diagnostic rapide (10 minutes) vous dira où concentrer votre énergie en premier. C\'est la meilleure porte d\'entrée pour ce parcours.';

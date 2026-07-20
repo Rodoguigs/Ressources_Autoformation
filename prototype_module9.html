@@ -2321,7 +2321,7 @@ body{
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -2417,7 +2417,7 @@ body{
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -2558,7 +2558,7 @@ body{
 
     
         <div class="block-info block-info--neutral" style="margin-top:14px;">
-      <div class="block-info-title">🎯 Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
       <ul>
           <li>Distinguer fatigue de compassion et épuisement professionnel</li>
           <li>Appliquer une stratégie de régulation émotionnelle face à une situation de vulnérabilité partagée par un élève</li>
@@ -2640,11 +2640,11 @@ body{
       <h3 class="mod-subtitle" id="s3-1">Pourquoi ce module est-il indispensable ?</h3>
       <p>Distinguer burnout et fatigue de compassion, identifier ses propres signaux d'alarme et constituer une trousse personnelle de régulation émotionnelle — pour rester durablement présent·e sans s'effacer.</p>
       <div class="encadrement-note">
-<div class="enc-header">🌿 Module complémentaire — accompagnement des élèves en situation de vulnérabilité</div>
+<div class="enc-header">Module complémentaire — accompagnement des élèves en situation de vulnérabilité</div>
 <strong>Module 9 — Régulation émotionnelle · Posture face aux élèves en situation de vulnérabilité · Prévention de la fatigue de compassion</strong><br/>
           Ce module s'adresse aux enseignant·e·s qui accompagnent des élèves en situation de vulnérabilité émotionnelle. Il apporte des outils concrets pour maintenir une posture professionnelle juste dans la durée, sans s'épuiser.
           <div class="enc-links">
-<a class="enc-link" data-lien="guide_formation" href="bibliotheque.html#res-guide" target="_blank" rel="noopener">📄 Télécharger le Guide de formation (.pdf)</a>
+<a class="enc-link" data-lien="guide_formation" href="bibliotheque.html#res-guide" target="_blank" rel="noopener">Télécharger le Guide de formation (.pdf)</a>
 </div>
 </div>
 
@@ -2675,7 +2675,7 @@ body{
         <div style="font-style:normal;font-size:.82rem;color:var(--text-subtle);margin-top:6px">— Bourassa, Menot-Martin & Philion (2021), ch. 5, p. 117</div>
       </div>
       <p style="font-size:.86rem">Ce geste s'inscrit pleinement dans le « prendre soin de soi » : il ne s'agit pas d'en faire plus, mais de <strong>déplacer le lieu de la réflexion</strong> — de la tête de l'enseignant·e seul·e vers un espace partagé avec l'élève. Le questionnaire devient un « tiers » qui allège la charge mentale et émotionnelle.</p>
-      <div style="display:flex;align-items:center;gap:10px;background:#f0faf4;border-radius:8px;padding:8px 14px;margin-bottom:16px;font-size:.78rem;font-weight:600;color:var(--sage);">🌿 Module complémentaire — <strong>accompagnement des élèves en situation de vulnérabilité</strong> · en lien avec les Modules 1, 2 et 4</div>
+      <div style="display:flex;align-items:center;gap:10px;background:#f0faf4;border-radius:8px;padding:8px 14px;margin-bottom:16px;font-size:.78rem;font-weight:600;color:var(--sage);">Module complémentaire — <strong>accompagnement des élèves en situation de vulnérabilité</strong> · en lien avec les Modules 1, 2 et 4</div>
 
       <div class="callout callout--alert">
         <div class="callout-head">
@@ -2969,7 +2969,7 @@ Rediriger : je l'oriente vers la bonne ressource" id="m9-aar"></textarea>
         </div>
       </a>
       <div class="ressource-card res-note" style="cursor:default;">
-        <div class="rc-icon">✍️</div>
+        
         <div class="rc-content">
           <div class="rc-title">Écriture expressive — Pennebaker (1997)</div>
           <div class="rc-desc">L&#39;écriture régulière sur des expériences émotionnellement difficiles améliore la santé physique et psychologique. Le mécanisme : transformer une expérience brute en récit structuré réduit l&#39;activation émotionnelle et libère les ressources cognitives. Protocole de base : 15–20 min par jour pendant 3–4 jours consécutifs, sur un événement difficile. <em>Pennebaker, J.W. (1997). Opening up: The healing power of expressing emotions. Guilford Press.</em></div>
@@ -3462,7 +3462,7 @@ function updateThermo(){
     var label = document.getElementById('score-label');
     var interp = document.getElementById('interp');
     if(total <= 8){
-      label.textContent = '⚠ Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
       document.getElementById('bar-global').style.background = '#e94560';
       interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
     } else if(total <= 14){

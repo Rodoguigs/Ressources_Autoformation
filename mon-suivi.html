@@ -954,6 +954,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .sat-submit-btn:disabled{opacity:.5;cursor:not-allowed}
 .sat-thankyou{display:flex;align-items:center;gap:10px;padding:14px 16px;background:rgba(34,153,84,.08);border:1px solid rgba(34,153,84,.3);border-radius:10px;color:var(--text-strong);font-size:.88rem;}
 </style>
+
+<style>
+/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
+.nav-links{flex-wrap:wrap;row-gap:4px}
+.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
+.app-header{row-gap:8px}
+@media (max-width:1100px){
+  .nav-sep{display:none}
+  .nav-links{gap:2px;font-size:.8rem}
+  .nav-link{padding:5px 9px}
+}
+@media (max-width:640px){
+  .nav-links{font-size:.75rem}
+  .nav-link{padding:4px 7px}
+  .app-header{padding:10px 14px;gap:10px}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -961,7 +978,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/9</span> modules</span>
 </div>
 
@@ -996,9 +1013,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">📋 Démarche</a>
-        <a href="glossaire.html">🔤 Glossaire</a>
-        <a href="mon-suivi.html">📊 Mon suivi</a>
+        <a href="demarche.html">Démarche</a>
+        <a href="glossaire.html">Glossaire</a>
+        <a href="mon-suivi.html">Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -1016,7 +1033,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -1083,7 +1100,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </div>
 
   <div class="suivi-card" id="satisfaction" style="margin-top:30px;">
-    <h3 style="margin:0 0 4px;font-size:1.05rem;">📋 Questionnaire de satisfaction</h3>
+    <h3 style="margin:0 0 4px;font-size:1.05rem;">Questionnaire de satisfaction</h3>
     <p style="font-size:.85rem;color:var(--text-subtle);margin:0 0 4px;">Vos réponses restent locales à votre navigateur. Vous pouvez les inclure dans votre export PDF de synthèse.</p>
 
     <div id="sat-form-zone">
@@ -1844,15 +1861,15 @@ function autExportPDF(){
       Document généré le ${new Date().toLocaleDateString('fr-CH')} à ${new Date().toLocaleTimeString('fr-CH').slice(0,5)}
     </div>
     
-    <h2 class="aut-print-h2">📊 Vue d'ensemble</h2>
+    <h2 class="aut-print-h2">Vue d'ensemble</h2>
     <div class="aut-print-row"><span class="aut-print-label">Progression globale :</span> ${global.percent}% (${global.completed}/${global.total} modules complétés)</div>
     <div class="aut-print-row"><span class="aut-print-label">Diagnostic :</span> ${diagInfo}</div>
     <div class="aut-print-row"><span class="aut-print-label">Dernière activité :</span> ${startDate}</div>
     
-    <h2 class="aut-print-h2">📚 État de chaque module</h2>
+    <h2 class="aut-print-h2">État de chaque module</h2>
     ${moduleRows}
     
-    <h2 class="aut-print-h2">💡 Pour aller plus loin</h2>
+    <h2 class="aut-print-h2">Pour aller plus loin</h2>
     <div class="aut-print-row">Continuez votre parcours en explorant les <strong>Fondements scientifiques</strong> pour approfondir les concepts théoriques.</div>
     <div class="aut-print-row">Consultez la <strong>Bibliothèque</strong> pour accéder aux ressources PDF complémentaires.</div>
     

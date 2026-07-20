@@ -616,6 +616,23 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 .radar-tooltip strong{display:block;margin-bottom:3px;font-size:.88rem;}
 .radar-label{cursor:help;}
 </style>
+
+<style>
+/* ─── Correctif responsive navbar (évite le chevauchement des onglets) ─── */
+.nav-links{flex-wrap:wrap;row-gap:4px}
+.nav-link,.nav-biblio-btn,.nav-plus-btn,.nav-step{white-space:nowrap}
+.app-header{row-gap:8px}
+@media (max-width:1100px){
+  .nav-sep{display:none}
+  .nav-links{gap:2px;font-size:.8rem}
+  .nav-link{padding:5px 9px}
+}
+@media (max-width:640px){
+  .nav-links{font-size:.75rem}
+  .nav-link{padding:4px 7px}
+  .app-header{padding:10px 14px;gap:10px}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -623,7 +640,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -662,9 +679,9 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
-        <a href="demarche.html">📋 Démarche</a>
-        <a href="glossaire.html">🔤 Glossaire</a>
-        <a href="mon-suivi.html">📊 Mon suivi</a>
+        <a href="demarche.html">Démarche</a>
+        <a href="glossaire.html">Glossaire</a>
+        <a href="mon-suivi.html">Mon suivi</a>
       </div>
     </div>
   </nav>
@@ -682,7 +699,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -764,7 +781,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 <div id="result-radars"></div>
 
     <div style="background:#fffbf0;border:1px solid #f5e0a0;border-radius:14px;padding:18px 22px;margin:20px 0;">
-      <div style="font-weight:700;font-size:.82rem;color:#b8860b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">⚠️ Pour une lecture honnête de vos résultats</div>
+      <div style="font-weight:700;font-size:.82rem;color:#b8860b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Pour une lecture honnête de vos résultats</div>
       <p style="font-size:.85rem;color:#555;line-height:1.7;margin:0 0 10px;">Un score n'évalue ni votre compétence ni votre valeur professionnelle — il indique simplement l'état actuel d'une ressource, à un moment donné. Quelques pièges fréquents à éviter en lisant votre profil :</p>
       <ul style="font-size:.83rem;color:#555;line-height:1.75;margin:0;padding-left:20px;">
         <li><strong>Minimiser par habitude</strong> — répondre « ça va » par réflexe professionnel plutôt que par observation réelle de son état</li>
@@ -1520,7 +1537,7 @@ function showResultRapide(hasT1, hasT2, showCompare){
 // ─── Profils types : orientation selon scores perso/pro ───
 var PROFILS_TYPES = {
   'perso-faible-pro-forte': {
-    badge: '💼 Ressources personnelles fragiles · Ressources professionnelles solides',
+    badge: 'Ressources personnelles fragiles · Ressources professionnelles solides',
     situation: "Compétent·e dans la pratique, mais à bout. Le professionnel tient à force de volonté, parfois au détriment de la personne.",
     priorite: "Reconstruire les ressources personnelles (bien-être, régulation émotionnelle, identité). Le risque ici est le décrochage progressif malgré la compétence professionnelle visible.",
     etapes: "Modules 1 et 4 en priorité — construire des routines de récupération avant de toucher aux pratiques.",
@@ -1528,7 +1545,7 @@ var PROFILS_TYPES = {
     modules: [1, 4]
   },
   'perso-forte-pro-faible': {
-    badge: '🌱 Ressources personnelles solides · Ressources professionnelles à développer',
+    badge: 'Ressources personnelles solides · Ressources professionnelles à développer',
     situation: "Personne enseignante bien dans sa peau, mais pratiques pédagogiques à développer — typique des enseignant·es débutant·es ou en reconversion.",
     priorite: "Cibler les compétences professionnelles spécifiques identifiées (gestion de classe, différenciation, attentes). Les ressources personnelles constituent un appui solide pour cette progression.",
     etapes: "Modules 2, 3 et 6 — s'appuyer sur les forces personnelles comme carburant du développement professionnel.",
@@ -1536,7 +1553,7 @@ var PROFILS_TYPES = {
     modules: [2, 3, 6]
   },
   'perso-forte-pro-forte': {
-    badge: '💪 Ressources personnelles et professionnelles solides',
+    badge: 'Ressources personnelles et professionnelles solides',
     situation: "Profil de résilience élevée. Les deux types de ressources sont solides — c'est le socle d'un développement professionnel continu.",
     priorite: "Maintenir l'équilibre, approfondir les dimensions les plus faibles (même à 70%), et engager la dimension collective. C'est le bon moment pour devenir une ressource pour les collègues.",
     etapes: "Modules 7 et 8 — cycle d'amélioration permanente plutôt que réponse à une crise.",
@@ -1544,7 +1561,7 @@ var PROFILS_TYPES = {
     modules: [7, 8]
   },
   'equilibre-fragile': {
-    badge: '⚖️ Ressources à consolider sur les deux plans',
+    badge: 'Ressources à consolider sur les deux plans',
     situation: "Les ressources personnelles et professionnelles sont toutes deux à renforcer. C'est une étape normale, surtout en début de parcours ou après une période difficile.",
     priorite: "Commencer par stabiliser le socle personnel (bien-être, régulation) avant d'élargir vers les compétences professionnelles.",
     etapes: "Suivre le parcours dans l'ordre : Module 1, puis 4, puis 2.",

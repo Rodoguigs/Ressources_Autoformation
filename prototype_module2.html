@@ -2321,7 +2321,7 @@ body{
 <!-- Barre de progression globale -->
 <div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
 <div class="aut-progress-info" id="aut-progress-info" style="display:none;">
-  <span>📚</span>
+  
   <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
 </div>
 
@@ -2417,7 +2417,7 @@ body{
 <!-- Modal de recherche globale -->
 <div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
   <div class="aut-search-card">
-    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="🔍 Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
     <div class="aut-search-results" id="aut-search-results">
       <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
     </div>
@@ -2558,7 +2558,7 @@ body{
 
     
         <div class="block-info block-info--neutral" style="margin-top:14px;">
-      <div class="block-info-title">🎯 Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
       <ul>
           <li>Expliquer le modèle MBI-ES et ses trois dimensions (épuisement émotionnel, dépersonnalisation, accomplissement personnel)</li>
           <li>Décrire les étapes du processus de développement de l'épuisement professionnel</li>
@@ -2680,9 +2680,9 @@ body{
       </div>
 
       <div class="action-group">
-        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=6" target="_blank" rel="noopener" title="📄 Module 2 — Guide de formation (p. 6–7)">
+        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=6" target="_blank" rel="noopener" title="Module 2 — Guide de formation (p. 6–7)">
           <svg class="icon"><use href="#i-pdf"/></svg>
-          📄 Module 2 — Guide de formation (p. 6–7)
+          Module 2 — Guide de formation (p. 6–7)
         </a>
         <a class="ref-internal" href="fondements.html#presence-S" target="_blank" rel="noopener" title="Naviguer vers la vue Fondements PRÉSENCE">
           <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
@@ -2905,7 +2905,7 @@ body{
         </div>
       </a>
       <div class="ressource-card res-note" style="cursor:default;">
-        <div class="rc-icon">📖</div>
+        
         <div class="rc-content">
           <div class="rc-title">Théorie de la conservation des ressources — Hobfoll (1989)</div>
           <div class="rc-desc">Les individus s'efforcent de conserver, protéger et développer leurs ressources. Le stress survient lorsque les ressources sont menacées, perdues ou que leur investissement ne produit pas le retour attendu. En contexte enseignant : les ressources clés incluent l'énergie, le soutien social, le sentiment de compétence et la reconnaissance institutionnelle. <em>Hobfoll, S.E. (1989). Conservation of resources: A new attempt at conceptualizing stress. American Psychologist, 44(3), 513–524.</em></div>
@@ -3393,7 +3393,7 @@ function updateThermo(){
     var label = document.getElementById('score-label');
     var interp = document.getElementById('interp');
     if(total <= 8){
-      label.textContent = '⚠ Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
       document.getElementById('bar-global').style.background = '#e94560';
       interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
     } else if(total <= 14){
