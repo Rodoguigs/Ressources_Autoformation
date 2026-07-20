@@ -1146,6 +1146,17 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
   .app-header{padding:10px 14px;gap:10px}
 }
 </style>
+
+<style>
+/* ─── Retour réflexif (métacognition) sur les cadres de référence ─── */
+.diag-metacog{background:var(--surface-alt);border:1px solid var(--border-soft);border-left:3px solid var(--accent3);border-radius:14px;padding:22px 24px;margin:30px 0}
+.diag-metacog h3{margin:0 0 8px;font-size:1.02rem}
+.metacog-intro{font-size:.85rem;color:var(--text-muted);line-height:1.65;margin:0 0 16px}
+.metacog-label{display:block;font-size:.88rem;font-weight:600;color:var(--text-strong);line-height:1.5;margin:0 0 8px}
+.metacog-textarea{width:100%;box-sizing:border-box;min-height:88px;padding:10px 12px;border:1px solid var(--border-soft);border-radius:8px;background:var(--surface);color:var(--text-body);font-family:inherit;font-size:.9rem;line-height:1.6;resize:vertical;margin-bottom:16px}
+.metacog-textarea:focus{outline:none;border-color:var(--accent3)}
+.metacog-meta{font-size:.75rem;color:var(--text-subtle)}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -2751,6 +2762,17 @@ function downloadApprofondirPDF() {
   </div>
 </section>
 
+
+<section class="diag-metacog" id="fond-metacog">
+  <h3>Retour réflexif sur les cadres de référence</h3>
+  <p class="metacog-intro">Formuler ce que cette lecture modifie dans votre compréhension consolide les apprentissages — c'est le principe même de la métacognition (composante Conscience du modèle PRÉSENCE). Vos réponses sont enregistrées localement et reprises dans votre suivi.</p>
+  <label class="metacog-label" for="metacog-q1">1. Quelle connaissance ou quel cadre théorique a modifié ma compréhension ou mon raisonnement ? En quoi ?</label>
+  <textarea id="metacog-q1" class="metacog-textarea" placeholder="Votre réponse…" aria-label="Retour réflexif — question 1"></textarea>
+  <label class="metacog-label" for="metacog-q2">2. Quelle situation concrète de ma pratique ces apports éclairent-ils — et qu'est-ce que je décide d'en faire ?</label>
+  <textarea id="metacog-q2" class="metacog-textarea" placeholder="Votre réponse…" aria-label="Retour réflexif — question 2"></textarea>
+  <div class="metacog-meta"><span id="metacog-saved">Sauvegarde automatique locale</span></div>
+</section>
+
 </main>
 
 </div>
@@ -3376,6 +3398,37 @@ document.addEventListener('click',function(e){
   var d=document.getElementById('nav-plus-dropdown');
   if(w&&d&&!w.contains(e.target)) d.style.display='none';
 });
+</script>
+
+<script>
+/* Retour réflexif — sauvegarde locale automatique */
+(function(){
+  var KEY = 'aut_metacog_fondements';
+  document.addEventListener('DOMContentLoaded', function(){
+    var q1 = document.getElementById('metacog-q1');
+    var q2 = document.getElementById('metacog-q2');
+    var ind = document.getElementById('metacog-saved');
+    if(!q1 || !q2) return;
+    var d = {};
+    try { d = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){}
+    q1.value = d.q1 || '';
+    q2.value = d.q2 || '';
+    var timer = null;
+    function save(){
+      try {
+        localStorage.setItem(KEY, JSON.stringify({q1:q1.value, q2:q2.value, updatedAt:new Date().toISOString()}));
+        if(ind) ind.textContent = 'Enregistré à ' + new Date().toLocaleTimeString('fr-CH').slice(0,5);
+      } catch(e){}
+    }
+    [q1,q2].forEach(function(el){
+      el.addEventListener('input', function(){
+        if(ind) ind.textContent = 'Enregistrement…';
+        clearTimeout(timer);
+        timer = setTimeout(save, 600);
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>

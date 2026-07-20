@@ -633,6 +633,17 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
   .app-header{padding:10px 14px;gap:10px}
 }
 </style>
+
+<style>
+/* ─── Retour réflexif (métacognition) sur les résultats du diagnostic ─── */
+.diag-metacog{background:var(--surface-alt);border:1px solid var(--border-soft);border-left:3px solid var(--accent3);border-radius:14px;padding:22px 24px;margin:24px 0}
+.diag-metacog h3{margin:0 0 8px;font-size:1.02rem}
+.metacog-intro{font-size:.85rem;color:var(--text-muted);line-height:1.65;margin:0 0 16px}
+.metacog-label{display:block;font-size:.88rem;font-weight:600;color:var(--text-strong);line-height:1.5;margin:0 0 8px}
+.metacog-textarea{width:100%;box-sizing:border-box;min-height:88px;padding:10px 12px;border:1px solid var(--border-soft);border-radius:8px;background:var(--surface);color:var(--text-body);font-family:inherit;font-size:.9rem;line-height:1.6;resize:vertical;margin-bottom:16px}
+.metacog-textarea:focus{outline:none;border-color:var(--accent3)}
+.metacog-meta{font-size:.75rem;color:var(--text-subtle)}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -796,6 +807,16 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
       <h3>Modules recommandés en priorité</h3>
       <div id="diag-recos"></div>
     </div>
+    <div class="diag-metacog" id="diag-metacog">
+      <h3>Retour réflexif sur mes résultats</h3>
+      <p class="metacog-intro">Formuler ce que révèle votre profil consolide la prise de conscience — c'est le principe même de la métacognition (composante Conscience du modèle PRÉSENCE). Vos réponses sont enregistrées localement et reprises dans votre suivi.</p>
+      <label class="metacog-label" for="metacog-q1">1. Qu'est-ce qui m'interpelle, me surprend ou confirme une intuition dans mes résultats ? Pourquoi ?</label>
+      <textarea id="metacog-q1" class="metacog-textarea" placeholder="Votre réponse…" aria-label="Retour réflexif — question 1"></textarea>
+      <label class="metacog-label" for="metacog-q2">2. Qu'est-ce que j'en retire concrètement pour ma pratique — une stratégie à expérimenter, une dimension à approfondir en priorité dans les modules ?</label>
+      <textarea id="metacog-q2" class="metacog-textarea" placeholder="Votre réponse…" aria-label="Retour réflexif — question 2"></textarea>
+      <div class="metacog-meta"><span id="metacog-saved">Sauvegarde automatique locale</span></div>
+    </div>
+
     <div class="diag-actions">
       <button class="diag-btn" onclick="saveAndContinue()"><svg class="icon icon-sm"><use href="#i-save"/></svg> Enregistrer mon profil</button>
       <button class="diag-btn diag-btn-secondary" onclick="resetCurrentTemps()"><svg class="icon icon-sm"><use href="#i-refresh"/></svg> Recommencer</button>
@@ -2102,6 +2123,44 @@ document.addEventListener('click',function(e){
   var d=document.getElementById('nav-plus-dropdown');
   if(w&&d&&!w.contains(e.target)) d.style.display='none';
 });
+</script>
+
+<script>
+/* Retour réflexif — sauvegarde locale automatique */
+(function(){
+  var KEY = 'aut_metacog_diagnostic';
+  document.addEventListener('DOMContentLoaded', function(){
+    var q1 = document.getElementById('metacog-q1');
+    var q2 = document.getElementById('metacog-q2');
+    var ind = document.getElementById('metacog-saved');
+    if(!q1 || !q2) return;
+    var d = {};
+    try { d = JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){}
+    // Migration depuis l'ancienne clé
+    if(!d.q1 && !d.q2){
+      try {
+        var old = JSON.parse(localStorage.getItem('aut_diag_metacog'));
+        if(old && (old.q1 || old.q2)){ d = old; localStorage.setItem(KEY, JSON.stringify(d)); }
+      } catch(e){}
+    }
+    q1.value = d.q1 || '';
+    q2.value = d.q2 || '';
+    var timer = null;
+    function save(){
+      try {
+        localStorage.setItem(KEY, JSON.stringify({q1:q1.value, q2:q2.value, updatedAt:new Date().toISOString()}));
+        if(ind) ind.textContent = 'Enregistré à ' + new Date().toLocaleTimeString('fr-CH').slice(0,5);
+      } catch(e){}
+    }
+    [q1,q2].forEach(function(el){
+      el.addEventListener('input', function(){
+        if(ind) ind.textContent = 'Enregistrement…';
+        clearTimeout(timer);
+        timer = setTimeout(save, 600);
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>

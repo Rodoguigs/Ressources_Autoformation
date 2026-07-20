@@ -1095,6 +1095,15 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     </div>
   </div>
 
+  <h2 class="section-title">Journal réflexif</h2>
+  <div class="suivi-card" id="metacog-journal">
+    <div class="empty-state" id="metacog-empty">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5"><use href="#i-leaf"/></svg>
+      <p>Aucune entrée pour l'instant.</p>
+      <p style="font-size:.85rem">Les retours réflexifs complétés à l'issue du <a href="diagnostic.html" style="color:var(--accent3);font-weight:700">diagnostic</a> et à la lecture des <a href="fondements.html" style="color:var(--accent3);font-weight:700">cadres de référence</a> apparaîtront ici.</p>
+    </div>
+  </div>
+
   <div class="info-block" style="margin-top:30px">
     <strong>Évolutions à venir :</strong> historique longitudinal des diagnostics (comparer ses radars sur 3 mois, 6 mois), bilan post-parcours avec auto-évaluation finale, export PDF de l'ensemble du suivi, cas pratiques sauvegardés.
   </div>
@@ -1371,6 +1380,47 @@ window.addEventListener('DOMContentLoaded', function(){
       + '<a href="diagnostic.html" style="display:inline-block;margin-top:8px;color:var(--accent3);font-weight:700">Voir le détail / refaire mon diagnostic →</a>'
       + '</div>';
   }
+
+  // Journal réflexif (diagnostic + cadres de référence)
+  (function(){
+    function escMc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
+    function readEntry(key, fallbackKey){
+      try { var v = JSON.parse(localStorage.getItem(key)); if(v && (v.q1 || v.q2)) return v; } catch(e){}
+      if(fallbackKey){ try { return JSON.parse(localStorage.getItem(fallbackKey)); } catch(e){} }
+      return null;
+    }
+    var entries = [
+      { label: 'À l\'issue du diagnostic PRÉSENCE',
+        l1: 'Ce qui m\'interpelle dans mes résultats :',
+        l2: 'Ce que je retiens pour ma pratique :',
+        page: 'diagnostic.html',
+        data: readEntry('aut_metacog_diagnostic', 'aut_diag_metacog') },
+      { label: 'À la lecture des cadres de référence',
+        l1: 'Ce qui a modifié mon raisonnement :',
+        l2: 'Ce que j\'en fais dans ma pratique :',
+        page: 'fondements.html',
+        data: readEntry('aut_metacog_fondements') }
+    ];
+    var html = '';
+    entries.forEach(function(en){
+      var d = en.data; if(!d) return;
+      var q1 = (d.q1||'').trim(), q2 = (d.q2||'').trim();
+      if(!q1 && !q2) return;
+      html += '<div style="padding:12px 0;line-height:1.7;border-bottom:1px solid var(--border-soft)">'
+        + '<strong>' + en.label + '</strong>'
+        + (d.updatedAt ? ' <span style="font-size:.78rem;color:var(--text-subtle)">· ' + new Date(d.updatedAt).toLocaleDateString('fr-CH') + '</span>' : '')
+        + ' <a href="' + en.page + '" style="font-size:.78rem;color:var(--accent3);font-weight:700">modifier →</a><br>'
+        + (q1 ? '<em>' + en.l1 + '</em> ' + escMc(q1) + '<br>' : '')
+        + (q2 ? '<em>' + en.l2 + '</em> ' + escMc(q2) : '')
+        + '</div>';
+    });
+    if(html){
+      var empty = document.getElementById('metacog-empty');
+      if(empty) empty.style.display = 'none';
+      var card = document.getElementById('metacog-journal');
+      if(card) card.innerHTML += html;
+    }
+  })();
 });
 </script>
 
@@ -1845,6 +1895,31 @@ function autExportPDF(){
     return `<div class="aut-print-row"><span class="aut-print-label">Module ${m.num} — ${m.titre} :</span> ${status}</div>`;
   }).join('');
   
+  // Journal réflexif (diagnostic + cadres de référence)
+  let metacogRows = '';
+  try {
+    const escMc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    const readMc = (key, fb) => {
+      try { const v = JSON.parse(localStorage.getItem(key)); if (v && (v.q1 || v.q2)) return v; } catch(e){}
+      if (fb) { try { return JSON.parse(localStorage.getItem(fb)); } catch(e){} }
+      return null;
+    };
+    const mcEntries = [
+      { t: "À l'issue du diagnostic PRÉSENCE", l1: "Ce qui m'interpelle dans mes résultats :", l2: "Ce que je retiens pour ma pratique :", d: readMc('aut_metacog_diagnostic', 'aut_diag_metacog') },
+      { t: "À la lecture des cadres de référence", l1: "Ce qui a modifié mon raisonnement :", l2: "Ce que j'en fais dans ma pratique :", d: readMc('aut_metacog_fondements') }
+    ];
+    let rows = '';
+    mcEntries.forEach(en => {
+      const d = en.d; if (!d) return;
+      const q1 = (d.q1||'').trim(), q2 = (d.q2||'').trim();
+      if (!q1 && !q2) return;
+      rows += `<div class="aut-print-row" style="margin-top:8pt"><strong>${en.t}</strong></div>`
+        + (q1 ? `<div class="aut-print-row"><span class="aut-print-label">${en.l1}</span> ${escMc(q1)}</div>` : '')
+        + (q2 ? `<div class="aut-print-row"><span class="aut-print-label">${en.l2}</span> ${escMc(q2)}</div>` : '');
+    });
+    if (rows) metacogRows = `<h2 class="aut-print-h2">Journal réflexif</h2>` + rows;
+  } catch(e) {}
+
   // Date de début (premier accès)
   let startDate = 'inconnue';
   if (progress.lastVisit) {
@@ -1866,7 +1941,8 @@ function autExportPDF(){
     <div class="aut-print-row"><span class="aut-print-label">Diagnostic :</span> ${diagInfo}</div>
     <div class="aut-print-row"><span class="aut-print-label">Dernière activité :</span> ${startDate}</div>
     
-    <h2 class="aut-print-h2">État de chaque module</h2>
+${metacogRows}
+        <h2 class="aut-print-h2">État de chaque module</h2>
     ${moduleRows}
     
     <h2 class="aut-print-h2">Pour aller plus loin</h2>
