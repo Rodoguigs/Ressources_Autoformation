@@ -1312,6 +1312,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <a href="#folder-comportement" onclick="document.getElementById('folder-comportement').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-comportement').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Comportements difficiles</a>
 <a href="#folder-lectures" onclick="document.getElementById('folder-lectures').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-lectures').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Lectures recommandées</a>
 <a href="#folder-formations" onclick="document.getElementById('folder-formations').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-formations').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Propositions de formation</a>
+<a href="#folder-ressources-ciblees" onclick="document.getElementById('folder-ressources-ciblees').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-ressources-ciblees').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Ressources ciblées par dimension</a>
 </div>
 </div>
 <div id="res-pratique" style="display:none;"></div>
@@ -2065,6 +2066,46 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 </div>
 <!-- Borst — 40 séances — dans Lectures recommandées déjà, mais carte ici aussi -->
+
+<!-- ─── Ressources ciblées par dimension du diagnostic ─── -->
+<div class="res-folder" id="folder-ressources-ciblees">
+<div class="res-folder-header">
+<div class="rf-meta">
+<div class="rf-title">Ressources ciblées par dimension</div>
+<div class="rf-sub">Recommandées selon vos résultats de diagnostic</div>
+</div>
+<span class="rf-count">1 ressource</span>
+<span class="rf-arrow"><svg><use href="#i-chevron-down"/></svg></span>
+</div>
+<div class="res-folder-body">
+
+<p style="font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.7;max-width:780px;margin-bottom:22px;">
+  Ces ressources sont sélectionnées pour renforcer une dimension précise de votre pratique. Elles vous sont proposées automatiquement en bas de la page <a href="diagnostic.html" style="color:var(--gold);font-weight:600;">diagnostic</a> selon vos scores — à travailler <strong>en priorité</strong> (score &lt; 50 %) ou à titre de <strong>suggestion</strong> (50–70 %). Vous pouvez aussi les consulter librement ici.
+</p>
+
+<div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(245,166,35,.9);margin:6px 0 12px;">Ressources professionnelles · Gestion de classe</div>
+
+<div class="res-grid">
+
+<div class="res-card" id="res-gaudreau-6comp">
+<div class="res-type">PDF · Compilation de ressources · Nancy Gaudreau</div>
+<h4>Les six composantes de la gestion de classe</h4>
+<p>Compilation structurée de ressources francophones pour développer chacune des six composantes de la gestion de classe efficace : gestion des ressources, attentes claires, relations positives, engagement des élèves, comportements difficiles, personne enseignante. Chaque composante propose 3 à 7 ressources sélectionnées avec description. Inclut le triptyque CQJDC (autoévaluation prévention + autoévaluation intervention + guide réflexif) hébergé en annexes.<br/><br/>
+<em>D'après Gaudreau, N. (2017, 2020) · Compilation et mise en forme par Roduit, G. (2026)</em><br/><br/>
+<em>Recommandé si score inférieur à 70 % sur les dimensions professionnelles</em></p>
+<a class="res-dl" href="ressources_personnalisees/ressources_professionnelles/gestion_de_classe_gaudreau.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (5 pages)</a>
+</div>
+
+</div>
+
+<div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(245,166,35,.9);margin:26px 0 12px;">Ressources personnelles</div>
+
+<div style="background:rgba(245,166,35,.06);border:1px dashed rgba(245,166,35,.35);border-radius:10px;padding:14px 18px;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.7;">
+  <strong style="color:rgba(255,255,255,.9);">En cours de constitution</strong> — les ressources ciblées pour les quatre dimensions personnelles (bien-être professionnel, compétences socio-émotionnelles, posture enseignante, sentiment d'efficacité personnelle) seront ajoutées progressivement.
+</div>
+
+</div>
+</div>
 
 </section>
 </main>

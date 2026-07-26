@@ -311,6 +311,26 @@ main{flex:1;max-width:1400px;margin:0 auto;padding:32px 48px;width:100%;}
 .diag-reco-card:hover{transform:translateX(2px);box-shadow:var(--shadow-soft);text-decoration:none;}
 .diag-reco-num{width:36px;height:36px;border-radius:9px;background:var(--reco-color);color:white;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.05rem;flex-shrink:0;}
 .diag-reco-title{font-weight:700;font-size:.9rem;color:var(--text-strong)}
+
+/* ─── Ressources ciblées par dimension ─── */
+.diag-ressources-ciblees{margin-top:24px}
+.diag-ressources-ciblees h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-strong);margin:0 0 6px}
+.diag-ressources-intro{font-size:.85rem;color:var(--text-muted);margin:0 0 16px;line-height:1.6}
+.diag-ressource-group{margin-bottom:20px}
+.diag-ressource-group-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin:0 0 10px;display:flex;align-items:center;gap:8px}
+.diag-ressource-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:8px;font-size:.68rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+.diag-ressource-badge.priority{background:rgba(233,69,96,.12);color:var(--accent1);border:1px solid rgba(233,69,96,.3)}
+.diag-ressource-badge.suggested{background:rgba(245,166,35,.12);color:var(--gold);border:1px solid rgba(245,166,35,.35)}
+.diag-ressource-card{display:flex;gap:14px;align-items:flex-start;background:white;border:1px solid var(--border-soft);border-left:4px solid var(--card-color, var(--gold));border-radius:12px;padding:16px 18px;margin-bottom:10px;text-decoration:none;color:inherit;transition:all .15s}
+[data-theme="dark"] .diag-ressource-card{background:rgba(0,0,0,.25)}
+.diag-ressource-card:hover{transform:translateX(2px);box-shadow:var(--shadow-soft);text-decoration:none}
+.diag-ressource-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.diag-ressource-body{flex:1;min-width:0}
+.diag-ressource-title{font-weight:700;font-size:.94rem;color:var(--text-strong);margin-bottom:3px}
+.diag-ressource-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:8px}
+.diag-ressource-dims{font-size:.75rem;color:var(--text-muted);line-height:1.55}
+.diag-ressource-dims strong{color:var(--text-strong);font-weight:600}
+.diag-ressource-arrow{color:var(--accent2);opacity:.5;margin-top:4px;flex-shrink:0}
 .diag-reco-sub{font-size:.8rem;color:var(--text-muted)}
 
 .diag-actions{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;}
@@ -807,6 +827,13 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
       <h3>Modules recommandés en priorité</h3>
       <div id="diag-recos"></div>
     </div>
+
+    <div class="diag-ressources-ciblees" id="diag-ressources-ciblees-container" style="display:none">
+      <h3>Ressources ciblées pour votre profil</h3>
+      <p class="diag-ressources-intro">D'après vos scores par dimension, voici des ressources concrètes à consulter pour renforcer votre pratique. Elles sont classées selon deux niveaux : à travailler <strong>en priorité</strong> (dimensions &lt; 50 %) ou à titre de <strong>suggestion</strong> (dimensions entre 50 et 70 %).</p>
+      <div id="diag-ressources-ciblees"></div>
+    </div>
+
     <div class="diag-metacog" id="diag-metacog">
       <h3>Retour réflexif sur mes résultats</h3>
       <p class="metacog-intro">Formuler ce que révèle votre profil consolide la prise de conscience — c'est le principe même de la métacognition (composante Conscience du modèle PRÉSENCE). Vos réponses sont enregistrées localement et reprises dans votre suivi.</p>
@@ -910,6 +937,22 @@ var MODULES_META = {
 /* ═══════════════════════════════════════════════════════════════
    Mode APPROFONDI : 11 dimensions Ben Alya/Gaudreau
    ═══════════════════════════════════════════════════════════════ */
+
+// ─── Ressources ciblées recommandées selon les scores par dimension ───
+// Chaque ressource est reliée aux dimensions qu'elle aide à renforcer.
+// Elle s'affiche automatiquement si l'une de ses dimensions est en zone
+// priorité (score < 50 %) ou suggestion (50 % ≤ score ≤ 70 %).
+var RESSOURCES_CIBLEES_DATA = [
+  {
+    id: 'gaudreau_6comp',
+    titre: 'Les six composantes de la gestion de classe',
+    soustitre: 'Compilation d\'après le modèle de Nancy Gaudreau',
+    type: 'PDF',
+    icon: '📄',
+    url: 'ressources_personnalisees/ressources_professionnelles/gestion_de_classe_gaudreau.pdf',
+    dimensions: ['personne', 'gest_mat', 'gest_spat', 'attentes', 'relations', 'attention', 'autodeter', 'ecarts']
+  }
+];
 
 var ITEMS_APPROFONDI = {
   perso: {
@@ -1697,6 +1740,19 @@ function showResultApprofondi(hasT1, hasT2, showCompare){
   + '</div>';
 
   document.getElementById('diag-recos').innerHTML = buildRecosHtml(sortedMods.slice(0, 3));
+
+  // ─── Ressources ciblées par dimension (seuils 2 niveaux) ───
+  var ciblees = computeRessourcesCiblees(scoresT1Perso, scoresT1Pro);
+  var cibleesHtml = buildRessourcesCibleesHtml(ciblees);
+  var cibleesContainer = document.getElementById('diag-ressources-ciblees-container');
+  if (cibleesContainer){
+    if (cibleesHtml){
+      document.getElementById('diag-ressources-ciblees').innerHTML = cibleesHtml;
+      cibleesContainer.style.display = '';
+    } else {
+      cibleesContainer.style.display = 'none';
+    }
+  }
 }
 
 function computePct(scores){
@@ -1768,6 +1824,81 @@ function buildRecosHtml(modList){
       + '<svg class="icon icon-sm" style="color:' + mod.color + '"><use href="#i-arrow-right"/></svg>'
     + '</a>';
   }).join('');
+}
+
+// ─── Ressources ciblées : seuils à 2 niveaux ───
+function computeRessourcesCiblees(scoresPerso, scoresPro){
+  var allScores = Object.assign({}, scoresPerso, scoresPro);
+  var weakDims = {};
+  Object.keys(allScores).forEach(function(k){
+    var s = allScores[k];
+    if (s === null || s === undefined) return;
+    var pct = Math.round(s / 5 * 100);
+    if (pct < 50) weakDims[k] = 'priority';
+    else if (pct <= 70) weakDims[k] = 'suggested';
+  });
+
+  var dimLabels = {};
+  Object.keys(ITEMS_APPROFONDI.perso).forEach(function(k){ dimLabels[k] = ITEMS_APPROFONDI.perso[k].label; });
+  Object.keys(ITEMS_APPROFONDI.pro).forEach(function(k){ dimLabels[k] = ITEMS_APPROFONDI.pro[k].label; });
+
+  var priority = [], suggested = [];
+  RESSOURCES_CIBLEES_DATA.forEach(function(res){
+    var relevantDims = [];
+    var hasPriority = false;
+    res.dimensions.forEach(function(dim){
+      if (weakDims[dim]) {
+        relevantDims.push({ key: dim, label: dimLabels[dim] || dim, level: weakDims[dim] });
+        if (weakDims[dim] === 'priority') hasPriority = true;
+      }
+    });
+    if (relevantDims.length === 0) return;
+    var item = { res: res, dims: relevantDims };
+    if (hasPriority) priority.push(item); else suggested.push(item);
+  });
+
+  return { priority: priority, suggested: suggested };
+}
+
+function buildRessourcesCibleesHtml(ciblees){
+  if (ciblees.priority.length === 0 && ciblees.suggested.length === 0) return '';
+  var html = '';
+  if (ciblees.priority.length > 0){
+    html += '<div class="diag-ressource-group">';
+    html += '<div class="diag-ressource-group-title"><span class="diag-ressource-badge priority">Priorité</span> À travailler en priorité</div>';
+    ciblees.priority.forEach(function(item){ html += renderRessourceCard(item.res, item.dims, 'priority'); });
+    html += '</div>';
+  }
+  if (ciblees.suggested.length > 0){
+    html += '<div class="diag-ressource-group">';
+    html += '<div class="diag-ressource-group-title"><span class="diag-ressource-badge suggested">Suggestion</span> Pourrait vous intéresser</div>';
+    ciblees.suggested.forEach(function(item){ html += renderRessourceCard(item.res, item.dims, 'suggested'); });
+    html += '</div>';
+  }
+  return html;
+}
+
+function renderRessourceCard(res, dims, level){
+  var color = level === 'priority' ? 'var(--accent1)' : 'var(--gold)';
+  var priorityDims = dims.filter(function(d){ return d.level === 'priority'; });
+  var suggestedDims = dims.filter(function(d){ return d.level === 'suggested'; });
+  var dimsLabel = '';
+  if (priorityDims.length > 0){
+    dimsLabel += '<strong>Dimensions prioritaires :</strong> ' + priorityDims.map(function(d){ return d.label; }).join(', ');
+  }
+  if (suggestedDims.length > 0){
+    if (dimsLabel) dimsLabel += '<br>';
+    dimsLabel += '<strong>Dimensions à renforcer :</strong> ' + suggestedDims.map(function(d){ return d.label; }).join(', ');
+  }
+  return '<a href="' + res.url + '" target="_blank" rel="noopener noreferrer" class="diag-ressource-card" style="--card-color:' + color + '">'
+    + '<div class="diag-ressource-icon">' + res.icon + '</div>'
+    + '<div class="diag-ressource-body">'
+    + '<div class="diag-ressource-title">' + res.titre + '</div>'
+    + '<div class="diag-ressource-sub">' + res.soustitre + ' · ' + res.type + '</div>'
+    + '<div class="diag-ressource-dims">' + dimsLabel + '</div>'
+    + '</div>'
+    + '<svg class="diag-ressource-arrow icon icon-sm"><use href="#i-arrow-right"/></svg>'
+    + '</a>';
 }
 
 function saveAndContinue(){
