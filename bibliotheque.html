@@ -838,6 +838,79 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 }
 
 .res-folder.open .res-folder-body{display:block;}
+
+/* ─── Sous-sections & sous-catégories (dossier Gestion de classe) ─── */
+.gc-subhead{display:flex;align-items:center;gap:14px;margin:6px 0 18px;}
+.gc-subhead-label{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;
+  color:var(--gold);white-space:nowrap;letter-spacing:.01em;
+}
+.gc-subhead-line{flex:1;height:1px;background:rgba(245,166,35,.28);}
+.gc-cat{margin-bottom:22px;}
+.gc-cat:last-child{margin-bottom:0;}
+.gc-cat-title{
+  display:flex;align-items:center;gap:9px;
+  font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:rgba(255,255,255,.82);margin:0 0 12px;
+}
+.gc-dim-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;display:inline-block;}
+.gc-empty{
+  grid-column:1/-1;
+  background:rgba(245,166,35,.05);border:1px dashed rgba(245,166,35,.3);
+  border-radius:10px;padding:13px 17px;
+  font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6;font-style:italic;
+}
+
+/* ─── Panneau de filtres par dimension (vue ciblée) ─── */
+.dim-filter-panel{
+  background:linear-gradient(135deg,rgba(83,52,131,.14),rgba(245,166,35,.08));
+  border:1px solid rgba(245,166,35,.3);
+  border-radius:16px;padding:20px 24px;margin-bottom:28px;
+}
+.dim-filter-eyebrow{
+  font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.dim-filter-title{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;
+  color:white;margin:0 0 4px;line-height:1.3;
+}
+.dim-filter-desc{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6;max-width:760px;margin-bottom:16px;}
+.dim-filter-btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.dim-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 15px;border-radius:10px;cursor:pointer;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  color:rgba(255,255,255,.9);font-family:inherit;font-size:.8rem;font-weight:600;
+  transition:all .15s;white-space:nowrap;
+}
+.dim-btn:hover{background:rgba(255,255,255,.13);border-color:rgba(245,166,35,.4);}
+.dim-btn.active{background:var(--gold);border-color:var(--gold);color:#1a1a2e;}
+.dim-btn .gc-dim-dot{width:10px;height:10px;}
+.dim-btn.active .gc-dim-dot{box-shadow:0 0 0 2px rgba(26,26,46,.25);}
+.dim-filter-clear{
+  background:none;border:none;color:rgba(255,255,255,.55);
+  font-family:inherit;font-size:.78rem;cursor:pointer;text-decoration:underline;
+  padding:8px 6px;transition:color .15s;
+}
+.dim-filter-clear:hover{color:rgba(255,255,255,.85);}
+.dim-results{margin-top:20px;}
+.dim-results-count{
+  font-size:.78rem;color:rgba(255,255,255,.6);margin-bottom:14px;
+}
+.dim-results-count strong{color:var(--gold);}
+.dim-result-origin{
+  display:inline-block;font-size:.66rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;color:rgba(255,255,255,.45);
+  background:rgba(255,255,255,.06);border-radius:6px;padding:2px 8px;margin-bottom:8px;
+}
+.dim-empty-msg{
+  background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.18);
+  border-radius:10px;padding:16px 20px;font-size:.85rem;
+  color:rgba(255,255,255,.6);line-height:1.6;
+}
+[data-theme="dark"] .dim-btn.active{color:#0f1115;}
+
 /* ─── Trousse pédagogique : système refondu ─── */
 .res-grid{
   display:grid;
@@ -1313,10 +1386,31 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <a href="#folder-comportement" onclick="document.getElementById('folder-comportement').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-comportement').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Comportements difficiles</a>
 <a href="#folder-lectures" onclick="document.getElementById('folder-lectures').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-lectures').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Lectures recommandées</a>
 <a href="#folder-formations" onclick="document.getElementById('folder-formations').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-formations').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Propositions de formation</a>
-<a href="#folder-ressources-ciblees" onclick="document.getElementById('folder-ressources-ciblees').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-ressources-ciblees').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Ressources ciblées par dimension</a>
+<a href="#folder-gestion-classe" onclick="document.getElementById('folder-gestion-classe').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-gestion-classe').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Gestion de classe</a>
 </div>
 </div>
 <div id="res-pratique" style="display:none;"></div>
+
+<!-- ═══════════ Vue filtrée : Ressources ciblées par dimension ═══════════ -->
+<div class="dim-filter-panel" id="dim-filter-panel">
+  <div class="dim-filter-eyebrow">Selon votre diagnostic</div>
+  <div class="dim-filter-title">Ressources ciblées par dimension</div>
+  <div class="dim-filter-desc">
+    Sélectionnez une dimension pour faire remonter, depuis <strong>toute la bibliothèque</strong>, les ressources qui la renforcent — quel que soit le dossier où elles sont rangées. Depuis la page diagnostic, ce filtre s'active automatiquement sur votre dimension la plus faible.
+  </div>
+  <div class="dim-filter-btns">
+    <button class="dim-btn" data-dim="bien-etre"><span class="gc-dim-dot" style="background:var(--sage);"></span>Bien-être professionnel</button>
+    <button class="dim-btn" data-dim="posture"><span class="gc-dim-dot" style="background:var(--accent3);"></span>Posture enseignante</button>
+    <button class="dim-btn" data-dim="efficacite"><span class="gc-dim-dot" style="background:var(--gold);"></span>Sentiment d'efficacité</button>
+    <button class="dim-btn" data-dim="competences-se"><span class="gc-dim-dot" style="background:var(--sky);"></span>Compétences socio-émotionnelles</button>
+    <button class="dim-filter-clear" id="dim-filter-clear" style="display:none;">Réinitialiser</button>
+  </div>
+  <div class="dim-results" id="dim-results" style="display:none;">
+    <div class="dim-results-count" id="dim-results-count"></div>
+    <div class="res-grid" id="dim-results-grid"></div>
+  </div>
+</div>
+
 <div class="res-folder" id="folder-demarche">
 <div class="res-folder-header">
 
@@ -1412,7 +1506,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder-body">
 <div class="res-grid">
-<div class="res-card" id="res-posture-presence">
+<div class="res-card" id="res-posture-presence" data-dimensions="posture" data-public="perso">
 
 <div class="res-type">Document PDF · Posture &amp; PRÉSENCE</div>
 <h4>Posture professionnelle et modèle PRÉSENCE</h4>
@@ -1647,7 +1741,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder-body">
 <div class="res-grid">
-<div class="res-card" id="res-fiche-emotions-stress">
+<div class="res-card" id="res-fiche-emotions-stress" data-dimensions="bien-etre,competences-se" data-public="perso">
 
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Émotions, stress et anxiété scolaire</h4>
@@ -1658,7 +1752,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 <a class="res-dl" data-lien="emotions_anxiete_stress" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/emotions-anxiete-stress.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
 </div>
-<div class="res-card" id="res-fiche-relation">
+<div class="res-card" id="res-fiche-relation" data-dimensions="posture" data-public="perso">
 
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Relation enseignant-élève</h4>
@@ -1670,7 +1764,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <a class="res-dl" data-lien="fiche_relation" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/relation_enseignant_eleve.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
 </div>
 
-<div class="res-card" id="res-posture-professionnelle">
+<div class="res-card" id="res-posture-professionnelle" data-dimensions="posture" data-public="perso">
 
 <div class="res-type">Référentiel Word · Réflexion d'équipe</div>
 <h4>Posture professionnelle enseignante</h4>
@@ -1679,7 +1773,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-fiche-relation" href="#res-fiche-relation" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Relation enseignant-élève</a></div>
 <a class="res-dl" data-lien="posture_professionnelle" href="https://rodoguigs.github.io/Ressources_Autoformation/word/posture_professionnelle_enseignante.docx" rel="noopener noreferrer" target="_blank">Télécharger le référentiel (Word)</a>
 </div>
-<div class="res-card" id="res-damasio-fiche">
+<div class="res-card" id="res-damasio-fiche" data-dimensions="competences-se" data-public="perso">
 
 <div class="res-type">Fiche de lecture PDF · Neurosciences fondamentales</div>
 <h4>L'Erreur de Descartes — Fiche de lecture</h4>
@@ -1693,7 +1787,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 
 <!-- CESH / Surfe ton stress -->
-<div class="res-card" id="res-cesh-stress">
+<div class="res-card" id="res-cesh-stress" data-dimensions="bien-etre" data-public="perso">
 
 <div class="res-type">Site externe · Bien-être · Ressource alternative</div>
 <h4>Surfe ton stress — Centre d'études sur le stress humain</h4>
@@ -1713,17 +1807,17 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <a class="res-dl" href="https://stresshumain.ca/programmes/mon-fantastique-cerveau/" rel="noopener noreferrer" target="_blank" style="background:var(--sage);border-color:var(--sage);color:white;">Accéder au programme</a>
 </div>
 
-<div class="res-card" id="res-bienetre-ctreq">
+<div class="res-card" id="res-bienetre-ctreq" data-dimensions="bien-etre" data-public="perso">
 
 <div class="res-type">Infographie PDF · CTREQ / RIRE · Bien-être du personnel</div>
 <h4>Soutenir le bien-être du personnel scolaire</h4>
 <p>Infographie de synthèse en deux volets : définition multidimensionnelle du bien-être en contexte scolaire (CSE, 2020 ; Acton &amp; Glasgow, 2015), les cinq dimensions du bien-être au travail (Dagenais-Desmarais, 2010 — adéquation interpersonnelle, épanouissement, volonté d'engagement, reconnaissance perçue, sentiment de compétence), leadership authentique et six pistes d'action concrètes (partage de pratiques, formation continue, réseaux sociaux solides, modélisation, communication ouverte, reconnaissance).<br/><br/>
-Conçue pour les directions, elle est tout aussi pertinente pour un collectif engagé dans une démarche bien-être (Pool Bien-être) : argumentaire « Pourquoi ? » (rétention, santé psychologique, créativité) et leviers en contexte de changement.<br/><br/>
+Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être professionnel : situer son vécu sur les cinq dimensions, repérer les leviers activables individuellement ou en collectif (Pool Bien-être) et comprendre pourquoi le bien-être se dégrade justement en période de changement. Le volet « leadership authentique » élargit la perspective côté accompagnement et pilotage d'équipe.<br/><br/>
 <em>CTREQ · RIRE · Bibliographie complète (Goyette, Beaumont, Roffey, CSE)</em><br/><br/>
 <em>Lien PRÉSENCE : S — Synchronisation · Module 9 · Concept Pool Bien-être</em></p>
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-fiche-emotions-stress" href="#res-fiche-emotions-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Émotions &amp; stress</a> <a data-scrollto="res-cesh-stress" href="#res-cesh-stress" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Surfe ton stress</a> <a href="prototype_module9.html" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#27ae6022;border:1px solid #27ae6055;border-radius:12px;font-size:.7rem;font-weight:600;color:#27ae60;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Module 9</a></div>
 
-<a class="res-dl" data-lien="bien_etre_personnel_ctreq" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/bien_etre_personnel_scolaire_ctreq.pdf.pdf" rel="noopener noreferrer" target="_blank">Télécharger l'infographie</a>
+<a class="res-dl" data-lien="bien_etre_personnel_ctreq" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/bien_etre_personnel_scolaire_ctreq.pdf" rel="noopener noreferrer" target="_blank">Télécharger l'infographie</a>
 </div>
 </div>
 </div>
@@ -1896,7 +1990,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 
 <a class="res-dl" data-lien="af_contrat" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/contrat_comportemental.docx" rel="noopener noreferrer" target="_blank">Télécharger le contrat (Word)</a>
 </div>
-<div class="res-card" id="res-bonhomme-osbd">
+<div class="res-card" id="res-bonhomme-osbd" data-dimensions="competences-se" data-public="perso">
 
 <div class="res-type">Document PDF · Outil élève · CNV</div>
 <h4>Bonhomme OSBD — Communication Non Violente</h4>
@@ -2084,7 +2178,7 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 
 <!-- TéCOOL -->
-<div class="res-card" id="res-tecool-mio">
+<div class="res-card" id="res-tecool-mio" data-dimensions="competences-se" data-public="perso">
 
 <div class="res-type">Modèles &amp; Ressources · Endoxa Neuroscience · Dr. Cherine Fahim</div>
 <h4>TéCOOL®, MIO® &amp; ToM — Régulation émotionnelle, attachement et théorie de l'esprit</h4>
@@ -2113,27 +2207,33 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 </div>
 <!-- Borst — 40 séances — dans Lectures recommandées déjà, mais carte ici aussi -->
 
-<!-- ─── Ressources ciblées par dimension du diagnostic ─── -->
-<div class="res-folder" id="folder-ressources-ciblees">
+<!-- ─── Gestion de classe (ressources professionnelles + personnelles) ─── -->
+<div class="res-folder" id="folder-gestion-classe">
 <div class="res-folder-header">
 <div class="rf-meta">
-<div class="rf-title">Ressources ciblées par dimension</div>
-<div class="rf-sub">Recommandées selon vos résultats de diagnostic</div>
+<div class="rf-title">Gestion de classe</div>
+<div class="rf-sub">Ressources professionnelles (composantes de la gestion de classe) · Ressources personnelles (bien-être, posture, sentiment d'efficacité, compétences socio-émotionnelles)</div>
 </div>
-<span class="rf-count">1 ressource</span>
+<span class="rf-count">4 ressources</span>
 <span class="rf-arrow"><svg><use href="#i-chevron-down"/></svg></span>
 </div>
 <div class="res-folder-body">
 
-<p style="font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.7;max-width:780px;margin-bottom:22px;">
-  Ces ressources sont sélectionnées pour renforcer une dimension précise de votre pratique. Elles vous sont proposées automatiquement en bas de la page <a href="diagnostic.html" style="color:var(--gold);font-weight:600;">diagnostic</a> selon vos scores — à travailler <strong>en priorité</strong> (score &lt; 50 %) ou à titre de <strong>suggestion</strong> (50–70 %). Vous pouvez aussi les consulter librement ici.
+<p style="font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.7;max-width:820px;margin-bottom:24px;">
+  Ce dossier regroupe deux familles de ressources. Les <strong>ressources professionnelles</strong> outillent directement la gestion de classe. Les <strong>ressources personnelles</strong> soutiennent l'enseignant·e sur les quatre dimensions travaillées par le <a href="diagnostic.html" style="color:var(--gold);font-weight:600;">diagnostic</a>. Toutes sont aussi accessibles via le filtre <em>« Ressources ciblées par dimension »</em> en haut de page, qui les fait remonter selon vos scores — en priorité (score &lt; 50 %) ou en suggestion (50–70 %).
 </p>
 
-<div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(245,166,35,.9);margin:6px 0 12px;">Ressources professionnelles · Gestion de classe</div>
+<!-- ═══ Ressources professionnelles ═══ -->
+<div class="gc-subhead">
+  <span class="gc-subhead-label">Ressources professionnelles</span>
+  <span class="gc-subhead-line"></span>
+</div>
 
+<div class="gc-cat">
+<div class="gc-cat-title">Composantes de la gestion de classe</div>
 <div class="res-grid">
 
-<div class="res-card" id="res-gaudreau-6comp">
+<div class="res-card" id="res-gaudreau-6comp" data-dimensions="posture,efficacite" data-public="pro">
 <div class="res-type">PDF · Compilation de ressources · Nancy Gaudreau</div>
 <h4>Les six composantes de la gestion de classe</h4>
 <p>Compilation structurée de ressources francophones pour développer chacune des six composantes de la gestion de classe efficace : gestion des ressources, attentes claires, relations positives, engagement des élèves, comportements difficiles, personne enseignante. Chaque composante propose 3 à 7 ressources sélectionnées avec description. Inclut le triptyque CQJDC (autoévaluation prévention + autoévaluation intervention + guide réflexif) hébergé en annexes.<br/><br/>
@@ -2142,12 +2242,72 @@ Conçue pour les directions, elle est tout aussi pertinente pour un collectif en
 <a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_gaudreau.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (5 pages)</a>
 </div>
 
+<div class="res-card" id="res-gaudreau-main" data-dimensions="posture,efficacite" data-public="pro">
+<div class="res-type">Infographie PDF · CNIPE · D'après Nancy Gaudreau</div>
+<h4>Les 6 composantes de la gestion de classe — la main</h4>
+<p>Infographie synthétique du CNIPE (Corridor national de l'insertion professionnelle en enseignement) représentant les six composantes de la gestion de classe sous forme d'une main : relations positives (majeur), attentes claires (index), gestion des ressources (pouce), attention et engagement des élèves (annulaire), gestion des comportements difficiles (auriculaire) et la personne enseignante (paume) — cette dernière articulant style d'autorité, sentiment d'efficacité personnelle, compétences socio-émotionnelles, expériences antérieures et attitudes envers les élèves. Le verso cartographie une riche banque de ressources francophones organisée en trois axes : Prévention, Informations générales (CQJDC, balado Mon ÉquIPe) et Intervention.<br/><br/>
+<em>D'après Gaudreau, N. · Réalisation CNIPE</em><br/><br/>
+<em>Recommandé si score inférieur à 70 % sur les dimensions professionnelles</em></p>
+<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-gaudreau-6comp" href="#res-gaudreau-6comp" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Compilation des 6 composantes</a></div>
+<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_6_composantes.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (2 pages)</a>
 </div>
 
-<div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(245,166,35,.9);margin:26px 0 12px;">Ressources personnelles</div>
+</div>
+</div>
 
-<div style="background:rgba(245,166,35,.06);border:1px dashed rgba(245,166,35,.35);border-radius:10px;padding:14px 18px;font-size:.85rem;color:rgba(255,255,255,.7);line-height:1.7;">
-  <strong style="color:rgba(255,255,255,.9);">En cours de constitution</strong> — les ressources ciblées pour les quatre dimensions personnelles (bien-être professionnel, compétences socio-émotionnelles, posture enseignante, sentiment d'efficacité personnelle) seront ajoutées progressivement.
+<!-- ═══ Ressources personnelles ═══ -->
+<div class="gc-subhead" style="margin-top:32px;">
+  <span class="gc-subhead-label">Ressources personnelles</span>
+  <span class="gc-subhead-line"></span>
+</div>
+<p style="font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6;max-width:820px;margin:-4px 0 20px;">
+  Organisées selon les quatre dimensions du diagnostic. Ajoutez chaque ressource dans sa sous-catégorie et taguez-la avec <code style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:.9em;">data-dimensions</code> pour qu'elle remonte dans le filtre du haut de page.
+</p>
+
+<!-- Bien-être professionnel -->
+<div class="gc-cat" id="gc-bien-etre">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--sage);"></span>Bien-être professionnel</div>
+<div class="res-grid">
+<div class="res-card" id="res-bienetre-retour-ecole" data-dimensions="bien-etre" data-public="perso">
+<div class="res-type">Fiche PDF · Centre of Excellence for Mental Health · LBPSB</div>
+<h4>Assurer le bien-être du personnel — 7 pistes</h4>
+<p>Fiche réflexive du Lester B. Pearson School Board (Centre of Excellence for Mental Health) : sept leviers concrets pour préserver son équilibre physique, social et émotionnel en contexte de reprise et d'incertitude. Aborde l'optimisme et le climat positif, l'acceptation de l'incertitude, la focalisation sur ce qui est sous son contrôle, le soin de soi et l'autocompassion au quotidien, le soutien entre collègues, et le recadrage du discours intérieur vers une vision plus positive. Rappelle le principe « prendre soin de soi pour prendre soin des autres ».<br/><br/>
+<em>Lester B. Pearson School Board · Centre of Excellence for Mental Health · cemh.lbpsb.qc.ca</em></p>
+<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnelles/bien_etre_enseignant/bien_etre_personnel_retour_ecole.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+</div>
+</div>
+</div>
+
+<!-- Posture enseignante -->
+<div class="gc-cat" id="gc-posture">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--accent3);"></span>Posture enseignante</div>
+<div class="res-grid">
+<div class="res-card" id="res-posture-effet-halo" data-dimensions="posture" data-public="perso">
+<div class="res-type">Fiche interactive PDF · Biais cognitif · shortcogs</div>
+<h4>Biais cognitif du jour — L'effet de halo</h4>
+<p>Fiche d'autoformation en trois temps (check-in, positionnement, transfert) sur l'effet de halo : la tendance à tirer des conclusions sur une personne à partir d'une première impression (physique, langagière, vestimentaire, comportementale). Appliquée au contexte enseignant, elle éclaire comment ce biais influence le premier contact avec un élève, l'évaluation diagnostique et la relation pédagogique qui s'ensuit. Structure réflexive avec échelles d'auto-positionnement et plan d'action pour déjouer le biais.<br/><br/>
+<em>Muriel Levrat Rapp · Sous la direction de la Pre Cherine Fahim, CAS en Neurosciences de l'éducation (2022-2023) · shortcogs.com</em></p>
+<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnelles/posture_enseignant/biais_cognitif_effet_de_halo.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+</div>
+</div>
+</div>
+
+<!-- Sentiment d'efficacité personnelle -->
+<div class="gc-cat" id="gc-efficacite">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--gold);"></span>Sentiment d'efficacité personnelle</div>
+<div class="res-grid">
+<!-- Ajouter ici les cartes .res-card avec data-dimensions="efficacite" data-public="perso" -->
+<div class="gc-empty">Sous-catégorie à compléter — des liens web viendront prochainement l'alimenter.</div>
+</div>
+</div>
+
+<!-- Compétences socio-émotionnelles -->
+<div class="gc-cat" id="gc-competences-se">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--sky);"></span>Compétences socio-émotionnelles</div>
+<div class="res-grid">
+<!-- Ajouter ici les cartes .res-card avec data-dimensions="competences-se" data-public="perso" -->
+<div class="gc-empty">Sous-catégorie à compléter — des liens web viendront prochainement l'alimenter.</div>
+</div>
 </div>
 
 </div>
@@ -2686,6 +2846,123 @@ document.addEventListener('click',function(e){
   var d=document.getElementById('nav-plus-dropdown');
   if(w&&d&&!w.contains(e.target)) d.style.display='none';
 });
+</script>
+
+<script>
+/* ═══════════ Moteur de filtrage par dimension ═══════════
+   Une seule source (les .res-card rangées par thème), deux portes d'entrée :
+   navigation libre par dossier + vue filtrée transversale par dimension.
+   Le filtre CLONE les cartes taguées (jamais de duplication de contenu source). */
+(function(){
+  var DIM_LABELS = {
+    'bien-etre': 'Bien-être professionnel',
+    'posture': 'Posture enseignante',
+    'efficacite': 'Sentiment d\u2019efficacit\u00e9 personnelle',
+    'competences-se': 'Comp\u00e9tences socio-\u00e9motionnelles'
+  };
+
+  function folderTitleOf(card){
+    var folder = card.closest('.res-folder');
+    if(!folder) return '';
+    var t = folder.querySelector('.rf-title');
+    return t ? t.textContent.trim() : '';
+  }
+
+  function applyDim(dim){
+    var grid = document.getElementById('dim-results-grid');
+    var wrap = document.getElementById('dim-results');
+    var countEl = document.getElementById('dim-results-count');
+    var clearBtn = document.getElementById('dim-filter-clear');
+    if(!grid || !wrap) return;
+
+    // État des boutons
+    document.querySelectorAll('.dim-btn').forEach(function(b){
+      b.classList.toggle('active', b.dataset.dim === dim);
+    });
+
+    if(!dim){
+      wrap.style.display = 'none';
+      grid.innerHTML = '';
+      if(clearBtn) clearBtn.style.display = 'none';
+      return;
+    }
+    if(clearBtn) clearBtn.style.display = '';
+
+    // Collecte des cartes taguées, en excluant les clones déjà générés
+    var matches = [];
+    document.querySelectorAll('.res-card[data-dimensions]').forEach(function(card){
+      if(card.closest('#dim-results-grid')) return; // ne pas re-cloner un clone
+      var dims = (card.dataset.dimensions || '').split(',').map(function(s){return s.trim();});
+      if(dims.indexOf(dim) !== -1) matches.push(card);
+    });
+
+    grid.innerHTML = '';
+    if(!matches.length){
+      wrap.style.display = 'block';
+      countEl.innerHTML = '';
+      grid.innerHTML = '<div class="dim-empty-msg">Aucune ressource n\u2019est encore tagu\u00e9e pour la dimension <strong>' +
+        (DIM_LABELS[dim] || dim) + '</strong>. Ajoutez <code>data-dimensions="' + dim +
+        '"</code> aux cartes concern\u00e9es pour les faire appara\u00eetre ici.</div>';
+      return;
+    }
+
+    countEl.innerHTML = '<strong>' + matches.length + '</strong> ressource' +
+      (matches.length > 1 ? 's' : '') + ' pour renforcer : ' + (DIM_LABELS[dim] || dim);
+
+    matches.forEach(function(card){
+      var clone = card.cloneNode(true);
+      clone.removeAttribute('id'); // éviter les id dupliqués
+      // Badge d'origine (dossier thématique où la ressource est rangée)
+      var origin = folderTitleOf(card);
+      if(origin){
+        var badge = document.createElement('div');
+        badge.className = 'dim-result-origin';
+        badge.textContent = origin;
+        clone.insertBefore(badge, clone.firstChild);
+      }
+      grid.appendChild(clone);
+    });
+
+    wrap.style.display = 'block';
+    // Rendre les titres clonés cliquables aussi
+    reWireCloneTitles(grid);
+  }
+
+  // Reproduit le comportement "titre cliquable" sur les clones
+  function reWireCloneTitles(scope){
+    scope.querySelectorAll('.res-card').forEach(function(card){
+      var dl = card.querySelector('.res-dl'), h4 = card.querySelector('h4');
+      if(!dl || !h4 || h4.querySelector('a')) return;
+      var a = document.createElement('a');
+      a.href = dl.href; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      while(h4.firstChild) a.appendChild(h4.firstChild);
+      h4.appendChild(a);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.dim-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var already = btn.classList.contains('active');
+        applyDim(already ? null : btn.dataset.dim);
+        if(!already){
+          document.getElementById('dim-results').scrollIntoView({behavior:'smooth', block:'nearest'});
+        }
+      });
+    });
+    var clearBtn = document.getElementById('dim-filter-clear');
+    if(clearBtn) clearBtn.addEventListener('click', function(){ applyDim(null); });
+
+    // Activation automatique depuis la page diagnostic : ?dimension=bien-etre
+    var params = new URLSearchParams(window.location.search);
+    var d = params.get('dimension');
+    if(d && DIM_LABELS[d]){
+      applyDim(d);
+      var panel = document.getElementById('dim-filter-panel');
+      if(panel) setTimeout(function(){ panel.scrollIntoView({behavior:'smooth', block:'start'}); }, 150);
+    }
+  });
+})();
 </script>
 
 <script>
