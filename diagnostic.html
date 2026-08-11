@@ -830,7 +830,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 
     <div class="diag-ressources-ciblees" id="diag-ressources-ciblees-container" style="display:none">
       <h3>Ressources ciblées pour votre profil</h3>
-      <p class="diag-ressources-intro">D'après vos scores par dimension, voici des ressources concrètes à consulter pour renforcer votre pratique. Elles sont classées selon deux niveaux : à travailler <strong>en priorité</strong> (dimensions &lt; 50 %) ou à titre de <strong>suggestion</strong> (dimensions entre 50 et 70 %).</p>
+      <p class="diag-ressources-intro">D'après vos scores, voici les dimensions à renforcer. Chaque lien ouvre la <strong>bibliothèque filtrée</strong> sur cette dimension : toutes les ressources qui la travaillent, quel que soit leur dossier d'origine. Deux niveaux : à travailler <strong>en priorité</strong> (dimension &lt; 50 %) ou à titre de <strong>suggestion</strong> (dimension entre 50 et 70 %).</p>
       <div id="diag-ressources-ciblees"></div>
     </div>
 
@@ -938,21 +938,11 @@ var MODULES_META = {
    Mode APPROFONDI : 11 dimensions Ben Alya/Gaudreau
    ═══════════════════════════════════════════════════════════════ */
 
-// ─── Ressources ciblées recommandées selon les scores par dimension ───
-// Chaque ressource est reliée aux dimensions qu'elle aide à renforcer.
-// Elle s'affiche automatiquement si l'une de ses dimensions est en zone
-// priorité (score < 50 %) ou suggestion (50 % ≤ score ≤ 70 %).
-var RESSOURCES_CIBLEES_DATA = [
-  {
-    id: 'gaudreau_6comp',
-    titre: 'Les six composantes de la gestion de classe',
-    soustitre: 'Compilation d\'après le modèle de Nancy Gaudreau',
-    type: 'PDF',
-    icon: '📄',
-    url: 'https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_gaudreau.pdf',
-    dimensions: ['personne', 'gest_mat', 'gest_spat', 'attentes', 'relations', 'attention', 'autodeter', 'ecarts']
-  }
-];
+// ─── Ressources ciblées : source unique ───
+// L'ancienne table RESSOURCES_CIBLEES_DATA (liste codée en dur) a été retirée.
+// Les recommandations pointent désormais vers la bibliothèque filtrée par
+// dimension (bibliotheque.html?dimension=<clé>), qui est la source unique des
+// ressources et de leurs tags. Voir computeRessourcesCiblees / renderRessourceCard.
 
 var ITEMS_APPROFONDI = {
   perso: {
@@ -1826,35 +1816,51 @@ function buildRecosHtml(modList){
   }).join('');
 }
 
-// ─── Ressources ciblées : seuils à 2 niveaux ───
+// ─── Ressources ciblées : source unique = bibliothèque filtrée par dimension ───
+// Chaque dimension faible du diagnostic génère un lien profond vers
+// bibliotheque.html?dimension=<clé>, qui y active le filtre correspondant.
+// Le vocabulaire de dimension est PARTAGÉ entre les deux pages ; seule
+// exception : gest_mat + gest_spat (diagnostic) → gest_ressources (bibliothèque).
+var DIAG_TO_BIBLIO_DIM = {
+  // Personnelles (correspondance directe)
+  posture: 'posture', sep: 'sep', bienetre: 'bienetre', cse: 'cse',
+  // Professionnelles — 6 composantes (fusion des deux gestions de ressources)
+  personne: 'personne',
+  gest_mat: 'gest_ressources', gest_spat: 'gest_ressources',
+  attentes: 'attentes', relations: 'relations',
+  attention: 'attention', autodeter: 'attention', ecarts: 'ecarts'
+};
+
 function computeRessourcesCiblees(scoresPerso, scoresPro){
   var allScores = Object.assign({}, scoresPerso, scoresPro);
-  var weakDims = {};
-  Object.keys(allScores).forEach(function(k){
-    var s = allScores[k];
-    if (s === null || s === undefined) return;
-    var pct = Math.round(s / 5 * 100);
-    if (pct < 50) weakDims[k] = 'priority';
-    else if (pct <= 70) weakDims[k] = 'suggested';
-  });
 
   var dimLabels = {};
   Object.keys(ITEMS_APPROFONDI.perso).forEach(function(k){ dimLabels[k] = ITEMS_APPROFONDI.perso[k].label; });
   Object.keys(ITEMS_APPROFONDI.pro).forEach(function(k){ dimLabels[k] = ITEMS_APPROFONDI.pro[k].label; });
 
+  // Regrouper par filtre-bibliothèque cible, en gardant le niveau le plus fort
+  // (priority l'emporte sur suggested) et la liste des libellés de dimensions.
+  var byFilter = {};
+  Object.keys(allScores).forEach(function(k){
+    var s = allScores[k];
+    if (s === null || s === undefined) return;
+    var filterKey = DIAG_TO_BIBLIO_DIM[k];
+    if (!filterKey) return;
+    var pct = Math.round(s / 5 * 100);
+    var level = null;
+    if (pct < 50) level = 'priority';
+    else if (pct <= 70) level = 'suggested';
+    if (!level) return;
+    if (!byFilter[filterKey]) byFilter[filterKey] = { key: filterKey, level: level, labels: [] };
+    if (level === 'priority') byFilter[filterKey].level = 'priority';
+    var lbl = dimLabels[k] || k;
+    if (byFilter[filterKey].labels.indexOf(lbl) === -1) byFilter[filterKey].labels.push(lbl);
+  });
+
   var priority = [], suggested = [];
-  RESSOURCES_CIBLEES_DATA.forEach(function(res){
-    var relevantDims = [];
-    var hasPriority = false;
-    res.dimensions.forEach(function(dim){
-      if (weakDims[dim]) {
-        relevantDims.push({ key: dim, label: dimLabels[dim] || dim, level: weakDims[dim] });
-        if (weakDims[dim] === 'priority') hasPriority = true;
-      }
-    });
-    if (relevantDims.length === 0) return;
-    var item = { res: res, dims: relevantDims };
-    if (hasPriority) priority.push(item); else suggested.push(item);
+  Object.keys(byFilter).forEach(function(fk){
+    var entry = byFilter[fk];
+    if (entry.level === 'priority') priority.push(entry); else suggested.push(entry);
   });
 
   return { priority: priority, suggested: suggested };
@@ -1866,36 +1872,29 @@ function buildRessourcesCibleesHtml(ciblees){
   if (ciblees.priority.length > 0){
     html += '<div class="diag-ressource-group">';
     html += '<div class="diag-ressource-group-title"><span class="diag-ressource-badge priority">Priorité</span> À travailler en priorité</div>';
-    ciblees.priority.forEach(function(item){ html += renderRessourceCard(item.res, item.dims, 'priority'); });
+    ciblees.priority.forEach(function(entry){ html += renderRessourceCard(entry, 'priority'); });
     html += '</div>';
   }
   if (ciblees.suggested.length > 0){
     html += '<div class="diag-ressource-group">';
     html += '<div class="diag-ressource-group-title"><span class="diag-ressource-badge suggested">Suggestion</span> Pourrait vous intéresser</div>';
-    ciblees.suggested.forEach(function(item){ html += renderRessourceCard(item.res, item.dims, 'suggested'); });
+    ciblees.suggested.forEach(function(entry){ html += renderRessourceCard(entry, 'suggested'); });
     html += '</div>';
   }
   return html;
 }
 
-function renderRessourceCard(res, dims, level){
+function renderRessourceCard(entry, level){
   var color = level === 'priority' ? 'var(--accent1)' : 'var(--gold)';
-  var priorityDims = dims.filter(function(d){ return d.level === 'priority'; });
-  var suggestedDims = dims.filter(function(d){ return d.level === 'suggested'; });
-  var dimsLabel = '';
-  if (priorityDims.length > 0){
-    dimsLabel += '<strong>Dimensions prioritaires :</strong> ' + priorityDims.map(function(d){ return d.label; }).join(', ');
-  }
-  if (suggestedDims.length > 0){
-    if (dimsLabel) dimsLabel += '<br>';
-    dimsLabel += '<strong>Dimensions à renforcer :</strong> ' + suggestedDims.map(function(d){ return d.label; }).join(', ');
-  }
-  return '<a href="' + res.url + '" target="_blank" rel="noopener noreferrer" class="diag-ressource-card" style="--card-color:' + color + '">'
-    + '<div class="diag-ressource-icon">' + res.icon + '</div>'
+  var url = 'bibliotheque.html?dimension=' + encodeURIComponent(entry.key);
+  var dimName = entry.labels.join(', ');
+  var actionWord = level === 'priority' ? 'à renforcer en priorité' : 'à consulter';
+  return '<a href="' + url + '" class="diag-ressource-card" style="--card-color:' + color + '">'
+    + '<div class="diag-ressource-icon">📚</div>'
     + '<div class="diag-ressource-body">'
-    + '<div class="diag-ressource-title">' + res.titre + '</div>'
-    + '<div class="diag-ressource-sub">' + res.soustitre + ' · ' + res.type + '</div>'
-    + '<div class="diag-ressource-dims">' + dimsLabel + '</div>'
+    + '<div class="diag-ressource-title">' + dimName + '</div>'
+    + '<div class="diag-ressource-sub">Ressources ciblées de la bibliothèque · ' + actionWord + '</div>'
+    + '<div class="diag-ressource-dims">Ouvre la bibliothèque filtrée sur cette dimension — toutes les ressources qui la renforcent, quel que soit leur dossier.</div>'
     + '</div>'
     + '<svg class="diag-ressource-arrow icon icon-sm"><use href="#i-arrow-right"/></svg>'
     + '</a>';

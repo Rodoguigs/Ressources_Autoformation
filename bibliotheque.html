@@ -876,6 +876,12 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   color:white;margin:0 0 4px;line-height:1.3;
 }
 .dim-filter-desc{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6;max-width:760px;margin-bottom:16px;}
+.dim-filter-family{margin-bottom:14px;}
+.dim-filter-family:last-of-type{margin-bottom:0;}
+.dim-filter-family-label{
+  font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:8px;
+}
 .dim-filter-btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
 .dim-btn{
   display:inline-flex;align-items:center;gap:8px;
@@ -1398,13 +1404,27 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   <div class="dim-filter-desc">
     Sélectionnez une dimension pour faire remonter, depuis <strong>toute la bibliothèque</strong>, les ressources qui la renforcent — quel que soit le dossier où elles sont rangées. Depuis la page diagnostic, ce filtre s'active automatiquement sur votre dimension la plus faible.
   </div>
-  <div class="dim-filter-btns">
-    <button class="dim-btn" data-dim="bien-etre"><span class="gc-dim-dot" style="background:var(--sage);"></span>Bien-être professionnel</button>
-    <button class="dim-btn" data-dim="posture"><span class="gc-dim-dot" style="background:var(--accent3);"></span>Posture enseignante</button>
-    <button class="dim-btn" data-dim="efficacite"><span class="gc-dim-dot" style="background:var(--gold);"></span>Sentiment d'efficacité</button>
-    <button class="dim-btn" data-dim="competences-se"><span class="gc-dim-dot" style="background:var(--sky);"></span>Compétences socio-émotionnelles</button>
-    <button class="dim-filter-clear" id="dim-filter-clear" style="display:none;">Réinitialiser</button>
+  <div class="dim-filter-family">
+    <div class="dim-filter-family-label">Ressources personnelles</div>
+    <div class="dim-filter-btns">
+      <button class="dim-btn" data-dim="posture"><span class="gc-dim-dot" style="background:#e94560;"></span>Posture enseignante</button>
+      <button class="dim-btn" data-dim="sep"><span class="gc-dim-dot" style="background:#2d9cdb;"></span>Sentiment d'efficacité personnelle</button>
+      <button class="dim-btn" data-dim="bienetre"><span class="gc-dim-dot" style="background:#4a7c59;"></span>Bien-être professionnel</button>
+      <button class="dim-btn" data-dim="cse"><span class="gc-dim-dot" style="background:#533483;"></span>Compétences socio-émotionnelles</button>
+    </div>
   </div>
+  <div class="dim-filter-family">
+    <div class="dim-filter-family-label">Ressources professionnelles · 6 composantes de la gestion de classe</div>
+    <div class="dim-filter-btns">
+      <button class="dim-btn" data-dim="personne"><span class="gc-dim-dot" style="background:#0f3460;"></span>La personne enseignante</button>
+      <button class="dim-btn" data-dim="gest_ressources"><span class="gc-dim-dot" style="background:#2d9cdb;"></span>Gestion des ressources</button>
+      <button class="dim-btn" data-dim="attentes"><span class="gc-dim-dot" style="background:#f5a623;"></span>Attentes claires</button>
+      <button class="dim-btn" data-dim="relations"><span class="gc-dim-dot" style="background:#e94560;"></span>Relations positives</button>
+      <button class="dim-btn" data-dim="attention"><span class="gc-dim-dot" style="background:#4a7c59;"></span>Attention &amp; engagement</button>
+      <button class="dim-btn" data-dim="ecarts"><span class="gc-dim-dot" style="background:#533483;"></span>Comportements difficiles</button>
+    </div>
+  </div>
+  <div style="margin-top:12px;"><button class="dim-filter-clear" id="dim-filter-clear" style="display:none;">Réinitialiser le filtre</button></div>
   <div class="dim-results" id="dim-results" style="display:none;">
     <div class="dim-results-count" id="dim-results-count"></div>
     <div class="res-grid" id="dim-results-grid"></div>
@@ -1741,7 +1761,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 <div class="res-folder-body">
 <div class="res-grid">
-<div class="res-card" id="res-fiche-emotions-stress" data-dimensions="bien-etre,competences-se" data-public="perso">
+<div class="res-card" id="res-fiche-emotions-stress" data-dimensions="bienetre,cse" data-public="perso">
 
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Émotions, stress et anxiété scolaire</h4>
@@ -1752,7 +1772,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 <a class="res-dl" data-lien="emotions_anxiete_stress" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/emotions-anxiete-stress.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
 </div>
-<div class="res-card" id="res-fiche-relation" data-dimensions="posture" data-public="perso">
+<div class="res-card" id="res-fiche-relation" data-dimensions="posture,relations" data-public="perso">
 
 <div class="res-type">Fiche PDF · Neurosciences éducatives</div>
 <h4>Relation enseignant-élève</h4>
@@ -1773,7 +1793,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-fiche-relation" href="#res-fiche-relation" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Relation enseignant-élève</a></div>
 <a class="res-dl" data-lien="posture_professionnelle" href="https://rodoguigs.github.io/Ressources_Autoformation/word/posture_professionnelle_enseignante.docx" rel="noopener noreferrer" target="_blank">Télécharger le référentiel (Word)</a>
 </div>
-<div class="res-card" id="res-damasio-fiche" data-dimensions="competences-se" data-public="perso">
+<div class="res-card" id="res-damasio-fiche" data-dimensions="cse" data-public="perso">
 
 <div class="res-type">Fiche de lecture PDF · Neurosciences fondamentales</div>
 <h4>L'Erreur de Descartes — Fiche de lecture</h4>
@@ -1787,7 +1807,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 
 <!-- CESH / Surfe ton stress -->
-<div class="res-card" id="res-cesh-stress" data-dimensions="bien-etre" data-public="perso">
+<div class="res-card" id="res-cesh-stress" data-dimensions="bienetre" data-public="perso">
 
 <div class="res-type">Site externe · Bien-être · Ressource alternative</div>
 <h4>Surfe ton stress — Centre d'études sur le stress humain</h4>
@@ -1807,7 +1827,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <a class="res-dl" href="https://stresshumain.ca/programmes/mon-fantastique-cerveau/" rel="noopener noreferrer" target="_blank" style="background:var(--sage);border-color:var(--sage);color:white;">Accéder au programme</a>
 </div>
 
-<div class="res-card" id="res-bienetre-ctreq" data-dimensions="bien-etre" data-public="perso">
+<div class="res-card" id="res-bienetre-ctreq" data-dimensions="bienetre" data-public="perso">
 
 <div class="res-type">Infographie PDF · CTREQ / RIRE · Bien-être du personnel</div>
 <h4>Soutenir le bien-être du personnel scolaire</h4>
@@ -1990,7 +2010,7 @@ Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être 
 
 <a class="res-dl" data-lien="af_contrat" href="https://rodoguigs.github.io/Ressources_Autoformation/comportement/contrat_comportemental.docx" rel="noopener noreferrer" target="_blank">Télécharger le contrat (Word)</a>
 </div>
-<div class="res-card" id="res-bonhomme-osbd" data-dimensions="competences-se" data-public="perso">
+<div class="res-card" id="res-bonhomme-osbd" data-dimensions="cse" data-public="perso">
 
 <div class="res-type">Document PDF · Outil élève · CNV</div>
 <h4>Bonhomme OSBD — Communication Non Violente</h4>
@@ -2178,7 +2198,7 @@ Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être 
 </div>
 
 <!-- TéCOOL -->
-<div class="res-card" id="res-tecool-mio" data-dimensions="competences-se" data-public="perso">
+<div class="res-card" id="res-tecool-mio" data-dimensions="cse" data-public="perso">
 
 <div class="res-type">Modèles &amp; Ressources · Endoxa Neuroscience · Dr. Cherine Fahim</div>
 <h4>TéCOOL®, MIO® &amp; ToM — Régulation émotionnelle, attachement et théorie de l'esprit</h4>
@@ -2212,7 +2232,7 @@ Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être 
 <div class="res-folder-header">
 <div class="rf-meta">
 <div class="rf-title">Gestion de classe</div>
-<div class="rf-sub">Ressources professionnelles (composantes de la gestion de classe) · Ressources personnelles (bien-être, posture, sentiment d'efficacité, compétences socio-émotionnelles)</div>
+<div class="rf-sub">Ressources personnelles (4 dimensions Ben Alya) · Ressources professionnelles (6 composantes de la gestion de classe, Gaudreau) — mêmes dimensions que le diagnostic</div>
 </div>
 <span class="rf-count">4 ressources</span>
 <span class="rf-arrow"><svg><use href="#i-chevron-down"/></svg></span>
@@ -2220,67 +2240,18 @@ Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être 
 <div class="res-folder-body">
 
 <p style="font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.7;max-width:820px;margin-bottom:24px;">
-  Ce dossier regroupe deux familles de ressources. Les <strong>ressources professionnelles</strong> outillent directement la gestion de classe. Les <strong>ressources personnelles</strong> soutiennent l'enseignant·e sur les quatre dimensions travaillées par le <a href="diagnostic.html" style="color:var(--gold);font-weight:600;">diagnostic</a>. Toutes sont aussi accessibles via le filtre <em>« Ressources ciblées par dimension »</em> en haut de page, qui les fait remonter selon vos scores — en priorité (score &lt; 50 %) ou en suggestion (50–70 %).
+  Ce dossier est structuré exactement comme le <a href="diagnostic.html" style="color:var(--gold);font-weight:600;">diagnostic</a> : quatre <strong>dimensions personnelles</strong> (Ben Alya) et six <strong>composantes professionnelles</strong> de la gestion de classe (Gaudreau). Chaque ressource est rangée dans la dimension qu'elle renforce et remonte automatiquement dans le filtre <em>« Ressources ciblées »</em> en haut de page selon vos scores — en priorité (score &lt; 50 %) ou en suggestion (50–70 %).
 </p>
-
-<!-- ═══ Ressources professionnelles ═══ -->
-<div class="gc-subhead">
-  <span class="gc-subhead-label">Ressources professionnelles</span>
-  <span class="gc-subhead-line"></span>
-</div>
-
-<div class="gc-cat">
-<div class="gc-cat-title">Composantes de la gestion de classe</div>
-<div class="res-grid">
-
-<div class="res-card" id="res-gaudreau-6comp" data-dimensions="posture,efficacite" data-public="pro">
-<div class="res-type">PDF · Compilation de ressources · Nancy Gaudreau</div>
-<h4>Les six composantes de la gestion de classe</h4>
-<p>Compilation structurée de ressources francophones pour développer chacune des six composantes de la gestion de classe efficace : gestion des ressources, attentes claires, relations positives, engagement des élèves, comportements difficiles, personne enseignante. Chaque composante propose 3 à 7 ressources sélectionnées avec description. Inclut le triptyque CQJDC (autoévaluation prévention + autoévaluation intervention + guide réflexif) hébergé en annexes.<br/><br/>
-<em>D'après Gaudreau, N. (2017, 2020) · Compilation et mise en forme par Roduit, G. (2026)</em><br/><br/>
-<em>Recommandé si score inférieur à 70 % sur les dimensions professionnelles</em></p>
-<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_gaudreau.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (5 pages)</a>
-</div>
-
-<div class="res-card" id="res-gaudreau-main" data-dimensions="posture,efficacite" data-public="pro">
-<div class="res-type">Infographie PDF · CNIPE · D'après Nancy Gaudreau</div>
-<h4>Les 6 composantes de la gestion de classe — la main</h4>
-<p>Infographie synthétique du CNIPE (Corridor national de l'insertion professionnelle en enseignement) représentant les six composantes de la gestion de classe sous forme d'une main : relations positives (majeur), attentes claires (index), gestion des ressources (pouce), attention et engagement des élèves (annulaire), gestion des comportements difficiles (auriculaire) et la personne enseignante (paume) — cette dernière articulant style d'autorité, sentiment d'efficacité personnelle, compétences socio-émotionnelles, expériences antérieures et attitudes envers les élèves. Le verso cartographie une riche banque de ressources francophones organisée en trois axes : Prévention, Informations générales (CQJDC, balado Mon ÉquIPe) et Intervention.<br/><br/>
-<em>D'après Gaudreau, N. · Réalisation CNIPE</em><br/><br/>
-<em>Recommandé si score inférieur à 70 % sur les dimensions professionnelles</em></p>
-<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-gaudreau-6comp" href="#res-gaudreau-6comp" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Compilation des 6 composantes</a></div>
-<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_6_composantes.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (2 pages)</a>
-</div>
-
-</div>
-</div>
 
 <!-- ═══ Ressources personnelles ═══ -->
-<div class="gc-subhead" style="margin-top:32px;">
+<div class="gc-subhead">
   <span class="gc-subhead-label">Ressources personnelles</span>
   <span class="gc-subhead-line"></span>
-</div>
-<p style="font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6;max-width:820px;margin:-4px 0 20px;">
-  Organisées selon les quatre dimensions du diagnostic. Ajoutez chaque ressource dans sa sous-catégorie et taguez-la avec <code style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:5px;font-size:.9em;">data-dimensions</code> pour qu'elle remonte dans le filtre du haut de page.
-</p>
-
-<!-- Bien-être professionnel -->
-<div class="gc-cat" id="gc-bien-etre">
-<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--sage);"></span>Bien-être professionnel</div>
-<div class="res-grid">
-<div class="res-card" id="res-bienetre-retour-ecole" data-dimensions="bien-etre" data-public="perso">
-<div class="res-type">Fiche PDF · Centre of Excellence for Mental Health · LBPSB</div>
-<h4>Assurer le bien-être du personnel — 7 pistes</h4>
-<p>Fiche réflexive du Lester B. Pearson School Board (Centre of Excellence for Mental Health) : sept leviers concrets pour préserver son équilibre physique, social et émotionnel en contexte de reprise et d'incertitude. Aborde l'optimisme et le climat positif, l'acceptation de l'incertitude, la focalisation sur ce qui est sous son contrôle, le soin de soi et l'autocompassion au quotidien, le soutien entre collègues, et le recadrage du discours intérieur vers une vision plus positive. Rappelle le principe « prendre soin de soi pour prendre soin des autres ».<br/><br/>
-<em>Lester B. Pearson School Board · Centre of Excellence for Mental Health · cemh.lbpsb.qc.ca</em></p>
-<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnelles/bien_etre_enseignant/bien_etre_personnel_retour_ecole.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
-</div>
-</div>
 </div>
 
 <!-- Posture enseignante -->
 <div class="gc-cat" id="gc-posture">
-<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--accent3);"></span>Posture enseignante</div>
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#e94560;"></span>Posture enseignante</div>
 <div class="res-grid">
 <div class="res-card" id="res-posture-effet-halo" data-dimensions="posture" data-public="perso">
 <div class="res-type">Fiche interactive PDF · Biais cognitif · shortcogs</div>
@@ -2293,20 +2264,109 @@ Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être 
 </div>
 
 <!-- Sentiment d'efficacité personnelle -->
-<div class="gc-cat" id="gc-efficacite">
-<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--gold);"></span>Sentiment d'efficacité personnelle</div>
+<div class="gc-cat" id="gc-sep">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#2d9cdb;"></span>Sentiment d'efficacité personnelle</div>
 <div class="res-grid">
-<!-- Ajouter ici les cartes .res-card avec data-dimensions="efficacite" data-public="perso" -->
 <div class="gc-empty">Sous-catégorie à compléter — des liens web viendront prochainement l'alimenter.</div>
 </div>
 </div>
 
-<!-- Compétences socio-émotionnelles -->
-<div class="gc-cat" id="gc-competences-se">
-<div class="gc-cat-title"><span class="gc-dim-dot" style="background:var(--sky);"></span>Compétences socio-émotionnelles</div>
+<!-- Bien-être professionnel -->
+<div class="gc-cat" id="gc-bienetre">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#4a7c59;"></span>Bien-être professionnel</div>
 <div class="res-grid">
-<!-- Ajouter ici les cartes .res-card avec data-dimensions="competences-se" data-public="perso" -->
+<div class="res-card" id="res-bienetre-retour-ecole" data-dimensions="bienetre" data-public="perso">
+<div class="res-type">Fiche PDF · Centre of Excellence for Mental Health · LBPSB</div>
+<h4>Assurer le bien-être du personnel — 7 pistes</h4>
+<p>Fiche réflexive du Lester B. Pearson School Board (Centre of Excellence for Mental Health) : sept leviers concrets pour préserver son équilibre physique, social et émotionnel en contexte de reprise et d'incertitude. Aborde l'optimisme et le climat positif, l'acceptation de l'incertitude, la focalisation sur ce qui est sous son contrôle, le soin de soi et l'autocompassion au quotidien, le soutien entre collègues, et le recadrage du discours intérieur vers une vision plus positive. Rappelle le principe « prendre soin de soi pour prendre soin des autres ».<br/><br/>
+<em>Lester B. Pearson School Board · Centre of Excellence for Mental Health · cemh.lbpsb.qc.ca</em></p>
+<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnelles/bien_etre_enseignant/bien_etre_personnel_retour_ecole.pdf" rel="noopener noreferrer" target="_blank">Télécharger la fiche</a>
+</div>
+</div>
+</div>
+
+<!-- Compétences socio-émotionnelles -->
+<div class="gc-cat" id="gc-cse">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#533483;"></span>Compétences socio-émotionnelles</div>
+<div class="res-grid">
 <div class="gc-empty">Sous-catégorie à compléter — des liens web viendront prochainement l'alimenter.</div>
+</div>
+</div>
+
+<!-- ═══ Ressources professionnelles ═══ -->
+<div class="gc-subhead" style="margin-top:32px;">
+  <span class="gc-subhead-label">Ressources professionnelles</span>
+  <span class="gc-subhead-line"></span>
+</div>
+<p style="font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.6;max-width:820px;margin:-4px 0 20px;">
+  Les six composantes de la gestion de classe (Gaudreau). Les deux ressources Gaudreau ci-dessous couvrent l'ensemble des six composantes ; elles apparaissent donc sous chacune d'elles dans le filtre ciblé.
+</p>
+
+<!-- La personne enseignante -->
+<div class="gc-cat" id="gc-personne">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#0f3460;"></span>La personne enseignante</div>
+<div class="res-grid">
+
+<div class="res-card" id="res-gaudreau-6comp" data-dimensions="personne,gest_ressources,attentes,relations,attention,ecarts" data-public="pro">
+<div class="res-type">PDF · Compilation de ressources · Nancy Gaudreau</div>
+<h4>Les six composantes de la gestion de classe</h4>
+<p>Compilation structurée de ressources francophones pour développer chacune des six composantes de la gestion de classe efficace : gestion des ressources, attentes claires, relations positives, engagement des élèves, comportements difficiles, personne enseignante. Chaque composante propose 3 à 7 ressources sélectionnées avec description. Inclut le triptyque CQJDC (autoévaluation prévention + autoévaluation intervention + guide réflexif) hébergé en annexes.<br/><br/>
+<em>D'après Gaudreau, N. (2017, 2020) · Compilation et mise en forme par Roduit, G. (2026)</em><br/><br/>
+<em>Couvre les 6 composantes · recommandé si score inférieur à 70 % sur une dimension professionnelle</em></p>
+<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_gaudreau.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (5 pages)</a>
+</div>
+
+<div class="res-card" id="res-gaudreau-main" data-dimensions="personne,gest_ressources,attentes,relations,attention,ecarts" data-public="pro">
+<div class="res-type">Infographie PDF · CNIPE · D'après Nancy Gaudreau</div>
+<h4>Les 6 composantes de la gestion de classe — la main</h4>
+<p>Infographie synthétique du CNIPE (Corridor national de l'insertion professionnelle en enseignement) représentant les six composantes de la gestion de classe sous forme d'une main : relations positives (majeur), attentes claires (index), gestion des ressources (pouce), attention et engagement des élèves (annulaire), gestion des comportements difficiles (auriculaire) et la personne enseignante (paume) — cette dernière articulant style d'autorité, sentiment d'efficacité personnelle, compétences socio-émotionnelles, expériences antérieures et attitudes envers les élèves. Le verso cartographie une riche banque de ressources francophones organisée en trois axes : Prévention, Informations générales (CQJDC, balado Mon ÉquIPe) et Intervention.<br/><br/>
+<em>D'après Gaudreau, N. · Réalisation CNIPE</em><br/><br/>
+<em>Couvre les 6 composantes · recommandé si score inférieur à 70 % sur une dimension professionnelle</em></p>
+<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-gaudreau-6comp" href="#res-gaudreau-6comp" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Compilation des 6 composantes</a></div>
+<a class="res-dl" href="https://rodoguigs.github.io/Ressources_Autoformation/ressources_personnalisees/ressources_professionnelles/gestion_de_classe_6_composantes.pdf" rel="noopener noreferrer" target="_blank">Ouvrir le PDF (2 pages)</a>
+</div>
+
+</div>
+<p style="font-size:.76rem;color:rgba(255,255,255,.45);font-style:italic;margin:10px 0 0;">Les deux ressources ci-dessus couvrent aussi les cinq composantes suivantes.</p>
+</div>
+
+<!-- Gestion des ressources -->
+<div class="gc-cat" id="gc-gest_ressources">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#2d9cdb;"></span>Gestion des ressources</div>
+<div class="res-grid">
+<div class="gc-empty">Couverte par les deux ressources Gaudreau ci-dessus. Ajoutez ici une ressource spécifique à cette composante le cas échéant.</div>
+</div>
+</div>
+
+<!-- Établissement d'attentes claires -->
+<div class="gc-cat" id="gc-attentes">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#f5a623;"></span>Établissement d'attentes claires</div>
+<div class="res-grid">
+<div class="gc-empty">Couverte par les deux ressources Gaudreau ci-dessus. Ajoutez ici une ressource spécifique à cette composante le cas échéant.</div>
+</div>
+</div>
+
+<!-- Développement de relations positives -->
+<div class="gc-cat" id="gc-relations">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#e94560;"></span>Développement de relations positives</div>
+<div class="res-grid">
+<div class="gc-empty">Couverte par les deux ressources Gaudreau ci-dessus. Ajoutez ici une ressource spécifique à cette composante le cas échéant.</div>
+</div>
+</div>
+
+<!-- Attention et engagement des élèves -->
+<div class="gc-cat" id="gc-attention">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#4a7c59;"></span>Attention et engagement des élèves</div>
+<div class="res-grid">
+<div class="gc-empty">Couverte par les deux ressources Gaudreau ci-dessus. Ajoutez ici une ressource spécifique à cette composante le cas échéant.</div>
+</div>
+</div>
+
+<!-- Gestion des comportements difficiles -->
+<div class="gc-cat" id="gc-ecarts">
+<div class="gc-cat-title"><span class="gc-dim-dot" style="background:#533483;"></span>Gestion des comportements difficiles</div>
+<div class="res-grid">
+<div class="gc-empty">Couverte par les deux ressources Gaudreau ci-dessus, et par le dossier « Gestion des comportements difficiles &amp; analyse fonctionnelle » plus haut dans la bibliothèque.</div>
 </div>
 </div>
 
@@ -2855,10 +2915,18 @@ document.addEventListener('click',function(e){
    Le filtre CLONE les cartes taguées (jamais de duplication de contenu source). */
 (function(){
   var DIM_LABELS = {
-    'bien-etre': 'Bien-être professionnel',
+    // Ressources personnelles (Ben Alya)
     'posture': 'Posture enseignante',
-    'efficacite': 'Sentiment d\u2019efficacit\u00e9 personnelle',
-    'competences-se': 'Comp\u00e9tences socio-\u00e9motionnelles'
+    'sep': 'Sentiment d\u2019efficacit\u00e9 personnelle',
+    'bienetre': 'Bien-être professionnel',
+    'cse': 'Comp\u00e9tences socio-\u00e9motionnelles',
+    // Ressources professionnelles (Gaudreau — 6 composantes)
+    'personne': 'La personne enseignante',
+    'gest_ressources': 'Gestion des ressources',
+    'attentes': 'Établissement d\u2019attentes claires',
+    'relations': 'Développement de relations positives',
+    'attention': 'Attention et engagement des élèves',
+    'ecarts': 'Gestion des comportements difficiles'
   };
 
   function folderTitleOf(card){
