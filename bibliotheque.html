@@ -1307,6 +1307,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 <a href="#folder-demarche" onclick="document.getElementById('folder-demarche').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-demarche').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Démarche &amp; formation</a>
 <a href="#folder-tdah" onclick="document.getElementById('folder-tdah').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-tdah').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Enjeux TND</a>
 <a href="#folder-neuro" onclick="document.getElementById('folder-neuro').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-neuro').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Neurosciences</a>
+<a href="#folder-bilans-meta" onclick="document.getElementById('folder-bilans-meta').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-bilans-meta').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Bilans métacognitifs</a>
 <a href="#folder-pedagogies" onclick="document.getElementById('folder-pedagogies').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-pedagogies').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Pédagogies efficaces</a>
 <a href="#folder-bienetre" onclick="document.getElementById('folder-bienetre').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-bienetre').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Bien-être &amp; relations</a>
 <a href="#folder-comportement" onclick="document.getElementById('folder-comportement').classList.add('open');setTimeout(()=&gt;document.getElementById('folder-comportement').scrollIntoView({behavior:'smooth',block:'start'}),50);return false;" onmouseout="this.style.background='rgba(255,255,255,.08)'" onmouseover="this.style.background='rgba(245,166,35,.2)'" style="display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.15);border-radius:9px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .15s;">Comportements difficiles</a>
@@ -1513,14 +1514,46 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </div>
 </div>
 </div>
+<div class="res-folder" id="folder-bilans-meta">
+<div class="res-folder-header">
+
+<div class="rf-meta">
+<div class="rf-title">Bilans métacognitifs de l'élève</div>
+<div class="rf-sub">Auto-évaluation · Compétences transversales · Mathématiques · Connaissance de soi</div>
+</div>
+<span class="rf-count">2 ressources</span>
+<span class="rf-arrow"><svg><use href="#i-chevron-down"/></svg></span>
+</div>
+<div class="res-folder-body">
+<div class="rf-sub" style="color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.6;margin-bottom:16px;">Deux fiches courtes que l'élève complète lui-même pour développer sa métacognition — le prolongement en classe du travail sur le Profil Apprenant. <span style="color:var(--gold);">Gabarits vierges, sans aucune donnée d'élève.</span></div>
+<div class="res-grid">
+<div class="res-card" id="res-bilan-ct">
+<div class="res-type">Auto-évaluation Word · Élève</div>
+<h4>Bilan de compétences transversales</h4>
+<p>Fiche d'auto-évaluation de fin de séquence : l'élève fait le point sur ses compétences transversales (collaboration, communication, stratégies d'apprentissage, pensée réflexive, démarche créatrice). Outil métacognitif court, transférable dans toutes les disciplines.<br/><br/>
+<em>Gabarit vierge · Word éditable · une fiche = une fin de séquence</em></p>
+<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-bilan-meta" href="#res-bilan-meta" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Bilan métacognitif maths</a> <a data-scrollto="res-carnet-apprentissage" href="#res-carnet-apprentissage" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Carnet d'apprentissage</a></div>
+<a class="res-dl" data-lien="res-bilan-ct" href="https://rodoguigs.github.io/Ressources_Autoformation/outils-eleve/bilan_competences_transversales.docx" rel="noopener noreferrer" target="_blank">Télécharger la fiche (Word)</a>
+</div>
+<div class="res-card" id="res-bilan-meta">
+<div class="res-type">Auto-évaluation Word · Élève</div>
+<h4>Bilan métacognitif en mathématiques</h4>
+<p>Fiche d'auto-évaluation « Mieux me connaître pour progresser » centrée sur les mathématiques : l'élève repère ses stratégies, ses obstacles et ses leviers de progrès. Entrée métacognitive qui prolonge en classe le travail sur le Profil Apprenant : l'élève apprend à observer son propre fonctionnement pour ajuster ses méthodes.<br/><br/>
+<em>Gabarit vierge · Word éditable · à utiliser après une évaluation ou en fin de chapitre</em></p>
+<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-bourassa" href="#res-bourassa" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Banque Profil Apprenant</a> <a data-scrollto="res-carnet-apprentissage" href="#res-carnet-apprentissage" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Carnet d'apprentissage</a></div>
+<a class="res-dl" data-lien="res-bilan-meta" href="https://rodoguigs.github.io/Ressources_Autoformation/outils-eleve/bilan_metacognitif_mathematiques.docx" rel="noopener noreferrer" target="_blank">Télécharger la fiche (Word)</a>
+</div>
+</div>
+</div>
+</div>
 <div class="res-folder" id="folder-pedagogies">
 <div class="res-folder-header">
 
 <div class="rf-meta">
 <div class="rf-title">Pédagogies efficaces &amp; inclusives</div>
-<div class="rf-sub">CUA / UDL · Pratiques à fort impact · Attention · Autodétermination des élèves</div>
+<div class="rf-sub">CUA / UDL · Pratiques à fort impact · Attention · Autodétermination des élèves · Carnet d'apprentissage</div>
 </div>
-<span class="rf-count">7 ressources</span>
+<span class="rf-count">8 ressources</span>
 <span class="rf-arrow"><svg><use href="#i-chevron-down"/></svg></span>
 </div>
 <div class="res-folder-body">
@@ -1567,6 +1600,16 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 <a class="res-dl" data-lien="autodetermination" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/Autodetermination_outil_complet.pdf" rel="noopener noreferrer" target="_blank">Télécharger le PDF Autodétermination</a>
 </div>
+<div class="res-card" id="res-carnet-apprentissage">
+<div class="res-type">Document Word · Élève</div>
+<h4>Mon carnet d'apprentissage</h4>
+<p>Carnet remis à l'élève pour rendre visibles et appropriables ses apprentissages : suivi de ses objectifs, traces de progrès et repères pour se situer au fil de l'année. Support concret de l'autodétermination — l'élève fixe ses objectifs, mesure ses avancées et devient acteur de son parcours. Sert aussi de fil de dialogue entre l'élève, l'enseignant·e et la famille.<br/><br/>
+<em>Gabarit vierge · Word éditable · rempli par l'élève avec l'accompagnement de l'enseignant·e</em><br/><br/>
+<em>Lien PRÉSENCE : E — Et le libre arbitre · Module 7 — Stratégies pédagogiques &amp; autodétermination</em></p>
+<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:8px;"><span style="font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);font-weight:600;">Documents liés ·</span> <a data-scrollto="res-autodetermination" href="#res-autodetermination" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Outil complet autodétermination</a> <a data-scrollto="res-bilan-ct" href="#res-bilan-ct" style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#2d9cdb22;border:1px solid #2d9cdb55;border-radius:12px;font-size:.7rem;font-weight:600;color:#2d9cdb;text-decoration:none;margin:2px 3px 2px 0;white-space:nowrap;">Bilans métacognitifs</a></div>
+<a class="res-dl" data-lien="carnet_apprentissage" href="https://rodoguigs.github.io/Ressources_Autoformation/outils-eleve/carnet_apprentissage.docx" rel="noopener noreferrer" target="_blank">Télécharger le carnet (Word)</a>
+</div>
+
 <div class="res-card" id="res-aide-strategique">
 
 <div class="res-type">Document PDF · Neurosciences éducatives</div>
