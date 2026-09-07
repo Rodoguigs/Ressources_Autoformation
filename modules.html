@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Les 9 modules d'autoformation : bien-être, prévention de l'épuisement, posture professionnelle, gestion de classe et plus.">
 <title>Catalogue des modules · Autoformation</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Autoformation à la résilience professionnelle enseignante">
+  <meta property="og:title" content="Catalogue des modules · Autoformation">
+  <meta property="og:description" content="Les 9 modules d'autoformation : bien-être, prévention de l'épuisement, posture professionnelle, gestion de classe et plus.">
+  <meta property="og:url" content="https://rodoguigs.github.io/Ressources_Autoformation/modules.html">
+  <meta property="og:locale" content="fr_CH">
+  <meta name="twitter:card" content="summary">
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -423,7 +431,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 .tag-inprogress{background:rgba(245,166,35,.15);color:var(--gold)}
 .tag-notstarted{background:var(--surface-alt);color:var(--text-subtle)}
 
-/* Couleurs par module — alignées sur les fichiers prototype_moduleN.html */
+/* Couleurs par module — alignées sur les fichiers moduleN.html */
 .mod-1{--mod-color:#e94560}
 .mod-2{--mod-color:#c0392b}
 .mod-3{--mod-color:#0f3460}
@@ -987,6 +995,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .app-header{padding:10px 14px;gap:10px}
 }
 </style>
+
+<style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -1024,9 +1034,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span class="nav-sep">→</span>
     <a href="fondements.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="2">2</span>Cadres de référence</span></a>
     <span class="nav-sep">→</span>
-    <a href="modules.html" class="nav-link active"><span class="nav-step"><span class="nav-step-num" data-n="3">3</span>Modules</span></a>
+    <a href="modules.html" class="nav-link active" aria-current="page"><span class="nav-step"><span class="nav-step-num" data-n="3">3</span>Modules</span></a>
     <div class="nav-plus-wrap" id="nav-plus-wrap">
-      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" type="button">
+      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" aria-haspopup="true" aria-expanded="false" aria-controls="nav-plus-dropdown" type="button">
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
@@ -1067,23 +1077,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span class="current">Catalogue des modules</span>
   </div>
   <h1 class="page-title">Les 9 modules de la plateforme</h1>
-  <p class="page-sub">Chaque module est autonome et peut être travaillé indépendamment. La progression est sauvegardée automatiquement. Les modules sont reliés au modèle PRÉSENCE (Fahim, 2022) et à la démarche structurée en 7 étapes.</p>
+  <p class="page-sub">Chaque module est autonome et peut être ouvert dans n'importe quel ordre, aucun n'est verrouillé. La progression est sauvegardée automatiquement. Les modules sont reliés au modèle PRÉSENCE (Fahim, 2022) et à la démarche structurée en 7 étapes.</p>
 </div>
 
 <main id="main">
 
 <div class="reading-mode-section" id="onboarding-section" style="border-left:4px solid var(--accent2);">
   <h3 class="reading-mode-title">Avant de commencer — comment utiliser cette plateforme</h3>
-  <p class="reading-mode-desc">Ce parcours est conçu pour être suivi en autonomie, à votre rythme. Quatre étapes recommandées :</p>
+  <p class="reading-mode-desc">Ce parcours est conçu pour être suivi en autonomie, à votre rythme. Quatre conseils pour démarrer :</p>
   <ol style="margin:14px 0 18px 22px;padding:0;line-height:1.7;font-size:.9rem;color:var(--text-body);">
-    <li style="margin-bottom:6px;"><strong>Évaluez votre point de départ</strong> — avant de démarrer les modules, complétez le <a href="diagnostic.html">diagnostic d'autoévaluation</a> (~5 à 20 min selon le format choisi). Il identifie vos besoins prioritaires et personnalise les recommandations de modules.</li>
-    <li style="margin-bottom:6px;"><strong>Parcourez les modules</strong> — dans l'ordre suggéré ou en sélectif (voir ci-dessous). Chaque module se conclut par un quiz de validation (seuil de 80%) à atteindre pour le marquer comme complété et débloquer la suite.</li>
+    <li style="margin-bottom:6px;"><strong>Évaluez votre point de départ</strong> — avant de démarrer les modules, complétez le <a href="diagnostic.html">diagnostic d'autoévaluation</a> (rapide ~5 min ou complet ~20 min). Il identifie vos besoins prioritaires et personnalise les recommandations de modules.</li>
+    <li style="margin-bottom:6px;"><strong>Parcourez les modules</strong> — dans l'ordre suggéré ou en sélectif (voir ci-dessous). Chaque module se conclut par un quiz de validation (seuil de 80%) à atteindre pour le marquer comme complété.</li>
     <li style="margin-bottom:6px;"><strong>Générez votre attestation</strong> — une fois les 9 modules validés, votre certificat de complétion se génère automatiquement depuis la <a href="index.html">page d'accueil</a>.</li>
     <li><strong>Évaluez la formation</strong> — un court <a href="mon-suivi.html#satisfaction">questionnaire de satisfaction</a> (~5 min) permet de documenter votre expérience et d'améliorer la plateforme.</li>
   </ol>
 
-  <div style="background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;padding:14px 18px;margin-top:6px;">
-    <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-subtle);margin-bottom:10px;">⏱Temps à prévoir — parcours essentiel</div>
+  <details id="temps-a-prevoir" style="background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;padding:14px 18px;margin-top:6px;">
+    <summary style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-subtle);margin-bottom:10px;cursor:pointer;">⏱ Temps à prévoir — parcours essentiel (≈ 6h25, détail par module)</summary>
 
     <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>Diagnostic (bilan complet)</span><span style="white-space:nowrap;color:var(--text-subtle);">~20 min</span></div>
     <div style="display:flex;justify-content:space-between;gap:10px;padding:4px 0;font-size:.85rem;border-bottom:1px solid var(--border-soft);"><span>Module 1 — Bien-être professionnel enseignant</span><span style="white-space:nowrap;color:var(--text-subtle);">~35 min</span></div>
@@ -1101,9 +1111,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0 2px;margin-top:6px;border-top:2px solid var(--accent2);font-size:.92rem;font-weight:700;color:var(--text-strong);"><span>Total — parcours essentiel</span><span style="white-space:nowrap;">≈ 6h25</span></div>
     <p style="font-size:.76rem;color:var(--text-subtle);margin:8px 0 0;line-height:1.5;">Les sections « Pour aller plus loin » de chaque module et les ressources de la <a href="bibliotheque.html">bibliothèque</a> s'ajoutent à ce temps selon votre niveau d'approfondissement souhaité — elles ne sont pas comptées dans ce total.</p>
     <p style="font-size:.76rem;color:var(--text-subtle);margin:6px 0 0;line-height:1.5;"><strong>Temps d'appropriation professionnelle recommandé</strong> (parcours essentiel + exploration de la bibliothèque) : <strong>8 à 12h</strong>, variable selon votre profil et le niveau d'approfondissement souhaité.</p>
-  </div>
+  </details>
 
-  <div id="async-link-zone" style="background:var(--surface);border:1px dashed var(--border-soft);border-radius:10px;padding:12px 16px;margin-top:14px;font-size:.85rem;color:var(--text-subtle);">
+  <div id="async-link-zone" hidden style="background:var(--surface);border:1px dashed var(--border-soft);border-radius:10px;padding:12px 16px;margin-top:14px;font-size:.85rem;color:var(--text-subtle);">
     <strong style="color:var(--text-strong);">Échanger avec d'autres participant·es :</strong> espace de discussion à compléter par votre formateur·rice (Teams, Padlet, ou Moodle HEP-VS selon votre session) — <em>lien à venir</em>.
   </div>
 
@@ -1130,7 +1140,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </span>
     </button>
   </div>
-  <div id="reading-mode-hint" style="margin-top:16px;padding:14px 18px;background:rgba(83,52,131,.06);border-radius:10px;font-size:.9rem;line-height:1.5;color:var(--text-body);"><strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l'ordre : 1 → 2 → 3 → 4 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.</div>
+  <div id="reading-mode-hint" style="margin-top:16px;padding:14px 18px;background:rgba(83,52,131,.06);border-radius:10px;font-size:.9rem;line-height:1.5;color:var(--text-body);"><strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l'ordre : 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.</div>
 </div>
 
   <div class="filters" role="group" aria-label="Filtrer les modules">
@@ -1141,11 +1151,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </div>
 
   <div class="modules-grid" id="modules-grid">
-    <a href="prototype_module1_v5.html" class="mod-card mod-1" data-mod="1">
+    <a href="module1.html" class="mod-card mod-1" data-mod="1">
       <div class="mod-card-head">
         <div class="mod-card-num">1</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 1 · ~35 min</div>
+          <div class="mod-card-eyebrow">Démarche · étape 1 · ~35 min</div>
           <h2 class="mod-card-title">Bien-être professionnel enseignant</h2>
         </div>
       </div>
@@ -1156,11 +1166,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module2.html" class="mod-card mod-2" data-mod="2">
+    <a href="module2.html" class="mod-card mod-2" data-mod="2">
       <div class="mod-card-head">
         <div class="mod-card-num">2</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 1 · ~35 min</div>
+          <div class="mod-card-eyebrow">Démarche · étape 1 · ~35 min</div>
           <h2 class="mod-card-title">Prévention de l'épuisement professionnel</h2>
         </div>
       </div>
@@ -1171,11 +1181,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module3.html" class="mod-card mod-3" data-mod="3">
+    <a href="module3.html" class="mod-card mod-3" data-mod="3">
       <div class="mod-card-head">
         <div class="mod-card-num">3</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 2 · ~40 min</div>
+          <div class="mod-card-eyebrow">Démarche · étape 2 · ~40 min</div>
           <h2 class="mod-card-title">Profil des besoins de formation</h2>
         </div>
       </div>
@@ -1186,11 +1196,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module4.html" class="mod-card mod-4" data-mod="4">
+    <a href="module4.html" class="mod-card mod-4" data-mod="4">
       <div class="mod-card-head">
         <div class="mod-card-num">4</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 1-2 · ~35 min</div>
+          <div class="mod-card-eyebrow">Démarche · étapes 1-2 · ~35 min</div>
           <h2 class="mod-card-title">Vulnérabilité individuelle au stress</h2>
         </div>
       </div>
@@ -1200,11 +1210,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <span style="color:var(--mod-color);font-weight:700">Ouvrir →</span>
       </div>
     </a>
-    <a href="prototype_module5.html" class="mod-card mod-5" data-mod="5">
+    <a href="module5.html" class="mod-card mod-5" data-mod="5">
       <div class="mod-card-head">
         <div class="mod-card-num">5</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étapes 3-4-5 · ~40 min</div>
+          <div class="mod-card-eyebrow">Démarche · étapes 3-4-5 · ~40 min</div>
           <h2 class="mod-card-title">Posture professionnelle et modèle PRÉSENCE</h2>
         </div>
       </div>
@@ -1215,11 +1225,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module6.html" class="mod-card mod-6" data-mod="6">
+    <a href="module6.html" class="mod-card mod-6" data-mod="6">
       <div class="mod-card-head">
         <div class="mod-card-num">6</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 2-3 · ~40 min</div>
+          <div class="mod-card-eyebrow">Démarche · étapes 2-3 · ~40 min</div>
           <h2 class="mod-card-title">Cartographie personnelle des ressources</h2>
         </div>
       </div>
@@ -1230,11 +1240,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module7.html" class="mod-card mod-7" data-mod="7">
+    <a href="module7.html" class="mod-card mod-7" data-mod="7">
       <div class="mod-card-head">
         <div class="mod-card-num">7</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 5 · ~40 min</div>
+          <div class="mod-card-eyebrow">Démarche · étape 5 · ~40 min</div>
           <h2 class="mod-card-title">Mentorat et pratique réflexive entre pairs</h2>
         </div>
       </div>
@@ -1245,11 +1255,11 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module8.html" class="mod-card mod-8" data-mod="8">
+    <a href="module8.html" class="mod-card mod-8" data-mod="8">
       <div class="mod-card-head">
         <div class="mod-card-num">8</div>
         <div class="mod-card-meta">
-          <div class="mod-card-eyebrow">Étape 6 · ~45 min</div>
+          <div class="mod-card-eyebrow">Démarche · étape 6 · ~45 min</div>
           <h2 class="mod-card-title">TDAH, classes difficiles et autodétermination</h2>
         </div>
       </div>
@@ -1260,7 +1270,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       </div>
     </a>
 
-    <a href="prototype_module9.html" class="mod-card mod-9" data-mod="9">
+    <a href="module9.html" class="mod-card mod-9" data-mod="9">
       <div class="mod-card-head">
         <div class="mod-card-num">9</div>
         <div class="mod-card-meta">
@@ -1290,7 +1300,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       Florence Griessen et Guillaume Roduit · 2026<br>
       En collaboration avec Dr. Cherine Fahim, CAS en neurosciences de l'éducation, Université de Fribourg et Endoxa Neuroscience.
     </div>
-    <div style="margin-top:8px;font-size:.72rem;opacity:.7;">Dernière mise à jour : 16 juin 2026</div>
+    <div style="margin-top:8px;font-size:.72rem;opacity:.7;">Dernière mise à jour : 7 septembre 2026</div>
   </div>
 </footer>
 
@@ -1402,6 +1412,7 @@ window.addEventListener('DOMContentLoaded', updateStatusTags);
     var user = getUserMode();
     var icon, label, title;
 
+    var _alz = document.getElementById('async-link-zone'); if (_alz) _alz.hidden = (user.mode !== 'hep');
     if (user.mode === 'hep') {
       icon = '<svg class="icon icon-sm"><use href="#i-grad"/></svg>';
       label = 'HEP-VS' + (user.name ? ' · ' + user.name : '');
@@ -1802,7 +1813,7 @@ function setReadingMode(mode){
   var hint = document.getElementById('reading-mode-hint');
   if (hint) {
     if (mode === 'sequential') {
-      hint.innerHTML = '<strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l\'ordre : 1 → 2 → 3 → 4 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.';
+      hint.innerHTML = '<strong>Mode parcours complet activé.</strong> Nous vous recommandons de suivre les modules dans l\'ordre : 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9. Chaque module prépare le suivant.';
       /* hint toujours visible */
     } else {
       hint.innerHTML = '<strong>Mode sélectif activé.</strong> Parcourez les modules ci-dessous et ouvrez ceux qui correspondent à vos besoins actuels. Faites le diagnostic si vous hésitez sur les modules prioritaires.';
@@ -1842,6 +1853,7 @@ function toggleNavPlus(){
   var open = d.style.display==='flex';
   d.style.display = open ? 'none' : 'flex';
   d.style.flexDirection = 'column';
+  var b=document.querySelector('.nav-plus-btn'); if(b) b.setAttribute('aria-expanded', open ? 'false' : 'true');
 }
 document.addEventListener('click',function(e){
   var w=document.getElementById('nav-plus-wrap');

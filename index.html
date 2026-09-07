@@ -6,6 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Parcours d'autoformation à la résilience professionnelle enseignante, fondé sur le modèle PRÉSENCE et les neurosciences éducatives.">
 <title>Autoformation à la résilience professionnelle enseignante</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Autoformation à la résilience professionnelle enseignante">
+  <meta property="og:title" content="Autoformation à la résilience professionnelle enseignante">
+  <meta property="og:description" content="Parcours d'autoformation à la résilience professionnelle enseignante, fondé sur le modèle PRÉSENCE et les neurosciences éducatives.">
+  <meta property="og:url" content="https://rodoguigs.github.io/Ressources_Autoformation/index.html">
+  <meta property="og:locale" content="fr_CH">
+  <meta name="twitter:card" content="summary">
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -1288,6 +1296,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .app-header{padding:10px 14px;gap:10px}
 }
 </style>
+
+<style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -1317,7 +1327,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     Autoformation
   </a>
         <nav class="nav-links" aria-label="Navigation principale">
-        <a href="index.html" class="nav-link active">Accueil</a>
+        <a href="index.html" class="nav-link active" aria-current="page">Accueil</a>
     <span class="nav-sep">→</span>
     <a href="diagnostic.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="1">1</span>Diagnostic</span></a>
     <span class="nav-sep">→</span>
@@ -1325,7 +1335,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span class="nav-sep">→</span>
     <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="3">3</span>Modules</span></a>
     <div class="nav-plus-wrap" id="nav-plus-wrap">
-      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" type="button">
+      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" aria-haspopup="true" aria-expanded="false" aria-controls="nav-plus-dropdown" type="button">
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
@@ -1374,7 +1384,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <div class="aut-welcome-text">
       <div class="aut-welcome-eyebrow" id="aut-welcome-eyebrow">Bienvenue</div>
       <div class="aut-welcome-title" id="aut-welcome-title">Première fois ici ?</div>
-      <div class="aut-welcome-desc" id="aut-welcome-desc">Commencez par le diagnostic rapide (10 minutes) pour identifier vos priorités personnelles.</div>
+      <div class="aut-welcome-desc" id="aut-welcome-desc">Commencez par le diagnostic rapide (5 minutes) pour identifier vos priorités personnelles.</div>
       <div class="aut-mini-progress" id="aut-mini-progress" style="display:none;">
         <span><strong id="aut-mini-pct">0%</strong> du parcours</span>
         <div class="aut-mini-progress-track"><div class="aut-mini-progress-fill" id="aut-mini-fill"></div></div>
@@ -1389,7 +1399,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 
 <div class="resume-banner hidden" id="resume-banner" role="status">
-  <span id="resume-text">Vous aviez commencé le Module 1 — section 3 sur 6</span>
+  <span id="resume-text"></span>
   <button onclick="resumeLastModule()">
     <svg class="icon icon-sm"><use href="#i-back"/></svg>
     Reprendre où j'en étais
@@ -1406,7 +1416,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <strong>9 modules · 1 démarche en 7 étapes · 1 diagnostic personnalisé.</strong> Adossée au modèle PRÉSENCE (Fahim, 2022) et aux travaux de référence en neuroéducation, cette plateforme permet à chaque enseignant·e de construire son propre parcours de développement professionnel, à son rythme.
     <div style="margin-top:10px;font-size:.85rem;color:var(--text-subtle);display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
       <span style="flex-shrink:0;">⏱</span>
-      <span>Durée estimée du parcours complet : <strong>~3h45</strong> (hors ressources d'approfondissement, à votre rythme)</span>
+      <span>Durée estimée du parcours essentiel : <strong>≈ 6h25</strong> (diagnostic complet inclus, hors ressources d'approfondissement, à votre rythme — <a href="modules.html#temps-a-prevoir" style="color:inherit;">détail par module</a>)</span>
     </div>
   </div>
 
@@ -1437,10 +1447,63 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   </div>
 </section>
 
+<!-- ─── Section : Comment commencer (trois portes d'entrée) ─── -->
+<div style="max-width:1400px;margin:0 auto 36px;padding:50px 28px 30px;text-align:center;">
+  <div style="display:inline-block;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent3);padding:7px 18px;background:linear-gradient(135deg,rgba(83,52,131,.12),rgba(245,166,35,.10));border:1px solid rgba(83,52,131,.15);border-radius:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(83,52,131,.08);">Comment commencer ?</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--text-strong);margin:0 0 14px;letter-spacing:-.01em;">Trois portes d'entrée selon votre besoin</h2>
+  <p style="font-size:1.02rem;color:var(--text-muted);margin:0 auto;max-width:680px;line-height:1.6;">Choisissez celle qui correspond le mieux à votre situation actuelle. Vous pouvez ensuite naviguer librement entre les différentes ressources.<br><br><strong>Comment s'articulent ces trois entrées ?</strong> Le <em>diagnostic</em> vous situe et vous oriente. La <em>démarche en 7 étapes</em> est le fil conducteur du parcours. Les <em>modules</em> sont les contenus de formation approfondis, mobilisés à chaque étape de la démarche — ce ne sont pas des parcours séparés, mais les briques d'un même cheminement.</p>
+</div>
+
+<section class="portes" aria-label="Trois façons d'aborder la plateforme">
+  <a href="diagnostic.html" class="porte porte-diag">
+    <span class="porte-recommended-tag">Recommandé</span>
+    <div class="porte-icon">
+      <svg class="icon icon-lg"><use href="#i-target"/></svg>
+    </div>
+    <div class="porte-eyebrow">Étape 1 · Niveau 1</div>
+    <h2 class="porte-title">Je commence par le diagnostic</h2>
+    <p class="porte-desc">Auto-évaluation PRÉSENCE en 5 minutes. Vous obtenez un profil personnalisé qui pointe vos 2-3 modules prioritaires à travailler. Le chemin le plus direct quand on ne sait pas par où commencer.</p>
+    <span class="porte-cta">
+      Faire mon diagnostic
+      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+    </span>
+  </a>
+
+  <a href="demarche.html" class="porte porte-demarche">
+    <div class="porte-icon">
+      <svg class="icon icon-lg"><use href="#i-list"/></svg>
+    </div>
+    <div class="porte-eyebrow">Parcours structuré</div>
+    <h2 class="porte-title">Je suis la démarche en 7 étapes</h2>
+    <p class="porte-desc">Parcours guidé linéaire et progressif, structuré autour des 7 étapes de la résilience professionnelle. Recommandé si vous voulez une progression méthodique et complète, sur plusieurs semaines.</p>
+    <span class="porte-cta">
+      Découvrir la démarche
+      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+    </span>
+  </a>
+
+  <a href="modules.html" class="porte porte-catalogue">
+    <div class="porte-icon">
+      <svg class="icon icon-lg"><use href="#i-grid"/></svg>
+    </div>
+    <div class="porte-eyebrow">Accès libre</div>
+    <h2 class="porte-title">J'accède directement aux 9 modules</h2>
+    <p class="porte-desc">Vous savez déjà ce que vous cherchez. Parcourez les 9 modules, choisissez celui qui correspond à vos besoins du moment. Idéal pour les enseignant·e·s expérimenté·e·s ou pour revenir sur un thème précis.</p>
+    <span class="porte-cta">
+      Voir les 9 modules
+      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+    </span>
+  </a>
+</section>
+<!-- Séparateur visuel : transition Comment → Pourquoi -->
+<div style="text-align:center;margin:30px 0 20px;">
+  <div style="display:inline-block;width:60px;height:3px;background:linear-gradient(90deg,var(--accent3),var(--gold));border-radius:2px;"></div>
+</div>
+
 <!-- ─── Section : Pourquoi développer la résilience ─── -->
 <div style="padding:16px 24px 0;"><section class="pourquoi-section">
   <div class="pourquoi-wrapper">
-    <div class="section-label">Point de départ</div>
+    <div class="section-label">Pour aller plus loin</div>
     <h2 class="pourquoi-title">Pourquoi développer sa résilience professionnelle ?</h2>
     <p class="pourquoi-intro">La profession enseignante est soumise à des pressions croissantes qui fragilisent le bien-être professionnel. Voici ce que disent les études les plus récentes.</p>
 
@@ -1502,8 +1565,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
           <div class="risk-text">Ressources personnelles sous-développées face aux défis systémiques</div>
         </div>
 
-        <div class="sources-block">
-          <strong>Sources :</strong><br>
+        <details class="sources-block">
+          <summary style="cursor:pointer;font-weight:700;">Sources</summary>
           Kunz Heim et al. (2014) · Trachsler et al. (2003–2008), HEP Suisse du Nord-Ouest<br>
           Studer &amp; Quarroz (2017). <em>Santé des enseignants romands.</em> IST/SER<br>
           Syndicat des enseignants romands — SER (2017). Enquête auprès de 5 500 enseignants romands<br>
@@ -1511,7 +1574,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
           HES-SO Valais. Enquête de satisfaction du personnel enseignant du canton du Valais, 2024<br>
           Rapport sur le système éducatif suisse (2010)<br>
           Duchaine, M.-P., Gaudreau, N., Frenette, É. &amp; Dia, F. (2024). <em>Le MOOC : un dispositif prometteur pour favoriser le bien-être du personnel scolaire.</em> RITPU/IJTHE, 21(2), article 8. https://doi.org/10.18162/ritpu-2024-v21n2-08
-        </div>
+        </details>
       </div>
 
     </div>
@@ -1528,58 +1591,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </section></div>
 
 
-<!-- Séparateur visuel : transition Pourquoi → Comment -->
-<div style="text-align:center;margin:30px 0 20px;">
-  <div style="display:inline-block;width:60px;height:3px;background:linear-gradient(90deg,var(--accent3),var(--gold));border-radius:2px;"></div>
-</div>
 
-<div style="max-width:1400px;margin:0 auto 36px;padding:50px 28px 30px;text-align:center;">
-  <div style="display:inline-block;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--accent3);padding:7px 18px;background:linear-gradient(135deg,rgba(83,52,131,.12),rgba(245,166,35,.10));border:1px solid rgba(83,52,131,.15);border-radius:16px;margin-bottom:20px;box-shadow:0 2px 8px rgba(83,52,131,.08);">Comment commencer ?</div>
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--text-strong);margin:0 0 14px;letter-spacing:-.01em;">Trois portes d'entrée selon votre besoin</h2>
-  <p style="font-size:1.02rem;color:var(--text-muted);margin:0 auto;max-width:680px;line-height:1.6;">Choisissez celle qui correspond le mieux à votre situation actuelle. Vous pouvez ensuite naviguer librement entre les différentes ressources.<br><br><strong>Comment s'articulent ces trois entrées ?</strong> Le <em>diagnostic</em> vous situe et vous oriente. La <em>démarche en 7 étapes</em> est le fil conducteur du parcours. Les <em>modules</em> sont les contenus de formation approfondis, mobilisés à chaque étape de la démarche — ce ne sont pas des parcours séparés, mais les briques d'un même cheminement.</p>
-</div>
-
-<section class="portes" aria-label="Trois façons d'aborder la plateforme">
-  <a href="diagnostic.html" class="porte porte-diag">
-    <span class="porte-recommended-tag">Recommandé</span>
-    <div class="porte-icon">
-      <svg class="icon icon-lg"><use href="#i-target"/></svg>
-    </div>
-    <div class="porte-eyebrow">Étape 1 · Niveau 1</div>
-    <h2 class="porte-title">Je commence par le diagnostic</h2>
-    <p class="porte-desc">Auto-évaluation PRÉSENCE en 5 minutes. Vous obtenez un profil personnalisé qui pointe vos 2-3 modules prioritaires à travailler. Le chemin le plus direct quand on ne sait pas par où commencer.</p>
-    <span class="porte-cta">
-      Faire mon diagnostic
-      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
-    </span>
-  </a>
-
-  <a href="demarche.html" class="porte porte-demarche">
-    <div class="porte-icon">
-      <svg class="icon icon-lg"><use href="#i-list"/></svg>
-    </div>
-    <div class="porte-eyebrow">Parcours structuré</div>
-    <h2 class="porte-title">Je suis la démarche en 7 étapes</h2>
-    <p class="porte-desc">Parcours guidé linéaire et progressif, structuré autour des 7 étapes de la résilience professionnelle. Recommandé si vous voulez une progression méthodique et complète, sur plusieurs semaines.</p>
-    <span class="porte-cta">
-      Découvrir la démarche
-      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
-    </span>
-  </a>
-
-  <a href="modules.html" class="porte porte-catalogue">
-    <div class="porte-icon">
-      <svg class="icon icon-lg"><use href="#i-grid"/></svg>
-    </div>
-    <div class="porte-eyebrow">Accès libre</div>
-    <h2 class="porte-title">J'accède directement aux 9 modules</h2>
-    <p class="porte-desc">Vous savez déjà ce que vous cherchez. Parcourez les 9 modules, choisissez celui qui correspond à vos besoins du moment. Idéal pour les enseignant·e·s expérimenté·e·s ou pour revenir sur un thème précis.</p>
-    <span class="porte-cta">
-      Voir les 9 modules
-      <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
-    </span>
-  </a>
-</section>
 
 <section class="section-secondary">
   <h2>Ressources et approfondissements</h2>
@@ -1628,7 +1640,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       Florence Griessen et Guillaume Roduit · 2026<br>
       En collaboration avec Dr. Cherine Fahim, CAS en neurosciences de l'éducation, Université de Fribourg et Endoxa Neuroscience.
     </div>
-    <div style="margin-top:8px;font-size:.72rem;opacity:.7;">Dernière mise à jour : 16 juin 2026</div>
+    <div style="margin-top:8px;font-size:.72rem;opacity:.7;">Dernière mise à jour : 7 septembre 2026</div>
   </div>
 </footer>
 
@@ -1671,7 +1683,7 @@ window.addEventListener('DOMContentLoaded', function(){
 function resumeLastModule(){
   var banner = document.getElementById('resume-banner');
   var n = banner.dataset.module;
-  if(n) window.location.href = (n === '1' ? 'prototype_module1_v5.html' : 'prototype_module' + n + '.html');
+  if(n) window.location.href = ('module' + n + '.html');
 }
 
 function dismissResume(){
@@ -2104,7 +2116,7 @@ function dismissResume(){
       '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">1. Quelle dimension de votre bien-être professionnel avez-vous le mieux identifiée grâce à ce parcours ? En quoi cette prise de conscience modifie-t-elle votre regard sur votre pratique ?</label>' +
       '<textarea id="bilan-q1" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:20px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
 
-      '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">2. Citez une stratégie concrète issue du parcours que vous avez expérimentée ou envisagez d'expérimenter dans votre contexte professionnel.</label>' +
+      '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">2. Citez une stratégie concrète issue du parcours que vous avez expérimentée ou envisagez d\'expérimenter dans votre contexte professionnel.</label>' +
       '<textarea id="bilan-q2" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:20px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
 
       '<label style="display:block;font-weight:600;margin-bottom:6px;color:#1a3a5c;">3. Sur quels appuis (collègues, ressources, dispositifs institutionnels) pouvez-vous vous appuyer pour maintenir cette démarche dans la durée ?</label>' +
@@ -2114,7 +2126,7 @@ function dismissResume(){
       '<textarea id="bilan-q4" rows="4" style="width:100%;box-sizing:border-box;padding:10px;border:1px solid #ccd;border-radius:6px;font-size:.92rem;margin-bottom:28px;resize:vertical;" placeholder="Votre réponse…"></textarea>' +
 
       '<div style="display:flex;gap:12px;justify-content:flex-end;">' +
-        '<button onclick="document.getElementById('bilan-modal').remove()" style="padding:10px 20px;border:1px solid #ccd;background:#f5f7fa;border-radius:6px;cursor:pointer;font-size:.92rem;">Fermer</button>' +
+        '<button onclick="document.getElementById(\'bilan-modal\').remove()" style="padding:10px 20px;border:1px solid #ccd;background:#f5f7fa;border-radius:6px;cursor:pointer;font-size:.92rem;">Fermer</button>' +
         '<button onclick="window.exportBilanPDF()" style="padding:10px 22px;background:#1a3a5c;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.92rem;font-weight:600;">Exporter en PDF</button>' +
       '</div>' +
     '</div>';
@@ -2130,7 +2142,7 @@ function dismissResume(){
     var q4 = (document.getElementById('bilan-q4') || {}).value || '';
 
     if(!q1.trim() && !q2.trim() && !q3.trim() && !q4.trim()){
-      alert('Veuillez compléter au moins une réponse avant d'exporter.');
+      alert('Veuillez compléter au moins une réponse avant d\'exporter.');
       return;
     }
 
@@ -2159,7 +2171,7 @@ function dismissResume(){
       '<div class="reponse">' + (q1.trim() ? esc(q1) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
 
       '<h2>2. Stratégie expérimentée ou envisagée</h2>' +
-      '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Citez une stratégie concrète issue du parcours que vous avez expérimentée ou envisagez d'expérimenter dans votre contexte professionnel.</p>' +
+      '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Citez une stratégie concrète issue du parcours que vous avez expérimentée ou envisagez d\'expérimenter dans votre contexte professionnel.</p>' +
       '<div class="reponse">' + (q2.trim() ? esc(q2) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
 
       '<h2>3. Appuis identifiés</h2>' +
@@ -2170,10 +2182,8 @@ function dismissResume(){
       '<p style="font-size:.88rem;color:#555;margin-bottom:6px;">Quel est votre prochain pas — une action précise, réaliste, datée ?</p>' +
       '<div class="reponse">' + (q4.trim() ? esc(q4) : '<em style="color:#aaa;">Non renseigné</em>') + '</div>' +
 
-      '<div class="footer">Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS · rodoguigs.github.io/Ressources_Autoformation</div>' +
-      '
-
-</body></html>';
+      '<div class="footer">Plateforme d\'autoformation à la résilience professionnelle enseignante · HEP-VS · rodoguigs.github.io/Ressources_Autoformation</div>' +
+      '</body></html>';
 
     var win = window.open('', '_blank');
     if(!win){ alert('Veuillez autoriser les fenêtres pop-up pour exporter le bilan.'); return; }
@@ -2344,7 +2354,7 @@ function dismissResume(){
   // Décider quel mode afficher
   if (resume && resume.moduleFile) {
     // Mode "Continuer"
-    icon.textContent = '';
+    if (icon) icon.textContent = '';
     eyebrow.textContent = 'Bon retour';
     title.textContent = 'Reprenez là où vous vous étiez arrêté';
     desc.textContent = 'Vous travailliez sur le Module ' + resume.moduleNum + ' — ' + resume.moduleTitre + '.';
@@ -2360,7 +2370,7 @@ function dismissResume(){
     block.style.display = 'block';
   } else if (progress.diagnosticDone) {
     // Diagnostic fait mais pas de module commencé
-    icon.textContent = '';
+    if (icon) icon.textContent = '';
     eyebrow.textContent = 'Diagnostic terminé';
     title.textContent = 'Découvrez les modules recommandés';
     desc.textContent = 'Sur la base de votre profil, explorez le catalogue pour choisir vos premiers modules.';
@@ -2369,10 +2379,10 @@ function dismissResume(){
     block.style.display = 'block';
   } else {
     // Première visite : suggérer le diagnostic
-    icon.textContent = '';
+    if (icon) icon.textContent = '';
     eyebrow.textContent = 'Première étape';
     title.textContent = 'Commencez par identifier vos priorités';
-    desc.textContent = 'Le diagnostic rapide (10 minutes) vous dira où concentrer votre énergie en premier. C\'est la meilleure porte d\'entrée pour ce parcours.';
+    desc.textContent = 'Le diagnostic rapide (5 minutes) vous dira où concentrer votre énergie en premier. C\'est la meilleure porte d\'entrée pour ce parcours.';
     cta.href = 'diagnostic.html';
     cta.textContent = 'Faire le diagnostic →';
     block.style.display = 'block';
@@ -2462,8 +2472,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const stats = window.AutProgress.getGlobalProgress();
     const fill = document.getElementById('aut-progress-fill');
     const text = document.getElementById('aut-progress-text');
-    if (fill) fill.style.width = stats.percentage + '%';
-    if (text) text.textContent = stats.percentage + '% · ' + stats.completed + '/' + stats.total + ' modules';
+    if (fill) fill.style.width = stats.percent + '%';
+    if (text) text.textContent = stats.percent + '% · ' + stats.completed + '/' + stats.total + ' modules';
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', updateProgress);
@@ -2480,6 +2490,7 @@ function toggleNavPlus(){
   var open = d.style.display==='flex';
   d.style.display = open ? 'none' : 'flex';
   d.style.flexDirection = 'column';
+  var b=document.querySelector('.nav-plus-btn'); if(b) b.setAttribute('aria-expanded', open ? 'false' : 'true');
 }
 document.addEventListener('click',function(e){
   var w=document.getElementById('nav-plus-wrap');
@@ -2503,7 +2514,7 @@ document.addEventListener('click',function(e){
     +'<p class="onboard-intro">Cette formation se construit en 3 temps. Suivez le parcours recommandé pour en tirer le maximum.</p>'
     +'<div class="onboard-steps">'
     +'<a class="onboard-step" href="diagnostic.html"><div class="onboard-step-num" style="background:var(--accent1)">1</div><div class="onboard-step-body"><div class="onboard-step-label">Diagnostic PRÉSENCE</div><div class="onboard-step-desc">Identifiez vos forces et axes de développement (10 min).</div></div></a>'
-    +'<a class="onboard-step" href="fondements.html"><div class="onboard-step-num" style="background:var(--accent3)">2</div><div class="onboard-step-body"><div class="onboard-step-label">Cadres de référence</div><div class="onboard-step-desc">Comprenez les bases théoriques et neuroscientifiques avant d'entrer dans les modules.</div></div></a>'
+    +'<a class="onboard-step" href="fondements.html"><div class="onboard-step-num" style="background:var(--accent3)">2</div><div class="onboard-step-body"><div class="onboard-step-label">Cadres de référence</div><div class="onboard-step-desc">Comprenez les bases théoriques et neuroscientifiques avant d\'entrer dans les modules.</div></div></a>'
     +'<a class="onboard-step" href="modules.html"><div class="onboard-step-num" style="background:var(--sage)">3</div><div class="onboard-step-body"><div class="onboard-step-label">Modules de formation</div><div class="onboard-step-desc">Explorez les 9 modules selon vos résultats au diagnostic.</div></div></a>'
     +'</div>'
     +'<button class="onboard-cta" onclick="window.startOnboard()">Commencer par le diagnostic →</button>'

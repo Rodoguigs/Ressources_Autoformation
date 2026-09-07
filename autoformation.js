@@ -12,15 +12,15 @@
   
   // Liste ordonnée des modules (selon ta numérotation : 1,2,3,4,6,7,8,9)
   const MODULES = [
-    { num: 1, file: 'prototype_module1_v5.html', titre: 'Bien-être professionnel' },
-    { num: 2, file: 'prototype_module2.html', titre: 'Prévention du burnout' },
-    { num: 3, file: 'prototype_module3.html', titre: 'Profil des besoins de formation' },
-    { num: 4, file: 'prototype_module4.html', titre: 'Vulnérabilité au stress' },
-    { num: 5, file: 'prototype_module5.html', titre: 'Posture professionnelle et PRÉSENCE' },
-    { num: 6, file: 'prototype_module6.html', titre: 'Cartographie des ressources' },
-    { num: 7, file: 'prototype_module7.html', titre: 'Mentorat entre pairs' },
-    { num: 8, file: 'prototype_module8.html', titre: 'TDAH, classes difficiles et autodétermination' },
-    { num: 9, file: 'prototype_module9.html', titre: 'Prendre soin de soi' },
+    { num: 1, file: 'module1.html', titre: 'Bien-être professionnel' },
+    { num: 2, file: 'module2.html', titre: 'Prévention du burnout' },
+    { num: 3, file: 'module3.html', titre: 'Profil des besoins de formation' },
+    { num: 4, file: 'module4.html', titre: 'Vulnérabilité au stress' },
+    { num: 5, file: 'module5.html', titre: 'Posture professionnelle et PRÉSENCE' },
+    { num: 6, file: 'module6.html', titre: 'Cartographie des ressources' },
+    { num: 7, file: 'module7.html', titre: 'Mentorat entre pairs' },
+    { num: 8, file: 'module8.html', titre: 'TDAH, classes difficiles et autodétermination' },
+    { num: 9, file: 'module9.html', titre: 'Prendre soin de soi' },
   ];
   
   // Récupérer l'état actuel
@@ -51,7 +51,7 @@
     p.lastVisit = new Date().toISOString();
     
     // Si c'est un module, tracker
-    const modMatch = path.match(/prototype_module(\d)/);
+    const modMatch = path.match(/^module(\d)\.html$/);
     if (modMatch) {
       const num = parseInt(modMatch[1]);
       p.lastModule = num;

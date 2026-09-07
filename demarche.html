@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="La démarche d'autoformation en 7 étapes : de la connaissance de soi au soin de soi, pour développer sa résilience enseignante.">
 <title>La démarche en 7 étapes · Autoformation</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Autoformation à la résilience professionnelle enseignante">
+  <meta property="og:title" content="La démarche en 7 étapes · Autoformation">
+  <meta property="og:description" content="La démarche d'autoformation en 7 étapes : de la connaissance de soi au soin de soi, pour développer sa résilience enseignante.">
+  <meta property="og:url" content="https://rodoguigs.github.io/Ressources_Autoformation/demarche.html">
+  <meta property="og:locale" content="fr_CH">
+  <meta name="twitter:card" content="summary">
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -872,6 +880,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
   .app-header{padding:10px 14px;gap:10px}
 }
 </style>
+
+<style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -909,7 +919,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
     <span class="nav-sep">→</span>
     <a href="modules.html" class="nav-link"><span class="nav-step"><span class="nav-step-num" data-n="3">3</span>Modules</span></a>
     <div class="nav-plus-wrap" id="nav-plus-wrap">
-      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" type="button">
+      <button class="nav-plus-btn" onclick="toggleNavPlus()" aria-label="Plus" aria-haspopup="true" aria-expanded="false" aria-controls="nav-plus-dropdown" type="button">
         Plus <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="nav-plus-dropdown" id="nav-plus-dropdown">
@@ -971,9 +981,9 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Partir de soi</h2>
         <p class="etape-sub">Explorer son bien-être professionnel, ses vulnérabilités et son profil de résilience. C'est le point de départ : on ne peut accompagner durablement les élèves qu'en prenant d'abord soin de ses propres ressources.</p>
         <div class="etape-modules">
-          <a href="prototype_module1_v5.html" class="etape-mod-chip">Module 1 — Bien-être</a>
-          <a href="prototype_module2.html" class="etape-mod-chip">Module 2 — Épuisement</a>
-          <a href="prototype_module4.html" class="etape-mod-chip">Module 4 — Stress</a>
+          <a href="module1.html" class="etape-mod-chip">Module 1 — Bien-être</a>
+          <a href="module2.html" class="etape-mod-chip">Module 2 — Épuisement</a>
+          <a href="module4.html" class="etape-mod-chip">Module 4 — Stress</a>
         </div>
       </div>
     </div>
@@ -985,8 +995,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Comprendre</h2>
         <p class="etape-sub">Cartographier ses ressources (personnelles, professionnelles, relationnelles, institutionnelles, externes) et identifier ses besoins de formation prioritaires par une analyse stratégique.</p>
         <div class="etape-modules">
-          <a href="prototype_module3.html" class="etape-mod-chip">Module 3 — Besoins de formation</a>
-          <a href="prototype_module6.html" class="etape-mod-chip">Module 6 — Cartographie</a>
+          <a href="module3.html" class="etape-mod-chip">Module 3 — Besoins de formation</a>
+          <a href="module6.html" class="etape-mod-chip">Module 6 — Cartographie</a>
         </div>
       </div>
     </div>
@@ -998,7 +1008,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Agir sur la posture</h2>
         <p class="etape-sub">Développer sa présence professionnelle et ses compétences socio-émotionnelles à partir du modèle PRÉSENCE (Fahim, 2022) et des 8 dimensions de la posture enseignante.</p>
         <div class="etape-modules">
-          <a href="prototype_module5.html" class="etape-mod-chip">Module 5 — Posture & PRÉSENCE</a>
+          <a href="module5.html" class="etape-mod-chip">Module 5 — Posture & PRÉSENCE</a>
         </div>
       </div>
     </div>
@@ -1010,7 +1020,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Observer</h2>
         <p class="etape-sub">Analyser les dynamiques de classe et les interactions à la lumière de sa posture : repérer les boucles de rétroaction, la contagion émotionnelle et les leviers d'ajustement.</p>
         <div class="etape-modules">
-          <a href="prototype_module5.html" class="etape-mod-chip">Module 5 — Posture & PRÉSENCE</a>
+          <a href="module5.html" class="etape-mod-chip">Module 5 — Posture & PRÉSENCE</a>
         </div>
       </div>
     </div>
@@ -1022,8 +1032,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Ajuster</h2>
         <p class="etape-sub">Affiner sa posture dans la durée et développer des pratiques de soutien mutuel entre pairs (mentorat informel, pratique réflexive partagée).</p>
         <div class="etape-modules">
-          <a href="prototype_module5.html" class="etape-mod-chip">Module 5 — Posture</a>
-          <a href="prototype_module7.html" class="etape-mod-chip">Module 7 — Mentorat</a>
+          <a href="module5.html" class="etape-mod-chip">Module 5 — Posture</a>
+          <a href="module7.html" class="etape-mod-chip">Module 7 — Mentorat</a>
         </div>
       </div>
     </div>
@@ -1035,7 +1045,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Gérer la complexité</h2>
         <p class="etape-sub">Intervenir face aux situations complexes : TDAH, classes difficiles, comportements perturbateurs. Comprendre les fonctions exécutives, utiliser le recadrage gradué et favoriser l'autodétermination.</p>
         <div class="etape-modules">
-          <a href="prototype_module8.html" class="etape-mod-chip">Module 8 — TDAH & classes difficiles</a>
+          <a href="module8.html" class="etape-mod-chip">Module 8 — TDAH & classes difficiles</a>
         </div>
       </div>
     </div>
@@ -1047,7 +1057,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
         <h2 class="etape-title">Prendre soin de soi pour prendre soin des autres</h2>
         <p class="etape-sub">Réguler ses propres ressources pour accompagner durablement : prévenir la fatigue de compassion, cultiver la satisfaction de compassion, poser des limites bienveillantes.</p>
         <div class="etape-modules">
-          <a href="prototype_module9.html" class="etape-mod-chip">Module 9 — Prendre soin de soi</a>
+          <a href="module9.html" class="etape-mod-chip">Module 9 — Prendre soin de soi</a>
         </div>
       </div>
     </div>
@@ -1067,7 +1077,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       Florence Griessen et Guillaume Roduit · 2026<br>
       En collaboration avec Dr. Cherine Fahim, CAS en neurosciences de l'éducation, Université de Fribourg et Endoxa Neuroscience.
     </div>
-    <div style="margin-top:8px;font-size:.72rem;opacity:.7;">Dernière mise à jour : 16 juin 2026</div>
+    <div style="margin-top:8px;font-size:.72rem;opacity:.7;">Dernière mise à jour : 7 septembre 2026</div>
   </div>
 </footer>
 
@@ -1525,6 +1535,7 @@ function toggleNavPlus(){
   var open = d.style.display==='flex';
   d.style.display = open ? 'none' : 'flex';
   d.style.flexDirection = 'column';
+  var b=document.querySelector('.nav-plus-btn'); if(b) b.setAttribute('aria-expanded', open ? 'false' : 'true');
 }
 document.addEventListener('click',function(e){
   var w=document.getElementById('nav-plus-wrap');

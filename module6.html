@@ -1,0 +1,4356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Module 6 : cartographier ses ressources personnelles, relationnelles et institutionnelles.">
+<title>Module 6 · Cartographie personnelle des ressources</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Autoformation à la résilience professionnelle enseignante">
+  <meta property="og:title" content="Module 6 · Cartographie personnelle des ressources">
+  <meta property="og:description" content="Module 6 : cartographier ses ressources personnelles, relationnelles et institutionnelles.">
+  <meta property="og:url" content="https://rodoguigs.github.io/Ressources_Autoformation/module6.html">
+  <meta property="og:locale" content="fr_CH">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23533483%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f5a623%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22url%28%23g%29%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2268%22%20font-family%3D%22Georgia%2Cserif%22%20font-size%3D%2258%22%20font-weight%3D%22700%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3EP%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function() {
+  try {
+    var saved = localStorage.getItem('aut_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.setAttribute('data-theme', 'dark');
+  } catch(e) {}
+})();
+</script>
+<style>
+:root{
+  --ink:#1a1a2e; --deep:#16213e; --accent1:#e94560; --accent2:#0f3460;
+  --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
+  --light:#f8f5f0; --muted:#7a7a9d;
+  --surface:#ffffff; --surface-alt:#fafbff;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --border-soft:rgba(0,0,0,.08);
+  --mod-color: #4a7c59;
+  --mod-color-soft: #f0faf4;
+  --mod-color-deep: #3d6649;
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.02);
+  --shadow-floating: 0 4px 14px rgba(0,0,0,.12);
+
+  /* ─── Palette par fonction pédagogique de section ─── */
+  /* §1 TL;DR — chaleur, accueil (crème) */
+  --sec1-bg: #fdfaf3;
+  --sec1-tint: #faf2dd;
+  --sec1-num-bg: #f5e6c8;
+  --sec1-num-fg: #8b6914;
+  --sec1-rule: #d4a854;
+  /* §2 Pourquoi — bleu pâle (réflexion, ancrage) */
+  --sec2-bg: #f6f9fc;
+  --sec2-tint: #e8eff8;
+  --sec2-num-bg: #d6e3f0;
+  --sec2-num-fg: #1e4a7a;
+  --sec2-rule: #4a7cb8;
+  /* §3 Théorie — ivoire (lecture longue, papier) */
+  --sec3-bg: #fbf8f3;
+  --sec3-tint: #f4ecdf;
+  --sec3-num-bg: #ede0c6;
+  --sec3-num-fg: #6b4f1e;
+  --sec3-rule: #a07c3a;
+  /* §4 Pratique — rose pâle (action, énergie — couleur module) */
+  --sec4-bg: #fef5f7;
+  --sec4-tint: #fce4ea;
+  --sec4-num-bg: #f8c8d3;
+  --sec4-num-fg: #9b1c3a;
+  --sec4-rule: #d94661;
+  /* §5 Approfondir — violet pâle (exploration) */
+  --sec5-bg: #faf7fc;
+  --sec5-tint: #eee2f5;
+  --sec5-num-bg: #ddc7ec;
+  --sec5-num-fg: #4d2570;
+  --sec5-rule: #7c4ba0;
+  /* §6 Synthèse — vert pâle (clôture, validation) */
+  --sec6-bg: #f3faf4;
+  --sec6-tint: #ddefe1;
+  --sec6-num-bg: #c5e2cb;
+  --sec6-num-fg: #2c5a36;
+  --sec6-rule: #5a9968;
+}
+
+[data-theme="dark"]{
+  --ink:#e8e8f0; --deep:#1c2640; --light:#0f1115; --muted:#9090a8;
+  --surface:#1a1d24; --surface-alt:#13161c;
+  --text-strong:#e8e8f0; --text-body:#c8c8d0; --text-muted:#a8a8b8; --text-subtle:#88889a;
+  --border-soft:rgba(255,255,255,.1);
+  --accent1:#ff5e7a; --accent2:#5582d4; --accent3:#7b54a0;
+  --gold:#ffb74d; --sage:#7fb88a; --sky:#5ab8e8;
+  --mod-color: #7fb88a;
+  --mod-color-soft: rgba(74,124,89,.15);
+  --mod-color-deep: #a3d4ad;
+  --shadow-floating: 0 4px 14px rgba(0,0,0,.5);
+
+  /* Palette sections en mode sombre — versions très désaturées */
+  --sec1-bg: #1d1c18;
+  --sec1-tint: #2d2920;
+  --sec1-num-bg: #3a3220;
+  --sec1-num-fg: #d4a854;
+  --sec1-rule: #b8902f;
+  --sec2-bg: #181c24;
+  --sec2-tint: #1f2733;
+  --sec2-num-bg: #28354a;
+  --sec2-num-fg: #7eaad6;
+  --sec2-rule: #5582d4;
+  --sec3-bg: #1c1b18;
+  --sec3-tint: #2a2620;
+  --sec3-num-bg: #38301e;
+  --sec3-num-fg: #c9a861;
+  --sec3-rule: #a07c3a;
+  --sec4-bg: #1f1818;
+  --sec4-tint: #2d2024;
+  --sec4-num-bg: #4a232e;
+  --sec4-num-fg: #f08896;
+  --sec4-rule: #e94560;
+  --sec5-bg: #1c1820;
+  --sec5-tint: #25202c;
+  --sec5-num-bg: #3a2c46;
+  --sec5-num-fg: #b591d3;
+  --sec5-rule: #7c4ba0;
+  --sec6-bg: #181c19;
+  --sec6-tint: #1f2820;
+  --sec6-num-bg: #26382b;
+  --sec6-num-fg: #88c294;
+  --sec6-rule: #5a9968;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--light); color:var(--text-body);
+  line-height:1.65; font-size:15px;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── Skip link (accessibilité) ─── */
+.skip-link{
+  position:absolute;left:-9999px;top:0;
+  background:var(--accent2);color:white;
+  padding:10px 16px;border-radius:0 0 8px 0;
+  font-weight:600;text-decoration:none;
+  z-index:200;
+}
+.skip-link:focus{left:0;outline:2px solid var(--gold);outline-offset:2px}
+
+/* ─── Icônes SVG ─── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-sm{width:.85em;height:.85em}
+.icon-lg{width:1.25em;height:1.25em}
+
+/* ═══ HEADER ═══ */
+.app-header{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);
+  border-bottom:1px solid var(--border-soft);
+  padding:12px 28px;
+  display:flex;align-items:center;gap:20px;
+  backdrop-filter:blur(8px);
+  flex-wrap:wrap;
+}
+.app-logo{
+  font-family:'Playfair Display',serif;
+  font-weight:900;font-size:1.05rem;
+  color:var(--accent2);text-decoration:none;letter-spacing:-.01em;
+  display:inline-flex;align-items:center;gap:8px;
+}
+[data-theme="dark"] .app-logo{color:var(--text-strong)}
+.app-breadcrumb{font-size:.82rem;color:var(--text-muted);display:flex;align-items:center;gap:8px;flex:1;min-width:200px}
+.app-breadcrumb a{color:var(--text-muted);text-decoration:none;border-bottom:1px dotted transparent}
+.app-breadcrumb a:hover{border-bottom-color:var(--text-muted);color:var(--text-strong)}
+.app-breadcrumb .sep{opacity:.4}
+.app-breadcrumb .current{color:var(--mod-color);font-weight:600}
+
+.hep-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;padding:5px 11px;border-radius:14px;
+  font-size:.74rem;font-weight:600;letter-spacing:.02em;
+}
+
+.theme-toggle, .header-btn, .header-menu-btn{
+  background:none;border:1px solid var(--border-soft);
+  border-radius:8px;padding:6px 10px;cursor:pointer;
+  font-size:.85rem;color:var(--text-body);font-family:inherit;
+  display:inline-flex;align-items:center;gap:5px;
+  position:relative;
+}
+.theme-toggle:hover, .header-btn:hover, .header-menu-btn:hover{background:var(--surface-alt);color:var(--text-strong)}
+.theme-toggle:focus-visible, .header-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Menu déroulant header */
+.header-menu-wrap{position:relative}
+.header-menu{
+  position:absolute;top:calc(100% + 6px);right:0;
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:10px;
+  box-shadow:var(--shadow-floating);
+  min-width:200px;padding:6px;display:none;z-index:120;
+}
+.header-menu.open{display:block}
+.header-menu button{
+  width:100%;text-align:left;background:none;border:none;
+  padding:9px 12px;border-radius:6px;cursor:pointer;
+  font-family:inherit;font-size:.85rem;color:var(--text-body);
+  display:flex;align-items:center;gap:10px;
+}
+.header-menu button:hover{background:var(--surface-alt);color:var(--text-strong)}
+
+.mini-jauge{display:flex;align-items:center;gap:10px;font-size:.74rem;color:var(--text-muted)}
+.mini-jauge-bar{width:80px;height:5px;background:var(--surface-alt);border-radius:3px;overflow:hidden;border:1px solid var(--border-soft)}
+.mini-jauge-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--gold));width:33%;border-radius:3px}
+
+/* ─── Bandeau de reprise ─── */
+.scroll-progress{
+  position:fixed;top:0;left:0;right:0;
+  height:3px;z-index:200;
+  background:transparent;pointer-events:none;
+}
+.scroll-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--mod-color), var(--accent3), var(--sage));
+  width:0%;transition:width .1s linear;
+  box-shadow:0 0 8px var(--mod-color);
+}
+@media print{.scroll-progress{display:none}}
+.resume-banner{
+  background:linear-gradient(135deg,#fffbeb,#fef3c7);
+  border-bottom:1px solid #fde68a;
+  padding:10px 28px;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  font-size:.85rem;color:#78350f;flex-wrap:wrap;
+}
+[data-theme="dark"] .resume-banner{
+  background:rgba(245,166,35,.12); border-color:rgba(245,166,35,.3); color:var(--gold);
+}
+.resume-banner.completed{
+  background:linear-gradient(135deg,#e8f5e9,#c8e6c9);
+  border-color:#a5d6a7; color:#1b5e20;
+}
+[data-theme="dark"] .resume-banner.completed{
+  background:rgba(127,184,138,.15); border-color:rgba(127,184,138,.3); color:var(--sage);
+}
+.resume-banner button{
+  background:var(--surface);border:1px solid currentColor;
+  color:inherit;padding:5px 12px;border-radius:8px;
+  font-family:inherit;font-size:.8rem;font-weight:600;cursor:pointer;
+}
+.resume-banner button:hover{opacity:.85}
+.resume-banner.hidden{display:none}
+
+/* ═══ BANNIÈRE MODULE — version contractable ═══ */
+.mod-banner{
+  background:linear-gradient(135deg,var(--mod-color),var(--mod-color-deep));
+  color:white;
+  padding:36px 28px 32px;
+  position:relative;overflow:hidden;
+  transition:padding .3s ease;
+}
+.mod-banner.compact{padding:14px 28px}
+.mod-banner::before{
+  content:'';position:absolute;top:-50%;right:-10%;width:60%;height:200%;
+  background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.mod-banner-inner{
+  max-width:1400px;margin:0 auto;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+  position:relative;
+}
+.mod-banner-num{
+  width:64px;height:64px;border-radius:16px;
+  background:rgba(255,255,255,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;
+  border:2px solid rgba(255,255,255,.25);
+  flex-shrink:0;
+  transition:width .3s, height .3s, font-size .3s, border-radius .3s;
+}
+.mod-banner.compact .mod-banner-num{width:38px;height:38px;font-size:1.2rem;border-radius:10px}
+.mod-banner-meta{flex:1;min-width:240px}
+.mod-banner-eyebrow{
+  font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  opacity:.85;font-weight:600;margin-bottom:6px;
+  transition:opacity .25s, height .25s, margin .25s;
+  overflow:hidden;
+}
+.mod-banner.compact .mod-banner-eyebrow{opacity:0;height:0;margin:0}
+.mod-banner-title{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:700;
+  margin:0;line-height:1.15;letter-spacing:-.01em;
+  transition:font-size .3s;
+}
+.mod-banner.compact .mod-banner-title{font-size:1.15rem}
+.mod-banner-sub, .mod-banner-chips, .mod-banner-actions{
+  transition:opacity .25s, max-height .3s, margin .25s;
+  overflow:hidden;
+}
+.mod-banner-sub{margin-top:6px;font-size:.92rem;opacity:.95;font-weight:300;max-height:60px}
+.mod-banner.compact .mod-banner-sub{opacity:0;max-height:0;margin:0}
+.mod-banner-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;max-height:80px}
+.mod-banner.compact .mod-banner-chips{opacity:0;max-height:0;margin:0}
+.mod-banner-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;max-height:60px;transition:max-height .3s, margin .3s, opacity .25s}
+.mod-banner.compact .mod-banner-actions{
+  margin-top:0;
+  position:absolute;top:50%;right:28px;transform:translateY(-50%);
+  max-height:60px;opacity:1;
+}
+.mod-banner.compact .mod-banner-action{
+  padding:5px 10px;font-size:.72rem;
+}
+
+/* Chips de la bannière — hiérarchisées */
+.mod-chip-info{
+  background:rgba(255,255,255,.12);
+  padding:4px 10px;border-radius:14px;
+  font-size:.74rem;font-weight:500;
+  display:inline-flex;align-items:center;gap:5px;
+  color:rgba(255,255,255,.9);
+}
+.mod-chip-link{
+  background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.45);
+  padding:5px 12px;border-radius:20px;
+  font-size:.74rem;font-weight:600;
+  display:inline-flex;align-items:center;gap:6px;
+  text-decoration:none;color:white;
+  transition:background .15s, transform .15s;
+  cursor:pointer;
+}
+.mod-chip-link:hover{background:rgba(255,255,255,.35);transform:translateY(-1px)}
+.mod-chip-link:focus-visible{outline:2px solid white;outline-offset:2px}
+
+.mod-banner-action{
+  background:rgba(255,255,255,.92);
+  color:var(--mod-color-deep);
+  border:none;padding:8px 14px;border-radius:10px;
+  font-family:inherit;font-size:.78rem;font-weight:700;
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  transition:transform .15s, background .15s;
+}
+.mod-banner-action:hover{background:white;transform:translateY(-1px)}
+
+/* ═══ LAYOUT ═══ */
+.mod-layout{
+  max-width:1400px;margin:0 auto;
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:40px;
+  padding:32px 28px 80px;
+}
+
+/* ═══ SOMMAIRE (desktop) ═══ */
+.mod-toc{
+  position:sticky;top:80px;align-self:start;height:fit-content;font-size:.82rem;
+}
+.mod-toc-title{
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--text-subtle);
+  margin-bottom:14px;padding-left:14px;
+}
+.mod-toc-list{list-style:none;padding:0;margin:0}
+.mod-toc-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:9px 14px;border-radius:10px;
+  cursor:pointer;color:var(--text-body);text-decoration:none;
+  border-left:3px solid transparent;
+  transition:all .18s;margin-bottom:2px;line-height:1.4;
+}
+.mod-toc-item:hover{background:var(--surface-alt);color:var(--text-strong)}
+.mod-toc-item:focus-visible{outline:2px solid var(--accent2);outline-offset:1px}
+.mod-toc-item.active{
+  background:var(--mod-color-soft);
+  color:var(--mod-color-deep);
+  border-left-color:var(--mod-color);
+  font-weight:600;
+}
+[data-theme="dark"] .mod-toc-item.active{color:var(--mod-color-deep)}
+.mod-toc-num{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  background:var(--surface);border:1.5px solid var(--border-soft);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:var(--text-muted);
+}
+.mod-toc-item.active .mod-toc-num{background:var(--mod-color);color:white;border-color:var(--mod-color)}
+.mod-toc-item.done .mod-toc-num{background:var(--sage);color:white;border-color:var(--sage)}
+.mod-toc-item.done .mod-toc-num-text{display:none}
+.mod-toc-item.done .mod-toc-num::after{
+  content:'';display:block;width:8px;height:4px;
+  border-left:1.5px solid white;border-bottom:1.5px solid white;
+  transform:rotate(-45deg) translate(1px,-1px);
+}
+.mod-toc-time{
+  display:block;font-size:.68rem;color:var(--text-subtle);
+  font-weight:400;margin-top:2px;
+}
+.mod-toc-item.active .mod-toc-time{color:var(--mod-color-deep);opacity:.8}
+
+.mod-toc-progress{
+  margin-top:18px;padding:14px;border-radius:12px;
+  background:var(--surface-alt);border:1px solid var(--border-soft);
+}
+.mod-toc-progress-label{
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-subtle);font-weight:700;margin-bottom:8px;
+}
+.mod-toc-progress-bar{height:6px;background:var(--surface);border-radius:4px;overflow:hidden}
+.mod-toc-progress-fill{height:100%;background:var(--mod-color);width:0%;border-radius:4px;transition:width .4s}
+.mod-toc-progress-text{margin-top:6px;font-size:.76rem;color:var(--text-muted)}
+.mod-toc-time-spent{
+  margin-top:10px;padding-top:10px;
+  border-top:1px solid var(--border-soft);
+  font-size:.74rem;color:var(--text-muted);
+  display:flex;align-items:center;gap:6px;
+}
+.mod-toc-time-spent strong{color:var(--text-strong);font-weight:700}
+
+.mod-toc-back{
+  margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:9px 14px;border-radius:10px;
+  background:var(--surface);border:1px solid var(--border-soft);
+  color:var(--text-body);text-decoration:none;
+  font-size:.78rem;font-weight:600;
+  transition:all .15s;
+}
+.mod-toc-back:hover{background:var(--surface-alt);color:var(--text-strong);border-color:var(--text-muted)}
+
+/* ═══ SOMMAIRE MOBILE FLOTTANT ═══ */
+.toc-fab{
+  display:none;position:fixed;bottom:24px;right:24px;
+  width:56px;height:56px;border-radius:50%;
+  background:var(--mod-color);color:white;border:none;
+  box-shadow:var(--shadow-floating);
+  cursor:pointer;z-index:90;
+  align-items:center;justify-content:center;
+  transition:transform .15s, background .15s;
+}
+.toc-fab:hover{background:var(--mod-color-deep);transform:scale(1.05)}
+.toc-fab-badge{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--sage);color:white;
+  font-size:.65rem;font-weight:700;
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid var(--light);
+}
+
+.toc-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.5);z-index:130;
+  align-items:flex-end;
+}
+.toc-overlay.open{display:flex}
+.toc-drawer{
+  background:var(--surface);
+  width:100%;max-height:85vh;
+  border-radius:20px 20px 0 0;
+  padding:20px;overflow-y:auto;
+  animation:slideUp .25s ease;
+}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.toc-drawer-handle{
+  width:40px;height:4px;background:var(--border-soft);
+  border-radius:2px;margin:0 auto 16px;
+}
+.toc-drawer-close{
+  position:absolute;top:14px;right:14px;
+  background:none;border:none;font-size:1.4rem;
+  color:var(--text-muted);cursor:pointer;padding:6px;
+}
+
+/* ═══ CONTENU ═══ */
+.mod-content{min-width:0}
+
+.mod-section{
+  background:var(--surface);
+  border-radius:16px;
+  padding:32px 32px 28px;
+  margin-bottom:24px;
+  border:1px solid var(--border-soft);
+  scroll-margin-top:80px;
+  box-shadow:var(--shadow-soft);
+  position:relative;
+  overflow:hidden;
+}
+/* Trait coloré horizontal en haut de chaque section */
+.mod-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:3px;
+  background:var(--sec-rule, var(--mod-color));
+  opacity:.8;
+}
+/* Fond teinté par section */
+.mod-section[data-sec="1"]{background:var(--sec1-bg);--sec-rule:var(--sec1-rule);--sec-num-bg:var(--sec1-num-bg);--sec-num-fg:var(--sec1-num-fg);--sec-tint:var(--sec1-tint)}
+.mod-section[data-sec="2"]{background:var(--sec2-bg);--sec-rule:var(--sec2-rule);--sec-num-bg:var(--sec2-num-bg);--sec-num-fg:var(--sec2-num-fg);--sec-tint:var(--sec2-tint)}
+.mod-section[data-sec="3"]{background:var(--sec3-bg);--sec-rule:var(--sec3-rule);--sec-num-bg:var(--sec3-num-bg);--sec-num-fg:var(--sec3-num-fg);--sec-tint:var(--sec3-tint)}
+.mod-section[data-sec="4"]{background:var(--sec4-bg);--sec-rule:var(--sec4-rule);--sec-num-bg:var(--sec4-num-bg);--sec-num-fg:var(--sec4-num-fg);--sec-tint:var(--sec4-tint)}
+.mod-section[data-sec="5"]{background:var(--sec5-bg);--sec-rule:var(--sec5-rule);--sec-num-bg:var(--sec5-num-bg);--sec-num-fg:var(--sec5-num-fg);--sec-tint:var(--sec5-tint)}
+.mod-section[data-sec="6"]{background:var(--sec6-bg);--sec-rule:var(--sec6-rule);--sec-num-bg:var(--sec6-num-bg);--sec-num-fg:var(--sec6-num-fg);--sec-tint:var(--sec6-tint)}
+
+.mod-section-head{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:20px;padding-bottom:18px;
+  border-bottom:1px solid var(--border-soft);
+}
+.mod-section-num{
+  width:42px;height:42px;border-radius:50%;
+  background:var(--sec-num-bg, var(--mod-color-soft));
+  color:var(--sec-num-fg, var(--mod-color-deep));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;
+  flex-shrink:0;
+  box-shadow:0 0 0 4px var(--sec-tint, var(--mod-color-soft));
+}
+[data-theme="dark"] .mod-section-num{color:var(--mod-color)}
+.mod-section-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  color:var(--text-strong);margin:0;line-height:1.2;
+}
+.mod-section-eyebrow{
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-subtle);font-weight:600;margin-bottom:4px;
+}
+.mod-section-meta{
+  margin-left:auto;font-size:.74rem;color:var(--text-subtle);
+}
+
+/* Limiter la longueur de ligne pour le confort de lecture */
+.mod-section p, .mod-section ul{max-width:80ch}
+.mod-section p{margin:0 0 14px;color:var(--text-body)}
+.mod-section ul{margin:8px 0 14px;padding-left:24px}
+.mod-section ul li{margin-bottom:6px}
+.mod-section strong{color:var(--text-strong);font-weight:600}
+.mod-section em{font-style:italic;color:var(--text-muted)}
+
+/* ─── Sous-titres uniformisés ─── */
+.mod-subtitle{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--text-strong);
+  margin:28px 0 12px;
+  padding-left:14px;
+  border-left:3px solid var(--sec-rule, var(--mod-color));
+  line-height:1.3;
+}
+.mod-subtitle:first-of-type{margin-top:8px}
+
+/* ─── Mini-index intra-section ─── */
+.section-index{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:18px;padding:10px 14px;
+  background:var(--surface-alt);
+  border-radius:10px;
+  border:1px solid var(--border-soft);
+  font-size:.78rem;
+}
+.section-index-label{
+  color:var(--text-subtle);font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+  font-size:.7rem;align-self:center;margin-right:4px;
+}
+.section-index a{
+  color:var(--text-body);text-decoration:none;
+  padding:3px 9px 3px 9px;border-radius:12px;
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  transition:all .15s;
+  display:inline-flex;align-items:center;gap:5px;
+  position:relative;
+}
+.section-index a::before{
+  content:'';display:inline-block;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border-soft);
+  transition:background .2s, transform .2s;
+}
+.section-index a:hover{
+  background:var(--mod-color-soft);
+  color:var(--mod-color-deep);border-color:var(--mod-color);
+}
+.section-index a.visited::before{
+  background:var(--sage);
+}
+.section-index a.current::before{
+  background:var(--mod-color);
+  transform:scale(1.4);
+  box-shadow:0 0 0 3px var(--mod-color-soft);
+}
+.section-index a.current{
+  background:var(--mod-color-soft);
+  color:var(--mod-color-deep);
+  border-color:var(--mod-color);
+  font-weight:600;
+}
+
+/* ─── SYSTÈME DE BLOCS — 3 types ─── */
+/* Type A : bloc d'information (fond doux, accent gauche coloré) */
+.block-info{
+  background:linear-gradient(135deg, var(--surface-alt), var(--surface));
+  border-left:4px solid var(--mod-color);
+  border-radius:0 12px 12px 0;
+  padding:18px 22px;
+  margin:16px 0;
+  border-top:1px solid var(--border-soft);
+  border-right:1px solid var(--border-soft);
+  border-bottom:1px solid var(--border-soft);
+}
+.block-info-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:.95rem;margin:0 0 10px;
+  display:flex;align-items:center;gap:8px;
+}
+.block-info ul:last-child, .block-info p:last-child{margin-bottom:0}
+
+/* TL;DR §1 — accents crème chaleureux */
+.tldr-info{
+  background:linear-gradient(135deg, #fff8e7 0%, #fef3c7 100%);
+  border-left:4px solid var(--sec1-rule);
+  border-top:1px solid rgba(212,168,84,.18);
+  border-right:1px solid rgba(212,168,84,.18);
+  border-bottom:1px solid rgba(212,168,84,.18);
+}
+[data-theme="dark"] .tldr-info{
+  background:linear-gradient(135deg, rgba(212,168,84,.1), rgba(212,168,84,.04));
+  border-color:rgba(212,168,84,.25);
+}
+.tldr-info strong{color:var(--sec1-num-fg)}
+[data-theme="dark"] .tldr-info strong{color:var(--sec1-rule)}
+
+/* Variante : information neutre (sans couleur module) */
+.block-info--neutral{border-left-color:var(--accent3)}
+/* Variante : citation expressive */
+.block-info--quote{
+  background:linear-gradient(135deg, #f6f0fb 0%, #faf7fc 100%);
+  border-left:4px solid var(--accent3);
+  color:var(--text-body);
+  font-style:italic;
+  position:relative;
+  padding:20px 24px 18px 56px;
+}
+[data-theme="dark"] .block-info--quote{
+  background:linear-gradient(135deg, rgba(124,75,160,.12), rgba(124,75,160,.04));
+}
+.block-info--quote::before{
+  content:'\201C';
+  position:absolute;
+  left:14px;top:0;
+  font-family:'Playfair Display',serif;
+  font-size:4.5rem;font-weight:900;
+  color:var(--accent3);
+  opacity:.35;
+  line-height:1;
+}
+.block-info--quote cite{
+  display:block;margin-top:10px;font-style:normal;
+  font-size:.78rem;color:var(--accent3);font-weight:600;
+  letter-spacing:.02em;
+}
+[data-theme="dark"] .block-info--quote cite{color:var(--accent3)}
+
+/* Type B : bloc d'action (fond uni, bordure complète, généreux) */
+.block-action{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:22px;
+  margin:16px 0;
+  box-shadow:var(--shadow-soft);
+}
+.block-action-head{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.block-action-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:1rem;margin:0;
+  display:flex;align-items:center;gap:8px;
+}
+.block-action-meta{
+  margin-left:auto;font-size:.72rem;
+  color:var(--text-subtle);font-style:italic;
+}
+.block-action-help{
+  font-size:.84rem;color:var(--text-muted);
+  margin-bottom:14px;
+}
+
+/* Variante : auto-évaluation (mod-color en accent) */
+.block-action--check{
+  background:linear-gradient(135deg, #f0f9f1 0%, #e8f5ea 100%);
+  border:1px solid rgba(74,124,89,.25);
+  border-left:5px solid var(--sec6-rule);
+}
+[data-theme="dark"] .block-action--check{
+  background:linear-gradient(135deg, rgba(127,184,138,.1), rgba(127,184,138,.04));
+  border-color:rgba(127,184,138,.25);
+  border-left-color:var(--sec6-rule);
+}
+
+/* Fiche action — bloc miel/ambré, action engagée */
+.block-action.fiche-block{
+  background:linear-gradient(135deg, #fffaf0 0%, #fef5e7 100%);
+  border:1px solid rgba(245,166,35,.25);
+  border-left:5px solid var(--gold);
+}
+[data-theme="dark"] .block-action.fiche-block{
+  background:linear-gradient(135deg, rgba(245,166,35,.08), rgba(245,166,35,.04));
+  border-color:rgba(245,166,35,.25);
+  border-left-color:var(--gold);
+}
+.fiche-block .block-action-title{color:#92400e}
+[data-theme="dark"] .fiche-block .block-action-title{color:var(--gold)}
+.fiche-block .pratique-field input,
+.fiche-block .pratique-field textarea{
+  background:white;
+  border-color:rgba(245,166,35,.3);
+}
+
+/* ─── Tooltip d'aide sur les dimensions d'auto-évaluation ─── */
+.thermo-help{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;margin-left:5px;
+  border-radius:50%;border:1px solid var(--accent3, #533483);
+  color:var(--accent3, #533483);font-size:.62rem;font-weight:700;
+  cursor:help;position:relative;vertical-align:middle;
+  font-family:inherit;line-height:1;
+}
+.thermo-help::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink, #1a1a2e);color:#f5f5f8;
+  padding:9px 13px;border-radius:8px;
+  font-size:.76rem;font-weight:400;line-height:1.5;
+  width:230px;max-width:80vw;text-align:left;
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  opacity:0;pointer-events:none;transition:opacity .15s;
+  z-index:60;
+}
+.thermo-help:hover::after{opacity:1;}
+@media (max-width:600px){
+  .thermo-help::after{left:0;transform:none;}
+}
+[data-theme="dark"] .fiche-block .pratique-field input,
+[data-theme="dark"] .fiche-block .pratique-field textarea{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(245,166,35,.3);
+}
+.fiche-block .pratique-field input:focus,
+.fiche-block .pratique-field textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(245,166,35,.18);
+}
+.fiche-block .pratique-btn-primary{background:var(--gold);color:#5c3500}
+.fiche-block .pratique-btn-primary:hover{background:#d68f1e;color:white}
+
+/* ─── Encart PRÉSENCE au §3 ─── */
+.presence-link{
+  background:linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border:1px solid rgba(45,156,219,.3);
+  border-left:5px solid var(--sky);
+  border-radius:14px;
+  padding:14px 18px;
+  margin:14px 0 22px;
+  display:flex;align-items:center;gap:14px;
+  flex-wrap:wrap;
+  text-decoration:none;color:inherit;
+  transition:all .15s;
+}
+[data-theme="dark"] .presence-link{
+  background:linear-gradient(135deg, rgba(45,156,219,.1), rgba(45,156,219,.04));
+  border-color:rgba(45,156,219,.3);
+}
+.presence-link:hover{
+  background:linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(45,156,219,.15);
+}
+[data-theme="dark"] .presence-link:hover{
+  background:linear-gradient(135deg, rgba(45,156,219,.15), rgba(45,156,219,.08));
+}
+.presence-link-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:white;color:var(--sky);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  border:1.5px solid var(--sky);
+}
+[data-theme="dark"] .presence-link-icon{
+  background:rgba(0,0,0,.3);
+}
+.presence-link-content{flex:1;min-width:200px}
+.presence-link-eyebrow{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:var(--sky);margin-bottom:2px;
+}
+.presence-link-text{
+  font-weight:700;color:var(--text-strong);font-size:.95rem;
+}
+.presence-link-cta{
+  font-size:.78rem;color:var(--sky);font-weight:600;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.block-aux{
+  background:linear-gradient(135deg, #faf5fd 0%, #f7f0fc 100%);
+  border:1px solid rgba(124,75,160,.18);
+  border-radius:12px;
+  padding:14px 18px;margin:14px 0;
+  border-left:4px solid var(--accent3);
+}
+[data-theme="dark"] .block-aux{
+  background:linear-gradient(135deg, rgba(124,75,160,.1), rgba(124,75,160,.04));
+  border-color:rgba(124,75,160,.25);
+}
+.block-aux-title{
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--accent3);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.block-aux-title::before{
+  content:'';display:inline-block;
+  width:14px;height:2px;background:var(--accent3);
+  border-radius:2px;
+}
+
+.vocab-list{display:flex;flex-wrap:wrap;gap:6px}
+.vocab-list a{
+  background:white;
+  border:1px solid rgba(124,75,160,.25);
+  padding:5px 12px;border-radius:14px;
+  font-size:.78rem;color:var(--accent3);font-weight:600;
+  text-decoration:none;
+  transition:all .15s;
+}
+[data-theme="dark"] .vocab-list a{
+  background:rgba(255,255,255,.04);color:var(--accent3);
+  border-color:rgba(124,75,160,.35);
+}
+.vocab-list a:hover{
+  background:var(--accent3);color:white;
+  border-color:var(--accent3);
+  transform:translateY(-1px);
+}
+
+/* ─── Termes de glossaire — accessibles tactile ─── */
+.gloss-term{
+  border-bottom:1.5px dotted var(--accent3);
+  cursor:help;color:var(--accent3);font-weight:500;
+  position:relative;
+}
+[data-theme="dark"] .gloss-term{color:var(--accent3)}
+.gloss-term:hover, .gloss-term:focus, .gloss-term.active{
+  background:rgba(83,52,131,.08);border-radius:3px;
+}
+.gloss-term:focus-visible{outline:2px solid var(--accent3);outline-offset:2px;border-radius:3px}
+.gloss-tip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#f5f5f8;
+  padding:10px 14px;border-radius:8px;
+  font-size:.78rem;font-weight:400;line-height:1.5;
+  width:260px;max-width:90vw;text-align:left;
+  box-shadow:var(--shadow-floating);
+  opacity:0;pointer-events:none;transition:opacity .15s;
+  z-index:50;
+}
+[data-theme="dark"] .gloss-tip{
+  background:#2a2d36;color:#e8e8f0;
+  border:1px solid var(--border-soft);
+}
+.gloss-tip::after{
+  content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:var(--ink);
+}
+[data-theme="dark"] .gloss-tip::after{border-top-color:#2a2d36}
+.gloss-term:hover .gloss-tip, .gloss-term:focus .gloss-tip, .gloss-term.active .gloss-tip{opacity:1}
+
+/* §3 grilles 5 dimensions — chaque dimension a sa couleur sémantique */
+.fond-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.fond-grid > div{
+  background:var(--surface);
+  border-radius:12px;
+  padding:16px 18px;
+  border:1px solid var(--border-soft);
+  border-left:4px solid var(--dim-color, var(--mod-color));
+  position:relative;
+  transition:transform .15s, box-shadow .15s;
+}
+.fond-grid > div:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+[data-theme="dark"] .fond-grid > div:hover{box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.fond-grid .grid-titre{
+  font-weight:700;color:var(--dim-color, var(--mod-color-deep));
+  font-size:.92rem;margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+}
+.fond-grid .grid-num{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--dim-color-soft);color:var(--dim-color);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.82rem;flex-shrink:0;
+  font-family:'Playfair Display',serif;
+}
+.fond-grid p{margin:0;font-size:.86rem;max-width:none;color:var(--text-body)}
+
+/* Couleurs sémantiques par dimension */
+/* ① Énergie physique — orange chaleureux (le corps, la vitalité) */
+.dim-energie{
+  --dim-color:#d97706;
+  --dim-color-soft:#fef3c7;
+}
+[data-theme="dark"] .dim-energie{
+  --dim-color:#fbbf24;
+  --dim-color-soft:rgba(217,119,6,.15);
+}
+/* ② Stabilité émotionnelle — rouge-rose (le cœur, les émotions) */
+.dim-emotion{
+  --dim-color:#c0392b;
+  --dim-color-soft:#fee2e2;
+}
+[data-theme="dark"] .dim-emotion{
+  --dim-color:#f87171;
+  --dim-color-soft:rgba(192,57,43,.15);
+}
+/* ③ Clarté cognitive — bleu (le mental, la pensée) */
+.dim-cognitif{
+  --dim-color:#1d4ed8;
+  --dim-color-soft:#dbeafe;
+}
+[data-theme="dark"] .dim-cognitif{
+  --dim-color:#60a5fa;
+  --dim-color-soft:rgba(29,78,216,.18);
+}
+/* ④ Soutien social — vert (les liens, le tissu humain) */
+.dim-social{
+  --dim-color:#15803d;
+  --dim-color-soft:#dcfce7;
+}
+[data-theme="dark"] .dim-social{
+  --dim-color:#4ade80;
+  --dim-color-soft:rgba(21,128,61,.18);
+}
+/* ⑤ Sens & valeurs — violet (l'élévation, le sens profond) */
+.dim-sens{
+  --dim-color:#7c2d92;
+  --dim-color-soft:#f3e8ff;
+}
+[data-theme="dark"] .dim-sens{
+  --dim-color:#c084fc;
+  --dim-color-soft:rgba(124,45,146,.2);
+}
+
+/* ─── Actions hiérarchisées (3 niveaux) ─── */
+.action-group{
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:10px;margin-top:18px;
+}
+.ref-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 16px;border-radius:10px;
+  background:var(--mod-color);color:white;
+  text-decoration:none;font-size:.84rem;font-weight:700;
+  border:1px solid var(--mod-color);
+  box-shadow:0 2px 8px rgba(233,69,96,.18);
+  transition:all .15s;
+}
+.ref-primary:hover{
+  background:var(--mod-color-deep);border-color:var(--mod-color-deep);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(233,69,96,.25);
+}
+.ref-primary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+[data-theme="dark"] .ref-primary{box-shadow:0 2px 8px rgba(255,94,122,.25)}
+
+.ref-internal{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 14px;border-radius:10px;
+  background:transparent;color:var(--accent2);
+  text-decoration:none;font-size:.82rem;font-weight:600;
+  border:1.5px solid var(--accent2);
+  transition:all .15s;
+}
+.ref-internal:hover{background:var(--accent2);color:white;transform:translateY(-1px)}
+.ref-internal:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+[data-theme="dark"] .ref-internal{color:var(--text-strong);border-color:var(--accent2)}
+[data-theme="dark"] .ref-internal:hover{background:var(--accent2);color:white}
+
+.ref-external-group{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--surface-alt);
+  padding:6px 12px 6px 14px;
+  border-radius:20px;
+  border:1px solid var(--border-soft);
+}
+.ref-external{
+  display:inline-flex;align-items:center;gap:4px;
+  color:var(--text-muted);text-decoration:none;
+  font-size:.8rem;font-weight:500;
+  border-bottom:1px solid transparent;
+  padding-bottom:1px;transition:all .15s;
+}
+.ref-external:hover{color:var(--accent2);border-bottom-color:var(--accent2)}
+[data-theme="dark"] .ref-external:hover{color:var(--text-strong);border-bottom-color:var(--text-strong)}
+.ref-external-label{
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-subtle);font-weight:700;
+}
+
+/* ─── Encart diagnostic personnel au §2 ─── */
+.diag-result{
+  background:linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border:1px solid rgba(212,168,84,.4);
+  border-left:5px solid #d4a854;
+  border-radius:14px;
+  padding:18px 22px;
+  margin:16px 0 22px;
+  display:flex;align-items:center;gap:18px;
+  flex-wrap:wrap;
+  position:relative;
+}
+[data-theme="dark"] .diag-result{
+  background:linear-gradient(135deg, rgba(212,168,84,.12), rgba(212,168,84,.04));
+  border-color:rgba(212,168,84,.3);
+}
+.diag-result-avatar{
+  width:54px;height:54px;border-radius:50%;
+  background:white;color:#92400e;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:900;
+  border:3px solid #d4a854;
+  box-shadow:0 2px 6px rgba(146,64,14,.15);
+}
+[data-theme="dark"] .diag-result-avatar{
+  background:rgba(0,0,0,.3);color:#fbbf24;
+}
+.diag-result-content{flex:1;min-width:240px}
+.diag-result-eyebrow{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;color:#92400e;margin-bottom:3px;
+}
+[data-theme="dark"] .diag-result-eyebrow{color:#fbbf24}
+.diag-result-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--text-strong);margin:0 0 6px;
+}
+.diag-result-dim{
+  display:inline-flex;align-items:center;gap:6px;
+  background:white;
+  padding:5px 12px;border-radius:14px;
+  font-size:.82rem;font-weight:700;
+  color:#92400e;
+  border:1px solid #d4a854;
+}
+[data-theme="dark"] .diag-result-dim{
+  background:rgba(0,0,0,.3);color:#fbbf24;
+  border-color:rgba(212,168,84,.3);
+}
+.diag-result-link{
+  font-size:.78rem;color:#92400e;
+  text-decoration:underline;font-weight:600;
+}
+[data-theme="dark"] .diag-result-link{color:#fbbf24}
+.block-info.complement-block{
+  background:linear-gradient(135deg, #fff5f5 0%, #fef0f3 100%);
+  border-left:4px solid var(--mod-color);
+  border-top:1px solid rgba(217,70,97,.12);
+  border-right:1px solid rgba(217,70,97,.12);
+  border-bottom:1px solid rgba(217,70,97,.12);
+}
+[data-theme="dark"] .block-info.complement-block{
+  background:linear-gradient(135deg, rgba(255,94,122,.08), rgba(255,94,122,.04));
+  border-color:rgba(255,94,122,.2);
+  border-left-color:var(--mod-color);
+}
+.complement-block .block-info-title{
+  color:var(--mod-color-deep);
+  display:flex;align-items:center;gap:8px;
+}
+[data-theme="dark"] .complement-block .block-info-title{color:var(--mod-color)}
+.complement-block .block-info-title::before{
+  content:'';display:inline-block;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--mod-color);
+  background-image:linear-gradient(135deg, var(--mod-color), var(--mod-color-deep));
+  flex-shrink:0;
+  box-shadow:0 0 0 4px var(--mod-color-soft);
+}
+.complement-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.complement-link{
+  display:inline-flex;align-items:center;gap:6px;
+  background:white;border:1.5px solid var(--mod-color);
+  padding:8px 14px;border-radius:8px;
+  text-decoration:none;color:var(--mod-color-deep);
+  font-size:.84rem;font-weight:700;transition:all .15s;
+}
+[data-theme="dark"] .complement-link{
+  background:rgba(255,255,255,.04);color:var(--mod-color);
+}
+.complement-link:hover{
+  background:var(--mod-color);color:white;
+  transform:translateY(-1px);
+  box-shadow:0 4px 10px rgba(217,70,97,.25);
+}
+
+/* ─── Vocabulaire ─── */
+/* §4 champs */
+.pratique-field{margin-bottom:14px}
+.pratique-field label{
+  display:block;font-size:.82rem;font-weight:600;
+  color:var(--text-strong);margin-bottom:6px;
+}
+.pratique-field input, .pratique-field textarea{
+  width:100%;padding:9px 12px;
+  border:1px solid var(--border-soft);
+  border-radius:8px;font-family:inherit;
+  font-size:.88rem;background:var(--surface);
+  color:var(--text-body);resize:vertical;
+}
+.pratique-field input:focus, .pratique-field textarea:focus{
+  outline:none;border-color:var(--mod-color);
+  box-shadow:0 0 0 3px var(--mod-color-soft);
+}
+.pratique-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.pratique-btn{
+  padding:9px 16px;border:none;border-radius:8px;
+  font-family:inherit;font-size:.82rem;font-weight:600;
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  transition:all .15s;
+}
+.pratique-btn-primary{background:var(--mod-color);color:white}
+.pratique-btn-primary:hover{background:var(--mod-color-deep)}
+.pratique-btn-secondary{
+  background:var(--surface);color:var(--text-body);
+  border:1px solid var(--border-soft);
+}
+.pratique-btn-secondary:hover{background:var(--surface-alt)}
+.pratique-btn-ghost{
+  background:transparent;color:var(--text-muted);
+  border:1px solid transparent;
+}
+.pratique-btn-ghost:hover{color:var(--accent1);background:rgba(233,69,96,.06)}
+.saved-flag{
+  font-size:.78rem;color:var(--sage);font-weight:600;
+  opacity:0;transition:opacity .3s;
+  display:inline-flex;align-items:center;gap:4px;
+}
+.saved-flag.visible{opacity:1}
+
+/* Thermomètre — bloc d'action chaleureux */
+.block-action.thermo-block{
+  background:linear-gradient(135deg, #fff5f5 0%, #ffeef2 50%, #fff5f5 100%);
+  border:1px solid #f5c8d2;
+  border-left:5px solid var(--sec4-rule);
+  position:relative;
+}
+[data-theme="dark"] .block-action.thermo-block{
+  background:linear-gradient(135deg, rgba(217,70,97,.08), rgba(217,70,97,.04));
+  border-color:rgba(217,70,97,.25);
+  border-left-color:var(--sec4-rule);
+}
+.block-action.thermo-block::before{
+  content:'';position:absolute;top:0;right:0;width:120px;height:120px;
+  background:radial-gradient(circle at top right, rgba(217,70,97,.08), transparent 70%);
+  border-radius:14px;pointer-events:none;
+}
+.thermo-block .block-action-title{color:var(--sec4-num-fg)}
+[data-theme="dark"] .thermo-block .block-action-title{color:var(--sec4-num-fg)}
+.thermo-block .pratique-field input{
+  background:white;
+  border-color:#f5c8d2;
+  text-align:center;font-size:1.05rem;font-weight:700;
+  color:var(--sec4-num-fg);
+}
+[data-theme="dark"] .thermo-block .pratique-field input{
+  background:rgba(255,255,255,.06);border-color:rgba(217,70,97,.3);
+  color:var(--sec4-num-fg);
+}
+.thermo-block .pratique-field input:focus{
+  border-color:var(--sec4-rule);
+  box-shadow:0 0 0 3px rgba(217,70,97,.15);
+}
+.thermo-resultat{
+  margin-top:18px;padding:16px 18px;border-radius:12px;
+  background:white;
+  border:1px solid #f5c8d2;
+  box-shadow:0 1px 3px rgba(217,70,97,.08);
+}
+[data-theme="dark"] .thermo-resultat{
+  background:rgba(0,0,0,.2);
+  border-color:rgba(217,70,97,.25);
+}
+.thermo-score{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:12px;flex-wrap:wrap;gap:8px;
+}
+.thermo-score-num{
+  font-weight:700;font-size:1.05rem;color:var(--text-strong);
+  font-family:'Playfair Display',serif;
+}
+.thermo-score-num span{
+  color:var(--sec4-rule);
+  font-size:1.3rem;font-weight:900;
+}
+.thermo-bar-global{
+  height:10px;background:#fee2e2;border-radius:6px;
+  overflow:hidden;margin-bottom:16px;
+  border:1px solid rgba(217,70,97,.12);
+}
+[data-theme="dark"] .thermo-bar-global{
+  background:rgba(217,70,97,.12);border-color:rgba(217,70,97,.2);
+}
+.thermo-bar-fill{
+  height:100%;background:var(--sage);
+  border-radius:5px;width:0%;
+  transition:width .5s ease-out, background .3s;
+  box-shadow:0 0 8px currentColor;
+}
+.thermo-dim{margin-bottom:10px}
+.thermo-dim-head{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:4px}
+.thermo-dim-val{font-weight:700;color:var(--text-strong);font-family:'Playfair Display',serif}
+.thermo-dim-bar{
+  height:8px;background:rgba(0,0,0,.06);border-radius:5px;overflow:hidden;
+}
+[data-theme="dark"] .thermo-dim-bar{background:rgba(255,255,255,.08)}
+.thermo-dim-fill{height:100%;border-radius:5px;width:0%;transition:width .4s}
+.thermo-interp{
+  margin-top:16px;padding:14px 16px;
+  border-radius:10px;
+  font-size:.88rem;color:var(--text-body);line-height:1.65;
+  max-width:80ch;
+  background:linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3));
+  border:1px solid rgba(217,70,97,.12);
+}
+[data-theme="dark"] .thermo-interp{
+  background:rgba(255,255,255,.04);
+  border-color:rgba(255,255,255,.08);
+}
+.thermo-interp strong{color:var(--sec4-num-fg);font-weight:700}
+[data-theme="dark"] .thermo-interp strong{color:var(--sec4-rule)}
+
+/* ─── Radar thermomètre ─── */
+.thermo-radar-wrap{
+  display:flex;align-items:center;gap:18px;
+  margin-bottom:14px;flex-wrap:wrap;
+}
+.thermo-radar{
+  width:200px;height:200px;flex-shrink:0;
+  background:white;border-radius:50%;
+  border:1px solid rgba(217,70,97,.15);
+  box-shadow:inset 0 0 0 1px rgba(217,70,97,.05), 0 1px 4px rgba(0,0,0,.04);
+}
+[data-theme="dark"] .thermo-radar{
+  background:rgba(0,0,0,.2);
+  border-color:rgba(217,70,97,.25);
+}
+.thermo-radar-grid{stroke:rgba(217,70,97,.18);stroke-width:1;fill:none}
+[data-theme="dark"] .thermo-radar-grid{stroke:rgba(255,255,255,.12)}
+.thermo-radar-axis{stroke:rgba(0,0,0,.1);stroke-width:1}
+[data-theme="dark"] .thermo-radar-axis{stroke:rgba(255,255,255,.1)}
+.thermo-radar-shape{
+  fill:rgba(217,70,97,.18);
+  stroke:var(--sec4-rule);
+  stroke-width:2;stroke-linejoin:round;
+  transition:all .4s ease-out;
+}
+.thermo-radar-point{fill:var(--sec4-rule);transition:cx .4s, cy .4s}
+.thermo-radar-label{
+  font-size:10px;font-weight:700;font-family:'DM Sans',sans-serif;
+  fill:var(--text-strong);
+}
+.thermo-radar-num{
+  font-size:15px;font-weight:800;font-family:'Playfair Display',serif;
+}
+.thermo-bars-col{flex:1;min-width:220px}
+.thermo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
+.thermo-grid .pratique-field{margin-bottom:0}
+
+/* Notes personnelles */
+.notes-toggle{
+  background:var(--surface);border:1px solid var(--border-soft);
+  border-radius:10px;padding:10px 14px;
+  cursor:pointer;font-family:inherit;font-size:.85rem;font-weight:600;
+  color:var(--text-body);
+  display:inline-flex;align-items:center;gap:8px;
+  margin-top:14px;transition:all .15s;
+}
+.notes-toggle:hover{background:var(--surface-alt);border-color:var(--accent3);color:var(--accent3)}
+.notes-toggle .chev{transition:transform .2s;display:inline-flex}
+.notes-toggle.open .chev{transform:rotate(180deg)}
+.notes-panel{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:12px;padding:18px;margin-top:10px;
+  display:none;
+}
+.notes-panel.open{display:block}
+.notes-panel textarea{
+  width:100%;min-height:120px;padding:12px;
+  border:1px solid var(--border-soft);border-radius:8px;
+  font-family:inherit;font-size:.88rem;
+  background:var(--surface-alt);color:var(--text-body);
+  resize:vertical;line-height:1.6;
+}
+.notes-panel textarea:focus{outline:none;border-color:var(--accent3);box-shadow:0 0 0 3px rgba(83,52,131,.12)}
+.notes-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;font-size:.74rem;color:var(--text-subtle);
+}
+
+/* §5 ressources — différenciées par type */
+.ressource-card{
+  display:flex;gap:14px;
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-left:4px solid var(--res-color, var(--mod-color));
+  border-radius:10px;padding:14px 16px;
+  margin-bottom:10px;text-decoration:none;color:inherit;
+  transition:all .15s;align-items:center;
+}
+.ressource-card:hover{
+  background:var(--res-soft, var(--mod-color-soft));
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+[data-theme="dark"] .ressource-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.ressource-icon{
+  width:42px;height:42px;border-radius:10px;
+  background:var(--res-soft, var(--mod-color-soft));
+  color:var(--res-color, var(--mod-color-deep));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  border:1px solid var(--res-color, transparent);
+  border-opacity:.25;
+}
+.ressource-titre{font-weight:700;color:var(--text-strong);font-size:.92rem;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.ressource-type-badge{
+  display:inline-block;
+  font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;
+  padding:2px 8px;border-radius:10px;
+  background:var(--res-soft);color:var(--res-color);
+  border:1px solid var(--res-color);
+}
+.ressource-sous{font-size:.8rem;color:var(--text-muted)}
+
+/* Types : PDF interne (rouge-corail = couleur module/interne) */
+.res-pdf{
+  --res-color:#c0392b;
+  --res-soft:#fee2e2;
+}
+[data-theme="dark"] .res-pdf{--res-color:#f87171;--res-soft:rgba(192,57,43,.18)}
+/* Type : livre académique (ambre = savoir, papier) */
+.res-book{
+  --res-color:#92400e;
+  --res-soft:#fef3c7;
+}
+[data-theme="dark"] .res-book{--res-color:#fbbf24;--res-soft:rgba(146,64,14,.2)}
+/* Type : rapport institutionnel (bleu = institutionnel, officiel) */
+.res-report{
+  --res-color:#1e40af;
+  --res-soft:#dbeafe;
+}
+[data-theme="dark"] .res-report{--res-color:#60a5fa;--res-soft:rgba(30,64,175,.18)}
+/* Type : page web externe (gris-violet = lien externe) */
+.res-web{
+  --res-color:#5b21b6;
+  --res-soft:#ede9fe;
+}
+[data-theme="dark"] .res-web{--res-color:#a78bfa;--res-soft:rgba(91,33,182,.18)}
+/* Type : fiche de lecture (vert = ressource construite) */
+.res-note{
+  --res-color:#15803d;
+  --res-soft:#dcfce7;
+}
+[data-theme="dark"] .res-note{--res-color:#4ade80;--res-soft:rgba(21,128,61,.18)}
+
+/* §6 synthèse — feedback de complétion */
+.check-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;border-radius:8px;
+  margin-bottom:6px;
+  background:rgba(255,255,255,.4);
+  border:1px solid rgba(0,0,0,.04);
+  transition:all .2s;
+}
+[data-theme="dark"] .check-item{
+  background:rgba(255,255,255,.02);
+  border-color:rgba(255,255,255,.06);
+}
+.check-item:hover{background:white}
+[data-theme="dark"] .check-item:hover{background:rgba(255,255,255,.05)}
+.check-item.checked{
+  background:linear-gradient(135deg, rgba(74,124,89,.12), rgba(74,124,89,.06));
+  border-color:rgba(74,124,89,.25);
+}
+[data-theme="dark"] .check-item.checked{
+  background:linear-gradient(135deg, rgba(127,184,138,.15), rgba(127,184,138,.05));
+  border-color:rgba(127,184,138,.3);
+}
+.check-item input[type="checkbox"]{
+  margin-top:2px;width:18px;height:18px;accent-color:var(--sage);
+  cursor:pointer;flex-shrink:0;
+}
+.check-item label{flex:1;font-size:.88rem;cursor:pointer;color:var(--text-body);line-height:1.5;transition:color .2s}
+.check-item.checked label{color:var(--sec6-num-fg);font-weight:600}
+[data-theme="dark"] .check-item.checked label{color:var(--sage)}
+.check-item.checked label::before{
+  content:'';display:inline-block;width:6px;height:6px;
+  background:var(--sage);border-radius:50%;margin-right:8px;vertical-align:middle;
+}
+
+.next-mod{
+  display:flex;align-items:center;gap:16px;
+  background:var(--surface-alt);
+  border-radius:12px;padding:18px 22px;
+  margin-top:18px;border:1px solid var(--border-soft);
+  flex-wrap:wrap;
+}
+.next-mod-icon{
+  width:46px;height:46px;border-radius:50%;
+  background:var(--accent3);color:white;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;
+  flex-shrink:0;
+}
+.next-mod-text{flex:1;min-width:200px}
+.next-mod-eyebrow{
+  font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--text-subtle);font-weight:700;
+}
+.next-mod-titre{font-weight:700;color:var(--text-strong);margin-top:3px;font-size:.95rem}
+.next-mod-btn{
+  padding:10px 18px;border-radius:10px;
+  background:var(--accent3);color:white;text-decoration:none;
+  font-size:.82rem;font-weight:700;white-space:nowrap;
+}
+.next-mod-btn:hover{background:var(--accent2)}
+
+.synthese-actions{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;
+}
+.mark-done-btn{
+  flex:1;min-width:200px;padding:14px;
+  background:var(--sage);color:white;border:none;border-radius:10px;
+  font-family:inherit;font-size:.92rem;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .15s;
+}
+.mark-done-btn:hover{background:#3d6649}
+.mark-done-btn.done{background:var(--sage);opacity:.7}
+.mark-done-btn.locked{background:var(--muted);opacity:.55;cursor:not-allowed}
+.mark-done-btn.locked:hover{background:var(--muted)}
+.back-to-diag-btn{
+  flex:1;min-width:200px;padding:14px;
+  background:var(--surface);color:var(--text-body);
+  border:1px solid var(--border-soft);border-radius:10px;
+  font-family:inherit;font-size:.92rem;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  text-decoration:none;transition:all .15s;
+}
+.back-to-diag-btn:hover{background:var(--surface-alt);border-color:var(--text-muted);color:var(--text-strong)}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px){
+  .mod-layout{grid-template-columns:1fr;gap:24px;padding:20px 16px 60px}
+  .mod-toc{display:none}
+  .toc-fab{display:flex}
+  .mod-banner{padding:28px 20px}
+  .mod-banner-title{font-size:1.5rem}
+  .mod-section{padding:24px 20px}
+  .mod-section-title{font-size:1.25rem}
+  .fond-grid,.thermo-grid{grid-template-columns:1fr}
+  .app-header{padding:10px 14px;gap:10px}
+  .mini-jauge{display:none}
+}
+
+/* ═══ IMPRESSION ═══ */
+@media print{
+  body{background:white;color:black;font-size:11pt}
+  .app-header, .resume-banner, .mod-banner-actions, .mod-toc, .toc-fab, .toc-overlay,
+  .pratique-actions, .notes-toggle, .synthese-actions, .section-index,
+  .next-mod-btn, .mod-banner-action, .complement-link,
+  .ref-primary, .ref-internal{display:none !important}
+  .ref-external{color:black !important;border:none !important}
+  .ref-external-label{display:inline}
+  .mod-banner{background:#16213e !important;color:white !important;padding:20px;page-break-after:avoid}
+  .mod-banner.compact{padding:20px !important}
+  .mod-banner-sub, .mod-banner-chips, .mod-banner-eyebrow{opacity:1 !important;max-height:none !important;height:auto !important;margin:auto !important}
+  .mod-layout{display:block;padding:0;max-width:100%}
+  .mod-section{
+    background:white;border:1px solid #ddd;
+    page-break-inside:avoid;box-shadow:none;
+    margin-bottom:14pt;padding:18pt;
+  }
+  .mod-section-title{font-size:14pt}
+  .pratique-field input, .pratique-field textarea{border:1px solid #888;background:white}
+  .gloss-term{border-bottom:none;color:inherit}
+  .gloss-tip{display:none}
+  a{color:inherit;text-decoration:underline}
+}
+
+/* ─── Encarts thématiques : alerte vs protection ─── */
+.callout{
+  border-radius:14px;
+  padding:18px 22px 16px;
+  margin:18px 0;
+  border:1px solid;
+  position:relative;
+  overflow:hidden;
+}
+.callout-head{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:12px;padding-bottom:10px;
+  border-bottom:1px solid currentColor;
+  border-bottom-color:rgba(0,0,0,.08);
+}
+[data-theme="dark"] .callout-head{border-bottom-color:rgba(255,255,255,.08)}
+.callout-icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:1.1rem;
+}
+.callout-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;
+  margin:0;line-height:1.2;
+}
+.callout-eyebrow{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:700;margin-bottom:3px;opacity:.85;
+}
+.callout p{margin:0 0 10px;max-width:none}
+.callout p:last-child{margin-bottom:0}
+.callout ul{margin:8px 0 0;padding-left:0;list-style:none}
+.callout li{
+  margin-bottom:8px;padding:8px 12px 8px 36px;
+  background:rgba(255,255,255,.5);
+  border-radius:8px;position:relative;
+  line-height:1.5;
+}
+[data-theme="dark"] .callout li{background:rgba(0,0,0,.18)}
+.callout li::before{
+  content:'';position:absolute;
+  left:14px;top:14px;
+  width:8px;height:8px;border-radius:50%;
+  background:currentColor;
+}
+.callout li strong{font-weight:700}
+
+/* Variante ALERTE — rouge-orange (vigilance, signaux à repérer) */
+.callout--alert{
+  background:linear-gradient(135deg, #fff4ec 0%, #ffe9d9 100%);
+  border-color:rgba(217,119,6,.35);
+  color:#7a3e08;
+}
+[data-theme="dark"] .callout--alert{
+  background:linear-gradient(135deg, rgba(217,119,6,.12), rgba(217,119,6,.04));
+  border-color:rgba(217,119,6,.35);
+  color:#fbbf24;
+}
+.callout--alert .callout-icon{
+  background:#fed7aa;
+  color:#9a3412;
+}
+[data-theme="dark"] .callout--alert .callout-icon{
+  background:rgba(217,119,6,.25);
+  color:#fbbf24;
+}
+.callout--alert .callout-title{color:#9a3412}
+.callout--alert .callout-eyebrow{color:#c2410c}
+[data-theme="dark"] .callout--alert .callout-title,
+[data-theme="dark"] .callout--alert .callout-eyebrow{color:#fbbf24}
+.callout--alert li strong{color:#9a3412}
+[data-theme="dark"] .callout--alert li strong{color:#fbbf24}
+.callout--alert li{color:#5c2e0a}
+[data-theme="dark"] .callout--alert li{color:var(--text-body)}
+.callout--alert li::before{background:#d97706}
+
+/* Variante PROTECTION — vert (ressources, à renforcer) */
+.callout--protect{
+  background:linear-gradient(135deg, #f0faf3 0%, #dcf3e3 100%);
+  border-color:rgba(21,128,61,.3);
+  color:#14532d;
+}
+[data-theme="dark"] .callout--protect{
+  background:linear-gradient(135deg, rgba(21,128,61,.12), rgba(21,128,61,.04));
+  border-color:rgba(21,128,61,.3);
+  color:#4ade80;
+}
+.callout--protect .callout-icon{
+  background:#bbf7d0;
+  color:#14532d;
+}
+[data-theme="dark"] .callout--protect .callout-icon{
+  background:rgba(21,128,61,.25);
+  color:#4ade80;
+}
+.callout--protect .callout-title{color:#14532d}
+.callout--protect .callout-eyebrow{color:#166534}
+[data-theme="dark"] .callout--protect .callout-title,
+[data-theme="dark"] .callout--protect .callout-eyebrow{color:#4ade80}
+.callout--protect li strong{color:#14532d}
+[data-theme="dark"] .callout--protect li strong{color:#4ade80}
+.callout--protect li{color:#15401e}
+[data-theme="dark"] .callout--protect li{color:var(--text-body)}
+.callout--protect li::before{background:#15803d}
+.case-study{
+  background:var(--surface);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  margin:20px 0;
+  overflow:hidden;
+  border-left:4px solid var(--accent3);
+  box-shadow:var(--shadow-soft);
+}
+.case-study-head{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 20px;flex-wrap:wrap;
+}
+.case-study-icon{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(83,52,131,.12);color:var(--accent3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+[data-theme="dark"] .case-study-icon{background:rgba(123,84,160,.2)}
+.case-study-titre{
+  font-weight:700;color:var(--text-strong);
+  font-size:.98rem;margin:0;line-height:1.3;
+}
+.case-study-eyebrow{
+  font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent3);font-weight:700;margin-bottom:2px;
+}
+.case-study-meta{
+  margin-left:auto;font-size:.72rem;
+  color:var(--text-subtle);font-style:italic;
+}
+.case-study-body{
+  padding:0 20px 18px;
+}
+.case-study-vignette{
+  background:var(--surface-alt);
+  border-radius:10px;padding:14px 18px;
+  margin-bottom:14px;
+  font-style:italic;color:var(--text-body);
+  border-left:3px solid var(--accent3);
+  line-height:1.6;font-size:.94rem;
+}
+.case-study-vignette strong{color:var(--text-strong);font-style:normal}
+.case-study-questions{
+  margin:14px 0;
+}
+.case-study-questions h4{
+  font-size:.86rem;font-weight:700;
+  color:var(--text-strong);margin:0 0 8px;
+  text-transform:none;letter-spacing:0;
+}
+.case-study-questions ul{
+  margin:0;padding-left:22px;font-size:.9rem;
+}
+.case-study-questions li{margin-bottom:6px}
+.case-study-toggle{
+  background:transparent;border:1px solid var(--accent3);
+  color:var(--accent3);
+  padding:8px 14px;border-radius:8px;
+  font-family:inherit;font-size:.82rem;font-weight:600;
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all .15s;margin-top:10px;
+}
+.case-study-toggle:hover{background:var(--accent3);color:white}
+.case-study-toggle .chev{transition:transform .2s;display:inline-flex}
+.case-study-toggle.open .chev{transform:rotate(180deg)}
+[data-theme="dark"] .case-study-toggle{color:var(--accent3);border-color:var(--accent3)}
+.case-study-analysis{
+  display:none;
+  background:linear-gradient(135deg,rgba(83,52,131,.06),var(--surface-alt));
+  border-radius:10px;
+  padding:16px 20px;margin-top:14px;
+  border-left:3px solid var(--accent3);
+  font-size:.92rem;line-height:1.6;
+}
+[data-theme="dark"] .case-study-analysis{background:rgba(123,84,160,.08)}
+.case-study-analysis.open{display:block}
+.case-study-analysis h4{
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:700;color:var(--accent3);
+  margin:0 0 10px;
+}
+.case-study-analysis p:last-child{margin-bottom:0}
+
+/* Encart "Et vous ?" — transposition personnelle */
+.case-transpose{
+  background:linear-gradient(135deg, #fff8e7 0%, #fef3c7 100%);
+  border:1px solid rgba(212,168,84,.3);
+  border-left:4px solid #d4a854;
+  border-radius:10px;
+  padding:16px 20px;
+  margin:16px 0 0;
+}
+[data-theme="dark"] .case-transpose{
+  background:linear-gradient(135deg, rgba(212,168,84,.1), rgba(212,168,84,.04));
+  border-color:rgba(212,168,84,.25);
+}
+.case-transpose-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  color:#92400e;
+}
+[data-theme="dark"] .case-transpose-head{color:#fbbf24}
+.case-transpose-head h4{
+  margin:0;font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;
+}
+.case-transpose p{margin:0 0 10px;font-size:.92rem;line-height:1.6}
+.case-transpose ul{margin:8px 0;padding-left:22px;font-size:.9rem}
+.case-transpose li{margin-bottom:6px}
+.case-transpose strong{color:var(--text-strong)}
+
+/* ─── QCM auto-test ─── */
+.qcm-block{margin-bottom:18px}
+.qcm-question{
+  font-weight:700;color:var(--text-strong);
+  font-size:.92rem;margin-bottom:10px;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.qcm-question-num{
+  flex-shrink:0;background:var(--sec-num-bg);
+  color:var(--sec-num-fg);
+  width:24px;height:24px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:800;
+}
+.qcm-options{
+  display:flex;flex-direction:column;gap:6px;
+  margin-left:32px;
+}
+.qcm-option{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px;border-radius:8px;
+  background:var(--surface);
+  border:1.5px solid var(--border-soft);
+  cursor:pointer;
+  transition:all .15s;
+  font-size:.88rem;color:var(--text-body);
+}
+.qcm-option:hover{border-color:var(--sec-rule);background:var(--sec-tint)}
+.qcm-option input{margin:0;accent-color:var(--sec-rule)}
+.qcm-option.correct{
+  background:rgba(74,124,89,.12);
+  border-color:var(--sage);color:var(--sage);font-weight:600;
+}
+.qcm-option.correct::after{
+  content:'';display:inline-block;width:8px;height:5px;margin-left:auto;
+  border-left:2px solid var(--sage);border-bottom:2px solid var(--sage);
+  transform:rotate(-45deg) translateY(-2px);
+}
+.qcm-option.incorrect{
+  background:rgba(192,57,43,.08);
+  border-color:#c0392b;color:#c0392b;
+}
+.qcm-option.disabled{cursor:default;opacity:.85}
+.qcm-option.disabled:hover{background:var(--surface)}
+.qcm-option.disabled.correct:hover{background:rgba(74,124,89,.12)}
+.qcm-feedback{
+  margin-top:10px;padding:10px 14px;border-radius:8px;
+  font-size:.82rem;line-height:1.5;
+  background:var(--surface-alt);
+  border-left:3px solid var(--sec-rule);
+  display:none;
+}
+.qcm-feedback.visible{display:block}
+.qcm-feedback.correct{
+  background:rgba(74,124,89,.08);
+  border-left-color:var(--sage);color:var(--sage);
+}
+.qcm-feedback.incorrect{
+  background:rgba(192,57,43,.06);
+  border-left-color:#c0392b;color:var(--text-body);
+}
+.qcm-feedback strong{display:block;margin-bottom:4px}
+.qcm-retry-btn{
+  display:inline-block;margin-top:8px;padding:5px 12px;
+  background:rgba(45,156,219,.12);border:1px solid rgba(45,156,219,.35);
+  border-radius:8px;color:#2d9cdb;font-size:.78rem;font-weight:600;
+  cursor:pointer;font-family:inherit;
+}
+.qcm-retry-btn:hover{background:rgba(45,156,219,.2)}
+
+.qcm-divider{
+  border:none;border-top:1px solid var(--border-soft);
+  margin:18px 0 18px;
+}
+.qcm-section-label{
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;color:var(--text-subtle);
+  margin:0 0 10px;display:flex;align-items:center;gap:8px;
+}
+.qcm-section-label::after{
+  content:'';flex:1;height:1px;background:var(--border-soft);
+}
+
+/* En mode print : afficher les cas pratiques ouverts, mais simplement */
+@media print{
+  .case-study-toggle{display:none !important}
+  .case-study-analysis{display:block !important;background:white !important;border-left:2px solid #888 !important}
+  .qcm-option.correct::after{content:' ✓'}
+}
+.proto-note{
+  background:linear-gradient(135deg,#fffbeb,#fef3c7);
+  border:1px solid #fde68a;border-radius:12px;
+  padding:14px 18px;margin:16px auto 20px;max-width:1400px;
+  font-size:.82rem;color:#78350f;
+  display:flex;align-items:flex-start;gap:10px;
+}
+[data-theme="dark"] .proto-note{
+  background:rgba(245,166,35,.12); border-color:rgba(245,166,35,.3); color:var(--gold);
+}
+.proto-note strong{color:#92400e}
+[data-theme="dark"] .proto-note strong{color:var(--gold)}
+@media print{.proto-note{display:none}}
+
+
+/* ─── Système de modes (personnel / HEP) ─── */
+/* ═══════════════════════════════════════════════════════════════
+   CSS du système de modes (personnel / HEP)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Badge mode dans le header (remplace le hep-badge fixe) */
+.mode-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:14px;
+  font-size:.74rem;font-weight:600;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:all .15s;
+  font-family:inherit;
+}
+.mode-badge:hover{
+  transform:translateY(-1px);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.mode-badge.mode-hep{
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  color:white;
+}
+.mode-badge.mode-personal{
+  background:var(--surface-alt);
+  color:var(--text-muted);
+  border-color:var(--border-soft);
+}
+[data-theme="dark"] .mode-badge.mode-personal{
+  background:rgba(255,255,255,.05);
+  color:var(--text-body);
+}
+
+/* Overlay de la modale */
+.mode-modal{
+  display:none;
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;transition:opacity .2s;
+}
+.mode-modal.open{opacity:1}
+
+.mode-modal-card{
+  background:var(--surface);
+  border-radius:18px;
+  max-width:640px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  padding:32px 36px;
+  position:relative;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+  transform:translateY(20px);
+  transition:transform .25s;
+}
+.mode-modal.open .mode-modal-card{transform:translateY(0)}
+
+.mode-modal-close{
+  position:absolute;top:14px;right:18px;
+  background:none;border:none;
+  font-size:1.8rem;line-height:1;
+  color:var(--text-muted);cursor:pointer;
+  width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.mode-modal-close:hover{background:var(--surface-alt)}
+
+.mode-modal-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  margin:0 0 8px;color:var(--text-strong);
+}
+.mode-modal-sub{
+  font-size:.92rem;color:var(--text-muted);
+  margin:0 0 24px;line-height:1.55;
+}
+
+/* Les deux options de mode côte à côte */
+.mode-options{
+  display:flex;flex-direction:column;gap:14px;
+}
+
+.mode-option{
+  background:var(--surface-alt);
+  border:2px solid var(--border-soft);
+  border-radius:14px;
+  padding:18px 20px;
+  transition:all .15s;
+}
+.mode-option.active{
+  background:var(--surface);
+  border-color:var(--accent3);
+  box-shadow:0 4px 12px rgba(83,52,131,.1);
+}
+[data-theme="dark"] .mode-option.active{
+  box-shadow:0 4px 12px rgba(123,84,160,.15);
+}
+
+.mode-option-head{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:12px;
+}
+.mode-option-head > svg{
+  width:32px;height:32px;
+  color:var(--accent3);
+  flex-shrink:0;
+}
+.mode-option-title{
+  font-weight:700;color:var(--text-strong);
+  font-size:1.02rem;
+}
+.mode-option-sub{
+  font-size:.82rem;color:var(--text-muted);
+  margin-top:2px;line-height:1.4;
+}
+.mode-option-badge{
+  margin-left:auto;
+  background:var(--sage);color:white;
+  font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:4px 10px;border-radius:12px;
+}
+
+.mode-option-features{
+  margin:0 0 14px;padding:0 0 0 18px;
+  font-size:.86rem;color:var(--text-body);
+  line-height:1.7;
+}
+.mode-option-features li{margin-bottom:2px}
+
+.mode-option-action{
+  background:transparent;
+  border:1px solid var(--border-soft);
+  color:var(--text-body);
+  padding:8px 16px;border-radius:10px;
+  font-family:inherit;font-size:.85rem;font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+}
+.mode-option-action:hover{
+  background:var(--surface-alt);
+  border-color:var(--accent3);
+  color:var(--accent3);
+}
+.mode-option-action.mode-action-primary{
+  background:var(--accent3);
+  color:white;
+  border-color:var(--accent3);
+}
+.mode-option-action.mode-action-primary:hover{
+  background:var(--accent2);
+  border-color:var(--accent2);
+  color:white;
+}
+
+/* Formulaires dans la modale (auth HEP, saisie nom) */
+.mode-form-field{
+  margin-bottom:18px;
+}
+.mode-form-field label{
+  display:block;font-size:.82rem;font-weight:600;
+  color:var(--text-strong);margin-bottom:8px;
+}
+.mode-form-field input{
+  width:100%;padding:11px 14px;
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  font-family:inherit;font-size:.95rem;
+  background:var(--surface);color:var(--text-body);
+  transition:border-color .15s;
+}
+.mode-form-field input:focus{
+  outline:none;
+  border-color:var(--accent3);
+  box-shadow:0 0 0 3px rgba(83,52,131,.1);
+}
+.mode-form-hint{
+  margin-top:6px;
+  font-size:.78rem;color:var(--text-subtle);
+  font-style:italic;
+}
+.mode-form-error{
+  display:none;
+  margin-top:8px;
+  padding:8px 12px;
+  background:rgba(233,69,96,.1);
+  border-left:3px solid var(--accent1);
+  border-radius:6px;
+  font-size:.82rem;color:var(--accent1);
+}
+.mode-form-error[style*="block"]{display:block}
+
+.mode-form-actions{
+  display:flex;gap:10px;justify-content:flex-end;
+  margin-top:24px;
+}
+.mode-btn{
+  padding:10px 22px;border-radius:10px;
+  font-family:inherit;font-size:.9rem;font-weight:600;
+  cursor:pointer;border:1px solid transparent;
+  transition:all .15s;
+}
+.mode-btn-secondary{
+  background:transparent;
+  color:var(--text-body);
+  border-color:var(--border-soft);
+}
+.mode-btn-secondary:hover{
+  background:var(--surface-alt);
+}
+.mode-btn-primary{
+  background:var(--accent3);
+  color:white;
+}
+.mode-btn-primary:hover{
+  background:var(--accent2);
+}
+.mode-btn-primary:disabled{
+  opacity:.6;cursor:not-allowed;
+}
+
+@media (max-width:600px){
+  .mode-modal-card{padding:24px 22px}
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+
+  .mode-modal-title{font-size:1.3rem}
+}
+
+
+/* ─── Fix espacement app-header / mod-banner ─── */
+.mod-banner-wrap{margin-top:0;}
+.app-header{
+  box-shadow:0 1px 3px rgba(0,0,0,.04);
+}
+.mod-banner{
+  border-top:none;
+}
+
+/* ─── Barre de progression globale ─── */
+.aut-progress-bar{
+  position:sticky;
+  top:0;
+  left:0;
+  right:0;
+  height:4px;
+  background:rgba(83,52,131,.08);
+  z-index:99;
+  pointer-events:none;
+}
+.aut-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg, var(--accent3), var(--gold));
+  width:0%;
+  transition:width .6s ease;
+}
+.aut-progress-info{
+  position:fixed;
+  bottom:14px;
+  right:14px;
+  background:white;
+  border:1px solid var(--border-soft);
+  border-radius:10px;
+  padding:8px 14px;
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--text-muted);
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  z-index:98;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.aut-progress-info strong{color:var(--accent3);}
+[data-theme="dark"] .aut-progress-info{background:var(--surface);}
+
+/* ─── Liens inter-modules en bas de page ─── */
+.aut-related{
+  background:linear-gradient(135deg, rgba(83,52,131,.04), rgba(245,166,35,.03));
+  border:1px solid rgba(83,52,131,.12);
+  border-radius:14px;
+  padding:24px 28px;
+  margin:40px 0 24px;
+}
+.aut-related-eyebrow{
+  font-size:.75rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent3);
+  margin-bottom:8px;
+}
+.aut-related-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  font-weight:700;
+  color:var(--text-strong);
+  margin-bottom:16px;
+}
+.aut-related-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:14px;
+}
+.aut-related-card{
+  background:white;
+  border:1px solid var(--border-soft);
+  border-left:3px solid var(--accent3);
+  border-radius:10px;
+  padding:16px 18px;
+  text-decoration:none;
+  color:var(--text-body);
+  transition:all .15s;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.aut-related-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(83,52,131,.1);
+  border-left-color:var(--gold);
+  text-decoration:none;
+}
+.aut-related-card-num{
+  font-size:.7rem;
+  font-weight:700;
+  color:var(--accent3);
+  letter-spacing:.08em;
+}
+.aut-related-card-title{
+  font-weight:700;
+  color:var(--text-strong);
+  font-size:.96rem;
+}
+.aut-related-card-arrow{
+  font-size:.88rem;
+  color:var(--text-muted);
+  margin-top:4px;
+}
+[data-theme="dark"] .aut-related-card{
+  background:var(--surface);
+}
+
+/* ─── Sommaire flottant (TOC sticky) ─── */
+.aut-toc{
+  position:fixed;
+  top:140px;
+  right:20px;
+  width:200px;
+  background:white;
+  border:1px solid var(--border-soft);
+  border-radius:12px;
+  padding:14px 16px;
+  box-shadow:0 4px 12px rgba(0,0,0,.04);
+  z-index:50;
+  max-height:calc(100vh - 200px);
+  overflow-y:auto;
+  font-size:.82rem;
+}
+.aut-toc-title{
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--accent3);
+  margin-bottom:10px;
+}
+.aut-toc-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.aut-toc-list li{
+  padding:0;
+  margin-bottom:2px;
+}
+.aut-toc-list a{
+  display:block;
+  padding:7px 10px;
+  border-radius:6px;
+  color:var(--text-muted);
+  text-decoration:none;
+  font-size:.85rem;
+  line-height:1.3;
+  border-left:2px solid transparent;
+  transition:all .15s;
+}
+.aut-toc-list a:hover{
+  background:var(--surface-alt);
+  color:var(--text-strong);
+  text-decoration:none;
+}
+.aut-toc-list a.active{
+  background:rgba(83,52,131,.06);
+  color:var(--accent3);
+  font-weight:600;
+  border-left-color:var(--accent3);
+}
+[data-theme="dark"] .aut-toc{
+  background:var(--surface);
+}
+@media (max-width:1280px){
+  .aut-toc{display:none;}
+}
+
+/* ─── Modal de recherche globale ─── */
+.aut-search-btn{
+  background:none;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+  color:var(--text-muted);
+  border-radius:8px;
+  transition:all .15s;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:.85rem;
+}
+.aut-search-btn:hover{
+  background:var(--surface-alt);
+  color:var(--text-strong);
+}
+.aut-search-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  z-index:1000;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:80px;
+}
+.aut-search-modal.open{display:flex;}
+.aut-search-card{
+  background:white;
+  border-radius:14px;
+  width:90%;
+  max-width:600px;
+  box-shadow:0 12px 40px rgba(0,0,0,.2);
+  overflow:hidden;
+}
+.aut-search-input{
+  width:100%;
+  padding:18px 22px;
+  border:none;
+  font-size:1.1rem;
+  background:transparent;
+  font-family:inherit;
+  outline:none;
+  border-bottom:1px solid var(--border-soft);
+}
+.aut-search-results{
+  max-height:400px;
+  overflow-y:auto;
+  padding:10px 0;
+}
+.aut-search-result{
+  display:block;
+  padding:12px 22px;
+  text-decoration:none;
+  color:var(--text-body);
+  border-left:3px solid transparent;
+  transition:all .12s;
+}
+.aut-search-result:hover{
+  background:var(--surface-alt);
+  border-left-color:var(--accent3);
+  text-decoration:none;
+}
+.aut-search-result-label{
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--accent3);
+  margin-bottom:3px;
+}
+.aut-search-result-title{
+  font-weight:600;
+  color:var(--text-strong);
+  font-size:.95rem;
+}
+.aut-search-result-desc{
+  font-size:.82rem;
+  color:var(--text-muted);
+  margin-top:2px;
+}
+.aut-search-empty{
+  padding:30px 22px;
+  text-align:center;
+  color:var(--text-muted);
+  font-size:.88rem;
+}
+[data-theme="dark"] .aut-search-card{background:var(--surface);}
+</style>
+
+<style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+</head>
+<body>
+
+<!-- Barre de progression globale -->
+<div class="aut-progress-bar"><div class="aut-progress-fill" id="aut-global-fill"></div></div>
+<div class="aut-progress-info" id="aut-progress-info" style="display:none;">
+  
+  <span><strong id="aut-pct">0%</strong> · <span id="aut-count">0/8</span> modules</span>
+</div>
+
+
+<a class="skip-link" href="#main-content">Aller au contenu</a>
+
+<!-- ═══ Barre de progression de scroll ═══ -->
+<div class="scroll-progress" aria-hidden="true">
+  <div class="scroll-progress-fill" id="scroll-fill"></div>
+</div>
+
+<!-- ═══ Icônes SVG réutilisables ═══ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96c1.4 9.3-3.7 17.04-8.2 17.04z M2 21c0-3 1.85-5.36 5.08-6"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5H6.5A2.5 2.5 0 0 0 4 19.5z"/></symbol><symbol id="i-web" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></symbol>
+    <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/><circle cx="5" cy="12" r="1.5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-thermo" viewBox="0 0 24 24"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-pillar" viewBox="0 0 24 24"><path d="M3 21h18M3 7h18M5 7v14M19 7v14M9 7v14M15 7v14M3 7l9-4 9 4"/></symbol>
+    <symbol id="i-warning" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+    <symbol id="i-case" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></symbol>
+  </defs>
+</svg>
+
+<!-- ═══ HEADER ═══ -->
+<header class="app-header" role="banner">
+  <a href="index.html" class="app-logo">
+    <svg class="icon"><use href="#i-leaf"/></svg>
+    Autoformation
+  </a>
+  <nav class="app-breadcrumb" aria-label="Fil d'Ariane">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <a href="modules.html">Modules</a>
+    <span class="sep">›</span>
+    <span class="current" aria-current="page">Module 6 · Cartographie personnelle des ressources</span>
+  </nav>
+  <button type="button" class="mode-badge mode-personal" id="mode-badge" onclick="window.openModeModal()" title="Cliquer pour gérer le mode"><svg class="icon icon-sm"><use href="#i-user"/></svg> <span>Mode personnel</span></button>
+  <button class="aut-search-btn" onclick="openAutSearch()" title="Rechercher (Ctrl+K)" aria-label="Rechercher">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <span style="font-size:.78rem;">Rechercher</span>
+</button> <button class="theme-toggle" onclick="toggleTheme()" title="Basculer le thème" aria-label="Basculer le thème clair/sombre">
+    <svg class="icon" id="theme-icon"><use href="#i-moon"/></svg>
+  </button>
+  <div class="header-menu-wrap">
+    <button class="header-menu-btn" onclick="toggleHeaderMenu(event)" aria-label="Plus d'options" aria-haspopup="true" aria-expanded="false">
+      <svg class="icon"><use href="#i-more"/></svg>
+    </button>
+    <div class="header-menu" id="header-menu" role="menu">
+      <button onclick="printModule();closeHeaderMenu()" role="menuitem">
+        <svg class="icon"><use href="#i-print"/></svg>
+        Imprimer le module
+      </button>
+      <button onclick="exportProgress();closeHeaderMenu()" role="menuitem">
+        <svg class="icon"><use href="#i-download"/></svg>
+        Exporter mon travail
+      </button>
+      <button onclick="resetModule();closeHeaderMenu()" role="menuitem">
+        <svg class="icon"><use href="#i-refresh"/></svg>
+        Réinitialiser ce module
+      </button>
+      <button onclick="closeHeaderMenu();alert('Aide à venir')" role="menuitem">
+        <svg class="icon"><use href="#i-help"/></svg>
+        Aide
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Modal de recherche globale -->
+<div class="aut-search-modal" id="aut-search-modal" onclick="if(event.target===this)closeAutSearch()">
+  <div class="aut-search-card">
+    <input type="text" class="aut-search-input" id="aut-search-input" placeholder="Rechercher dans la plateforme (modules, fondements, glossaire...)" autofocus>
+    <div class="aut-search-results" id="aut-search-results">
+      <div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ BANDEAU REPRISE / COMPLÉTÉ ═══ -->
+<div class="resume-banner hidden" id="resume-banner" role="status">
+  <span id="resume-text">Vous avez commencé ce module — section 3 sur 6</span>
+  <button onclick="resumeReading()">
+    <svg class="icon icon-sm"><use href="#i-back"/></svg>
+    Reprendre la lecture
+  </button>
+  <button onclick="dismissResume()" style="background:transparent;border:none;cursor:pointer;color:inherit;padding:4px" aria-label="Fermer">
+    <svg class="icon"><use href="#i-x"/></svg>
+  </button>
+</div>
+
+<!-- Note prototype -->
+<div class="proto-note">
+  <svg class="icon icon-lg" style="color:#92400e;flex-shrink:0;margin-top:2px"><use href="#i-target"/></svg>
+  <div><strong>Module 6 — Cartographie des ressources</strong> : ancré dans le modèle PRÉSENCE (Fahim, 2022) et les apports de Goyette (2023), Bourassa (2017), Hobfoll. Ce module combine théorie, auto-évaluation et engagement concret pour développer une dimension précise de la résilience professionnelle.</div>
+</div>
+
+<!-- ═══ BANNIÈRE MODULE ═══ -->
+<div class="mod-banner" id="mod-banner">
+  <div class="mod-banner-inner">
+    <div class="mod-banner-num">6</div>
+    <div class="mod-banner-meta">
+      <div class="mod-banner-eyebrow">Module 6 · Étape 2–3</div>
+      <h1 class="mod-banner-title">Cartographie personnelle des ressources</h1>
+      <div class="mod-banner-sub">Forces identifiées · Zones de développement · Ressources externes</div>
+      <div class="mod-banner-chips">
+        <span class="mod-chip-info">
+          <svg class="icon icon-sm"><use href="#i-clock"/></svg>
+          ~40 min
+        </span>
+        <span class="mod-chip-info">
+          <svg class="icon icon-sm"><use href="#i-book"/></svg>
+          Approfondissement
+        </span>
+        
+        <a href="fondements.html#presence-R" class="mod-chip-link" target="_blank" rel="noopener" title="Voir la composante PRÉSENCE associée">
+          <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
+          Composante PRÉSENCE : Prédisposition
+          <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+      <div class="mod-banner-actions">
+        <button class="mod-banner-action" onclick="printModule()">
+          <svg class="icon icon-sm"><use href="#i-print"/></svg>
+          Imprimer ce module
+        </button>
+        <button class="mod-banner-action" onclick="exportProgress()">
+          <svg class="icon icon-sm"><use href="#i-download"/></svg>
+          Exporter mon travail
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LAYOUT ═══ -->
+<div class="mod-layout">
+
+  <!-- SOMMAIRE DESKTOP -->
+  <aside class="mod-toc" id="toc-desktop" aria-label="Sommaire du module">
+    <div class="mod-toc-title">Dans ce module</div>
+    <ul class="mod-toc-list">
+      <li><a class="mod-toc-item active" href="#s1" data-section="s1">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">1</span></span>
+        <span>En 30 secondes <span class="mod-toc-time">~1 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s2" data-section="s2">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">2</span></span>
+        <span>Pourquoi ce module <span class="mod-toc-time">~3 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s3" data-section="s3">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">3</span></span>
+        <span>Fondements scientifiques <span class="mod-toc-time">~8 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s4" data-section="s4">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">4</span></span>
+        <span>Mise en pratique <span class="mod-toc-time">~10 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s5" data-section="s5">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">5</span></span>
+        <span>Pour aller plus loin <span class="mod-toc-time">~variable</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s6" data-section="s6">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">6</span></span>
+        <span>Validation du module <span class="mod-toc-time">~3 min</span></span>
+      </a></li>
+    </ul>
+
+    <div class="mod-toc-progress">
+      <div class="mod-toc-progress-label">Avancement module</div>
+      <div class="mod-toc-progress-bar"><div class="mod-toc-progress-fill" id="mod-progress"></div></div>
+      <div class="mod-toc-progress-text"><span id="mod-progress-text">0 / 6 sections</span></div>
+      <div class="mod-toc-time-spent">
+        <svg class="icon icon-sm" style="color:var(--text-subtle)"><use href="#i-clock"/></svg>
+        <span>Temps passé : <strong class="time-spent-val">&lt; 1 min</strong></span>
+      </div>
+    </div>
+
+    <a href="diagnostic.html" class="mod-toc-back">
+      <svg class="icon icon-sm"><use href="#i-back"/></svg>
+      Mes recommandations
+    </a>
+  </aside>
+
+  <!-- CONTENU -->
+  <main class="mod-content" id="main-content">
+
+    <!-- §1 TL;DR -->
+    <section class="mod-section" data-sec="1" id="s1" aria-labelledby="title-s1">
+      <div class="mod-section-head">
+        <div class="mod-section-num">1</div>
+        <div style="flex:1">
+          <div class="mod-section-eyebrow">Section 1 — TL;DR</div>
+          <h2 class="mod-section-title" id="title-s1">En 30 secondes</h2>
+        </div>
+        <div class="mod-section-meta">~1 min</div>
+      </div>
+      <div class="block-info tldr-info">
+        <p>Ce module vous fait <strong>cartographier vos ressources sur 4 dimensions</strong> : personnelle, professionnelle, contextuelle, externe. Il fait apparaître vos forces actuelles et les zones à nourrir, et croise cette cartographie avec vos scores de bien-être.</p>
+        <p style="margin-top:10px;font-size:.86rem"><strong>Contenu du module :</strong></p>
+        <ul>
+          <li>Cartographie narrative des ressources personnelles (SEP, régulation, valeurs)</li>
+          <li>Cartographie des ressources professionnelles (expertise, réseau, autonomie)</li>
+          <li>Ressources contextuelles — soutien institutionnel, conditions de travail</li>
+          <li>Ressources externes — vie hors travail, santé physique, activités ressourçantes</li>
+          <li>Lien entre ressources cartographiées et radars quantitatifs</li>
+        </ul>
+      </div>
+    </section>
+
+    
+        <div class="block-info block-info--neutral" style="margin-top:14px;">
+      <div class="block-info-title">Objectifs d'apprentissage — à l'issue de ce module, vous serez capable de :</div>
+      <ul>
+          <li>Repérer ses propres forces et ressources personnelles mobilisables face aux difficultés professionnelles</li>
+          <li>Identifier ses zones de développement prioritaires</li>
+          <li>Recenser les ressources externes disponibles dans son contexte professionnel</li>
+      </ul>
+    </div>
+
+<section class="mod-section" data-sec="2" id="s2" aria-labelledby="title-s2">
+      <div class="mod-section-head">
+        <div class="mod-section-num">2</div>
+        <div style="flex:1">
+          <div class="mod-section-eyebrow">Section 2 — Ancrage</div>
+          <h2 class="mod-section-title" id="title-s2">Pourquoi ce module</h2>
+        </div>
+        <div class="mod-section-meta">~3 min</div>
+      </div>
+
+      <div class="diag-result" role="region" aria-label="Résultat de votre diagnostic personnel">
+        <div class="diag-result-avatar">G</div>
+        <div class="diag-result-content">
+          <div class="diag-result-eyebrow">D'après votre auto-évaluation PRÉSENCE</div>
+          <h3 class="diag-result-title">Module recommandé pour vous</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+            <span class="diag-result-dim">Composante · Prédisposition</span>
+            <a href="diagnostic.html" target="_blank" rel="noopener" class="diag-result-link">Voir mon profil complet →</a>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>Ce module s'adresse à vous si</strong> vous reconnaissez l'enjeu du identifier ses ressources personnelles, professionnelles et environnementales et organiser leur mobilisation stratégique selon les situations. Il s'inscrit dans le parcours global de cette plateforme comme une étape clé, en lien direct avec les autres modules (notamment M1 et M6) qui en élargissent les implications. La démarche proposée combine apports théoriques solides, outils d'auto-évaluation, et engagements concrets transposables dans votre pratique quotidienne d'enseignant·e du secondaire.</p>
+
+      <div class="block-info block-info--quote">
+        «La résilience n'est pas un trait individuel — c'est un écosystème de ressources mobilisées au bon moment.» — Adapté de Goyette (2023)
+        
+      </div>
+
+      <div class="block-info complement-block">
+        <div class="block-info-title">Modules à étudier en parallèle</div>
+        <p style="margin:0 0 8px;font-size:.88rem">Ces modules partagent une thématique connexe et se nourrissent mutuellement.</p>
+        <div class="complement-list">
+          <a href="module3.html" class="complement-link">Module 3 — Profil des besoins de formation</a>
+          <a href="module7.html" class="complement-link">Module 6 — Mentorat et pratique réflexive</a>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="mod-section" data-sec="3" id="s3" aria-labelledby="title-s3">
+      <div class="mod-section-head">
+        <div class="mod-section-num">3</div>
+        <div style="flex:1">
+          <div class="mod-section-eyebrow">Section 3 — Théorie</div>
+          <h2 class="mod-section-title" id="title-s3">Fondements scientifiques</h2>
+        </div>
+        <div class="mod-section-meta">~8 min</div>
+      </div>
+
+      <div class="section-index" aria-label="Sous-sections">
+        <span class="section-index-label">Dans cette section</span>
+        <a href="#s3-1">Concepts-clés</a>
+        <a href="#s3-2">Signaux à repérer</a>
+        <a href="#s3-3">Leviers à renforcer</a>
+      </div>
+
+      <a href="fondements.html#presence-R" class="presence-link" target="_blank" rel="noopener">
+        <div class="presence-link-icon"><svg class="icon icon-lg"><use href="#i-pillar"/></svg></div>
+        <div class="presence-link-content">
+          <div class="presence-link-eyebrow">Composante PRÉSENCE associée</div>
+          <div class="presence-link-text">Prédisposition — connaître ses ressources</div>
+        </div>
+        <span class="presence-link-cta">
+          Explorer la composante
+          <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+        </span>
+      </a>
+
+      <h3 class="mod-subtitle" id="s3-1">Concepts-clés du module</h3>
+      <p>Voici le développement des concepts-clés, repris intégralement du Guide de formation :</p>
+      <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin:18px 0 8px">Module 6 — Cinq catégories de ressources</div>
+      <h4 style="font-family:'Playfair Display',serif;color:var(--text-strong);font-size:1.05rem;margin:14px 0 8px;font-weight:700">Connaître ses ressources pour les mobiliser stratégiquement</h4>
+      <ul>
+        <li><strong>Personnelles</strong> — compétences, expériences, forces de caractère, valeurs, intérêts professionnels</li>
+        <li><strong>Professionnelles</strong> — formation initiale et continue, pratiques efficaces développées</li>
+        <li><strong>Relationnelles</strong> — collègues de confiance, mentor·e, réseau professionnel, famille soutenante</li>
+        <li><strong>Institutionnelles</strong> — soutien de la direction, psychologue scolaire, mesures d'appui disponibles</li>
+        <li><strong>Externes</strong> — associations professionnelles, littérature spécialisée, formations extérieures, supervision</li>
+      </ul>
+      <p>L'objectif n'est pas de tout avoir, mais de connaître ce qui est disponible et de l'utiliser de façon stratégique.</p>
+      <p style="margin-top:12px"><a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=15" target="_blank" rel="noopener" class="ref-primary" style="display:inline-flex"><svg class="icon"><use href="#i-pdf"/></svg> Module 6 — Guide de formation (p. 15–16)</a></p>
+
+      <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin:24px 0 8px">Lire son profil de ressources</div>
+      <h4 style="font-family:'Playfair Display',serif;color:var(--text-strong);font-size:1.05rem;margin:14px 0 8px;font-weight:700">Quatre profils croisés — ressources professionnelles × ressources personnelles</h4>
+      <p>Une première lecture utile consiste à observer l'équilibre entre vos ressources professionnelles (compétences, pratiques, outils pédagogiques) et vos ressources personnelles (énergie, stabilité émotionnelle, sentiment d'efficacité). Un profil homogène suggère une situation stable ; un profil contrasté révèle un point de tension spécifique à surveiller :</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;">
+        <div style="background:rgba(243,156,18,.08);border-radius:10px;padding:12px 14px;border-left:3px solid #f39c12;">
+          <div style="font-size:.78rem;font-weight:700;color:#b8740d;margin-bottom:5px;">Pro élevées · Perso fragiles</div>
+          <div style="font-size:.82rem;color:#555;line-height:1.6;">Vous maîtrisez votre métier mais vous épuisez pour maintenir ce niveau. Risque de burnout élevé si aucun ajustement n'est fait sur la récupération.</div>
+        </div>
+        <div style="background:rgba(74,124,89,.08);border-radius:10px;padding:12px 14px;border-left:3px solid #4a7c59;">
+          <div style="font-size:.78rem;font-weight:700;color:#3d6649;margin-bottom:5px;">Perso solides · Pro à développer</div>
+          <div style="font-size:.82rem;color:#555;line-height:1.6;">Bonne stabilité émotionnelle et énergie disponible, mais des outils pédagogiques manquants. Une formation ciblée peut être particulièrement efficace ici.</div>
+        </div>
+        <div style="background:rgba(192,57,43,.08);border-radius:10px;padding:12px 14px;border-left:3px solid #c0392b;">
+          <div style="font-size:.78rem;font-weight:700;color:#a3342a;margin-bottom:5px;">Fragilité globale</div>
+          <div style="font-size:.82rem;color:#555;line-height:1.6;">Les deux dimensions sont basses. Situation nécessitant souvent un soutien plus large : réduction des contraintes, accompagnement, restauration des ressources de base.</div>
+        </div>
+        <div style="background:rgba(45,156,219,.08);border-radius:10px;padding:12px 14px;border-left:3px solid #2d9cdb;">
+          <div style="font-size:.78rem;font-weight:700;color:#1f7fb8;margin-bottom:5px;">Niveau global élevé</div>
+          <div style="font-size:.82rem;color:#555;line-height:1.6;">Situation favorable, sans exclure des défis ponctuels. L'objectif devient la consolidation et la prévention de l'usure plutôt que la correction.</div>
+        </div>
+      </div>
+      <p style="font-size:.86rem">Plutôt que de vouloir améliorer toutes les dimensions à la fois — ce qui disperse l'énergie et alourdit la charge mentale — il est généralement plus efficace d'identifier la dimension ayant le plus d'impact, de choisir un objectif précis, puis d'évaluer les effets avant d'ajouter un nouvel objectif.</p>
+
+      <div class="callout callout--alert">
+        <div class="callout-head">
+          <div class="callout-icon"><svg class="icon"><use href="#i-alert"/></svg></div>
+          <div>
+            <div class="callout-eyebrow">À repérer · Vigilance</div>
+            <h3 class="callout-title" id="s3-2">Signaux à repérer</h3>
+          </div>
+        </div>
+        <p>Quelques signes d'alerte spécifiques à ce module :</p>
+        <ul>
+          <li><strong>Ressources invisibles à soi-même</strong> — ne pas reconnaître ses propres forces, expériences et appuis disponibles.</li>
+          <li><strong>Isolement professionnel</strong> — absence de collègue ressource, de mentor ou de réseau sur qui s'appuyer.</li>
+          <li><strong>Sous-utilisation du soutien institutionnel</strong> — ignorer ou ne pas mobiliser les appuis existants (direction, psychologue scolaire, mesures).</li>
+          <li><strong>Déséquilibre travail / hors-travail</strong> — ressources externes (santé, liens sociaux, activités) négligées au profit du seul travail.</li>
+        </ul>
+      </div>
+
+      <div class="callout callout--protect">
+        <div class="callout-head">
+          <div class="callout-icon"><svg class="icon"><use href="#i-shield"/></svg></div>
+          <div>
+            <div class="callout-eyebrow">À renforcer · Ressources</div>
+            <h3 class="callout-title" id="s3-3">Connaître ses ressources pour les mobiliser stratégiquement</h3>
+          </div>
+        </div>
+        <ul>
+          <li><strong>Personnelles</strong> — compétences, expériences, forces de caractère, valeurs, intérêts professionnels</li>
+          <li><strong>Professionnelles</strong> — formation initiale et continue, pratiques efficaces développées</li>
+          <li><strong>Relationnelles</strong> — collègues de confiance, mentor·e, réseau professionnel, famille soutenante</li>
+          <li><strong>Institutionnelles</strong> — soutien de la direction, psychologue scolaire, mesures d'appui disponibles</li>
+          <li><strong>Externes</strong> — associations professionnelles, littérature spécialisée, formations extérieures, supervision</li>
+        </ul>
+      </div>
+
+      <div class="block-aux">
+        <div class="block-aux-title">Vocabulaire de ce module</div>
+        <div class="vocab-list">
+          <a href="glossaire.html" title="Voir au glossaire">Ressources personnelles vs professionnelles</a>
+          <a href="glossaire.html" title="Voir au glossaire">Conservation des ressources (Hobfoll)</a>
+          <a href="glossaire.html" title="Voir au glossaire">Réseau de soutien</a>
+        </div>
+      </div>
+
+      <div class="action-group">
+        <a class="ref-primary" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=15" target="_blank" rel="noopener" title="Module 6 — Guide de formation (p. 15–16)">
+          <svg class="icon"><use href="#i-pdf"/></svg>
+          Module 6 — Guide de formation (p. 15–16)
+        </a>
+        <a class="ref-internal" href="fondements.html#presence-R" target="_blank" rel="noopener" title="Naviguer vers la vue Fondements PRÉSENCE">
+          <svg class="icon icon-sm"><use href="#i-pillar"/></svg>
+          Voir Fondements PRÉSENCE
+          <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
+        </a>
+        <span style="flex:1"></span>
+        <span class="ref-external-group">
+          <span class="ref-external-label">Réf. externe</span>
+          <a class="ref-external" href="https://shs.cairn.info/publications-de-Nancy-Goyette--687584?lang=fr" target="_blank" rel="noopener" title="Goyette, N. (2023) — Phronesis, Vol. 12">Goyette (2023) <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg></a>
+        </span>
+      </div>
+
+      <button class="notes-toggle" onclick="toggleNotes('notes-s3')" aria-expanded="false" aria-controls="notes-s3">
+        <svg class="icon"><use href="#i-note"/></svg>
+        Mes notes sur cette section
+        <svg class="icon icon-sm chev"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="notes-panel" id="notes-s3">
+        <textarea id="notes-s3-text" placeholder="Notez ici vos réflexions sur cette section…" aria-label="Notes personnelles sur la section 3"></textarea>
+        <div class="notes-meta">
+          <span id="notes-s3-saved">Sauvegarde automatique</span>
+          <span id="notes-s3-time">—</span>
+        </div>
+      </div>
+
+      <!-- ═══ CAS PRATIQUE ═══ -->
+      
+    </section>
+
+    
+
+    <section class="mod-section" data-sec="4" id="s4" aria-labelledby="title-s4">
+      <div class="mod-section-head">
+        <div class="mod-section-num">4</div>
+        <div style="flex:1">
+          <div class="mod-section-eyebrow">Section 4 — Application</div>
+          <h2 class="mod-section-title" id="title-s4">Mise en pratique</h2>
+        </div>
+        <div class="mod-section-meta">~10 min</div>
+      </div>
+
+      <div class="section-index" aria-label="Sous-sections">
+        <span class="section-index-label">Dans cette section</span>
+        <a href="#s4-1">Auto-évaluation</a>
+        <a href="#s4-2">Fiche action</a>
+      </div>
+
+      <!-- Auto-évaluation (à adapter selon le thème du module) -->
+      <div class="block-action thermo-block" id="s4-1">
+        <div class="block-action-head">
+          <div class="block-action-title">
+            <svg class="icon"><use href="#i-thermo"/></svg>
+            Auto-évaluation — Module 6
+          </div>
+        </div>
+        <div class="block-action-help"><strong>Ceci n'est pas un questionnaire psychométrique.</strong> C'est un repère subjectif pour vous situer. Notez votre ressenti de 1 (très faible) à 5 (très élevé). Survolez le « ? » pour le sens de chaque dimension.</div>
+        <div class="thermo-grid">
+          <div class="pratique-field"><label for="t-energie">① Ressources personnelles (1-5) <span class="thermo-help" data-tip="Forces, expériences, valeurs : en avez-vous conscience et les mobilisez-vous ?">?</span></label><input type="number" min="1" max="5" id="t-energie" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-emotion">② Ressources relationnelles (1-5) <span class="thermo-help" data-tip="Disposez-vous de collègues de confiance, d'un·e mentor, d'un réseau de soutien ?">?</span></label><input type="number" min="1" max="5" id="t-emotion" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-cognitif">③ Ressources institutionnelles (1-5) <span class="thermo-help" data-tip="Mobilisez-vous le soutien disponible (direction, psychologue scolaire, mesures d'appui) ?">?</span></label><input type="number" min="1" max="5" id="t-cognitif" oninput="updateThermo()"></div>
+          <div class="pratique-field"><label for="t-social">④ Ressources externes (1-5) <span class="thermo-help" data-tip="Votre vie hors travail (santé, liens, activités) nourrit-elle vos ressources ?">?</span></label><input type="number" min="1" max="5" id="t-social" oninput="updateThermo()"></div>
+        </div>
+        <div class="thermo-resultat" aria-live="polite">
+          <div class="thermo-score">
+            <span class="thermo-score-num">Score global : <span id="score-global">—</span> / 20</span>
+            <span id="score-label" style="font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:14px;background:var(--surface);color:var(--text-muted)">Saisissez vos scores</span>
+          </div>
+          <div class="thermo-bar-global"><div class="thermo-bar-fill" id="bar-global"></div></div>
+          <div class="thermo-radar-wrap">
+            <svg class="thermo-radar" id="thermo-radar" viewBox="0 0 200 200" aria-label="Radar à 4 dimensions">
+              <circle cx="100" cy="100" r="20" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="40" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="60" class="thermo-radar-grid"/>
+              <circle cx="100" cy="100" r="80" class="thermo-radar-grid"/>
+              <line x1="100" y1="20" x2="100" y2="180" class="thermo-radar-axis"/>
+              <line x1="20" y1="100" x2="180" y2="100" class="thermo-radar-axis"/>
+              <polygon class="thermo-radar-shape" id="radar-shape" points="100,100 100,100 100,100 100,100"/>
+              <circle class="thermo-radar-point" id="point-energie" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-emotion" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-cognitif" cx="100" cy="100" r="3"/>
+              <circle class="thermo-radar-point" id="point-social" cx="100" cy="100" r="3"/>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="10" r="10" fill="#d97706" opacity=".85"/>
+                <text x="100" y="15" class="thermo-radar-num" fill="white">①</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="190" cy="100" r="10" fill="#c0392b" opacity=".85"/>
+                <text x="190" y="105" class="thermo-radar-num" fill="white">②</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="100" cy="190" r="10" fill="#1d4ed8" opacity=".85"/>
+                <text x="100" y="195" class="thermo-radar-num" fill="white">③</text>
+              </g>
+              <g class="thermo-radar-label" text-anchor="middle">
+                <circle cx="10" cy="100" r="10" fill="#15803d" opacity=".85"/>
+                <text x="10" y="105" class="thermo-radar-num" fill="white">④</text>
+              </g>
+            </svg>
+            <div class="thermo-bars-col">
+              <div style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin-bottom:8px">Détail par dimension (couleurs du radar)</div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d97706;margin-right:6px;vertical-align:middle"></span>① Ressources personnelles</span><span class="thermo-dim-val" id="val-energie">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-energie" style="background:#d97706"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#c0392b;margin-right:6px;vertical-align:middle"></span>② Ressources relationnelles</span><span class="thermo-dim-val" id="val-emotion">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-emotion" style="background:#c0392b"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1d4ed8;margin-right:6px;vertical-align:middle"></span>③ Ressources institutionnelles</span><span class="thermo-dim-val" id="val-cognitif">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-cognitif" style="background:#1d4ed8"></div></div>
+              </div>
+              <div class="thermo-dim">
+                <div class="thermo-dim-head"><span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#15803d;margin-right:6px;vertical-align:middle"></span>④ Ressources externes</span><span class="thermo-dim-val" id="val-social">—</span></div>
+                <div class="thermo-dim-bar"><div class="thermo-dim-fill" id="bar-social" style="background:#15803d"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="thermo-interp" id="interp">L'interprétation s'affichera une fois les scores saisis.</div>
+        </div>
+        <div class="pratique-actions">
+          <button class="pratique-btn pratique-btn-ghost" onclick="resetThermo()">
+            <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+            Recommencer
+          </button>
+        </div>
+      </div>
+
+      <!-- Fiche action -->
+      <div class="block-action fiche-block" id="s4-2">
+        <div class="block-action-head">
+          <div class="block-action-title">
+            <svg class="icon"><use href="#i-clipboard"/></svg>
+            Fiche action personnelle — Module 6
+          </div>
+          <div class="block-action-meta" id="fiche-time">Pas encore enregistrée</div>
+        </div>
+                <div class="pratique-field">
+          <label for="m6-forces-pro">Mes 3 ressources professionnelles les plus solides</label>
+          <textarea rows="3" placeholder="1. 
+2. 
+3. " id="m6-forces-pro"></textarea>
+        </div>
+        <div class="pratique-field">
+          <label for="m6-forces-perso">Mes 3 ressources personnelles les plus solides</label>
+          <textarea rows="3" placeholder="1. 
+2. 
+3. " id="m6-forces-perso"></textarea>
+        </div>
+        <div class="pratique-field">
+          <label for="m6-externe">1 ressource externe à consolider (hors travail)</label>
+          <input type="text" placeholder="Ex. : activité sportive, réseau amical, pratique artistique..." id="m6-externe">
+        </div>
+        <div class="pratique-field">
+          <label for="m6-engagement">Mon engagement concret cette semaine</label>
+          <textarea rows="2" placeholder="Une action précise, mesurable, réalisable d'ici 7 jours…" id="m6-engagement"></textarea>
+        </div>
+        <div class="pratique-actions">
+          <button class="pratique-btn pratique-btn-primary" onclick="savePratique()">
+            <svg class="icon icon-sm"><use href="#i-save"/></svg>
+            Enregistrer
+          </button>
+          <button class="pratique-btn pratique-btn-secondary" onclick="printModule()">
+            <svg class="icon icon-sm"><use href="#i-print"/></svg>
+            Imprimer
+          </button>
+          <button class="pratique-btn pratique-btn-ghost" onclick="resetFiche()">
+            <svg class="icon icon-sm"><use href="#i-refresh"/></svg>
+            Recommencer
+          </button>
+          <span class="saved-flag" id="saved-flag" aria-live="polite">
+            <svg class="icon icon-sm"><use href="#i-check"/></svg>
+            Enregistré localement
+          </span>
+        </div>
+      </div>
+
+      <button class="notes-toggle" onclick="toggleNotes('notes-s4')" aria-expanded="false" aria-controls="notes-s4">
+        <svg class="icon"><use href="#i-note"/></svg>
+        Mes notes sur cette section
+        <svg class="icon icon-sm chev"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="notes-panel" id="notes-s4">
+        <textarea id="notes-s4-text" placeholder="Notes complémentaires sur ma pratique…" aria-label="Notes personnelles sur la section 4"></textarea>
+        <div class="notes-meta">
+          <span id="notes-s4-saved">Sauvegarde automatique</span>
+          <span id="notes-s4-time">—</span>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="mod-section" data-sec="5" id="s5" aria-labelledby="title-s5">
+      <div class="mod-section-head">
+        <div class="mod-section-num">5</div>
+        <div style="flex:1">
+          <div class="mod-section-eyebrow">Section 5 — Approfondir</div>
+          <h2 class="mod-section-title" id="title-s5">Pour aller plus loin</h2>
+        </div>
+        <div class="mod-section-meta">variable</div>
+      </div>
+      <p>Ressources spécifiquement sélectionnées pour approfondir les thèmes du Module 6.</p>
+
+      <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf#page=15" target="_blank" rel="noopener" class="ressource-card res-pdf">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
+        <div>
+          <div class="ressource-titre">Cartographie des ressources — Guide, Module 6 <span class="ressource-type-badge">PDF</span></div>
+          <div class="ressource-sous">Les 5 catégories de ressources et le cercle vertueux (p. 15-16)</div>
+        </div>
+      </a>
+      <div class="ressource-card res-book" style="cursor:default;">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
+        <div>
+          <div class="ressource-titre">Théorêt & Leroux — chapitre 5 <span class="ressource-type-badge">Référence</span></div>
+          <div class="ressource-sous">Pourquoi certains enseignants sont-ils plus résilients ? (2014)</div>
+        </div>
+      </div>
+      <div class="ressource-card res-note" style="cursor:default;">
+        
+        <div class="rc-content">
+          <div class="rc-title">Théorie de la conservation des ressources — Hobfoll (1989)</div>
+          <div class="rc-desc">Les individus s&#39;efforcent de conserver, protéger et développer leurs ressources. Le stress survient lorsque les ressources sont menacées, perdues ou que leur investissement ne produit pas le retour attendu. En contexte enseignant : les ressources clés incluent l&#39;énergie, le soutien social, le sentiment de compétence et la reconnaissance institutionnelle. <em>Hobfoll, S.E. (1989). Conservation of resources. American Psychologist, 44(3), 513–524.</em></div>
+        </div>
+      </div>
+
+            <a href="https://youtu.be/3pusNGniFng" target="_blank" rel="noopener" class="ressource-card res-web">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-web"/></svg></div>
+        <div>
+          <div class="ressource-titre">Goyette — L'identité professionnelle positive <span class="ressource-type-badge">Vidéo</span></div>
+          <div class="ressource-sous">Identifier ses forces professionnelles comme levier de cartographie des ressources (UQTR)</div>
+        </div>
+      </a>
+      <a href="https://conseil-cpiq.qc.ca/wp-content/uploads/JPNFP-Bouffard-2018-.pdf" target="_blank" rel="noopener" class="ressource-card res-pdf">
+        <div class="ressource-icon"><svg class="icon"><use href="#i-pdf"/></svg></div>
+        <div>
+          <div class="ressource-titre">Bouffard (2018) — Croyances d'efficacité et motivation <span class="ressource-type-badge">PDF</span></div>
+          <div class="ressource-sous">Le SEP comme déterminant central de la motivation enseignante — référence CPIQ</div>
+        </div>
+      </a>
+      <button class="notes-toggle" onclick="toggleNotes('notes-s5')" aria-expanded="false" aria-controls="notes-s5">
+        <svg class="icon"><use href="#i-note"/></svg>
+        Mes notes sur les ressources
+        <svg class="icon icon-sm chev"><use href="#i-chevron-down"/></svg>
+      </button>
+      <div class="notes-panel" id="notes-s5">
+        <textarea id="notes-s5-text" placeholder="Ce que j'ai retenu des ressources consultées…" aria-label="Notes personnelles sur les ressources"></textarea>
+        <div class="notes-meta">
+          <span id="notes-s5-saved">Sauvegarde automatique</span>
+          <span id="notes-s5-time">—</span>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="mod-section" data-sec="6" id="s6" aria-labelledby="title-s6">
+      <div class="mod-section-head">
+        <div class="mod-section-num">6</div>
+        <div style="flex:1">
+          <div class="mod-section-eyebrow">Section 6 — Clôture</div>
+          <h2 class="mod-section-title" id="title-s6">Validation du module</h2>
+        </div>
+        <div class="mod-section-meta">~3 min</div>
+      </div>
+
+      <div class="block-action block-action--check">
+        <div class="block-action-head">
+          <div class="block-action-title">Vérifiez votre compréhension</div>
+          <div class="block-action-meta">~4 min · 5 items</div>
+        </div>
+
+        <p class="qcm-section-label">Compréhension factuelle</p>
+
+        <div class="qcm-block" data-correct="opt-q1-c">
+          <div class="qcm-question">
+            <span class="qcm-question-num">1</span>
+            <span>Selon la théorie de la conservation des ressources (Hobfoll), pourquoi le burnout s'installe-t-il ?</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-a" onchange="checkQcm(this)"> Parce que l'enseignant manque de compétences pédagogiques</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-b" onchange="checkQcm(this)"> Parce que les élèves sont trop nombreux</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-c" onchange="checkQcm(this)"> Parce que les ressources investies ne sont pas renouvelées : une spirale de pertes s'installe</label>
+            <label class="qcm-option"><input type="radio" name="q1" value="opt-q1-d" onchange="checkQcm(this)"> Parce que la direction ne soutient pas assez</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q1"></div>
+        </div>
+
+        <div class="qcm-block" data-correct="opt-q2-a">
+          <div class="qcm-question">
+            <span class="qcm-question-num">2</span>
+            <span>Quelle distinction est essentielle dans la cartographie des ressources de l'enseignant·e ?</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-a" onchange="checkQcm(this)"> Distinguer ressources personnelles, professionnelles, relationnelles, institutionnelles et externes</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-b" onchange="checkQcm(this)"> Compter uniquement les heures de formation suivies</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-c" onchange="checkQcm(this)"> Évaluer la performance des élèves</label>
+            <label class="qcm-option"><input type="radio" name="q2" value="opt-q2-d" onchange="checkQcm(this)"> Mesurer son temps de travail hebdomadaire</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q2"></div>
+        </div>
+
+        <div class="qcm-block" data-correct="opt-q3-c">
+          <div class="qcm-question">
+            <span class="qcm-question-num">3</span>
+            <span>Parmi les cinq catégories de ressources, laquelle regroupe le mentorat, les collègues de confiance et la famille soutenante ?</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-a" onchange="checkQcm(this)"> Ressources personnelles</label>
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-b" onchange="checkQcm(this)"> Ressources institutionnelles</label>
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-c" onchange="checkQcm(this)"> Ressources relationnelles</label>
+            <label class="qcm-option"><input type="radio" name="q3" value="opt-q3-d" onchange="checkQcm(this)"> Ressources externes</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q3"></div>
+        </div>
+
+        <div class="qcm-block" data-correct="opt-q4-b">
+          <div class="qcm-question">
+            <span class="qcm-question-num">4</span>
+            <span>Le signal d'alerte « sous-utilisation du soutien institutionnel » se manifeste par :</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-a" onchange="checkQcm(this)"> Un manque de compétences pédagogiques de base</label>
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-b" onchange="checkQcm(this)"> L'absence de mobilisation des appuis existants (direction, psychologue scolaire, mesures)</label>
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-c" onchange="checkQcm(this)"> Un excès de demandes adressées à la direction</label>
+            <label class="qcm-option"><input type="radio" name="q4" value="opt-q4-d" onchange="checkQcm(this)"> Une trop bonne connaissance des ressources disponibles</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q4"></div>
+        </div>
+
+        <div class="qcm-block" data-correct="opt-q5-a">
+          <div class="qcm-question">
+            <span class="qcm-question-num">5</span>
+            <span>Quel est l'objectif visé par la cartographie des ressources, selon la Section 3 ?</span>
+          </div>
+          <div class="qcm-options" role="radiogroup">
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-a" onchange="checkQcm(this)"> Connaître ce qui est disponible et l'utiliser de façon stratégique, pas tout posséder</label>
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-b" onchange="checkQcm(this)"> Maximiser le nombre de ressources mobilisées simultanément</label>
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-c" onchange="checkQcm(this)"> Se concentrer uniquement sur les ressources institutionnelles</label>
+            <label class="qcm-option"><input type="radio" name="q5" value="opt-q5-d" onchange="checkQcm(this)"> Réduire sa dépendance à toute forme de soutien externe</label>
+          </div>
+          <div class="qcm-feedback" id="fb-q5"></div>
+        </div>
+
+        <div id="qcm-score-display"></div>
+
+        <hr class="qcm-divider">
+
+        <p class="qcm-section-label">Engagement personnel</p>
+
+        <div class="check-item">
+          <input type="checkbox" id="ck1">
+          <label for="ck1">Je m'engage à dresser une cartographie écrite de mes 5 ressources principales personnelles et 5 professionnelles, en évaluant leur disponibilité actuelle.</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="ck2">
+          <label for="ck2">Je m'engage à identifier une ressource sous-utilisée et à activer un usage concret dans les 2 semaines (formation, collègue ressource, outil).</label>
+        </div>
+      </div>
+
+      <div class="synthese-actions">
+        <button class="mark-done-btn" id="mark-done" onclick="markModuleDone()">
+          <svg class="icon icon-sm"><use href="#i-check"/></svg>
+          Marquer ce module comme complété
+        </button>
+        <a href="diagnostic.html" class="back-to-diag-btn">
+          <svg class="icon icon-sm"><use href="#i-back"/></svg>
+          Mes recommandations
+        </a>
+      </div>
+
+      <div class="next-mod">
+        <div class="next-mod-icon">7</div>
+        <div class="next-mod-text">
+          <div class="next-mod-eyebrow">Suite recommandée</div>
+          <div class="next-mod-titre">Module 7 — Mentorat et pratique réflexive</div>
+        </div>
+        <a href="module7.html" class="next-mod-btn">
+          Continuer
+          <svg class="icon icon-sm" style="margin-left:4px"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+
+    </section>
+
+    </main>
+</div>
+
+<!-- ═══ SOMMAIRE MOBILE — bouton flottant + drawer ═══ -->
+<button class="toc-fab" onclick="openMobileToc()" aria-label="Ouvrir le sommaire du module" id="toc-fab">
+  <svg class="icon icon-lg"><use href="#i-list"/></svg>
+  <span class="toc-fab-badge" id="fab-badge">0</span>
+</button>
+
+<div class="toc-overlay" id="toc-overlay" onclick="closeMobileToc(event)" role="dialog" aria-label="Sommaire du module">
+  <div class="toc-drawer" onclick="event.stopPropagation()">
+    <div class="toc-drawer-handle"></div>
+    <button class="toc-drawer-close" onclick="closeMobileToc()" aria-label="Fermer">
+      <svg class="icon"><use href="#i-x"/></svg>
+    </button>
+    <div class="mod-toc-title">Dans ce module</div>
+    <ul class="mod-toc-list" id="toc-list-mobile">
+      <li><a class="mod-toc-item active" href="#s1" data-section="s1">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">1</span></span>
+        <span>En 30 secondes <span class="mod-toc-time">~1 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s2" data-section="s2">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">2</span></span>
+        <span>Pourquoi ce module <span class="mod-toc-time">~3 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s3" data-section="s3">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">3</span></span>
+        <span>Fondements scientifiques <span class="mod-toc-time">~8 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s4" data-section="s4">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">4</span></span>
+        <span>Mise en pratique <span class="mod-toc-time">~10 min</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s5" data-section="s5">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">5</span></span>
+        <span>Pour aller plus loin <span class="mod-toc-time">~variable</span></span>
+      </a></li>
+      <li><a class="mod-toc-item" href="#s6" data-section="s6">
+        <span class="mod-toc-num"><span class="mod-toc-num-text">6</span></span>
+        <span>Validation du module <span class="mod-toc-time">~3 min</span></span>
+      </a></li>
+    </ul>
+    <div class="mod-toc-progress">
+      <div class="mod-toc-progress-label">Avancement module</div>
+      <div class="mod-toc-progress-bar"><div class="mod-toc-progress-fill" id="mod-progress-mobile"></div></div>
+      <div class="mod-toc-progress-text"><span id="mod-progress-text-mobile">0 / 6 sections</span></div>
+      <div class="mod-toc-time-spent">
+        <svg class="icon icon-sm" style="color:var(--text-subtle)"><use href="#i-clock"/></svg>
+        <span>Temps passé : <strong class="time-spent-val">&lt; 1 min</strong></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══ STORAGE ═══ */
+var MOD_KEY = 'autoformation_mod6_v5';
+var STATE = {
+  fields:{}, notes:{}, checks:{},
+  thermo:{}, lastSection:'s1', completed:false,
+  completedAt:null, savedAt:null, thermoAt:null,
+  viewed:{}, timeSpent:0, qcm:{}
+};
+
+function loadState(){
+  try{
+    var raw = localStorage.getItem(MOD_KEY);
+    if(raw) STATE = Object.assign(STATE, JSON.parse(raw));
+  }catch(e){}
+}
+function saveState(){
+  try{ localStorage.setItem(MOD_KEY, JSON.stringify(STATE)); }catch(e){}
+}
+
+/* ═══ Theme ═══ */
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('aut_theme', next); }catch(e){}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  var icon = document.getElementById('theme-icon');
+  if(!icon) return;
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  icon.innerHTML = '<use href="#'+(isDark?'i-sun':'i-moon')+'"/>';
+}
+
+/* ═══ Menu header (⋯) ═══ */
+function toggleHeaderMenu(e){
+  e.stopPropagation();
+  var menu = document.getElementById('header-menu');
+  var btn = e.currentTarget;
+  var willOpen = !menu.classList.contains('open');
+  menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', willOpen);
+}
+function closeHeaderMenu(){
+  document.getElementById('header-menu').classList.remove('open');
+  document.querySelector('.header-menu-btn').setAttribute('aria-expanded', 'false');
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.header-menu-wrap')) closeHeaderMenu();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    closeHeaderMenu();
+    closeMobileToc();
+    closeAllGlossTips();
+  }
+});
+
+/* ═══ Bannière contractable au scroll ═══ */
+var lastScroll = 0;
+function handleBannerContract(){
+  var banner = document.getElementById('mod-banner');
+  if(!banner) return;
+  if(window.scrollY > 180){
+    banner.classList.add('compact');
+  } else {
+    banner.classList.remove('compact');
+  }
+}
+
+/* ═══ Sommaire scroll spy (desktop ET mobile) ═══ */
+var sections = ['s1','s2','s3','s4','s5','s6'].map(id=>document.getElementById(id));
+var sectionsViewed = {s1:false,s2:false,s3:false,s4:false,s5:false,s6:false};
+
+function updateActiveSection(){
+  var scrollPos = window.scrollY + 150;
+  var current = sections[0];
+  sections.forEach(function(s){ if(s && s.offsetTop <= scrollPos) current = s; });
+  document.querySelectorAll('.mod-toc-item').forEach(function(item){
+    item.classList.toggle('active', item.getAttribute('data-section') === current.id);
+  });
+  STATE.lastSection = current.id;
+  saveState();
+}
+
+document.querySelectorAll('.mod-toc-item').forEach(function(item){
+  item.addEventListener('click', function(e){
+    e.preventDefault();
+    var id = this.getAttribute('data-section');
+    var el = document.getElementById(id);
+    if(el){
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      closeMobileToc();
+    }
+  });
+});
+
+/* ═══ Sommaire intra-section progressif ═══ */
+function updateSectionIndex(){
+  document.querySelectorAll('.section-index').forEach(function(idx){
+    var anchors = idx.querySelectorAll('a');
+    var currentFound = false;
+    // Récolter les positions des sous-titres pointés
+    var positions = Array.from(anchors).map(function(a){
+      var id = a.getAttribute('href').substring(1);
+      var el = document.getElementById(id);
+      return {a:a, el:el, top:el ? el.getBoundingClientRect().top : Infinity};
+    });
+    // Marquer comme visité ce qui est passé au-dessus du milieu de l'écran
+    positions.forEach(function(p, i){
+      p.a.classList.remove('current','visited');
+      if(p.el && p.top < window.innerHeight*0.4){
+        p.a.classList.add('visited');
+      }
+    });
+    // Le "current" est le dernier qui est entre 0 et 50% de l'écran
+    var current = null;
+    positions.forEach(function(p){
+      if(p.el && p.top < window.innerHeight*0.5 && p.top > -100){
+        current = p.a;
+      }
+    });
+    if(current){
+      current.classList.remove('visited');
+      current.classList.add('current');
+    }
+  });
+}
+document.querySelectorAll('.section-index a').forEach(function(a){
+  a.addEventListener('click', function(e){
+    e.preventDefault();
+    var id = this.getAttribute('href').substring(1);
+    var el = document.getElementById(id);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+/* ═══ Progression ═══ */
+function checkSectionDone(s){
+  if(s === 's4'){
+    var dimEl = document.getElementById('m1-dim');
+    var dim = dimEl ? (dimEl.value||'').trim() : '';
+    var thermoCount = ['t-energie','t-emotion','t-cognitif','t-social']
+      .map(function(id){ var e=document.getElementById(id); return e ? e.value : ''; }).filter(function(v){ return v; }).length;
+    return dim.length > 0 || thermoCount >= 3;
+  }
+  if(s === 's6'){
+    // §6 considérée faite si : au moins 1 QCM répondu (correctement ou non) + au moins 1 case engagement cochée
+    var qcmDone = STATE.qcm && Object.keys(STATE.qcm).length >= 1;
+    var checksDone = 0;
+    document.querySelectorAll('.block-action--check input[type=checkbox]').forEach(c=>{ if(c.checked) checksDone++; });
+    return qcmDone && checksDone >= 1;
+  }
+  return sectionsViewed[s];
+}
+
+function refreshProgress(){
+  ['s1','s2','s3','s4','s5','s6'].forEach(function(s){
+    var done = checkSectionDone(s);
+    if(done) sectionsViewed[s] = true;
+    document.querySelectorAll('.mod-toc-item[data-section="'+s+'"]').forEach(function(item){
+      item.classList.toggle('done', sectionsViewed[s]);
+    });
+  });
+  var doneCount = Object.values(sectionsViewed).filter(v=>v).length;
+  var pct = (doneCount/6*100)+'%';
+  ['mod-progress','mod-progress-mobile'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.style.width = pct;
+  });
+  ['mod-progress-text','mod-progress-text-mobile'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.textContent = doneCount + ' / 6 sections';
+  });
+  document.getElementById('fab-badge').textContent = doneCount;
+  STATE.viewed = sectionsViewed;
+  saveState();
+}
+
+window.addEventListener('scroll', function(){
+  sections.forEach(function(s){
+    if(!s) return;
+    var rect = s.getBoundingClientRect();
+    if(rect.top < window.innerHeight*0.6 && rect.bottom > 0){
+      sectionsViewed[s.id] = true;
+    }
+  });
+  refreshProgress();
+  updateActiveSection();
+  handleBannerContract();
+  updateSectionIndex();
+  // Barre de progression scroll
+  var fillEl = document.getElementById('scroll-fill');
+  if(fillEl){
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (window.scrollY / docHeight * 100) : 0;
+    fillEl.style.width = Math.min(100, pct) + '%';
+  }
+}, {passive:true});
+
+/* ═══ Sommaire mobile ═══ */
+function openMobileToc(){
+  document.getElementById('toc-overlay').classList.add('open');
+}
+function closeMobileToc(e){
+  if(e && e.target.closest('.toc-drawer')) return;
+  document.getElementById('toc-overlay').classList.remove('open');
+}
+
+/* ═══ Glossaire — gestion tactile/clavier ═══ */
+function closeAllGlossTips(){
+  document.querySelectorAll('.gloss-term.active').forEach(t=>t.classList.remove('active'));
+}
+document.querySelectorAll('.gloss-term').forEach(function(t){
+  t.addEventListener('click', function(e){
+    e.preventDefault();
+    var wasActive = this.classList.contains('active');
+    closeAllGlossTips();
+    if(!wasActive) this.classList.add('active');
+  });
+  t.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      var wasActive = this.classList.contains('active');
+      closeAllGlossTips();
+      if(!wasActive) this.classList.add('active');
+    }
+  });
+});
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.gloss-term')) closeAllGlossTips();
+});
+
+/* ═══ Thermomètre ═══ */
+function updateThermo(){
+  var ids = ['t-energie','t-emotion','t-cognitif','t-social'];
+  var dimIds = ['energie','emotion','cognitif','social'];
+  // Coordonnées des axes du radar (cx=100, cy=100, rayon max=80)
+  // Ordre : haut, droite, bas, gauche
+  var axes = [
+    {x:100, y:100, dx:0, dy:-1},  // énergie (haut)
+    {x:100, y:100, dx:1, dy:0},   // émotion (droite)
+    {x:100, y:100, dx:0, dy:1},   // cognitif (bas)
+    {x:100, y:100, dx:-1, dy:0}   // social (gauche)
+  ];
+  var total = 0, filled = 0;
+  var radarPoints = [];
+  ids.forEach(function(id, idx){
+    var v = parseInt(document.getElementById(id).value);
+    var dimId = dimIds[idx];
+    var ax = axes[idx];
+    if(v >= 1 && v <= 5){
+      total += v; filled++;
+      document.getElementById('val-'+dimId).textContent = v + ' / 5';
+      document.getElementById('val-'+dimId).style.color = 'var(--text-strong)';
+      document.getElementById('bar-'+dimId).style.width = (v/5*100)+'%';
+      STATE.thermo[id] = v;
+      // Radar : point à v/5 * 80 du centre
+      var dist = (v/5) * 80;
+      var px = 100 + ax.dx * dist;
+      var py = 100 + ax.dy * dist;
+      radarPoints.push(px + ',' + py);
+      var pointEl = document.getElementById('point-'+dimId);
+      if(pointEl){ pointEl.setAttribute('cx', px); pointEl.setAttribute('cy', py); pointEl.setAttribute('r', 4); }
+    } else {
+      document.getElementById('val-'+dimId).textContent = '—';
+      document.getElementById('val-'+dimId).style.color = 'var(--text-subtle)';
+      document.getElementById('bar-'+dimId).style.width = '0%';
+      delete STATE.thermo[id];
+      radarPoints.push('100,100');
+      var pointEl2 = document.getElementById('point-'+dimId);
+      if(pointEl2){ pointEl2.setAttribute('cx', 100); pointEl2.setAttribute('cy', 100); pointEl2.setAttribute('r', 3); }
+    }
+  });
+  // Mettre à jour le polygone radar
+  var shapeEl = document.getElementById('radar-shape');
+  if(shapeEl) shapeEl.setAttribute('points', radarPoints.join(' '));
+  if(filled === 4){
+    document.getElementById('score-global').textContent = total;
+    document.getElementById('bar-global').style.width = (total/20*100)+'%';
+    var label = document.getElementById('score-label');
+    var interp = document.getElementById('interp');
+    if(total <= 8){
+      label.textContent = 'Vigilance'; label.style.background = '#fff0f0'; label.style.color = '#c0392b';
+      document.getElementById('bar-global').style.background = '#e94560';
+      interp.innerHTML = '<strong>Score bas — vigilance.</strong> Plusieurs dimensions du bien-être sont fragilisées. Prenez le temps de lire attentivement les Modules 2 (Burnout) et 4 (Stress) en complément. N\'hésitez pas à parler à un collègue de confiance ou à votre médecin.';
+    } else if(total <= 14){
+      label.textContent = '◐ Équilibre fragile'; label.style.background = '#fff8e7'; label.style.color = '#92400e';
+      document.getElementById('bar-global').style.background = 'var(--gold)';
+      interp.innerHTML = '<strong>Équilibre fragile.</strong> Certaines dimensions méritent attention. Identifiez la plus basse et concentrez-vous sur un facteur de protection ciblé. Le suivi longitudinal sur 4 semaines vous aidera à mesurer les effets.';
+    } else {
+      label.textContent = '✓ Bon équilibre'; label.style.background = '#e8f5e9'; label.style.color = '#2e7d32';
+      document.getElementById('bar-global').style.background = 'var(--sage)';
+      interp.innerHTML = '<strong>Bon équilibre actuel.</strong> Continuez à nourrir vos facteurs de protection. Profitez de cette stabilité pour explorer les modules de développement (Modules 5, 7, 8) plutôt que ceux de remédiation.';
+    }
+    STATE.thermoAt = new Date().toISOString();
+    document.getElementById('thermo-time').textContent = 'Complété le ' + fmtDate(STATE.thermoAt);
+  }
+  saveState();
+  refreshProgress();
+}
+
+function resetThermo(){
+  if(!confirm('Effacer toutes les valeurs du thermomètre ?')) return;
+  ['t-energie','t-emotion','t-cognitif','t-social'].forEach(function(id){
+    document.getElementById(id).value = '';
+    delete STATE.thermo[id];
+  });
+  STATE.thermoAt = null;
+  document.getElementById('thermo-time').textContent = 'Pas encore complété';
+  document.getElementById('score-global').textContent = '—';
+  document.getElementById('bar-global').style.width = '0%';
+  document.getElementById('score-label').textContent = 'Saisissez vos scores';
+  document.getElementById('score-label').style.background = 'var(--surface)';
+  document.getElementById('score-label').style.color = 'var(--text-muted)';
+  document.getElementById('interp').innerHTML = 'L\'interprétation s\'affichera automatiquement une fois les scores saisis.';
+  ['energie','emotion','cognitif','social'].forEach(function(d){
+    document.getElementById('val-'+d).textContent = '—';
+    document.getElementById('val-'+d).style.color = 'var(--text-subtle)';
+    document.getElementById('bar-'+d).style.width = '0%';
+    var pt = document.getElementById('point-'+d);
+    if(pt){ pt.setAttribute('cx', 100); pt.setAttribute('cy', 100); pt.setAttribute('r', 3); }
+  });
+  var shapeReset = document.getElementById('radar-shape');
+  if(shapeReset) shapeReset.setAttribute('points', '100,100 100,100 100,100 100,100');
+  saveState();
+  refreshProgress();
+}
+
+/* ═══ Fiche action ═══ */
+var FIELDS = ['m6-forces-pro','m6-forces-perso','m6-externe','m6-engagement'];
+function savePratique(){
+  FIELDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) STATE.fields[id] = el.value;
+  });
+  STATE.savedAt = new Date().toISOString();
+  saveState();
+  var flag = document.getElementById('saved-flag');
+  flag.classList.add('visible');
+  setTimeout(()=>flag.classList.remove('visible'), 2200);
+  document.getElementById('fiche-time').textContent = 'Enregistrée le ' + fmtDate(STATE.savedAt);
+  refreshProgress();
+}
+
+function resetFiche(){
+  if(!confirm('Effacer tous les champs de la fiche action ?')) return;
+  FIELDS.forEach(function(id){
+    document.getElementById(id).value = '';
+    delete STATE.fields[id];
+  });
+  STATE.savedAt = null;
+  document.getElementById('fiche-time').textContent = 'Pas encore enregistrée';
+  saveState();
+  refreshProgress();
+}
+
+/* ═══ Notes ═══ */
+function toggleNotes(id){
+  var panel = document.getElementById(id);
+  var btn = panel.previousElementSibling;
+  var willOpen = !panel.classList.contains('open');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded', willOpen);
+}
+['notes-s3-text','notes-s4-text','notes-s5-text'].forEach(function(id){
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.addEventListener('input', function(){
+    STATE.notes[id] = this.value;
+    var tNow = new Date().toISOString();
+    STATE.notes[id+'_at'] = tNow;
+    saveState();
+    var timeEl = document.getElementById(id.replace('-text','-time'));
+    if(timeEl) timeEl.textContent = 'Modifié à ' + fmtTime(tNow);
+  });
+});
+
+/* ═══ Cas pratique ═══ */
+function toggleAnalysis(btn){
+  var panel = document.getElementById(btn.getAttribute('aria-controls'));
+  var willOpen = !panel.classList.contains('open');
+  panel.classList.toggle('open');
+  btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded', willOpen);
+  btn.innerHTML = willOpen
+    ? 'Masquer l\'analyse <svg class="icon icon-sm chev" style="transform:rotate(180deg)"><use href="#i-chevron-down"/></svg>'
+    : 'Voir une analyse possible <svg class="icon icon-sm chev"><use href="#i-chevron-down"/></svg>';
+}
+
+/* ═══ QCM ═══ */
+function checkQcm(input){
+  var block = input.closest('.qcm-block');
+  var correct = block.getAttribute('data-correct');
+  var options = block.querySelectorAll('.qcm-option');
+  var feedback = block.querySelector('.qcm-feedback');
+  var qName = input.name;
+
+  // Désactiver les autres options
+  options.forEach(function(opt){
+    var rad = opt.querySelector('input');
+    rad.disabled = true;
+    opt.classList.add('disabled');
+    if(rad.value === correct) opt.classList.add('correct');
+  });
+
+  // Marquer la réponse choisie
+  var chosen = input.closest('.qcm-option');
+  if(input.value === correct){
+    feedback.classList.add('visible','correct');
+    feedback.innerHTML = '<strong>Bonne réponse.</strong> ' + getQcmExplanation(qName, true);
+  } else {
+    chosen.classList.add('incorrect');
+    feedback.classList.add('visible','incorrect');
+    feedback.innerHTML = '<strong>Pas tout à fait.</strong> ' + getQcmExplanation(qName, false)
+      + ' <button type="button" class="qcm-retry-btn" onclick="retryQcm(this)">↻ Réessayer cette question</button>';
+  }
+
+  // Sauvegarder
+  STATE.qcm = STATE.qcm || {};
+  STATE.qcm[qName] = {value:input.value, correct: input.value === correct};
+  saveState();
+  refreshProgress();
+  refreshQcmScoreDisplay();
+}
+
+function retryQcm(btn){
+  var block = btn.closest('.qcm-block');
+  var qName = block.querySelector('input').name;
+  block.querySelectorAll('.qcm-option').forEach(function(opt){
+    var rad = opt.querySelector('input');
+    rad.disabled = false;
+    rad.checked = false;
+    opt.classList.remove('disabled','correct','incorrect');
+  });
+  block.querySelector('.qcm-feedback').classList.remove('visible','correct','incorrect');
+  block.querySelector('.qcm-feedback').innerHTML = '';
+  if(STATE.qcm) delete STATE.qcm[qName];
+  saveState();
+  refreshProgress();
+  refreshQcmScoreDisplay();
+}
+
+function getQcmExplanation(qName, isCorrect){
+  if(qName === 'q1'){
+    if(isCorrect) return "Exactement. Pour Hobfoll, le burnout r\u00e9sulte d'une <strong>spirale de pertes</strong> : des ressources investies sans \u00eatre renouvel\u00e9es, jusqu'\u00e0 l'\u00e9puisement. D'o\u00f9 l'importance de cartographier et r\u00e9investir ses ressources.";
+    return "Le mod\u00e8le de Hobfoll insiste sur la <strong>spirale de pertes</strong> : ce qui \u00e9puise, ce sont des ressources d\u00e9pens\u00e9es sans r\u00e9investissement compensatoire \u2014 pas un simple manque de comp\u00e9tence.";
+  }
+  if(qName === 'q2'){
+    if(isCorrect) return "Oui. La cartographie distingue <strong>cinq cat\u00e9gories</strong> de ressources : personnelles, professionnelles, relationnelles, institutionnelles et externes \u2014 pour rep\u00e9rer forces et zones \u00e0 nourrir.";
+    return "L'essentiel est de distinguer les <strong>cinq cat\u00e9gories de ressources</strong> (personnelles, professionnelles, relationnelles, institutionnelles, externes), bien au-del\u00e0 des seules formations suivies.";
+  }
+  if(qName === 'q3'){
+    if(isCorrect) return "Les <strong>ressources relationnelles</strong> regroupent pr\u00e9cis\u00e9ment coll\u00e8gues de confiance, mentor\u00b7e, r\u00e9seau professionnel et famille soutenante.";
+    return "La bonne r\u00e9ponse est <strong>ressources relationnelles</strong> \u2014 les autres cat\u00e9gories couvrent les comp\u00e9tences, le soutien institutionnel ou les appuis externes, pas le r\u00e9seau humain proche.";
+  }
+  if(qName === 'q4'){
+    if(isCorrect) return "Ce signal indique que des appuis r\u00e9els (direction, psychologue scolaire, mesures) existent mais ne sont pas mobilis\u00e9s, souvent par m\u00e9connaissance ou r\u00e9ticence.";
+    return "La bonne r\u00e9ponse est <strong>l'absence de mobilisation des appuis existants</strong> \u2014 ce n'est pas un manque de comp\u00e9tence, mais une sous-utilisation de ressources disponibles.";
+  }
+  if(qName === 'q5'){
+    if(isCorrect) return "L'objectif est strat\u00e9gique : conna\u00eetre ce qui est disponible pour l'utiliser au bon moment, pas accumuler toutes les ressources possibles.";
+    return "La bonne r\u00e9ponse est <strong>conna\u00eetre ce qui est disponible et l'utiliser de fa\u00e7on strat\u00e9gique</strong> \u2014 la cartographie sert l'usage cibl\u00e9, pas l'accumulation.";
+  }
+  return isCorrect ? 'Bonne r\u00e9ponse.' : 'R\u00e9essayez en relisant la section Fondements.';
+}
+
+/* ═══ Marquer complété ═══ */
+var QCM_PASS_THRESHOLD = 0.8; // 80% requis (4/5) — retry illimité disponible par question
+var QCM_TOTAL_QUESTIONS = 5;
+
+function getQcmScore(){
+  var answered = STATE.qcm ? Object.keys(STATE.qcm).length : 0;
+  var correct = STATE.qcm ? Object.values(STATE.qcm).filter(function(a){return a.correct;}).length : 0;
+  return {answered: answered, correct: correct, total: QCM_TOTAL_QUESTIONS, pct: answered > 0 ? correct/answered : 0};
+}
+
+function refreshQcmScoreDisplay(){
+  var s = getQcmScore();
+  var el = document.getElementById('qcm-score-display');
+  if(!el) return;
+  if(s.answered === 0){ el.innerHTML = ''; return; }
+  var passed = s.answered === s.total && (s.correct/s.total) >= QCM_PASS_THRESHOLD;
+  el.innerHTML = '<div class="qcm-score-bar" style="margin-top:14px;padding:10px 14px;border-radius:10px;font-size:.83rem;font-weight:600;background:'
+    + (s.answered < s.total ? 'rgba(45,156,219,.1);color:#2d9cdb' : passed ? 'rgba(74,124,89,.12);color:#4a7c59' : 'rgba(233,69,96,.1);color:#c0392b')
+    + '">' + s.correct + ' / ' + s.total + ' bonnes réponses ('+ s.answered +'/'+ s.total +' répondues)'
+    + (s.answered === s.total ? (passed ? ' — seuil de validation atteint ✓' : ' — seuil de 80% non atteint, vous pouvez refaire les questions ratées') : '')
+    + '</div>';
+  refreshMarkDoneState();
+}
+
+function refreshMarkDoneState(){
+  var btn = document.getElementById('mark-done');
+  if(!btn || STATE.completed) return;
+  var s = getQcmScore();
+  var ready = s.answered === s.total && (s.correct/s.total) >= QCM_PASS_THRESHOLD;
+  btn.disabled = !ready;
+  btn.classList.toggle('locked', !ready);
+  btn.title = ready ? '' : 'Répondez correctement à au moins ' + Math.ceil(QCM_TOTAL_QUESTIONS*QCM_PASS_THRESHOLD) + '/' + QCM_TOTAL_QUESTIONS + ' questions pour valider ce module';
+}
+
+function markModuleDone(){
+  var s = getQcmScore();
+  if(s.answered < s.total || (s.correct/s.total) < QCM_PASS_THRESHOLD){
+    alert('Pour valider ce module, répondez correctement à au moins ' + Math.ceil(QCM_TOTAL_QUESTIONS*QCM_PASS_THRESHOLD) + '/' + QCM_TOTAL_QUESTIONS + ' questions. Score actuel : ' + s.correct + '/' + s.total + '.');
+    return;
+  }
+  STATE.completed = true;
+  STATE.completedAt = new Date().toISOString();
+  STATE.qcmScore = s.correct + '/' + s.total;
+  saveState();
+  var btn = document.getElementById('mark-done');
+  btn.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Module complété';
+  btn.classList.add('done');
+  btn.disabled = false;
+  showCompletedBanner();
+}
+
+/* ═══ Temps passé sur le module ═══ */
+var TIME_TICK = 10; // secondes par tick
+var isActive = true;
+window.addEventListener('focus', function(){isActive = true});
+window.addEventListener('blur', function(){isActive = false});
+document.addEventListener('visibilitychange', function(){
+  isActive = !document.hidden;
+});
+setInterval(function(){
+  if(isActive){
+    STATE.timeSpent = (STATE.timeSpent || 0) + TIME_TICK;
+    saveState();
+    updateTimeDisplay();
+  }
+}, TIME_TICK * 1000);
+
+function formatTimeSpent(seconds){
+  if(!seconds || seconds < 60) return '< 1 min';
+  var mins = Math.floor(seconds / 60);
+  if(mins < 60) return mins + ' min';
+  var h = Math.floor(mins/60);
+  var m = mins % 60;
+  return h + 'h' + (m < 10 ? '0' : '') + m;
+}
+
+function updateTimeDisplay(){
+  document.querySelectorAll('.time-spent-val').forEach(function(el){
+    el.textContent = formatTimeSpent(STATE.timeSpent || 0);
+  });
+}
+function showResumeOrCompleted(){
+  var banner = document.getElementById('resume-banner');
+  var text = document.getElementById('resume-text');
+  if(STATE.completed && STATE.completedAt){
+    banner.classList.remove('hidden');
+    banner.classList.add('completed');
+    text.innerHTML = '<strong>Module complété</strong> le ' + fmtDate(STATE.completedAt) + ' — vous pouvez le reconsulter librement';
+  } else if(STATE.lastSection && STATE.lastSection !== 's1'){
+    banner.classList.remove('hidden');
+    banner.classList.remove('completed');
+    var num = parseInt(STATE.lastSection.replace('s',''));
+    text.textContent = 'Vous étiez à la section ' + num + ' sur 6 — voulez-vous reprendre où vous en étiez ?';
+  }
+}
+function showCompletedBanner(){
+  var banner = document.getElementById('resume-banner');
+  banner.classList.remove('hidden');
+  banner.classList.add('completed');
+  document.getElementById('resume-text').innerHTML =
+    '<strong>Module complété</strong> le ' + fmtDate(STATE.completedAt) +
+    ' — <a href="modules.html">retour au catalogue</a> · <a href="index.html" title="Votre progression est enregistrée dans ce navigateur uniquement">exporter ma progression</a>';
+}
+function resumeReading(){
+  var el = document.getElementById(STATE.lastSection);
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  dismissResume();
+}
+function dismissResume(){
+  document.getElementById('resume-banner').classList.add('hidden');
+}
+
+/* ═══ Print ═══ */
+function printModule(){window.print()}
+
+/* ═══ Lien PRÉSENCE ═══ */
+function goToPresence(){ /* deprecated, links use href directly */ }
+
+/* ═══ Réinitialiser tout le module ═══ */
+function resetModule(){
+  if(!confirm('Tout effacer sur ce module (thermomètre, fiche action, notes, état de complétion) ? Cette action est irréversible.')) return;
+  try{ localStorage.removeItem(MOD_KEY); }catch(e){}
+  location.reload();
+}
+
+/* ═══ Export ═══ */
+function exportProgress(){
+  var content = '=== MODULE 1 — BIEN-ÊTRE PROFESSIONNEL ===\n';
+  content += 'Utilisateur : Guillaume R. (mode HEP-VS)\n';
+  content += 'Exporté le : ' + fmtDate(new Date().toISOString()) + '\n\n';
+  if(STATE.thermoAt){
+    content += '--- THERMOMÈTRE EXPRESS (complété le ' + fmtDate(STATE.thermoAt) + ') ---\n';
+    content += 'Énergie : ' + (STATE.thermo['t-energie']||'-') + '/5\n';
+    content += 'Émotion : ' + (STATE.thermo['t-emotion']||'-') + '/5\n';
+    content += 'Cognitif : ' + (STATE.thermo['t-cognitif']||'-') + '/5\n';
+    content += 'Social   : ' + (STATE.thermo['t-social']||'-') + '/5\n\n';
+  }
+  if(STATE.savedAt){
+    content += '--- FICHE ACTION (enregistrée le ' + fmtDate(STATE.savedAt) + ') ---\n';
+    content += 'Dimension fragilisée : ' + (STATE.fields['m1-dim']||'-') + '\n';
+    content += 'Signaux d\'alerte :\n' + (STATE.fields['m1-signaux']||'-') + '\n';
+    content += 'Facteur à renforcer : ' + (STATE.fields['m1-action']||'-') + '\n';
+    content += 'Stratégie concrète : ' + (STATE.fields['m1-strategie']||'-') + '\n\n';
+  }
+  if(Object.keys(STATE.notes).length){
+    content += '--- NOTES PERSONNELLES ---\n';
+    ['notes-s3-text','notes-s4-text','notes-s5-text'].forEach(function(id){
+      if(STATE.notes[id]){
+        content += '[Section ' + id.replace('notes-s','').replace('-text','') + ']\n';
+        content += STATE.notes[id] + '\n\n';
+      }
+    });
+  }
+  if(STATE.completed){
+    content += '--- STATUT ---\nModule complété le ' + fmtDate(STATE.completedAt) + '\n';
+  }
+  var blob = new Blob([content], {type:'text/plain;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'mon_travail_module1.txt';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+/* ═══ Helpers date ═══ */
+function fmtDate(iso){
+  if(!iso) return '—';
+  var d = new Date(iso);
+  return d.toLocaleDateString('fr-CH', {day:'2-digit', month:'long', year:'numeric'}) +
+         ' à ' + d.toLocaleTimeString('fr-CH', {hour:'2-digit', minute:'2-digit'});
+}
+function fmtTime(iso){
+  if(!iso) return '—';
+  return new Date(iso).toLocaleTimeString('fr-CH', {hour:'2-digit', minute:'2-digit'});
+}
+
+/* ═══ Init ═══ */
+window.addEventListener('DOMContentLoaded', function(){
+  loadState();
+  updateThemeIcon();
+
+  FIELDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && STATE.fields[id]) el.value = STATE.fields[id];
+    if(el) el.addEventListener('input', refreshProgress);
+  });
+
+  ['t-energie','t-emotion','t-cognitif','t-social'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && STATE.thermo[id]) el.value = STATE.thermo[id];
+  });
+  if(STATE.thermo && Object.keys(STATE.thermo).length === 4) updateThermo();
+
+  ['notes-s3-text','notes-s4-text','notes-s5-text'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && STATE.notes[id]) el.value = STATE.notes[id];
+    var timeEl = document.getElementById(id.replace('-text','-time'));
+    if(timeEl && STATE.notes[id+'_at']) timeEl.textContent = 'Modifié à ' + fmtTime(STATE.notes[id+'_at']);
+  });
+
+  document.querySelectorAll('.block-action--check input[type=checkbox]').forEach(function(c){
+    if(STATE.checks[c.id]) c.checked = true;
+    if(c.checked) c.closest('.check-item').classList.add('checked');
+    c.addEventListener('change', function(){
+      STATE.checks[this.id] = this.checked;
+      this.closest('.check-item').classList.toggle('checked', this.checked);
+      saveState();
+      refreshProgress();
+    });
+  });
+
+  // Restaurer QCM
+  if(STATE.qcm){
+    Object.keys(STATE.qcm).forEach(function(qName){
+      var saved = STATE.qcm[qName];
+      var input = document.querySelector('input[name="'+qName+'"][value="'+saved.value+'"]');
+      if(input){
+        input.checked = true;
+        checkQcm(input);
+      }
+    });
+  }
+
+  if(STATE.completed){
+    var btn = document.getElementById('mark-done');
+    btn.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Module complété';
+    btn.classList.add('done');
+  } else {
+    refreshMarkDoneState();
+  }
+
+  if(STATE.savedAt) document.getElementById('fiche-time').textContent = 'Enregistrée le ' + fmtDate(STATE.savedAt);
+  if(STATE.thermoAt) document.getElementById('thermo-time').textContent = 'Complété le ' + fmtDate(STATE.thermoAt);
+
+  if(STATE.viewed) sectionsViewed = Object.assign(sectionsViewed, STATE.viewed);
+  refreshProgress();
+  updateTimeDisplay();
+  updateSectionIndex();
+
+  setTimeout(showResumeOrCompleted, 400);
+});
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   Module de gestion des modes personnel / HEP
+   À embarquer dans chaque page de la plateforme
+   ═══════════════════════════════════════════════════════════════ */
+
+(function(){
+  'use strict';
+
+  // ── Configuration ──────────────────────────────────────────────
+  var HEP_CONFIG_URL = 'hep-config.json'; // relatif au fichier HTML
+  var _hepConfig = null;
+  var _hepPassword = null;
+
+  // ── État utilisateur (persisté en localStorage) ────────────────
+  function getUserMode(){
+    try {
+      var data = localStorage.getItem('aut_user_mode');
+      if (!data) return { mode: 'personal', name: '' };
+      return JSON.parse(data);
+    } catch(e) {
+      return { mode: 'personal', name: '' };
+    }
+  }
+
+  function setUserMode(data){
+    try {
+      localStorage.setItem('aut_user_mode', JSON.stringify(data));
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  // ── Chargement du fichier de config HEP ───────────────────────
+  function loadHepConfig(callback) {
+    if (_hepConfig !== null) {
+      callback(true);
+      return;
+    }
+    fetch(HEP_CONFIG_URL + '?_=' + Date.now())
+      .then(function(r){
+        if (!r.ok) throw new Error('Config introuvable');
+        return r.json();
+      })
+      .then(function(data){
+        _hepConfig = data || {};
+        _hepPassword = (data && data.password) ? String(data.password) : '';
+        callback(true);
+      })
+      .catch(function(){
+        _hepConfig = {};
+        _hepPassword = '__UNAVAILABLE__';
+        callback(false);
+      });
+  }
+
+  // ── Mise à jour du badge dans le header ───────────────────────
+  function updateModeBadge(){
+    var badge = document.getElementById('mode-badge');
+    if (!badge) return;
+    var user = getUserMode();
+    var icon, label, title;
+
+    if (user.mode === 'hep') {
+      icon = '<svg class="icon icon-sm"><use href="#i-grad"/></svg>';
+      label = 'HEP-VS' + (user.name ? ' · ' + user.name : '');
+      title = 'Mode institutionnel HEP-VS · Cliquer pour gérer';
+      badge.className = 'mode-badge mode-hep';
+    } else {
+      icon = '<svg class="icon icon-sm"><use href="#i-user"/></svg>';
+      label = user.name ? user.name : 'Mode personnel';
+      title = 'Mode personnel · Cliquer pour personnaliser';
+      badge.className = 'mode-badge mode-personal';
+    }
+    badge.innerHTML = icon + ' <span>' + label + '</span>';
+    badge.setAttribute('title', title);
+  }
+
+  // ── Modale de gestion du mode ─────────────────────────────────
+  function openModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) {
+      buildModeModal();
+      modal = document.getElementById('mode-modal');
+    }
+    var user = getUserMode();
+    renderModeModal(user);
+    modal.style.display = 'flex';
+    setTimeout(function(){
+      modal.classList.add('open');
+    }, 10);
+  }
+
+  function closeModeModal(){
+    var modal = document.getElementById('mode-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    setTimeout(function(){
+      modal.style.display = 'none';
+    }, 200);
+  }
+
+  function buildModeModal(){
+    var overlay = document.createElement('div');
+    overlay.id = 'mode-modal';
+    overlay.className = 'mode-modal';
+    overlay.innerHTML = '<div class="mode-modal-card">' +
+      '<button class="mode-modal-close" onclick="window.closeModeModal()" aria-label="Fermer">×</button>' +
+      '<div id="mode-modal-content"></div>' +
+    '</div>';
+    overlay.addEventListener('click', function(e){
+      if (e.target === overlay) closeModeModal();
+    });
+    document.body.appendChild(overlay);
+  }
+
+  function renderModeModal(user){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var isHep = user.mode === 'hep';
+
+    var html = '<h2 class="mode-modal-title">Mode de parcours</h2>' +
+      '<p class="mode-modal-sub">Choisissez le mode qui correspond à votre situation. Vous pouvez en changer à tout moment.</p>' +
+      '<div class="mode-options">' +
+
+      // Option personnelle
+      '<div class="mode-option' + (!isHep ? ' active' : '') + '" data-mode="personal">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-user"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Parcours personnel</div>' +
+            '<div class="mode-option-sub">Usage libre · Établissement scolaire ou découverte individuelle</div>' +
+          '</div>' +
+          (isHep ? '' : '<span class="mode-option-badge">Actif</span>') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Progression sauvegardée dans votre navigateur</li>' +
+          '<li>Certificat de complétion personnel disponible en fin de parcours</li>' +
+          '<li>Aucun mot de passe requis</li>' +
+        '</ul>' +
+        (!isHep ? '<button class="mode-option-action" onclick="window.editPersonalName()">Personnaliser mon nom</button>' :
+                  '<button class="mode-option-action" onclick="window.switchToPersonal()">Basculer en mode personnel</button>') +
+      '</div>' +
+
+      // Option HEP
+      '<div class="mode-option' + (isHep ? ' active' : '') + '" data-mode="hep">' +
+        '<div class="mode-option-head">' +
+          '<svg class="icon icon-lg"><use href="#i-grad"/></svg>' +
+          '<div>' +
+            '<div class="mode-option-title">Mode institutionnel HEP-VS</div>' +
+            '<div class="mode-option-sub">Pour les étudiant·e·s en formation continue HEP / CAS / DAS</div>' +
+          '</div>' +
+          (isHep ? '<span class="mode-option-badge">Actif</span>' : '') +
+        '</div>' +
+        '<ul class="mode-option-features">' +
+          '<li>Suivi nominatif officiel</li>' +
+          '<li>Attestation HEP-VS reconnue en fin de parcours</li>' +
+          '<li>Accès par code de session délivré par votre formateur</li>' +
+        '</ul>' +
+        (isHep ? '<button class="mode-option-action" onclick="window.editHepName()">Modifier mes informations</button>' :
+                  '<button class="mode-option-action mode-action-primary" onclick="window.openHepAuth()">Activer le mode HEP</button>') +
+      '</div>' +
+
+      '</div>';
+
+    content.innerHTML = html;
+  }
+
+  // ── Saisie du nom personnel ───────────────────────────────────
+  window.editPersonalName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Votre prénom et nom (optionnel, pour personnaliser votre certificat) :', current);
+    if (name === null) return; // annulé
+    user.name = name.trim();
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal(); // refresh
+  };
+
+  // ── Authentification HEP ──────────────────────────────────────
+  window.openHepAuth = function(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    content.innerHTML = '<h2 class="mode-modal-title">Activer le mode HEP-VS</h2>' +
+      '<p class="mode-modal-sub">Saisissez le code de session communiqué par votre formateur.</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-pw-input">Code de session</label>' +
+        '<input type="password" id="hep-pw-input" placeholder="Code délivré par votre formation" autocomplete="off">' +
+        '<div id="hep-pw-error" class="mode-form-error"></div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" id="hep-pw-validate" onclick="window.validateHepPassword()">Valider →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-pw-input');
+      if (inp) {
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.validateHepPassword();
+        });
+      }
+    }, 50);
+  };
+
+  window.validateHepPassword = function(){
+    var inp = document.getElementById('hep-pw-input');
+    var err = document.getElementById('hep-pw-error');
+    var btn = document.getElementById('hep-pw-validate');
+    if (!inp) return;
+
+    var entered = inp.value.trim();
+    if (!entered) {
+      err.textContent = 'Veuillez saisir le code de session.';
+      err.style.display = 'block';
+      return;
+    }
+
+    btn.textContent = 'Vérification…';
+    btn.disabled = true;
+
+    loadHepConfig(function(ok){
+      btn.textContent = 'Valider →';
+      btn.disabled = false;
+
+      if (!ok) {
+        err.textContent = 'Impossible de charger la configuration. Vérifiez votre connexion.';
+        err.style.display = 'block';
+        return;
+      }
+
+      if (entered !== _hepPassword) {
+        err.textContent = 'Code incorrect. Vérifiez auprès de votre formateur·rice.';
+        err.style.display = 'block';
+        inp.value = '';
+        inp.focus();
+        return;
+      }
+
+      // Succès — passer à la saisie du nom
+      openHepNameForm();
+    });
+  };
+
+  function openHepNameForm(){
+    var content = document.getElementById('mode-modal-content');
+    if (!content) return;
+
+    var sessionLabel = (_hepConfig && _hepConfig.session) ? _hepConfig.session : 'Formation HEP-VS';
+    var formateur = (_hepConfig && _hepConfig.formateur) ? _hepConfig.formateur : '';
+
+    content.innerHTML = '<h2 class="mode-modal-title">Mode HEP-VS activé ✓</h2>' +
+      '<p class="mode-modal-sub">Session : <strong>' + sessionLabel + '</strong>' +
+        (formateur ? '<br>Formateur·rice : <strong>' + formateur + '</strong>' : '') +
+      '</p>' +
+      '<div class="mode-form-field">' +
+        '<label for="hep-name-input">Votre prénom et nom complet</label>' +
+        '<input type="text" id="hep-name-input" placeholder="Ex : Marie Dupont" maxlength="80">' +
+        '<div class="mode-form-hint">Ce nom apparaîtra sur votre attestation HEP-VS officielle.</div>' +
+      '</div>' +
+      '<div class="mode-form-actions">' +
+        '<button class="mode-btn mode-btn-secondary" onclick="window.openModeModal()">Annuler</button>' +
+        '<button class="mode-btn mode-btn-primary" onclick="window.confirmHepActivation()">Activer →</button>' +
+      '</div>';
+
+    setTimeout(function(){
+      var inp = document.getElementById('hep-name-input');
+      if (inp) {
+        var current = getUserMode();
+        if (current.name) inp.value = current.name;
+        inp.focus();
+        inp.addEventListener('keydown', function(e){
+          if (e.key === 'Enter') window.confirmHepActivation();
+        });
+      }
+    }, 50);
+  }
+
+  window.confirmHepActivation = function(){
+    var inp = document.getElementById('hep-name-input');
+    if (!inp) return;
+    var name = inp.value.trim();
+    if (!name || name.length < 3) {
+      alert('Veuillez saisir votre prénom et nom complet.');
+      inp.focus();
+      return;
+    }
+    setUserMode({
+      mode: 'hep',
+      name: name,
+      session: (_hepConfig && _hepConfig.session) || '',
+      formateur: (_hepConfig && _hepConfig.formateur) || '',
+      date_formation: (_hepConfig && _hepConfig.date_formation) || '',
+      activatedAt: new Date().toISOString()
+    });
+    updateModeBadge();
+    closeModeModal();
+  };
+
+  window.editHepName = function(){
+    var user = getUserMode();
+    var current = user.name || '';
+    var name = prompt('Modifier votre prénom et nom :', current);
+    if (name === null) return;
+    name = name.trim();
+    if (!name) return;
+    user.name = name;
+    setUserMode(user);
+    updateModeBadge();
+    openModeModal();
+  };
+
+  window.switchToPersonal = function(){
+    if (!confirm('Basculer en mode personnel ? Votre progression est conservée, mais vous perdrez l\'accès aux fonctionnalités HEP-VS (attestation officielle).')) return;
+    var user = getUserMode();
+    setUserMode({
+      mode: 'personal',
+      name: user.name || ''
+    });
+    updateModeBadge();
+    openModeModal();
+  };
+
+  // ── Initialisation au chargement de chaque page ───────────────
+  window.openModeModal = openModeModal;
+  window.closeModeModal = closeModeModal;
+  window.updateModeBadge = updateModeBadge;
+  window.getUserMode = getUserMode;
+
+  window.addEventListener('DOMContentLoaded', function(){
+    updateModeBadge();
+  });
+
+  // Patch : forcer rafraîchissement à plusieurs événements pour éviter le bug d'incohérence inter-page
+  window.addEventListener('pageshow', function(){
+    updateModeBadge();
+  });
+  window.addEventListener('focus', function(){
+    updateModeBadge();
+  });
+  // Au cas où le DOM est déjà chargé quand le script s'exécute (ordre asynchrone)
+  if (document.readyState !== 'loading') {
+    updateModeBadge();
+  }
+
+})();
+
+</script>
+<script src="autoformation.js"></script>
+
+<script>
+// Mise à jour de la barre de progression
+(function(){
+  if (!window.AutProgress) return;
+  const g = AutProgress.getGlobalProgress();
+  const fill = document.getElementById('aut-global-fill');
+  const pct = document.getElementById('aut-pct');
+  const count = document.getElementById('aut-count');
+  const info = document.getElementById('aut-progress-info');
+  if (fill) fill.style.width = g.percent + '%';
+  if (pct) pct.textContent = g.percent + '%';
+  if (count) count.textContent = g.completed + '/' + g.total;
+  if (info && g.completed > 0) info.style.display = 'flex';
+})();
+</script>
+
+
+<script>
+// Sommaire flottant : surligne la section active selon le scroll
+(function(){
+  const tocLinks = document.querySelectorAll('.aut-toc-list a');
+  if (!tocLinks.length) return;
+  
+  function updateActive() {
+    let active = null;
+    const scrollTop = window.scrollY + 180;
+    document.querySelectorAll('.mod-section[id], section[id]').forEach(sec => {
+      if (sec.offsetTop <= scrollTop) active = sec.id;
+    });
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && active && href === '#' + active) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+})();
+</script>
+
+
+<script>
+// Recherche globale
+let autSearchIndex = null;
+
+function openAutSearch(){
+  document.getElementById('aut-search-modal').classList.add('open');
+  setTimeout(() => document.getElementById('aut-search-input').focus(), 100);
+  if (!autSearchIndex) {
+    fetch('aut-search-index.json')
+      .then(r => r.json())
+      .then(data => { autSearchIndex = data; })
+      .catch(e => console.warn('Index recherche indisponible:', e));
+  }
+}
+function closeAutSearch(){
+  document.getElementById('aut-search-modal').classList.remove('open');
+}
+function runAutSearch(query){
+  const results = document.getElementById('aut-search-results');
+  if (!autSearchIndex) {
+    results.innerHTML = '<div class="aut-search-empty">Index en cours de chargement...</div>';
+    return;
+  }
+  if (!query || query.length < 2) {
+    results.innerHTML = '<div class="aut-search-empty">Tapez quelques caractères pour lancer la recherche</div>';
+    return;
+  }
+  const q = query.toLowerCase();
+  const matches = [];
+  autSearchIndex.forEach(item => {
+    let score = 0;
+    if (item.label.toLowerCase().includes(q)) score += 10;
+    if (item.desc.toLowerCase().includes(q)) score += 5;
+    item.keywords.forEach(k => {
+      if (k.toLowerCase().includes(q)) score += 1;
+    });
+    if (score > 0) matches.push({...item, score});
+  });
+  matches.sort((a,b) => b.score - a.score);
+  
+  if (!matches.length) {
+    results.innerHTML = '<div class="aut-search-empty">Aucun résultat pour "' + query + '"</div>';
+    return;
+  }
+  
+  results.innerHTML = matches.slice(0, 10).map(m => `
+    <a href="${m.page}" class="aut-search-result">
+      <div class="aut-search-result-label">${m.label}</div>
+      <div class="aut-search-result-title">${m.desc}</div>
+    </a>
+  `).join('');
+}
+
+// Setup
+document.addEventListener('DOMContentLoaded', function(){
+  const input = document.getElementById('aut-search-input');
+  if (input) {
+    input.addEventListener('input', e => runAutSearch(e.target.value));
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeAutSearch();
+    });
+  }
+  // Raccourci Ctrl+K
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openAutSearch();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
