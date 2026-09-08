@@ -1280,6 +1280,23 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 </style>
 
 <style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+
+<style id="soft-panel">
+.resources-section{
+  background:linear-gradient(160deg,#4a5570,#3d4763)!important;
+  color:#f4f6fb!important;
+  margin:32px auto!important;
+  max-width:1200px!important;
+  border-radius:20px!important;
+  padding:48px 40px!important;
+  box-shadow:0 10px 40px rgba(22,33,62,.15)!important;
+}
+@media(max-width:760px){.resources-section{margin:20px 12px!important;padding:32px 20px!important;border-radius:16px!important;}}
+[data-theme="dark"] .resources-section{
+  background:linear-gradient(160deg,#20242f,#1a1d26)!important;
+  box-shadow:none!important;border:1px solid var(--border-soft)!important;
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>

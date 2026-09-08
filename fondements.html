@@ -3576,7 +3576,14 @@ document.addEventListener('click',function(e){
       if(t){ t.classList.remove('part-collapsed'); var h=headerOf(t); if(h) h.setAttribute('aria-expanded','true'); }
     });
   });
-  if(location.hash){ var t=document.querySelector(location.hash); if(t){ t.classList.remove('part-collapsed'); }}
+  function openEnclosingPart(el){
+    if(!el) return;
+    var part = el.closest('.part-section, section.fondements-part');
+    if(part){ part.classList.remove('part-collapsed'); var h=part.querySelector('.fondements-part-header'); if(h) h.setAttribute('aria-expanded','true'); part.scrollIntoView({behavior:'smooth'}); }
+  }
+  function handleHash(){ if(location.hash){ try{ openEnclosingPart(document.querySelector(location.hash)); }catch(e){} } }
+  handleHash();
+  window.addEventListener('hashchange', handleHash);
 })();
 </script>
 
