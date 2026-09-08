@@ -1167,6 +1167,20 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 </style>
 
 <style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+
+<style id="collapsible-parts-css">
+.part-section .fondements-part-header,
+section.fondements-part > .fondements-part-header{cursor:pointer;user-select:none;position:relative;transition:filter .15s;}
+.part-section .fondements-part-header:hover,
+section.fondements-part > .fondements-part-header:hover{filter:brightness(1.06);}
+.fondements-part-header::after{content:"";position:absolute;right:22px;top:50%;width:11px;height:11px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-70%) rotate(45deg);opacity:.7;transition:transform .2s;}
+.part-collapsed .fondements-part-header::after{transform:translateY(-30%) rotate(-135deg);}
+.part-collapsed .part-body-wrap{display:none;}
+.fondements-part-header:focus-visible{outline:3px solid var(--gold,#c8962a);outline-offset:3px;}
+.fond-expand-bar{display:flex;gap:10px;justify-content:flex-end;margin:0 0 18px;}
+.fond-expand-bar button{background:var(--surface,#fff);border:1px solid var(--border-soft,#e3d9c8);border-radius:8px;padding:7px 14px;font-size:.82rem;cursor:pointer;color:var(--text-muted,#555);}
+.fond-expand-bar button:hover{background:var(--surface-alt,#f5efe3);color:var(--text-strong,#1a1a1a);}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -1310,6 +1324,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 
   <!-- ─── Contenu principal ─── -->
   <main id="main" class="fond-content">
+<div class="fond-expand-bar"><button type="button" onclick="setAllParts(false)">Tout déplier</button><button type="button" onclick="setAllParts(true)">Tout replier</button></div>
 <section id="part-1" class="part-section" data-part="1">
 <div class="fondements-part-header part1">
 <div class="fondements-part-num n1">1</div>
@@ -2865,11 +2880,14 @@ function downloadApprofondirPDF() {
 
 <footer>
   <div class="footer-links">
-    <a href="modules.html">Catalogue modules</a>
-    <a href="diagnostic.html">Diagnostic PRÉSENCE</a>
-    <a href="bibliotheque.html">Bibliothèque</a>
-    <a href="glossaire.html">Glossaire</a>
-  </div>
+      <a href="index.html">Accueil</a>
+      <a href="diagnostic.html">Diagnostic</a>
+      <a href="modules.html">Modules</a>
+      <a href="fondements.html">Cadres de référence</a>
+      <a href="bibliotheque.html">Bibliothèque</a>
+      <a href="glossaire.html">Glossaire</a>
+      <a href="declaration-conformite.html">Déclaration de conformité</a>
+    </div>
   <div class="footer-meta">
     <div>Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS</div>
     <div style="margin-top:10px;font-size:.76rem;opacity:.85;">
@@ -3510,6 +3528,79 @@ document.addEventListener('click',function(e){
         timer = setTimeout(save, 600);
       });
     });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  function headerOf(sec){ return sec.querySelector('.fondements-part-header'); }
+  function wrapBody(sec){
+    var h = headerOf(sec); if(!h) return null;
+    // le corps = tous les frères de <h> (dans son parent) situés après lui
+    var parent = h.parentNode;
+    var wrap = document.createElement('div'); wrap.className='part-body-wrap';
+    var n = h.nextSibling;
+    while(n){ var next = n.nextSibling; wrap.appendChild(n); n = next; }
+    parent.appendChild(wrap);
+    return wrap;
+  }
+  var secs = document.querySelectorAll('.part-section, section.fondements-part');
+  secs.forEach(function(sec, i){
+    var h = headerOf(sec); if(!h) return;
+    wrapBody(h.closest('.fondements-part') || sec === h.parentNode ? sec : sec);
+    // pour la structure part 2-7 le corps à envelopper est dans .fondements-part
+    var host = h.parentNode;
+    if(!host.querySelector('.part-body-wrap')){ /* already wrapped above */ }
+    h.setAttribute('role','button'); h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded', i===0 ? 'true':'false');
+    if(i!==0) sec.classList.add('part-collapsed');
+    function toggle(){
+      var c = sec.classList.toggle('part-collapsed');
+      h.setAttribute('aria-expanded', c ? 'false':'true');
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); }});
+  });
+  window.setAllParts = function(collapse){
+    secs.forEach(function(sec){
+      var h = headerOf(sec); if(!h) return;
+      sec.classList.toggle('part-collapsed', collapse);
+      h.setAttribute('aria-expanded', collapse ? 'false':'true');
+    });
+  };
+  // ouvrir la partie visée par le sommaire avant de scroller
+  document.querySelectorAll('.fond-toc .toc-link').forEach(function(a){
+    a.addEventListener('click', function(){
+      var t = document.querySelector(a.getAttribute('href'));
+      if(t){ t.classList.remove('part-collapsed'); var h=headerOf(t); if(h) h.setAttribute('aria-expanded','true'); }
+    });
+  });
+  if(location.hash){ var t=document.querySelector(location.hash); if(t){ t.classList.remove('part-collapsed'); }}
+})();
+</script>
+
+<script>
+(function(){
+  var map = {
+    'part-1':[['Tous les modules','modules.html']],
+    'part-2':[['Module 1 · Bien-être','module1.html'],['Module 6 · Cartographie','module6.html']],
+    'part-3':[['Module 2 · Épuisement','module2.html'],['Module 4 · Vulnérabilité','module4.html']],
+    'part-4':[['Module 5 · Modèle PRÉSENCE','module5.html'],['Module 8 · TDAH','module8.html']],
+    'part-5':[['Module 3 · Profil des besoins','module3.html']],
+    'part-6':[['Module 5 · Modèle PRÉSENCE','module5.html']],
+    'part-7':[['Module 9 · Prendre soin de soi','module9.html']],
+    'part-8':[['Module 3 · Profil des besoins','module3.html']]
+  };
+  Object.keys(map).forEach(function(id){
+    var sec = document.getElementById(id); if(!sec) return;
+    var wrap = sec.querySelector('.part-body-wrap') || sec;
+    var box = document.createElement('div');
+    box.className='part-modules-link';
+    box.style.cssText='margin:26px 4px 4px;padding:14px 18px;background:var(--surface-alt,#f5efe3);border-radius:10px;border-left:4px solid var(--gold,#c8962a);font-size:.86rem;';
+    var links = map[id].map(function(m){ return '<a href="'+m[1]+'" style="color:var(--deep,#1a3a5c);font-weight:600;border-bottom:1px solid currentColor;text-decoration:none;">'+m[0]+'</a>'; }).join(' · ');
+    box.innerHTML = '<strong>Travaillé dans&nbsp;:</strong> '+links;
+    wrap.appendChild(box);
   });
 })();
 </script>

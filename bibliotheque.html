@@ -2507,9 +2507,14 @@ Pour l'enseignant·e, elle offre une grille de lecture de son propre bien-être 
 
 <footer>
   <div class="footer-links">
-    <a href="modules.html">Catalogue modules</a>
-    <a href="glossaire.html">Glossaire · FAQ · Biblio</a>
-  </div>
+      <a href="index.html">Accueil</a>
+      <a href="diagnostic.html">Diagnostic</a>
+      <a href="modules.html">Modules</a>
+      <a href="fondements.html">Cadres de référence</a>
+      <a href="bibliotheque.html">Bibliothèque</a>
+      <a href="glossaire.html">Glossaire</a>
+      <a href="declaration-conformite.html">Déclaration de conformité</a>
+    </div>
   <div class="footer-meta">
     <div>Plateforme d'autoformation à la résilience professionnelle enseignante · HEP-VS</div>
     <div style="margin-top:10px;font-size:.76rem;opacity:.85;">
@@ -3178,6 +3183,33 @@ document.addEventListener('DOMContentLoaded',function(){
     h4.appendChild(a);
   });
 });
+</script>
+
+<script>
+(function(){
+  // Replie uniquement le panneau "Ressources ciblées par dimension" (le plus lourd),
+  // par un bouton dans son titre. Les 10 dossiers et leur index restent intacts.
+  function makeToggle(panel, keepEl, label){
+    if(!panel || panel.dataset.collapsibleDone) return;
+    panel.dataset.collapsibleDone='1';
+    var body=document.createElement('div');
+    Array.prototype.slice.call(panel.children).forEach(function(k){ if(k!==keepEl) body.appendChild(k); });
+    body.style.display='none';
+    var btn=document.createElement('button'); btn.type='button'; btn.textContent='Afficher';
+    btn.style.cssText='margin-left:12px;font-size:.72rem;padding:4px 12px;border-radius:6px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer;vertical-align:middle;';
+    btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label', label);
+    keepEl.appendChild(btn); panel.appendChild(body);
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open=body.style.display!=='none';
+      body.style.display=open?'none':'block';
+      btn.textContent=open?'Afficher':'Masquer';
+      btn.setAttribute('aria-expanded', open?'false':'true');
+    });
+  }
+  var dim=document.getElementById('dim-filter-panel');
+  if(dim) makeToggle(dim, dim.querySelector('.dim-filter-title'), 'Afficher les ressources ciblées par dimension');
+})();
 </script>
 </body>
 </html>

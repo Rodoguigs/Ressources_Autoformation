@@ -2325,6 +2325,21 @@ body{
 </style>
 
 <style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+
+<style id="mob-toc-css">
+.mob-section-nav{display:none;}
+@media (max-width:900px){
+  .mob-section-nav{display:block;position:sticky;top:0;z-index:40;background:var(--surface,#fff);border-bottom:1px solid var(--border-soft,#e3d9c8);padding:8px 14px;margin:0 -14px 14px;}
+  .mob-section-nav select{width:100%;padding:9px 12px;border-radius:8px;border:1px solid var(--border-soft,#ccc);font-size:.9rem;background:var(--surface,#fff);color:var(--text-strong,#1a1a1a);}
+  .mob-toc-top{position:fixed;right:16px;bottom:80px;z-index:60;background:var(--mod-color,#333);color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;}
+}
+</style>
+
+<style id="bc-mob-css">@media (max-width:600px){
+  .app-breadcrumb a:not(:nth-last-child(3)),
+  .app-breadcrumb .sep:not(:last-of-type){display:none;}
+  .app-breadcrumb{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;}
+}</style>
 </head>
 <body>
 
@@ -4409,5 +4424,27 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
+
+<script>
+(function(){
+  var toc = document.getElementById('toc-desktop'); if(!toc) return;
+  var items = toc.querySelectorAll('.mod-toc-item');
+  var nav = document.createElement('div'); nav.className='mob-section-nav';
+  var sel = document.createElement('select'); sel.setAttribute('aria-label','Aller à une section du module');
+  var def = document.createElement('option'); def.textContent='Aller à une section…'; def.value=''; sel.appendChild(def);
+  items.forEach(function(it){
+    var o=document.createElement('option'); o.value=it.getAttribute('href');
+    o.textContent=it.textContent.replace(/\s+/g,' ').trim(); sel.appendChild(o);
+  });
+  sel.addEventListener('change', function(){ if(sel.value){ var t=document.querySelector(sel.value); if(t) t.scrollIntoView({behavior:'smooth'}); }});
+  nav.appendChild(sel);
+  var main = document.querySelector('.mod-content, main'); 
+  if(main && main.firstChild) main.insertBefore(nav, main.firstChild);
+  var up = document.createElement('button'); up.className='mob-toc-top'; up.type='button';
+  up.setAttribute('aria-label','Revenir en haut'); up.textContent='↑';
+  up.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  document.body.appendChild(up);
+})();
+</script>
 </body>
 </html>
