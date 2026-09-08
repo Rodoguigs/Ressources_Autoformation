@@ -31,7 +31,7 @@
   --accent3:#533483; --gold:#f5a623; --sage:#4a7c59; --sky:#2d9cdb;
   --light:#f8f5f0; --muted:#7a7a9d;
   --surface:#ffffff; --surface-alt:#fafbff;
-  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#666;
+  --text-strong:#1a1a2e; --text-body:#333; --text-muted:#555; --text-subtle:#5a5248;
   --border-soft:rgba(0,0,0,.08);
   --mod-color: #2980b9;
   --mod-color-soft: #eef6fd;
@@ -2873,8 +2873,8 @@ body{
           <textarea rows="2" placeholder="Date, durée, objectif de la première rencontre..." id="m7-engagement"></textarea>
         </div>
         <div class="pratique-field">
-          <label for="m7-engagement">Mon engagement concret cette semaine</label>
-          <textarea rows="2" placeholder="Une action précise, mesurable, réalisable d'ici 7 jours…" id="m7-engagement"></textarea>
+          <label for="m7-engagement2">Mon engagement concret cette semaine</label>
+          <textarea rows="2" placeholder="Une action précise, mesurable, réalisable d'ici 7 jours…" id="m7-engagement2"></textarea>
         </div>
         <div class="pratique-actions">
           <button class="pratique-btn pratique-btn-primary" onclick="savePratique()">
@@ -3480,7 +3480,7 @@ function resetThermo(){
 }
 
 /* ═══ Fiche action ═══ */
-var FIELDS = ['m7-format','m7-pairs','m7-engagement'];
+var FIELDS = ['m7-format','m7-pairs','m7-engagement','m7-engagement2'];
 function savePratique(){
   FIELDS.forEach(function(id){
     var el = document.getElementById(id);
