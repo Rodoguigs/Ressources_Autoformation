@@ -379,8 +379,31 @@ var ENGAGEMENTS_LABELS = {
 var MOD_TITRES = {1:"Module 1 — Bien-être",2:"Module 2 — Épuisement",3:"Module 3 — Besoins de formation",4:"Module 4 — Vulnérabilité au stress",5:"Module 5 — Posture & PRÉSENCE",6:"Module 6 — Cartographie",7:"Module 7 — Mentorat",8:"Module 8 — TDAH & classes difficiles",9:"Module 9 — Prendre soin de soi"};
 
 function renderPlanAction(){
+  var ENG_DONE = (function(){ try{ return JSON.parse(localStorage.getItem('aut_eng_done_v1')||'{}'); }catch(e){ return {}; } })();
   var container = document.getElementById('plan-action-list');
   if(!container) return;
+  // Relance temporelle : engagements pris il y a >=7 jours, pas encore cochés « réalisé »
+  (function(){
+    var rel = document.getElementById('plan-relance'); if(!rel) return;
+    var now = Date.now(), WEEK = 7*24*60*60*1000, stale = 0;
+    [1,2,3,4,5,6,7,8,9].forEach(function(n){
+      var st = getModuleState(n); if(!st || !st.checks || !st.savedAt) return;
+      var age = now - new Date(st.savedAt).getTime();
+      if(age < WEEK) return;
+      Object.keys(ENGAGEMENTS_LABELS[n] || {}).forEach(function(cid){
+        if(!st.checks[cid]) return;
+        var key = 'm'+n+'::'+ENGAGEMENTS_LABELS[n][cid];
+        if(ENG_DONE[key] !== true) stale++;
+      });
+    });
+    if(stale > 0){
+      rel.innerHTML = '<strong>Un petit retour en arrière ?</strong> ' +
+        'Certains de vos engagements datent d\'une semaine. Prenez un instant pour cocher ce qui est fait — et reformuler ce qui ne l\'est pas encore, sans pression.';
+      rel.hidden = false;
+    } else {
+      rel.hidden = true;
+    }
+  })();
   var nums = [1,2,3,4,5,6,7,8,9];
   var html = '';
   var totalEngagements = 0;
@@ -398,7 +421,14 @@ function renderPlanAction(){
       html += '<div class="plan-mod-group">';
       html += '<div class="plan-mod-titre">' + MOD_TITRES[n] + '</div>';
       checked.forEach(function(label){
-        html += '<div class="plan-eng-item"><svg class="icon icon-sm" style="color:var(--sage,#4a7c59);flex-shrink:0"><use href="#i-check"/></svg><span>' + label + '</span></div>';
+        var doneKey = 'm'+n+'::'+label;
+        var isDone = ENG_DONE[doneKey] === true;
+        html += '<div class="plan-eng-item' + (isDone ? ' plan-eng-done' : '') + '">' +
+          '<button type="button" class="plan-eng-toggle" role="checkbox" aria-checked="' + (isDone?'true':'false') + '" ' +
+          'onclick="toggleEngDone(this)" data-engkey="' + doneKey.replace(/"/g,'&quot;') + '" ' +
+          'title="Marquer comme réalisé">' +
+          '<svg class="icon icon-sm"><use href="#i-check"/></svg></button>' +
+          '<span class="plan-eng-label">' + label + '</span></div>';
       });
       html += '</div>';
     }
@@ -407,6 +437,9 @@ function renderPlanAction(){
     container.innerHTML = '<div class="empty-state" style="padding:20px;text-align:center;color:var(--text-muted)">Vous n\'avez pas encore coché d\'engagement dans les modules. Vos engagements apparaîtront ici au fur et à mesure.</div>';
   } else {
     container.innerHTML = html;
+    var doneCount = Object.keys(ENG_DONE).filter(function(k){ return ENG_DONE[k]===true; }).length;
+    var sumEl = document.getElementById('plan-done-summary');
+    if(sumEl){ sumEl.textContent = totalEngagements ? (doneCount + ' sur ' + totalEngagements + ' réalisé' + (doneCount>1?'s':'')) : ''; }
   }
 }
 
@@ -1090,7 +1123,8 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
   <h2 class="section-title">Mon plan d'action</h2>
   <div class="suivi-card">
-    <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:6px">Tous les engagements que vous avez cochés dans les modules sont rassemblés ici — votre feuille de route personnelle.</p>
+    <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:6px">Tous les engagements que vous avez cochés dans les modules sont rassemblés ici — votre feuille de route personnelle. <span id="plan-done-summary"></span></p>
+    <div id="plan-relance" class="plan-relance" hidden></div>
     <div class="plan-action-list" id="plan-action-list">
       <!-- Rempli par JS -->
     </div>
@@ -1995,5 +2029,36 @@ document.addEventListener('click',function(e){
   if(w&&d&&!w.contains(e.target)) d.style.display='none';
 });
 </script>
+
+<script>
+function toggleEngDone(btn){
+  var key = btn.getAttribute('data-engkey'); if(!key) return;
+  var store; try{ store = JSON.parse(localStorage.getItem('aut_eng_done_v1')||'{}'); }catch(e){ store={}; }
+  var now = !(store[key]===true);
+  store[key] = now;
+  try{ localStorage.setItem('aut_eng_done_v1', JSON.stringify(store)); }catch(e){}
+  btn.setAttribute('aria-checked', now?'true':'false');
+  var item = btn.closest('.plan-eng-item'); if(item) item.classList.toggle('plan-eng-done', now);
+  // refresh summary
+  var total = document.querySelectorAll('.plan-eng-item').length;
+  var done = document.querySelectorAll('.plan-eng-item.plan-eng-done').length;
+  var sumEl = document.getElementById('plan-done-summary');
+  if(sumEl){ sumEl.textContent = total ? (done + ' sur ' + total + ' réalisé' + (done>1?'s':'')) : ''; }
+}
+</script>
+<style>
+.plan-eng-toggle{flex-shrink:0;width:26px;height:26px;border-radius:7px;border:2px solid var(--border-soft,#d9cfc0);background:var(--surface,#fff);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;transition:all .15s;color:transparent;}
+.plan-eng-toggle:hover{border-color:var(--sage,#4a7c59);}
+.plan-eng-toggle .icon{width:15px;height:15px;}
+.plan-eng-item.plan-eng-done .plan-eng-toggle{background:var(--sage,#4a7c59);border-color:var(--sage,#4a7c59);color:#fff;}
+.plan-eng-item.plan-eng-done .plan-eng-label{text-decoration:line-through;color:var(--text-subtle,#5a5248);}
+.plan-eng-toggle:focus-visible{outline:3px solid var(--gold,#c8962a);outline-offset:2px;}
+#plan-done-summary{font-size:.82rem;font-weight:700;color:var(--sage,#4a7c59);}
+</style>
+
+<style>
+.plan-relance{background:linear-gradient(135deg,rgba(245,166,35,.10),rgba(83,52,131,.06));border:1px solid rgba(245,166,35,.35);border-left:4px solid var(--gold,#c8962a);border-radius:10px;padding:14px 18px;margin:0 0 16px;font-size:.9rem;color:var(--text-body,#333);line-height:1.5;}
+.plan-relance strong{color:var(--text-strong,#1a1a2e);}
+</style>
 </body>
 </html>
