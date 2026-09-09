@@ -2923,6 +2923,10 @@ Rediriger : je l'oriente vers la bonne ressource" id="m9-aar"></textarea>
 3. " id="m9-routine"></textarea>
         </div>
         <div class="pratique-field">
+          <label for="m9-demitour">Une situation d'accompagnement où je pourrais « faire demi-tour » — réfléchir avec l'élève plutôt que porter seul·e la solution (Profil Apprenant)</label>
+          <textarea rows="2" placeholder="La situation, et ce que je proposerais de penser ensemble…" id="m9-demitour"></textarea>
+        </div>
+        <div class="pratique-field">
           <label for="m9-engagement">Mon engagement concret cette semaine</label>
           <textarea rows="2" placeholder="Une action précise, mesurable, réalisable d'ici 7 jours…" id="m9-engagement"></textarea>
         </div>
@@ -3570,7 +3574,7 @@ function resetThermo(){
 }
 
 /* ═══ Fiche action ═══ */
-var FIELDS = ['m9-niveau','m9-routine','m9-aar','m9-engagement'];
+var FIELDS = ['m9-niveau','m9-routine','m9-aar','m9-demitour','m9-engagement'];
 function savePratique(){
   FIELDS.forEach(function(id){
     var el = document.getElementById(id);
