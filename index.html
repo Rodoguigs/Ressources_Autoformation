@@ -1388,7 +1388,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
       <div class="aut-mini-progress" id="aut-mini-progress" style="display:none;">
         <span><strong id="aut-mini-pct">0%</strong> du parcours</span>
         <div class="aut-mini-progress-track"><div class="aut-mini-progress-fill" id="aut-mini-fill"></div></div>
-        <span id="aut-mini-count">0/9 modules</span>
+        <span id="aut-mini-count">0/9 modules</span> <span aria-hidden="true" style="opacity:.5">·</span> <span id="aut-mini-remaining" style="font-weight:600;color:var(--accent3,#533483)"></span>
       </div>
     </div>
     <a href="diagnostic.html" id="aut-welcome-cta" class="aut-welcome-cta">
@@ -2354,6 +2354,21 @@ function dismissResume(){
   const cta = document.getElementById('aut-welcome-cta');
   const miniProgress = document.getElementById('aut-mini-progress');
   
+  function updateRemainingTime(){
+    var DUREES = {1:35,2:35,3:40,4:35,5:40,6:40,7:40,8:45,9:40};
+    var reste = 0;
+    for (var n=1; n<=9; n++){
+      var st = (typeof getModuleState==='function') ? getModuleState(n) : null;
+      if (!(st && st.completed)) reste += DUREES[n];
+    }
+    var el = document.getElementById('aut-mini-remaining');
+    if (!el) return;
+    if (reste <= 0){ el.textContent = 'Parcours terminé'; return; }
+    var h = Math.floor(reste/60), m = reste%60;
+    var txt = h>0 ? (h + 'h' + (m>0 ? (m<10?'0'+m:m) : '')) : (m + ' min');
+    el.textContent = '≈ ' + txt + ' restant';
+  }
+
   // Décider quel mode afficher
   if (resume && resume.moduleFile) {
     // Mode "Continuer"
@@ -2366,6 +2381,7 @@ function dismissResume(){
     
     // Afficher la barre mini
     miniProgress.style.display = 'flex';
+    updateRemainingTime();
     document.getElementById('aut-mini-pct').textContent = global.percent + '%';
     document.getElementById('aut-mini-fill').style.width = global.percent + '%';
     document.getElementById('aut-mini-count').textContent = global.completed + '/' + global.total + ' modules';
@@ -2379,6 +2395,11 @@ function dismissResume(){
     desc.textContent = 'Sur la base de votre profil, explorez le catalogue pour choisir vos premiers modules.';
     cta.href = 'modules.html';
     cta.textContent = 'Voir les modules →';
+    miniProgress.style.display = 'flex';
+    document.getElementById('aut-mini-pct').textContent = global.percent + '%';
+    document.getElementById('aut-mini-fill').style.width = global.percent + '%';
+    document.getElementById('aut-mini-count').textContent = global.completed + '/' + global.total + ' modules';
+    updateRemainingTime();
     block.style.display = 'block';
   } else {
     // Première visite : suggérer le diagnostic
