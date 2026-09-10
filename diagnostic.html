@@ -674,6 +674,23 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 </style>
 
 <style>@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}</style>
+
+<style id="next-step-css">
+.next-step-bar{max-width:900px;margin:10px auto 40px;padding:0 24px;}
+.next-step-card{display:flex;align-items:center;justify-content:space-between;gap:18px;
+  background:var(--surface-alt,#f5efe3);border:1px solid var(--border-soft,#e3d9c8);
+  border-radius:14px;padding:20px 26px;text-decoration:none;transition:all .15s;}
+.next-step-card:hover{border-color:var(--gold,#c8962a);transform:translateY(-1px);box-shadow:0 6px 20px rgba(22,33,62,.08);}
+.next-step-txt{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.next-step-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-subtle,#5a5248);}
+.next-step-title{font-size:1.12rem;font-weight:700;color:var(--text-strong,#1a1a2e);}
+.next-step-desc{font-size:.86rem;color:var(--text-muted,#555);line-height:1.4;}
+.next-step-arrow{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--deep,#16213e);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.next-step-card:hover .next-step-arrow{background:var(--gold,#c8962a);}
+[data-theme="dark"] .next-step-card{background:var(--surface,#1a1d26);}
+@media(max-width:600px){.next-step-card{padding:16px 18px;}.next-step-desc{display:none;}}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -862,6 +879,16 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 
 </main>
 
+<div class="next-step-bar">
+  <a class="next-step-card" href="fondements.html">
+    <div class="next-step-txt">
+      <span class="next-step-eyebrow">Étape 2 sur 3</span>
+      <span class="next-step-title">Cadres de référence</span>
+      <span class="next-step-desc">Vous avez identifié vos priorités. Découvrez maintenant les modèles théoriques qui les éclairent.</span>
+    </div>
+    <span class="next-step-arrow" aria-hidden="true">→</span>
+  </a>
+</div>
 <footer>
   <div class="footer-links">
       <a href="index.html">Accueil</a>
