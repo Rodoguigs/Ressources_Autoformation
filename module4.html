@@ -2339,7 +2339,15 @@ body{
   .app-breadcrumb a:not(:nth-last-child(3)),
   .app-breadcrumb .sep:not(:last-of-type){display:none;}
   .app-breadcrumb{flex-wrap:nowrap;white-space:nowrap;overflow:hidden;}
-}</style>
+}
+/* ═══ Infobulles : bascule sous le mot si le bandeau supérieur gêne ═══ */
+.gloss-term .gloss-tip,.gloss-tip .gloss-tip-box{transform:translateX(calc(-50% + var(--tip-shift,0px)));}
+.gloss-term .gloss-tip::after,.gloss-tip .gloss-tip-box::after{left:calc(50% - var(--tip-shift,0px));}
+.gloss-term.tip-below .gloss-tip,.gloss-tip.tip-below .gloss-tip-box{bottom:auto;top:calc(100% + 8px);}
+.gloss-term.tip-below .gloss-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink);}
+[data-theme="dark"] .gloss-term.tip-below .gloss-tip::after{border-top-color:transparent;border-bottom-color:#2a2d36;}
+.gloss-tip.tip-below .gloss-tip-box::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--text-strong);}
+</style>
 </head>
 <body>
 
@@ -3081,6 +3089,7 @@ body{
           <svg class="icon icon-sm"><use href="#i-check"/></svg>
           Marquer ce module comme complété
         </button>
+        <p id="mark-done-hint" class="mark-done-hint" style="display:none;flex-basis:100%;margin:10px 0 0;padding:10px 14px;border-radius:10px;background:rgba(45,156,219,.1);color:var(--text-body,#333);font-size:.85rem;line-height:1.55;"></p>
         <a href="diagnostic.html" class="back-to-diag-btn">
           <svg class="icon icon-sm"><use href="#i-back"/></svg>
           Mes recommandations
@@ -3650,12 +3659,34 @@ function refreshQcmScoreDisplay(){
 
 function refreshMarkDoneState(){
   var btn = document.getElementById('mark-done');
-  if(!btn || STATE.completed) return;
+  var hint = document.getElementById('mark-done-hint');
+  if(!btn) return;
+  if(STATE.completed){ if(hint) hint.style.display = 'none'; return; }
   var s = getQcmScore();
   var ready = s.answered === s.total && (s.correct/s.total) >= QCM_PASS_THRESHOLD;
-  btn.disabled = !ready;
-  btn.classList.toggle('locked', !ready);
-  btn.title = ready ? '' : 'Répondez correctement à au moins ' + Math.ceil(QCM_TOTAL_QUESTIONS*QCM_PASS_THRESHOLD) + '/' + QCM_TOTAL_QUESTIONS + ' questions pour valider ce module';
+  if(ready){
+    // Quiz réussi : le module est validé automatiquement et définitivement
+    markModuleDone();
+    return;
+  }
+  btn.disabled = true;
+  btn.classList.add('locked');
+  var need = Math.ceil(QCM_TOTAL_QUESTIONS*QCM_PASS_THRESHOLD);
+  btn.title = 'Répondez correctement à au moins ' + need + '/' + QCM_TOTAL_QUESTIONS + ' questions pour valider ce module';
+  if(hint){
+    hint.style.display = 'block';
+    hint.innerHTML = 'Pour valider ce module, répondez au quiz ci-dessus avec au moins <strong>' + need + ' bonnes réponses sur ' + QCM_TOTAL_QUESTIONS + '</strong>. '
+      + 'Votre score actuel : ' + s.correct + '/' + QCM_TOTAL_QUESTIONS + ' (' + s.answered + ' question' + (s.answered > 1 ? 's' : '') + ' répondue' + (s.answered > 1 ? 's' : '') + '). '
+      + 'Le module sera alors validé automatiquement.';
+  }
+}
+
+/* Transmettre la validation au suivi global (compteur x/9, certificat) */
+function syncGlobalProgress(){
+  try{
+    var m = MOD_KEY.match(/mod(\d+)_/);
+    if(window.AutProgress && m) AutProgress.markModuleComplete(parseInt(m[1]));
+  }catch(e){}
 }
 
 function markModuleDone(){
@@ -3668,6 +3699,9 @@ function markModuleDone(){
   STATE.completedAt = new Date().toISOString();
   STATE.qcmScore = s.correct + '/' + s.total;
   saveState();
+  syncGlobalProgress();
+  var hint = document.getElementById('mark-done-hint');
+  if(hint) hint.style.display = 'none';
   var btn = document.getElementById('mark-done');
   btn.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Module complété';
   btn.classList.add('done');
@@ -3852,6 +3886,7 @@ window.addEventListener('DOMContentLoaded', function(){
     var btn = document.getElementById('mark-done');
     btn.innerHTML = '<svg class="icon icon-sm"><use href="#i-check"/></svg> Module complété';
     btn.classList.add('done');
+    syncGlobalProgress();
   } else {
     refreshMarkDoneState();
   }
@@ -4367,5 +4402,55 @@ document.addEventListener('DOMContentLoaded', function(){
 .ancrage-situ{background:var(--surface-alt,#f5efe3);border-left:4px solid var(--sec4-rule,var(--gold,#c8962a));border-radius:8px;padding:14px 18px;margin:4px 0 20px;font-size:.94rem;line-height:1.55;color:var(--text-body,#333);font-style:italic;}
 .ancrage-situ-label{display:block;font-style:normal;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-subtle,#5a5248);margin-bottom:5px;}
 </style>
+<script>
+/* ═══ Infobulles : placement automatique (au-dessus ou en dessous, sans sortir de l'écran) ═══ */
+(function(){
+  function topObstacle(){
+    var b=0;
+    document.querySelectorAll('.app-header,.aut-progress-bar,.mob-section-nav,header').forEach(function(el){
+      var cs=getComputedStyle(el);
+      if(cs.position!=='sticky'&&cs.position!=='fixed')return;
+      var r=el.getBoundingClientRect();
+      if(r.top<=1&&r.bottom>b&&r.height<window.innerHeight/2)b=r.bottom;
+    });
+    return b;
+  }
+  function clipBox(el){
+    var box={top:0,left:0,right:window.innerWidth},p=el.parentElement;
+    while(p&&p!==document.body&&p!==document.documentElement){
+      var cs=getComputedStyle(p);
+      if(cs.overflow!=='visible'||cs.overflowX!=='visible'||cs.overflowY!=='visible'){
+        var r=p.getBoundingClientRect();
+        box.top=Math.max(box.top,r.top);box.left=Math.max(box.left,r.left);box.right=Math.min(box.right,r.right);
+      }
+      p=p.parentElement;
+    }
+    return box;
+  }
+  function place(trigger){
+    var tip=trigger.querySelector(':scope > .gloss-tip, :scope > .gloss-tip-box');
+    if(!tip)return;
+    trigger.classList.remove('tip-below');
+    trigger.style.removeProperty('--tip-shift');
+    var t=trigger.getBoundingClientRect(),c=clipBox(trigger);
+    var h=tip.offsetHeight||80;
+    if(t.top-h-14<Math.max(topObstacle(),c.top)+4)trigger.classList.add('tip-below');
+    var r=tip.getBoundingClientRect(),m=8,shift=0;
+    if(r.width){
+      if(r.left<c.left+m)shift=c.left+m-r.left;
+      else if(r.right>c.right-m)shift=(c.right-m)-r.right;
+    }
+    if(shift)trigger.style.setProperty('--tip-shift',shift+'px');
+  }
+  function find(e){
+    var el=e.target.closest&&e.target.closest('.gloss-term, .gloss-tip');
+    if(el&&el.classList.contains('gloss-tip')&&!el.querySelector(':scope > .gloss-tip-box')){el=el.closest('.gloss-term');}
+    return el;
+  }
+  ['mouseover','focusin','click','touchstart'].forEach(function(ev){
+    document.addEventListener(ev,function(e){var el=find(e);if(el)place(el);},{capture:true,passive:true});
+  });
+})();
+</script>
 </body>
 </html>

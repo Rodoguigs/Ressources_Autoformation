@@ -333,9 +333,9 @@ function getModuleState(num){
   }catch(e){ return null; }
 }
 
-/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:8} */
+/* Scanner tous les modules : retourne {completed:[1,2], inProgress:{num,section}, total:9} */
 function scanAllModules(){
-  var nums = [1,2,3,4,6,7,8,9];
+  var nums = [1,2,3,4,5,6,7,8,9];
   var completed = [];
   var inProgress = null;
   nums.forEach(function(n){
@@ -1309,7 +1309,7 @@ window.addEventListener('DOMContentLoaded', updateThemeIcon);
 
 <script>
 function updateStatusTags(){
-  var nums = [1,2,3,4,6,7,8,9];
+  var nums = [1,2,3,4,5,6,7,8,9];
   nums.forEach(function(n){
     var el = document.getElementById('status-'+n);
     if(!el) return;

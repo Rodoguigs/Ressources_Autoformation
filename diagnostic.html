@@ -690,6 +690,14 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
 .next-step-card:hover .next-step-arrow{background:var(--gold,#c8962a);}
 [data-theme="dark"] .next-step-card{background:var(--surface,#1a1d26);}
 @media(max-width:600px){.next-step-card{padding:16px 18px;}.next-step-desc{display:none;}}
+
+/* ═══ Infobulles : bascule sous le mot si le bandeau supérieur gêne ═══ */
+.gloss-term .gloss-tip,.gloss-tip .gloss-tip-box{transform:translateX(calc(-50% + var(--tip-shift,0px)));}
+.gloss-term .gloss-tip::after,.gloss-tip .gloss-tip-box::after{left:calc(50% - var(--tip-shift,0px));}
+.gloss-term.tip-below .gloss-tip,.gloss-tip.tip-below .gloss-tip-box{bottom:auto;top:calc(100% + 8px);}
+.gloss-term.tip-below .gloss-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink);}
+[data-theme="dark"] .gloss-term.tip-below .gloss-tip::after{border-top-color:transparent;border-bottom-color:#2a2d36;}
+.gloss-tip.tip-below .gloss-tip-box::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--text-strong);}
 </style>
 </head>
 <body>
@@ -784,7 +792,7 @@ footer .footer-meta{border-top:1px solid var(--border-soft);padding-top:16px;max
     </button>
     <button class="mode-selector-btn" data-mode="approfondi" onclick="switchMode('approfondi')">
       <span>Version approfondie (recommandée)</span>
-      <span class="ms-sub">95 items · ~20 min</span>
+      <span class="ms-sub">89 items · ~20 min</span>
     </button>
   </div>
 
@@ -1041,14 +1049,14 @@ var ITEMS_APPROFONDI = {
         {q:'Je suis épuisé(e) mentalement à cause de mon travail.', dom:'Bien-être professionnel', inv:true},
         {q:'Je sens que mes efforts ne sont pas reconnus par la direction ou les collègues.', dom:'Bien-être professionnel', inv:true},
         {q:'Je ressens une perte d\'intérêt ou de motivation pour mon métier.', dom:'Bien-être professionnel', inv:true},
-        {q:'Je suis capable d\'identifier mes émotions lors d\'une situation difficile auprès des élèves.', dom:'Clarté et conscience émotionnelle', inv:false},
-        {q:'J\'ai des difficultés à donner un sens à mes sentiments.', dom:'Clarté et conscience émotionnelle', inv:true},
-        {q:'Quand je suis contrarié(e), je prends le temps de découvrir ce que je ressens vraiment.', dom:'Réactions émotionnelles négatives et inquiétudes', inv:false},
-        {q:'Quand je suis contrarié(e), je me sens désarmé(e).', dom:'Réactions émotionnelles négatives et inquiétudes', inv:true},
-        {q:'Je suis capable de gérer le stress induit par le comportement inapproprié de mes élèves.', dom:'Réactions émotionnelles négatives et inquiétudes', inv:false},
-        {q:'Quand je suis contrarié(e), je sens que je peux garder le contrôle de mes comportements.', dom:'Difficultés de régulation en situation de contrariété', inv:false},
-        {q:'Quand je suis contrarié(e), le fait de ressentir une telle émotion me met en colère contre moi-même.', dom:'Difficultés de régulation en situation de contrariété', inv:true},
-        {q:'Quand je suis contrarié(e), mes émotions prennent le dessus.', dom:'Difficultés de régulation en situation de contrariété', inv:true},
+        {q:'Je suis capable d\'identifier précisément mes émotions lors d\'une situation difficile avec les élèves.', dom:'Clarté et conscience émotionnelle', inv:false},
+        {q:'J\'ai du mal à comprendre ce que je ressens et pourquoi je le ressens.', dom:'Clarté et conscience émotionnelle', inv:true},
+        {q:'Quand je suis contrarié(e) au travail (par un élève, un collègue, un parent…), je prends le temps de découvrir ce que je ressens vraiment.', dom:'Réactions émotionnelles négatives et inquiétudes', inv:false},
+        {q:'Quand je suis contrarié(e) au travail (par un élève, un collègue, un parent…), je me sens désarmé(e).', dom:'Réactions émotionnelles négatives et inquiétudes', inv:true},
+        {q:'Je suis capable de gérer le stress induit par les comportements inappropriés des élèves.', dom:'Réactions émotionnelles négatives et inquiétudes', inv:false},
+        {q:'Quand je suis contrarié(e) au travail (par un élève, un collègue, un parent…), je sens que je peux garder le contrôle de mes comportements.', dom:'Difficultés de régulation en situation de contrariété', inv:false},
+        {q:'Quand je suis contrarié(e) au travail (par un élève, un collègue, un parent…), le fait de ressentir une telle émotion me met en colère contre moi-même.', dom:'Difficultés de régulation en situation de contrariété', inv:true},
+        {q:'Quand je suis contrarié(e) au travail (par un élève, un collègue, un parent…), mes émotions prennent le dessus.', dom:'Difficultés de régulation en situation de contrariété', inv:true},
       ]
     },
     cse: {
@@ -1060,9 +1068,9 @@ var ITEMS_APPROFONDI = {
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
         {q:'Je suis conscient de mes capacités à enseigner à tous les élèves.', dom:'Conscience de soi', inv:false},
-        {q:'Je reconnais précisément mes émotions lors de situations difficiles en classe.', dom:'Conscience de soi', inv:false},
+        {q:'Je reconnais précisément mes émotions lors de situations difficiles en classe.', dom:'Conscience de soi', inv:false, hidden:true, shared:'perso_bienetre:4' /* fusionné avec Bien-être */},
         {q:'J’arrive à me motiver malgré les difficultés que je rencontre avec les élèves.', dom:'Autorégulation', inv:false},
-        {q:'Je suis capable de gérer le stress induit par les comportements inappropriés des élèves.', dom:'Autorégulation', inv:false},
+        {q:'Je suis capable de gérer le stress induit par les comportements inappropriés des élèves.', dom:'Autorégulation', inv:false, hidden:true, shared:'perso_bienetre:8' /* fusionné avec Bien-être */},
         {q:'Je suis à l’écoute de ce que ressentent les élèves lors d’une situation difficile.', dom:'Conscience sociale', inv:false},
         {q:'Je fais preuve d’empathie envers les élèves lors des situations difficiles.', dom:'Conscience sociale', inv:false},
         {q:'Je fais de l’écoute active auprès des élèves lorsqu’il y a un problème.', dom:'Compétences relationnelles', inv:false},
@@ -1081,10 +1089,10 @@ var ITEMS_APPROFONDI = {
       modules: [6],
       ancres: ['Presque jamais', 'Rarement', 'Souvent', 'Presque toujours'],
       items: [
-        {q:'Je prends soin d’identifier mes émotions lors d’une situation difficile de gestion de classe afin d’exercer un contrôle sur celles-ci.', dom:'Général', inv:false},
-        {q:'Je gère aisément le stress induit par les comportements inappropriés de certains élèves.', dom:'Général', inv:false},
-        {q:'Je fais preuve d’empathie envers les élèves lors de situations difficiles.', dom:'Général', inv:false},
-        {q:'J’effectue une analyse objective des situations afin de prendre les meilleures décisions possibles pour les élèves.', dom:'Général', inv:false},
+        {q:'Je prends soin d’identifier mes émotions lors d’une situation difficile de gestion de classe afin d’exercer un contrôle sur celles-ci.', dom:'Général', inv:false, hidden:true, shared:'perso_bienetre:4' /* fusionné */},
+        {q:'Je gère aisément le stress induit par les comportements inappropriés de certains élèves.', dom:'Général', inv:false, hidden:true, shared:'perso_bienetre:8' /* fusionné */},
+        {q:'Je fais preuve d’empathie envers les élèves lors de situations difficiles.', dom:'Général', inv:false, hidden:true, shared:'perso_cse:5' /* fusionné */},
+        {q:'J’effectue une analyse objective des situations afin de prendre les meilleures décisions possibles pour les élèves.', dom:'Général', inv:false, hidden:true, shared:'perso_cse:9' /* fusionné */},
         {q:'Je suis capable de maintenir mon calme et de rester concentré dans des situations stressantes en classe.', dom:'Général', inv:false},
         {q:'Je suis capable de détecter mes forces et mes défis en gestion de classe.', dom:'Général', inv:false},
         {q:'Je suis capable de communiquer efficacement avec les autres membres de l’équipe éducative.', dom:'Général', inv:false},
@@ -1100,8 +1108,8 @@ var ITEMS_APPROFONDI = {
       items: [
         {q:'Je sélectionne les ressources matérielles et numériques qui répondent aux besoins pédagogiques des élèves.', dom:'Général', inv:false},
         {q:'Je connais les ressources disponibles dans mon école et je les utilise à bon escient.', dom:'Général', inv:false},
-        {q:'Je tiens compte du nombre de ressources disponibles pour faire mes choix pédagogiques.', dom:'Général', inv:false},
-        {q:'Je fais appel aux ressources humaines (TES, orthopédagogue, bibliothécaire, direction, etc.) lorsque je rencontre une difficulté.', dom:'Général', inv:false},
+        {q:'Quand je planifie mes activités, je tiens compte des ressources réellement disponibles (matériel, temps, personnes).', dom:'Général', inv:false},
+        {q:'Je fais appel aux ressources humaines (direction, enseignants spécialisés, enseignants de soutien, enseignants ressources, infirmière scolaire, thérapeutes du CDTEA, etc.) lorsque je rencontre une difficulté.', dom:'Général', inv:false},
         {q:'Je coopère avec les différents intervenants de l’école pour soutenir les élèves.', dom:'Général', inv:false},
         {q:'Je sollicite de l’aide ou des conseils auprès de collègues lorsque je fais face à un défi.', dom:'Général', inv:false},
       ]
@@ -1165,7 +1173,7 @@ var ITEMS_APPROFONDI = {
       items: [
         {q:'J’adapte mon enseignement en fonction des champs d’intérêt ou des capacités des élèves.', dom:'Général', inv:false},
         {q:'Je sollicite la participation active des élèves lors de mon enseignement.', dom:'Général', inv:false},
-        {q:'J’amène les élèves à objectiver leurs apprentissages.', dom:'Général', inv:false},
+        {q:'J’amène les élèves à nommer ce qu’ils ont appris et comment ils l’ont appris.', dom:'Général', inv:false},
         {q:'J’amène les élèves à s’autoévaluer et à se fixer des objectifs personnels d’apprentissage.', dom:'Général', inv:false},
         {q:'Je valorise les comportements d’engagement scolaire des élèves.', dom:'Général', inv:false},
         {q:'J’utilise des déclencheurs pour susciter l’attention des élèves à l’égard des nouveaux contenus.', dom:'Général', inv:false},
@@ -1352,9 +1360,9 @@ function renderApprofondi(temps){
       var dim = ITEMS_APPROFONDI[section][dimKey];
       var respKey = section + '_' + dimKey;
       var arr = responses[temps].approfondi[respKey] || [];
-      var answered = arr.filter(function(v){ return v !== undefined && v !== null; }).length;
-      var total = dim.items.length;
-      var score = computeApprofondiScore(dim, arr);
+      var answered = arr.filter(function(v, i){ return v !== undefined && v !== null && !(dim.items[i] && dim.items[i].hidden); }).length;
+      var total = dim.items.filter(function(it){ return !it.hidden; }).length;
+      var score = computeApprofondiScore(dim, arr, temps);
       var scoreHtml = score !== null ? '<div><div class="dim-card-score">' + score.toFixed(1) + ' / 5</div><div class="dim-card-progress">' + answered + '/' + total + ' items</div></div>' : '<div class="dim-card-progress">' + answered + '/' + total + ' items</div>';
 
       html += '<div class="dim-card" id="dim-' + temps + '-' + respKey + '" style="--dim-color:' + dim.color + '">'
@@ -1370,6 +1378,7 @@ function renderApprofondi(temps){
         + '<div class="dim-card-body">';
 
       dim.items.forEach(function(item, idx){
+        if (item.hidden) return; // item masqué (doublon) — l'index reste stable
         var val = arr[idx];
         html += '<div class="diag-question-block">'
           + '<p class="diag-question"><span class="dom-tag" style="background:' + dim.color + '22;color:' + dim.color + '">' + item.dom + '</span>' + item.q + (item.inv ? ' <em style="font-size:.78em;color:var(--text-muted)">(item inversé)</em>' : '') + '</p>'
@@ -1437,12 +1446,27 @@ function setApprofondiResponse(btn){
     b.classList.toggle('selected', parseInt(b.dataset.val) === val);
   });
 
+  refreshDimCard(temps, section, dimKey);
+  // Rafraîchir aussi les rubriques qui reprennent cette réponse (items fusionnés)
+  var srcRef = respKey + ':' + idx;
+  ['perso', 'pro'].forEach(function(sec){
+    Object.keys(ITEMS_APPROFONDI[sec]).forEach(function(dk){
+      if (sec === section && dk === dimKey) return;
+      if (ITEMS_APPROFONDI[sec][dk].items.some(function(it){ return it.shared === srcRef; })) refreshDimCard(temps, sec, dk);
+    });
+  });
+  updateProgress();
+  saveState();
+}
+
+function refreshDimCard(temps, section, dimKey){
+  var respKey = section + '_' + dimKey;
   // Mettre à jour le score et le progress affichés sur la dim-card
   var dim = ITEMS_APPROFONDI[section][dimKey];
-  var arr = responses[temps].approfondi[respKey];
-  var answered = arr.filter(function(v){ return v !== undefined && v !== null; }).length;
-  var total = dim.items.length;
-  var score = computeApprofondiScore(dim, arr);
+  var arr = responses[temps].approfondi[respKey] || [];
+  var answered = arr.filter(function(v, i){ return v !== undefined && v !== null && !(dim.items[i] && dim.items[i].hidden); }).length;
+  var total = dim.items.filter(function(it){ return !it.hidden; }).length;
+  var score = computeApprofondiScore(dim, arr, temps);
 
   var dimCard = document.getElementById('dim-' + temps + '-' + respKey);
   if (dimCard) {
@@ -1489,8 +1513,6 @@ function setApprofondiResponse(btn){
       + '<svg class="icon dim-card-arrow"><use href="#i-chevron-down"/></svg>';
   }
 
-  updateProgress();
-  saveState();
 }
 
 function toggleDimCard(headEl){
@@ -1498,13 +1520,28 @@ function toggleDimCard(headEl){
   card.classList.toggle('open');
 }
 
-function computeApprofondiScore(dim, arr){
-  if (!Array.isArray(arr) || arr.length === 0) return null;
+function sharedValue(ref, temps){
+  // ref = 'perso_bienetre:4' → réponse donnée à l'item affiché correspondant
+  if (!ref || !temps || !responses[temps]) return undefined;
+  var parts = ref.split(':');
+  var a = responses[temps].approfondi[parts[0]];
+  return Array.isArray(a) ? a[parseInt(parts[1])] : undefined;
+}
+
+function computeApprofondiScore(dim, arr, temps){
+  if (!dim) return null;
+  if (!Array.isArray(arr)) arr = [];
   var sum = 0, count = 0;
   for (var i = 0; i < dim.items.length; i++) {
-    var v = arr[i];
-    if (v === undefined || v === null) continue;
     var item = dim.items[i];
+    var v;
+    if (item.hidden) {
+      if (!item.shared) continue;           // item masqué sans équivalent
+      v = sharedValue(item.shared, temps);  // item fusionné : même réponse comptée ici
+    } else {
+      v = arr[i];
+    }
+    if (v === undefined || v === null) continue;
     // Items inversés : retourner la valeur (1↔5, 2↔4, 3=3)
     var effective = item.inv ? (6 - v) : v;
     sum += effective;
@@ -1522,7 +1559,7 @@ function totalQuestions(){
   var t = 0;
   ['perso', 'pro'].forEach(function(section){
     Object.keys(ITEMS_APPROFONDI[section]).forEach(function(dimKey){
-      t += ITEMS_APPROFONDI[section][dimKey].items.length;
+      t += ITEMS_APPROFONDI[section][dimKey].items.filter(function(it){ return !it.hidden; }).length;
     });
   });
   return t;
@@ -1537,7 +1574,12 @@ function countTempsResponses(temps){
     var count = 0;
     Object.keys(r.approfondi).forEach(function(respKey){
       var arr = r.approfondi[respKey];
-      if (Array.isArray(arr)) arr.forEach(function(v){ if (v !== undefined && v !== null) count++; });
+      var sep = respKey.indexOf('_');
+      var dimDef = ITEMS_APPROFONDI[respKey.slice(0, sep)] && ITEMS_APPROFONDI[respKey.slice(0, sep)][respKey.slice(sep + 1)];
+      if (Array.isArray(arr)) arr.forEach(function(v, i){
+        if (dimDef && dimDef.items[i] && dimDef.items[i].hidden) return;
+        if (v !== undefined && v !== null) count++;
+      });
     });
     return count;
   }
@@ -1719,19 +1761,19 @@ function showResultApprofondi(hasT1, hasT2, showCompare){
   dimsPerso.forEach(function(d){
     var rawKey = d.key.replace('perso_','');
     var arr1 = responses.t1.approfondi['perso_'+rawKey];
-    scoresT1Perso[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.perso[rawKey], arr1);
+    scoresT1Perso[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.perso[rawKey], arr1, 't1');
     if (hasT2) {
       var arr2 = responses.t2.approfondi['perso_'+rawKey];
-      scoresT2Perso[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.perso[rawKey], arr2);
+      scoresT2Perso[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.perso[rawKey], arr2, 't2');
     }
   });
   dimsPro.forEach(function(d){
     var rawKey = d.key.replace('pro_','');
     var arr1 = responses.t1.approfondi['pro_'+rawKey];
-    scoresT1Pro[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.pro[rawKey], arr1);
+    scoresT1Pro[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.pro[rawKey], arr1, 't1');
     if (hasT2) {
       var arr2 = responses.t2.approfondi['pro_'+rawKey];
-      scoresT2Pro[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.pro[rawKey], arr2);
+      scoresT2Pro[d.key] = computeApprofondiScore(ITEMS_APPROFONDI.pro[rawKey], arr2, 't2');
     }
   });
 
@@ -2014,7 +2056,7 @@ function isHepMode(){
 }
 function applyHepLock(){
   if (!isHepMode()) return false;
-  // Forcer le mode approfondi (95 items)
+  // Forcer le mode approfondi (89 items)
   currentMode = 'approfondi';
   // Masquer le sélecteur de version et l'intro version rapide
   var sel = document.querySelector('.mode-selector');
@@ -2331,6 +2373,56 @@ document.addEventListener('click',function(e){
         timer = setTimeout(save, 600);
       });
     });
+  });
+})();
+</script>
+<script>
+/* ═══ Infobulles : placement automatique (au-dessus ou en dessous, sans sortir de l'écran) ═══ */
+(function(){
+  function topObstacle(){
+    var b=0;
+    document.querySelectorAll('.app-header,.aut-progress-bar,.mob-section-nav,header').forEach(function(el){
+      var cs=getComputedStyle(el);
+      if(cs.position!=='sticky'&&cs.position!=='fixed')return;
+      var r=el.getBoundingClientRect();
+      if(r.top<=1&&r.bottom>b&&r.height<window.innerHeight/2)b=r.bottom;
+    });
+    return b;
+  }
+  function clipBox(el){
+    var box={top:0,left:0,right:window.innerWidth},p=el.parentElement;
+    while(p&&p!==document.body&&p!==document.documentElement){
+      var cs=getComputedStyle(p);
+      if(cs.overflow!=='visible'||cs.overflowX!=='visible'||cs.overflowY!=='visible'){
+        var r=p.getBoundingClientRect();
+        box.top=Math.max(box.top,r.top);box.left=Math.max(box.left,r.left);box.right=Math.min(box.right,r.right);
+      }
+      p=p.parentElement;
+    }
+    return box;
+  }
+  function place(trigger){
+    var tip=trigger.querySelector(':scope > .gloss-tip, :scope > .gloss-tip-box');
+    if(!tip)return;
+    trigger.classList.remove('tip-below');
+    trigger.style.removeProperty('--tip-shift');
+    var t=trigger.getBoundingClientRect(),c=clipBox(trigger);
+    var h=tip.offsetHeight||80;
+    if(t.top-h-14<Math.max(topObstacle(),c.top)+4)trigger.classList.add('tip-below');
+    var r=tip.getBoundingClientRect(),m=8,shift=0;
+    if(r.width){
+      if(r.left<c.left+m)shift=c.left+m-r.left;
+      else if(r.right>c.right-m)shift=(c.right-m)-r.right;
+    }
+    if(shift)trigger.style.setProperty('--tip-shift',shift+'px');
+  }
+  function find(e){
+    var el=e.target.closest&&e.target.closest('.gloss-term, .gloss-tip');
+    if(el&&el.classList.contains('gloss-tip')&&!el.querySelector(':scope > .gloss-tip-box')){el=el.closest('.gloss-term');}
+    return el;
+  }
+  ['mouseover','focusin','click','touchstart'].forEach(function(ev){
+    document.addEventListener(ev,function(e){var el=find(e);if(el)place(el);},{capture:true,passive:true});
   });
 })();
 </script>

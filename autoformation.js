@@ -10,7 +10,7 @@
   // Clé localStorage unique
   const STORAGE_KEY = 'aut_progress';
   
-  // Liste ordonnée des modules (selon ta numérotation : 1,2,3,4,6,7,8,9)
+  // Liste ordonnée des 9 modules
   const MODULES = [
     { num: 1, file: 'module1.html', titre: 'Bien-être professionnel' },
     { num: 2, file: 'module2.html', titre: 'Prévention du burnout' },
