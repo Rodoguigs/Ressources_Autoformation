@@ -40,7 +40,7 @@
   --shadow-floating: 0 4px 14px rgba(0,0,0,.12);
 
   /* ─── Palette par fonction pédagogique de section ─── */
-  /* §1 TL;DR — chaleur, accueil (crème) */
+  /* §1 — chaleur, accueil (crème) */
   --sec1-bg: #fdfaf3;
   --sec1-tint: #faf2dd;
   --sec1-num-bg: #f5e6c8;
@@ -526,7 +526,7 @@ body{
 }
 
 /* Limiter la longueur de ligne pour le confort de lecture */
-.mod-section p, .mod-section ul{max-width:80ch}
+.mod-section p, .mod-section ul{max-width:none}
 .mod-section p{margin:0 0 14px;color:var(--text-body)}
 .mod-section ul{margin:8px 0 14px;padding-left:24px}
 .mod-section ul li{margin-bottom:6px}
@@ -612,7 +612,7 @@ body{
 }
 .block-info ul:last-child, .block-info p:last-child{margin-bottom:0}
 
-/* TL;DR §1 — accents crème chaleureux */
+/* §1 — accents crème chaleureux */
 .tldr-info{
   background:linear-gradient(135deg, #fff8e7 0%, #fef3c7 100%);
   border-left:4px solid var(--sec1-rule);
@@ -1230,7 +1230,7 @@ body{
   margin-top:16px;padding:14px 16px;
   border-radius:10px;
   font-size:.88rem;color:var(--text-body);line-height:1.65;
-  max-width:80ch;
+  max-width:none;
   background:linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3));
   border:1px solid rgba(217,70,97,.12);
 }
@@ -1781,7 +1781,7 @@ body{
   background:rgba(192,57,43,.06);
   border-left-color:#c0392b;color:var(--text-body);
 }
-.qcm-feedback strong{display:block;margin-bottom:4px}
+.qcm-feedback > strong:first-child{display:block;margin-bottom:4px}
 .qcm-retry-btn{
   display:inline-block;margin-top:8px;padding:5px 12px;
   background:rgba(45,156,219,.12);border:1px solid rgba(45,156,219,.35);
@@ -2347,6 +2347,28 @@ body{
 .gloss-term.tip-below .gloss-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink);}
 [data-theme="dark"] .gloss-term.tip-below .gloss-tip::after{border-top-color:transparent;border-bottom-color:#2a2d36;}
 .gloss-tip.tip-below .gloss-tip-box::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--text-strong);}
+
+.guide-inline-link{color:var(--mod-color-deep,var(--accent3));font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.guide-inline-link:hover{color:var(--mod-color,var(--accent3))}
+
+/* ═══ Module 9 — §3 : carte d'introduction et repères ═══ */
+.m9-intro-card{background:var(--mod-color-soft,#f0faf4);border:1px solid var(--border-soft);border-left:5px solid var(--mod-color);border-radius:14px;padding:20px 24px;margin:18px 0 32px}
+.m9-intro-eyebrow{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mod-color-deep,var(--mod-color));margin-bottom:10px}
+.mod-section .m9-intro-tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;padding:0}
+.mod-section .m9-intro-tags li{margin:0}
+.mod-section .m9-intro-tags li::before{content:none}
+.m9-intro-tags li{background:var(--surface);border:1px solid var(--border-soft);border-radius:20px;padding:5px 12px;font-size:.82rem;font-weight:600;color:var(--text-strong)}
+.m9-intro-card p{margin:0 0 14px}
+.m9-intro-link{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:10px;background:var(--mod-color);color:#fff;font-weight:700;font-size:.86rem;text-decoration:none}
+.m9-intro-link:hover{background:var(--mod-color-deep,var(--mod-color));color:#fff;text-decoration:none}
+.volet-card{background:var(--surface);border:1px solid var(--border-soft);border-radius:14px;padding:20px 24px;margin:14px 0 20px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.volet-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border-soft)}
+.volet-num{width:36px;height:36px;border-radius:50%;background:var(--mod-color);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.volet-eyebrow{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--text-subtle)}
+.volet-title{font-weight:700;font-size:1.02rem;color:var(--text-strong);line-height:1.35}
+.volet-src{display:block;font-weight:400;font-size:.8rem;color:var(--text-muted)}
+.volet-card > :last-child{margin-bottom:0}
+[data-theme="dark"] .m9-intro-card{background:rgba(74,124,89,.12)}
 </style>
 </head>
 <body>
@@ -2566,12 +2588,12 @@ body{
   <!-- CONTENU -->
   <main class="mod-content" id="main-content">
 
-    <!-- §1 TL;DR -->
+    <!-- §1 -->
     <section class="mod-section" data-sec="1" id="s1" aria-labelledby="title-s1">
       <div class="mod-section-head">
         <div class="mod-section-num">1</div>
         <div style="flex:1">
-          <div class="mod-section-eyebrow">Section 1 — TL;DR</div>
+          <div class="mod-section-eyebrow">Section 1</div>
           <h2 class="mod-section-title" id="title-s1">En 30 secondes</h2>
         </div>
         <div class="mod-section-meta">~1 min</div>
@@ -2621,7 +2643,7 @@ body{
         </div>
       </div>
 
-      <p><strong>Ce module s'adresse à vous si</strong> vous reconnaissez l'enjeu du reconnaître et prévenir la fatigue de compassion chez les enseignants particulièrement exposés à la détresse des élèves. Il s'inscrit dans le parcours global de cette plateforme comme une étape clé, en lien direct avec les autres modules (notamment M1 et M6) qui en élargissent les implications. La démarche proposée combine apports théoriques solides, outils d'auto-évaluation, et engagements concrets transposables dans votre pratique quotidienne d'enseignant·e du secondaire.</p>
+      <p><strong>Ce module s'adresse à vous si</strong> vous souhaitez reconnaître et prévenir la fatigue de compassion, en particulier si vous êtes souvent exposé·e à la détresse des élèves. Il s'inscrit dans le parcours global de cette plateforme comme une étape clé, en lien direct avec les autres modules (notamment M1 et M6) qui en élargissent les implications. La démarche proposée combine apports théoriques solides, outils d'auto-évaluation, et engagements concrets transposables dans votre pratique quotidienne d'enseignant·e du secondaire.</p>
 
       <div class="block-info block-info--quote">
         «La fatigue de compassion est le prix de l'engagement affectif soutenu — elle n'est pas un défaut, c'est un signal.» — Adapté de Figley (1995)
@@ -2672,19 +2694,29 @@ body{
 
       <h3 class="mod-subtitle" id="s3-1">Pourquoi ce module est-il indispensable ?</h3>
       <p>Distinguer burnout et fatigue de compassion, identifier ses propres signaux d'alarme et constituer une trousse personnelle de régulation émotionnelle — pour rester durablement présent·e sans s'effacer.</p>
-      <div class="encadrement-note">
-<div class="enc-header">Module complémentaire — accompagnement des élèves en situation de vulnérabilité</div>
-<strong>Module 9 — Régulation émotionnelle · Posture face aux élèves en situation de vulnérabilité · Prévention de la fatigue de compassion</strong><br/>
-          Ce module s'adresse aux enseignant·e·s qui accompagnent des élèves en situation de vulnérabilité émotionnelle. Il apporte des outils concrets pour maintenir une posture professionnelle juste dans la durée, sans s'épuiser.
-          <div class="enc-links">
-<a class="enc-link" data-lien="guide_formation" href="bibliotheque.html#res-guide" target="_blank" rel="noopener">Télécharger le Guide de formation (.pdf)</a>
-</div>
-</div>
 
-            <h3 class="mod-subtitle">Les 4 volets du module</h3>
-      <p>Le contenu se déploie en quatre volets complémentaires (extraits intégralement du Guide de formation) :</p>
+      <div class="m9-intro-card">
+        <div class="m9-intro-eyebrow">Module complémentaire · Accompagnement des élèves en situation de vulnérabilité</div>
+        <ul class="m9-intro-tags">
+          <li>Régulation émotionnelle</li>
+          <li>Posture face aux élèves en situation de vulnérabilité</li>
+          <li>Prévention de la fatigue de compassion</li>
+        </ul>
+        <p>Ce module s'adresse aux enseignant·e·s qui accompagnent des élèves en situation de vulnérabilité émotionnelle. Il apporte des outils concrets pour maintenir une posture professionnelle juste dans la durée, sans s'épuiser. Il prolonge les Modules 1, 2 et 4.</p>
+        <a class="m9-intro-link" href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" target="_blank" rel="noopener"><svg class="icon icon-sm"><use href="#i-pdf"/></svg> Ouvrir le Guide de formation (PDF)</a>
+      </div>
 
-      <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin:22px 0 8px">La distance juste — ni fusion, ni indifférence</div>
+      <h3 class="mod-subtitle">Deux repères pour accompagner sans s'épuiser</h3>
+      <p>Ces deux repères sont repris intégralement du <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" target="_blank" rel="noopener" class="guide-inline-link">Guide de formation</a>.</p>
+
+      <div class="volet-card">
+        <div class="volet-head">
+          <span class="volet-num">1</span>
+          <div>
+            <div class="volet-eyebrow">Repère 1</div>
+            <div class="volet-title">La distance juste — ni fusion, ni indifférence</div>
+          </div>
+        </div>
       <p>Accompagner un·e élève en souffrance suppose de distinguer l'<strong>empathie affective</strong> (ressentir avec) de la <strong>compassion</strong> (être touché·e sans être submergé·e — Singer & Klimecki, 2014). La compassion permet de rester présent·e et efficace sans absorption émotionnelle.</p>
       <div style="overflow-x:auto;margin:12px 0"><table style="width:100%;border-collapse:collapse;font-size:.86rem">
         <thead><tr style="background:rgba(233,69,96,.06)"><th style="text-align:left;padding:8px 10px;border-bottom:2px solid var(--accent1)">Fusion émotionnelle (risque)</th><th style="text-align:left;padding:8px 10px;border-bottom:2px solid var(--gold)">Distance juste (objectif)</th></tr></thead>
@@ -2694,8 +2726,16 @@ body{
         </tbody>
       </table></div>
       <p style="font-size:.86rem"><em>L'enseignant·e n'est pas un·e thérapeute. Son rôle est d'accueillir, de stabiliser et d'orienter — non de prendre en charge. Poser des limites claires est un acte de bienveillance envers l'élève et envers soi-même.</em></p>
+      </div>
 
-      <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin:22px 0 8px">Le Profil Apprenant enseignant (Bourassa, Menot-Martin & Philion, 2021)</div>
+      <div class="volet-card">
+        <div class="volet-head">
+          <span class="volet-num">2</span>
+          <div>
+            <div class="volet-eyebrow">Repère 2</div>
+            <div class="volet-title">Le Profil Apprenant enseignant <span class="volet-src">Bourassa, Menot-Martin &amp; Philion (2021)</span></div>
+          </div>
+        </div>
       <p>Lorsqu'une situation d'accompagnement résiste et que la tentation s'installe de porter seul·e le poids de la solution, Bourassa et coll. proposent un geste réflexif puissant : <strong>faire demi-tour</strong> et remplir soi-même le questionnaire du Profil Apprenant en choisissant la même situation que l'élève. L'outil ne sert plus à évaluer l'élève, mais à examiner ses propres manières de penser et d'agir. En croisant les deux profils, ce qui crée l'impasse dans la relation devient plus lisible.</p>
       <p>Le questionnaire explore <strong>trois axes neurofonctionnels</strong>, chacun avec deux pôles (aucun n'étant « meilleur ») :</p>
       <ul>
@@ -2708,7 +2748,7 @@ body{
         <div style="font-style:normal;font-size:.82rem;color:var(--text-subtle);margin-top:6px">— Bourassa, Menot-Martin & Philion (2021), ch. 5, p. 117</div>
       </div>
       <p style="font-size:.86rem">Ce geste s'inscrit pleinement dans le « prendre soin de soi » : il ne s'agit pas d'en faire plus, mais de <strong>déplacer le lieu de la réflexion</strong> — de la tête de l'enseignant·e seul·e vers un espace partagé avec l'élève. Le questionnaire devient un « tiers » qui allège la charge mentale et émotionnelle.</p>
-      <div style="display:flex;align-items:center;gap:10px;background:#f0faf4;border-radius:8px;padding:8px 14px;margin-bottom:16px;font-size:.78rem;font-weight:600;color:var(--sage);">Module complémentaire — <strong>accompagnement des élèves en situation de vulnérabilité</strong> · en lien avec les Modules 1, 2 et 4</div>
+      </div>
 
       <div class="callout callout--alert">
         <div class="callout-head">
@@ -2783,10 +2823,6 @@ body{
           <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
         </a>
         <span style="flex:1"></span>
-        <span class="ref-external-group">
-          <span class="ref-external-label">Réf. externe</span>
-          <a class="ref-external" href="https://www.routledge.com/Compassion-Fatigue-Coping-With-Secondary-Traumatic-Stress-Disorder-In-Those/Figley/p/book/9781138004474" target="_blank" rel="noopener" title="Figley, C. R. (1995). Compassion Fatigue: Coping With Secondary Traumatic Stress Disorder in Those Who Treat the Traumatized. Routledge">Figley (1995) <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg></a>
-        </span>
       </div>
 
       <button class="notes-toggle" onclick="toggleNotes('notes-s3')" aria-expanded="false" aria-controls="notes-s3">
@@ -2817,7 +2853,7 @@ body{
         </div>
         <div class="mod-section-meta">~10 min</div>
       </div>
-        <div class="ancrage-situ"><span class="ancrage-situ-label">Une situation où ça se joue</span> il est 22h, et vous repensez encore à cet élève dont la situation familiale vous inquiète. Ce module aide à rester présent·e pour vos élèves sans porter leur détresse jusque dans vos nuits.</div>
+        <div class="ancrage-situ"><span class="ancrage-situ-label">Une situation où ça se joue</span> Il est 22h, et vous repensez encore à cet élève dont la situation familiale vous inquiète. Ce module aide à rester présent·e pour vos élèves sans porter leur détresse jusque dans vos nuits.</div>
 
       <div class="section-index" aria-label="Sous-sections">
         <span class="section-index-label">Dans cette section</span>
@@ -2990,20 +3026,6 @@ Rediriger : je l'oriente vers la bonne ressource" id="m9-aar"></textarea>
         <div>
           <div class="ressource-titre">Émotions, anxiété et stress — ressource <span class="ressource-type-badge">PDF</span></div>
           <div class="ressource-sous">Outils de régulation pour l'adulte</div>
-        </div>
-      </a>
-      <a href="https://www.routledge.com/Compassion-Fatigue-Coping-With-Secondary-Traumatic-Stress-Disorder-In-Those-Who-Treat-The-Traumatized/Figley/p/book/9780876307595" target="_blank" rel="noopener" class="ressource-card res-book">
-        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
-        <div>
-          <div class="ressource-titre">Figley (1995) — Compassion Fatigue <span class="ressource-type-badge">Livre</span></div>
-          <div class="ressource-sous">Coping with secondary traumatic stress (Routledge)</div>
-        </div>
-      </a>
-      <a href="https://www.routledge.com/The-Resilient-Practitioner-Burnout-and-Compassion-Fatigue-Prevention-and-Self-Care-Strategies-for-the-Helping-Professions/Skovholt-Trotter-Mathison/p/book/9781138830014" target="_blank" rel="noopener" class="ressource-card res-book">
-        <div class="ressource-icon"><svg class="icon"><use href="#i-book"/></svg></div>
-        <div>
-          <div class="ressource-titre">Skovholt &amp; Trotter-Mathison (2016) <span class="ressource-type-badge">Livre</span></div>
-          <div class="ressource-sous">The Resilient Practitioner (Routledge)</div>
         </div>
       </a>
       <div class="ressource-card res-note" style="cursor:default;">
@@ -3179,7 +3201,7 @@ Rediriger : je l'oriente vers la bonne ressource" id="m9-aar"></textarea>
           <svg class="icon icon-sm"><use href="#i-check"/></svg>
           Marquer ce module comme complété
         </button>
-        <p id="mark-done-hint" class="mark-done-hint" style="display:none;flex-basis:100%;margin:10px 0 0;padding:10px 14px;border-radius:10px;background:rgba(45,156,219,.1);color:var(--text-body,#333);font-size:.85rem;line-height:1.55;"></p>
+        <p id="mark-done-hint" class="mark-done-hint" style="display:none;flex:1 1 100%;width:100%;box-sizing:border-box;margin:10px 0 0;padding:10px 14px;border-radius:10px;background:rgba(45,156,219,.1);color:var(--text-body,#333);font-size:.85rem;line-height:1.55;"></p>
         <a href="diagnostic.html" class="back-to-diag-btn">
           <svg class="icon icon-sm"><use href="#i-back"/></svg>
           Mes recommandations
@@ -3398,16 +3420,16 @@ function checkSectionDone(s){
     var dim = dimEl ? (dimEl.value||'').trim() : '';
     var thermoCount = ['t-energie','t-emotion','t-cognitif','t-social']
       .map(function(id){ var e=document.getElementById(id); return e ? e.value : ''; }).filter(function(v){ return v; }).length;
-    return dim.length > 0 || thermoCount >= 3;
+    return sectionTimeOk('s4') && (dim.length > 0 || thermoCount >= 3);
   }
   if(s === 's6'){
     // §6 considérée faite si : au moins 1 QCM répondu (correctement ou non) + au moins 1 case engagement cochée
     var qcmDone = STATE.qcm && Object.keys(STATE.qcm).length >= 1;
     var checksDone = 0;
     document.querySelectorAll('.block-action--check input[type=checkbox]').forEach(c=>{ if(c.checked) checksDone++; });
-    return qcmDone && checksDone >= 1;
+    return STATE.completed || (qcmDone && checksDone >= 1);
   }
-  return sectionsViewed[s];
+  return sectionTimeOk(s);
 }
 
 function refreshProgress(){
@@ -3433,14 +3455,68 @@ function refreshProgress(){
   saveState();
 }
 
-window.addEventListener('scroll', function(){
+/* ═══ Temps de lecture par section ═══
+   Une section est validée quand on y a passé au moins SECTION_TIME_RATIO
+   de la durée indiquée dans le sommaire (« ~8 min » → 4 min), en lecture active. */
+var SECTION_TIME_RATIO = 0.5;      // part minimale de la durée indiquée (1 = durée complète)
+var SECTION_MIN_VARIABLE = 60;     // secondes exigées pour une durée « ~variable »
+var SECTION_TICK = 5;              // secondes par mesure
+var SECTION_IDLE_LIMIT = 120000;   // au-delà de 2 min sans interaction, le temps ne compte plus
+var lastActivity = Date.now();
+function noteActivity(){ lastActivity = Date.now(); }
+['mousemove','keydown','touchstart','wheel','click','scroll'].forEach(function(ev){
+  window.addEventListener(ev, noteActivity, {passive:true});
+});
+function sectionEstimateText(id){
+  var t = document.querySelector('.mod-toc-item[data-section="'+id+'"] .mod-toc-time');
+  if(!t) return '';
+  if(!t.getAttribute('data-est')) t.setAttribute('data-est', t.textContent);
+  return t.getAttribute('data-est');
+}
+function sectionRequiredSeconds(id){
+  var m = sectionEstimateText(id).match(/(\d+)\s*min/);
+  return m ? Math.round(parseInt(m[1], 10) * 60 * SECTION_TIME_RATIO) : SECTION_MIN_VARIABLE;
+}
+function sectionTimeOk(id){
+  return ((STATE.secTime && STATE.secTime[id]) || 0) >= sectionRequiredSeconds(id);
+}
+function currentReadingSection(){
+  var mid = window.innerHeight * 0.45, cur = null;
   sections.forEach(function(s){
     if(!s) return;
-    var rect = s.getBoundingClientRect();
-    if(rect.top < window.innerHeight*0.6 && rect.bottom > 0){
-      sectionsViewed[s.id] = true;
-    }
+    var r = s.getBoundingClientRect();
+    if(r.top <= mid && r.bottom >= mid) cur = s;
   });
+  return cur;
+}
+function fmtMinSec(sec){
+  var m = Math.floor(sec / 60), s = sec % 60;
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+function updateTocTimes(){
+  document.querySelectorAll('.mod-toc-item').forEach(function(item){
+    var id = item.getAttribute('data-section');
+    var t = item.querySelector('.mod-toc-time');
+    if(!t) return;
+    var est = sectionEstimateText(id);
+    var spent = (STATE.secTime && STATE.secTime[id]) || 0;
+    if(sectionsViewed[id] || id === 's6' || spent <= 0){ t.textContent = est; t.removeAttribute('title'); return; }
+    var req = sectionRequiredSeconds(id);
+    t.textContent = est + ' · ' + fmtMinSec(Math.min(spent, req)) + ' / ' + fmtMinSec(req);
+    t.title = 'Temps de lecture minimum pour valider cette section';
+  });
+}
+setInterval(function(){
+  if(document.hidden || Date.now() - lastActivity > SECTION_IDLE_LIMIT) return;
+  var s = currentReadingSection();
+  if(!s) return;
+  STATE.secTime = STATE.secTime || {};
+  STATE.secTime[s.id] = (STATE.secTime[s.id] || 0) + SECTION_TICK;
+  refreshProgress();
+  updateTocTimes();
+}, SECTION_TICK * 1000);
+
+window.addEventListener('scroll', function(){
   refreshProgress();
   updateActiveSection();
   handleBannerContract();
@@ -3727,9 +3803,19 @@ var QCM_PASS_THRESHOLD = 0.8; // 80% requis (4/5) — retry illimité disponible
 var QCM_TOTAL_QUESTIONS = 5;
 
 function getQcmScore(){
-  var answered = STATE.qcm ? Object.keys(STATE.qcm).length : 0;
-  var correct = STATE.qcm ? Object.values(STATE.qcm).filter(function(a){return a.correct;}).length : 0;
-  return {answered: answered, correct: correct, total: QCM_TOTAL_QUESTIONS, pct: answered > 0 ? correct/answered : 0};
+  // Ne compte que les questions présentes sur la page, recorrigées à partir de la bonne réponse
+  // (une ancienne réponse restée en mémoire ne peut plus bloquer la validation)
+  var answered = 0, correct = 0;
+  var blocks = document.querySelectorAll('.qcm-block');
+  blocks.forEach(function(bl){
+    var inp = bl.querySelector('input');
+    var saved = inp && STATE.qcm ? STATE.qcm[inp.name] : null;
+    if(!saved || !bl.querySelector('input[value="' + saved.value + '"]')) return;
+    answered++;
+    if(saved.value === bl.getAttribute('data-correct')) correct++;
+  });
+  var total = blocks.length || QCM_TOTAL_QUESTIONS;
+  return {answered: answered, correct: correct, total: total, pct: answered > 0 ? correct/answered : 0};
 }
 
 function refreshQcmScoreDisplay(){
@@ -3789,6 +3875,7 @@ function markModuleDone(){
   STATE.qcmScore = s.correct + '/' + s.total;
   saveState();
   syncGlobalProgress();
+  refreshProgress();
   var hint = document.getElementById('mark-done-hint');
   if(hint) hint.style.display = 'none';
   var btn = document.getElementById('mark-done');
@@ -3961,6 +4048,14 @@ window.addEventListener('DOMContentLoaded', function(){
 
   // Restaurer QCM
   if(STATE.qcm){
+    // Écarter les réponses qui ne correspondent plus aux questions actuelles
+    Object.keys(STATE.qcm).forEach(function(qName){
+      var saved = STATE.qcm[qName];
+      if(!saved || !document.querySelector('.qcm-block input[name="'+qName+'"][value="'+saved.value+'"]')) delete STATE.qcm[qName];
+    });
+    saveState();
+  }
+  if(STATE.qcm){
     Object.keys(STATE.qcm).forEach(function(qName){
       var saved = STATE.qcm[qName];
       var input = document.querySelector('input[name="'+qName+'"][value="'+saved.value+'"]');
@@ -3985,6 +4080,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
   if(STATE.viewed) sectionsViewed = Object.assign(sectionsViewed, STATE.viewed);
   refreshProgress();
+  updateTocTimes();
   updateTimeDisplay();
   updateSectionIndex();
 

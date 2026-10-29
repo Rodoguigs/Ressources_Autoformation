@@ -40,7 +40,7 @@
   --shadow-floating: 0 4px 14px rgba(0,0,0,.12);
 
   /* ─── Palette par fonction pédagogique de section ─── */
-  /* §1 TL;DR — chaleur, accueil (crème) */
+  /* §1 — chaleur, accueil (crème) */
   --sec1-bg: #fdfaf3;
   --sec1-tint: #faf2dd;
   --sec1-num-bg: #f5e6c8;
@@ -526,7 +526,7 @@ body{
 }
 
 /* Limiter la longueur de ligne pour le confort de lecture */
-.mod-section p, .mod-section ul{max-width:80ch}
+.mod-section p, .mod-section ul{max-width:none}
 .mod-section p{margin:0 0 14px;color:var(--text-body)}
 .mod-section ul{margin:8px 0 14px;padding-left:24px}
 .mod-section ul li{margin-bottom:6px}
@@ -612,7 +612,7 @@ body{
 }
 .block-info ul:last-child, .block-info p:last-child{margin-bottom:0}
 
-/* TL;DR §1 — accents crème chaleureux */
+/* §1 — accents crème chaleureux */
 .tldr-info{
   background:linear-gradient(135deg, #fff8e7 0%, #fef3c7 100%);
   border-left:4px solid var(--sec1-rule);
@@ -1230,7 +1230,7 @@ body{
   margin-top:16px;padding:14px 16px;
   border-radius:10px;
   font-size:.88rem;color:var(--text-body);line-height:1.65;
-  max-width:80ch;
+  max-width:none;
   background:linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3));
   border:1px solid rgba(217,70,97,.12);
 }
@@ -1781,7 +1781,7 @@ body{
   background:rgba(192,57,43,.06);
   border-left-color:#c0392b;color:var(--text-body);
 }
-.qcm-feedback strong{display:block;margin-bottom:4px}
+.qcm-feedback > strong:first-child{display:block;margin-bottom:4px}
 .qcm-retry-btn{
   display:inline-block;margin-top:8px;padding:5px 12px;
   background:rgba(45,156,219,.12);border:1px solid rgba(45,156,219,.35);
@@ -2347,6 +2347,9 @@ body{
 .gloss-term.tip-below .gloss-tip::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--ink);}
 [data-theme="dark"] .gloss-term.tip-below .gloss-tip::after{border-top-color:transparent;border-bottom-color:#2a2d36;}
 .gloss-tip.tip-below .gloss-tip-box::after{top:auto;bottom:100%;border-top-color:transparent;border-bottom-color:var(--text-strong);}
+
+.guide-inline-link{color:var(--mod-color-deep,var(--accent3));font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.guide-inline-link:hover{color:var(--mod-color,var(--accent3))}
 </style>
 </head>
 <body>
@@ -2566,12 +2569,12 @@ body{
   <!-- CONTENU -->
   <main class="mod-content" id="main-content">
 
-    <!-- §1 TL;DR -->
+    <!-- §1 -->
     <section class="mod-section" data-sec="1" id="s1" aria-labelledby="title-s1">
       <div class="mod-section-head">
         <div class="mod-section-num">1</div>
         <div style="flex:1">
-          <div class="mod-section-eyebrow">Section 1 — TL;DR</div>
+          <div class="mod-section-eyebrow">Section 1</div>
           <h2 class="mod-section-title" id="title-s1">En 30 secondes</h2>
         </div>
         <div class="mod-section-meta">~1 min</div>
@@ -2621,7 +2624,7 @@ body{
         </div>
       </div>
 
-      <p><strong>Ce module s'adresse à vous si</strong> vous reconnaissez l'enjeu du cartographier ses propres déclencheurs de stress, leur intensité, leur durée et ses capacités de récupération pour activer des stratégies adaptées. Il s'inscrit dans le parcours global de cette plateforme comme une étape clé, en lien direct avec les autres modules (notamment M1 et M6) qui en élargissent les implications. La démarche proposée combine apports théoriques solides, outils d'auto-évaluation, et engagements concrets transposables dans votre pratique quotidienne d'enseignant·e du secondaire.</p>
+      <p><strong>Ce module s'adresse à vous si</strong> vous souhaitez cartographier vos propres déclencheurs de stress (leur intensité, leur durée) ainsi que vos capacités de récupération, pour activer des stratégies adaptées. Il s'inscrit dans le parcours global de cette plateforme comme une étape clé, en lien direct avec les autres modules (notamment M1 et M6) qui en élargissent les implications. La démarche proposée combine apports théoriques solides, outils d'auto-évaluation, et engagements concrets transposables dans votre pratique quotidienne d'enseignant·e du secondaire.</p>
 
       <div class="block-info block-info--quote">
         «Les émotions ne sont pas un obstacle à la rationalité — elles en sont une composante essentielle.» — Damasio (1994)
@@ -2669,7 +2672,7 @@ body{
       </a>
 
       <h3 class="mod-subtitle" id="s3-1">Concepts-clés du module</h3>
-      <p>Voici le développement des concepts-clés, repris intégralement du Guide de formation :</p>
+      <p>Voici le développement des concepts-clés, repris intégralement du <a href="https://rodoguigs.github.io/Ressources_Autoformation/pdf/guide_formation.pdf" target="_blank" rel="noopener" class="guide-inline-link">Guide de formation</a> :</p>
       <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-subtle);font-weight:700;margin:18px 0 8px">Module 4 — Vulnérabilité au stress</div>
       <h4 style="font-family:'Playfair Display',serif;color:var(--text-strong);font-size:1.05rem;margin:14px 0 8px;font-weight:700">Auto-évaluation (1 = faible · 5 = élevé)</h4>
       <ul>
@@ -2734,10 +2737,6 @@ body{
           <svg class="icon icon-sm"><use href="#i-arrow-right"/></svg>
         </a>
         <span style="flex:1"></span>
-        <span class="ref-external-group">
-          <span class="ref-external-label">Réf. externe</span>
-          <a class="ref-external" href="bibliotheque.html#res-damasio" target="_blank" rel="noopener" title="L'erreur de Descartes : la raison des émotions. Paris: Odile Jacob">Damasio (1994) <svg class="icon icon-sm"><use href="#i-arrow-up-right"/></svg></a>
-        </span>
       </div>
 
       <button class="notes-toggle" onclick="toggleNotes('notes-s3')" aria-expanded="false" aria-controls="notes-s3">
@@ -2768,7 +2767,7 @@ body{
         </div>
         <div class="mod-section-meta">~10 min</div>
       </div>
-        <div class="ancrage-situ"><span class="ancrage-situ-label">Une situation où ça se joue</span> une remarque d'un parent, un conseil de classe tendu, et vous sentez que votre réaction est disproportionnée par rapport à l'événement. Ce module aide à comprendre ce qui vous rend vulnérable au stress et comment mieux le réguler.</div>
+        <div class="ancrage-situ"><span class="ancrage-situ-label">Une situation où ça se joue</span> Une remarque d'un parent, un conseil de classe tendu, et vous sentez que votre réaction est disproportionnée par rapport à l'événement. Ce module aide à comprendre ce qui vous rend vulnérable au stress et comment mieux le réguler.</div>
 
       <div class="section-index" aria-label="Sous-sections">
         <span class="section-index-label">Dans cette section</span>
@@ -3089,7 +3088,7 @@ body{
           <svg class="icon icon-sm"><use href="#i-check"/></svg>
           Marquer ce module comme complété
         </button>
-        <p id="mark-done-hint" class="mark-done-hint" style="display:none;flex-basis:100%;margin:10px 0 0;padding:10px 14px;border-radius:10px;background:rgba(45,156,219,.1);color:var(--text-body,#333);font-size:.85rem;line-height:1.55;"></p>
+        <p id="mark-done-hint" class="mark-done-hint" style="display:none;flex:1 1 100%;width:100%;box-sizing:border-box;margin:10px 0 0;padding:10px 14px;border-radius:10px;background:rgba(45,156,219,.1);color:var(--text-body,#333);font-size:.85rem;line-height:1.55;"></p>
         <a href="diagnostic.html" class="back-to-diag-btn">
           <svg class="icon icon-sm"><use href="#i-back"/></svg>
           Mes recommandations
@@ -3309,16 +3308,16 @@ function checkSectionDone(s){
     var dim = dimEl ? (dimEl.value||'').trim() : '';
     var thermoCount = ['t-energie','t-emotion','t-cognitif','t-social']
       .map(function(id){ var e=document.getElementById(id); return e ? e.value : ''; }).filter(function(v){ return v; }).length;
-    return dim.length > 0 || thermoCount >= 3;
+    return sectionTimeOk('s4') && (dim.length > 0 || thermoCount >= 3);
   }
   if(s === 's6'){
     // §6 considérée faite si : au moins 1 QCM répondu (correctement ou non) + au moins 1 case engagement cochée
     var qcmDone = STATE.qcm && Object.keys(STATE.qcm).length >= 1;
     var checksDone = 0;
     document.querySelectorAll('.block-action--check input[type=checkbox]').forEach(c=>{ if(c.checked) checksDone++; });
-    return qcmDone && checksDone >= 1;
+    return STATE.completed || (qcmDone && checksDone >= 1);
   }
-  return sectionsViewed[s];
+  return sectionTimeOk(s);
 }
 
 function refreshProgress(){
@@ -3344,14 +3343,68 @@ function refreshProgress(){
   saveState();
 }
 
-window.addEventListener('scroll', function(){
+/* ═══ Temps de lecture par section ═══
+   Une section est validée quand on y a passé au moins SECTION_TIME_RATIO
+   de la durée indiquée dans le sommaire (« ~8 min » → 4 min), en lecture active. */
+var SECTION_TIME_RATIO = 0.5;      // part minimale de la durée indiquée (1 = durée complète)
+var SECTION_MIN_VARIABLE = 60;     // secondes exigées pour une durée « ~variable »
+var SECTION_TICK = 5;              // secondes par mesure
+var SECTION_IDLE_LIMIT = 120000;   // au-delà de 2 min sans interaction, le temps ne compte plus
+var lastActivity = Date.now();
+function noteActivity(){ lastActivity = Date.now(); }
+['mousemove','keydown','touchstart','wheel','click','scroll'].forEach(function(ev){
+  window.addEventListener(ev, noteActivity, {passive:true});
+});
+function sectionEstimateText(id){
+  var t = document.querySelector('.mod-toc-item[data-section="'+id+'"] .mod-toc-time');
+  if(!t) return '';
+  if(!t.getAttribute('data-est')) t.setAttribute('data-est', t.textContent);
+  return t.getAttribute('data-est');
+}
+function sectionRequiredSeconds(id){
+  var m = sectionEstimateText(id).match(/(\d+)\s*min/);
+  return m ? Math.round(parseInt(m[1], 10) * 60 * SECTION_TIME_RATIO) : SECTION_MIN_VARIABLE;
+}
+function sectionTimeOk(id){
+  return ((STATE.secTime && STATE.secTime[id]) || 0) >= sectionRequiredSeconds(id);
+}
+function currentReadingSection(){
+  var mid = window.innerHeight * 0.45, cur = null;
   sections.forEach(function(s){
     if(!s) return;
-    var rect = s.getBoundingClientRect();
-    if(rect.top < window.innerHeight*0.6 && rect.bottom > 0){
-      sectionsViewed[s.id] = true;
-    }
+    var r = s.getBoundingClientRect();
+    if(r.top <= mid && r.bottom >= mid) cur = s;
   });
+  return cur;
+}
+function fmtMinSec(sec){
+  var m = Math.floor(sec / 60), s = sec % 60;
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+function updateTocTimes(){
+  document.querySelectorAll('.mod-toc-item').forEach(function(item){
+    var id = item.getAttribute('data-section');
+    var t = item.querySelector('.mod-toc-time');
+    if(!t) return;
+    var est = sectionEstimateText(id);
+    var spent = (STATE.secTime && STATE.secTime[id]) || 0;
+    if(sectionsViewed[id] || id === 's6' || spent <= 0){ t.textContent = est; t.removeAttribute('title'); return; }
+    var req = sectionRequiredSeconds(id);
+    t.textContent = est + ' · ' + fmtMinSec(Math.min(spent, req)) + ' / ' + fmtMinSec(req);
+    t.title = 'Temps de lecture minimum pour valider cette section';
+  });
+}
+setInterval(function(){
+  if(document.hidden || Date.now() - lastActivity > SECTION_IDLE_LIMIT) return;
+  var s = currentReadingSection();
+  if(!s) return;
+  STATE.secTime = STATE.secTime || {};
+  STATE.secTime[s.id] = (STATE.secTime[s.id] || 0) + SECTION_TICK;
+  refreshProgress();
+  updateTocTimes();
+}, SECTION_TICK * 1000);
+
+window.addEventListener('scroll', function(){
   refreshProgress();
   updateActiveSection();
   handleBannerContract();
@@ -3638,9 +3691,19 @@ var QCM_PASS_THRESHOLD = 0.8; // 80% requis (4/5) — retry illimité disponible
 var QCM_TOTAL_QUESTIONS = 5;
 
 function getQcmScore(){
-  var answered = STATE.qcm ? Object.keys(STATE.qcm).length : 0;
-  var correct = STATE.qcm ? Object.values(STATE.qcm).filter(function(a){return a.correct;}).length : 0;
-  return {answered: answered, correct: correct, total: QCM_TOTAL_QUESTIONS, pct: answered > 0 ? correct/answered : 0};
+  // Ne compte que les questions présentes sur la page, recorrigées à partir de la bonne réponse
+  // (une ancienne réponse restée en mémoire ne peut plus bloquer la validation)
+  var answered = 0, correct = 0;
+  var blocks = document.querySelectorAll('.qcm-block');
+  blocks.forEach(function(bl){
+    var inp = bl.querySelector('input');
+    var saved = inp && STATE.qcm ? STATE.qcm[inp.name] : null;
+    if(!saved || !bl.querySelector('input[value="' + saved.value + '"]')) return;
+    answered++;
+    if(saved.value === bl.getAttribute('data-correct')) correct++;
+  });
+  var total = blocks.length || QCM_TOTAL_QUESTIONS;
+  return {answered: answered, correct: correct, total: total, pct: answered > 0 ? correct/answered : 0};
 }
 
 function refreshQcmScoreDisplay(){
@@ -3700,6 +3763,7 @@ function markModuleDone(){
   STATE.qcmScore = s.correct + '/' + s.total;
   saveState();
   syncGlobalProgress();
+  refreshProgress();
   var hint = document.getElementById('mark-done-hint');
   if(hint) hint.style.display = 'none';
   var btn = document.getElementById('mark-done');
@@ -3872,6 +3936,14 @@ window.addEventListener('DOMContentLoaded', function(){
 
   // Restaurer QCM
   if(STATE.qcm){
+    // Écarter les réponses qui ne correspondent plus aux questions actuelles
+    Object.keys(STATE.qcm).forEach(function(qName){
+      var saved = STATE.qcm[qName];
+      if(!saved || !document.querySelector('.qcm-block input[name="'+qName+'"][value="'+saved.value+'"]')) delete STATE.qcm[qName];
+    });
+    saveState();
+  }
+  if(STATE.qcm){
     Object.keys(STATE.qcm).forEach(function(qName){
       var saved = STATE.qcm[qName];
       var input = document.querySelector('input[name="'+qName+'"][value="'+saved.value+'"]');
@@ -3896,6 +3968,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
   if(STATE.viewed) sectionsViewed = Object.assign(sectionsViewed, STATE.viewed);
   refreshProgress();
+  updateTocTimes();
   updateTimeDisplay();
   updateSectionIndex();
 
